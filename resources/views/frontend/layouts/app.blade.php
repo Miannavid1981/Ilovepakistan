@@ -146,7 +146,9 @@
 
     <link rel="stylesheet" href="{{ static_asset('assets/css/custom-style.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Open+Sans:wght@300..800&family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 <style>
 
     * {
@@ -154,7 +156,15 @@
     --hov-primary: #e56f0e;
 
     }
+    *:not(i){
+        font-family: "Open Sans", sans-serif !important;
+    }
 
+.container {
+    
+    max-width: 1200px !important;
+    margin: 0 auto !important;
+}
 </style>
 
 
@@ -411,6 +421,8 @@
 
 
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
 @php
 
     echo get_setting('header_script');
@@ -422,6 +434,197 @@
 </head>
 
 <body>
+    
+    
+    
+    
+<style>
+
+    .drawer-container {
+      position: relative;
+    }
+
+    .drawer {
+      position: fixed;
+      top: 0;
+      left: -300px;
+      width: 300px;
+      height: 100%;
+      transition: left 0.3s ease;
+      overflow-y: auto;
+      z-index: 999;
+    }
+    .bigDrawerOverlay {
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        left: 0;
+        background: #00000030;
+        display: none;
+        z-index: -1;
+    }
+    
+
+    .drawer.open {
+      left: 0;
+    }
+    .drawer.open .bigDrawerOverlay {
+        display: block;
+    }
+    .drawer_box {
+        
+        /*width: 100%;*/
+        height: 100%;
+       margin: 20px 0px 20px 20px;
+        border-radius: 30px;
+        border: 1px solid #eee;
+        background: #f5f5f5;
+        
+    }
+    .drawer > ul {
+        width: 100%;
+      height: 100%;
+      background-color: #fff;
+       color: #000;
+    }
+    .drawer ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      
+    }
+
+    .drawer ul li {
+      position: relative;
+      padding: 10px 15px;
+      /*border-bottom: 1px solid #444;*/
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+    }
+
+    .drawer ul li:hover {
+      background-color: #fff;
+      font-weight: 700;
+    }
+
+    .submenu {
+      position: fixed;
+      top: auto;
+      left: 300px;
+      width: 200px;
+      background-color: #eee;
+      display: none;
+      box-shadow: 2px 0 5px rgba(0, 0, 0, 0.3);
+    }
+    .submenu:hover {
+        display: block !important;
+    }
+    .submenu li {
+      border-bottom: 1px solid #555;
+      padding: 10px;
+    }
+
+    .submenu li:hover {
+      background-color: #e1e1e1;
+    }
+
+    .toggle-btn {
+      /*position: absolute;*/
+      /*top: 20px;*/
+      /*left: 20px;*/
+      /*background-color: #333;*/
+      /*color: #fff;*/
+      /*border: none;*/
+      /*padding: 10px 15px;*/
+      /*cursor: pointer;*/
+    }
+
+    .toggle-btn:hover {
+      background-color: red;
+    }
+
+    .arrow {
+      margin-left: 10px;
+      cursor: pointer;
+    }
+    .translate300px {
+        transform: translateX(300px);
+        transition: all .5s ease-in-out;
+    }
+  </style>
+
+  <div class="drawer-container">
+    <!--<button class="">☰ Open Menu</button>-->
+
+    <div class="drawer" id="drawer">
+        <div class="bigDrawerOverlay" >
+            
+        </div>
+        <div class="drawer_box">
+            <h6 class="my-4  mx-3">Explore Categories</h6>
+               <ul>
+                <li>Category 1 <span class="arrow">▶</span>
+                  <ul class="submenu">
+                    <li>Submenu 1</li>
+                    <li>Submenu 2</li>
+                    <li>Submenu 3</li>
+                  </ul>
+                </li>
+                <li>Category 2 <span class="arrow">▶</span>
+                  <ul class="submenu">
+                    <li>Submenu A</li>
+                    <li>Submenu B</li>
+                  </ul>
+                </li>
+                <li>Category 3</li>
+              </ul>
+            
+        </div>
+   
+    </div>
+  </div>
+
+  <script>
+    $(document).ready(function() {
+      // Toggle drawer
+      $('.toggle-btn').on('click', function() {
+        $('#drawer').toggleClass('open');
+        $('.aiz-main-wrapper').toggleClass("translate300px");
+      });
+
+      // Toggle submenu
+      $('.drawer ul li').on('mouseenter mouseleave', function(event) {
+        event.stopPropagation(); // Prevent event bubbling
+         $('.drawer ul li').each(function(){
+             
+            $(this).children(".submenu").hide();
+            // $(this).children(".arrow").text('▶');
+         })
+        const $submenu = $(this).children('.submenu');
+        if ($submenu.is(':visible')) {
+          $submenu.delay(500).hide();
+        //   $(this).children(".arrow").text('▶');
+        } else {
+          $submenu.show();
+        //   $(this).children(".arrow").text('▼');
+        }
+      });
+      
+    });
+    
+    function close_drawer() 
+    {
+         $('#drawer').removeClass('open');
+          $('.aiz-main-wrapper').removeClass("translate300px");
+    }
+    $(".bigDrawerOverlay").click(function(){
+        close_drawer()
+    })
+  </script>
+    
 
     <!-- aiz-main-wrapper -->
 
@@ -842,12 +1045,18 @@ toggleCheckoutButton();
             search();
 
         });
+        
+        $('#search_cat').change(function(){
+            search();
+        })
 
 
 
         function search(){
 
             var searchKey = $('#search').val();
+            var cat_id = $("#search_cat").val();
+            var category_id =  cat_id ?? 0;
 
             if(searchKey.length > 0){
 
@@ -859,7 +1068,7 @@ toggleCheckoutButton();
 
                 $('.search-preloader').removeClass('d-none');
 
-                $.post('{{ route('search.ajax') }}', { _token: AIZ.data.csrf, search:searchKey, }, function(data){
+                $.post('{{ route('search.ajax') }}', { _token: AIZ.data.csrf, search:searchKey, category_id}, function(data){
 
                     if(data == '0'){
 

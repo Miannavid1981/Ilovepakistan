@@ -81,7 +81,7 @@ class OrderController extends Controller
             $user->balance += $order->grand_total;
             $user->save();
         }
-        
+        dd($order->orderDetails);
         foreach ($order->orderDetails->where('seller_id', Auth::user()->id) as $key => $orderDetail) {
             $orderDetail->delivery_status = $request->status;
             $orderDetail->save();
@@ -104,19 +104,20 @@ class OrderController extends Controller
                 SmsUtility::delivery_status_change(json_decode($order->shipping_address)->phone, $order);
             } catch (\Exception $e) {
             }
+             //sends Notifications to user
+            NotificationUtility::sendNotification($order, $request->status);
+            if (get_setting('google_firebase') == 1 && $order->user->device_token != null) {
+                $request->device_token = $order->user->device_token;
+                $request->title = "Order updated !";
+                $status = str_replace("_", "", $order->delivery_status);
+                $request->text = " Your order {$order->code} has been {$status}";
+                $request->type = "order";
+                $request->id = $order->id;
+                $request->user_id = $order->user->id;
+                NotificationUtility::sendFirebaseNotification($request);
+            }
         }
-        //sends Notifications to user
-        NotificationUtility::sendNotification($order, $request->status);
-        if (get_setting('google_firebase') == 1 && $order->user->device_token != null) {
-            $request->device_token = $order->user->device_token;
-            $request->title = "Order updated !";
-            $status = str_replace("_", "", $order->delivery_status);
-            $request->text = " Your order {$order->code} has been {$status}";
-            $request->type = "order";
-            $request->id = $order->id;
-            $request->user_id = $order->user->id;
-            NotificationUtility::sendFirebaseNotification($request);
-        }
+       
         if (addon_is_activated('delivery_boy')) {
             if (Auth::user()->user_type == 'delivery_boy') {
                 $deliveryBoyController = new DeliveryBoyController;
@@ -128,6 +129,7 @@ class OrderController extends Controller
     // Update Payment Status
     public function update_payment_status(Request $request)
     {
+        
         $order = Order::findOrFail($request->order_id);
         $order->payment_status_viewed = '0';
         $order->save();

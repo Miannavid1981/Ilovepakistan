@@ -45,6 +45,105 @@
             cursor: not-allowed;
         }
     }
+    
+      input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active{
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: #000;
+    transition: background-color 5000s ease-in-out 0s;
+    /*box-shadow: inset 0 0 20px 20px #fff;*/
+}
+
+input:focus {
+    border: 1px solid #dfdfe6 !important;
+}
+#password_confirmation , #password{
+    border:unset !important;
+}
+button:has(.fa-eye){
+    /*display:none;*/
+    border: unset !important;
+}
+.input-group button {
+    height: 42px !important;
+    border-color: #dfdfe6 !important;
+}
+button, button:focus, button:hover {
+    border: unset !important;
+    outline: unset !important;
+    box-shadow:  unset !important;
+}
+
+/*.input-group:has(input[type='password']:focus) div button {*/
+/*    border: unset !important;*/
+/*}*/
+.input-group:has(#password, #password_confirmation){
+    border: 1px solid #b2b2b2;
+    border-radius: 25px !important;
+}
+.input-group-append {
+    margin: 0 !important;
+}
+
+
+    .form-control {
+       
+        border: 1px solid #b2b2b2 !important;
+       border-radius: 25px !important;
+    }
+
+ .login-buttons .btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 300px;
+     padding: 12px;
+      margin: 10px 0;
+      border: none;
+      border-radius: 25px;
+      font-size: 16px;
+      font-weight: bold;
+      text-decoration: none;
+      color: white;
+      cursor: pointer;
+    }
+
+    .btn-facebook {
+      background-color: #1877f2;
+    }
+
+    .btn-google {
+        background-color: #ffffff;
+        color: #000;
+        border: 1px solid #dcdcdc !important;
+        color: #000 !important;
+    }
+    .btn-apple {
+      background-color: #000000;
+    }
+
+    .btn img {
+      margin-right: 10px;
+      height: 20px;
+    }
+
+
+ 
+
+    .login-buttons {
+      display: flex;
+      flex-direction: column;
+      
+    }
+    
+    @media (max-width: 768px){
+        .login-buttons .btn {
+            width: 100%;
+        }
+    }
+
 </style>
 <section class="gry-bg py-6">
     <div class="profile">
@@ -53,6 +152,9 @@
                 <div class="col-xl-8 col-lg-10 mx-auto">
                     <div class="card shadow-none rounded-0 border">
                         <div class="row">
+                            <div class="col-md-3">
+                                
+                            </div>
                             <!-- Left Side -->
                             <div class="col-lg-6 col-md-7 p-4 p-lg-5">
                                 <!-- Titles -->
@@ -65,20 +167,43 @@
                                     <div class="">
                                         <form class="form-default" role="form" action="{{ route('login') }}" method="POST">
                                             @csrf
+                                            <input type="hidden" name="user_type" value="customer">
+                                            @if(get_setting('google_login') == 1 || get_setting('facebook_login') == 1 || get_setting('twitter_login') == 1 || get_setting('apple_login') == 1)
+                                                
+                                                <div class="login-buttons">
+       
+                                                   
+                                                    <a href="{{ route('social.login', ['provider' => 'google']) }}" class="btn btn-google">
+                                                      <img src="https://cdn4.iconfinder.com/data/icons/logos-brands-7/512/google_logo-google_icongoogle-512.png" alt="Google Logo">
+                                                      Continue with Google
+                                                    </a>
+                                                    <a href="{{ route('social.login', ['provider' => 'facebook']) }}" class="btn btn-facebook">
+                                                      <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="Facebook Logo">
+                                                      Continue with Facebook
+                                                    </a>
+                                                    <a href="{{ route('social.login', ['provider' => 'apple']) }}" class="btn btn-apple">
+                                                      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRNw7QG9ltH125HUWoX0GoIi5_d3zGvmJc2zg&s" alt="Apple Logo">
+                                                      Continue with Apple
+                                                    </a>
+                                                    <br>
+                                                    
+                                                  </div>
+                                              @endif
+
                                             <!-- Email or Phone -->
                                             @if (addon_is_activated('otp_system'))
                                             <div class="form-group phone-form-group mb-1">
                                                 <label for="phone" class="fs-12 fw-700 text-soft-dark">{{ translate('Phone') }}</label>
-                                                <input type="tel" id="phone-code" class="form-control{{ $errors->has('phone') ? ' is-invalid' : '' }} rounded-0" value="{{ old('phone') }}" placeholder="" name="phone" autocomplete="off">
+                                                <input type="tel" id="phone-code" class="form-control{{ $errors->has('phone') ? ' is-invalid' : '' }} " value="{{ old('phone') }}" placeholder="" name="phone" autocomplete="off">
                                             </div>
                                             <input type="hidden" name="country_code" value="">
                                             <div class="form-group email-form-group mb-1 d-none">
                                                 <label for="email" class="fs-12 fw-700 text-soft-dark">{{ translate('Email') }}</label>
                                                 <input type="email" class="form-control rounded-0 {{ $errors->has('email') ? ' is-invalid' : '' }}" value="{{ old('email') }}" placeholder="{{  translate('johndoe@example.com') }}" name="email" id="email" autocomplete="off">
                                                 @if ($errors->has('email'))
-                                                <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $errors->first('email') }}</strong>
-                                                </span>
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $errors->first('email') }}</strong>
+                                                    </span>
                                                 @endif
                                             </div>
                                             <div class="form-group text-right">
@@ -99,9 +224,9 @@
                                             <div class="form-group">
                                                 <label for="password" class="fs-12 fw-700 text-soft-dark">{{ translate('Password') }}</label>
                                                 <div class="input-group">
-                                                    <input type="password" class="form-control rounded-0 {{ $errors->has('password') ? ' is-invalid' : '' }}" placeholder="{{ translate('Password') }}" name="password" id="password">
+                                                    <input type="password" class="form-control  {{ $errors->has('password') ? ' is-invalid' : '' }}" placeholder="{{ translate('Password') }}" name="password" id="password">
                                                     <div class="input-group-append">
-                                                        <button type="button" class="btn btn-outline-secondary" id="togglePassword">
+                                                        <button type="button" class="btn btn-white eye_button" id="togglePassword">
                                                             <i class="fa fa-eye" id="eyeIcon"></i>
                                                         </button>
                                                     </div>
@@ -156,55 +281,59 @@
                                         <!-- Social Login -->
                                         @if(get_setting('google_login') == 1 || get_setting('facebook_login') == 1 || get_setting('twitter_login') == 1 || get_setting('apple_login') == 1)
                                         <div class="text-center mb-3">
-                                            <span class="bg-white fs-12 text-gray">{{ translate('Or Login With')}}</span>
+                                            <span class="bg-white fs-12 text-dark">{{ translate('Or Login With')}}</span>
                                         </div>
-                                        <ul class="list-inline social colored text-center mb-4">
-                                            @if (get_setting('facebook_login') == 1)
-                                            <li class="list-inline-item">
-                                                <a href="{{ route('social.login', ['provider' => 'facebook']) }}" class="facebook">
-                                                    <i class="lab la-facebook-f"></i>
-                                                </a>
-                                            </li>
-                                            @endif
-                                            @if(get_setting('google_login') == 1)
-                                            <li class="list-inline-item">
-                                                <a href="{{ route('social.login', ['provider' => 'google']) }}" class="google">
-                                                    <!-- <i class="lab la-google"></i> -->
-                                                    <button type="button" class="login-with-google-btn">
-                                                        Continue with Google
-                                                    </button>
-                                                </a>
-                                            </li>
-                                            @endif
-                                            @if (get_setting('twitter_login') == 1)
-                                            <li class="list-inline-item">
-                                                <a href="{{ route('social.login', ['provider' => 'twitter']) }}" class="twitter">
-                                                    <i class="lab la-twitter"></i>
-                                                </a>
-                                            </li>
-                                            @endif
-                                            @if (get_setting('apple_login') == 1)
-                                            <li class="list-inline-item">
-                                                <a href="{{ route('social.login', ['provider' => 'apple']) }}"
-                                                    class="apple">
-                                                    <i class="lab la-apple"></i>
-                                                </a>
-                                            </li>
-                                            @endif
-                                        </ul>
+                                        <ul class="d-none flex-row justify-content-center list-inline social colored text-center mb-4  " style="gap: 10px;">
+                                                    <li class=" m-0">
+                                                            <a href="{{ route('social.login', ['provider' => 'facebook']) }}" style="background: #3b5a99;font-size: 15px;     height: 39px;width: 41px;" class="d-flex align-items-center justify-content-center text-white rounded-circle"
+                                                                class="facebook">
+                                                                <i class="lab la-facebook-f" style=""></i>
+                                                            </a>
+                                                        </li>
+                                                    @if (get_setting('facebook_login') == 1)
+                                                        
+                                                    @endif
+                                                    @if (get_setting('google_login') == 1)
+                                                        <li class=" m-0">
+                                                            <a href="{{ route('social.login', ['provider' => 'google']) }}"
+                                                                class="google login-with-google-btn border" style="height: 39px;background-position: 10px; padding: 10px 20px">
+                                                                <!-- <i class="lab la-google"></i> -->
+                                                                <!--<button type="button" class="w-100 " style="height: 40px; border-radius: 20px; padding: 10px 21px !important;">-->
+                                                                   
+                                                                <!--</button>-->
+                                                            </a>
+                                                        </li>
+                                                    @endif
+                                                    @if (get_setting('twitter_login') == 1)
+                                                        <li class="list-inline-item">
+                                                            <a href="{{ route('social.login', ['provider' => 'twitter']) }}"
+                                                                class="twitter">
+                                                                <i class="lab la-twitter"></i>
+                                                            </a>
+                                                        </li>
+                                                    @endif
+                                                    @if (get_setting('apple_login') == 1)
+                                                        <li class="list-inline-item">
+                                                            <a href="{{ route('social.login', ['provider' => 'apple']) }}"
+                                                                class="apple">
+                                                                <i class="lab la-apple"></i>
+                                                            </a>
+                                                        </li>
+                                                    @endif
+                                                </ul>
                                         @endif
                                     </div>
                                     <!-- Register Now -->
                                     <div class="text-center">
-                                        <p class="fs-12 text-gray mb-0">{{ translate('Dont have an account?')}}</p>
+                                        <p class="fs-12 text-dark mb-0">{{ translate('Dont have an account?')}}</p>
                                         <a href="{{ route('user.registration') }}" class="fs-14 fw-700 animate-underline-primary">{{ translate('Register Now')}}</a>
                                     </div>
                                 </div>
                             </div>
                             <!-- Right Side Image -->
-                            <div class="col-lg-6 col-md-5 py-3 py-md-0">
-                                <img src="{{ uploaded_asset(get_setting('login_page_image')) }}" alt="" class="img-fit h-100">
-                            </div>
+                            <!--<div class="col-lg-6 col-md-5 py-3 py-md-0">-->
+                            <!--    <img src="{{ uploaded_asset(get_setting('login_page_image')) }}" alt="" class="img-fit h-100">-->
+                            <!--</div>-->
                         </div>
                     </div>
                 </div>
@@ -218,6 +347,42 @@
 @endsection
 @section('script')
 <script>
+ $('.eye_button').click( function() {
+        console.log("clicked");
+         var elm = $(this)
+        const passwordInput = elm.parent().prev();
+        const eyeIcon = $('.fa');
+      
+        
+        // Toggle the type attribute
+        if (passwordInput.attr('type') === 'password') {
+            passwordInput.attr('type', 'text');
+            eyeIcon.removeClass('fa-eye').addClass('fa-eye-slash');
+        } else {
+            passwordInput.attr('type', 'password');
+            eyeIcon.removeClass('fa-eye-slash').addClass('fa-eye');
+        }
+      
+          setTimeout(function(){
+              elm.parent().prev().focus()
+        }, 400)
+    });
+    
+    $('input[type="password"]').focus(function() {
+        // Show the button inside the next sibling div
+        $(this).next().children('button').show();
+    });
+
+    // When mouse leaves the input field
+    $('input[type="password"]').blur(function() {
+        // Hide the button inside the next sibling div
+        var elm = $(this)
+        elm.next().children('button').css('border-left', "unset !important")
+        setTimeout(function(){
+             elm.next().children('button').hide();
+        }, 200)
+       
+    });
     document.getElementById('togglePassword').addEventListener('click', function() {
         const passwordField = document.getElementById('password');
         const eyeIcon = document.getElementById('eyeIcon');

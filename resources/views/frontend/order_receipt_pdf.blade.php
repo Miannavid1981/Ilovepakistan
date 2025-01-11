@@ -1,4 +1,12 @@
+@php
+		$logo = get_setting('header_logo');
+		$logo_url = uploaded_asset($logo);
+		
+		$payment_status = $orders[0]->payment_status;
+		
+	@endphp
 <!DOCTYPE html>
+
 <html>
 
 <head>
@@ -13,242 +21,197 @@
             font-style: normal;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            line-height: 1.3;
-            font-family: 'Roboto', sans-serif;
-            color: #333542;
-        }
-
-        body {
-            font-size: .875rem;
-        }
-
-        .gry-color,
-        .gry-color * {
-            color: #878f9c;
-        }
-
-        table {
+        
+        body {font-family: Helvetica, sans-serif;font-size:13px;}
+        .container{max-width: 680px; margin:0 auto;}
+        .logotype{background:#ededed;color:#fff;width:75px;height:75px;  line-height: 75px; text-align: center; font-size:11px; border-radius: 5px;}
+        .column-title{background:#eee;text-transform:uppercase;padding:15px 5px 15px 15px;font-size:11px}
+        .column-detail{border-top:1px solid #eee;border-bottom:1px solid #eee;}
+        .column-header{background:#eee;text-transform:uppercase;padding: 10px 15px;font-size:11px;border-right:1px solid #eee;}
+        .row{padding:7px 14px;border-left:1px solid #eee;border-right:1px solid #eee;border-bottom:1px solid #eee;}
+        .alert{background: #ffd9e8;padding:20px;margin:20px 0;line-height:22px;color:#333}
+        .socialmedia{background:#eee;padding:20px; display:inline-block}
+                
+        
+        .logotype img {
             width: 100%;
+            height: 100%;
+           object-fit: contain;
         }
-
-        table th {
-            font-weight: normal;
+        
+        @page {
+            margin: 0;
         }
-
-        table.padding th {
-            padding: .5rem .7rem;
+          .page-break {
+            page-break-before: auto; /* Force new page before this element */
         }
-
-        table.padding td {
-            padding: .7rem;
-        }
-
-        table.sm-padding td {
-            padding: .2rem .7rem;
-        }
-
-        .border-bottom td,
-        .border-bottom th {
-            border-bottom: 1px solid #eceff4;
-        }
-
-        .text-left {
-            text-align: left;
-        }
-
-        .text-right {
-            text-align: right;
-        }
-
-        .small {
-            font-size: .85rem;
-        }
-
-        .payment_type p {
-            text-align: left;
-        }/* Watermark styling */
-        .watermark {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            opacity: 0.1;
-            font-size: 6rem;
-            transform: translate(-50%, -50%) rotate(-45deg); /* Adjust the angle here */
-            z-index: -1;
-            color: rgb(167, 167, 167);
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            font-weight: bold;
+    
+        .no-break {
+            break-inside: avoid; /* Prevent breaking inside this element */
+            page-break-inside: avoid;
         }
     </style>
 </head>
 
 <body>
      <!-- Watermark for unpaid invoices -->
-     <div class="watermark">Unpaid</div>
-    <div>
-        <div style="background: #eceff4; padding: 1.5rem;">
-            <!-- Logo Section -->
-            <table style="width: 100%;">
-                <tr>
-                    <td>
-                        <img src="{{ public_path('uploads/all/alladdin.png') }}" alt="Logo" height="40" style="display: inline-block;">
-                    </td>
-                    <td style="text-align: right; font-size: 1.75em">
-                        {{ get_setting('site_name') }}
-                    </td>
-                </tr>
-            </table>
+     <!--<div class="watermark">Unpaid</div>-->
+    
+    <div class="container">
 
-            <!-- Information Section -->
-            <table style="width: 100%; margin-top: 0rem;">
-                <tr>
-                    <td colspan="2" style="font-size: 1.2rem; text-align:right;" class="strong">
-                        {{ get_setting('contact_address') }}
-                    </td>
-                </tr>
-                <tr>
-                    <td class="gry-color small" style="vertical-align: top; padding: 5px; white-space: nowrap;">
-                        {{ translate('Email') }}: order@allaaddin.com<br>
-                        {{ translate('Phone') }}: 042 35942626-145
-                    </td>
-                    <td class="text-right small" style="vertical-align: top; padding: 5px; white-space: nowrap;">
-                        {{ translate('Order Ref') }}: <span class="strong">*{{ $orders[0]->code }}</span><br>
-                        {{ translate('Order Date') }}: <span class="strong">{{ date('d-m-Y', $orders[0]->date) }}</span>
-                    </td>
-                </tr>
-            </table>
-        </div>
+  <table width="100%">
+    <tr>
+      <td width="75px"><div class="logotype"><img src="https://allaaddin.com/public/images/1j+ojFVDOMkX9Wytexe43D6kh.png"></div></td>
+      <td width="300px"><div style="background: #ffd9e8;border-left: 15px solid #fff;padding-left: 30px;font-size: 26px;font-weight: bold;letter-spacing: -1px;height: 73px;line-height: 75px; vertical-align: middle;">Invoice # {{ $main_order_id }}</div></td>
+      <td>
+         <div style="background: {{ $payment_status == 'paid' ? '#ffd9e8' : '#ffd692' }} ;padding: 0 30px;font-size: 22px;font-weight: bold;letter-spacing: -1px;height: 73px;line-height: 75px;border-radius: 6px !important;float:right; vertical-align: middle;">{{ strtoupper($payment_status ) }}</div>
+      </td>
+    </tr>
+  </table> 
+  <br>
+    @php
+        $shipping_address = json_decode($orders[0]->shipping_address);
+    @endphp
+  <!--<br>-->
+  <!--<h3>Your contact details</h3>-->
+  <!--<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.</p><br>-->
+  <table width="100%" style="border-collapse: collapse;">
+    <tr>
+      <td widdth="50%" style="background:#eee;padding:20px;">
+        <strong>Date:</strong> {{ $combined_order->created_at }}<br>
+        <strong>Payment type:</strong> Credit Card VISA<br>
+        <strong>Delivery type:</strong> Postnord<br>
+      </td>
+      <td style="background:#eee;padding:20px;">
+        <strong>Customer Name:</strong> {{ $shipping_address->name }}<br>
+        <strong>E-mail:</strong> {{ $shipping_address->email }}<br>
+        <strong>Phone:</strong> {{ $shipping_address->phone }}<br>
+      </td>
+    </tr>
+  </table><br>
+  <table width="100%">
+    <tr>
+      <td style="vertical-align:top">
+        <table>
+          <tr>
+            <td style="vertical-align: text-top;">
+              <div style="background: #ffd9e8 url(https://cdn0.iconfinder.com/data/icons/commerce-line-1/512/comerce_delivery_shop_business-07-128.png);width: 50px;height: 50px;margin-right: 10px;background-position: center;background-size: 42px;"></div>   
+            </td>
+          
+                
+            <td>
+              <strong>Shipping Address</strong><br>
+              {{ $shipping_address->name }}<br>
+              {{ $shipping_address->address }}, {{ $shipping_address->city }}, {{ $shipping_address->country }}<br>
+              {{ $shipping_address->email }}<br>
+              {{ $shipping_address->phone }}
+            </td>
+          </tr>
+        </table>
+      </td>
+      <td style="vertical-align:top">
+        <table>
+          <tr>
+            <td style="vertical-align: text-top;">
+              <div style="background: #ffd9e8 url(https://cdn4.iconfinder.com/data/icons/app-custom-ui-1/48/Check_circle-128.png) no-repeat;width: 50px;height: 50px;margin-right: 10px;background-position: center;background-size: 25px;"></div>   
+            </td>
+            <td style="vertical-align:top">
+              <strong>Payment Method</strong><br>
+               <!--Your checkout made by VISA Card <br>**** **** **** 2478<br>-->
+                 Cash on Delivery
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table><br>
+  <!--<table width="100%" style="border-top:1px solid #eee;border-bottom:1px solid #eee;padding:0 0 8px 0">-->
+  <!--  <tr>-->
+  <!--    <td><h3>Payment Method</h3>-->
+      <!--Your checkout made by VISA Card **** **** **** 2478-->
+      
+  <!--    Cash on Delivery-->
+  <!--    <td>-->
+  <!--  </tr>-->
+  <!--</table><br>-->
+  <!--<div style="background: #ffd9e8 url(https://cdn4.iconfinder.com/data/icons/basic-ui-2-line/32/shopping-cart-shop-drop-trolly-128.png) no-repeat;width: 50px;height: 50px;margin-right: 10px;background-position: center;background-size: 25px;float: left; margin-bottom: 15px;"></div> -->
+  <!--<h3>Your Purchase</h3>-->
 
-        <!-- Shipping Address -->
-        <div style="padding: 1.5rem; padding-bottom: 0;">
-            <table>
-                @php
-                $shipping_address = json_decode($orders[0]->shipping_address);
-                @endphp
-                <tr>
-                    <td class="strong small gry-color">{{ translate('Bill to') }}:</td>
-                </tr>
-                <tr>
-                    <td class="strong">{{ $shipping_address->name }}</td>
-                </tr>
-                <tr>
-                    <td class="gry-color small">{{ $shipping_address->address }}, {{ $shipping_address->city }}, {{ $shipping_address->country }}</td>
-                </tr>
-                <tr>
-                    <td class="gry-color small">{{ translate('Email') }}: {{ $shipping_address->email }}</td>
-                </tr>
-                <tr>
-                    <td class="gry-color small">{{ translate('Phone') }}: {{ $shipping_address->phone }}</td>
-                </tr>
-                <tr>
-                    @if (isset($orders[1]))
-                    <td class="gry-color small">
-                        Delivery Type :{{ $orders[1]->orderDetails()->first()->shipping_type ?? 'Home Delivery' }}
-                    </td>
-                    @else
-                    <td class="gry-color small">
-                        Delivery Type :{{ $orders[0]->orderDetails()->first()->shipping_type ?? 'Home Delivery' }}
-                    </td>
-                @endif
-                </tr>                
-            </table>
-        </div>
-
-        <div style="padding: 1.5rem;">
-            <table class="padding text-left small border-bottom">
-                <thead>
-                    <tr class="gry-color" style="background: #eceff4;">
-                        <th width="30%">{{ translate('Product Name') }}</th>
-                        <th width="8%">SKIN</th>
-                        <th width="12%">{{ translate('Est. Delivery') }}</th>
-                        <th width="10%">{{ translate('Qty') }}</th>
-                        <th width="15%">{{ translate('Unit Price') }}</th>
-                        <th width="10%">{{ translate('Tax') }}</th>
-                        <th width="15%" class="text-right">{{ translate('Total') }}</th>
-                    </tr>
-                </thead>
-                <tbody class="strong">
-                    @foreach ($orders as $order)
-                    @foreach ($order->orderDetails as $key => $orderDetail)
-                    <tr>
-                        <td>{{ $orderDetail->product->name ?? translate('Product Unavailable') }}
-                            @if ($orderDetail->combo_id != null)
-                            @php
-                            $combo = \App\Models\ComboProduct::findOrFail($orderDetail->combo_id);
-                            echo '(' . $combo->combo_title . ')';
-                            @endphp
-                            @endif
-                        </td>
-                        <td>{{ $orderDetail->product->stocks->first()->sku }}</td>
-                        <td>{{ $orderDetail->product->est_shipping_days }} days</td>
-                        <td>{{ $orderDetail->quantity }}</td>
-                        <td>{{ single_price($orderDetail->price / $orderDetail->quantity) }}</td>
-                        <td>{{ single_price($orderDetail->tax) }}</td>
-                        <td class="text-right">{{ single_price($orderDetail->price + $orderDetail->tax) }}</td>
-                    </tr>
-                    @endforeach
-                    @endforeach
-                </tbody>
-            </table>
-        </div>
-
-        <!-- Order Summary -->
-        <div style="padding: 0 1.5rem;">
-            <table style="width: 100%;">
-                <tr>
-                    <td style="width: 48%; vertical-align: top;">
-                        <table class="text-left sm-padding small strong">
-                            <tr>
-                                <td class="payment_type">
-                                    @if ($orders[0]->payment_type == 'bank_transfer')
-                                    <p><b>Payment Type: Bank Transfer</b></p>
-                                    <p><b>Bank:</b> MCB</p>
-                                    <p><b>Account Name:</b> Solar Dynamics Technologies</p>
-                                    <p><b>Account Number:</b> 0585376961001725</p>
-                                    <p><b>IBAN:</b> PK56 MUCB 0585 3769 6100 1725</p>
-                                    @elseif ($orders[0]->payment_type == 'jazzcash')
-                                    <p><b>Payment Type:</b> JazzCash</p>
-                                    <p><b>Account Name:</b> Muhammad Naveed</p>
-                                    <p><b>Account Number:</b> 0300 0322034</p>
-                                    @else
-                                    <p><b>Payment Type:</b> Cash on Delivery</p>
-                                    @endif
-                                </td>
-                            </tr>
-                        </table>
-                    </td>
-
-                    <td style="width: 48%; vertical-align: top;">
-                        <table class="text-right sm-padding small strong">
-                            <tr>
-                                <th class="gry-color text-left">{{ translate('Sub Total') }}</th>
-                                <td>{{ single_price($orders->sum(function($order) { return $order->orderDetails->sum('price'); })) }}</td>
-                            </tr>
-                            <tr>
-                                <th class="gry-color text-left">{{ translate('Shipping Cost') }}</th>
-                                <td>{{ single_price($orders->sum(function($order) { return $order->orderDetails->sum('shipping_cost'); })) }}</td>
-                            </tr>
-                            <tr>
-                                <th class="gry-color text-left">{{ translate('Total Tax') }}</th>
-                                <td>{{ single_price($orders->sum(function($order) { return $order->orderDetails->sum('tax'); })) }}</td>
-                            </tr>
-                            <tr>
-                                <th class="text-left"><strong>{{ translate('Grand Total') }}</strong></th>
-                                <td><strong>{{ single_price($orders->sum(function($order) { return $order->orderDetails->sum('price') + $order->orderDetails->sum('tax'); })) }}</strong></td>
-
-                            </tr>
-                        </table>
-                    </td>
-                </tr>
-            </table>
-        </div>
+   <table width="100%" style="border-collapse: collapse;border-bottom:1px solid #eee;">
+     <tr>
+       <td width="30%" class="column-header">Item</td>
+       <td width="15%" class="column-header">Est. Delivery</td>
+       <td width="6%" class="column-header">Qty</td>
+       <td width="12%" class="column-header">Price</td>
+       <td width="12%" class="column-header">Tax</td>
+       <td width="12%" class="column-header">Total</td>
+     </tr>
+    @foreach ($orders as $order)
+        @foreach ($order->orderDetails as $key => $orderDetail)
         
-    </div>
-    <p style="margin-left:5px; margin-top:50px;"><strong>Note: </strong>* This is system generated invoice. Not required any stamp or signature.</p>
+        @php
+        $brand = $orderDetail->product->brand;
+        $brand_name = '';
+        if($brand) {
+            $brand_name = $brand->name;
+        }
+        
+        @endphp
+             <tr>
+               <td class="row">
+                   <span style="color:#747474;font-size:11px;font-weight: bold">{{ $brand_name }}</span>
+                   <br>
+                   {{ $orderDetail->product->name ?? translate('Product Unavailable') }}
+                   <br>
+                   <span style="color:#777;font-size:11px;">{{ $orderDetail->product->stocks->first()->sku }}</span>
+               </td>
+               <td class="row">{{ $orderDetail->product->est_shipping_days }} days</td>
+               <td class="row">{{ $orderDetail->quantity }} </td>
+               <td class="row">{{ number_format($orderDetail->price / $orderDetail->quantity) }}</td>
+               <td class="row">{{ number_format($orderDetail->tax) }}</td>
+               <td class="row">{{ number_format($orderDetail->price + $orderDetail->tax) }}</td>
+             </tr>
+        @endforeach
+    @endforeach
+  </table><br>
+  <div class="page-break"></div> <!-- Force a page break if needed -->
+<div class="no-break">
+    
+     <table width="100%" style="background:#eee;padding:10px; 5px " >
+        <tr>
+            <td style="width: 65%">
+                
+            </td>
+          <td>
+            <table style="width: 100%">
+              <tr>
+                <td><strong>Sub-total:</strong></td>
+                <td style="text-align:right">{{ single_price($orders->sum(function($order) { return $order->orderDetails->sum('price'); })) }}</td>
+              </tr>  
+              <tr>
+                <td><strong>Shipping Charges:</strong></td>    
+                <td style="text-align:right">{{ single_price($orders->sum(function($order) { return $order->orderDetails->sum('shipping_cost'); })) }}</td>
+              </tr>
+              <tr>
+                <td><strong>Tax:</strong></td>    
+                <td style="text-align:right">{{ single_price($orders->sum(function($order) { return $order->orderDetails->sum('tax'); })) }}</td>
+              </tr>
+              <tr>
+                <td><strong>Grand total:</strong></td>    
+                <td style="text-align:right">{{ single_price($orders->sum(function($order) { return $order->orderDetails->sum('price') + $order->orderDetails->sum('tax'); })) }}</td>
+              </tr>
+            </table>
+           </td>
+        </tr>
+      </table>
+    
+</div>
+ 
+  <div class="alert">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.	</div>
+  <div class="socialmedia">Follow us online <small>[FB] [INSTA]</small></div>
+</div><!-- container -->
+    
+    
 </body>
 
 </html>

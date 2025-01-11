@@ -259,9 +259,9 @@
                                 <div class="col-12 mb-3">
                                     
                                     @if(file_exists(public_path($category->bannerImage ? $category->bannerImage->file_name : "")))
-                                        <img src="{{ static_asset($category->bannerImage ? $category->bannerImage->file_name : "") }}" alt="Custom Banner">
+                                        <img src="{{ static_asset($category->bannerImage ? $category->bannerImage->file_name : "") }}" alt="Custom Banner" class="w-100">
                                     @else
-                                        <img class="cat-image lazyload mr-2 opacity-60" src="{{ static_asset('uploads\all\hy6ap7cnFw6LBpbtZ0gIJbcM96U542peIJz24zxK.png') }}" alt="Default Banner">
+                                        <img class="cat-image lazyload mr-2 opacity-60" src="{{ static_asset('uploads\all\hy6ap7cnFw6LBpbtZ0gIJbcM96U542peIJz24zxK.png') }}" alt="Default Banner" class="w-100">
                                     @endif
 
                                 </div>

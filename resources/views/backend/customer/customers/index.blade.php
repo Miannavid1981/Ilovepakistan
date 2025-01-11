@@ -52,6 +52,7 @@
                         <th data-breakpoints="lg">{{translate('Phone')}}</th>
                         <th data-breakpoints="lg">{{translate('Package')}}</th>
                         <th data-breakpoints="lg">{{translate('Wallet Balance')}}</th>
+                        <th data-breakpoints="lg">{{translate('Created At')}}</th>
                         <th class="text-right">{{translate('Options')}}</th>
                     </tr>
                 </thead>
@@ -79,6 +80,7 @@
                                     @endif
                                 </td>
                                 <td>{{single_price($user->balance)}}</td>
+                                <td>{{ $user->created_at->format('F d, Y \a\t h:i A') }}</td>
                                 <td class="text-right">
                                     @can('login_as_customer')
                                         <a href="{{route('customers.login', encrypt($user->id))}}" class="btn btn-soft-primary btn-icon btn-circle btn-sm" title="{{ translate('Log in as this Customer') }}">

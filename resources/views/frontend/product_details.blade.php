@@ -20,7 +20,7 @@
     @endphp
     <!-- Schema.org markup for Google+ -->
     <meta itemprop="name" content="{{ $detailedProduct->meta_title }}">
-    <meta itemprop="description" content="{{ $detailedProduct->meta_description }}">
+    <meta itemprop="description" content="{{ $detailedProduct->meta_title }}">
     <meta itemprop="image" content="{{ uploaded_asset($detailedProduct->meta_img) }}">
     <!-- Twitter Card data -->
     <meta name="twitter:card" content="product">
@@ -36,7 +36,7 @@
     <meta property="og:type" content="og:product" />
     <meta property="og:url" content="{{ route('product', $detailedProduct->slug) }}" />
     <meta property="og:image" content="{{ uploaded_asset($detailedProduct->meta_img) }}" />
-    <meta property="og:description" content="{{ $detailedProduct->meta_description }}" />
+    <meta property="og:description" content="{{ $detailedProduct->meta_title }}" />
     <meta property="og:site_name" content="{{ get_setting('meta_title') }}" />
     <meta property="og:price:amount" content="{{ single_price($detailedProduct->unit_price) }}" />
     <meta property="product:brand" content="{{ $detailedProduct->brand ? $detailedProduct->brand->name : env('APP_NAME') }}">
@@ -59,7 +59,9 @@
                     </div>
                     <!-- Product Details -->
                     <div class="col-xl-7 col-lg-6">
+                         <button class="btn btn-dark">Import product</button>
                         @include('frontend.product_details.details')
+                        
                     </div>
                 </div>
             </div>
@@ -99,7 +101,7 @@
                         @include('frontend.product_details.related_products')
                         <!-- Product Query -->
                         @include('frontend.product_details.product_queries')
-                        
+                       
                         <!-- Top Selling Products -->
                         <div class="d-lg-none">
                              @include('frontend.product_details.top_selling_products')

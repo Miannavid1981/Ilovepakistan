@@ -32,6 +32,7 @@
                         <form class="pad-hor" method="POST" role="form" action="{{ route('login') }}">
 
                             @csrf
+                            <input type="hidden" name="user_type" value="seller">
 
                             <!-- Email or Phone -->
 

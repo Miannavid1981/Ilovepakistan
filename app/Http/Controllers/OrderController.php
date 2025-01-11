@@ -96,12 +96,16 @@ class OrderController extends Controller
             $orders = $orders->where('created_at', '>=', date('Y-m-d', strtotime(explode(" to ", $date)[0])) . '  00:00:00')
                 ->where('created_at', '<=', date('Y-m-d', strtotime(explode(" to ", $date)[1])) . '  23:59:59');
         }
+        
         $orders = $orders->paginate(15);
+       
+        // dd($orders);
         return view('backend.sales.index', compact('orders', 'sort_search', 'payment_status', 'delivery_status', 'date'));
     }
     public function show($order_id, $id = null)
-    {
-       
+    { 
+        
+        // dd(array(decrypt($order_id), decrypt($id)));
         $order = Order::findOrFail(decrypt($order_id));
         $order_shipping_address = json_decode($order->shipping_address);
         $delivery_boys = User::where('city', $order_shipping_address->city)
@@ -111,8 +115,35 @@ class OrderController extends Controller
         $order->save();
         $combined_order = CombinedOrder::findOrFail(decrypt($id));
         $orders = $combined_order->orders;
+        // dd($orders);
         
-        return view('backend.sales.show', compact('order', 'delivery_boys','orders'));
+        $statuses = ['pending', 'confirmed', 'picked-up', 'on-the-way', 'delivered'];
+        
+        // Orders from the combined order
+        $orders = $combined_order->orders;
+        
+        // Initialize the lowest status to the highest priority (first in the array)
+        $lowestStatusIndex = array_search('delivered', $statuses);
+        
+        // Iterate over each order
+        foreach ($orders as $order) {
+            // Get the current status of the order
+            $orderStatus = $order->delivery_status;
+        
+            // Find the index of the order's status in the hierarchy
+            $orderStatusIndex = array_search($orderStatus, $statuses);
+        
+            // Update the lowest status index if this order's status is lower
+            if ($orderStatusIndex !== false && $orderStatusIndex < $lowestStatusIndex) {
+                $lowestStatusIndex = $orderStatusIndex;
+            }
+        }
+        
+        // Get the final status from the hierarchy using the lowest status index
+        $avg_delivery_status = $statuses[$lowestStatusIndex];
+        $main_order_id = decrypt($id);
+        // dd($status);
+        return view('backend.sales.show', compact('order', 'delivery_boys','orders', 'avg_delivery_status', 'main_order_id'));
     }
     /**
      * Show the form for creating a new resource.
@@ -173,7 +204,7 @@ class OrderController extends Controller
                 $shipping_type = 'My Home';
             }
             elseif($shipping_types == 'friends_family'){
-                $shipping_type = 'Family & Friends';
+                $shipping_type = 'Friends & Family';
             }
             elseif($shipping_types == 'office'){
                 $shipping_type = 'My Office';

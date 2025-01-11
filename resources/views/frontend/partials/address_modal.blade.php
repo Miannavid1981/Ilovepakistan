@@ -1,6 +1,6 @@
 <!-- New Address Modal -->
 <div class="modal fade" id="new-address-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-md" role="document">
+    <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">{{ translate('New Address') }}</h5>
@@ -39,7 +39,7 @@
                             </div>
                             <div class="col-md-10">
                                 <div class="mb-3">
-                                    <select class="form-control aiz-selectpicker rounded-0" data-live-search="true" data-placeholder="{{ translate('Select your country') }}" name="country_id" required>
+                                    <select class="form-control aiz-selectpicker rounded-0" data-live-search="true" data-placeholder="{{ translate('Select your country') }}" name="country_id" id="country" required>
                                         <option value="">{{ translate('Select your country') }}</option>
                                         @foreach (get_active_countries() as $key => $country)
                                         <option value="{{ $country->id }}" data-code="{{ $country->code }}">{{ $country->name }}</option>
@@ -54,7 +54,7 @@
                                 <label>{{ translate('State')}}</label>
                             </div>
                             <div class="col-md-10">
-                                <select class="form-control mb-3 aiz-selectpicker rounded-0" data-live-search="true" name="state_id" required>
+                                <select class="form-control mb-3 aiz-selectpicker rounded-0" data-live-search="true" name="state_id" id="state" required>
                                 </select>
                             </div>
                         </div>
@@ -64,8 +64,99 @@
                                 <label>{{ translate('City')}}</label>
                             </div>
                             <div class="col-md-10">
-                                <select class="form-control mb-3 aiz-selectpicker rounded-0" data-live-search="true" name="city_id" required>
+                                <select class="form-control mb-3 aiz-selectpicker rounded-0" data-live-search="true" name="city_id" id="city" required>
                                 </select>
+                            </div>
+                        </div>
+                        <!-- City -->
+                        <div class="row">
+                            <div class="col-md-2">
+                                <label>{{ translate('Area')}}</label>
+                            </div>
+                            <div class="col-md-10">
+                                <select class="form-control mb-3 aiz-selectpicker rounded-0" data-live-search="true"  id="area" required>
+                                     <option value="">Select Area</option>
+                                      <option value="Model Town">Model Town</option>
+                                      <option value="Gulberg">Gulberg</option>
+                                      <option value="DHA Phase 1">DHA Phase 1</option>
+                                      <option value="DHA Phase 2">DHA Phase 2</option>
+                                      <option value="DHA Phase 3">DHA Phase 3</option>
+                                      <option value="DHA Phase 4">DHA Phase 4</option>
+                                      <option value="DHA Phase 5">DHA Phase 5</option>
+                                      <option value="DHA Phase 6">DHA Phase 6</option>
+                                      <option value="Johar Town Phase 1">Johar Town Phase 1</option>
+                                      <option value="Johar Town Phase 2">Johar Town Phase 2</option>
+                                      <option value="Bahria Town Sector A">Bahria Town Sector A</option>
+                                      <option value="Bahria Town Sector B">Bahria Town Sector B</option>
+                                      <option value="Bahria Town Sector C">Bahria Town Sector C</option>
+                                      <option value="Bahria Town Sector D">Bahria Town Sector D</option>
+                                      <option value="Bahria Orchard">Bahria Orchard</option>
+                                      <option value="Cantt">Cantt</option>
+                                      <option value="Garden Town">Garden Town</option>
+                                      <option value="Shadman">Shadman</option>
+                                      <option value="Shadbagh">Shadbagh</option>
+                                      <option value="Iqbal Town">Iqbal Town</option>
+                                      <option value="Allama Iqbal Town">Allama Iqbal Town</option>
+                                      <option value="Samanabad">Samanabad</option>
+                                      <option value="Wapda Town">Wapda Town</option>
+                                      <option value="Faisal Town">Faisal Town</option>
+                                      <option value="Township">Township</option>
+                                      <option value="Valencia Town">Valencia Town</option>
+                                      <option value="Askari 10">Askari 10</option>
+                                      <option value="Askari 11">Askari 11</option>
+                                      <option value="Paragon City">Paragon City</option>
+                                      <option value="Punjab Housing Society">Punjab Housing Society</option>
+                                      <option value="Sabzazar">Sabzazar</option>
+                                      <option value="Green Town">Green Town</option>
+                                      <option value="Muslim Town">Muslim Town</option>
+                                      <option value="Mughalpura">Mughalpura</option>
+                                      <option value="Shalimar Town">Shalimar Town</option>
+                                      <option value="Badami Bagh">Badami Bagh</option>
+                                      <option value="Harbanspura">Harbanspura</option>
+                                      <option value="Ichhra">Ichhra</option>
+                                      <option value="Chungi Amar Sidhu">Chungi Amar Sidhu</option>
+                                      <option value="Ravi Road">Ravi Road</option>
+                                      <option value="Mall Road">Mall Road</option>
+                                      <option value="Defence Road">Defence Road</option>
+                                      <option value="Kot Lakhpat">Kot Lakhpat</option>
+                                      <option value="Nishtar Colony">Nishtar Colony</option>
+                                      <option value="Ghazi Road">Ghazi Road</option>
+                                      <option value="Mian Mir Colony">Mian Mir Colony</option>
+                                      <option value="Walton Road">Walton Road</option>
+                                      <option value="Sundar Industrial Estate">Sundar Industrial Estate</option>
+                                      <option value="Gulshan-e-Ravi">Gulshan-e-Ravi</option>
+                                      <option value="Barki Road">Barki Road</option>
+                                      <option value="Batapur">Batapur</option>
+                                      <option value="Kala Shah Kaku">Kala Shah Kaku</option>
+                                      <option value="Baghbanpura">Baghbanpura</option>
+                                      <option value="Chuhng">Chuhng</option>
+                                      <option value="Jallo">Jallo</option>
+                                      <option value="Mohlanwal">Mohlanwal</option>
+                                      <option value="EME Society">EME Society</option>
+                                      <option value="Izmir Town">Izmir Town</option>
+                                      <option value="LDA Avenue">LDA Avenue</option>
+                                      <option value="Eden Villas">Eden Villas</option>
+                                      <option value="Pak Arab Housing Society">Pak Arab Housing Society</option>
+                                      <option value="Al Rehman Garden">Al Rehman Garden</option>
+                                      <option value="Al Jalil Garden">Al Jalil Garden</option>
+                                      <option value="Shahdara">Shahdara</option>
+                                      <option value="Kot Abdul Malik">Kot Abdul Malik</option>
+                                      <option value="Dharampura">Dharampura</option>
+                                      <option value="China Scheme">China Scheme</option>
+                                      <option value="Kala Khatai Road">Kala Khatai Road</option>
+                                </select>
+                                
+  
+                            </div>
+                        </div>
+                        
+                         <!-- Land Mark -->
+                        <div class="row">
+                            <div class="col-md-2">
+                                <label>{{ translate('Land Mark')}}</label>
+                            </div>
+                            <div class="col-md-10">
+                                <input type="text" class="form-control mb-3 rounded-0" placeholder="{{ translate('Famous Land Mark')}}" name="land_mark" id="land_mark" required>
                             </div>
                         </div>
                         
@@ -75,19 +166,11 @@
                                 <label>{{ translate('Address')}}</label>
                             </div>
                             <div class="col-md-10">
-                                <textarea class="form-control mb-3 rounded-0" placeholder="{{ translate('Your Address')}}" rows="2" name="address" required></textarea>
+                                <textarea class="form-control mb-3 rounded-0" placeholder="{{ translate('Your Address')}}" rows="2" name="address" id="address" required></textarea>
                             </div>
                         </div>
                         
-                        <!-- Land Mark -->
-                        <div class="row">
-                            <div class="col-md-2">
-                                <label>{{ translate('Land Mark')}}</label>
-                            </div>
-                            <div class="col-md-10">
-                                <input type="text" class="form-control mb-3 rounded-0" placeholder="{{ translate('Famous Land Mark')}}" name="land_mark" required>
-                            </div>
-                        </div>
+                       
                         
                         <!--<script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places"></script>-->
                         <!--<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCY_Bt6pCs8YpFdWLQ0PMejTJBKXkbo0UU" async defer></script>-->
@@ -338,6 +421,7 @@
 
 <script>
     let map, geocoder, marker;
+   
 
     function initMap() {
         // Initialize the Geocoder
@@ -443,6 +527,7 @@
 
     // Ensure initMap is globally available
     window.initMap = initMap;
+    
 </script>
 
 

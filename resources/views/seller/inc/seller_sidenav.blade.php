@@ -256,6 +256,14 @@
                         @endif
                     </a>
                 </li>
+                <li class="aiz-side-nav-item">
+                    <a href="{{ route('seller.market.index') }}"
+                        class="aiz-side-nav-link {{ areActiveRoutes(['seller.market.index']) }}">
+                        <i class="las la-atom aiz-side-nav-icon"></i>
+                        <span class="aiz-side-nav-text">{{ translate('Market') }}</span>
+                        
+                    </a>
+                </li>
 
             </ul><!-- .aiz-side-nav -->
         </div><!-- .aiz-side-nav-wrap -->

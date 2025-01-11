@@ -316,7 +316,7 @@
             <!-- Return to shop -->
             <a href="{{ route('home') }}" class="btn btn-link fs-14 fw-700 px-0">
                 <i class="la la-arrow-left fs-16"></i>
-                {{ translate('Return to Back') }}
+                {{ translate('Back to Shop') }}
             </a>
             <!-- Continue to Payment -->
             <button type="submit"

@@ -105,13 +105,14 @@ class InvoiceController extends Controller
         $combined_order = CombinedOrder::findOrFail($id);
         $orders = $combined_order->orders;
 
+        $main_order_id = $id;
         // Optionally debug the view first to ensure it's working fine
-        //return view('frontend.order_receipt_pdf', compact('combined_order', 'orders'));
-
+        // return view('frontend.order_receipt_pdf', compact('combined_order', 'orders', 'main_order_id'));
+// dd($combined_order);
         // Generate the PDF
-        $pdf = PDF::loadView('frontend.order_receipt_pdf', compact('combined_order', 'orders'))
+        $pdf = PDF::loadView('frontend.order_receipt_pdf', compact('combined_order', 'orders',  'main_order_id'))
             ->setPaper('A4', 'portrait')
-            ->setWarnings(true); // Enable warnings to troubleshoot
+            ->setWarnings(false); // Enable warnings to troubleshoot
 
         // Return the PDF to download
         return $pdf->download('order-receipt.pdf');

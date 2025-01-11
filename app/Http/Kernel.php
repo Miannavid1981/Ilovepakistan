@@ -105,6 +105,8 @@ class Kernel extends HttpKernel
             \App\Http\Middleware\AutoLogoutCustomer::class,
             
             \App\Http\Middleware\SessionTimeout::class,
+            
+            \App\Http\Middleware\StoreLastVisitedPage::class,
 
         ],
 

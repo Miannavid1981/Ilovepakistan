@@ -1,5 +1,13 @@
 @extends('backend.layouts.app')
 @section('content')
+
+
+
+
+
+
+
+
     <div class="card">
         <div class="card-header">
             <h1 class="h2 fs-16 mb-0">{{ translate('Order Details') }}</h1>
@@ -9,7 +17,7 @@
                 <div class="col text-md-left text-center">
                 </div>
                 @php
-                    $delivery_status = $order->delivery_status;
+                    $delivery_status = $avg_delivery_status;
                     $payment_status = $order->payment_status;
                     $admin_user_id = App\Models\User::where('user_type', 'admin')->first()->id;
                 @endphp
@@ -146,7 +154,7 @@
                     
                 </div>
                 <div class="col-md-4 ml-auto">
-                    <table>
+                    <table style="float:right">
                         <tbody>
                             <tr>
                                 <td class="text-main text-bold">{{ translate('Order #') }}</td>
@@ -205,7 +213,8 @@
                                 <th data-breakpoints="lg" class="min-col">#</th>
                                 <th width="10%">{{ translate('Photo') }}</th>
                                 <th class="text-uppercase">{{ translate('Description') }}</th>
-                                <th data-breakpoints="lg" class="text-uppercase">{{ translate('Delivery Type') }}</th>
+                                <!--<th data-breakpoints="lg" class="text-uppercase">{{ translate('Delivery Type') }}</th> -->
+                                <th data-breakpoints="lg" class="text-uppercase">{{ translate('Delivery Status') }}</th>
                                 <th data-breakpoints="lg" class="min-col text-uppercase text-center">
                                     {{ translate('Qty') }}
                                 </th>
@@ -262,7 +271,7 @@
                                             <strong>{{ translate('Product Unavailable') }}</strong>
                                         @endif
                                     </td>
-                                    <td>
+                                   <!-- <td>
                                         @if ($order->shipping_type != null && $order->shipping_type == 'home_delivery')
                                             {{ translate('Home Delivery') }}
                                         @elseif ($order->shipping_type == 'pickup_point')
@@ -281,6 +290,9 @@
                                                 {{ translate('Carrier') }}
                                             @endif
                                         @endif
+                                    </td> -->
+                                    <td class="text-center">
+                                       <span class="badge badge-inline badge-info">   {{ ucfirst(str_replace('-', '', $order->delivery_status)) }} </span>
                                     </td>
                                     <td class="text-center">
                                         {{ $orderDetail->quantity }}
@@ -298,89 +310,94 @@
                     </table>
                 </div>
             </div>
-            <div class="clearfix float-right">
-                <table class="table">
-                    <tbody>
-                        <tr>
-                            <td>
-                                <strong class="text-muted">{{ translate('Sub Total') }} :</strong>
-                            </td>
-                            <td>
-                            {{ single_price($orders->sum(function($order) { return $order->orderDetails->sum('price'); })) }}
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <strong class="text-muted">{{ translate('Tax') }} :</strong>
-                            </td>
-                            <td>
-                            {{ single_price($orders->sum(function($order) { return $order->orderDetails->sum('tax'); })) }}
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <strong class="text-muted">{{ translate('Shipping') }} :</strong>
-                            </td>
-                            <td>
-                            {{ single_price($orders->sum(function($order) { return $order->orderDetails->sum('shipping_cost'); })) }}
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <strong class="text-muted">{{ translate('Coupon') }} :</strong>
-                            </td>
-                            <td>
-                                {{ single_price($order->coupon_discount) }}
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <strong class="text-muted">{{ translate('TOTAL') }} :</strong>
-                            </td>
-                            <td class="text-muted h5">
-                            {{ single_price($orders->sum(function($order) { return $order->orderDetails->sum('price') + $order->orderDetails->sum('tax') + $order->orderDetails->sum('shipping_cost'); })) }}
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-             <div class="row">
-    <div class="col-md-12">
-        @if ($order->manual_payment && is_array(json_decode($order->manual_payment_data, true)))
-            <br>
-            <strong class="text-main">{{ translate('Payment Information') }}</strong><br>
-            {{ translate('Name') }}: {{ $order->payment_type }}<br>
-        
-            @php
-                $manualPaymentData = json_decode($order->manual_payment_data, true);
-            @endphp
-        
-            @foreach ($manualPaymentData as $transaction)
-                <div class="mt-2">
-                    <strong>{{ translate('TRX ID') }}:</strong> {{ $transaction['trx_id'] }}<br>
-                
-                    <!-- Ensure proper layout for vertical images -->
-                    <div style="display: flex; flex-direction: column; gap: 10px; margin-top: 10px;">
-                        @if (!empty($transaction['photos']) && is_array($transaction['photos']))
-                            @foreach ($transaction['photos'] as $photoPath)
-                                <a href="{{ url('public/' . $photoPath) }}" target="_blank">
-                                    <img src="{{ url('public/' . $photoPath) }}" alt="Payment Photo" style="width: 100px; height: auto; display: block;">
-                                </a>
+            <div class="row">
+                <div class="col-md-8">
+                    @if ($order->manual_payment && is_array(json_decode($order->manual_payment_data, true)))
+                        <br>
+                        <strong class="text-main">{{ translate('Payment Information') }}</strong><br>
+                        {{ translate('Name') }}: {{ $order->payment_type }}<br>
+                    
+                        @php
+                            $manualPaymentData = json_decode($order->manual_payment_data, true);
+                        @endphp
+                        <div style="display: flex; flex-direction: row; gap: 10px; margin-top: 10px;">
+                            @foreach ($manualPaymentData as $transaction)
+                                <div  class="mt-2">
+                                    <strong>{{ translate('TRX ID') }}:</strong> {{ $transaction['trx_id'] }}<br>
+                                
+                                    <!-- Ensure proper layout for vertical images -->
+                                    <div>
+                                        @if (!empty($transaction['photos']) && is_array($transaction['photos']))
+                                            @foreach ($transaction['photos'] as $photoPath)
+                                                <a href="{{ url('public/' . $photoPath) }}" target="_blank">
+                                                    <img src="{{ url('public/' . $photoPath) }}" alt="Payment Photo" style="width: 100px; height: auto; display: block;">
+                                                </a>
+                                            @endforeach
+                                        @endif
+                                    </div>
+                                </div>
+                                <br>
                             @endforeach
-                        @endif
+                        </div>
+                    @endif
+                </div>
+                <div class="col-md-4">
+                    <div class="clearfix float-right">
+                        <table class="table">
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <strong class="text-muted">{{ translate('Sub Total') }} :</strong>
+                                    </td>
+                                    <td>
+                                    {{ single_price($orders->sum(function($order) { return $order->orderDetails->sum('price'); })) }}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <strong class="text-muted">{{ translate('Tax') }} :</strong>
+                                    </td>
+                                    <td>
+                                    {{ single_price($orders->sum(function($order) { return $order->orderDetails->sum('tax'); })) }}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <strong class="text-muted">{{ translate('Shipping') }} :</strong>
+                                    </td>
+                                    <td>
+                                    {{ single_price($orders->sum(function($order) { return $order->orderDetails->sum('shipping_cost'); })) }}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <strong class="text-muted">{{ translate('Coupon') }} :</strong>
+                                    </td>
+                                    <td>
+                                        {{ single_price($order->coupon_discount) }}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <strong class="text-muted">{{ translate('TOTAL') }} :</strong>
+                                    </td>
+                                    <td class="text-muted h5">
+                                    {{ single_price($orders->sum(function($order) { return $order->orderDetails->sum('price') + $order->orderDetails->sum('tax') + $order->orderDetails->sum('shipping_cost'); })) }}
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                
+        
+        
+                        <div class="no-print text-right">
+                            <a href="{{ route('invoice.download', $main_order_id) }}" type="button" class="btn btn-icon btn-light"><i
+                                    class="las la-print"></i></a>
+                        </div>
                     </div>
                 </div>
-                <br>
-            @endforeach
-        @endif
-    </div>
-</div>
-
-
-                <div class="no-print text-right">
-                    <a href="{{ route('invoice.download', $order->id) }}" type="button" class="btn btn-icon btn-light"><i
-                            class="las la-print"></i></a>
-                </div>
             </div>
+            
         </div>
     </div>
 @endsection

@@ -77,25 +77,25 @@ function printSubCategories($categories, $prefix = '') {
                 <!--    <h5 class="mb-md-0 h6">{{ translate('All Products') }}</h5>-->
                 <!--</div>-->
                     <div class="first-row w-100 d-flex flex-wrap">
-                <div class="dropdown col-md-3 mb-4 mb-md-0">
+                <div class="dropdown col-md-2 mb-4 mb-md-0">
                     <select class="form-control aiz-selectpicker" name="category_id" id="category" data-live-search="true">
                         <option value="">Category</option>
                         @php printCategories($categories); @endphp
                     </select>
                 </div>
-                <div class="dropdown col-md-3 mb-4 mb-md-0">
+                <div class="dropdown col-md-2 mb-4 mb-md-0">
                     <select class="form-control aiz-selectpicker" name="subcategory" id="subcategory" data-live-search="true">
                         <option value="">SubCategory</option>
                         <!-- AJAX will populate options here -->
                     </select>
                 </div>
-                <div class="dropdown col-md-3 mb-4 mb-md-0">
+                <div class="dropdown col-md-2 mb-4 mb-md-0">
                     <select class="form-control aiz-selectpicker" name="subcategory2" id="subcategory2" data-live-search="true">
                         <option value="">SubCategory2</option>
                         <!-- AJAX will populate options here -->
                     </select>
                 </div>
-                <div class="dropdown col-md-3 mb-2 mb-md-0">
+                <div class="dropdown col-md-2 mb-2 mb-md-0">
                     <select class="form-control aiz-selectpicker" name="brand_id" id="brand_id" data-live-search="true">
                         <option value="">{{ translate('Select Brand') }}</option>
                         @foreach ($brands as $brand)
@@ -103,9 +103,17 @@ function printSubCategories($categories, $prefix = '') {
                         @endforeach
                     </select>
                 </div>
+                <div class="col-md-2 d-flex justify-content-lg-end align-items-start mt-4 mt-lg-0">
+                    <button class="btn border dropdown-toggle" type="button" data-toggle="dropdown">
+                        {{translate('Bulk Action')}}
+                    </button>
+                    <div class="dropdown-menu dropdown-menu-right">
+                        <a class="dropdown-item confirm-alert" href="javascript:void(0)"  data-target="#bulk-delete-modal"> {{translate('Delete selection')}}</a>
+                    </div>
+            </div>
                     </div>
                     <div class="second-row w-100 d-flex mt-2">
-                <div class="col-md-4">
+                <div class="col-md-10">
                     <div class="input-group input-group-sm">
                         <input type="text" class="form-control" id="search" name="search" @isset($search) value="{{ $search }}" @endisset placeholder="{{ translate('Search product') }}">
                     </div>
@@ -114,14 +122,7 @@ function printSubCategories($categories, $prefix = '') {
                     <button type="submit" class="btn btn-primary">{{ translate('Search') }}</button>
                 </div>
                 <br>
-                <div class="col-md-4 d-flex justify-content-lg-end align-items-start mt-4 mt-lg-0">
-                    <button class="btn border dropdown-toggle" type="button" data-toggle="dropdown">
-                        {{translate('Bulk Action')}}
-                    </button>
-                    <div class="dropdown-menu dropdown-menu-right">
-                        <a class="dropdown-item confirm-alert" href="javascript:void(0)"  data-target="#bulk-delete-modal"> {{translate('Delete selection')}}</a>
-                    </div>
-            </div>
+                
                     </div>
         </div>
             </div>

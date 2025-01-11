@@ -37,6 +37,20 @@ class HomeController extends Controller
      */
     public function index()
     {
+        
+        // try {
+        //     $subject = 'Namecheap chat check';
+        //     $message = 'Hello! I hope this message was delivered succesfully. I am looking forward for your reply on this message as it is crucial for me to send/receive meesages to this mailbox.';
+        //     $to = 'zohaibzafar463@gmail.com';
+        //     Mail::send([], [], function ($email) use ($to, $subject, $message) {
+        //         $email->to($to)
+        //               ->subject($subject)
+        //               ->html($message); // Use the html() method for setting the body as HTML
+        //     });
+        //     dd("sent");
+        // } catch (\Exception $e) {
+        //     dd(' Mail sending error: ' . $e->getMessage());
+        // }
         $featured_categories = Cache::rememberForever('featured_categories', function () {
             return Category::with('bannerImage')->where('featured', 1)->get();
         });
@@ -266,6 +280,7 @@ class HomeController extends Controller
                 $affiliateController = new AffiliateController;
                 $affiliateController->processAffiliateStats($referred_by_user->id, 1, 0, 0, 0);
             }
+            // dd($detailedProduct);
             return view('frontend.product_details', compact('detailedProduct', 'product_queries', 'total_query', 'reviews', 'review_status'));
         }
         abort(404);

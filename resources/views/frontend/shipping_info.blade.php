@@ -57,6 +57,10 @@
                         @if(Auth::check())
                             <div class="border bg-white p-4 mb-4">
                                 @foreach (Auth::user()->addresses as $key => $address)
+                                
+                               @php
+                               // dd($address);
+                               @endphp
                                 <div class="border mb-4">
                                     <div class="row">
                                         <div class="col-md-8">
@@ -102,6 +106,14 @@
                                                         <div class="row">
                                                             <span class="fs-14 text-secondary col-3">{{ translate('Phone') }}</span>
                                                             <span class="fs-14 text-dark fw-500 ml-2 col">{{ $address->phone }}</span>
+                                                        </div>
+                                                        <div class="row">
+                                                            <span class="fs-14 text-secondary col-3">{{ translate('Latitude') }}</span>
+                                                            <span class="fs-14 text-dark fw-500 ml-2 col">{{ $address->latitude }}</span>
+                                                        </div>
+                                                        <div class="row">
+                                                            <span class="fs-14 text-secondary col-3">{{ translate('Longitude') }}</span>
+                                                            <span class="fs-14 text-dark fw-500 ml-2 col">{{ $address->longitude }}</span>
                                                         </div>
                                                     </span>
                                                 </span>
