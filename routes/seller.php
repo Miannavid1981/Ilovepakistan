@@ -1,5 +1,7 @@
 <?php
+
 use App\Http\Controllers\AizUploadController;
+
 //Upload
 Route::group(['prefix' => 'seller', 'middleware' => ['seller', 'verified', 'user', 'prevent-back-history'], 'as' => 'seller.'], function () {
     Route::controller(AizUploadController::class)->group(function () {
@@ -10,15 +12,15 @@ Route::group(['prefix' => 'seller', 'middleware' => ['seller', 'verified', 'user
         Route::post('/bulk-uploaded-files-delete', 'bulk_uploaded_files_delete')->name('bulk-uploaded-files-delete');
     });
 });
+
 Route::group(['namespace' => 'App\Http\Controllers\Seller', 'prefix' => 'seller', 'middleware' => ['seller', 'verified', 'user', 'prevent-back-history'], 'as' => 'seller.'], function () {
     Route::controller(DashboardController::class)->group(function () {
         Route::get('/dashboard', 'index')->name('dashboard');
     });
-    
-    // Product 
+
+    // Product
     Route::controller(ProductController::class)->group(function () {
         Route::get('/products', 'index')->name('products');
-        Route::get('/subcategories', 'getSubcategories')->name('subcategories.get');
         Route::get('/product/create', 'create')->name('products.create');
         Route::post('/products/store/', 'store')->name('products.store');
         Route::get('/product/{id}/edit', 'edit')->name('products.edit');
@@ -31,7 +33,14 @@ Route::group(['namespace' => 'App\Http\Controllers\Seller', 'prefix' => 'seller'
         Route::post('/products/published', 'updatePublished')->name('products.published');
         Route::get('/products/destroy/{id}', 'destroy')->name('products.destroy');
         Route::post('/products/bulk-delete', 'bulk_product_delete')->name('products.bulk-delete');
+        Route::post('/product-search', 'product_search')->name('product.search');
+        Route::post('/get-selected-products', 'get_selected_products')->name('get-selected-products');
+
+        // category-wise discount set
+        Route::get('/categories-wise-product-discount', 'categoriesWiseProductDiscount')->name('categories_wise_product_discount');
+        Route::post('/set-product-discount', 'setProductDiscount')->name('set_product_discount');
     });
+
     // Product Bulk Upload
     Route::controller(ProductBulkUploadController::class)->group(function () {
         Route::get('/product-bulk-upload/index', 'index')->name('product_bulk_upload.index');
@@ -41,6 +50,7 @@ Route::group(['namespace' => 'App\Http\Controllers\Seller', 'prefix' => 'seller'
             Route::get('/brand', 'pdf_download_brand')->name('pdf.download_brand');
         });
     });
+
     // Digital Product
     Route::controller(DigitalProductController::class)->group(function () {
         Route::get('/digitalproducts', 'index')->name('digitalproducts');
@@ -51,6 +61,14 @@ Route::group(['namespace' => 'App\Http\Controllers\Seller', 'prefix' => 'seller'
         Route::get('/digitalproducts/destroy/{id}', 'destroy')->name('digitalproducts.destroy');
         Route::get('/digitalproducts/download/{id}', 'download')->name('digitalproducts.download');
     });
+
+    // Note
+    Route::resource('note', NoteController::class);
+    Route::controller(NoteController::class)->group(function () {
+        Route::get('/note/edit/{id}', 'edit')->name('note.edit');
+        Route::get('note/delete/{note}', 'destroy')->name('note.delete');
+    });
+
     //Coupon
     Route::resource('coupon', CouponController::class);
     Route::controller(CouponController::class)->group(function () {
@@ -58,36 +76,47 @@ Route::group(['namespace' => 'App\Http\Controllers\Seller', 'prefix' => 'seller'
         Route::post('/coupon/get_form_edit', 'get_coupon_form_edit')->name('coupon.get_coupon_form_edit');
         Route::get('/coupon/destroy/{id}', 'destroy')->name('coupon.destroy');
     });
+
     //Order
     Route::resource('orders', OrderController::class);
     Route::controller(OrderController::class)->group(function () {
         Route::post('/orders/update_delivery_status', 'update_delivery_status')->name('orders.update_delivery_status');
         Route::post('/orders/update_payment_status', 'update_payment_status')->name('orders.update_payment_status');
+
+        // Order bulk export
+        Route::get('/order-bulk-export', 'orderBulkExport')->name('order-bulk-export');
     });
+
     Route::controller(InvoiceController::class)->group(function () {
         Route::get('/invoice/{order_id}', 'invoice_download')->name('invoice.download');
     });
     // Route::get('invoice/{order_id}',[InvoiceController::class, 'invoice_download'])->name('invoice.download');
     //Review
     Route::controller(ReviewController::class)->group(function () {
-        Route::get('/reviews', 'index')->name('reviews');
+        Route::get('/product-reviews', 'index')->name('product-reviews');
+        Route::get('/product/detail-reviews/{id}', 'detailReviews')->name('detail-reviews');
+        
     });
     // Route::get('/reviews', [ReviewController::class, 'index'])->name('reviews');
+
     //Shop
     Route::controller(ShopController::class)->group(function () {
         Route::get('/shop', 'index')->name('shop.index');
         Route::post('/shop/update', 'update')->name('shop.update');
+        Route::post('/shop/banner-update', 'bannerUpdate')->name('shop.banner.update');
         Route::get('/shop/apply-for-verification', 'verify_form')->name('shop.verify');
         Route::post('/shop/verification_info_store', 'verify_form_store')->name('shop.verify.store');
     });
+
     //Payments
     Route::resource('payments', PaymentController::class);
+
     // Profile Settings
     Route::controller(ProfileController::class)->group(function () {
         Route::get('/profile', 'index')->name('profile.index');
         Route::post('/profile/update/{id}', 'update')->name('profile.update');
-        Route::post('/profile/update-category-preferences', 'updateCategoryPreferences')->name('update.category.preferences');
     });
+
     // Address
     Route::resource('addresses', AddressController::class);
     Route::controller(AddressController::class)->group(function () {
@@ -97,28 +126,33 @@ Route::group(['namespace' => 'App\Http\Controllers\Seller', 'prefix' => 'seller'
         Route::get('/addresses/destroy/{id}', 'destroy')->name('addresses.destroy');
         Route::get('/addresses/set_default/{id}', 'set_default')->name('addresses.set_default');
     });
+
     // Money Withdraw Requests
     Route::controller(SellerWithdrawRequestController::class)->group(function () {
         Route::get('/money-withdraw-requests', 'index')->name('money_withdraw_requests.index');
         Route::post('/money-withdraw-request/store', 'store')->name('money_withdraw_request.store');
     });
+
     // Commission History
     Route::controller(CommissionHistoryController::class)->group(function () {
         Route::get('/commission-history', 'index')->name('commission-history.index');
     });
-    //Conversations 
+
+    //Conversations
     Route::controller(ConversationController::class)->group(function () {
         Route::get('/conversations', 'index')->name('conversations.index');
         Route::get('/conversations/show/{id}', 'show')->name('conversations.show');
         Route::post('conversations/refresh', 'refresh')->name('conversations.refresh');
         Route::post('conversations/message/store', 'message_store')->name('conversations.message_store');
     });
+
     // product query (comments) show on seller panel
     Route::controller(ProductQueryController::class)->group(function () {
         Route::get('/product-queries', 'index')->name('product_query.index');
         Route::get('/product-queries/{id}', 'show')->name('product_query.show');
         Route::put('/product-queries/{id}', 'reply')->name('product_query.reply');
     });
+
     // Support Ticket
     Route::controller(SupportTicketController::class)->group(function () {
         Route::get('/support_ticket', 'index')->name('support_ticket.index');
@@ -126,8 +160,14 @@ Route::group(['namespace' => 'App\Http\Controllers\Seller', 'prefix' => 'seller'
         Route::get('/support_ticket/show/{id}', 'show')->name('support_ticket.show');
         Route::post('/support_ticket/reply', 'ticket_reply_store')->name('support_ticket.reply_store');
     });
+
     // Notifications
     Route::controller(NotificationController::class)->group(function () {
         Route::get('/all-notification', 'index')->name('all-notification');
+        Route::post('/notifications/bulk-delete', 'bulkDelete')->name('notifications.bulk_delete');
+        Route::get('/notification/read-and-redirect/{id}', 'readAndRedirect')->name('notification.read-and-redirect');
+
     });
+
 });
+

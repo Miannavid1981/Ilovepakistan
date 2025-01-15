@@ -12,7 +12,7 @@
             <div class="row gutters-16">
                 <!-- Flash Deals Baner & Countdown -->
                 <div class="col-xxl-4 col-lg-5">
-                    <div class="z-3 sticky-top-flash-deal py-3 py-lg-0 h-400px h-md-570px h-lg-400px h-xl-475px">
+                    <div class="z-3 sticky-top-lg py-3 py-lg-0 h-400px h-md-570px h-lg-400px h-xl-475px">
                         <div class="h-100 w-100 w-xl-auto" style="background-image: url('{{ uploaded_asset($flash_deal->banner) }}'); background-size: cover; background-position: center center;">
                             <div class="py-5 px-2 px-lg-3 px-xl-5">
                                 <div class="bg-white">
@@ -39,14 +39,14 @@
                                             }
                                         @endphp
                                         <div class="col text-center border-right border-bottom has-transition hov-shadow-out z-1">
-                                            @include('frontend.partials.product_box_1',['product' => $product])
+                                            @include('frontend.'.get_setting('homepage_select').'.partials.product_box_1',['product' => $product])
                                         </div>
                                     @endif
                                 @endforeach
                             </div>
                         </div>
                     @else
-                        <div class="text-center text-{{ $flash_deal->text_color }}">
+                        <div class="text-center text-dark">
                             <h1 class="h3 my-4">{{ $flash_deal->title }}</h1>
                             <p class="h4">{{  translate('This offer has been expired.') }}</p>
                         </div>

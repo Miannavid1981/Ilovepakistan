@@ -141,45 +141,6 @@
     </form>
 
     <br>
-    
-        <form action="{{ route('seller.update.category.preferences') }}" method="POST">
-             @csrf
-    
-            <!-- Category Preferences Heading -->
-        <div class="card">
-            <div class="card-header">
-                <h5 class="mb-0">{{ translate('Category Preferences') }}</h5>
-            </div>
-            <div class="card-body">
-                @foreach ($categories as $category)
-                    <div class="form-group row align-items-center">
-    <label class="col-md-2 col-form-label">{{ $category->name }}</label>
-    <div class="col-md-10">
-        <div class="custom-control custom-radio custom-control-inline">
-            <input type="radio" id="category_{{ $category->id }}_enabled" 
-                   name="categories[{{ $category->id }}]" 
-                   class="custom-control-input category-radio" 
-                   value="1" 
-                   {{ isset($preferences[$category->id]) && $preferences[$category->id] ? 'checked' : '' }}>
-            <label class="custom-control-label" for="category_{{ $category->id }}_enabled">{{ translate('Enabled') }}</label>
-        </div>
-        <div class="custom-control custom-radio custom-control-inline">
-            <input type="radio" id="category_{{ $category->id }}_disabled" 
-                   name="categories[{{ $category->id }}]" 
-                   class="custom-control-input category-radio" 
-                   value="0" 
-                   {{ isset($preferences[$category->id]) && !$preferences[$category->id] ? 'checked' : '' }}>
-            <label class="custom-control-label" for="category_{{ $category->id }}_disabled">{{ translate('Disabled') }}</label>
-        </div>
-    </div>
-</div>
-                @endforeach
-            </div>
-        </div>
-            <div class="form-group text-right">
-                    <button type="submit" class="btn btn-primary">{{ translate('Save Preferences') }}</button>
-            </div>
-        </form>
 
     <!-- Address -->
     <div class="card">
@@ -320,7 +281,7 @@
                                     </div>
                                 </div>
                             </div>
-                            
+
                             <div class="row">
                                 <div class="col-md-2">
                                     <label>{{ translate('State')}}</label>
@@ -339,7 +300,7 @@
                                 <div class="col-md-10">
                                     <select class="form-control mb-3 aiz-selectpicker" data-live-search="true" name="city_id" required>
 
-                                    </select>c
+                                    </select>
                                 </div>
                             </div>
 
@@ -373,7 +334,7 @@
                                     </div>
                                 </div>
                             @endif
-                            
+
                             <div class="row">
                                 <div class="col-md-2">
                                     <label>{{ translate('Postal code')}}</label>
@@ -410,7 +371,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                
+
                 <div class="modal-body" id="edit_modal_body">
 
                 </div>
@@ -422,7 +383,7 @@
 
 @section('script')
     <script type="text/javascript">
-        
+
         $('.new-email-verification').on('click', function() {
             $(this).find('.loading').removeClass('d-none');
             $(this).find('.default').addClass('d-none');
@@ -448,7 +409,7 @@
         function edit_address(address) {
             var url = '{{ route("seller.addresses.edit", ":id") }}';
             url = url.replace(':id', address);
-            
+
             $.ajax({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -474,7 +435,7 @@
                 }
             });
         }
-        
+
         $(document).on('change', '[name=country_id]', function() {
             var country_id = $(this).val();
             get_states(country_id);
@@ -484,7 +445,7 @@
             var state_id = $(this).val();
             get_city(state_id);
         });
-        
+
         function get_states(country_id) {
             $('[name="state"]').html("");
             $.ajax({
@@ -530,25 +491,9 @@
     </script>
 
     @if (get_setting('google_map') == 1)
-        
+
         @include('frontend.partials.google_map')
-        
+
     @endif
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const categoryRadios = document.querySelectorAll('.category-radio');
-        const maxSelections = 3;
 
-        categoryRadios.forEach(radio => {
-            radio.addEventListener('change', function () {
-                const selectedCount = document.querySelectorAll('.category-radio:checked[value="1"]').length;
-
-                if (selectedCount > maxSelections) {
-                    this.checked = false;
-                    alert('You can only select up to 3 categories.');
-                }
-            });
-        });
-    });
-</script>
 @endsection

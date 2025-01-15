@@ -8,7 +8,7 @@
                 <h1 class="h3">{{ translate('All Carriers') }}</h1>
             </div>
             <div class="col-md-6 text-md-right">
-                <a href="{{ route('carriers.create') }}" class="btn btn-primary">
+                <a href="{{ route('carriers.create') }}" class="btn btn-circle btn-info">
                     <span>{{ translate('Add New Carrier') }}</span>
                 </a>
             </div>
@@ -79,8 +79,14 @@
 
 @section('script')
     <script type="text/javascript">
-        
+
         function update_status(el){
+
+            if('{{env('DEMO_MODE')}}' == 'On'){
+                AIZ.plugins.notify('info', '{{ translate('Data can not change in demo mode.') }}');
+                return;
+            }
+
             if(el.checked){
                 var status = 1;
             }

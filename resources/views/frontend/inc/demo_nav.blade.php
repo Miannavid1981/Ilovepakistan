@@ -105,7 +105,43 @@
                     </div>
                     <p class="demo-title">{{ translate('Medical Store') }}</p>
                 </div>
-                <!-- Demo content -->
+                <!-- Sports Store -->
+                <div class="col-md-6 my-3">
+                    <div class="demo-img-content">
+                        <a href="https://demo.activeitzone.com/ecommerce-sports/" target="_blank" class="h-100 w-100">
+                            <img src="{{ static_asset('assets/img/demo/demo_thumb_sports.png') }}">
+                        </a>
+                    </div>
+                    <p class="demo-title">{{ translate('Sports Store') }}</p>
+                </div>
+                <!-- Construction Store -->
+                <div class="col-md-6 my-3">
+                    <div class="demo-img-content">
+                        <a href="https://demo.activeitzone.com/ecommerce-construction/" target="_blank" class="h-100 w-100">
+                            <img src="{{ static_asset('assets/img/demo/demo_thumb_construction.png') }}">
+                        </a>
+                    </div>
+                    <p class="demo-title">{{ translate('Construction Store') }}</p>
+                </div>
+                <!-- Megamart -->
+                <div class="col-md-6 my-3">
+                    <div class="demo-img-content">
+                        <a href="https://demo.activeitzone.com/ecommerce-megamart/" target="_blank" class="h-100 w-100">
+                            <img src="{{ static_asset('assets/img/demo/demo_thumb_megamart.png') }}">
+                        </a>
+                    </div>
+                    <p class="demo-title">{{ translate('Megamart') }}</p>
+                </div>
+                <!-- Beauty Store -->
+                <div class="col-md-6 my-3">
+                    <div class="demo-img-content">
+                        <a href="https://demo.activeitzone.com/ecommerce-beauty-store/" target="_blank" class="h-100 w-100">
+                            <img src="{{ static_asset('assets/img/demo/demo_thumb_beauty.png') }}">
+                        </a>
+                    </div>
+                    <p class="demo-title">{{ translate('Beauty Store') }}</p>
+                </div>
+                <!-- Coming Soon -->
                 <div class="col-md-6 my-3">
                     <div class="demo-img-content">
                         <div class="h-100 w-100 d-flex justify-content-center align-items-center">

@@ -8,11 +8,13 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Laravel\Sanctum\HasApiTokens;
 use App\Models\Cart;
 use App\Notifications\EmailVerificationNotification;
+use App\Traits\PreventDemoModeChanges;
 use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
     use Notifiable, HasApiTokens, HasRoles;
+
 
     public function sendEmailVerificationNotification()
     {
@@ -145,25 +147,16 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->hasMany(AuctionProductBid::class);
     }
+
     public function product_queries(){
         return $this->hasMany(ProductQuery::class,'customer_id');
     }
+
     public function uploads(){
         return $this->hasMany(Upload::class);
     }
-     public function getIsAdminAttribute()
-    {
-        return $this->user_type === 'admin';
-    }
 
-    public function getIsSellerAttribute()
-    {
-        return $this->user_type === 'seller';
+    public function userCoupon(){
+        return $this->hasOne(UserCoupon::class);
     }
-
-    public function getIsCustomerAttribute()
-    {
-        return $this->user_type === 'customer';
-    }
-    
 }

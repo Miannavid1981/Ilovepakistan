@@ -14,7 +14,7 @@
         </div>
         @can('add_product_category')
             <div class="col-md-6 text-md-right">
-                <a href="{{ route('categories.create') }}" class="btn btn-primary">
+                <a href="{{ route('categories.create') }}" class="btn btn-circle btn-info">
                     <span>{{translate('Add New category')}}</span>
                 </a>
             </div>
@@ -45,7 +45,9 @@
                     <th data-breakpoints="lg">{{translate('Icon')}}</th>
                     <th data-breakpoints="lg">{{translate('Cover Image')}}</th>
                     <th data-breakpoints="lg">{{translate('Featured')}}</th>
-                    <th data-breakpoints="lg">{{translate('Commission')}}</th>
+                    @if(get_setting('seller_commission_type') == 'category_based')
+                        <th data-breakpoints="lg">{{translate('Commission')}}</th>
+                    @endif
                     <th width="10%" class="text-right">{{translate('Options')}}</th>
                 </tr>
             </thead>
@@ -88,7 +90,7 @@
                             @endif
                         </td>
                         <td>
-                            @if($category->icon != null)
+                            @if($category->cover_image != null)
                                 <img src="{{ uploaded_asset($category->cover_image) }}" alt="{{translate('Cover Image')}}" class="h-50px">
                             @else
                                 —
@@ -100,7 +102,9 @@
                                 <span></span>
                             </label>
                         </td>
-                        <td>{{ $category->commision_rate }} %</td>
+                        @if(get_setting('seller_commission_type') == 'category_based')
+                            <td>{{ $category->commision_rate }} %</td>
+                        @endif
                         <td class="text-right">
                             @can('edit_product_category')
                                 <a class="btn btn-soft-primary btn-icon btn-circle btn-sm" href="{{route('categories.edit', ['id'=>$category->id, 'lang'=>env('DEFAULT_LANGUAGE')] )}}" title="{{ translate('Edit') }}">
@@ -133,6 +137,12 @@
 @section('script')
     <script type="text/javascript">
         function update_featured(el){
+
+            if('{{env('DEMO_MODE')}}' == 'On'){
+                AIZ.plugins.notify('info', '{{ translate('Data can not change in demo mode.') }}');
+                return;
+            }
+
             if(el.checked){
                 var status = 1;
             }

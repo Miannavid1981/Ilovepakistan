@@ -8,7 +8,7 @@
         </div>
         @can('add_blog_category')
             <div class="col-md-6 text-md-right">
-                <a href="{{ url('admin/blog-category/create') }}" class="btn btn-primary">
+                <a href="{{ url('admin/blog-category/create') }}" class="btn btn-circle btn-info">
                     <span>{{translate('Add New category')}}</span>
                 </a>
             </div>

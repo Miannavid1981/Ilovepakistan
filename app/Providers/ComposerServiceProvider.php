@@ -27,7 +27,7 @@ class ComposerServiceProvider extends ServiceProvider
     public function boot()
     {
         // View::composer(
-        //     ['frontend.inc.footer', 'frontend.partials.cart', 'frontend.partials.product_box_1'],
+        //     ['frontend.inc.footer', 'frontend.'.get_setting('homepage_select').'.partials.cart', 'frontend.'.get_setting('homepage_select').'.partials.product_box_1'],
         //     CartComposer::class
         // );
     }

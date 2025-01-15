@@ -36,7 +36,7 @@
     </div>
     <!-- Thumbnail Images -->
     <div class="col-12 mt-3 d-none d-lg-block">
-        <div class="aiz-carousel product-gallery-thumb" data-items='7' data-nav-for='.product-gallery'
+        <div class="aiz-carousel half-outside-arrow product-gallery-thumb" data-items='7' data-nav-for='.product-gallery'
             data-focus-select='true' data-arrows='true' data-vertical='false' data-auto-height='true'>
 
             @if ($detailedProduct->digital == 0)

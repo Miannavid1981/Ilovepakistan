@@ -31,7 +31,7 @@
                                     <div class="">
                                         <form class="form-default" role="form" action="{{ route('login') }}" method="POST">
                                             @csrf
-                                            
+                                            <input type="hidden" name="user_type" value="seller">
                                             <div class="form-group">
                                                 <label for="email" class="fs-12 fw-700 text-soft-dark">{{  translate('Email') }}</label>
                                                 <input type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }} rounded-0" value="{{ old('email') }}" placeholder="{{  translate('johndoe@example.com') }}" name="email" id="email" autocomplete="off">

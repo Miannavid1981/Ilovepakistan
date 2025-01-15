@@ -42,6 +42,10 @@ class Handler extends ExceptionHandler
 
     public function render($request, Throwable $e)
     {
+        if ($e instanceof Redirectingexception) {
+            return redirect()->back();
+        }
+
         if($this->isHttpException($e))
         {
             if ($request->is('customer-products/admin')) {

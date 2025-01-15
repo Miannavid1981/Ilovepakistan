@@ -1,15 +1,20 @@
 <?php
+
 namespace App\Http\Controllers\Seller;
+
 use App\Models\Order;
 use App\Models\ProductStock;
 use App\Models\SmsTemplate;
 use App\Models\User;
-use App\Models\CombinedOrder;
 use App\Utility\NotificationUtility;
 use App\Utility\SmsUtility;
 use Illuminate\Http\Request;
+use App\Models\OrdersExport;
+use App\Utility\EmailUtility;
+use Maatwebsite\Excel\Facades\Excel;
 use Auth;
 use DB;
+
 class OrderController extends Controller
 {
     /**
@@ -22,16 +27,12 @@ class OrderController extends Controller
         $payment_status = null;
         $delivery_status = null;
         $sort_search = null;
-        // $orders = DB::table('orders')
-        //     ->orderBy('id', 'desc')
-        //     ->where('seller_id', Auth::user()->id)
-        //     ->select('orders.id')
-        //     ->distinct();
-        $orders = Order::whereHas('orderDetails', function ($query) {
-            $query->where('seller_id', Auth::user()->id);
-        })
-        ->with('orderDetails')
-        ->orderBy('created_at', 'desc');
+        $orders = DB::table('orders')
+            ->orderBy('id', 'desc')
+            ->where('seller_id', Auth::user()->id)
+            ->select('orders.id')
+            ->distinct();
+
         if ($request->payment_status != null) {
             $orders = $orders->where('payment_status', $request->payment_status);
             $payment_status = $request->payment_status;
@@ -44,14 +45,18 @@ class OrderController extends Controller
             $sort_search = $request->search;
             $orders = $orders->where('code', 'like', '%' . $sort_search . '%');
         }
+
         $orders = $orders->paginate(15);
+
         foreach ($orders as $key => $value) {
             $order = Order::find($value->id);
             $order->viewed = 1;
             $order->save();
         }
+
         return view('seller.orders.index', compact('orders', 'payment_status', 'delivery_status', 'sort_search'));
     }
+
     public function show($id)
     {
         $order = Order::findOrFail(decrypt($id));
@@ -59,80 +64,96 @@ class OrderController extends Controller
         $delivery_boys = User::where('city', $order_shipping_address->city)
             ->where('user_type', 'delivery_boy')
             ->get();
+
         $order->viewed = 1;
         $order->save();
-        $combined_order = CombinedOrder::findOrFail($order->combined_order_id);
-        $orders = Order::whereHas('orderDetails', function ($query) {
-            $query->where('seller_id', Auth::user()->id);
-        })
-        ->with('orderDetails')
-        ->orderBy('created_at', 'desc');
-        return view('seller.orders.show', compact('order', 'delivery_boys','orders'));
+        return view('seller.orders.show', compact('order', 'delivery_boys'));
     }
+
     // Update Delivery Status
     public function update_delivery_status(Request $request)
-    {
+    {   
+        $authUser = Auth::user();
         $order = Order::findOrFail($request->order_id);
         $order->delivery_viewed = '0';
         $order->delivery_status = $request->status;
         $order->save();
+
+        if($request->status == 'delivered'){
+            $order->delivered_date = date("Y-m-d H:i:s");
+            $order->save();
+        }
+
         if ($request->status == 'cancelled' && $order->payment_type == 'wallet') {
             $user = User::where('id', $order->user_id)->first();
             $user->balance += $order->grand_total;
             $user->save();
         }
-        dd($order->orderDetails);
-        foreach ($order->orderDetails->where('seller_id', Auth::user()->id) as $key => $orderDetail) {
+
+        // If the order is cancelled and the seller commission is calculated, deduct seller earning
+        if($request->status == 'cancelled' && $order->payment_status == 'paid' && $order->commission_calculated == 1){
+            $sellerEarning = $order->commissionHistory->seller_earning;
+            $shop = $order->shop;
+            $shop->admin_to_pay -= $sellerEarning;
+            $shop->save();
+        }
+
+        foreach ($order->orderDetails->where('seller_id', $authUser->id) as $key => $orderDetail) {
             $orderDetail->delivery_status = $request->status;
             $orderDetail->save();
+
             if ($request->status == 'cancelled') {
-                $variant = $orderDetail->variation;
-                if ($orderDetail->variation == null) {
-                    $variant = '';
-                }
-                $product_stock = ProductStock::where('product_id', $orderDetail->product_id)
-                    ->where('variant', $variant)
-                    ->first();
-                if ($product_stock != null) {
-                    $product_stock->qty += $orderDetail->quantity;
-                    $product_stock->save();
-                }
+                product_restock($orderDetail);
             }
         }
+        
+        // Delivery Status change email notification to Admin, seller, Customer
+        EmailUtility::order_email($order, $request->status); 
+
+
+        // Delivery Status change SMS notification
         if (addon_is_activated('otp_system') && SmsTemplate::where('identifier', 'delivery_status_change')->first()->status == 1) {
             try {
                 SmsUtility::delivery_status_change(json_decode($order->shipping_address)->phone, $order);
-            } catch (\Exception $e) {
-            }
-             //sends Notifications to user
-            NotificationUtility::sendNotification($order, $request->status);
-            if (get_setting('google_firebase') == 1 && $order->user->device_token != null) {
-                $request->device_token = $order->user->device_token;
-                $request->title = "Order updated !";
-                $status = str_replace("_", "", $order->delivery_status);
-                $request->text = " Your order {$order->code} has been {$status}";
-                $request->type = "order";
-                $request->id = $order->id;
-                $request->user_id = $order->user->id;
-                NotificationUtility::sendFirebaseNotification($request);
-            }
+            } catch (\Exception $e) {}
         }
-       
+
+        //Sends Web Notifications to user
+        NotificationUtility::sendNotification($order, $request->status);
+
+        //Sends Firebase Notifications to user
+
+        if (get_setting('google_firebase') == 1 && $order->user->device_token != null) {
+            $request->device_token = $order->user->device_token;
+            $request->title = "Order updated !";
+            $status = str_replace("_", "", $order->delivery_status);
+            $request->text = " Your order {$order->code} has been {$status}";
+
+            $request->type = "order";
+            $request->id = $order->id;
+            $request->user_id = $order->user->id;
+
+            NotificationUtility::sendFirebaseNotification($request);
+        }
+
+
         if (addon_is_activated('delivery_boy')) {
-            if (Auth::user()->user_type == 'delivery_boy') {
+            if ($authUser->user_type == 'delivery_boy') {
                 $deliveryBoyController = new DeliveryBoyController;
                 $deliveryBoyController->store_delivery_history($order);
             }
         }
+
         return 1;
     }
+
     // Update Payment Status
     public function update_payment_status(Request $request)
     {
-        
         $order = Order::findOrFail($request->order_id);
         $order->payment_status_viewed = '0';
         $order->save();
+
         foreach ($order->orderDetails->where('seller_id', Auth::user()->id) as $key => $orderDetail) {
             $orderDetail->payment_status = $request->status;
             $orderDetail->save();
@@ -146,27 +167,49 @@ class OrderController extends Controller
         }
         $order->payment_status = $status;
         $order->save();
+
+
         if ($order->payment_status == 'paid' && $order->commission_calculated == 0) {
             calculateCommissionAffilationClubPoint($order);
         }
-        //sends Notifications to user
+
+        // Payment Status change email notification to Admin, seller, Customer
+        if($request->status == 'paid'){
+            EmailUtility::order_email($order, $request->status);  
+        }
+
+        //Sends Firebase Notifications to Admin, seller, Customer
         NotificationUtility::sendNotification($order, $request->status);
         if (get_setting('google_firebase') == 1 && $order->user->device_token != null) {
             $request->device_token = $order->user->device_token;
             $request->title = "Order updated !";
             $status = str_replace("_", "", $order->payment_status);
             $request->text = " Your order {$order->code} has been {$status}";
+
             $request->type = "order";
             $request->id = $order->id;
             $request->user_id = $order->user->id;
+
             NotificationUtility::sendFirebaseNotification($request);
         }
+
+
         if (addon_is_activated('otp_system') && SmsTemplate::where('identifier', 'payment_status_change')->first()->status == 1) {
             try {
                 SmsUtility::payment_status_change(json_decode($order->shipping_address)->phone, $order);
             } catch (\Exception $e) {
+
             }
         }
         return 1;
     }
+
+    public function orderBulkExport(Request $request)
+    {
+        if($request->id){
+          return Excel::download(new OrdersExport($request->id), 'orders.xlsx');
+        }
+        return back();
+    }
+
 }

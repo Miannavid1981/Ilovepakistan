@@ -1,10 +1,13 @@
 <?php
+
 namespace App\Http\Controllers;
+
 use Illuminate\Http\Request;
 use App\Models\Address;
 use App\Models\City;
 use App\Models\State;
 use Auth;
+
 class AddressController extends Controller
 {
     /**
@@ -16,6 +19,7 @@ class AddressController extends Controller
     {
         //
     }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -25,6 +29,7 @@ class AddressController extends Controller
     {
         //
     }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -39,21 +44,20 @@ class AddressController extends Controller
         } else {
             $address->user_id   = Auth::user()->id;
         }
-        $fullName = $request->name . ' ' . $request->last_name;
-        $address->name          = $fullName;
         $address->address       = $request->address;
-        $address->land_mark       = $request->land_mark;
         $address->country_id    = $request->country_id;
         $address->state_id      = $request->state_id;
         $address->city_id       = $request->city_id;
         $address->longitude     = $request->longitude;
         $address->latitude      = $request->latitude;
         $address->postal_code   = $request->postal_code;
-        $address->phone         = $request->phone;
+        $address->phone         = '+'.$request->country_code.$request->phone;
         $address->save();
+
         flash(translate('Address info Stored successfully'))->success();
         return back();
     }
+
     /**
      * Display the specified resource.
      *
@@ -64,6 +68,7 @@ class AddressController extends Controller
     {
         //
     }
+
     /**
      * Show the form for editing the specified resource.
      *
@@ -75,10 +80,12 @@ class AddressController extends Controller
         $data['address_data'] = Address::findOrFail($id);
         $data['states'] = State::where('status', 1)->where('country_id', $data['address_data']->country_id)->get();
         $data['cities'] = City::where('status', 1)->where('state_id', $data['address_data']->state_id)->get();
-        $returnHTML = view('frontend.partials.address_edit_modal', $data)->render();
+
+        $returnHTML = view('frontend.partials.address.address_edit_modal', $data)->render();
         return response()->json(array('data' => $data, 'html' => $returnHTML));
         //        return ;
     }
+
     /**
      * Update the specified resource in storage.
      *
@@ -89,10 +96,8 @@ class AddressController extends Controller
     public function update(Request $request, $id)
     {
         $address = Address::findOrFail($id);
-        $fullName = $request->name . ' ' . $request->last_name;
-        $address->name          = $fullName;
+
         $address->address       = $request->address;
-        $address->land_mark       = $request->land_mark;
         $address->country_id    = $request->country_id;
         $address->state_id      = $request->state_id;
         $address->city_id       = $request->city_id;
@@ -100,46 +105,54 @@ class AddressController extends Controller
         $address->latitude      = $request->latitude;
         $address->postal_code   = $request->postal_code;
         $address->phone         = $request->phone;
+
         $address->save();
+
         flash(translate('Address info updated successfully'))->success();
         return back();
     }
+
     /**
      * Remove the specified resource from storage.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-public function destroy($id)
-{
-    $address = Address::findOrFail($id);
-    
-    if (!$address->set_default) {
-        $address->delete();
-        // Return a JSON response to indicate success
-        return response()->json(['success' => true, 'message' => 'Address deleted successfully.']);
+    public function destroy($id)
+    {
+        $address = Address::findOrFail($id);
+        if (!$address->set_default) {
+            $address->delete();
+            return back();
+        }
+        flash(translate('Default address cannot be deleted'))->warning();
+        return back();
     }
-    // If it's a default address, return a JSON response with an error message
-    return response()->json(['success' => false, 'message' => 'Default address cannot be deleted.']);
-}
+
     public function getStates(Request $request)
     {
         $states = State::where('status', 1)->where('country_id', $request->country_id)->get();
         $html = '<option value="">' . translate("Select State") . '</option>';
+
         foreach ($states as $state) {
             $html .= '<option value="' . $state->id . '">' . $state->name . '</option>';
         }
+
         echo json_encode($html);
     }
+
     public function getCities(Request $request)
     {
-        $cities = City::where('status', 1)->where('state_id', $request->state_id)->orderBy('name','asc')->get();
+        $cities = City::where('status', 1)->where('state_id', $request->state_id)->get();
         $html = '<option value="">' . translate("Select City") . '</option>';
+
         foreach ($cities as $row) {
             $html .= '<option value="' . $row->id . '">' . $row->getTranslation('name') . '</option>';
         }
+
         echo json_encode($html);
     }
+
     public function set_default($id)
     {
         foreach (Auth::user()->addresses as $key => $address) {
@@ -149,6 +162,7 @@ public function destroy($id)
         $address = Address::findOrFail($id);
         $address->set_default = 1;
         $address->save();
+
         return back();
     }
 }

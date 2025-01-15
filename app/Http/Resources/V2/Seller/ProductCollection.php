@@ -28,7 +28,7 @@ class ProductCollection extends ResourceCollection
                     'price' => format_price($data->unit_price),
                     'current_stock' => $qty,
                     'status' => $data->published == 0 ? false : true,
-                    'category' => $data->main_category ? $data->main_category->name : "",
+                    'category' => $data->main_category ? $data->main_category->getTranslation('name') : "",
                     'featured' => $data->seller_featured == 0 ? false : true,
                 ];
             }),

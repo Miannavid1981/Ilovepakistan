@@ -1,7 +1,7 @@
  <!-- aiz-main-wrapper -->
  <div class="aiz-main-wrapper d-flex flex-column justify-content-center bg-white">
     <section class="bg-white overflow-hidden" style="min-height:100vh;">
-        <div class="row no-gutters">
+        <div class="row no-gutters" style="min-height:100vh;">
             <!-- Left Side Image-->
             <div class="col-xxl-6 col-lg-7">
                 <div class="h-100">
@@ -28,7 +28,7 @@
                                 <div class="">
                                     <form class="form-default" role="form" action="{{ route('login') }}" method="POST">
                                         @csrf
-                                        
+                                        <input type="hidden" name="user_type" value="admin">
                                         <!-- Email-->
                                         <div class="form-group">
                                             <label for="email" class="fs-12 fw-700 text-soft-dark">{{  translate('Email') }}</label>

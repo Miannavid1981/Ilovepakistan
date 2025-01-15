@@ -1453,7 +1453,7 @@
 	    if (clickedNode.hasClass("hummingbird-end-node") == false){
 		//console.log("parent")
 		//console.log(this_state)
-		clickedNode.parent("label").siblings("ul").find("input:checkbox:not(:disabled)").prop("checked",this_state).prop("indeterminate",false);
+		// clickedNode.parent("label").siblings("ul").find("input:checkbox:not(:disabled)").prop("checked",this_state).prop("indeterminate",false);
 
 		//if this is a parent check also all the ul's below in triState
 		var restrict = clickedNode.parent('label').siblings('ul').find('li');

@@ -29,7 +29,7 @@
             <div class="col">
                 <h5 class="mb-md-0 h6">{{ translate('All Product') }}</h5>
             </div>
-            
+
             @can('product_delete')
                 <div class="dropdown mb-2 mb-md-0">
                     <button class="btn border dropdown-toggle" type="button" data-toggle="dropdown">
@@ -40,7 +40,7 @@
                     </div>
                 </div>
             @endcan
-            
+
             @if($type == 'Seller')
             <div class="col-md-2 ml-auto">
                 <select class="form-control form-control-sm aiz-selectpicker mb-2 mb-md-0" id="user_id" name="user_id" onchange="sort_products()">
@@ -68,10 +68,10 @@
                     <option value="">{{ translate('Sort By') }}</option>
                     <option value="rating,desc" @isset($col_name , $query) @if($col_name == 'rating' && $query == 'desc') selected @endif @endisset>{{translate('Rating (High > Low)')}}</option>
                     <option value="rating,asc" @isset($col_name , $query) @if($col_name == 'rating' && $query == 'asc') selected @endif @endisset>{{translate('Rating (Low > High)')}}</option>
-                    <option value="num_of_sale,desc"@isset($col_name , $query) @if($col_name == 'num_of_sale' && $query == 'desc') selected @endif @endisset>{{translate('Num of Sale (High > Low)')}}</option>
-                    <option value="num_of_sale,asc"@isset($col_name , $query) @if($col_name == 'num_of_sale' && $query == 'asc') selected @endif @endisset>{{translate('Num of Sale (Low > High)')}}</option>
-                    <option value="unit_price,desc"@isset($col_name , $query) @if($col_name == 'unit_price' && $query == 'desc') selected @endif @endisset>{{translate('Base Price (High > Low)')}}</option>
-                    <option value="unit_price,asc"@isset($col_name , $query) @if($col_name == 'unit_price' && $query == 'asc') selected @endif @endisset>{{translate('Base Price (Low > High)')}}</option>
+                    <option value="num_of_sale,desc" @isset($col_name , $query) @if($col_name == 'num_of_sale' && $query == 'desc') selected @endif @endisset>{{translate('Num of Sale (High > Low)')}}</option>
+                    <option value="num_of_sale,asc" @isset($col_name , $query) @if($col_name == 'num_of_sale' && $query == 'asc') selected @endif @endisset>{{translate('Num of Sale (Low > High)')}}</option>
+                    <option value="unit_price,desc" @isset($col_name , $query) @if($col_name == 'unit_price' && $query == 'desc') selected @endif @endisset>{{translate('Base Price (High > Low)')}}</option>
+                    <option value="unit_price,asc" @isset($col_name , $query) @if($col_name == 'unit_price' && $query == 'asc') selected @endif @endisset>{{translate('Base Price (Low > High)')}}</option>
                 </select>
             </div>
             <div class="col-md-2">
@@ -80,7 +80,7 @@
                 </div>
             </div>
         </div>
-    
+
         <div class="card-body">
             <table class="table aiz-table mb-0">
                 <thead>
@@ -169,7 +169,7 @@
                                     <span class="badge badge-inline badge-danger">{{ translate('Low') }}</span>
                                 @endif
                             @endif
-                            
+
                         </td>
                         <td>
                             <label class="aiz-switch aiz-switch-success mb-0">
@@ -246,19 +246,19 @@
 
 @section('script')
     <script type="text/javascript">
-        
+
         $(document).on("change", ".check-all", function() {
             if(this.checked) {
                 // Iterate each checkbox
                 $('.check-one:checkbox').each(function() {
-                    this.checked = true;                        
+                    this.checked = true;
                 });
             } else {
                 $('.check-one:checkbox').each(function() {
-                    this.checked = false;                       
+                    this.checked = false;
                 });
             }
-          
+
         });
 
         $(document).ready(function(){
@@ -266,6 +266,12 @@
         });
 
         function update_todays_deal(el){
+
+            if('{{env('DEMO_MODE')}}' == 'On'){
+                AIZ.plugins.notify('info', '{{ translate('Data can not change in demo mode.') }}');
+                return;
+            }
+
             if(el.checked){
                 var status = 1;
             }
@@ -283,6 +289,12 @@
         }
 
         function update_published(el){
+
+            if('{{env('DEMO_MODE')}}' == 'On'){
+                AIZ.plugins.notify('info', '{{ translate('Data can not change in demo mode.') }}');
+                return;
+            }
+
             if(el.checked){
                 var status = 1;
             }
@@ -298,8 +310,14 @@
                 }
             });
         }
-        
+
         function update_approved(el){
+
+            if('{{env('DEMO_MODE')}}' == 'On'){
+                AIZ.plugins.notify('info', '{{ translate('Data can not change in demo mode.') }}');
+                return;
+            }
+
             if(el.checked){
                 var approved = 1;
             }
@@ -307,8 +325,8 @@
                 var approved = 0;
             }
             $.post('{{ route('products.approved') }}', {
-                _token      :   '{{ csrf_token() }}', 
-                id          :   el.value, 
+                _token      :   '{{ csrf_token() }}',
+                id          :   el.value,
                 approved    :   approved
             }, function(data){
                 if(data == 1){
@@ -321,6 +339,11 @@
         }
 
         function update_featured(el){
+            if('{{env('DEMO_MODE')}}' == 'On'){
+                AIZ.plugins.notify('info', '{{ translate('Data can not change in demo mode.') }}');
+                return;
+            }
+
             if(el.checked){
                 var status = 1;
             }
@@ -340,7 +363,7 @@
         function sort_products(el){
             $('#sort_products').submit();
         }
-        
+
         function bulk_delete() {
             var data = new FormData($('#sort_products')[0]);
             $.ajax({

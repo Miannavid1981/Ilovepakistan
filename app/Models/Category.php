@@ -3,10 +3,13 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Traits\PreventDemoModeChanges;
 use App;
 
 class Category extends Model
 {
+    use PreventDemoModeChanges;
+
     protected $with = ['category_translations'];
 
     public function getTranslation($field = '', $lang = false){
@@ -58,5 +61,10 @@ class Category extends Model
     public function attributes()
     {
         return $this->belongsToMany(Attribute::class);
+    }
+
+    public function sizeChart()
+    {
+        return $this->belongsTo(SizeChart::class, 'id', 'category_id');
     }
 }

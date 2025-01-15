@@ -1,9 +1,3 @@
-<style>
-    .hide-icon {
-    display: none;
-}
-</style>
-
 @extends('frontend.layouts.user_panel')
 
 @section('panel_content')
@@ -54,31 +48,18 @@
                 </div>
                 <!-- Password-->
                 <div class="form-group row">
-    <label class="col-md-2 col-form-label fs-14">{{ translate('Your Password') }}</label>
-    <div class="col-md-10 position-relative">
-        <input type="password" class="form-control rounded-0" placeholder="{{ translate('New Password') }}" name="new_password" id="passwordInput">
-        <i class="fa fa-eye toggle-password" id="togglePassword" style="position: absolute; right: 30px; top: 50%; transform: translateY(-50%); cursor: pointer;"></i>
-    </div>
-</div>
-                <!-- New Password -->
-<div class="form-group row">
-    <label class="col-md-2 col-form-label fs-14">{{ translate('New Password') }}</label>
-    <div class="col-md-10 position-relative">
-        <input type="password" class="form-control rounded-0" placeholder="{{ translate('New Password') }}" name="confirm_password" id="confirmPasswordInput" required>
-        <button type="button" class="btn btn-outline-secondary position-absolute" id="togglePassword" style="top: 50%; right: 10px; transform: translateY(-50%); border: none; background: transparent; cursor: pointer;">
-            <i class="fa fa-eye" id="eyeIcon"></i>
-        </button>
-    </div>
-</div>
-
-<!-- Confirm Password -->
-<div class="form-group row">
-    <label class="col-md-2 col-form-label fs-14">{{ translate('Confirm Password') }}</label>
-    <div class="col-md-10 position-relative">
-        <input type="password" class="form-control rounded-0" placeholder="{{ translate('Confirm Password') }}" name="confirm_password" id="confirmPasswordInput">
-        <i class="fa fa-eye toggle-password" id="toggleConfirmPassword" style="position: absolute; right: 30px; top: 50%; transform: translateY(-50%); cursor: pointer;"></i>
-    </div>
-</div>
+                    <label class="col-md-2 col-form-label fs-14">{{ translate('Your Password') }}</label>
+                    <div class="col-md-10">
+                        <input type="password" class="form-control rounded-0" placeholder="{{ translate('New Password') }}" name="new_password">
+                    </div>
+                </div>
+                <!-- Confirm Password-->
+                <div class="form-group row">
+                    <label class="col-md-2 col-form-label fs-14">{{ translate('Confirm Password') }}</label>
+                    <div class="col-md-10">
+                        <input type="password" class="form-control rounded-0" placeholder="{{ translate('Confirm Password') }}" name="confirm_password">
+                    </div>
+                </div>
                 <!-- Submit Button-->
                 <div class="form-group mb-0 text-right">
                     <button type="submit" class="btn btn-primary rounded-0 w-150px mt-3">{{translate('Update Profile')}}</button>
@@ -122,7 +103,7 @@
                         </div>
                         @if ($address->set_default)
                             <div class="absolute-md-top-right pt-2 pt-md-4 pr-md-5">
-                                <span class="badge badge-inline badge-warning text-white p-3 fs-12" style="border-radius: 25px; min-width: 80px !important;">{{ translate('Default') }}</span>
+                                <span class="badge badge-inline badge-secondary-base text-white p-3 fs-12" style="border-radius: 25px; min-width: 80px !important;">{{ translate('Default') }}</span>
                             </div>
                         @endif
                         <div class="dropdown position-absolute right-0 top-0 pt-4 mr-1">
@@ -185,69 +166,17 @@
           </div>
         </div>
     </form>
-    
-    <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const toggleConfirmPassword = document.getElementById('toggleConfirmPassword');
-        const confirmPasswordInput = document.getElementById('confirmPasswordInput');
 
-        toggleConfirmPassword.addEventListener('click', function () {
-            // Toggle the type attribute using the ternary operator
-            const type = confirmPasswordInput.getAttribute('type') === 'password' ? 'text' : 'password';
-            confirmPasswordInput.setAttribute('type', type);
-            // Toggle the eye icon
-            this.classList.toggle('fa-eye');
-            this.classList.toggle('fa-eye-slash');
-        });
-    });
-</script>
-    
-    
-    
-    <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const togglePassword = document.getElementById('togglePassword');
-        const passwordInput = document.getElementById('passwordInput');
-
-        togglePassword.addEventListener('click', function () {
-            // Toggle the type attribute using the ternary operator
-            const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
-            passwordInput.setAttribute('type', type);
-            // Toggle the eye icon
-            this.classList.toggle('fa-eye');
-            this.classList.toggle('fa-eye-slash');
-        });
-    });
-</script>
-    
-    
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    var togglePassword = document.getElementById('togglePassword');
-    var passwordField = document.getElementById('newPassword');
-    var eyeIcon = document.getElementById('eyeIcon');
-
-    togglePassword.addEventListener('click', function() {
-        if (passwordField.type === 'password') {
-            passwordField.type = 'text';
-            eyeIcon.classList.remove('fa-eye');
-            eyeIcon.classList.add('fa-eye-slash');
-        } else {
-            passwordField.type = 'password';
-            eyeIcon.classList.remove('fa-eye-slash');
-            eyeIcon.classList.add('fa-eye');
-        }
-    });
-});
-</script>
 @endsection
 
 @section('modal')
     <!-- Address modal -->
-    @include('frontend.partials.address_modal')
+    @include('frontend.partials.address.address_modal')
 @endsection
 
 @section('script')
+    @include('frontend.partials.address.address_js')
+
     <script type="text/javascript">
         $('.new-email-verification').on('click', function() {
             $(this).find('.loading').removeClass('d-none');

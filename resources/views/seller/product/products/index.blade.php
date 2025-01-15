@@ -1,15 +1,3 @@
-@php
-function printCategories($categories, $prefix = '') {
-    foreach ($categories as $category) {
-        echo '<option value="' . $category->id . '"' . (request('category_id') == $category->id ? ' selected' : '') . '>' . $prefix . $category->getTranslation('name') . '</option>';
-    }
-}
-function printSubCategories($categories, $prefix = '') {
-    foreach ($categories as $category) {
-        echo '<option value="' . $category->id . '"' . (request('category_id') == $category->id ? ' selected' : '') . '>' . $prefix . $category->getTranslation('name') . '</option>';
-    }
-}
-@endphp
 @extends('seller.layouts.app')
 
 @section('panel_content')
@@ -67,64 +55,27 @@ function printSubCategories($categories, $prefix = '') {
         @endif
 
     </div>
-        <a class="btn btn-primary" href="{{ route('seller.products', ['all' => 'true']) }}">
-            <h5 class="mb-md-0 h6">{{ translate('All Products') }}</h5>
-        </a>
+
     <div class="card">
-        <form class="" id="sort_products" action="{{ route('seller.products') }}" method="GET">
+        <form class="" id="sort_products" action="" method="GET">
             <div class="card-header row gutters-5">
-                <!--<div class="col-md-2">-->
-                <!--    <h5 class="mb-md-0 h6">{{ translate('All Products') }}</h5>-->
-                <!--</div>-->
-                    <div class="first-row w-100 d-flex flex-wrap">
-                <div class="dropdown col-md-2 mb-4 mb-md-0">
-                    <select class="form-control aiz-selectpicker" name="category_id" id="category" data-live-search="true">
-                        <option value="">Category</option>
-                        @php printCategories($categories); @endphp
-                    </select>
+                <div class="col">
+                    <h5 class="mb-md-0 h6">{{ translate('All Products') }}</h5>
                 </div>
-                <div class="dropdown col-md-2 mb-4 mb-md-0">
-                    <select class="form-control aiz-selectpicker" name="subcategory" id="subcategory" data-live-search="true">
-                        <option value="">SubCategory</option>
-                        <!-- AJAX will populate options here -->
-                    </select>
-                </div>
-                <div class="dropdown col-md-2 mb-4 mb-md-0">
-                    <select class="form-control aiz-selectpicker" name="subcategory2" id="subcategory2" data-live-search="true">
-                        <option value="">SubCategory2</option>
-                        <!-- AJAX will populate options here -->
-                    </select>
-                </div>
-                <div class="dropdown col-md-2 mb-2 mb-md-0">
-                    <select class="form-control aiz-selectpicker" name="brand_id" id="brand_id" data-live-search="true">
-                        <option value="">{{ translate('Select Brand') }}</option>
-                        @foreach ($brands as $brand)
-                            <option value="{{ $brand->id }}" @if ($brand->id == request('brand_id')) selected @endif>{{ $brand->getTranslation('name') }}</option>
-                        @endforeach
-                    </select>
-                </div>
-                <div class="col-md-2 d-flex justify-content-lg-end align-items-start mt-4 mt-lg-0">
+
+                <div class="dropdown mb-2 mb-md-0">
                     <button class="btn border dropdown-toggle" type="button" data-toggle="dropdown">
                         {{translate('Bulk Action')}}
                     </button>
                     <div class="dropdown-menu dropdown-menu-right">
                         <a class="dropdown-item confirm-alert" href="javascript:void(0)"  data-target="#bulk-delete-modal"> {{translate('Delete selection')}}</a>
                     </div>
-            </div>
-                    </div>
-                    <div class="second-row w-100 d-flex mt-2">
-                <div class="col-md-10">
+                </div>
+                <div class="col-md-4">
                     <div class="input-group input-group-sm">
                         <input type="text" class="form-control" id="search" name="search" @isset($search) value="{{ $search }}" @endisset placeholder="{{ translate('Search product') }}">
                     </div>
                 </div>
-                <div class="dropdown col-md-4 mb-2 mb-md-0" style="margin-right: -80px;">
-                    <button type="submit" class="btn btn-primary">{{ translate('Search') }}</button>
-                </div>
-                <br>
-                
-                    </div>
-        </div>
             </div>
             <div class="card-body">
                 <table class="table aiz-table mb-0">
@@ -220,11 +171,9 @@ function printSubCategories($categories, $prefix = '') {
                         @endforeach
                     </tbody>
                 </table>
-                 @if($products instanceof \Illuminate\Pagination\LengthAwarePaginator)
-                    <div class="aiz-pagination">
-                        {{ $products->appends(request()->except('page'))->links() }}
-                    </div>
-                @endif
+                <div class="aiz-pagination">
+                    {{ $products->links() }}
+                </div>
             </div>
         </form>
     </div>
@@ -314,180 +263,6 @@ function printSubCategories($categories, $prefix = '') {
                 }
             });
         }
-
-        $('#category').on('change', function() {
-            var categoryId = $(this).val();
-            $.ajax({
-                url: '{{ route("seller.subcategories.get") }}',
-                type: 'GET',
-                 data: { category_id: categoryId },
-                    success: function(data) {
-                        var subcategorySelect = $('#subcategory');
-                        subcategorySelect.empty().append('<option value="">SubCategory</option>');
-                        $.each(data, function(i, subcategory) {
-                            subcategorySelect.append('<option value="' + subcategory.id + '">' + subcategory.name + '</option>');
-                        });
-                        $('.aiz-selectpicker').selectpicker('refresh'); // Refresh the AizSelectPicker to show new options
-        }
-    });
-});
-
-$('#subcategory').on('change', function() {
-            var categoryId = $(this).val();
-            $.ajax({
-                url: '{{ route("seller.subcategories.get") }}',
-                type: 'GET',
-                 data: { category_id: categoryId },
-                    success: function(data) {
-                        var subcategorySelect = $('#subcategory2');
-                        subcategorySelect.empty().append('<option value="">SubCategory2</option>');
-                        $.each(data, function(i, subcategory) {
-                            subcategorySelect.append('<option value="' + subcategory.id + '">' + subcategory.name + '</option>');
-                        });
-                        $('.aiz-selectpicker').selectpicker('refresh'); // Refresh the AizSelectPicker to show new options
-        }
-    });
-});
-
-$(document).ready(function() {
-    // Event listener for category change
-    $('#category').change(function() {
-        updateProducts();
-    });
-
-    // Similarly, add for subcategory, subcategory2, and brand_id
-    $('#subcategory, #subcategory2, #brand_id').change(function() {
-        updateProducts();
-    });
-});
-    function updateProducts(page = 1) {
-        $.ajax({
-            url: "{{ route('seller.products') }}", // Adjust if you have a specific endpoint for AJAX
-            type: 'GET',
-            dataType: 'json',
-            data: {
-                category_id: $('#category').val(),
-                subcategory: $('#subcategory').val(),
-                subcategory2: $('#subcategory2').val(),
-                brand_id: $('#brand_id').val(),
-                search: $('#search').val(), // Include search term if necessary
-                page : page
-            },
-            success: function(data) {
-                // Call function to update table with new data
-                populateTable(data);
-                updatePagination(data);
-            },
-            error: function(xhr, status, error) {
-                // Handle error
-                console.error(error);
-            }
-        });
-    }
-
-function populateTable(products) {
-    var tbody = $('table.aiz-table > tbody');
-    tbody.empty(); // Clear current table body
-    // Assuming products.data is the correct array to iterate over
-    $.each(products.data, function(index, product) {
-        // Construct the URL for edit, duplicate, and delete actions dynamically
-        var editUrl = "{{ route('seller.products.edit', '') }}/" + product.id; // Adjust based on your routing
-        var duplicateUrl = "{{ route('seller.products.duplicate', '') }}/" + product.id; // Adjust based on your routing
-        var deleteUrl = "{{ route('seller.products.destroy', '') }}/" + product.id; // Adjust based on your routing
-
-        var row = $('<tr>').append(
-            $('<td>').addClass('footable-first-visible').css('display', 'table-cell').append(
-                $('<div>').addClass('form-group d-inline-block').append(
-                    $('<label>').addClass('aiz-checkbox').append(
-                        $('<input>').attr({
-                            type: 'checkbox',
-                            class: 'check-one',
-                            name: 'id[]',
-                            value: product.id
-                        }),
-                        $('<span>').addClass('aiz-square-check')
-                    )
-                )
-            ),
-            $('<td>').css('display', 'table-cell').append(
-                $('<a>').attr({
-                    href: product.slug, // Assuming 'slug' is the correct URL
-                    target: '_blank',
-                    class: 'text-reset'
-                }).text(product.name)
-            ),
-            $('<td>').css('display', 'table-cell').text(product.qty),
-            $('<td>').css('display', 'table-cell').text(product.unit_price),
-            $('<td>').css('display', 'table-cell').append(
-                $('<label>').addClass('aiz-switch aiz-switch-success mb-0').append(
-                    $('<input>').attr({
-                        onchange: 'update_published(this)',
-                        value: product.id,
-                        type: 'checkbox',
-                        checked: product.published // Assumes 'published' is a boolean
-                    }),
-                    $('<span>').addClass('slider round')
-                )
-            ),
-            $('<td>').css('display', 'table-cell').append(
-                $('<label>').addClass('aiz-switch aiz-switch-success mb-0').append(
-                    $('<input>').attr({
-                        onchange: 'update_featured(this)',
-                        value: product.id,
-                        type: 'checkbox',
-                        checked: product.featured // Assumes 'featured' is a boolean
-                    }),
-                    $('<span>').addClass('slider round')
-                )
-            ),
-            $('<td>').addClass('text-right footable-last-visible').css('display', 'table-cell').append(
-                $('<a>').addClass('btn btn-soft-info btn-icon btn-circle btn-sm').attr({
-                    href: 'https://allaaddin.com/seller/product/' + product.id + '/edit?lang=en', // Adjust the URL as needed
-                    title: 'Edit'
-                }).append($('<i>').addClass('las la-edit')),
-                $('<a>').addClass('btn btn-soft-success btn-icon btn-circle btn-sm').attr({
-                    href: 'https://allaaddin.com/seller/products/duplicate/' + product.id, // Adjust the URL as needed
-                    title: 'Duplicate'
-                }).append($('<i>').addClass('las la-copy')),
-                $('<a>').addClass('btn btn-soft-danger btn-icon btn-circle btn-sm confirm-delete').attr({
-                    href: '#',
-                    'data-href': 'https://allaaddin.com/seller/products/destroy/' + product.id, // Adjust the URL as needed
-                    title: 'Delete'
-                }).append($('<i>').addClass('las la-trash'))
-            )
-        );
-
-        tbody.append(row);
-    });
-}
-
-function updatePagination(paginationData) {
-    var $paginationUl = $('.pagination');
-    $paginationUl.empty(); 
-
-    paginationData.links.forEach(function(link) {
-        var $li = $('<li>').addClass('page-item');
-        if (link.active) $li.addClass('active');
-        if (!link.url) $li.addClass('disabled');
-
-        var $a = $('<a>').addClass('page-link').attr('href', link.url ? link.url : '#').html(link.label);
-
-        
-        if (link.url) {
-            $a.on('click', function(e) {
-                e.preventDefault(); 
-                var pageQuery = new URL(link.url).searchParams.get('page');
-                updateProducts(pageQuery); 
-            });
-        }
-
-        $li.append($a);
-        $paginationUl.append($li);
-    });
-}
-
-
-
 
     </script>
 @endsection

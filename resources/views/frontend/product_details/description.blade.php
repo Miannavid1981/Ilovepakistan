@@ -12,20 +12,13 @@
                 class="mr-5 pb-2 fs-16 fw-700 text-reset">{{ translate('Downloads') }}</a>
         @endif
     </div>
-    <style>
-    @media (max-width: 992px){
-        .mobile_table {
-            overflow:scroll !important;
-        }
-    }
-        
-    </style>
+
     <!-- Description -->
     <div class="tab-content pt-0">
         <!-- Description -->
         <div class="tab-pane fade active show" id="tab_default_1">
             <div class="py-5">
-                <div class="mw-100 text-left aiz-editor-data mobile_table">
+                <div class="mw-100 overflow-hidden text-left aiz-editor-data">
                     <?php echo $detailedProduct->getTranslation('description'); ?>
                 </div>
             </div>
@@ -53,24 +46,10 @@
         
         <!-- Download -->
         <div class="tab-pane fade" id="tab_default_3">
-    <div class="py-5 text-center">
-        @php
-        $originalName = '';
-        $extension = '';
-        if (($asset = \App\Models\Upload::find($detailedProduct->pdf)) != null) {
-            $originalName = $asset->file_original_name;
-            $extension = pathinfo($asset->file_name, PATHINFO_EXTENSION);
-            
-            
-        }
-        
-        $download_url = 'uploads/serve/'.$detailedProduct->id.'/'.$detailedProduct->pdf.'/' . urlencode($originalName.'.'. $extension );
-        @endphp
-        
-        <a href="{{ url($download_url) }}" class="btn btn-primary" target="_blank">
-            {{ translate('Download') }}
-        </a>
-    </div>
-</div>
+            <div class="py-5 text-center ">
+                <a href="{{ uploaded_asset($detailedProduct->pdf) }}"
+                    class="btn btn-primary">{{ translate('Download') }}</a>
+            </div>
+        </div>
     </div>
 </div>

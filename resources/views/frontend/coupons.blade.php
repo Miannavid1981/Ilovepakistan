@@ -10,7 +10,7 @@
                 @if($coupon->user->user_type == 'admin' || ($coupon->user->shop != null && $coupon->user->shop->verification_status))
                     <div class="col mb-4">
                         @include('frontend.partials.coupon_box',['coupon' => $coupon])
-                    </div>  
+                    </div>
                 @endif
             @endforeach
         </div>

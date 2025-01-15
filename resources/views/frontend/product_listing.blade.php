@@ -256,15 +256,6 @@
                         <!-- Top Filters -->
                         <div class="text-left">
                             <div class="row gutters-5 flex-wrap align-items-center">
-                                <div class="col-12 mb-3">
-                                    
-                                    @if(file_exists(public_path($category->bannerImage ? $category->bannerImage->file_name : "")))
-                                        <img src="{{ static_asset($category->bannerImage ? $category->bannerImage->file_name : "") }}" alt="Custom Banner" class="w-100">
-                                    @else
-                                        <img class="cat-image lazyload mr-2 opacity-60" src="{{ static_asset('uploads\all\hy6ap7cnFw6LBpbtZ0gIJbcM96U542peIJz24zxK.png') }}" alt="Default Banner" class="w-100">
-                                    @endif
-
-                                </div>
                                 <div class="col-lg col-10">
                                     <h1 class="fs-20 fs-md-24 fw-700 text-dark">
                                         @if(isset($category_id))
@@ -309,7 +300,7 @@
                             <div class="row gutters-16 row-cols-xxl-4 row-cols-xl-3 row-cols-lg-4 row-cols-md-3 row-cols-2 border-top border-left">
                                 @foreach ($products as $key => $product)
                                     <div class="col border-right border-bottom has-transition hov-shadow-out z-1">
-                                        @include('frontend.partials.product_box_1',['product' => $product])
+                                        @include('frontend.'.get_setting('homepage_select').'.partials.product_box_1',['product' => $product])
                                     </div>
                                 @endforeach
                             </div>

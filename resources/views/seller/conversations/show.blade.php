@@ -24,7 +24,7 @@
         </div>
 
         <div class="card-body">
-            <ul class="list-group list-group-flush">
+            {{-- <ul class="list-group list-group-flush">
                 @foreach($conversation->messages as $message)
                     <li class="list-group-item px-0">
                         <div class="media mb-2">
@@ -43,7 +43,10 @@
                         </p>
                     </li>
                 @endforeach
-            </ul>
+            </ul> --}}
+            <div id="messages">
+                @include('frontend.partials.messages', ['conversation', $conversation])
+            </div>
             <form class="pt-4" action="{{ route('seller.conversations.message_store') }}" method="POST">
                 @csrf
                 <input type="hidden" name="conversation_id" value="{{ $conversation->id }}">
@@ -69,6 +72,6 @@
     refresh_messages(); // This will run on page load
     setInterval(function(){
         refresh_messages() // this will run after every 5 seconds
-    }, 4000);
+    }, 5000);
     </script>
 @endsection

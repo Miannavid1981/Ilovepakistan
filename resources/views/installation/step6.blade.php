@@ -30,7 +30,7 @@
                               </g>
                             </g>
                         </svg>
-                        <h1 class="fs-21 fw-700 text-uppercase mt-2" style="color: #3d3d3d;">Congratulations!!! <a style="color:red;" href="https://doniaweb.com" target="_blank">Licensed By DoniaWeB</a></h1>
+                        <h1 class="fs-21 fw-700 text-uppercase mt-2" style="color: #3d3d3d;">Congratulations!!!</h1>
                         <p class="fs-12 fw-500" style="color:  #666; line-height: 18px;">You have successfully completed the installation process. Please Login to continue.</p>
                     </div>
                     <div>

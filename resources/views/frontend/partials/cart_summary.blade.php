@@ -8,20 +8,17 @@
                 {{ count($carts) }}
                 {{ translate('Items') }}
             </span>
-            
+
             <!-- Minimum Order Amount -->
             @php
                 $coupon_discount = 0;
             @endphp
-            @if (Auth::check() && get_setting('coupon_system') == 1)
+            @if (get_setting('coupon_system') == 1)
                 @php
                     $coupon_code = null;
                 @endphp
 
                 @foreach ($carts as $key => $cartItem)
-                    @php
-                        $product = get_single_product($cartItem['product_id']);
-                    @endphp
                     @if ($cartItem->coupon_applied == 1)
                         @php
                             $coupon_code = $cartItem->coupon_code;
@@ -31,7 +28,7 @@
                 @endforeach
 
                 @php
-                    $coupon_discount = carts_coupon_discount($coupon_code);
+                    $coupon_discount = $carts->sum('discount');
                 @endphp
             @endif
 
@@ -44,7 +41,7 @@
                     {{ translate('Minimum Order Amount') . ' ' . single_price(get_setting('minimum_order_amount')) }}
                 </span>
             @endif
-            
+
         </div>
     </div>
 
@@ -53,7 +50,7 @@
     <div class="px-4 pt-1 w-100 d-flex align-items-center justify-content-between">
         <h3 class="fs-14 fw-700 mb-0">{{ translate('Total Clubpoint') }}</h3>
         <div class="text-right">
-            <span class="badge badge-inline badge-warning fs-12 rounded-0 px-2 text-white">
+            <span class="badge badge-inline badge-secondary-base fs-12 rounded-0 px-2 text-white">
                 @php
                     $total_point = 0;
                 @endphp
@@ -95,80 +92,27 @@
                     $tax = 0;
                     $shipping = 0;
                     $product_shipping_cost = 0;
-                    $shipping_region = $shipping_info['city'];
                 @endphp
                 @foreach ($carts as $key => $cartItem)
                     @php
                         $product = get_single_product($cartItem['product_id']);
-                        $product_name_with_choice = ''; // Default value for product name
-                    
-                        // Check if the product was found
-                        if ($product) {
-                            // Always set the product name with choice, even if checked != 1
-                            $product_name_with_choice = $product->getTranslation('name');
-                            if ($cartItem['variant'] != null) {
-                                $product_name_with_choice .= ' - ' . $cartItem['variant'];
-                            }
-                    
-                            // Only perform calculations if the cart item is checked
-                            if ($cartItem['checked'] == 1) {
-                                $subtotal += cart_product_price($cartItem, $product, false, false) * $cartItem['quantity'];
-                                $tax += cart_product_tax($cartItem, $product, false) * $cartItem['quantity'];
-                                $product_shipping_cost = $cartItem['shipping_cost'];
-                                $shipping += $product_shipping_cost;
-                            }
-                        } else {
-                            // Handle the case where the product does not exist
-                            $product_name_with_choice = 'Product not found';
+                        $subtotal += cart_product_price($cartItem, $product, false, false) * $cartItem['quantity'];
+                        $tax += cart_product_tax($cartItem, $product, false) * $cartItem['quantity'];
+                        $product_shipping_cost = $cartItem['shipping_cost'];
+
+                        $shipping += $product_shipping_cost;
+
+                        $product_name_with_choice = $product->getTranslation('name');
+                        if ($cartItem['variant'] != null) {
+                            $product_name_with_choice = $product->getTranslation('name') . ' - ' . $cartItem['variant'];
                         }
                     @endphp
-
                     <tr class="cart_item">
                         <td class="product-name pl-0 fs-14 text-dark fw-400 border-top-0 border-bottom">
-                            <div class="form-check">
-                              <!--<input class="form-check-input" type="checkbox" value="" id="choose_product" {{ $cartItem['checked'] == 1 ? 'checked' : '' }}>-->
-                              <input class="form-check-input" type="checkbox" value="" id="choose_product" {{ $cartItem['checked'] == 1 ? 'checked' : '' }} data-cart-id="{{ $cartItem['id'] }}"> 
-                              <label class="form-check-label" for="choose_product">
-                                {{ $product_name_with_choice }}
-                                <strong class="product-quantity">
-                                    × {{ $cartItem['quantity'] }}
-                                </strong>
-                              </label>
-                              <!--<div class="available-amount opacity-60">-->
-                              <!--      (<span id="available-quantity-{{ $cartItem['id'] }}">{{ $product->current_stock }}</span>)-->
-                              <!--  </div>-->
-                            </div>
-                            <div class="product-quantity d-flex align-items-center">
-                                <div class="row no-gutters align-items-center aiz-plus-minus mr-3" style="width: 130px;">
-                                    <button class="btn col-auto btn-icon btn-sm btn-light rounded-0 quantity-change" 
-                                            type="button" 
-                                            data-type="minus" 
-                                            data-cart-id="{{ $cartItem['id'] }}">
-                                        <i class="las la-minus"></i>
-                                    </button>
-                                
-                                    <input type="number" 
-                                           name="quantity" 
-                                           id="quantity-{{ $cartItem['id'] }}" 
-                                           class="col border-0 text-center flex-grow-1 fs-16 input-number" 
-                                           placeholder="1" 
-                                           value="{{ $cartItem['quantity'] }}" 
-                                           min="1" 
-                                           max="{{ $product->current_stock }}" 
-                                           lang="en" 
-                                           data-cart-id="{{ $cartItem['id'] }}">
-                                
-                                    <button class="btn col-auto btn-icon btn-sm btn-light rounded-0 quantity-change" 
-                                            type="button" 
-                                            data-type="plus" 
-                                            data-cart-id="{{ $cartItem['id'] }}">
-                                        <i class="las la-plus"></i>
-                                    </button>
-                                </div>
-                                <a class="ml-2 text-danger delete-item" data-cart-id="{{ $cartItem['id'] }}" style="font-size: 18px;">
-                                    <i class="las la-trash-alt"></i>
-                                </a>
-                            </div>
+                            {{ $product_name_with_choice }}
+                            <strong class="product-quantity">
+                                × {{ $cartItem['quantity'] }}
+                            </strong>
                         </td>
                         <td class="product-total text-right pr-0 fs-14 text-primary fw-600 border-top-0 border-bottom">
                             <span
@@ -242,27 +186,8 @@
             </tfoot>
         </table>
 
-        <!-- Remove Redeem Point -->
-        @if (addon_is_activated('club_point'))
-            @if (Session::has('club_point'))
-                <div class="mt-3">
-                    <form class="" action="{{ route('checkout.remove_club_point') }}" method="POST"
-                        enctype="multipart/form-data">
-                        @csrf
-                        <div class="input-group">
-                            <div class="form-control">{{ Session::get('club_point') }}</div>
-                            <div class="input-group-append">
-                                <button type="submit"
-                                    class="btn btn-primary">{{ translate('Remove Redeem Point') }}</button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            @endif
-        @endif
-
         <!-- Coupon System -->
-        @if (Auth::check() && get_setting('coupon_system') == 1)
+        @if (get_setting('coupon_system') == 1)
             @if ($coupon_discount > 0 && $coupon_code)
                 <div class="mt-3">
                     <form class="" id="remove-coupon-form" enctype="multipart/form-data">

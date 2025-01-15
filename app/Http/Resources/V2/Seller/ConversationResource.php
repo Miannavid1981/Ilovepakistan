@@ -16,8 +16,8 @@ class ConversationResource extends JsonResource
             $image = uploaded_asset($this->receiver->avatar_original);
             $name = $this->receiver->name;
         } else {
-            $image = uploaded_asset($this->sender->avatar_original);
-            $name = $this->sender->name;
+            $image = $this->sender ? uploaded_asset($this->sender->avatar_original) : '';
+            $name =  $this->sender ? $this->sender->name : '';
         }
         return [
             'id'    => $this->id,

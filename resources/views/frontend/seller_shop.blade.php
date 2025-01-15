@@ -34,11 +34,11 @@
             <div class="d-flex flex-wrap justify-content-center justify-content-md-start">
                 <a class="fw-700 fs-11 fs-md-13 mr-3 mr-sm-4 mr-md-5 text-dark opacity-60 hov-opacity-100 @if(!isset($type)) opacity-100 @endif"
                         href="{{ route('shop.visit', $shop->slug) }}">{{ translate('Store Home')}}</a>
-                <a class="fw-700 fs-11 fs-md-13 mr-3 mr-sm-4 mr-md-5 text-dark opacity-60 hov-opacity-100 @if(isset($type) && $type == 'top-selling') opacity-100 @endif" 
+                <a class="fw-700 fs-11 fs-md-13 mr-3 mr-sm-4 mr-md-5 text-dark opacity-60 hov-opacity-100 @if(isset($type) && $type == 'top-selling') opacity-100 @endif"
                         href="{{ route('shop.visit.type', ['slug'=>$shop->slug, 'type'=>'top-selling']) }}">{{ translate('Top Selling')}}</a>
-                <a class="fw-700 fs-11 fs-md-13 mr-3 mr-sm-4 mr-md-5 text-dark opacity-60 hov-opacity-100 @if(isset($type) && $type == 'cupons') opacity-100 @endif" 
+                <a class="fw-700 fs-11 fs-md-13 mr-3 mr-sm-4 mr-md-5 text-dark opacity-60 hov-opacity-100 @if(isset($type) && $type == 'cupons') opacity-100 @endif"
                         href="{{ route('shop.visit.type', ['slug'=>$shop->slug, 'type'=>'cupons']) }}">{{ translate('Coupons')}}</a>
-                <a class="fw-700 fs-11 fs-md-13 text-dark opacity-60 hov-opacity-100 @if(isset($type) && $type == 'all-products') opacity-100 @endif" 
+                <a class="fw-700 fs-11 fs-md-13 text-dark opacity-60 hov-opacity-100 @if(isset($type) && $type == 'all-products') opacity-100 @endif"
                         href="{{ route('shop.visit.type', ['slug'=>$shop->slug, 'type'=>'all-products']) }}">{{ translate('All Products')}}</a>
             </div>
         </div>
@@ -52,12 +52,14 @@
     @endphp
 
     @if (!isset($type) || $type == 'top-selling' || $type == 'cupons')
-        @if ($shop->top_banner)
+        @if ($shop->top_banner_image)
             <!-- Top Banner -->
             <section class="h-160px h-md-200px h-lg-300px h-xl-100 w-100">
-                <img class="d-block lazyload h-100 img-fit" 
-                    src="{{ static_asset('assets/img/placeholder-rect.jpg') }}" 
-                    data-src="{{ uploaded_asset($shop->top_banner) }}" alt="{{ env('APP_NAME') }} offer">
+                <a href="{{ $shop->top_banner_link }}">
+                    <img class="d-block lazyload h-100 img-fit"
+                        src="{{ static_asset('assets/img/placeholder-rect.jpg') }}"
+                        data-src="{{ uploaded_asset($shop->top_banner_image) }}" alt="{{ env('APP_NAME') }} offer">
+                </a>
             </section>
         @endif
     @endif
@@ -71,7 +73,7 @@
                         <div class="d-flex align-items-center">
                             <!-- Shop Logo -->
                             <a href="{{ route('shop.visit', $shop->slug) }}" class="overflow-hidden size-64px rounded-content" style="border: 1px solid #e5e5e5;
-                                box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.06);">
+                                box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.06);min-width: fit-content;">
                                 <img class="lazyload h-64px  mx-auto"
                                     src="{{ static_asset('assets/img/placeholder.jpg') }}"
                                     data-src="{{ uploaded_asset($shop->logo) }}"
@@ -101,13 +103,13 @@
                                     @endif
                                 </a>
                                 <!-- Ratting -->
-                                <div class="rating rating-mr-1 text-dark">
+                                <div class="rating rating-mr-2 text-dark">
                                     {{ renderStarRating($shop->rating) }}
                                     <span class="opacity-60 fs-12">({{ $shop->num_of_reviews }}
                                         {{ translate('Reviews') }})</span>
                                 </div>
                                 <!-- Address -->
-                                <!--<div class="location fs-12 opacity-70 text-dark mt-1">{{ $shop->address }}</div>-->
+                                <div class="location fs-12 opacity-70 text-dark mt-1">{{ $shop->address }}</div>
                             </div>
                         </div>
                     </div>
@@ -120,69 +122,70 @@
                                     <div class="mt-1 fs-16 fw-700 text-secondary">{{ date('d M Y',strtotime($shop->created_at)) }}</div>
                                 </div>
                                 <!-- Social Links -->
-                            <!--    @if ($shop->facebook || $shop->instagram || $shop->google || $shop->twitter || $shop->youtube)-->
-                            <!--        <div class="pl-md-3 pr-lg-3 mt-2 mt-md-0 border-lg-right">-->
-                            <!--            <span class="fs-10 fw-400 text-secondary">{{ translate('Social Media') }}</span><br>-->
-                            <!--            <ul class="social-md colored-light list-inline mb-0 mt-1">-->
-                            <!--                @if ($shop->facebook)-->
-                            <!--                <li class="list-inline-item mr-2">-->
-                            <!--                    <a href="{{ $shop->facebook }}" class="facebook"-->
-                            <!--                        target="_blank">-->
-                            <!--                        <i class="lab la-facebook-f"></i>-->
-                            <!--                    </a>-->
-                            <!--                </li>-->
-                            <!--                @endif-->
-                            <!--                @if ($shop->instagram)-->
-                            <!--                <li class="list-inline-item mr-2">-->
-                            <!--                    <a href="{{ $shop->instagram }}" class="instagram"-->
-                            <!--                        target="_blank">-->
-                            <!--                        <i class="lab la-instagram"></i>-->
-                            <!--                    </a>-->
-                            <!--                </li>-->
-                            <!--                @endif-->
-                            <!--                @if ($shop->google)-->
-                            <!--                <li class="list-inline-item mr-2">-->
-                            <!--                    <a href="{{ $shop->google }}" class="google"-->
-                            <!--                        target="_blank">-->
-                            <!--                        <i class="lab la-google"></i>-->
-                            <!--                    </a>-->
-                            <!--                </li>-->
-                            <!--                @endif-->
-                            <!--                @if ($shop->twitter)-->
-                            <!--                <li class="list-inline-item mr-2">-->
-                            <!--                    <a href="{{ $shop->twitter }}" class="twitter"-->
-                            <!--                        target="_blank">-->
-                            <!--                        <i class="lab la-twitter"></i>-->
-                            <!--                    </a>-->
-                            <!--                </li>-->
-                            <!--                @endif-->
-                            <!--                @if ($shop->youtube)-->
-                            <!--                <li class="list-inline-item">-->
-                            <!--                    <a href="{{ $shop->youtube }}" class="youtube"-->
-                            <!--                        target="_blank">-->
-                            <!--                        <i class="lab la-youtube"></i>-->
-                            <!--                    </a>-->
-                            <!--                </li>-->
-                            <!--                @endif-->
-                            <!--            </ul>-->
-                            <!--        </div>-->
-                            <!--    @endif-->
-                            <!--</div>-->
+                                @if ($shop->facebook || $shop->instagram || $shop->google || $shop->twitter || $shop->youtube)
+                                    <div class="pl-md-3 pr-lg-3 mt-2 mt-md-0 border-lg-right">
+                                        <span class="fs-10 fw-400 text-secondary">{{ translate('Social Media') }}</span><br>
+                                        <ul class="social-md colored-light list-inline mb-0 mt-1">
+                                            @if ($shop->facebook)
+                                            <li class="list-inline-item mr-2">
+                                                <a href="{{ $shop->facebook }}" class="facebook"
+                                                    target="_blank">
+                                                    <i class="lab la-facebook-f"></i>
+                                                </a>
+                                            </li>
+                                            @endif
+                                            @if ($shop->instagram)
+                                            <li class="list-inline-item mr-2">
+                                                <a href="{{ $shop->instagram }}" class="instagram"
+                                                    target="_blank">
+                                                    <i class="lab la-instagram"></i>
+                                                </a>
+                                            </li>
+                                            @endif
+                                            @if ($shop->google)
+                                            <li class="list-inline-item mr-2">
+                                                <a href="{{ $shop->google }}" class="google"
+                                                    target="_blank">
+                                                    <i class="lab la-google"></i>
+                                                </a>
+                                            </li>
+                                            @endif
+                                            @if ($shop->twitter)
+                                            <li class="list-inline-item mr-2">
+                                                <a href="{{ $shop->twitter }}" class="twitter"
+                                                    target="_blank">
+                                                    <i class="lab la-twitter"></i>
+                                                </a>
+                                            </li>
+                                            @endif
+                                            @if ($shop->youtube)
+                                            <li class="list-inline-item">
+                                                <a href="{{ $shop->youtube }}" class="youtube"
+                                                    target="_blank">
+                                                    <i class="lab la-youtube"></i>
+                                                </a>
+                                            </li>
+                                            @endif
+                                        </ul>
+                                    </div>
+                                @endif
+                            </div>
                             <!-- follow -->
                             <div class="d-flex justify-content-md-end pl-lg-3 pt-3 pt-lg-0">
+                                @php $shopFollowers = count($shop->followers) + $shop->custom_followers; @endphp
                                 @if(in_array($shop->id, $followed_sellers))
                                     <a href="{{ route("followed_seller.remove", ['id'=>$shop->id]) }}"  data-toggle="tooltip" data-title="{{ translate('Unfollow Seller') }}" data-placement="top"
-                                        class="btn btn-success d-flex align-items-center justify-content-center fs-12 w-190px follow-btn followed" 
+                                        class="btn btn-success d-flex align-items-center justify-content-center fs-12 w-190px follow-btn followed"
                                         style="height: 40px; border-radius: 30px !important; justify-content: center;">
                                         <i class="las la-check fs-16 mr-2"></i>
-                                        <span class="fw-700">{{ translate('Followed') }}</span> &nbsp; ({{ count($shop->followers) }})
+                                        <span class="fw-700">{{ translate('Followed') }}</span> &nbsp; ({{ $shopFollowers }})
                                     </a>
                                 @else
                                     <a href="{{ route("followed_seller.store", ['id'=>$shop->id]) }}"
-                                        class="btn btn-primary d-flex align-items-center justify-content-center fs-12 w-190px follow-btn" 
+                                        class="btn btn-primary d-flex align-items-center justify-content-center fs-12 w-190px follow-btn"
                                         style="height: 40px; border-radius: 30px !important; justify-content: center;">
                                         <i class="las la-plus fs-16 mr-2"></i>
-                                        <span class="fw-700">{{ translate('Follow Seller') }}</span> &nbsp; ({{ count($shop->followers) }})
+                                        <span class="fw-700">{{ translate('Follow Seller') }}</span> &nbsp; ({{ $shopFollowers }})
                                     </a>
                                 @endif
                             </div>
@@ -192,13 +195,14 @@
             </div>
         </div>
     </section>
-        
+
     @if (!isset($type))
+
+        <!-- Featured Products -->
         @php
-            $feature_products = $shop->user ? $shop->user->products ? $shop->user->products->where('published', 1)->where('approved', 1)->where('seller_featured', 1) : "" : "";
+            $feature_products = $shop->user->products->where('published', 1)->where('approved', 1)->where('seller_featured', 1);
         @endphp
         @if (count($feature_products) > 0)
-            <!-- Featured Products -->
             <section class="mt-3 mb-3" id="section_featured">
                 <div class="container">
                 <!-- Top Section -->
@@ -218,7 +222,7 @@
                         <div class="aiz-carousel sm-gutters-16 arrow-none" data-items="6" data-xl-items="5" data-lg-items="4"  data-md-items="3" data-sm-items="2" data-xs-items="2" data-arrows='true' data-autoplay='true' data-infinute="true">
                             @foreach ($feature_products as $key => $product)
                             <div class="carousel-box px-3 position-relative has-transition hov-animate-outline border-right border-top border-bottom @if($key == 0) border-left @endif">
-                                @include('frontend.partials.product_box_1',['product' => $product])
+                                @include('frontend.'.get_setting('homepage_select').'.partials.product_box_1',['product' => $product])
                             </div>
                             @endforeach
                         </div>
@@ -226,22 +230,32 @@
                 </div>
             </section>
         @endif
-        
+
         <!-- Banner Slider -->
-        <section class="mt-3 mb-3">
-            <div class="container">
-                <div class="aiz-carousel mobile-img-auto-height" data-arrows="true" data-dots="false" data-autoplay="true">
-                    @if ($shop->sliders != null)
-                        @foreach (explode(',',$shop->sliders) as $key => $slide)
+        @if ($shop->slider_images != null)
+            <section class="mt-3 mb-3">
+                <div class="container">
+                    <div class="aiz-carousel mobile-img-auto-height" data-arrows="true" data-dots="false" data-autoplay="true">
+                        @php
+                            $shop_slider_images = get_slider_images(json_decode($shop->slider_images, true));
+                            $shop_slider_links = json_decode($shop->slider_links, true);
+                        @endphp
+                        @foreach ($shop_slider_images as $key => $slider)
                             <div class="carousel-box w-100 h-140px h-md-300px h-xl-450px">
-                                <img class="d-block lazyload h-100 img-fit" src="{{ static_asset('assets/img/placeholder-rect.jpg') }}" data-src="{{ uploaded_asset($slide) }}" alt="{{ $key }} offer">
+                                <a href="{{ isset($shop_slider_links[$key]) ? $shop_slider_links[$key] : '' }}">
+                                    <img class="d-block lazyload h-100 img-fit" 
+                                        src="{{ $slider ? my_asset($slider->file_name) : static_asset('assets/img/placeholder.jpg') }}"
+                                        onerror="this.onerror=null;this.src='{{ static_asset('assets/img/placeholder-rect.jpg') }}';"
+                                        alt="{{ $key }} offer">
+                                </a>
                             </div>
                         @endforeach
-                    @endif
+                    </div>
                 </div>
-            </div>
-        </section>
-        
+            </section>
+        @endif
+
+
         <!-- Coupons -->
         @php
             $coupons = get_coupons($shop->user->id);
@@ -249,20 +263,20 @@
         @if (count($coupons)>0)
             <section class="mt-3 mb-3" id="section_coupons">
                 <div class="container">
-                 Top Section 
+                <!-- Top Section -->
                 <div class="d-flex mb-4 align-items-baseline justify-content-between">
-                         Title 
+                        <!-- Title -->
                         <h3 class="fs-16 fs-md-20 fw-700 mb-3 mb-sm-0">
                             <span class="pb-3">{{ translate('Coupons') }}</span>
                         </h3>
-                         Links 
+                        <!-- Links -->
                         <div class="d-flex">
                             <a type="button" class="arrow-prev slide-arrow link-disable text-secondary mr-2" onclick="clickToSlide('slick-prev','section_coupons')"><i class="las la-angle-left fs-20 fw-600"></i></a>
                             <a class="text-blue fs-12 fw-700 hov-text-primary" href="{{ route('shop.visit.type', ['slug'=>$shop->slug, 'type'=>'cupons']) }}">{{ translate('View All') }}</a>
                             <a type="button" class="arrow-next slide-arrow text-secondary ml-2" onclick="clickToSlide('slick-next','section_coupons')"><i class="las la-angle-right fs-20 fw-600"></i></a>
                         </div>
                     </div>
-                     Coupons Section 
+                    <!-- Coupons Section -->
                     <div class="aiz-carousel sm-gutters-16 arrow-none" data-items="3" data-lg-items="2" data-sm-items="1" data-arrows='true' data-infinite='false'>
                         @foreach ($coupons->take(10) as $key => $coupon)
                             <div class="carousel-box">
@@ -273,30 +287,44 @@
                 </div>
             </section>
         @endif
-
-        @if ($shop->banner_full_width_1)
-            <!-- Banner full width 1 -->
-            @foreach (explode(',',$shop->banner_full_width_1) as $key => $banner)
+        
+        <!-- Banner full width 1 -->
+        @if ($shop->banner_full_width_1_images)
+            @php
+                $shop_banner_full_width_1_images = get_slider_images(json_decode($shop->banner_full_width_1_images, true));
+                $shop_banner_full_width_1_links = json_decode($shop->banner_full_width_1_links, true);
+            @endphp
+            @foreach ($shop_banner_full_width_1_images as $key => $banner)
                 <section class="container mb-3 mt-3">
                     <div class="w-100">
-                        <img class="d-block lazyload h-100 img-fit" 
-                            src="{{ static_asset('assets/img/placeholder-rect.jpg') }}" 
-                            data-src="{{ uploaded_asset($banner) }}" alt="{{ env('APP_NAME') }} offer">
+                        <a href="{{ isset($shop_banner_full_width_1_links[$key]) ? $shop_banner_full_width_1_links[$key] : '' }}">
+                            <img class="d-block lazyload h-100 img-fit"
+                                src="{{ $banner ? my_asset($banner->file_name) : static_asset('assets/img/placeholder.jpg') }}"
+                                onerror="this.onerror=null;this.src='{{ static_asset('assets/img/placeholder-rect.jpg') }}';"
+                                alt="{{ env('APP_NAME') }} banner">
+                        </a>
                     </div>
                 </section>
             @endforeach
         @endif
-
-        @if($shop->banners_half_width)
-            <!-- Banner half width -->
+        
+        <!-- Banner half width -->
+        @if($shop->banners_half_width_images)
+            @php
+                $shop_banners_half_width_images = get_slider_images(json_decode($shop->banners_half_width_images, true));
+                $shop_banners_half_width_links = json_decode($shop->banners_half_width_links, true);
+            @endphp
             <section class="container  mb-3 mt-3">
                 <div class="row gutters-16">
-                    @foreach (explode(',',$shop->banners_half_width) as $key => $banner)
+                    @foreach ($shop_banners_half_width_images as $key => $banner)
                     <div class="col-md-6 mb-3 mb-md-0">
                         <div class="w-100">
-                            <img class="d-block lazyload h-100 img-fit" 
-                                src="{{ static_asset('assets/img/placeholder-rect.jpg') }}" 
-                                data-src="{{ uploaded_asset($banner) }}" alt="{{ env('APP_NAME') }} offer">
+                            <a href="{{ isset($shop_banners_half_width_links[$key]) ? $shop_banners_half_width_links[$key] : '' }}">
+                                <img class="d-block lazyload h-100 img-fit"
+                                    src="{{ $banner ? my_asset($banner->file_name) : static_asset('assets/img/placeholder.jpg') }}"
+                                    onerror="this.onerror=null;this.src='{{ static_asset('assets/img/placeholder-rect.jpg') }}';"
+                                    alt="{{ env('APP_NAME') }} banner">
+                            </a>
                         </div>
                     </div>
                     @endforeach
@@ -330,7 +358,7 @@
                     </div>
                 @endif
             </div>
-            
+
             @php
                 if (!isset($type)){
                     $products = get_seller_products($shop->user->id);
@@ -349,23 +377,30 @@
                     <div class="aiz-carousel sm-gutters-16 arrow-none" data-items="6" data-xl-items="5" data-lg-items="4"  data-md-items="3" data-sm-items="2" data-xs-items="2" data-arrows='true' data-infinite='false'>
                         @foreach ($products as $key => $product)
                         <div class="carousel-box px-3 position-relative has-transition hov-animate-outline border-right border-top border-bottom @if($key == 0) border-left @endif">
-                            @include('frontend.partials.product_box_1',['product' => $product])
+                            @include('frontend.'.get_setting('homepage_select').'.partials.product_box_1',['product' => $product])
                         </div>
                         @endforeach
                     </div>
                 </div>
 
-                @if ($shop->banner_full_width_2)
-                    <!-- Banner full width 2 -->
-                    @foreach (explode(',',$shop->banner_full_width_2) as $key => $banner)
+                <!-- Banner full width 2 -->
+                @if ($shop->banner_full_width_2_images)
+                    @php
+                        $shop_banner_full_width_2_images = get_slider_images(json_decode($shop->banner_full_width_2_images, true));
+                        $shop_banner_full_width_2_links = json_decode($shop->banner_full_width_2_links, true);
+                    @endphp
+                    @foreach ($shop_banner_full_width_2_images as $key => $banner)
                         <div class="mt-3 mb-3 w-100">
-                            <img class="d-block lazyload h-100 img-fit" 
-                                src="{{ static_asset('assets/img/placeholder-rect.jpg') }}" 
-                                data-src="{{ uploaded_asset($banner) }}" alt="{{ env('APP_NAME') }} offer">
+                            <a href="{{ isset($shop_banner_full_width_2_links[$key]) ? $shop_banner_full_width_2_links[$key] : '' }}">
+                                <img class="d-block lazyload h-100 img-fit"
+                                    src="{{ $banner ? my_asset($banner->file_name) : static_asset('assets/img/placeholder.jpg') }}"
+                                    onerror="this.onerror=null;this.src='{{ static_asset('assets/img/placeholder-rect.jpg') }}';"
+                                    alt="{{ env('APP_NAME') }} banner">
+                            </a>
                         </div>
                     @endforeach
                 @endif
-                
+
 
             @elseif ($type == 'cupons')
                 <!-- All Coupons Section -->
@@ -379,7 +414,7 @@
                 <div class="aiz-pagination mt-4 mb-4">
                     {{ $coupons->links() }}
                 </div>
-            
+
             @elseif ($type == 'all-products')
                 <!-- All Products Section -->
                 <form class="" id="search-form" action="" method="GET">
@@ -484,7 +519,7 @@
                                                     onchange="filter()"
                                                 >
                                                 <span class="aiz-square-check"></span>
-                                                <span class="rating rating-mr-1">{{ renderStarRating(5) }}</span>
+                                                <span class="rating rating-mr-2">{{ renderStarRating(5) }}</span>
                                             </label>
                                             <br>
                                             <label class="aiz-checkbox mb-3">
@@ -495,7 +530,7 @@
                                                     onchange="filter()"
                                                 >
                                                 <span class="aiz-square-check"></span>
-                                                <span class="rating rating-mr-1">{{ renderStarRating(4) }}</span>
+                                                <span class="rating rating-mr-2">{{ renderStarRating(4) }}</span>
                                                 <span class="fs-14 fw-400 text-dark">{{ translate('And Up')}}</span>
                                             </label>
                                             <br>
@@ -507,7 +542,7 @@
                                                     onchange="filter()"
                                                 >
                                                 <span class="aiz-square-check"></span>
-                                                <span class="rating rating-mr-1">{{ renderStarRating(3) }}</span>
+                                                <span class="rating rating-mr-2">{{ renderStarRating(3) }}</span>
                                                 <span class="fs-14 fw-400 text-dark">{{ translate('And Up')}}</span>
                                             </label>
                                             <br>
@@ -519,7 +554,7 @@
                                                     onchange="filter()"
                                                 >
                                                 <span class="aiz-square-check"></span>
-                                                <span class="rating rating-mr-1">{{ renderStarRating(2) }}</span>
+                                                <span class="rating rating-mr-2">{{ renderStarRating(2) }}</span>
                                                 <span class="fs-14 fw-400 text-dark">{{ translate('And Up')}}</span>
                                             </label>
                                             <br>
@@ -531,7 +566,7 @@
                                                     onchange="filter()"
                                                 >
                                                 <span class="aiz-square-check"></span>
-                                                <span class="rating rating-mr-1">{{ renderStarRating(1) }}</span>
+                                                <span class="rating rating-mr-2">{{ renderStarRating(1) }}</span>
                                                 <span class="fs-14 fw-400 text-dark">{{ translate('And Up')}}</span>
                                             </label>
                                             <br>
@@ -570,7 +605,7 @@
                                 </div>
                             </div>
                         </div>
-                        
+
                         <!-- Contents -->
                         <div class="col-xl-9">
                             <!-- Top Filters -->
@@ -597,13 +632,13 @@
                                     </div>
                                 </div>
                             </div>
-                            
+
                             <!-- Products -->
                             <div class="px-3">
                                 <div class="row gutters-16 row-cols-xxl-4 row-cols-xl-3 row-cols-lg-4 row-cols-md-3 row-cols-2 border-top border-left">
                                     @foreach ($products as $key => $product)
                                         <div class="col border-right border-bottom has-transition hov-shadow-out z-1">
-                                            @include('frontend.partials.product_box_1',['product' => $product])
+                                            @include('frontend.'.get_setting('homepage_select').'.partials.product_box_1',['product' => $product])
                                         </div>
                                     @endforeach
                                 </div>
@@ -620,7 +655,7 @@
                     <div class="row gutters-16 row-cols-xxl-6 row-cols-xl-5 row-cols-lg-4 row-cols-md-3 row-cols-2 border-left border-top">
                         @foreach ($products as $key => $product)
                             <div class="col border-bottom border-right overflow-hidden has-transition hov-shadow-out z-1">
-                                @include('frontend.partials.product_box_1',['product' => $product])
+                                @include('frontend.'.get_setting('homepage_select').'.partials.product_box_1',['product' => $product])
                             </div>
                         @endforeach
                     </div>
@@ -639,7 +674,7 @@
         function filter(){
             $('#search-form').submit();
         }
-        
+
         function rangefilter(arg){
             $('input[name=min_price]').val(arg[0]);
             $('input[name=max_price]').val(arg[1]);

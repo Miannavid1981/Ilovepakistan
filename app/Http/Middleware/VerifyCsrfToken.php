@@ -18,20 +18,24 @@ class VerifyCsrfToken extends Middleware
      *
      * @var array
      */
-     protected $except = [
-         '/sslcommerz*',
-         '/config_content',
-         '/paytm*',
-         '/payhere*',
-         '/stripe*',
-         '/iyzico*',
-         '/payfast*',
-         '/bkash*',
-         'api/v2/bkash*',
-         '/aamarpay*',
-         '/mock_payments',
-         '/apple-callback',
-         '/lnmo*',
-         '/rozer*'
-     ];
+    protected $except = [
+        '/sslcommerz*',
+        '/config_content',
+        '/paytm*',
+        '/payhere*',
+        '/stripe*',
+        '/api/v2/stripe*',
+        '/iyzico*',
+        '/payfast*',
+        'api/v2/payfast*',
+        '/bkash*',
+        'api/v2/bkash*',
+        '/aamarpay*',
+        '/mock_payments',
+        '/apple-callback',
+        '/lnmo*',
+        '/rozer*',
+        '/phonepe*',
+        '/import-data',
+    ];
 }

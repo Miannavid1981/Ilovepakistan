@@ -10,13 +10,16 @@
                     <a class="p-3 fs-16 text-reset" data-toggle="tab" href="#available">{{ translate('Available Addon')}}</a>
                 </div>
             </div>
-			<div class="col mt-3 mt-sm-0 text-center text-md-right">
-                <a href="https://nullcave.club/resources/active-ecommerce-cms-script-activeitzone.166/" class="btn btn-primary" target="_blank">
+			{{-- <div class="col mt-3 mt-md-0 text-center text-md-right">
+                <a href="https://activeitzone.com/activation/addon" class="btn btn-primary" target="_blank">
 					{{ translate('Activate Addon Link') }}
 				</a>
-            </div>
-            <div class="col-auto mt-3 mt-sm-0 text-center text-md-right">
-                <a href="{{ route('addons.create')}}" class="btn btn-primary">{{ translate('Install/Update Addon')}}</a>
+            </div> --}}
+            <div class="col mt-3 mt-md-0 text-center text-md-right">
+                <a href="https://activeitzone.com/activation/addon" class="btn btn-primary mb-3 mb-sm-0 mx-3 mx-md-0 mr-lg-3" target="_blank">
+					{{ translate('Activate Addon Link') }}
+				</a>
+                <a href="{{ route('addons.create')}}" class="btn btn-primary mx-3 mx-md-0">{{ translate('Install/Update Addon')}}</a>
             </div>
         </div>
     </div>
@@ -24,7 +27,7 @@
     <div class="tab-content">
         <div class="tab-pane fade in active show" id="installed">
             <div class="row">
-                <div class="col-lg-8 mx-auto">
+                <div class="col-xl-10 col-xxl-8 mx-auto">
                     <div class="card">
                         <div class="card-body">
                             <ul class="list-group">
@@ -39,7 +42,7 @@
                                                 <p><small>{{ translate('Version')}}: </small>{{ $addon->version }}</p>
                                             </div>
                                             @if (env('DEMO_MODE') != 'On')
-                                                <div class="mr-md-3 ml-0">
+                                                <div class="mr-md-3 ml-0 w-100 w-md-auto">
                                                     <p><small>{{ translate('Purchase code')}}: </small>{{ $addon->purchase_code }}</p>
                                                 </div>
                                             @endif
@@ -80,6 +83,13 @@
 @section('script')
     <script type="text/javascript">
         function updateStatus(el, id){
+
+            if('{{env('DEMO_MODE')}}' == 'On'){
+                AIZ.plugins.notify('info', '{{ translate('Data can not change in demo mode.') }}');
+                return;
+            }
+
+
             if($(el).is(':checked')){
                 var status = 1;
             }

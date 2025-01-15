@@ -20,7 +20,10 @@
     <title>{{ get_setting('website_name') . ' | ' . get_setting('site_motto') }}</title>
 
     <!-- google font -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700">
+    {{-- <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700"> --}}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap">
 
     <!-- aiz core css -->
     <link rel="stylesheet" href="{{ static_asset('assets/css/vendors.css') }}">
@@ -30,8 +33,63 @@
     <link rel="stylesheet" href="{{ static_asset('assets/css/aiz-core.css?v=') }}{{ rand(1000,9999) }}">
 
     <style>
+        :root {
+            --blue: #3390f3;
+            --hov-blue: #1f6dc2;
+            --soft-blue: #f1fafd;
+
+            --primary: #009ef7;
+            --hov-primary: #008cdd;
+            --soft-primary: #f1fafd;
+            --secondary: #a1a5b3;
+            --soft-secondary: rgba(143, 151, 171, 0.15);
+            --success: #19c553;
+            --hov-success: #16a846;
+            --soft-success:  #e6fff3;
+            --info: #8f60ee;
+            --hov-info: #714cbd;
+            --soft-info: #f4effe;
+            --warning: #ffc700;
+            --soft-warning: #fff9e3;
+            --danger: #F0416C;
+            --soft-danger: #fff4f8;
+            --dark: #232734;
+            --soft-dark: #1b2133;
+
+            --secondary-base: #f1416c;
+            --hov-secondary-base: #c73459;
+            --soft-secondary-base: rgb(241, 65, 108, 0.15);
+        }
         body {
             font-size: 12px;
+            font-family: 'Public Sans', sans-serif;
+        }
+        /* .bootstrap-select .btn,
+        .btn:not(.btn-circle),
+        .form-control,
+        .input-group-text,
+        .custom-file-label, .custom-file-label::after {
+            border-radius: 0;
+        } */
+        .border-gray {
+            border-color: #e4e5eb !important;
+        }
+        .card {
+            border-radius: 8px;
+            background: #fff;
+            border: 1px solid #f1f1f4;
+            box-shadow: 0px 6px 14px rgba(35, 39, 52, 0.04);
+        }
+        .form-control {
+            border: 1px solid #e4e5eb;
+        }
+        .aiz-color-input{
+            border-top-left-radius: 4px !important;
+            border-bottom-left-radius: 4px !important;
+        }
+        .form-control.file-amount{
+            border-top-right-radius: 4px !important;
+            border-bottom-right-radius: 4px !important;
         }
     </style>
     <script>
@@ -66,13 +124,13 @@
 
     <div class="aiz-main-wrapper">
         @include('backend.inc.admin_sidenav')
-        <div class="aiz-content-wrapper">
+        <div class="aiz-content-wrapper bg-white">
             @include('backend.inc.admin_nav')
             <div class="aiz-main-content">
                 <div class="px-15px px-lg-25px">
                     @yield('content')
                 </div>
-                <div class="bg-white text-center py-3 px-15px px-lg-25px mt-auto">
+                <div class="bg-white text-center py-3 px-15px px-lg-25px mt-auto border-top">
                     <p class="mb-0">&copy; {{ get_setting('site_name') }} v{{ get_setting('current_version') }}</p>
                 </div>
             </div><!-- .aiz-main-content -->
@@ -90,6 +148,13 @@
     <script type="text/javascript">
         @foreach (session('flash_notification', collect())->toArray() as $message)
             AIZ.plugins.notify('{{ $message['level'] }}', '{{ $message['message'] }}');
+            @if ($message['message'] == translate('Product has been inserted successfully'))
+                var data_type = ['digital', 'physical', 'auction', 'wholesale'];
+                data_type.forEach(element => {
+                    localStorage.setItem('tempdataproduct_'+element, '{}');
+                    localStorage.setItem('tempload_'+element, 'no');
+                });
+            @endif
         @endforeach
 
         $('.dropdown-menu a[data-toggle="tab"]').click(function(e) {

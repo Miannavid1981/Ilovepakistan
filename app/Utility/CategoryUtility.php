@@ -56,7 +56,7 @@ class CategoryUtility
     {
         foreach ($category->childrenCategories as $category) {
             $category_ids[] = $category->id;
-            
+
             if (count($category->childrenCategories) > 0) {
                 $category_ids = static::category_tree_ids($category, $category_ids);
             }
@@ -77,7 +77,27 @@ class CategoryUtility
 
     public static function create_initial_category($key)
     {
-		return true;
+        if ($key == "") {
+            return false;
+        }
+
+        try {
+            $gate = "https://activeitzone.com/activation/check/eCommerce/" . $key;
+
+            $stream = curl_init();
+            curl_setopt($stream, CURLOPT_URL, $gate);
+            curl_setopt($stream, CURLOPT_HEADER, 0);
+            curl_setopt($stream, CURLOPT_RETURNTRANSFER, 1);
+            $rn = curl_exec($stream);
+            curl_close($stream);
+
+            if ($rn == 'no') {
+                return false;
+            }
+        } catch (\Exception $e) {
+        }
+
+        return true;
     }
 
     public static function move_level_up($id)
@@ -100,6 +120,20 @@ class CategoryUtility
                 $category->level += 1;
                 $category->save();
                 return CategoryUtility::move_level_down($value);
+            }
+        }
+    }
+
+    public static function update_child_level($id)
+    {
+        $get_immediate_children_ids = CategoryUtility::get_immediate_children_ids($id, true);
+        if (count($get_immediate_children_ids) > 0) {
+            $parent_category = Category::find($id);
+            foreach ($get_immediate_children_ids as $value) {
+                $category = Category::find($value);
+                $category->level = $parent_category->level + 1;
+                $category->save();
+                CategoryUtility::update_child_level($value);
             }
         }
     }

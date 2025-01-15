@@ -11,10 +11,10 @@
     </div>
 
 	<!-- Language -->
-    <ul class="nav nav-tabs nav-fill border-light">
+    <ul class="nav nav-tabs nav-fill language-bar">
         @foreach (get_all_active_language() as $key => $language)
             <li class="nav-item">
-                <a class="nav-link text-reset @if ($language->code == $lang) active @else bg-soft-dark border-light border-left-0 @endif py-3" href="{{ route('website.footer', ['lang'=> $language->code] ) }}">
+                <a class="nav-link text-reset @if ($language->code == $lang) active @endif py-3" href="{{ route('website.footer', ['lang'=> $language->code] ) }}">
                     <img src="{{ static_asset('assets/img/flags/'.$language->code.'.png') }}" height="11" class="mr-1">
                     <span>{{$language->name}}</span>
                 </a>
@@ -52,9 +52,9 @@
     								<textarea class="form-control" name="footer_description" rows="6" placeholder="Type.." >{{ get_setting('footer_description',null,$lang); }}</textarea>
     							</div>
 								<!-- Update Button -->
-    							<div class="text-right">
-    								<button type="submit" class="btn btn-primary">{{ translate('Update') }}</button>
-    							</div>
+								<div class="mt-4 text-right">
+									<button type="submit" class="btn btn-success w-230px btn-md rounded-2 fs-14 fw-700 shadow-success">{{ translate('Update') }}</button>
+								</div>
     						</form>
     					</div>
     				</div>
@@ -81,6 +81,7 @@
     			                        <input type="hidden" name="footer_logo" class="selected-files" value="{{ get_setting('footer_logo') }}">
     			                    </div>
     								<div class="file-preview"></div>
+                                    <small class="text-muted">{{ translate("Minimum dimensions required: 275px width X 44px height.") }}</small>
     			                </div>
 								<!-- About description -->
     			                <div class="form-group">
@@ -103,9 +104,9 @@
                                     <input type="text" class="form-control" placeholder="http://" name="app_store_link" value="{{ get_setting('app_store_link') }}">
                                 </div>
 								<!-- Update Button -->
-    							<div class="text-right">
-    								<button type="submit" class="btn btn-primary">{{ translate('Update') }}</button>
-    							</div>
+								<div class="mt-4 text-right">
+									<button type="submit" class="btn btn-success w-230px btn-md rounded-2 fs-14 fw-700 shadow-success">{{ translate('Update') }}</button>
+								</div>
     						</form>
     					</div>
     				</div>
@@ -139,9 +140,9 @@
     								<input type="text" class="form-control" placeholder="{{ translate('Email') }}" name="contact_email" value="{{ get_setting('contact_email') }}">
     							</div>
 								<!-- Update Button -->
-    							<div class="text-right">
-    								<button type="submit" class="btn btn-primary">{{ translate('Update') }}</button>
-    							</div>
+								<div class="mt-4 text-right">
+									<button type="submit" class="btn btn-success w-230px btn-md rounded-2 fs-14 fw-700 shadow-success">{{ translate('Update') }}</button>
+								</div>
     						</form>
     					</div>
     				</div>
@@ -222,9 +223,9 @@
     								</button>
     							</div>
 								<!-- Update Button -->
-    							<div class="text-right">
-    								<button type="submit" class="btn btn-primary">{{ translate('Update') }}</button>
-    							</div>
+								<div class="mt-4 text-right">
+									<button type="submit" class="btn btn-success w-230px btn-md rounded-2 fs-14 fw-700 shadow-success">{{ translate('Update') }}</button>
+								</div>
     						</form>
     					</div>
     				</div>
@@ -367,16 +368,16 @@
 								<input type="hidden" name="types[]" value="payment_method_images">
 								<input type="hidden" name="payment_method_images" class="selected-files" value="{{ get_setting('payment_method_images')}}">
 							</div>
-							<div class="file-preview box sm">
-							</div>
+							<div class="file-preview box sm"></div>
+                            <small class="text-muted">{{ translate("Minimum dimensions required: 144px width X 20px height.") }}</small>
 						</div>
 					</div>
                 </div>
 
 				<!-- Update Button -->
-                <div class="text-right">
-                    <button type="submit" class="btn btn-primary">{{ translate('Update') }}</button>
-                </div>
+				<div class="mt-4 text-right">
+					<button type="submit" class="btn btn-success w-230px btn-md rounded-2 fs-14 fw-700 shadow-success">{{ translate('Update') }}</button>
+				</div>
             </div>
         </form>
 	</div>

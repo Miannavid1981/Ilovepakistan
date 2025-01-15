@@ -40,43 +40,43 @@ class RouteServiceProvider extends ServiceProvider
    */
   public function map()
   {
-     $this->mapApiRoutes();
+    $this->mapApiRoutes();
 
-     $this->mapApiSellerRoutes();
-    
-     $this->mapAdminRoutes();
+    $this->mapApiSellerRoutes();
 
-     $this->mapSellerRoutes();
-    
-     $this->mapAffiliateRoutes();
-    
-     $this->mapRefundRoutes();
-    
-     $this->mapClubPointsRoutes();
-    
-     $this->mapOtpRoutes();
-    
-     $this->mapOfflinePaymentRoutes();
-    
-     $this->mapAfricanPaymentGatewayRoutes();
-    
-     $this->mapPaytmRoutes();
-    
-     $this->mapPosRoutes();
-    
-     $this->mapSellerPackageRoutes();
-    
-     $this->mapDeliveryBoyRoutes();
-    
-     $this->mapAuctionRoutes();
+    $this->mapAdminRoutes();
 
-     $this->mapWholesaleRoutes();
-    
-     $this->mapWebRoutes();
+    $this->mapSellerRoutes();
 
-    // $this->mapInstallRoutes();
+    $this->mapAffiliateRoutes();
 
-    //$this->mapUpdateRoutes();
+    $this->mapRefundRoutes();
+
+    $this->mapClubPointsRoutes();
+
+    $this->mapOtpRoutes();
+
+    $this->mapOfflinePaymentRoutes();
+
+    $this->mapAfricanPaymentGatewayRoutes();
+
+    $this->mapPaytmRoutes();
+
+    $this->mapPosRoutes();
+
+    $this->mapSellerPackageRoutes();
+
+    $this->mapDeliveryBoyRoutes();
+
+    $this->mapAuctionRoutes();
+
+    $this->mapWholesaleRoutes();
+
+    $this->mapWebRoutes();
+
+  // $this->mapInstallRoutes();
+
+  //$this->mapUpdateRoutes();
   }
 
   /**
@@ -165,7 +165,7 @@ class RouteServiceProvider extends ServiceProvider
 
 
   /**
-   * Define the "offline payment" routes for the application.
+   * Define the "Asian payment" routes for the application.
    *
    * These routes all receive session state, CSRF protection, etc.
    *
@@ -179,7 +179,7 @@ class RouteServiceProvider extends ServiceProvider
   }
 
   /**
-   * Define the "offline payment" routes for the application.
+   * Define the "African payment" routes for the application.
    *
    * These routes all receive session state, CSRF protection, etc.
    *

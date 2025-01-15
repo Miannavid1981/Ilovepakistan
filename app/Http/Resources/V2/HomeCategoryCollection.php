@@ -11,7 +11,7 @@ class HomeCategoryCollection extends ResourceCollection
         return [
             'data' => $this->collection->map(function($data) {
                 return [
-                    'name' => $data->category->name,
+                    'name' => $data->category->getTranslation('name'),
                     'banner' => uploaded_asset($data->category->banner),
                     'icon' => uploaded_asset($data->category->icon),
                     'links' => [

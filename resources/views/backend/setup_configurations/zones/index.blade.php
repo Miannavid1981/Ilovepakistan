@@ -8,7 +8,7 @@
                 <h1 class="h3">{{ translate('All Zones') }}</h1>
             </div>
             <div class="col-md-6 text-md-right">
-                <a href="{{ route('zones.create') }}" class="btn btn-primary">
+                <a href="{{ route('zones.create') }}" class="btn btn-circle btn-info">
                     <span>{{ translate('Add New Zone') }}</span>
                 </a>
             </div>

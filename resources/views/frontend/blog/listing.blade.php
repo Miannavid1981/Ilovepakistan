@@ -1,5 +1,5 @@
 @extends('frontend.layouts.app')
- 
+
 @section('content')
     <section class="pb-4 pt-5">
         <div class="container">
@@ -28,7 +28,6 @@
                                 <i class="la la-filter la-2x"></i>
                             </button>
                         </div>
-                       
                     </div>
                     <!-- Blogs -->
                     <div class="blog card-columns">
@@ -66,6 +65,7 @@
                                 </div>
                             </div>
                         @endforeach
+                        
                     </div>
                     <!-- Pagination -->
                     <div class="aiz-pagination mt-4">
@@ -75,49 +75,6 @@
 
                 <!-- Sidebar -->
                 <div class="col-xl-3">
-                    <div class="bg-white border mb-3 mx-3 mx-xl-0">
-                        <div class="fs-16 fw-700 p-3">{{ translate('Currency Conversion')}}</div>
-                        <div class="p-3">
-                                <form id="currency-conversion-form" action="{{ route('currency-converter') }}" method="POST">
-                                    @csrf
-                                    <div class="form-group">
-                                        <label for="amount">Amount:</label>
-                                        <input type="number" required id="amount" name="amount" class="form-control" placeholder="Enter Amount">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="from_currency">From Currency:</label>
-                                        <dd>
-                                            <input type="text" required id="from_currency" name="from_currency" list="currency_list" class="form-control" value="PKR">
-                                            <datalist id="currency_list">
-                                                <option value="PKR">
-                                                @foreach ($currencies as $currency)
-                                                    <option value="{{ $currency }}">
-                                                @endforeach
-                                            </datalist>
-                                        </dd>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="to_currency">To Currency:</label>
-                                        
-                                        <dd>
-                                            <input type="text" required id="to_currency" name="to_currency" list="currency_list" class="form-control"  value="USD">
-                                            <datalist id="currency_list">
-                                                <option value="USD">
-                                                @foreach ($currencies as $currency)
-                                                    <option value="{{ $currency }}">
-                                                @endforeach
-                                            </datalist>
-                                        </dd>
-                                    </div>
-                                    <button type="submit" class="btn btn-primary">Convert</button>
-                                </form>
-
-                                <div class="form-group mt-2 ca" style="display:none">
-                                    <label for="to_currency">Converted Amount:</label>
-                                    <input id="converted_amount" class="form-control" readonly>
-                                </div>
-                            </div>
-                    </div>
                     <!-- Filters -->
                     <form class="mb-4" id="search-form" action="" method="GET">
                         <div class="aiz-filter-sidebar collapse-sidebar-wrap sidebar-xl sidebar-right z-1035">
@@ -140,7 +97,6 @@
                                         </div>
                                     </div>
                                 </div>
-                               
                                 <!-- Categories -->
                                 <div class="bg-white border mb-3 mx-3 mx-xl-0">
                                     <div class="fs-16 fw-700 p-3">{{ translate('Categories')}}</div>
@@ -160,11 +116,10 @@
                                     </div>
                                 </div>
                                 
-                                
-                                
                             </div>
                         </div>
                     </form>
+
                     <!-- recent posts -->
                     <div class="p-3 border">
                         <h3 class="fs-16 fw-700 text-dark mb-3">{{ translate('Recent Posts') }}</h3>
@@ -200,6 +155,7 @@
                             @endforeach
                         </div>
                     </div>
+
                 </div>
 
             </div>
@@ -207,44 +163,10 @@
     </section>
 @endsection
 
-
 @section('script')
     <script type="text/javascript">
         function filter(){
             $('#search-form').submit();
         }
     </script>
-    
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $('#currency-conversion-form').on('submit', function (e) {
-            e.preventDefault();
-
-            $.ajax({
-                url: $(this).attr('action'),
-                type: 'POST',
-                data: $(this).serialize(),
-                success: function (response) {
-                    $('#converted_amount').val(response.converted_amount);
-                    $('.ca').show();
-                },
-                error: function (xhr, status, error) {
-                    // Handle error
-                    console.error(error);
-                }
-            });
-        });
-        
-            $('#amount').on('keyup', function () {
-             if ($(this).val() === '') {
-            $('.ca').hide(); // Hide the converted amount and clear its value
-        }
-        });
-        });
-    </script>
 @endsection
-
-
-
-
-

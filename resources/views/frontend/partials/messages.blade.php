@@ -4,15 +4,21 @@
             <div class="d-flex flex-row-reverse">
                 <div class="pl-3">
                     <div class="block-image">
-                        @if ($message->user->avatar_original != null)
-                            <img src="{{ uploaded_asset($message->user->avatar_original) }}" class="rounded-circle">
+                        @if (Auth::user()->id != $message->user_id && $message->user->shop != null)
+                            <a href="{{ route('shop.visit', $message->user->shop->slug) }}" class="avatar avatar-sm mr-3">
+                                <img  class="" src="{{ uploaded_asset($message->user->shop->logo) }}" 
+                                    onerror="this.onerror=null;this.src='{{ static_asset('assets/img/avatar-place.png') }}';">
+                            </a>
                         @else
-                            <img src="{{ static_asset('assets/img/avatar-place.png') }}" class="rounded-circle">
+                        <span class="avatar avatar-sm mr-3">
+                            <img class="" @if($message->user != null) src="{{ uploaded_asset($message->user->avatar_original) }}" @endif 
+                                onerror="this.onerror=null;this.src='{{ static_asset('assets/img/avatar-place.png') }}';">
+                        </span>
                         @endif
                     </div>
                 </div>
-                <div class="flex-grow-1 ml-5 pl-5">
-                    <div class="p-3 bg-gray rounded">
+                <div class="flex-grow ml-5 pl-5">
+                    <div class="px-3 py-2 border rounded text-right">
                         {{ $message->message }}
                     </div>
                     <span class="comment-date alpha-7 small mt-1 d-block text-right">
@@ -26,15 +32,21 @@
             <div class="d-flex">
                 <div class="pr-3">
                     <div class="block-image">
-                        @if ($message->user->avatar_original != null)
-                            <img src="{{ uploaded_asset($message->user->avatar_original) }}" class="rounded-circle">
+                        @if (Auth::user()->id != $message->user_id && $message->user->shop != null)
+                            <a href="{{ route('shop.visit', $message->user->shop->slug) }}" class="avatar avatar-sm mr-3">
+                                <img  class="" src="{{ uploaded_asset($message->user->shop->logo) }}" 
+                                    onerror="this.onerror=null;this.src='{{ static_asset('assets/img/avatar-place.png') }}';">
+                            </a>
                         @else
-                            <img src="{{ static_asset('assets/img/avatar-place.png') }}" class="rounded-circle">
+                            <span class="avatar avatar-sm mr-3">
+                                <img @if($message->user != null) src="{{ uploaded_asset($message->user->avatar_original) }}" @endif 
+                                    onerror="this.onerror=null;this.src='{{ static_asset('assets/img/avatar-place.png') }}';">
+                            </span>
                         @endif
                     </div>
                 </div>
-                <div class="flex-grow-1 mr-5 pr-5">
-                    <div class="p-3 bg-gray rounded">
+                <div class="flex-grow mr-5 pr-5">
+                    <div class="px-3 py-2 border rounded">
                         {{ $message->message }}
                     </div>
                     <span class="comment-date alpha-7 small mt-1 d-block">

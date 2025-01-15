@@ -45,7 +45,7 @@
                                     $photos = explode(',',$detailedProduct->photos);
                                 @endphp
                                 <div class="col order-1 order-md-2">
-                                    <div class="aiz-carousel product-gallery" data-nav-for='.product-gallery-thumb' 
+                                    <div class="aiz-carousel product-gallery" data-nav-for='.product-gallery-thumb'
                                         data-fade='true' data-auto-height='true'>
                                         @foreach ($photos as $key => $photo)
                                         <div class="carousel-box img-zoom rounded">
@@ -74,7 +74,7 @@
 
                         </div>
                     </div>
-                    
+
                     <!-- Product Details -->
                     <div class="col-xl-7 col-lg-6">
                         <div class="text-left">
@@ -90,9 +90,9 @@
                                         <div class="col-12">
                                             @php
                                                 $total = 0;
-                                                $total += $detailedProduct->reviews->count();
+                                                $total += $detailedProduct->reviews->where('status', 1)->count();
                                             @endphp
-                                            <span class="rating rating-mr-1">
+                                            <span class="rating rating-mr-2">
                                                 {{ renderStarRating($detailedProduct->rating) }}
                                             </span>
                                             <span class="ml-1 opacity-50 fs-14">({{ $total }}
@@ -154,7 +154,7 @@
                                 <!-- Messase to seller -->
                                 @if (get_setting('conversation_system') == 1)
                                     <div class="col-md-4 text-md-right mb-3">
-                                        <button class="btn btn-sm btn-soft-warning rounded-0 hov-svg-white hov-text-white"
+                                        <button class="btn btn-sm btn-soft-secondary-base rounded-0 hov-svg-white hov-text-white"
                                             onclick="show_chat_modal()">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" class="mr-2 has-transition">
                                                 <g id="Group_23918" data-name="Group 23918" transform="translate(1053.151 256.688)">
@@ -164,7 +164,7 @@
                                                   <path id="Path_3015" data-name="Path 3015" d="M131.349,99.312h5a.5.5,0,1,1,0,1h-5a.5.5,0,1,1,0-1" transform="translate(-1181 -346.5)" fill="#f4b650"/>
                                                 </g>
                                               </svg>
-                                              
+
                                             {{ translate('Message Seller') }}
                                         </button>
                                     </div>
@@ -193,7 +193,7 @@
                             <hr>
 
                             @if(home_price($detailedProduct) != home_discounted_price($detailedProduct))
-                                
+
                                 <div class="row no-gutters mb-3">
                                     <div class="col-sm-2">
                                         <div class="text-secondary fs-14 fw-400">{{ translate('Price')}}</div>
@@ -218,7 +218,7 @@
                                             @endif
                                             <!-- Club Point -->
                                             @if (addon_is_activated('club_point') && $detailedProduct->earn_point > 0)
-                                                <div class="ml-2 bg-warning d-flex justify-content-center align-items-center px-3 py-1" style="width: fit-content;">
+                                                <div class="ml-2 bg-secondary-base d-flex justify-content-center align-items-center px-3 py-1" style="width: fit-content;">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12">
                                                         <g id="Group_23922" data-name="Group 23922" transform="translate(-973 -633)">
                                                         <circle id="Ellipse_39" data-name="Ellipse 39" cx="6" cy="6" r="6" transform="translate(973 633)" fill="#fff"/>
@@ -253,7 +253,7 @@
                                             @endif
                                             <!-- Club Point -->
                                             @if (addon_is_activated('club_point') && $detailedProduct->earn_point > 0)
-                                                <div class="ml-2 bg-warning d-flex justify-content-center align-items-center px-3 py-1" style="width: fit-content;">
+                                                <div class="ml-2 bg-secondary-base d-flex justify-content-center align-items-center px-3 py-1" style="width: fit-content;">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12">
                                                         <g id="Group_23922" data-name="Group 23922" transform="translate(-973 -633)">
                                                         <circle id="Ellipse_39" data-name="Ellipse 39" cx="6" cy="6" r="6" transform="translate(973 633)" fill="#fff"/>
@@ -294,7 +294,7 @@
 
                             <!-- Add to cart & Buy now Buttons -->
                             <div class="mt-3">
-                                <button type="button" class="btn btn-warning mr-2 add-to-cart fw-600 w-150px rounded-0 text-white" onclick="addToCart()">
+                                <button type="button" class="btn btn-secondary-base mr-2 add-to-cart fw-600 w-150px rounded-0 text-white" @if (Auth::check() || get_Setting('guest_checkout_activation') == 1) onclick="addToCart()" @else onclick="showLoginModal()" @endif>
                                     <i class="las la-shopping-bag"></i>
                                     <span class="d-none d-md-inline-block"> {{ translate('Add to cart')}}</span>
                                 </button>
@@ -364,7 +364,7 @@
                                     </div>
                                 </div>
                             @endif
-                            
+
                             <!-- Share -->
                             <div class="row no-gutters mt-4">
                                 <div class="col-sm-2">
@@ -385,7 +385,7 @@
     <section class="mb-4">
         <div class="container">
             <div class="row gutters-16">
-                
+
                 <!-- Left side -->
                 <div class="col-xl-3 order-1 order-xl-0">
 
@@ -429,7 +429,7 @@
                                 </div>
                                 <!-- Ratting -->
                                 <div class="mt-3">
-                                    <div class="rating rating-mr-1">
+                                    <div class="rating rating-mr-2">
                                         @if ($total > 0)
                                             {{ renderStarRating($detailedProduct->user->shop->rating) }}
                                         @else
@@ -471,7 +471,7 @@
                                 <!-- shop link button -->
                                 <div class="mt-3">
                                     <a href="{{ route('shop.visit', $detailedProduct->user->shop->slug) }}"
-                                        class="btn btn-block btn-warning text-white fs-14 fw-700 rounded-0">{{ translate('Visit Store') }}</a>
+                                        class="btn btn-block btn-secondary-base text-white fs-14 fw-700 rounded-0">{{ translate('Visit Store') }}</a>
                                 </div>
                             </div>
                         </div>
@@ -575,7 +575,7 @@
                                     </div>
                                 </div>
                             </div>
-                            
+
                             <!-- Download -->
                             <div class="tab-pane fade" id="tab_default_3">
                                 <div class="py-5 text-center ">
@@ -583,12 +583,12 @@
                                         class="btn btn-primary">{{ translate('Download') }}</a>
                                 </div>
                             </div>
-                            
+
                             <!-- Review -->
                             <div class="tab-pane fade" id="tab_default_4">
                                 <div class="py-5">
                                     <ul class="list-group list-group-flush">
-                                        @foreach ($detailedProduct->reviews as $key => $review)
+                                        @foreach ($detailedProduct->reviews->where('status', 1) as $key => $review)
                                             @if ($review->user != null)
                                                 <li class="media list-group-item d-flex">
                                                     <span class="avatar avatar-md mr-3">
@@ -623,7 +623,7 @@
                                         @endforeach
                                     </ul>
 
-                                    @if (count($detailedProduct->reviews) <= 0)
+                                    @if (count($detailedProduct->reviews->where('status', 1)) <= 0)
                                         <div class="text-center fs-18 opacity-70">
                                             {{ translate('There have been no reviews for this product yet.') }}
                                         </div>
@@ -632,7 +632,7 @@
                             </div>
                         </div>
                     </div>
-                    
+
                     <!-- Related products -->
                     <div class="bg-white border">
                         <div class="p-4">
@@ -644,7 +644,7 @@
                             <div class="aiz-carousel gutters-5 half-outside-arrow" data-items="5" data-xl-items="3"
                                 data-lg-items="4" data-md-items="3" data-sm-items="2" data-xs-items="2"
                                 data-arrows='true' data-infinite='true'>
-                                @foreach (get_related_products($detailedProduct) as $key => $related_product)
+                                @foreach (get_frequently_bought_products($detailedProduct) as $key => $related_product)
                                     <div class="carousel-box">
                                         <div class="aiz-card-box hov-shadow-md my-2 has-transition hov-scale-img">
                                             <div class="">
@@ -712,7 +712,7 @@
                                         <div class="form-group">
                                             <textarea class="form-control rounded-0" rows="3" cols="40" name="question"
                                                 placeholder="{{ translate('Write your question here...') }}" style="resize: none;"></textarea>
-                                            
+
                                         </div>
                                         <button type="submit" class="btn btn-sm w-150px btn-primary rounded-0">{{ translate('Submit') }}</button>
                                     </form>
@@ -723,7 +723,7 @@
                                     $own_product_queries = Auth::user()->product_queries->where('product_id',$detailedProduct->id);
                                 @endphp
                                 @if ($own_product_queries->count() > 0)
-                                
+
                                     <div class="question-area my-4 mb-0 px-4">
 
                                         <div class="py-3">
@@ -775,10 +775,10 @@
                                             </div>
                                         @endforeach
                                     </div>
-                                
+
                                 @endif
                             @endauth
-                                    
+
                             <!-- Others Queries -->
                             <div class="pagination-area my-4 mb-0 px-4">
                                 @include('frontend.partials.product_query_pagination')

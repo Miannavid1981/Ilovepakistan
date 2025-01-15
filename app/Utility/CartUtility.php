@@ -45,6 +45,7 @@ class CartUtility
         }
 
         $price = self::discount_calculation($product, $price);
+        return $price;
     }
 
     public static function discount_calculation($product, $price)

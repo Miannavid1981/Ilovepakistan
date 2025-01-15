@@ -1,12 +1,6 @@
 @extends('backend.layouts.app')
+
 @section('content')
-
-
-
-
-
-
-
 
     <div class="card">
         <div class="card-header">
@@ -17,29 +11,13 @@
                 <div class="col text-md-left text-center">
                 </div>
                 @php
-                    $delivery_status = $avg_delivery_status;
+                    $delivery_status = $order->delivery_status;
                     $payment_status = $order->payment_status;
-                    $admin_user_id = App\Models\User::where('user_type', 'admin')->first()->id;
+                    $admin_user_id = get_admin()->id;
                 @endphp
-                <div class="col-md-3 ml-auto">
-                        <label for="update_payment_status">{{ translate('Update Payment Status') }}</label>
-                        @if (auth()->user()->can('update_order_payment_status'))
-                            <select class="form-control aiz-selectpicker" data-minimum-results-for-search="Infinity"
-                                id="update_payment_status">
-                                <option value="unpaid" @if ($payment_status == 'unpaid') selected @endif>
-                                    {{ translate('Unpaid') }}
-                                </option>
-                                <option value="paid" @if ($payment_status == 'paid') selected @endif>
-                                    {{ translate('Paid') }}
-                                </option>
-                            </select>
-                        @else
-                            <input type="text" class="form-control" value="{{ $payment_status }}" disabled>
-                        @endif
-                    </div>
-                <!--Assign Delivery Boy-->
                 @if ($order->seller_id == $admin_user_id || get_setting('product_manage_by_admin') == 1)
-                    
+
+                    <!--Assign Delivery Boy-->
                     @if (addon_is_activated('delivery_boy'))
                         <div class="col-md-3 ml-auto">
                             <label for="assign_deliver_boy">{{ translate('Assign Deliver Boy') }}</label>
@@ -60,7 +38,23 @@
                             @endif
                         </div>
                     @endif
-                    
+
+                    <div class="col-md-3 ml-auto">
+                        <label for="update_payment_status">{{ translate('Payment Status') }}</label>
+                        @if (auth()->user()->can('update_order_payment_status') && $payment_status == 'unpaid')
+                            {{-- <select class="form-control aiz-selectpicker" data-minimum-results-for-search="Infinity" id="update_payment_status"> --}}
+                            <select class="form-control aiz-selectpicker" data-minimum-results-for-search="Infinity" id="update_payment_status" onchange="confirm_payment_status()">
+                                <option value="unpaid" @if ($payment_status == 'unpaid') selected @endif>
+                                    {{ translate('Unpaid') }}
+                                </option>
+                                <option value="paid" @if ($payment_status == 'paid') selected @endif>
+                                    {{ translate('Paid') }}
+                                </option>
+                            </select>
+                        @else
+                            <input type="text" class="form-control" value="{{ ucfirst($payment_status) }}" disabled>
+                        @endif
+                    </div>
                     <div class="col-md-3 ml-auto">
                         <label for="update_delivery_status">{{ translate('Delivery Status') }}</label>
                         @if (auth()->user()->can('update_order_delivery_status') && $delivery_status != 'delivered' && $delivery_status != 'cancelled')
@@ -89,13 +83,13 @@
                             <input type="text" class="form-control" value="{{ $delivery_status }}" disabled>
                         @endif
                     </div>
-                    {{-- <div class="col-md-3 ml-auto">
+                    <div class="col-md-3 ml-auto">
                         <label for="update_tracking_code">
                             {{ translate('Tracking Code (optional)') }}
                         </label>
                         <input type="text" class="form-control" id="update_tracking_code"
                             value="{{ $order->tracking_code }}">
-                    </div> --}}
+                    </div>
                 @endif
             </div>
             <div class="mb-3">
@@ -125,36 +119,22 @@
                             {{ $order->user->phone }}<br>
                         </address>
                     @endif
-                   {{-- @if ($order->manual_payment && is_array(json_decode($order->manual_payment_data, true)))
+                    @if ($order->manual_payment && is_array(json_decode($order->manual_payment_data, true)))
                         <br>
                         <strong class="text-main">{{ translate('Payment Information') }}</strong><br>
-                        {{ translate('Name') }}: {{ $order->payment_type }},
+                        {{ translate('Name') }}: {{ json_decode($order->manual_payment_data)->name }},
+                        {{ translate('Amount') }}:
+                        {{ single_price(json_decode($order->manual_payment_data)->amount) }},
                         {{ translate('TRX ID') }}: {{ json_decode($order->manual_payment_data)->trx_id }}
                         <br>
-                        @if(!empty(json_decode($order->manual_payment_data)->photo))
-                        <a href="{{ url('public/' . json_decode($order->manual_payment_data)->photo) }}" target="_blank">
-                            <img src="{{ url('public/' . json_decode($order->manual_payment_data)->photo) }}" alt="" height="100">
+                        <a href="{{ uploaded_asset(json_decode($order->manual_payment_data)->photo) }}" target="_blank">
+                            <img src="{{ uploaded_asset(json_decode($order->manual_payment_data)->photo) }}" alt=""
+                                height="100">
                         </a>
-                        
-                        @endif
-                        @php
-                            $manualPaymentData = json_decode($order->manual_payment_data, true);
-                        @endphp
-                        <div class="d-flex mt-2">
-                            @if(!empty($manualPaymentData['photos']) && is_array($manualPaymentData['photos']))
-                                @foreach ($manualPaymentData['photos'] as $photoPath)
-                                    <a href="{{ url('public/' . $photoPath) }}" target="_blank">
-                                        <img src="{{ url('public/' . $photoPath) }}" class="mr-2" alt="Payment Photo" height="100">
-                                    </a>
-                                @endforeach
-                            @endif
-                        </div>
-                        <br>
-                    @endif --}}
-                    
+                    @endif
                 </div>
-                <div class="col-md-4 ml-auto">
-                    <table style="float:right">
+                <div class="col-md-4">
+                    <table class="ml-auto">
                         <tbody>
                             <tr>
                                 <td class="text-main text-bold">{{ translate('Order #') }}</td>
@@ -183,7 +163,7 @@
                                     {{ translate('Total amount') }}
                                 </td>
                                 <td class="text-right">
-                                {{ single_price($orders->sum(function($order) { return $order->orderDetails->sum('price') + $order->orderDetails->sum('tax') + $order->orderDetails->sum('shipping_cost'); })) }}
+                                    {{ single_price($order->grand_total) }}
                                 </td>
                             </tr>
                             <tr>
@@ -195,11 +175,6 @@
                                 <td class="text-main text-bold">{{ translate('Additional Info') }}</td>
                                 <td class="text-right">{{ $order->additional_info }}</td>
                             </tr>
-                            <tr>
-                                <td class="text-main text-bold">Payment Info</td>
-                                <td class="text-right">{{ $order->payment_status}}</td>
-                            </tr>
-                            <tr>
                         </tbody>
                     </table>
                 </div>
@@ -213,8 +188,7 @@
                                 <th data-breakpoints="lg" class="min-col">#</th>
                                 <th width="10%">{{ translate('Photo') }}</th>
                                 <th class="text-uppercase">{{ translate('Description') }}</th>
-                                <!--<th data-breakpoints="lg" class="text-uppercase">{{ translate('Delivery Type') }}</th> -->
-                                <th data-breakpoints="lg" class="text-uppercase">{{ translate('Delivery Status') }}</th>
+                                <th data-breakpoints="lg" class="text-uppercase">{{ translate('Delivery Type') }}</th>
                                 <th data-breakpoints="lg" class="min-col text-uppercase text-center">
                                     {{ translate('Qty') }}
                                 </th>
@@ -225,8 +199,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($orders as $order)
-                        @foreach ($order->orderDetails as $key => $orderDetail)
+                            @foreach ($order->orderDetails as $key => $orderDetail)
                                 <tr>
                                     <td>{{ $key + 1 }}</td>
                                     <td>
@@ -256,9 +229,9 @@
                                             <br>
                                             <small>
                                                 @php
-                                                    $product_stock = json_decode($orderDetail->product->stocks->first(), true);
+                                                    $product_stock = $orderDetail->product->stocks->where('variant', $orderDetail->variation)->first();
                                                 @endphp
-                                                {{translate('SKU')}}: {{ $product_stock['sku'] }}
+                                                {{translate('SKU')}}: {{ $product_stock['sku'] ?? '' }}
                                             </small>
                                         @elseif ($orderDetail->product != null && $orderDetail->product->auction_product == 1)
                                             <strong>
@@ -271,7 +244,7 @@
                                             <strong>{{ translate('Product Unavailable') }}</strong>
                                         @endif
                                     </td>
-                                   <!-- <td>
+                                    <td>
                                         @if ($order->shipping_type != null && $order->shipping_type == 'home_delivery')
                                             {{ translate('Home Delivery') }}
                                         @elseif ($order->shipping_type == 'pickup_point')
@@ -290,9 +263,6 @@
                                                 {{ translate('Carrier') }}
                                             @endif
                                         @endif
-                                    </td> -->
-                                    <td class="text-center">
-                                       <span class="badge badge-inline badge-info">   {{ ucfirst(str_replace('-', '', $order->delivery_status)) }} </span>
                                     </td>
                                     <td class="text-center">
                                         {{ $orderDetail->quantity }}
@@ -304,103 +274,90 @@
                                         {{ single_price($orderDetail->price) }}
                                     </td>
                                 </tr>
-                                @endforeach
-                                @endforeach
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-md-8">
-                    @if ($order->manual_payment && is_array(json_decode($order->manual_payment_data, true)))
-                        <br>
-                        <strong class="text-main">{{ translate('Payment Information') }}</strong><br>
-                        {{ translate('Name') }}: {{ $order->payment_type }}<br>
-                    
-                        @php
-                            $manualPaymentData = json_decode($order->manual_payment_data, true);
-                        @endphp
-                        <div style="display: flex; flex-direction: row; gap: 10px; margin-top: 10px;">
-                            @foreach ($manualPaymentData as $transaction)
-                                <div  class="mt-2">
-                                    <strong>{{ translate('TRX ID') }}:</strong> {{ $transaction['trx_id'] }}<br>
-                                
-                                    <!-- Ensure proper layout for vertical images -->
-                                    <div>
-                                        @if (!empty($transaction['photos']) && is_array($transaction['photos']))
-                                            @foreach ($transaction['photos'] as $photoPath)
-                                                <a href="{{ url('public/' . $photoPath) }}" target="_blank">
-                                                    <img src="{{ url('public/' . $photoPath) }}" alt="Payment Photo" style="width: 100px; height: auto; display: block;">
-                                                </a>
-                                            @endforeach
-                                        @endif
-                                    </div>
-                                </div>
-                                <br>
-                            @endforeach
-                        </div>
-                    @endif
-                </div>
-                <div class="col-md-4">
-                    <div class="clearfix float-right">
-                        <table class="table">
-                            <tbody>
-                                <tr>
-                                    <td>
-                                        <strong class="text-muted">{{ translate('Sub Total') }} :</strong>
-                                    </td>
-                                    <td>
-                                    {{ single_price($orders->sum(function($order) { return $order->orderDetails->sum('price'); })) }}
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <strong class="text-muted">{{ translate('Tax') }} :</strong>
-                                    </td>
-                                    <td>
-                                    {{ single_price($orders->sum(function($order) { return $order->orderDetails->sum('tax'); })) }}
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <strong class="text-muted">{{ translate('Shipping') }} :</strong>
-                                    </td>
-                                    <td>
-                                    {{ single_price($orders->sum(function($order) { return $order->orderDetails->sum('shipping_cost'); })) }}
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <strong class="text-muted">{{ translate('Coupon') }} :</strong>
-                                    </td>
-                                    <td>
-                                        {{ single_price($order->coupon_discount) }}
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <strong class="text-muted">{{ translate('TOTAL') }} :</strong>
-                                    </td>
-                                    <td class="text-muted h5">
-                                    {{ single_price($orders->sum(function($order) { return $order->orderDetails->sum('price') + $order->orderDetails->sum('tax') + $order->orderDetails->sum('shipping_cost'); })) }}
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                
-        
-        
-                        <div class="no-print text-right">
-                            <a href="{{ route('invoice.download', $main_order_id) }}" type="button" class="btn btn-icon btn-light"><i
-                                    class="las la-print"></i></a>
-                        </div>
-                    </div>
+            <div class="clearfix float-right">
+                <table class="table">
+                    <tbody>
+                        <tr>
+                            <td>
+                                <strong class="text-muted">{{ translate('Sub Total') }} :</strong>
+                            </td>
+                            <td>
+                                {{ single_price($order->orderDetails->sum('price')) }}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <strong class="text-muted">{{ translate('Tax') }} :</strong>
+                            </td>
+                            <td>
+                                {{ single_price($order->orderDetails->sum('tax')) }}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <strong class="text-muted">{{ translate('Shipping') }} :</strong>
+                            </td>
+                            <td>
+                                {{ single_price($order->orderDetails->sum('shipping_cost')) }}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <strong class="text-muted">{{ translate('Coupon') }} :</strong>
+                            </td>
+                            <td>
+                                {{ single_price($order->coupon_discount) }}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <strong class="text-muted">{{ translate('TOTAL') }} :</strong>
+                            </td>
+                            <td class="text-muted h5">
+                                {{ single_price($order->grand_total) }}
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="no-print text-right">
+                    <a href="{{ route('invoice.download', $order->id) }}" type="button" class="btn btn-icon btn-light"><i
+                            class="las la-print"></i></a>
                 </div>
             </div>
-            
+
         </div>
     </div>
 @endsection
+
+@section('modal')
+
+    <!-- confirm payment Status Modal -->
+    <div id="confirm-payment-status" class="modal fade">
+        <div class="modal-dialog modal-md modal-dialog-centered" style="max-width: 540px;">
+            <div class="modal-content p-2rem">
+                <div class="modal-body text-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="72" height="64" viewBox="0 0 72 64">
+                        <g id="Octicons" transform="translate(-0.14 -1.02)">
+                          <g id="alert" transform="translate(0.14 1.02)">
+                            <path id="Shape" d="M40.159,3.309a4.623,4.623,0,0,0-7.981,0L.759,58.153a4.54,4.54,0,0,0,0,4.578A4.718,4.718,0,0,0,4.75,65.02H67.587a4.476,4.476,0,0,0,3.945-2.289,4.773,4.773,0,0,0,.046-4.578Zm.6,52.555H31.582V46.708h9.173Zm0-13.734H31.582V23.818h9.173Z" transform="translate(-0.14 -1.02)" fill="#ffc700" fill-rule="evenodd"/>
+                          </g>
+                        </g>
+                    </svg>
+                    <p class="mt-3 mb-3 fs-16 fw-700">{{translate('Are you sure you want to change the payment status?')}}</p>
+                    <button type="button" class="btn btn-light rounded-2 mt-2 fs-13 fw-700 w-150px" data-dismiss="modal">{{ translate('Cancel') }}</button>
+                    <button type="button" onclick="update_payment_status()" class="btn btn-success rounded-2 mt-2 fs-13 fw-700 w-150px">{{translate('Confirm')}}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+@endsection
+
+
 @section('script')
     <script type="text/javascript">
         $('#assign_deliver_boy').on('change', function() {
@@ -423,20 +380,30 @@
                 status: status
             }, function(data) {
                 AIZ.plugins.notify('success', '{{ translate('Delivery status has been updated') }}');
+                location.reload();
             });
         });
-        $('#update_payment_status').on('change', function() {
-            var order_id = '{{ $order->code }}';
-            var status = $('#update_payment_status').val();
+
+        // Payment Status Update
+        function confirm_payment_status(value){
+            $('#confirm-payment-status').modal('show');
+        }
+
+        function update_payment_status(){
+            $('#confirm-payment-status').modal('hide');
+            var order_id = {{ $order->id }};
             $.post('{{ route('orders.update_payment_status') }}', {
                 _token: '{{ @csrf_token() }}',
                 order_id: order_id,
-                status: status
+                status: 'paid'
             }, function(data) {
+                $('#update_payment_status').prop('disabled', true);
+                AIZ.plugins.bootstrapSelect('refresh');
                 AIZ.plugins.notify('success', '{{ translate('Payment status has been updated') }}');
-                window.location.reload();
+                location.reload();
             });
-        });
+        }
+
         $('#update_tracking_code').on('change', function() {
             var order_id = {{ $order->id }};
             var tracking_code = $('#update_tracking_code').val();

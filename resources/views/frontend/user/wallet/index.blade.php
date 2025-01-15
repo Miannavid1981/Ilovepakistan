@@ -4,7 +4,7 @@
     <div class="aiz-titlebar mb-4">
         <div class="row align-items-center">
             <div class="col-md-6">
-                <h1 class="fs-20 fw-700 text-dark">{{ translate('My Allaaddin Wallet') }}</h1>
+                <h1 class="fs-20 fw-700 text-dark">{{ translate('My Wallet') }}</h1>
             </div>
         </div>
     </div>
@@ -15,7 +15,7 @@
             <div class="bg-dark text-white overflow-hidden text-center p-4 h-100">
                 <img src="{{ static_asset('assets/img/wallet-icon.png') }}" alt="">
                 <div class="py-2">
-                    <div class="fs-14 fw-400 text-center">{{ translate('Allaaddin Wallet Balance') }}</div>
+                    <div class="fs-14 fw-400 text-center">{{ translate('Wallet Balance') }}</div>
                     <div class="fs-30 fw-700 text-center">{{ single_price(Auth::user()->balance) }}</div>
                 </div>
             </div>
@@ -98,7 +98,7 @@
 @section('modal')
     <!-- Wallet Recharge Modal -->
     @include('frontend.partials.wallet_modal')
-    
+
     <!-- Offline Wallet Recharge Modal -->
     <div class="modal fade" id="offline_wallet_recharge_modal" tabindex="-1" role="dialog"
         aria-labelledby="exampleModalLabel" aria-hidden="true">

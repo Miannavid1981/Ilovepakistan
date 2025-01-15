@@ -181,7 +181,7 @@
                                                     @if($product->conditon == 'new')
                                                         <span class="badge badge-inline badge-info fs-13 fw-700 p-3 text-white" style="border-radius: 20px;">{{translate('New')}}</span>
                                                     @elseif($product->conditon == 'used')
-                                                        <span class="badge badge-inline badge-warning fs-13 fw-700 p-3 text-white" style="border-radius: 20px;">{{translate('Used')}}</span>
+                                                        <span class="badge badge-inline badge-secondary-base fs-13 fw-700 p-3 text-white" style="border-radius: 20px;">{{translate('Used')}}</span>
                                                     @endif
                                                 </div>
                                             </div>
