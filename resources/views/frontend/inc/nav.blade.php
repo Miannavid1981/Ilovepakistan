@@ -3,6 +3,7 @@
   header {
       padding: 0 50px !important;
   }
+
         .search-bar {
             border: 1px solid #000;
             border-radius: 50px;
@@ -34,15 +35,29 @@
             align-items: center;
             justify-content: center;
         }
-        .dropdown-toggle {
-            border: none !important; 
-            box-shadow: none !important; 
+        .dropdown {
+            position: relative;
+            display: inline-block;
         }
 
-        .dropdown-toggle:hover,
-        .dropdown-toggle:focus {
-            border: none !important; 
-            box-shadow: none !important;
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+            min-width: 160px;
+        }
+
+        .dropdown-menu a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+
+        .dropdown-menu a:hover {
+            background-color: #f1f1f1;
         }
 
 .nav-link.category-btn {
@@ -69,11 +84,11 @@
 }
     </style>
 
- <header class="container-fluid bg-white shadow-sm">
+<header class="container-fluid bg-white shadow-sm">
         <!-- Header Top -->
         <div class="row align-items-center py-2 header-top">
             <!-- Logo -->
-            <div class="col-lg-1 col-md-3 col-4 text-left">
+            <div class="col-lg-1 col-md-3 col-4 text-center">
                  @php
 
                 $header_logo =  get_setting('header_logo');
@@ -88,9 +103,7 @@
 
             @if ($header_logo != null)
 
-                <img src="{{ $logo_url }}" alt="{{ env('APP_NAME') }}"
-
-                    class="mw-100 h-30px h-md-40px" height="40">
+                <img src="{{ $logo_url }}" alt="{{ env('APP_NAME') }}" class="img-fluid">
 
             @else
 
@@ -114,7 +127,7 @@
                             <option value="{{ $category->id }}" class="search-option2">{{ $category->name }}</option>
                         @endforeach
                     </select>
-                    <input type="text" class="form-control search-input" id="search"  placeholder="bluetooth headphones">
+                    <input type="text" class="form-control search-input" id="search"  placeholder="Search products...">
                     <button class="btn btn-light"><i class="fa-solid fa-magnifying-glass"></i></button>
                 </div>
                 
@@ -299,41 +312,49 @@
         </div>
 
         <!-- Header Bottom -->
-        <nav class="navbar navbar-expand-lg navbar-light bg-white border-top w-100">
+        <nav class="navbar  navbar-light bg-white border-top w-100 mx-2">
             <div class="container-fluid">
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav">
+                    <ul class="navbar-nav w-100">
                         <li class="nav-item me-5">
-                            <a class="nav-link btn btn-primary text-dark px-3 py-2 toggle-btn" href="#" style="border-radius: 20px; background-color: #F5F5F5;">
+                            <a class="nav-link btn btn-primary text-dark px-3 py-2 category-btn toggle-btn" href="#" style="border-radius: 20px; background-color: #F5F5F5;">
                                 <i class="fa-solid fa-bars"></i> All Categories
                             </a>
                         </li>
                         <li class="nav-item me-5">
-                            <a class="nav-link" href="#">NN</a>
+                            <a class="nav-link category-btn" href="#">Deals</a>
                         </li>
                         <li class="nav-item me-5">
-                            <a class="nav-link" href="#">Bestsellers</a>
+                            <a class="nav-link category-btn" href="#">Bestsellers</a>
                         </li>
                         <li class="nav-item me-5">
-                            <a class="nav-link" href="#">Top Brands</a>
+                            <a class="nav-link category-btn" href="#">Top Brands</a>
                         </li>
                         <li class="nav-item me-5">
-                            <a class="nav-link" href="#">Home & Garden</a>
+                            <a class="nav-link category-btn" href="#">Home & Garden</a>
+                        </li>
+                        <li class="nav-item me-auto">
+                            <a class="nav-link category-btn" href="#">Hair Extensions & Wigs</a>
+                        </li>
+                        <!-- Last three items aligned to the right -->
+                        <li class="nav-item me-5">
+                            <a class="nav-link category-btn" href="#">About Us</a>
                         </li>
                         <li class="nav-item me-5">
-                            <a class="nav-link" href="#">Hair Extensions & Wigs</a>
+                            <a class="nav-link category-btn" href="#">Contact</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">More <i class="fa-solid fa-angle-down"></i></a>
+                        <li class="nav-item me-5">
+                            <a class="nav-link category-btn" href="#">Helpline</a>
                         </li>
                     </ul>
                 </div>
+                
             </div>
         </nav>
-        
+
     </header>
 
  <style>
@@ -520,9 +541,9 @@
 
     
 
-    <script>
+<script>
 
-        $(document).ready(function(){
+$(document).ready(function(){
 
     $('.navbar-toggler').click(function(){
 
@@ -530,40 +551,32 @@
 
     });
 
-// $("#search_cat").select2();
-    
 
-$('#search_cat').change(function () {
-  var select = $(this);
-  var selectedOption = select.find('option:selected');
-  var optionWidth = getTextWidth(selectedOption.text(), select.css('font'));
-optionWidth += 30
-  // Set the dropdown width to fit the selected option's text width
-  select.css('width', optionWidth + 'px');
-});
-
-// Function to calculate the width of a text string
-function getTextWidth(text, font) {
-  var canvas = document.createElement('canvas');
-  var context = canvas.getContext('2d');
-  context.font = font;
-  return context.measureText(text).width;
-}
-
-    
-    $(".c_dropdown").click(function (event) {
-        // Stop event from propagating to document
-        event.stopPropagation();
-$(".dd-menu").removeClass("open");
-        // Toggle the dropdown menu
-        $(this).next(".dd-menu").toggleClass("open");
+    $('#search_cat').change(function () {
+        var select = $(this);
+        var selectedOption = select.find('option:selected');
+        var optionWidth = getTextWidth(selectedOption.text(), select.css('font'));
+        optionWidth += 30
+        // Set the dropdown width to fit the selected option's text width
+        select.css('width', optionWidth + 'px');
     });
 
-    // Close the dropdown when clicking outside
-    $(document).on("click", function () {
-        $(".dd-menu").removeClass("open");
+    // Function to calculate the width of a text string
+    function getTextWidth(text, font) {
+        var canvas = document.createElement('canvas');
+        var context = canvas.getContext('2d');
+        context.font = font;
+        return context.measureText(text).width;
+    }
+   
+    $('.dropdown-toggle').on('click', function (e) {
+        e.stopPropagation(); // Prevent the click event from propagating
+        $(this).next('.dropdown-menu').toggle(); // Toggle the dropdown menu
     });
 
+    $(document).on('click', function () {
+        $('.dropdown-menu').hide(); // Close dropdown when clicking outside
+    });
 
     smallScreenMenu();
 
@@ -587,7 +600,7 @@ $(".dd-menu").removeClass("open");
 
     });
 
-	const elem = $('.navbar');
+	const elem = $('header');
 
 	const scrolled = () => {
 
