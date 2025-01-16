@@ -56,7 +56,7 @@
 
                         <!-- Password -->
                         <div class="form-group">
-                            <input type="password" name="password" class="form-control h-auto rounded-0 form-control-lg"
+                            <input type="password" name="password" class="form-control"
                                 placeholder="{{ translate('Password') }}">
                         </div>
 
