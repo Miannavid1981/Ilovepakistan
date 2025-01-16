@@ -312,7 +312,7 @@
         </div>
 
         <!-- Header Bottom -->
-        <nav class="navbar  navbar-light bg-white border-top w-100 mx-2">
+        <nav class="navbar navbar-expand  navbar-light bg-white border-top w-100 mx-2">
             <div class="container-fluid">
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -571,6 +571,7 @@ $(document).ready(function(){
    
     $('.dropdown-toggle').on('click', function (e) {
         e.stopPropagation(); // Prevent the click event from propagating
+        $('.dropdown-menu').hide(); //
         $(this).next('.dropdown-menu').toggle(); // Toggle the dropdown menu
     });
 
@@ -600,7 +601,7 @@ $(document).ready(function(){
 
     });
 
-	const elem = $('header');
+	const elem = $('.navbar');
 
 	const scrolled = () => {
 
