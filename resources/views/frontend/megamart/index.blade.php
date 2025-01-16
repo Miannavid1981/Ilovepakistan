@@ -32,9 +32,263 @@
 
     @php $lang = get_system_language()->code;  @endphp
 
+    <!-- banner-home-page  -->
+    <div class="banner" style=" background-image: url('{{ static_asset('assets/img/banner-category') }} /banner.jpg'); background-size:cover; background-position: center; " >
+        <div class="container-fluid">
+            <div class="row align-items-start banner-content mt-2 mx-4">
+                <div class="col-md-6 mb-4">
+                    <h1>AliExpress Business</h1>
+                    <p><i class="fas fa-check-circle"></i> Tax exemptions</p>
+                    <p><i class="fas fa-credit-card"></i> Express Payments</p>
+                    <p><i class="fas fa-dollar-sign"></i> Financial Support</p>
+                    <button class="btn btn-light">Shop now</button>
+                </div>
+                <div class="col-md-6">
+                    <div class="row text-center stats ">
+                        <div class="col-6 col-sm-3">
+                            <h2>5M+</h2>
+                            <p>Factory direct supply</p>
+                        </div>
+                        <div class="col-6 col-sm-3">
+                            <h2>10</h2>
+                            <p>Local warehouses worldwide</p>
+                        </div>
+                        <div class="col-6 col-sm-3">
+                            <h2>20M+</h2>
+                            <p>Value dropshipping items</p>
+                        </div>
+                        <div class="col-6 col-sm-3">
+                            <h2>24H</h2>
+                            <p>Personalized sourcing service</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mt-4 cards-section mx-4">
+                <div class="col-lg-3 mb-3">
+                    <div class="card p-3  text-center">
+                        <h3>Buy in Bulk</h3>
+                        <div class="row g-3 justify-content-center mt-3">
+                            <div class="col-6">
+                                <div class="card ">
+                                    <img src="{{ static_asset('assets/img/banner-category') }}/bH0cfvrVk0SsVkwS6n95hrJShzh4GNZxSOIO9Ads.webp" height="auto" class="card-img-top" alt="Product 1">
+                                    <div class="card-body">
+                                        <p class="price">PKR1,407 <span class="original-price">PKR1,450</span></p>
+                                        <p>Retail: PKR1,450</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="card ">
+                                    <img src="{{ static_asset('assets/img/banner-category') }}/Weuh1DtMqnzuPS5QdGQCvs7PkjtIpzBUO5QYJUVr.png" height="180px" class="card-img-top" alt="Product 2">
+                                    <div class="card-body">
+                                        <p class="price">PKR1,020 <span class="original-price">PKR2,083</span></p>
+                                        <p>Ships in 2 days</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 mb-3">
+                    <div class="card p-3  text-center">
+                        <h3>Buy in Bulk</h3>
+                        <div class="row g-3 justify-content-center mt-3">
+                            <div class="col-6">
+                                <div class="card ">
+                                    <img src=" {{ static_asset('assets/img/banner-category') }}/bH0cfvrVk0SsVkwS6n95hrJShzh4GNZxSOIO9Ads.webp" height="auto" class="card-img-top" alt="Product 1">
+                                    <div class="card-body">
+                                        <p class="price">PKR1,407 <span class="original-price">PKR1,450</span></p>
+                                        <p>Retail: PKR1,450</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="card ">
+                                    <img src="{{ static_asset('assets/img/banner-category') }} /Weuh1DtMqnzuPS5QdGQCvs7PkjtIpzBUO5QYJUVr.png" height="180px" class="card-img-top" alt="Product 2">
+                                    <div class="card-body">
+                                        <p class="price">PKR1,020 <span class="original-price">PKR2,083</span></p>
+                                        <p>Ships in 2 days</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 mb-3">
+                    <div class="card p-3  text-center">
+                        <h3>Buy in Bulk</h3>
+                        <div class="row g-3 justify-content-center mt-3">
+                            <div class="col-6">
+                                <div class="card ">
+                                    <img src="  {{ static_asset('assets/img/banner-category') }} /bH0cfvrVk0SsVkwS6n95hrJShzh4GNZxSOIO9Ads.webp" height="auto" class="card-img-top" alt="Product 1">
+                                    <div class="card-body">
+                                        <p class="price">PKR1,407 <span class="original-price">PKR1,450</span></p>
+                                        <p>Retail: PKR1,450</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="card ">
+                                    <img src=" {{ static_asset('assets/img/banner-category') }} /Weuh1DtMqnzuPS5QdGQCvs7PkjtIpzBUO5QYJUVr.png" height="180px" class="card-img-top" alt="Product 2">
+                                    <div class="card-body">
+                                        <p class="price">PKR1,020 <span class="original-price">PKR2,083</span></p>
+                                        <p>Ships in 2 days</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 mb-3">
+                    <div class="card p-3  text-center">
+                        <h3>Buy in Bulk</h3>
+                        <div class="row g-3 justify-content-center mt-3">
+                            <div class="col-6">
+                                <div class="card ">
+                                    <img src="  {{ static_asset('assets/img/banner-category') }} /bH0cfvrVk0SsVkwS6n95hrJShzh4GNZxSOIO9Ads.webp" height="auto" class="card-img-top" alt="Product 1">
+                                    <div class="card-body">
+                                        <p class="price">PKR1,407 <span class="original-price">PKR1,450</span></p>
+                                        <p>Retail: PKR1,450</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="card ">
+                                    <img src=" {{ static_asset('assets/img/banner-category') }} /Weuh1DtMqnzuPS5QdGQCvs7PkjtIpzBUO5QYJUVr.png" height="180px" class="card-img-top" alt="Product 2">
+                                    <div class="card-body">
+                                        <p class="price">PKR1,020 <span class="original-price">PKR2,083</span></p>
+                                        <p>Ships in 2 days</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- banner-home-page-ends-here -->
+
+
+<!-- Category-start -->
+<div class="mx-5">
+<div class="container-fluid py-5 ">
+    <h2 class="mb-4 category-h2">Shop by category</h2>
+    <div class="row align-items-stretch d-flex">
+        <!-- Left Section -->
+        <div class="col-lg-6 left-section d-flex flex-column h-100" 
+             style="
+                 background-image: url({{ static_asset('assets/img/banner-category') }}/594x594.avif);
+                 background-size: cover; 
+                 background-position: center;"
+        >
+            <div class="card-text mt-auto">
+                <p>Your fashion choice</p>
+                <button class="btn btn-dark mb-4">Shop now</button>
+            </div>
+
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="product-card">
+                        <img src="{{ static_asset('assets/img/banner-category') }}/bH0cfvrVk0SsVkwS6n95hrJShzh4GNZxSOIO9Ads.webp">
+                        <p class="price">PKR1,744 <span class="original-price">PKR3,487</span></p>
+                        <p>⭐ 4.5 | 1,000+ sold</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="product-card">
+                        <img src="{{ static_asset('assets/img/banner-category') }}/bH0cfvrVk0SsVkwS6n95hrJShzh4GNZxSOIO9Ads.webp">
+                        <p class="price">PKR2,018 <span class="original-price">PKR3,087</span></p>
+                        <p>⭐ 4.5 | 10,000+ sold</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="product-card">
+                        <img src="{{ static_asset('assets/img/banner-category') }}/bH0cfvrVk0SsVkwS6n95hrJShzh4GNZxSOIO9Ads.webp">
+                        <p class="price">PKR1,518 <span class="original-price">PKR2,919</span></p>
+                        <p>⭐ 4.6 | 5,000+ sold</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Section -->
+        <div class="col-lg-6 right-section d-flex flex-column h-100">
+            <div id="categoryCarousel" class="carousel slide h-100" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    <!-- First Slide -->
+                    <div class="carousel-item active">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="category-card">
+                                    <p>Home & Garden</p>
+                                    <img src="{{ static_asset('assets/img/banner-category') }}/S86ec4000aa664c38af03a34ca8411519y.avif" alt="Home & Garden">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="category-card">
+                                    <p>Hair Extensions & Wigs</p>
+                                    <img src="{{ static_asset('assets/img/banner-category') }}/S86ec4000aa664c38af03a34ca8411519y.avif" alt="Hair Extensions & Wigs">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mt-3">
+                            <div class="col-md-6">
+                                <div class="category-card">
+                                    <p>Men's Clothing</p>
+                                    <img src="{{ static_asset('assets/img/banner-category') }}/S86ec4000aa664c38af03a34ca8411519y.avif" alt="Men's Clothing">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="category-card">
+                                    <p>Accessories</p>
+                                    <img src="{{ static_asset('assets/img/banner-category') }}/S86ec4000aa664c38af03a34ca8411519y.avif" alt="Accessories">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mt-3">
+                            <div class="col-md-6">
+                                <div class="category-card">
+                                    <p>Consumer Electronics</p>
+                                    <img src="{{ static_asset('assets/img/banner-category') }}/S86ec4000aa664c38af03a34ca8411519y.avif" alt="Consumer Electronics">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="category-card">
+                                    <p>Home Improvement & Lighting</p>
+                                    <img src="{{ static_asset('assets/img/banner-category') }}/S86ec4000aa664c38af03a34ca8411519y.avif" alt="Home Improvement & Lighting">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Add more slides as needed -->
+                </div>
+
+                <!-- Navigation Arrows -->
+                <button class="carousel-control-prev" type="button" data-bs-target="#categoryCarousel" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#categoryCarousel" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<!-- Category-end -->
+
+
+
+
     <!-- Featured Categories -->
     @if (count($featured_categories) > 0)
-        <section class="mb-3 mb-md-4 pt-3 pt-md-2rem">
+        <section class="mb-3 mb-md-4 pt-3 pt-md-2rem d-none">
             <div class="container">
                 <!-- Categories -->
                 <div class="bg-white px-sm-3">
