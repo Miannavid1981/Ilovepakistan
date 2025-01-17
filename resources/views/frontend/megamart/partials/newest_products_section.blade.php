@@ -25,10 +25,10 @@
                 </div> -->
             </div>
             <!-- Products Section -->
-            <div class="px-sm-3">
+            <div class="row">
                 <!-- <div class="aiz-carousel arrow-none sm-gutters-16" data-rows="2" data-items="{{ $xxl_items }}" data-xl-items="{{ $xxl_items }}" data-lg-items="4"  data-md-items="3" data-sm-items="2" data-xs-items="2" data-arrows='true' data-infinite='false'> -->
                     @foreach ($newest_products as $key => $new_product)
-                    <div class="carousel-box px-3 position-relative has-transition hov-animate-outline">
+                    <div class="col-lg-2 col-md-3 col-sm-6 col-6 carousel-box position-relative has-transition hov-animate-outline">
                         @include('frontend.'.get_setting('homepage_select').'.partials.product_box_1',['product' => $new_product])
                     </div>
                     @endforeach
