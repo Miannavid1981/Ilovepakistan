@@ -84,9 +84,9 @@
 }
     </style>
 
-<header class="container-fluid bg-white shadow-sm">
+<header class="container-fluid bg-white">
         <!-- Header Top -->
-        <div class="row align-items-center py-2 header-top">
+        <div class="row align-items-center header-top">
             <!-- Logo -->
             <div class="col-lg-1 col-md-3 col-4 text-center">
                  @php
@@ -312,7 +312,7 @@
         </div>
 
         <!-- Header Bottom -->
-        <nav class="navbar navbar-expand  navbar-light bg-white border-top w-100 mx-2">
+        <nav class="navbar navbar-expand  navbar-light bg-white w-100 mx-2">
             <div class="container-fluid">
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
