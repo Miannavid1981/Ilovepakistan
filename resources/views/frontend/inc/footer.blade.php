@@ -24,7 +24,7 @@
 
 <!-- footer top Bar -->
 
-<section class="bg-light border-top mt-auto">
+<section class="bg-light border-top mt-auto d-none">
 
     <div class="container px-xs-0">
 
