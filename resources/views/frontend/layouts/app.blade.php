@@ -76,8 +76,8 @@
     <link rel="stylesheet" href="{{ static_asset('assets/css/aiz-core.css?v=') }}{{ rand(1000, 9999) }}">
     <link rel="stylesheet" href="{{ static_asset('assets/css/custom-style.css') }}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Open+Sans:wght@300..800&family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
     <style>
     
         * {
@@ -85,15 +85,38 @@
         --hov-primary: #e56f0e;
     
         }
+        @font-face {
+            font-family: 'TTNormsPro'; /* The name you want to use for the font */
+            src: url('/public/assets/fonts/TT\ Norms\ Pro\ Regular.otf') format('opentype'); /* Path to your .otf file */
+            font-weight: normal; /* Optional: Set font weight */
+            font-style: normal; /* Optional: Set font style */
+        }
         *:not(i){
-            font-family: "Open Sans", sans-serif !important;
+            font-family: "Outfit", sans-serif !important;
+            letter-spacing: -0.4px;
         }
     
-    .container {
-        
-        max-width: 1200px !important;
-        margin: 0 auto !important;
-    }
+        .container {
+            max-width: 1650px !important;
+            margin: 0 auto !important;
+        }
+        @media only screen and (max-width: 1800px) {
+
+            .container {
+               padding-left: 100px !important;
+               padding-right: 100px !important
+            }
+        }
+        @media only screen and (max-width: 1200px) {
+
+            .container {
+            padding-left: 50px !important;
+            padding-right: 50px !important
+            }
+        }   
+        .floating-buttons-section {
+            display: none  !important;
+        }
     </style>
 
     <script>

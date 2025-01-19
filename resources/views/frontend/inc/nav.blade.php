@@ -1,17 +1,20 @@
   <!-- Preloader -->
   <style>
-  header {
-      padding: 0 50px !important;
-  }
+
 
         .search-bar {
-            border: 1px solid #000;
+            border: 1px solid #858585;
             border-radius: 50px;
             overflow: hidden;
+            max-height: 37px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
         .search-bar input {
             border: none;
             outline: none;
+           
         }
         .header-top img {
             max-height: 50px;
@@ -34,6 +37,9 @@
             display: inline-flex;
             align-items: center;
             justify-content: center;
+            position: absolute;
+            top: -8px;
+            right: -6px;
         }
         .dropdown {
             position: relative;
@@ -60,31 +66,69 @@
             background-color: #f1f1f1;
         }
 
-.nav-link.category-btn {
-    display: inline-block; 
-    border-radius: 20px;
-    background-color: transparent; 
-    padding: 10px 20px; 
-    transition: background-color 0.3s ease, box-shadow 0.3s ease;
-}
+        .nav-link.category-btn {
+            display: inline-block; 
+            border-radius: 20px;
+            background-color: transparent; 
+            padding: 5px 30px !important;
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+        }
 
-.nav-link.category-btn:hover {
-    background-color: #F5F5F5; 
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
-    text-decoration: none;
-}
+        .nav-link.category-btn:hover {
+            background-color: #F5F5F5; 
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+            text-decoration: none;
+        }
 
 
-.nav-item {
-    margin: 0;
-}
+        .nav-item {
+            margin: 0;
+        }
 
-.nav-link.category-btn + .nav-link.category-btn {
-    margin-left: 10px; 
-}
+        .nav-link.category-btn + .nav-link.category-btn {
+            margin-left: 10px; 
+        }
+
+        .navbar .nav-link {
+            font-size: 16px;
+            font-weight: 400;
+            color: #000;
+        }
+
+        .search_button_icon {
+            background: #000;
+            border-radius: 30px !important;
+            font-size: 17px;
+            padding: 0px 20px !important;
+            color: #fff !important;
+            margin: 2px;
+        }
+        
+
+        #search_cat {
+            background: #ccc;
+            background: #e9e9e9;
+            border-radius: 30px;
+            font-size: 16px;
+            padding: 2px 20px;
+            color: #000000 !important;
+            margin: 4px;
+            border: unset !important;
+            height: 100%;
+        }
+        header .dropdown-toggle {
+            
+            align-items: flex-end !important;
+        }
+        header .dropdown-toggle::after {
+    
+            font-size: 100% !important;
+            
+        }
+
     </style>
 
-<header class="container-fluid bg-white">
+<header class="container bg-white pt-2">
         <!-- Header Top -->
         <div class="row align-items-center header-top">
             <!-- Logo -->
@@ -114,10 +158,9 @@
             @endif
             </div>
             <!-- Search Bar -->
-            <div class="col-lg-7 col-md-5 col-8">
+            <div class="col">
                 <div class="input-group search-bar">
-                    <select class="search-option1" id="search_cat" style="border: unset;
-    border-right: 1px solid rgb(0, 0, 0) !important;">
+                    <select class="search-option1" id="search_cat" style="border: unset;">
                         <option value="" class="search-option2 ">All Categories</option>
                         @php
                             // Fetch categories with level = 0 and status = 1 directly in the view
@@ -127,8 +170,8 @@
                             <option value="{{ $category->id }}" class="search-option2">{{ $category->name }}</option>
                         @endforeach
                     </select>
-                    <input type="text" class="form-control search-input" id="search"  placeholder="Search products...">
-                    <button class="btn btn-light"><i class="fa-solid fa-magnifying-glass"></i></button>
+                    <input type="text" class="form-control search-input h-100 p-0 fs-17" id="search"  placeholder="Search products...">
+                    <button class="btn btn-dark search_button_icon h-100"><i class="fa-solid fa-magnifying-glass"></i></button>
                 </div>
                 
                  <div class="flex-grow-1 front-header-search d-flex align-items-center bg-white ">
@@ -232,122 +275,139 @@
 
                     </div>
             </div>
-            <!-- Language and Currency -->
-            <div class="col-lg-1 col-md-2 col-6 text-center">
-                <p class="mb-0">EN/</p>
-                <p class="fw-bold mb-0">PAK</p>
-            </div>
-          <!-- User Profile and Seller Area with Dropdown -->
-            <div class="col-lg-2 col-md-4 col-12 text-center d-flex justify-content-center align-items-center">
-                <!-- My Account -->
-                <div class="dropdown me-3">
-                    <button class="btn  dropdown-toggle " type="button" id="dropdownMyAccount" data-bs-toggle="dropdown" aria-expanded="false">
-                       @auth
+            <div class="col-lg-4 col-md-5 col-12">
+                <div class="d-flex justify-content-end align-items-center gap-4">
+                    <!-- Language and Currency -->
+                    <div class="">
                        
-                           <div class="d-flex">
-                                @if ($user->avatar_original != null)
-                                    <span class="size-40px rounded-circle overflow-hidden border border-transparent nav-user-img">
-                                        <img src="{{ $user_avatar }}" class="img-fit h-100 w-100" alt="{{ translate('avatar') }}"
-                                            onerror="this.onerror=null;this.src='{{ static_asset('assets/img/avatar-place.png') }}';">
-                                    </span>
-                                @endif
-                                <div class="d-flex flex-column">
-                                    <span class="d-block"> Hello, {{$user->name}} </span>
-                                    <span class="fw-bold">My Account</span>
+                    </div>
+                    <div class="d-flex align-items-center gap-2" style="min-width: 150px;">
+                        <div>
+                            <i class="fa-solid fs-20 fa-phone"></i>
+                        </div>
+                        <div>
+                            <p class="mb-0 mb-0 fs-14">Call Helpline</p>
+                            <h6 class="fw-bold mb-0">+92 302 1234 123</h6>
+                        </div>
+                       
+                    </div>
+                    
+                    <!-- User Profile and Seller Area with Dropdown -->
+
+                    <!-- My Account -->
+                    <div class="dropdown">
+                        <button class="btn  dropdown-toggle p-0 " type="button" id="dropdownMyAccount" data-bs-toggle="dropdown" aria-expanded="false">
+                        @auth
+                        
+                            <div class="d-flex">
+                                    @if ($user->avatar_original != null)
+                                        <span class="size-40px rounded-circle overflow-hidden border border-transparent nav-user-img">
+                                            <img src="{{ $user_avatar }}" class="img-fit h-100 w-100" alt="{{ translate('avatar') }}"
+                                                onerror="this.onerror=null;this.src='{{ static_asset('assets/img/avatar-place.png') }}';">
+                                        </span>
+                                    @endif
+                                    <div class="d-flex flex-column">
+                                        <span class="d-block fs-15"> Hello, {{$user->name}} </span>
+                                        <span class="fw-bold fs-16">My Account</span>
+                                        
+                                    </div>
                                     
                                 </div>
-                                
-                            </div>
-                        @else 
+                            @else 
+                                <div class="d-flex flex-column">
+                                    <span class="d-block fs-15"> Customer Area</span>
+                                    <span class="fw-bold fs-16">My Account</span>
+                                </div>
+                            @endauth
+                        </button>
+                        
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMyAccount">
+                            @auth 
+                                <li><a href="{{ $my_account_url }}" class="dropdown-item"   @if(Auth::user()->user_type == "staff" )  target="_blank"  @endif  > My Account</a></li>
+                                <li><a  href="{{ $my_account_url }}" class="dropdown-item" >Orders</a></li>
+                            
+                            @else 
+                                <li><a href="{{ route('user.login') }}" class="dropdown-item">Login</a></li>
+                                <li><a href="{{ route('user.registration') }}" class="dropdown-item">Register</a></li>
+                            @endif
+                            @auth 
+                                <li class="divider"></li>
+                                <li>
+                                <a class="dropdown-item"  href="{{ route('logout') }}">Log Out</a>
+                                </li>
+                            @endauth
+                        
+                        </ul>
+                    </div>
+                    
+                    
+                    <!-- Seller Account -->
+                    <!-- <div class="dropdown">
+                        
+                        <button class="btn  dropdown-toggle px-0" type="button" id="dropdownSellerAccount" data-bs-toggle="dropdown" aria-expanded="false">
                             <div class="d-flex flex-column">
-                                <span class="d-block"> Customer Area</span>
-                                <span class="fw-bold">My Account</span>
+                                <span class="d-block">Seller Area</span>
+                                <span class="fw-bold">Store Login</span>
                             </div>
-                        @endauth
-                    </button>
-                    
-                    <ul class="dropdown-menu" aria-labelledby="dropdownMyAccount">
-                        @auth 
-                            <li><a href="{{ $my_account_url }}" class="dropdown-item"   @if(Auth::user()->user_type == "staff" )  target="_blank"  @endif  > My Account</a></li>
-                            <li><a  href="{{ $my_account_url }}" class="dropdown-item" >Orders</a></li>
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownSellerAccount">
+                            
+                            <li><a href="{{ route('seller.login') }}" class="dropdown-item">Seller Login</a></li>
+                            <li><a href="{{ route('shops.create') }}" class="dropdown-item">Create Your Store</a></li>
                         
-                        @else 
-                            <li><a href="{{ route('user.login') }}" class="dropdown-item">Login</a></li>
-                            <li><a href="{{ route('user.registration') }}" class="dropdown-item">Register</a></li>
-                        @endif
-                        @auth 
-                            <li class="divider"></li>
-                            <li>
-                              <a class="dropdown-item"  href="{{ route('logout') }}">Log Out</a>
-                            </li>
-                        @endauth
-                       
-                    </ul>
-                </div>
+                        </ul>
+                    </div> -->
                 
-                
-                <!-- Seller Account -->
-                <div class="dropdown me-3">
-                    
-                    <button class="btn  dropdown-toggle" type="button" id="dropdownSellerAccount" data-bs-toggle="dropdown" aria-expanded="false">
-                        <div class="d-flex flex-column">
-                            <span class="d-block">Seller Area</span>
-                            <span class="fw-bold">Store Login</span>
-                        </div>
-                    </button>
-                    <ul class="dropdown-menu" aria-labelledby="dropdownSellerAccount">
-                        
-                        <li><a href="{{ route('seller.login') }}" class="dropdown-item">Seller Login</a></li>
-                        <li><a href="{{ route('shops.create') }}" class="dropdown-item">Create Your Store</a></li>
-                      
-                    </ul>
-                </div>
-            </div>
 
-            <div class="col-lg-1 col-md-2 col-12 text-center">
-                <i class="fa-solid fa-cart-shopping"></i>
-                <span class="cart-badge">0</span>
-                <p class="fw-bold mb-0">Cart</p>
+                    <div class="me-3 position-relative">
+                        <i class="fa-solid fs-20 fa-cart-shopping"></i>
+                        <span class="cart-badge">0</span>
+                        <p class="fw-bold mb-0">Cart</p>
+                    </div>
+
+
+                </div>
             </div>
+            
         </div>
 
         <!-- Header Bottom -->
-        <nav class="navbar navbar-expand  navbar-light bg-white w-100 mx-2">
+        <nav class="navbar navbar-expand  navbar-light bg-white w-100  p-0 mt-2">
             <div class="container-fluid">
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav w-100">
-                        <li class="nav-item me-5">
-                            <a class="nav-link btn btn-primary text-dark px-3 py-2 category-btn toggle-btn" href="#" style="border-radius: 20px; background-color: #F5F5F5;">
+                        <li class="nav-item">
+                            <a class="nav-link btn btn-primary text-dark px-3 py-1 category-btn toggle-btn" href="#" style="border-radius: 20px; background-color: #F5F5F5;">
                                 <i class="fa-solid fa-bars"></i> All Categories
                             </a>
                         </li>
-                        <li class="nav-item me-5">
+                        <li class="nav-item">
                             <a class="nav-link category-btn" href="#">Deals</a>
                         </li>
-                        <li class="nav-item me-5">
+                        <li class="nav-item">
                             <a class="nav-link category-btn" href="#">Bestsellers</a>
                         </li>
-                        <li class="nav-item me-5">
+                        <li class="nav-item">
                             <a class="nav-link category-btn" href="#">Top Brands</a>
                         </li>
-                        <li class="nav-item me-5">
+                        <li class="nav-item">
                             <a class="nav-link category-btn" href="#">Home & Garden</a>
                         </li>
                         <li class="nav-item me-auto">
                             <a class="nav-link category-btn" href="#">Hair Extensions & Wigs</a>
                         </li>
                         <!-- Last three items aligned to the right -->
-                        <li class="nav-item me-5">
-                            <a class="nav-link category-btn" href="#">About Us</a>
+                        <li class="nav-item me-3">
+                            <a class="nav-link" href="#">About Us</a>
                         </li>
-                        <li class="nav-item me-5">
-                            <a class="nav-link category-btn" href="#">Contact</a>
+                        <li class="nav-item me-3">
+                            <a class="nav-link" href="#">Contact</a>
                         </li>
-                        <li class="nav-item me-5">
-                            <a class="nav-link category-btn" href="#">Helpline</a>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Helpline</a>
                         </li>
                     </ul>
                 </div>
@@ -375,7 +435,7 @@
 
   background-color: #fff;
 
-  display: flex;
+  display: none;
 
   justify-content: center;
 
