@@ -393,19 +393,28 @@
         transition: all .5s ease-in-out;
     }
     .cart-btn {
-        padding: 5px;
-        font-size: 25px !important;
+        padding: 2px;
+        font-size: 14px !important;
         background: #fff !important;
         color: #000 !important;
-        border-radius: 50%;
-        width: 40px;
-        height: 40px;
+        border-radius: 20px;
         right: 10px;
         position: absolute;
         left: unset !important;
         bottom: 10px;
         border: 1px solid #ccc;
+        left: 10px !important;
         transform: translateY(130%);
+    
+        text-decoration: none !important;
+        opacity: 1 !important;
+        text-transform: uppercase;
+        font-weight: 500 !important;
+    }
+    .cart-btn:hover {
+        background: #000 !important;
+        transition: all .3s ease-in-out;
+        color: #000 !important;
     }
   </style>
 
