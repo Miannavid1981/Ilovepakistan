@@ -431,7 +431,7 @@
             <i class="fa-solid fa-cart-shopping fs-20"></i>
         </div>
         <div class="col-12 mt-2">
-            <input type="text" class="form-control fs-18 border-none" placeholder="Search products..." style="background: rgba(0,0,0,.08); border-radius: 30px; padding: 3px 20px;height: auto;">
+            <input type="text" class="form-control fs-18 border-none search" placeholder="Search products..." style="background: rgba(0,0,0,.08); border-radius: 30px; padding: 3px 20px;height: auto;">
         </div>
     </div>
  <style>
