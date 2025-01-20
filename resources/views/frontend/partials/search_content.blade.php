@@ -25,8 +25,7 @@
 <div class="">
     @if (count($products) > 0)
         <h5 class=" py-1 fw-500">{{translate('Products')}}</h5>
-        <ul class="list-group list-group-raw" style=" display: grid;
-    grid-template-columns: 1fr 1fr 1fr;">
+        <ul class="list-group list-group-raw search_popup_product_grid" style=" ">
             @foreach ($products as $key => $product)
                 <li class="list-group-item px-1">
                     <a class="text-reset" href="{{ route('product', $product->slug) }}" style="text-decoration: none;">

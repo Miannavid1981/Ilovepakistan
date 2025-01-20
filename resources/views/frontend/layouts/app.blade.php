@@ -211,7 +211,7 @@
         }
         .modal-content {
             border: 0 !important;
-            border-radius: 10px !important;
+            border-radius: 20px !important;
         }
 
         .tagify.tagify--focus{
