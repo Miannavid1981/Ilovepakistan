@@ -132,9 +132,9 @@
 /* Mobile (small screens) layout - 1 column per row *//* For screens below 767px (Mobile) */
 @media (max-width: 767px) {
     .category-grid {
-        display: grid; /* Ensure grid layout */
-        grid-template-columns: 1fr; /* 1 column on small screens */
-        gap: 20px; /* Space between items */
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 0;
     }
 
     .category-card {
