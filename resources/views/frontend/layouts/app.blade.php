@@ -766,6 +766,7 @@
                 });
             }
         });
+        let debounceTimeout;
 
         $('#search, .search').on('keyup', function () {
             clearTimeout(debounceTimeout); // Clear the previous timeout
