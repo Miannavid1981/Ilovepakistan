@@ -348,63 +348,7 @@
                 <button class="btn btn-lg btn-dark">Shop now</button>
 
 
-                <div class="row mt-4 cards-section ">
-                
-                    <div class="col-lg-6">
-                        <div class="card p-3 text-center">
-                            <h3>Buy Again</h3>
-                            <div class="row g-3 justify-content-center">
-                                <!-- First Card -->
-                                <div class="col-12 col-md-6">
-                                    <div class="card mb-0">
-                                        <img src="https://allaaddin.com/public/images/1j+ojFVDOMkX9Wytexe43D6kh.png" height="auto" class="card-img-top" alt="Product 1">
-                                        <div class="card-body">
-                                            <p class="price">PKR1,407 <span class="original-price">PKR1,450</span></p>
-                                            <p>Retail: PKR1,450</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- Second Card -->
-                                <div class="col-12 col-md-6">
-                                    <div class="card mb-0">
-                                        <img src="https://allaaddin.com/public/images/1j+ojFVDOMkX9Wytexe43D6kh.png" height="180px" class="card-img-top" alt="Product 2">
-                                        <div class="card-body">
-                                            <p class="price">PKR1,020 <span class="original-price">PKR2,083</span></p>
-                                            <p>Ships in 2 days</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                        <div class="col-lg-6">
-                            <div class="card p-3 text-center">
-                                <h3>today deals </h3>
-                                <div class="row g-3 justify-content-center">
-                                    <!-- First Card -->
-                                    <div class="col-12 col-md-6">
-                                        <div class="card mb-0">
-                                            <img src="https://allaaddin.com/public/images/1j+ojFVDOMkX9Wytexe43D6kh.png" height="auto" class="card-img-top" alt="Product 1">
-                                            <div class="card-body">
-                                                <p class="price">PKR1,407 <span class="original-price">PKR1,450</span></p>
-                                                <p>Retail: PKR1,450</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- Second Card -->
-                                    <div class="col-12 col-md-6">
-                                        <div class="card mb-0">
-                                            <img src="https://allaaddin.com/public/images/1j+ojFVDOMkX9Wytexe43D6kh.png" height="180px" class="card-img-top" alt="Product 2">
-                                            <div class="card-body">
-                                                <p class="price">PKR1,020 <span class="original-price">PKR2,083</span></p>
-                                                <p>Ships in 2 days</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                </div>
+          
             </div>
     
         </div>
