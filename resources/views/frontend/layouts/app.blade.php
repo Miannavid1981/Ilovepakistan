@@ -416,7 +416,7 @@
   <script>
     $(document).ready(function() {
       // Toggle drawer
-      $('.toggle-btn').on('click', function() {
+      $('.category-drawer-toggle-btn').on('click', function() {
         $('#drawer').toggleClass('open');
         $('.aiz-main-wrapper').toggleClass("translate300px");
       });
@@ -740,16 +740,16 @@
             }
         });
 
-        $('#search').on('keyup', function(){
-            search();
+        $('#search, .search').on('keyup', function(){
+            search($(this));
         });
 
-        $('#search').on('focus', function(){
-            search();
+        $('#search, .search').on('focus', function(){
+            search($(this));
         });
 
-        function search(){
-            var searchKey = $('#search').val();
+        function search(elm){
+            var searchKey = elm.val();
             if(searchKey.length > 0){
                 $('body').addClass("typed-search-box-shown");
 
