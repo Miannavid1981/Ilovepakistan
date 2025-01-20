@@ -1,7 +1,7 @@
 <div class="">
     @if (sizeof($keywords) > 0)
         <div class=" py-1 fs-13 fw-500">{{translate('Popular Matches')}}</div>
-        <ul class="list-group list-group-raw d-flex align-items-center flex-row gap-2 mb-3">
+        <ul class="list-group list-group-raw d-flex align-items-center flex-row gap-2 mb-3" style="flex-wrap: wrap;">
             @foreach ($keywords as $key => $keyword)
                 <li class="list-group-item py-1 bg-light rounded-4" style="text-decoration: none; width: fit-content !important;">
                     <a class="text-reset hov-text-primary" href="{{ route('suggestion.search', $keyword) }}">{{ $keyword }}</a>
