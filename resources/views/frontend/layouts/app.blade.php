@@ -3,6 +3,9 @@
 @php
     $rtl = get_session_language()->rtl;
 @endphp
+@php
+    $categories = \App\Models\Category::all();
+@endphp
 
 @if ($rtl == 1)
     <html dir="rtl" lang="{{ str_replace('_', '-', app()->getLocale()) }}">
@@ -311,14 +314,9 @@
         display: block;
     }
     .drawer_box {
-        
-        /*width: 100%;*/
         height: 100%;
-       margin: 20px 0px 20px 20px;
-        border-radius: 30px;
         border: 1px solid #eee;
         background: #f5f5f5;
-        
     }
     .drawer > ul {
         width: 100%;
@@ -426,22 +424,24 @@
             
         </div>
         <div class="drawer_box">
-            <h6 class="my-4  mx-3">Explore Categories</h6>
+            <h4 class="my-3  mx-3">Explore Categories</h4>
                <ul>
-                <li>Category 1 <span class="arrow">▶</span>
-                  <ul class="submenu">
-                    <li>Submenu 1</li>
-                    <li>Submenu 2</li>
-                    <li>Submenu 3</li>
-                  </ul>
-                </li>
-                <li>Category 2 <span class="arrow">▶</span>
-                  <ul class="submenu">
-                    <li>Submenu A</li>
-                    <li>Submenu B</li>
-                  </ul>
-                </li>
-                <li>Category 3</li>
+                @if(count($categories) > 0 )
+                    @foreach( $categories as $category)
+                        <li>
+                            <a class="" href="">
+                                <img src="{{uploaded_asset($category->icon)}}">
+                                {{$category->name}}
+                                <i class="arrow fa fa-solid fa-chevron-right"></i>
+                            </a>
+                        <ul class="submenu">
+                            <li>Submenu 1</li>
+                            <li>Submenu 2</li>
+                            <li>Submenu 3</li>
+                        </ul>
+                        </li>
+                    @endforeach
+                @endif
               </ul>
             
         </div>
@@ -797,7 +797,7 @@
                 $('body').addClass("typed-search-box-shown");
                 $('.typed-search-box').removeClass('d-none');
                 $('.search-preloader').removeClass('d-none');
-                $("#searchpopup").modal("show")
+                
                 $.post('{{ route('search.ajax') }}', { _token: AIZ.data.csrf, search:searchKey}, function(data){
                     if(data == '0'){
                         // $('.typed-search-box').addClass('d-none');
@@ -810,6 +810,7 @@
                         $('.typed-search-box .search-nothing').addClass('d-none').html(null);
                         $('#search-content').html(data);
                         $('.search-preloader').addClass('d-none');
+                        $("#searchpopup").modal("show")
                     }
                 });
             }
