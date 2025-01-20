@@ -429,9 +429,9 @@
                 @if(count($categories) > 0 )
                     @foreach( $categories as $category)
                         <li>
-                            <a class="d-flex justify-content-between" href="" style="text-decoration: none !important">
-                                <div class="d-flex">
-                                    <img src="{{uploaded_asset($category->icon)}}" style="width: 37px;height: auto;aspect-ratio: 1 / 1;">
+                            <a class="fs-16 text-dark d-flex justify-content-between align-items-center w-100" href="" style="text-decoration: none !important">
+                                <div class="d-flex align-items-center">
+                                    <img src="{{uploaded_asset($category->icon)}}" style="width: 37px;height: auto;aspect-ratio: 1 / 1;" class="me-2 rounded">
                                     {{$category->name}}
                                 </div>
                                 <i class="arrow fa fa-solid fa-chevron-right"></i>
