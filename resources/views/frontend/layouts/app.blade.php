@@ -114,6 +114,12 @@
             padding-right: 50px !important
             }
         }   
+        @media only screen and (max-width: 768px) {
+            .container {
+                padding-left: 20px !important;
+                padding-right: 20px !important;
+            }
+        }       
         .floating-buttons-section {
             display: none  !important;
         }
