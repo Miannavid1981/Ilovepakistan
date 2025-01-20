@@ -793,6 +793,7 @@
         function search(elm){
             var searchKey = elm.val();
             if(searchKey.length > 0){
+                $("#searchpopup").focus();
                 $('body').addClass("typed-search-box-shown");
                 $('.typed-search-box').removeClass('d-none');
                 $('.search-preloader').removeClass('d-none');
