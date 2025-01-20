@@ -35,8 +35,7 @@
     
 <style>
 
-
-
+/* General styles for all screens */
 .cat_sidebar {
     width: 100%;
     background-color: #f7f7f7;
@@ -45,7 +44,6 @@
     border-radius: 20px;
 }
 
-
 .cat_sidebar ul {
   list-style: none;
   padding: 0;
@@ -53,9 +51,8 @@
 }
 
 .cat_sidebar ul li {
-  /* margin-bottom: 19px; */
-    padding: 8px 30px;
-    position: relative;
+  padding: 8px 30px;
+  position: relative;
 }
 
 .cat_sidebar ul li a {
@@ -66,31 +63,24 @@
   text-align: left;
   font-size: 17px;
   transition: color 0.3s ease;
- 
 }
 
 .cat_sidebar ul li:hover {
   color: black;
   font-weight: 700;
   background-color: rgb(255, 255, 255);
-  /* border-radius: 10px;; */
-
-  
-  
 }
 
-
-
-.cat_sidebar ul li i{
+.cat_sidebar ul li i {
   margin-right: 17px;
   justify-content: center;
-  
   font-size: 15px;
   color: rgb(66, 66, 66);
   flex-direction: row;
   width: 20px;
 }
-.cat_sidebar h3{
+
+.cat_sidebar h3 {
   font-size: 16px;
 }
 
@@ -98,13 +88,13 @@
   display: none;
   position: absolute;
   background-color: #fff;
-  box-shadow: 3px 0 3px 0 rgba(0,0,0,.1);
+  box-shadow: 3px 0 3px 0 rgba(0, 0, 0, 0.1);
   right: 0;
-    /* transform: translateX(100%); */
-    top: 0;
-    border-radius: 15px;
-    z-index: 9;
+  top: 0;
+  border-radius: 15px;
+  z-index: 9;
 }
+
 .cat_sidebar ul li:hover .submenu {
   display: block;
 }
@@ -115,6 +105,93 @@
         display: none !important
     }
 }
+
+.bighouz-business {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 25px;
+}
+
+/* For screens below 767px (Mobile View) */
+@media (max-width: 767px) {
+    .bighouz-business {
+        grid-template-columns: 1fr; /* Stack the columns vertically */
+        gap: 20px; /* Reduced space between items */
+    }
+}
+
+/* Default (desktop) grid layout with 2 columns */
+.category-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Two columns by default */
+    gap: 20px; /* Space between items */
+    grid-template-rows: 1fr 1fr 1fr ;
+    height: 100%;
+}
+
+/* Mobile (small screens) layout - 1 column per row *//* For screens below 767px (Mobile) */
+@media (max-width: 767px) {
+    .category-grid {
+        display: grid; /* Ensure grid layout */
+        grid-template-columns: 1fr; /* 1 column on small screens */
+        gap: 20px; /* Space between items */
+    }
+
+    .category-card {
+        width: 100%; /* Ensure full-width category cards */
+        margin-bottom: 20px; /* Add space between cards */
+    }
+
+    .category-card img {
+        width: 100%; /* Make images take the full width */
+        max-height: 150px; /* Ensure images have a max height */
+        object-fit: contain; /* Keep aspect ratio */
+    }
+}
+
+/* For larger screens (1200px and up) */
+@media (min-width: 1200px) {
+    .category-card img {
+        max-height: 200px;
+        object-fit: contain;
+    }
+}
+
+/* For screens between 992px and 1199px (Tablets and smaller laptops) */
+@media (min-width: 992px) and (max-width: 1199px) {
+    .category-card img {
+        max-height: 180px;
+        object-fit: contain;
+    }
+}
+
+/* For screens between 768px and 991px (Small tablets) */
+@media (min-width: 768px) and (max-width: 991px) {
+    .category-card img {
+        max-height: 150px;
+        object-fit: contain;
+    }
+}
+
+/* For screens between 576px and 767px (Mobile landscape) */
+@media (min-width: 576px) and (max-width: 767px) {
+    .category-card img {
+        max-height: 120px;
+        object-fit: contain;
+    }
+}
+
+/* For screens 575px and below */
+@media (max-width: 575px) {
+    .category-card img {
+        max-height: 100px;
+        object-fit: contain;
+    }
+}
+
+
+
+
 
 </style>
 
@@ -253,7 +330,7 @@
 </div>
 <div class="container py-4">
 
-    <div class="" style="display:grid; grid-template-columns: 1fr 1fr; gap:25px">
+<div class="bighouz-business">
                 <!-- Left Section -->
         <div class="left-section d-flex flex-column h-100" 
             style="background-image: url({{ static_asset('assets/img/solarbg.png') }}); background-size: cover; background-position: center; background-color: #d3e7ff ; border-radius: 20px"
@@ -273,37 +350,12 @@
 
                 <div class="row mt-4 cards-section ">
                 
-                    
-                    <div class="col-lg-6 ">
-                        <div class="card p-3  text-center">
+                    <div class="col-lg-6">
+                        <div class="card p-3 text-center">
                             <h3>Buy Again</h3>
-                            <div class="row g-3 justify-content-center ">
-                                <div class="col-6">
-                                    <div class="card mb-0">
-                                        <img src="https://allaaddin.com/public/images/1j+ojFVDOMkX9Wytexe43D6kh.png" height="auto" class="card-img-top" alt="Product 1">
-                                        <div class="card-body">
-                                            <p class="price">PKR1,407 <span class="original-price">PKR1,450</span></p>
-                                            <p>Retail: PKR1,450</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-6">
-                                    <div class="card mb-0 ">
-                                        <img src="https://allaaddin.com/public/images/1j+ojFVDOMkX9Wytexe43D6kh.png" height="180px" class="card-img-top" alt="Product 2">
-                                        <div class="card-body">
-                                            <p class="price">PKR1,020 <span class="original-price">PKR2,083</span></p>
-                                            <p>Ships in 2 days</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 ">
-                        <div class="card p-3  text-center">
-                            <h3>Today's deals</h3>
                             <div class="row g-3 justify-content-center">
-                                <div class="col-6">
+                                <!-- First Card -->
+                                <div class="col-12 col-md-6">
                                     <div class="card mb-0">
                                         <img src="https://allaaddin.com/public/images/1j+ojFVDOMkX9Wytexe43D6kh.png" height="auto" class="card-img-top" alt="Product 1">
                                         <div class="card-body">
@@ -312,8 +364,9 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-6">
-                                    <div class="card mb-0 ">
+                                <!-- Second Card -->
+                                <div class="col-12 col-md-6">
+                                    <div class="card mb-0">
                                         <img src="https://allaaddin.com/public/images/1j+ojFVDOMkX9Wytexe43D6kh.png" height="180px" class="card-img-top" alt="Product 2">
                                         <div class="card-body">
                                             <p class="price">PKR1,020 <span class="original-price">PKR2,083</span></p>
@@ -324,65 +377,81 @@
                             </div>
                         </div>
                     </div>
+                        <div class="col-lg-6">
+                            <div class="card p-3 text-center">
+                                <h3>today deals </h3>
+                                <div class="row g-3 justify-content-center">
+                                    <!-- First Card -->
+                                    <div class="col-12 col-md-6">
+                                        <div class="card mb-0">
+                                            <img src="https://allaaddin.com/public/images/1j+ojFVDOMkX9Wytexe43D6kh.png" height="auto" class="card-img-top" alt="Product 1">
+                                            <div class="card-body">
+                                                <p class="price">PKR1,407 <span class="original-price">PKR1,450</span></p>
+                                                <p>Retail: PKR1,450</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Second Card -->
+                                    <div class="col-12 col-md-6">
+                                        <div class="card mb-0">
+                                            <img src="https://allaaddin.com/public/images/1j+ojFVDOMkX9Wytexe43D6kh.png" height="180px" class="card-img-top" alt="Product 2">
+                                            <div class="card-body">
+                                                <p class="price">PKR1,020 <span class="original-price">PKR2,083</span></p>
+                                                <p>Ships in 2 days</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                 </div>
             </div>
     
         </div>
 
                 <!-- Right Section -->
-        <div class=" right-section d-flex flex-column h-100">
-            <div class="" style="    height: 100%;
-                        display: grid;
-                        grid-template-rows: 1fr 1fr 1fr;
-                        grid-template-columns: 1fr 1fr; gap: 20px">
-                        
-                <div class="category-card" style="background: #f4f4f4;">
-                    <p style="font-size: 20px; font-weight: 600;">Solar Inverters</p>
-                    <img src="https://www.pngall.com/wp-content/uploads/7/Solar-Panel-Inverter-PNG-Clipart.png" alt="Home Improvement & Lighting">
+        <!-- Right Section -->
+            <div class="right-section flex-column h-100">
+                <div class="category-grid">
+                    <div class="category-card" style="background: #f4f4f4;">
+                        <p style="font-size: 20px; font-weight: 600;">Solar Inverters</p>
+                        <img src="https://www.pngall.com/wp-content/uploads/7/Solar-Panel-Inverter-PNG-Clipart.png" alt="Home Improvement & Lighting">
+                    </div>
+
+                    <div class="category-card" style="background: #eefac5;">
+                        <p style="font-size: 20px; font-weight: 600;">Solar Panels</p>
+                        <img src="https://file.aiquickdraw.com/imgcompressed/img/compressed_588b1d72a9a6e9550d13cd00c7de6fd5.webp" alt="Home Improvement & Lighting">
+                    </div>
+
+                    <div class="category-card" style="background: #ffd0d0;">
+                        <p style="font-size: 20px; font-weight: 600;">Electric Tools</p>
+                        <img src="https://png.pngtree.com/png-vector/20240626/ourmid/pngtree-electrician-tools-on-wooden-surface-instrument-manufacture-ohmmeter-png-image_12868398.png" alt="Home Improvement & Lighting">
+                    </div>
+
+                    <div class="category-card" style="background: #ffe39d;">
+                        <p style="font-size: 20px; font-weight: 600;">Hardware & Tools</p>
+                        <img src="https://www.solelyverified.in/wp-content/uploads/2024/11/Electrical-Supplies.png" alt="Home Improvement & Lighting">
+                    </div>
+
+                    <div class="category-card" style="background: #eae4ff;">
+                        <p style="font-size: 20px; font-weight: 600;">Solar Batteries</p>
+                        <img src="https://rameensolarenergy.com/wp-content/uploads/2023/10/veyron-1.2.png" alt="Home Improvement & Lighting">
+                    </div>
+
+                    <div class="category-card" style="background: #c1f2f9;">
+                        <p style="font-size: 20px; font-weight: 600;">Renewable Energy</p>
+                        <img src="https://cdn-icons-png.flaticon.com/512/1996/1996742.png" alt="Home Improvement & Lighting">
+                    </div>
                 </div>
-            
-                
-                <div class="category-card" style="background: #eefac5">
-                    <p style="font-size: 20px; font-weight: 600;">Solar Panels</p>
-                    <img src="https://file.aiquickdraw.com/imgcompressed/img/compressed_588b1d72a9a6e9550d13cd00c7de6fd5.webp" alt="Home Improvement & Lighting">
-                </div>
-            
-                
-                <div class="category-card" style="background: #ffd0d0">
-                    <p style="font-size: 20px; font-weight: 600;">Electric Tools </p>
-                    <img src="https://png.pngtree.com/png-vector/20240626/ourmid/pngtree-electrician-tools-on-wooden-surface-instrument-manufacture-ohmmeter-png-image_12868398.png" alt="Home Improvement & Lighting">
-                </div>
-            
-                
-               
-                
-                <div class="category-card" style="background: #ffe39d;">
-                    <p style="font-size: 20px; font-weight: 600;">Hardware & Tools</p>
-                    <img src="https://www.solelyverified.in/wp-content/uploads/2024/11/Electrical-Supplies.png" alt="Home Improvement & Lighting">
-                </div>
-            
-                <div class="category-card" style="background: #eae4ff">
-                    <p style="font-size: 20px; font-weight: 600;">Solar Batteries</p>
-                    <img src="https://rameensolarenergy.com/wp-content/uploads/2023/10/veyron-1.2.png" alt="Home Improvement & Lighting">
-                </div>
-            
-                
-                <div class="category-card" style="background: #c1f2f9">
-                    <p style="font-size: 20px; font-weight: 600;">Renewable Energy</p>
-                    <img src="https://cdn-icons-png.flaticon.com/512/1996/1996742.png" alt="Home Improvement & Lighting">
-                </div>
-            
-                
             </div>
 
-        </div>
     </div>
 
 <!-- Category-end -->
 </div>
 
 
-<div class="container">
+<!-- <div class="container">
         <div class="row text-center">
             <div class="col-12">
                 <div class="aiz-carousel arrow-none sm-gutters-16" data-rows="6" data-items="6" data-xl-items="6" data-lg-items="4"  data-md-items="3" data-sm-items="2" data-xs-items="2" data-arrows='true' data-infinite='false'>      
@@ -398,7 +467,7 @@
             </div>
             
         </div>
-    </div>
+    </div> -->
 
 
 <div class="mx-5">
@@ -407,7 +476,9 @@
     <!-- First Feature -->
     <div class="col-md-3">
       <div>
-      <img src=" {{ static_asset('assets/img/banner-category') }} /Screenshot-1(1).png" >
+      <svg xmlns="http://www.w3.org/2000/svg" width="56" height="56" fill="currentColor" class="bi bi-telephone-outbound" viewBox="0 0 16 16">
+  <path d="M3.654 1.328a.678.678 0 0 0-1.015-.063L1.605 2.3c-.483.484-.661 1.169-.45 1.77a17.6 17.6 0 0 0 4.168 6.608 17.6 17.6 0 0 0 6.608 4.168c.601.211 1.286.033 1.77-.45l1.034-1.034a.678.678 0 0 0-.063-1.015l-2.307-1.794a.68.68 0 0 0-.58-.122l-2.19.547a1.75 1.75 0 0 1-1.657-.459L5.482 8.062a1.75 1.75 0 0 1-.46-1.657l.548-2.19a.68.68 0 0 0-.122-.58zM1.884.511a1.745 1.745 0 0 1 2.612.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.68.68 0 0 0 .178.643l2.457 2.457a.68.68 0 0 0 .644.178l2.189-.547a1.75 1.75 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.6 18.6 0 0 1-7.01-4.42 18.6 18.6 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877zM11 .5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-1 0V1.707l-4.146 4.147a.5.5 0 0 1-.708-.708L14.293 1H11.5a.5.5 0 0 1-.5-.5"/>
+</svg>
       </div>
       <h5 class="mt-3">24/7 Customer Service</h5>
       <p class="text-muted">We're here to help you with any questions or concerns you have, 24/7.</p>
@@ -416,7 +487,9 @@
     <!-- Second Feature -->
     <div class="col-md-3">
       <div>
-      <img src=" {{ static_asset('assets/img/banner-category') }} /Screenshot-1(2).png" >
+      <svg xmlns="http://www.w3.org/2000/svg" width="56" height="56" fill="currentColor" class="bi bi-box2" viewBox="0 0 16 16">
+  <path d="M2.95.4a1 1 0 0 1 .8-.4h8.5a1 1 0 0 1 .8.4l2.85 3.8a.5.5 0 0 1 .1.3V15a1 1 0 0 1-1 1H1a1 1 0 0 1-1-1V4.5a.5.5 0 0 1 .1-.3zM7.5 1H3.75L1.5 4h6zm1 0v3h6l-2.25-3zM15 5H1v10h14z"/>
+</svg>
       </div>
       <h5 class="mt-3">14-Day Money Back</h5>
       <p class="text-muted">If you're not satisfied with your purchase, simply return it within 14 days for a refund.</p>
@@ -425,7 +498,10 @@
     <!-- Third Feature -->
     <div class="col-md-3">
       <div>
-      <img src=" {{ static_asset('assets/img/banner-category') }} /Screenshot-1(3).png" >
+      <svg xmlns="http://www.w3.org/2000/svg" width="56" height="56" fill="currentColor" class="bi bi-patch-check" viewBox="0 0 16 16">
+  <path fill-rule="evenodd" d="M10.354 6.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7 8.793l2.646-2.647a.5.5 0 0 1 .708 0"/>
+  <path d="m10.273 2.513-.921-.944.715-.698.622.637.89-.011a2.89 2.89 0 0 1 2.924 2.924l-.01.89.636.622a2.89 2.89 0 0 1 0 4.134l-.637.622.011.89a2.89 2.89 0 0 1-2.924 2.924l-.89-.01-.622.636a2.89 2.89 0 0 1-4.134 0l-.622-.637-.89.011a2.89 2.89 0 0 1-2.924-2.924l.01-.89-.636-.622a2.89 2.89 0 0 1 0-4.134l.637-.622-.011-.89a2.89 2.89 0 0 1 2.924-2.924l.89.01.622-.636a2.89 2.89 0 0 1 4.134 0l-.715.698a1.89 1.89 0 0 0-2.704 0l-.92.944-1.32-.016a1.89 1.89 0 0 0-1.911 1.912l.016 1.318-.944.921a1.89 1.89 0 0 0 0 2.704l.944.92-.016 1.32a1.89 1.89 0 0 0 1.912 1.911l1.318-.016.921.944a1.89 1.89 0 0 0 2.704 0l.92-.944 1.32.016a1.89 1.89 0 0 0 1.911-1.912l-.016-1.318.944-.921a1.89 1.89 0 0 0 0-2.704l-.944-.92.016-1.32a1.89 1.89 0 0 0-1.912-1.911z"/>
+</svg>
       </div>
       <h5 class="mt-3">Our Guarantee</h5>
       <p class="text-muted">We stand behind our products and services and guarantee your satisfaction.</p>
@@ -434,7 +510,9 @@
     <!-- Fourth Feature -->
     <div class="col-md-3">
       <div>
-      <img src=" {{ static_asset('assets/img/banner-category') }} /Screenshot-1(4).png" >
+      <svg xmlns="http://www.w3.org/2000/svg" width="56" height="56" fill="currentColor" class="bi bi-truck" viewBox="0 0 16 16">
+  <path d="M0 3.5A1.5 1.5 0 0 1 1.5 2h9A1.5 1.5 0 0 1 12 3.5V5h1.02a1.5 1.5 0 0 1 1.17.563l1.481 1.85a1.5 1.5 0 0 1 .329.938V10.5a1.5 1.5 0 0 1-1.5 1.5H14a2 2 0 1 1-4 0H5a2 2 0 1 1-3.998-.085A1.5 1.5 0 0 1 0 10.5zm1.294 7.456A2 2 0 0 1 4.732 11h5.536a2 2 0 0 1 .732-.732V3.5a.5.5 0 0 0-.5-.5h-9a.5.5 0 0 0-.5.5v7a.5.5 0 0 0 .294.456M12 10a2 2 0 0 1 1.732 1h.768a.5.5 0 0 0 .5-.5V8.35a.5.5 0 0 0-.11-.312l-1.48-1.85A.5.5 0 0 0 13.02 6H12zm-9 1a1 1 0 1 0 0 2 1 1 0 0 0 0-2m9 0a1 1 0 1 0 0 2 1 1 0 0 0 0-2"/>
+</svg>
       </div>
       <h5 class="mt-3">Shipping Worldwide</h5>
       <p class="text-muted">We ship our products worldwide, making them accessible to customers everywhere.</p>
@@ -669,8 +747,9 @@
             $col_val = 4;
         }
     @endphp
-    <div class="container-fluid mx-5 ">
-        <div class="row gutters-16">
+    <div class="container-fluid ">
+                <div class="mx-5 ">
+                <div class="row gutters-16">
             <div class="col-12">
                 <div id="section_newest"></div>
             </div>
@@ -710,6 +789,7 @@
                 </div>
             @endif
         </div>
+                </div>
     </div>
 
     <!-- Banner section 4, Top Sellers -->
