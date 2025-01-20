@@ -1,10 +1,10 @@
 <div class="">
     @if (sizeof($keywords) > 0)
-        <div class=" py-1 fs-13 fw-500">{{translate('Popular Matches')}}</div>
+        <h5 class=" py-1 fw-500">{{translate('Popular Matches')}}</h5>
         <ul class="list-group list-group-raw d-flex align-items-center flex-row gap-2 mb-3" style="flex-wrap: wrap;">
             @foreach ($keywords as $key => $keyword)
                 <li class="list-group-item py-1 bg-light rounded-4" style=" width: fit-content !important;">
-                    <a class="text-reset hov-text-primary" href="{{ route('suggestion.search', $keyword) }}" style="text-decoration: none;">{{ $keyword }}</a>
+                    <a class="text-reset hov-text-primary fs-15" href="{{ route('suggestion.search', $keyword) }}" style="text-decoration: none;">{{ $keyword }}</a>
                 </li>
             @endforeach
         </ul>
@@ -12,11 +12,11 @@
 </div>
 <div class="">
     @if (count($categories) > 0)
-        <div class=" py-1 fs-13 fw-500">{{translate('Category Suggestions')}}</div>
+        <h5 class=" py-1 fw-500">{{translate('Category Suggestions')}}</h5>
         <ul class="list-group list-group-raw d-flex align-items-center flex-row gap-2 mb-3" style="flex-wrap: wrap;">
             @foreach ($categories as $key => $category)
             <li class="list-group-item py-1 bg-light rounded-4" style=" width: fit-content !important;">
-                    <a class="text-reset hov-text-primary" href="{{ route('products.category', $category->slug) }}">{{ $category->getTranslation('name') }}</a>
+                    <a class="text-reset hov-text-primary fs-15" href="{{ route('products.category', $category->slug) }}" style="text-decoration: none;">{{ $category->getTranslation('name') }}</a>
                 </li>
             @endforeach
         </ul>
@@ -24,7 +24,7 @@
 </div>
 <div class="">
     @if (count($products) > 0)
-        <div class=" py-1 fs-13 fw-500">{{translate('Products')}}</div>
+        <h5 class=" py-1 fw-500">{{translate('Products')}}</h5>
         <ul class="list-group list-group-raw">
             @foreach ($products as $key => $product)
                 <li class="list-group-item">
@@ -54,7 +54,7 @@
 @if(get_setting('vendor_system_activation') == 1)
     <div class="">
         @if (count($shops) > 0)
-            <div class=" py-1 fs-13 fw-500">{{translate('Shops')}}</div>
+            <h5 class=" py-1  fw-500">{{translate('Shops')}}</h5>
             <ul class="list-group list-group-raw">
                 @foreach ($shops as $key => $shop)
                     <li class="list-group-item">
