@@ -25,13 +25,14 @@
 <div class="">
     @if (count($products) > 0)
         <h5 class=" py-1 fw-500">{{translate('Products')}}</h5>
-        <ul class="list-group list-group-raw">
+        <ul class="list-group list-group-raw" style=" display: grid;
+    grid-template-columns: 1fr 1fr 1fr;">
             @foreach ($products as $key => $product)
-                <li class="list-group-item">
-                    <a class="text-reset" href="{{ route('product', $product->slug) }}">
-                        <div class="d-flex search-product align-items-center">
-                            <div class="mr-3">
-                                <img class="size-40px  rounded" style="object-fit: contain" src="{{ uploaded_asset($product->thumbnail_img) }}">
+                <li class="list-group-item px-1">
+                    <a class="text-reset" href="{{ route('product', $product->slug) }}" style="text-decoration: none;">
+                        <div class="search-product align-items-center">
+                            <div class="">
+                                <img class="w-100  rounded" style="object-fit: contain" src="{{ uploaded_asset($product->thumbnail_img) }}">
                             </div>
                             <div class="flex-grow-1 overflow--hidden minw-0">
                                 <div class="product-name text-truncate fs-14 mb-5px">
@@ -39,7 +40,7 @@
                                 </div>
                                 <div class="">
                                     @if(home_base_price($product) != home_discounted_base_price($product))
-                                        <del class="opacity-60 fs-15">{{ home_base_price($product) }}</del>
+                                        <del class="opacity-60 fs-13">{{ home_base_price($product) }}</del>
                                     @endif
                                     <span class="fw-600 fs-16 text-primary">{{ home_discounted_base_price($product) }}</span>
                                 </div>
@@ -54,8 +55,8 @@
 @if(get_setting('vendor_system_activation') == 1)
     <div class="">
         @if (count($shops) > 0)
-            <h5 class=" py-1  fw-500">{{translate('Shops')}}</h5>
-            <ul class="list-group list-group-raw">
+            <h5 class=" py-1  fw-500">{{translate('Stores')}}</h5>
+            <ul class="list-group list-group-raw" >
                 @foreach ($shops as $key => $shop)
                     <li class="list-group-item">
                         <a class="text-reset" href="{{ route('shop.visit', $shop->slug) }}">
