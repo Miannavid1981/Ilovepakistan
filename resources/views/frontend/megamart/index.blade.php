@@ -110,6 +110,12 @@
 }
 
 
+@media (max-width: 768px){
+    .left-section {
+        display: none !important
+    }
+}
+
 </style>
 
 <img src="{{ static_asset('assets/img/mainbanner.jpg') }}" class="w-100 mt-2">
