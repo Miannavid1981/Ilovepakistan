@@ -191,6 +191,13 @@
             margin: 0 5px;
         }
 
+        .btn {
+            padding: 0.3rem 1.2rem;
+            font-size: 1rem;
+            color: #2a3242;
+            font-weight: inherit;
+            border-radius: 10px !important;
+        }
         .form-control:focus {
             border-width: 2px !important;
         }
@@ -199,7 +206,7 @@
         }
         .modal-content {
             border: 0 !important;
-            border-radius: 0 !important;
+            border-radius: 10px !important;
         }
 
         .tagify.tagify--focus{
@@ -388,10 +395,12 @@
         border-radius: 50%;
         width: 40px;
         height: 40px;
-        right: 0;
+        right: 10px;
         position: absolute;
         left: unset !important;
         bottom: 10px;
+        border: 1px solid #ccc;
+        transform: translateY(130%);
     }
   </style>
 
