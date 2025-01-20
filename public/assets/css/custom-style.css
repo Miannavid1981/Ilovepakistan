@@ -183,3 +183,16 @@
 
                 
                 /* category-end */
+
+                .search_popup_product_grid {
+                    display: grid;
+                    grid-template-columns: 1fr 1fr 1fr 1fr;
+                }
+
+
+                @media (max-width: 768px) {
+                    .search_popup_product_grid {
+                        grid-template-columns: 1fr 1fr 1fr  !important;
+                    }
+                }
+          
