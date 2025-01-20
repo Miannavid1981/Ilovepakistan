@@ -741,8 +741,9 @@
             $col_val = 4;
         }
     @endphp
-    <div class="container-fluid mx-5 ">
-        <div class="row gutters-16">
+    <div class="container-fluid ">
+                <div class="mx-5">
+                <div class="row gutters-16">
             <div class="col-12">
                 <div id="section_newest"></div>
             </div>
@@ -782,6 +783,7 @@
                 </div>
             @endif
         </div>
+                </div>
     </div>
 
     <!-- Banner section 4, Top Sellers -->
