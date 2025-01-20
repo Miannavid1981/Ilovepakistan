@@ -166,7 +166,7 @@
             <div class="col">
                 <div class="input-group search-bar">
                     <select class="search-option1" id="search_cat" style="border: unset;">
-                        <option value="" class="search-option2 ">All Categories</option>
+                        <option value="" class="search-option2 ">All</option>
                         @php
                             // Fetch categories with level = 0 and status = 1 directly in the view
                             $categories = \App\Models\Category::where('level', 0)->get();
@@ -213,7 +213,7 @@
                                         </span>
                                     @endif
                                     <div class="d-flex flex-column">
-                                        <span class="d-block fs-15"> Hello, {{$user->name}} </span>
+                                        <span class="d-block fs-15" style="text-wrap: auto"> Hello, {{$user->name}} </span>
                                         <span class="fw-bold fs-16">My Account</span>
                                         
                                     </div>
