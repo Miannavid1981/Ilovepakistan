@@ -429,16 +429,18 @@
                 @if(count($categories) > 0 )
                     @foreach( $categories as $category)
                         <li>
-                            <a class="" href="">
-                                <img src="{{uploaded_asset($category->icon)}}">
-                                {{$category->name}}
+                            <a class="d-flex justify-content-between" href="" style="text-decoration: none !important">
+                                <div class="d-flex">
+                                    <img src="{{uploaded_asset($category->icon)}}" style="width: 37px;height: auto;aspect-ratio: 1 / 1;">
+                                    {{$category->name}}
+                                </div>
                                 <i class="arrow fa fa-solid fa-chevron-right"></i>
                             </a>
-                        <ul class="submenu">
-                            <li>Submenu 1</li>
-                            <li>Submenu 2</li>
-                            <li>Submenu 3</li>
-                        </ul>
+                            <ul class="submenu">
+                                <li>Submenu 1</li>
+                                <li>Submenu 2</li>
+                                <li>Submenu 3</li>
+                            </ul>
                         </li>
                     @endforeach
                 @endif
