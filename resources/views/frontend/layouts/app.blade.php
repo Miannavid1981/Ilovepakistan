@@ -393,8 +393,8 @@
         transition: all .5s ease-in-out;
     }
     .cart-btn {
-        padding: 2px;
-        font-size: 14px !important;
+        padding: 1px;
+        font-size: 12px !important;
         background: #fff !important;
         color: #000 !important;
         border-radius: 20px;
@@ -414,7 +414,7 @@
     .cart-btn:hover {
         background: #000 !important;
         transition: all .3s ease-in-out;
-        color: #000 !important;
+        color: #fff !important;
     }
   </style>
 
