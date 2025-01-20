@@ -1,9 +1,9 @@
 <div class="">
     @if (sizeof($keywords) > 0)
-        <div class=" py-1 fs-13 fw-500">{{translate('Popular Suggestions')}}</div>
-        <ul class="list-group list-group-raw">
+        <div class=" py-1 fs-13 fw-500">{{translate('Popular Matches')}}</div>
+        <ul class="list-group list-group-raw d-flex align-items-center flex-row gap-2 mb-3" style="flex-wrap: wrap;">
             @foreach ($keywords as $key => $keyword)
-                <li class="list-group-item py-1">
+                <li class="list-group-item py-1 bg-light rounded-4" style="text-decoration: none; width: fit-content !important;">
                     <a class="text-reset hov-text-primary" href="{{ route('suggestion.search', $keyword) }}">{{ $keyword }}</a>
                 </li>
             @endforeach
@@ -31,7 +31,7 @@
                     <a class="text-reset" href="{{ route('product', $product->slug) }}">
                         <div class="d-flex search-product align-items-center">
                             <div class="mr-3">
-                                <img class="size-40px img-fit rounded" src="{{ uploaded_asset($product->thumbnail_img) }}">
+                                <img class="size-40px  rounded" style="object-fit: contain" src="{{ uploaded_asset($product->thumbnail_img) }}">
                             </div>
                             <div class="flex-grow-1 overflow--hidden minw-0">
                                 <div class="product-name text-truncate fs-14 mb-5px">
@@ -61,7 +61,7 @@
                         <a class="text-reset" href="{{ route('shop.visit', $shop->slug) }}">
                             <div class="d-flex search-product align-items-center">
                                 <div class="mr-3">
-                                    <img class="size-40px img-fit rounded" src="{{ uploaded_asset($shop->logo) }}">
+                                    <img class="size-40px rounded" style="object-fit: contain" src="{{ uploaded_asset($shop->logo) }}">
                                 </div>
                                 <div class="flex-grow-1 overflow--hidden">
                                     <div class="product-name text-truncate fs-14 mb-5px">
