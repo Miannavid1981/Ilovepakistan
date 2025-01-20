@@ -766,14 +766,20 @@
                 });
             }
         });
+        let debounceTimeout;
 
-        $('#search, .search').on('keyup', function(){
-            search($(this));
+        $('#search, .search').on('keyup', function () {
+            clearTimeout(debounceTimeout); // Clear the previous timeout
+            const inputElement = $(this);
+            debounceTimeout = setTimeout(function () {
+                search(inputElement); // Call the search function after a delay
+            }, 300); // Adjust the delay (in milliseconds) as needed
         });
 
-        $('#search, .search').on('focus', function(){
-            search($(this));
-        });
+
+        // $('#search, .search').on('focus', function(){
+        //     search($(this));
+        // });
 
         function search(elm){
             var searchKey = elm.val();
