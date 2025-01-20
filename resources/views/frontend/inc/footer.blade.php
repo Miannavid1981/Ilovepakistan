@@ -220,7 +220,7 @@
 
 @endphp
 
-<section class="py-lg-3 text-light footer-widget mt-3" style="background-color: #1E1E1E !important;">
+<section class="py-lg-3 text-light footer-widget mt-3" style="background-color: #E8E8E8 !important;">
 
     <!-- footer widgets ========== [Accordion Fotter widgets are bellow from this]-->
 
@@ -256,20 +256,20 @@
         <!-- Contacts -->
         <div class="{{ $col_values }}">
             <div class="text-center text-sm-left mt-4">
-                <h4 class="fs-12 text-secondary text-uppercase fw-700 mb-3">{{ translate('Contacts') }}</h4>
+                <h3 class="fs-14 text-dark text-uppercase fw-700 mb-3">{{ translate('Contacts') }}</h3>
                 <ul class="list-unstyled">
                     <li class="mb-2">
-                        <p class="fs-11 text-secondary mb-1">{{ translate('Address') }}</p>
-                        <p class="fs-11 text-soft-light">{{ get_setting('contact_address', null, App::getLocale()) }}</p>
+                        <p class="fs-12 text-secondary mb-1">{{ translate('Address') }}</p>
+                        <p class="fs-12 text-secondary">{{ get_setting('contact_address', null, App::getLocale()) }}</p>
                     </li>
                     <li class="mb-2">
-                        <p class="fs-11 text-secondary mb-1">{{ translate('Phone') }}</p>
-                        <p class="fs-11 text-soft-light">{{ get_setting('contact_phone') }}</p>
+                        <p class="fs-12 text-secondary mb-1">{{ translate('Phone') }}</p>
+                        <p class="fs-12 text-secondary">{{ get_setting('contact_phone') }}</p>
                     </li>
                     <li class="mb-2">
-                        <p class="fs-11 text-secondary mb-1">{{ translate('Email') }}</p>
+                        <p class="fs-12 text-secondary mb-1">{{ translate('Email') }}</p>
                         <p>
-                            <a href="mailto:{{ get_setting('contact_email') }}" class="fs-13 text-soft-light hov-text-primary">
+                            <a href="mailto:{{ get_setting('contact_email') }}" class="fs-13 text-secondary hov-text-primary">
                                 {{ get_setting('contact_email') }}
                             </a>
                         </p>
@@ -281,39 +281,39 @@
         <!-- My Account -->
         <div class="{{ $col_values }}">
             <div class="text-center text-sm-left mt-4">
-                <h4 class="fs-12 text-secondary text-uppercase fw-700 mb-3">{{ translate('My Account') }}</h4>
+                <h4 class="fs-15 text-dark text-uppercase fw-700 mb-3">{{ translate('My Account') }}</h4>
                 <ul class="list-unstyled">
                     @if (Auth::check())
                         <li class="mb-2">
-                            <a class="fs-13 text-soft-light animate-underline-white" href="{{ route('logout') }}">
+                            <a class="fs-13 text-secondary animate-underline-white" href="{{ route('logout') }}">
                                 {{ translate('Logout') }}
                             </a>
                         </li>
                     @else
                         <li class="mb-2">
-                            <a class="fs-11 text-soft-light animate-underline-white" href="{{ route('user.login') }}">
+                            <a class="fs-11 text-secondary animate-underline-white" href="{{ route('user.login') }}">
                                 {{ translate('Login') }}
                             </a>
                         </li>
                     @endif
                     <li class="mb-2">
-                        <a class="fs-11 text-soft-light animate-underline-white" href="{{ route('purchase_history.index') }}">
+                        <a class="fs-11 text-secondary animate-underline-white" href="{{ route('purchase_history.index') }}">
                             {{ translate('Order History') }}
                         </a>
                     </li>
                     <li class="mb-2">
-                        <a class="fs-11 text-soft-light animate-underline-white" href="{{ route('wishlists.index') }}">
+                        <a class="fs-11 text-secondary animate-underline-white" href="{{ route('wishlists.index') }}">
                             {{ translate('My Wishlist') }}
                         </a>
                     </li>
                     <li class="mb-2">
-                        <a class="fs-11 text-soft-light animate-underline-white" href="{{ route('orders.track') }}">
+                        <a class="fs-11 text-secondary animate-underline-white" href="{{ route('orders.track') }}">
                             {{ translate('Track Order') }}
                         </a>
                     </li>
                     @if (addon_is_activated('affiliate_system'))
                         <li class="mb-2">
-                            <a class="fs-11 text-soft-light animate-underline-white" href="{{ route('affiliate.apply') }}">
+                            <a class="fs-11 text-secondary animate-underline-white" href="{{ route('affiliate.apply') }}">
                                 {{ translate('Be an affiliate partner') }}
                             </a>
                         </li>
@@ -327,10 +327,10 @@
                 <div class="col-lg-3 col-md-4 col-sm-6">
                     <div class="text-center text-sm-left mt-4">
                         @if (get_setting('vendor_system_activation') == 1)
-                            <h4 class="fs-12 text-secondary text-uppercase fw-700 mb-3">{{ translate('Seller Zone') }}</h4>
+                            <h4 class="fs-15 text-dark text-uppercase fw-700 mb-3">{{ translate('Seller Zone') }}</h4>
                             <ul class="list-unstyled">
                                 <li class="mb-2">
-                                    <p class="fs-11 text-soft-light mb-0">
+                                    <p class="fs-11 text-secondary mb-0">
                                         {{ translate('Become A Seller') }}
                                         <a href="{{ route('shops.create') }}" class="fs-13 fw-700 text-warning ml-2">
                                             {{ translate('Apply Now') }}
@@ -339,14 +339,14 @@
                                 </li>
                                 @guest
                                     <li class="mb-2">
-                                        <a class="fs-11 text-soft-light animate-underline-white" href="{{ route('seller.login') }}">
+                                        <a class="fs-11 text-secondary animate-underline-white" href="{{ route('seller.login') }}">
                                             {{ translate('Login to Seller Panel') }}
                                         </a>
                                     </li>
                                 @endguest
                                 @if (get_setting('seller_app_link'))
                                     <li class="mb-2">
-                                        <a class="fs-11 text-soft-light animate-underline-white" target="_blank" href="{{ get_setting('seller_app_link') }}">
+                                        <a class="fs-11 text-secondary animate-underline-white" target="_blank" href="{{ get_setting('seller_app_link') }}">
                                             {{ translate('Download Seller App') }}
                                         </a>
                                     </li>
@@ -358,14 +358,14 @@
                             <ul class="list-unstyled">
                                 @guest
                                     <li class="mb-2">
-                                        <a class="fs-11 text-soft-light animate-underline-white" href="{{ route('deliveryboy.login') }}">
+                                        <a class="fs-11 text-secondary animate-underline-white" href="{{ route('deliveryboy.login') }}">
                                             {{ translate('Login to Delivery Boy Panel') }}
                                         </a>
                                     </li>
                                 @endguest
                                 @if (get_setting('delivery_boy_app_link'))
                                     <li class="mb-2">
-                                        <a class="fs-11 text-soft-light animate-underline-white" target="_blank" href="{{ get_setting('delivery_boy_app_link') }}">
+                                        <a class="fs-11 text-secondary animate-underline-white" target="_blank" href="{{ get_setting('delivery_boy_app_link') }}">
                                             {{ translate('Download Delivery Boy App') }}
                                         </a>
                                     </li>
