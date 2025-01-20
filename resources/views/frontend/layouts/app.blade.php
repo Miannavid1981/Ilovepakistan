@@ -779,9 +779,9 @@
             var searchKey = elm.val();
             if(searchKey.length > 0){
                 $('body').addClass("typed-search-box-shown");
-
                 $('.typed-search-box').removeClass('d-none');
                 $('.search-preloader').removeClass('d-none');
+                $("#searchpopup").modal("show")
                 $.post('{{ route('search.ajax') }}', { _token: AIZ.data.csrf, search:searchKey}, function(data){
                     if(data == '0'){
                         // $('.typed-search-box').addClass('d-none');
