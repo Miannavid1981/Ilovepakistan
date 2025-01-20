@@ -149,7 +149,7 @@
 
 
                 <span><i class="las la-cart-plus fs-24 me-2" ></i></span>
-                Add to Cart
+                Buy Now
             </a>
 
         @endif
