@@ -663,7 +663,7 @@
             $col_val = 4;
         }
     @endphp
-    <div class="container-fluid mx-5 d-none">
+    <div class="container-fluid mx-5 ">
         <div class="row gutters-16">
             <div class="col-12">
                 <div id="section_newest"></div>
