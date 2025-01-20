@@ -181,7 +181,7 @@
                 
                    
             </div>
-            <div class="col-lg-4 col-md-5 col-12">
+            <div class="col-lg-5 col-md-6 col-12">
                 <div class="d-flex justify-content-end align-items-center gap-4">
                     <!-- Language and Currency -->
                     <div class="">
