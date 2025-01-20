@@ -380,6 +380,19 @@
         transform: translateX(300px);
         transition: all .5s ease-in-out;
     }
+    .cart-btn {
+        padding: 5px;
+        font-size: 25px !important;
+        background: #fff !important;
+        color: #000 !important;
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        right: 0;
+        position: absolute;
+        left: unset !important;
+        bottom: 10px;
+    }
   </style>
 
   <div class="drawer-container">
