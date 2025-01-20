@@ -31,10 +31,10 @@
                     <a class="text-reset" href="{{ route('product', $product->slug) }}" style="text-decoration: none;">
                         <div class="search-product align-items-center">
                             <div class="">
-                                <img class="w-100  rounded" style="object-fit: contain; aspect-ratio: 1 / 1;" src="{{ uploaded_asset($product->thumbnail_img) }}">
+                                <img class="w-100  rounded" style="border: 1px solid #dfdfdf;object-fit: contain; aspect-ratio: 1 / 1;" src="{{ uploaded_asset($product->thumbnail_img) }}">
                             </div>
                             <div class="flex-grow-1 overflow--hidden minw-0">
-                                <div class="product-name text-truncate fs-18 mb-5px">
+                                <div class="product-name  fs-18 mb-5px">
                                     {{  $product->getTranslation('name')  }}
                                 </div>
                                 <div class="d-flex flex-column">
