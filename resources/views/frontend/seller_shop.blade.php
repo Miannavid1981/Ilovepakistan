@@ -28,7 +28,91 @@
 @endsection
 
 @section('content')
-    <section class="mt-3 mb-3 bg-white">
+<style>
+ .banner {
+  position: relative;
+  background: url('https://www.genesee.edu/wp-content/uploads/banner-solar-electric-technician.jpg') center/cover no-repeat;
+  height: 600px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  text-align: center;
+  background-position: left;
+  background-size: cover;
+}
+
+/* Create the blurred background using a pseudo-element */
+.banner::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5); /* Apply gray color with reduced opacity */
+  filter: blur(2px); /* Apply blur to the background */
+  z-index: 0; /* Make sure the blur is behind the text */
+}
+
+
+/* Ensure text remains above the blurred background */
+.banner h1, .banner p {
+  position: relative;
+  z-index: 1; /* Bring the text above the blurred background */
+}
+
+    .live-stream img {
+      border-radius: 10px;
+    }
+    .live-label {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      background: red;
+      color: white;
+      padding: 2px 8px;
+      font-size: 0.9rem;
+      border-radius: 4px;
+    }
+    .product-card {
+      text-align: center;
+    }
+    .product-card img {
+      max-height: 150px;
+      object-fit: contain;
+    }
+    .product-card .price {
+      color: #ff6600;
+      font-weight: bold;
+    }
+    .follow-btn:hover {
+    background-color: #007bff; /* Primary blue */
+    color: white;
+  }
+
+ /* Keep previous styles */
+.follow-btn {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.heart-icon {
+  color: #0D6EFD; /* Neutral gray by default */
+  transition: color 0.3s ease, transform 0.3s ease;
+  cursor: pointer;
+  font-size: 1.5rem;
+}
+
+.heart-icon.liked {
+  color: #ff4d4d;  /* Red color for liked state */
+  transform: scale(1.2); /* Slightly enlarge the icon when liked */
+}
+
+    
+  </style>
+    <section class="mt-3 mb-3 bg-white d-none">
         <div class="container">
             <!--  Top Menu -->
             <div class="d-flex flex-wrap justify-content-center justify-content-md-start">
@@ -43,6 +127,72 @@
             </div>
         </div>
     </section>
+
+    <section>
+  <!-- Banner -->
+  <div class="banner">
+    <div>
+      <h1>SMART GADGETS & TOOLS FOR ANY THINGS</h1>
+      <p class="mt-2">Since 1983</p>
+    </div>
+  </div>
+
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container d-flex justify-content-between align-items-center">
+      <!-- KitchenSmart Branding -->
+      <a class="navbar-brand d-flex flex-column align-items-start" href="#">
+        <div class="d-flex align-items-center">
+          <!-- Brand Name -->
+          <strong>BigHouz</strong>
+          <!-- Blue Tick Icon -->
+          <span 
+          class="ms-2 d-inline-block bg-primary text-white rounded-circle" 
+          style="width: 20px; height: 20px; font-size: 12px; display: flex; align-items: center; justify-content: center; line-height: 1; padding: 4px;">
+          ✓
+        </span>
+        
+        </div>
+        <!-- Stars -->
+        <div class="mt-1" style="font-size: 0.8rem; color: #f1c40f;">
+          <i class="bi bi-star-fill"></i>
+          <i class="bi bi-star-fill"></i>
+          <i class="bi bi-star-fill"></i>
+          <i class="bi bi-star-fill"></i>
+          <i class="bi bi-star-fill"></i>
+        </div>
+      </a>
+  
+      <!-- "+Follow" Button with Heart Icon -->
+      <div class="d-flex align-items-center">
+        <button class="btn btn-outline-primary d-flex align-items-center follow-btn">
+          +Follow
+          
+        </button>
+        <span class="ms-2">
+            <i class="bi bi-heart heart-icon"></i>
+          </span>
+      </div>
+      
+  
+      <!-- Navbar Toggler for Mobile View -->
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    </div>
+  </nav>
+  
+  
+
+  <!-- Shop the Livestream -->
+  <div class="container mt-5">
+    <h2 class="text-center">Shop the livestream</h2>
+    <p class="text-center text-muted">Currently live: Kitchen upgrade essentials</p>
+ 
+  </div>
+
+</section>
+
+
 
     @php
         $followed_sellers = [];
@@ -680,5 +830,16 @@
             $('input[name=max_price]').val(arg[1]);
             filter();
         }
+
+        document.querySelector('.heart-icon').addEventListener('click', function () {
+  if (this.classList.contains('bi-heart')) {
+    this.classList.remove('bi-heart'); // Remove outline version
+    this.classList.add('bi-heart-fill'); // Add filled version
+  } else {
+    this.classList.remove('bi-heart-fill'); // Remove filled version
+    this.classList.add('bi-heart'); // Add outline version
+  }
+});
     </script>
+
 @endsection
