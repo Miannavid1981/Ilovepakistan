@@ -100,6 +100,12 @@
 }
 
 
+@media (max-width: 768px){
+    .left-section {
+        display: none !important
+    }
+}
+
 .bighouz-business {
     display: grid;
     grid-template-columns: 1fr 1fr;
