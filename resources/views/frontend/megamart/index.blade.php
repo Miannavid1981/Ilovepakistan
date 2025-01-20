@@ -742,7 +742,7 @@
         }
     @endphp
     <div class="container-fluid ">
-                <div class="mx-5">
+                <div class="mx-5 ">
                 <div class="row gutters-16">
             <div class="col-12">
                 <div id="section_newest"></div>
