@@ -13,9 +13,9 @@
 <div class="">
     @if (count($categories) > 0)
         <div class=" py-1 fs-13 fw-500">{{translate('Category Suggestions')}}</div>
-        <ul class="list-group list-group-raw">
+        <ul class="list-group list-group-raw d-flex align-items-center flex-row gap-2 mb-3" style="flex-wrap: wrap;">
             @foreach ($categories as $key => $category)
-                <li class="list-group-item py-1">
+            <li class="list-group-item py-1 bg-light rounded-4" style=" width: fit-content !important;">
                     <a class="text-reset hov-text-primary" href="{{ route('products.category', $category->slug) }}">{{ $category->getTranslation('name') }}</a>
                 </li>
             @endforeach
