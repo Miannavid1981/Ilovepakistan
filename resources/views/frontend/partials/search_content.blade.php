@@ -32,13 +32,13 @@
                     <a class="text-reset" href="{{ route('product', $product->slug) }}" style="text-decoration: none;">
                         <div class="search-product align-items-center">
                             <div class="">
-                                <img class="w-100  rounded" style="object-fit: contain" src="{{ uploaded_asset($product->thumbnail_img) }}">
+                                <img class="w-100  rounded" style="object-fit: contain; aspect-ratio: 1 / 1;" src="{{ uploaded_asset($product->thumbnail_img) }}">
                             </div>
                             <div class="flex-grow-1 overflow--hidden minw-0">
                                 <div class="product-name text-truncate fs-14 mb-5px">
                                     {{  $product->getTranslation('name')  }}
                                 </div>
-                                <div class="">
+                                <div class="d-flex flex-column">
                                     @if(home_base_price($product) != home_discounted_base_price($product))
                                         <del class="opacity-60 fs-13">{{ home_base_price($product) }}</del>
                                     @endif
