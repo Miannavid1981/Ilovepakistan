@@ -58,7 +58,7 @@
             <ul class="list-group list-group-raw" >
                 @foreach ($shops as $key => $shop)
                     <li class="list-group-item">
-                        <a class="text-reset" href="{{ route('shop.visit', $shop->slug) }}">
+                        <a class="text-reset" href="{{ route('shop.visit', $shop->slug) }}" style="text-decoration: none;">
                             <div class="d-flex search-product align-items-center">
                                 <div class="mr-3">
                                     <img class="size-40px rounded" style="object-fit: contain" src="{{ uploaded_asset($shop->logo) }}">

@@ -186,13 +186,18 @@
 
                 .search_popup_product_grid {
                     display: grid;
-                    grid-template-columns: 1fr 1fr 1fr 1fr;
+                    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
                 }
                 #searchpopup-modal-body {
                     overflow-y: scroll;
                     max-height: 600px; 
                 }
 
+                @media (max-width: 1200px) {
+                    .search_popup_product_grid {
+                        grid-template-columns: 1fr 1fr 1fr 1fr !important;
+                    }
+                }
                 @media (max-width: 768px) {
                     .search_popup_product_grid {
                         grid-template-columns: 1fr 1fr 1fr  !important;
