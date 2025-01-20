@@ -126,6 +126,11 @@
             
         }
 
+        @media (max-width: 991px){
+            header {
+                display: none !important;
+            }
+        }
     </style>
 
 <header class="container bg-white pt-2">
@@ -380,7 +385,7 @@
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav w-100">
                         <li class="nav-item">
-                            <a class="nav-link btn btn-primary text-dark px-3 py-1 category-btn toggle-btn" href="#" style="border-radius: 20px; background-color: #F5F5F5;">
+                            <a class="nav-link btn btn-primary text-dark px-3 py-1 category-btn toggle-btn category-drawer-toggle-btn" href="#" style="border-radius: 20px; background-color: #F5F5F5;">
                                 <i class="fa-solid fa-bars"></i> All Categories
                             </a>
                         </li>
@@ -393,12 +398,10 @@
                         <li class="nav-item">
                             <a class="nav-link category-btn" href="#">Top Brands</a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item me-auto">
                             <a class="nav-link category-btn" href="#">Home & Garden</a>
                         </li>
-                        <li class="nav-item me-auto">
-                            <a class="nav-link category-btn" href="#">Hair Extensions & Wigs</a>
-                        </li>
+                        
                         <!-- Last three items aligned to the right -->
                         <li class="nav-item me-3">
                             <a class="nav-link" href="#">About Us</a>
@@ -417,6 +420,20 @@
 
     </header>
 
+    <div class="row align-items-center py-2 px-3 header-top d-lg-none">
+        <div class="col-4 d-flex align-items-center text-left">
+            
+            <i class="fa-solid fa-bars menu-icon fs-20 me-2 category-drawer-toggle-btn" ></i>
+            <img src="{{ $logo_url }}" alt="AliExpress Logo" class="img-fluid">
+        </div>
+        <div class="col-8 d-flex justify-content-end align-items-center">
+            <i class="fa-solid fa-user fs-20 me-3"></i>
+            <i class="fa-solid fa-cart-shopping fs-20"></i>
+        </div>
+        <div class="col-12 mt-2">
+            <input type="text" class="form-control fs-18 border-none search" placeholder="Search products..." style="background: rgba(0,0,0,.08); border-radius: 30px; padding: 3px 20px;height: auto;">
+        </div>
+    </div>
  <style>
 
      /* Preloader container */

@@ -191,6 +191,13 @@
             margin: 0 5px;
         }
 
+        .btn {
+            padding: 0.3rem 1.2rem;
+            font-size: 1rem;
+            color: #2a3242;
+            font-weight: inherit;
+            border-radius: 10px !important;
+        }
         .form-control:focus {
             border-width: 2px !important;
         }
@@ -199,7 +206,7 @@
         }
         .modal-content {
             border: 0 !important;
-            border-radius: 0 !important;
+            border-radius: 10px !important;
         }
 
         .tagify.tagify--focus{
@@ -380,6 +387,21 @@
         transform: translateX(300px);
         transition: all .5s ease-in-out;
     }
+    .cart-btn {
+        padding: 5px;
+        font-size: 25px !important;
+        background: #fff !important;
+        color: #000 !important;
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        right: 10px;
+        position: absolute;
+        left: unset !important;
+        bottom: 10px;
+        border: 1px solid #ccc;
+        transform: translateY(130%);
+    }
   </style>
 
   <div class="drawer-container">
@@ -416,7 +438,7 @@
   <script>
     $(document).ready(function() {
       // Toggle drawer
-      $('.toggle-btn').on('click', function() {
+      $('.category-drawer-toggle-btn').on('click', function() {
         $('#drawer').toggleClass('open');
         $('.aiz-main-wrapper').toggleClass("translate300px");
       });
@@ -740,16 +762,16 @@
             }
         });
 
-        $('#search').on('keyup', function(){
-            search();
+        $('#search, .search').on('keyup', function(){
+            search($(this));
         });
 
-        $('#search').on('focus', function(){
-            search();
+        $('#search, .search').on('focus', function(){
+            search($(this));
         });
 
-        function search(){
-            var searchKey = $('#search').val();
+        function search(elm){
+            var searchKey = elm.val();
             if(searchKey.length > 0){
                 $('body').addClass("typed-search-box-shown");
 
