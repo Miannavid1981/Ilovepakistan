@@ -860,7 +860,7 @@ $(document).ready(function(){
     });
     $(".toggle-cart-modal").click(function(){
 
-        $('.toggle-cart-modal').modal("show");
+        $('#cartOffcanvas').modal("show");
 
     });
 
