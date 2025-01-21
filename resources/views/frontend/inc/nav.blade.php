@@ -155,7 +155,11 @@
         .modal.fade.slide-in-right .modal.fade {
         animation: slideOutRight 0.3s forwards;
         }
-
+        .slide-in-right .modal-dialog {
+            right: 10px;
+            top: 10px;
+            bottom: 10px;
+        }
 
         header .dropdown-toggle {
             
