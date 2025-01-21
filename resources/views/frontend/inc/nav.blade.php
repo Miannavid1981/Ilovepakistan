@@ -201,7 +201,8 @@
                 height: auto !important;
             }
             .slide-in-right .modal-body {
-                padding: 0 !important
+                padding: 0px 10px !important;
+                height: 100% !important;
             }
             .slide-in-right .minicart-main-left-section {
                 padding-top: 15px ;
@@ -547,14 +548,14 @@
         <div class="modal-dialog modal-lg modal-dialog-right modal-dialog-zoom product-modal" id="modal-size" role="document">
             <div class="modal-content position-relative">
       
-                <div class="d-flex justify-content-end align-items-center d-md-none mt-3 mx-3">
+                <div class="d-flex justify-content-end align-items-center d-none mt-3 mx-3">
                     <button type="button" class="btn-close d-flex justify-content-end" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                 </div>
         
                 <div class="modal-body">
-                    <div class="row g-5 h-100">
+                    <div class="row gx-5 h-100">
                         <!-- Left Section: You May Also Like -->
-                        <div class="col-6 border-right cart-offers-section">
+                        <div class="col-md-6 border-right cart-offers-section">
                         <div class="">
                             <h4>You May Also Like</h4>
                             <div class="list-group mt-4">
@@ -611,7 +612,7 @@
                             <div class="px-1 flex-grow-1  ">
                                 <div class="d-flex justify-content-between">
                                     <h4>Shopping Cart</h4>
-                                    <button type="button" class="btn-close d-none d-md-block" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                                    <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <div class="alert mt-4 alert-success d-flex align-items-center" role="alert">
                                     <i class="bi bi-fire me-2"></i>
