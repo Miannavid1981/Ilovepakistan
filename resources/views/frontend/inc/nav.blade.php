@@ -143,7 +143,7 @@
         }
         .slide-in-right .modal-dialog {
             min-width: 800px;
-
+            border-radius: 20px;
         }
         .modal.fade.slide-in-right .modal-dialog {
         transform: translateX(100%);
