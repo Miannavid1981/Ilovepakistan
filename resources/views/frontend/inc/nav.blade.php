@@ -548,10 +548,10 @@
                 </div>
         
                 <div class="modal-body">
-                    <div class="row g-0 h-100">
+                    <div class="row g-5 h-100">
                         <!-- Left Section: You May Also Like -->
-                        <div class="col-6 me-4 border-right cart-offers-section">
-                        <div class="pe-4">
+                        <div class="col-6 border-right cart-offers-section">
+                        <div class="">
                             <h4>You May Also Like</h4>
                             <div class="list-group mt-4">
                             <div class="d-flex align-items-center">
