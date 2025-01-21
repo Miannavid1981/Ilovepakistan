@@ -227,65 +227,73 @@
             <div class="col-lg-2 col-md-6 mb-4 text-center text-md-start">
                 <img src="https://allaaddin.com/public/images/1j+ojFVDOMkX9Wytexe43D6kh.png" width="100px" alt="">
                 <ul class="list-unstyled">
-                    <li class="fs-15"><strong>Mail:</strong> hi.avitex@gmail.com</li>
-                    <li class="fs-15"><strong>Phone:</strong> 1-333-345-6868</li>
-                    <li class="fs-15"><strong>Address:</strong> 549 Oak St. Crystal Lake, IL 60014</li>
+                    <li class="fs-17"><strong>Mail:</strong> hi.avitex@gmail.com</li>
+                    <li class="fs-17"><strong>Phone:</strong> 1-333-345-6868</li>
+                    <li class="fs-17"><strong>Address:</strong> 549 Oak St. Crystal Lake, IL 60014</li>
                 </ul>
             </div>
             <!-- Information Section -->
             <div class="col-12 col-lg-2 col-md-6 mb-4 text-center text-md-start">
-                <h5>Information</h5>
+                <h5 class="fs-20 fw-bold">Information</h5>
                 <ul class="list-unstyled">
+<<<<<<< Updated upstream
                     <li><a href="#" class="text-dark fs-15 text-decoration-none">Contact Us</a></li>
                     <li><a href="#" class="text-dark fs-15 text-decoration-none">Career</a></li> 
                     <li><a href="#" class="text-dark fs-15 text-decoration-none">My Account</a></li>
                     <li><a href="#" class="text-dark fs-15 text-decoration-none">Order & Returns</a></li>
                     <li><a href="#" class="text-dark fs-15 text-decoration-none">FAQs</a></li>
+=======
+                    <li><a href="#" class="text-dark fs-17 text-decoration-none">Contact Us</a></li>
+                    <li><a href="#" class="text-dark fs-17 text-decoration-none">Career</a></li>
+                    <li><a href="#" class="text-dark fs-17 text-decoration-none">My Account</a></li>
+                    <li><a href="#" class="text-dark fs-17 text-decoration-none">Order & Returns</a></li>
+                    <li><a href="#" class="text-dark fs-17 text-decoration-none">FAQs</a></li>
+>>>>>>> Stashed changes
                 </ul>
             </div>
             <!-- Quick Shop Section -->
             <div class="col-12 col-lg-2 col-md-6 mb-4 text-center text-md-start">
-                <h5>Quick Shop</h5>
+                <h5 class="fs-20 fw-bold fw-bold">Quick Shop</h5>
                 <ul class="list-unstyled">
-                    <li><a href="#" class="text-dark fs-15 text-decoration-none">Women</a></li>
-                    <li><a href="#" class="text-dark fs-15 text-decoration-none">Men</a></li>
-                    <li><a href="#" class="text-dark fs-15 text-decoration-none">Clothes</a></li>
-                    <li><a href="#" class="text-dark fs-15 text-decoration-none">Accessories</a></li>
-                    <li><a href="#" class="text-dark fs-15 text-decoration-none">Blog</a></li>
+                    <li><a href="#" class="text-dark fs-17 text-decoration-none">Women</a></li>
+                    <li><a href="#" class="text-dark fs-17 text-decoration-none">Men</a></li>
+                    <li><a href="#" class="text-dark fs-17 text-decoration-none">Clothes</a></li>
+                    <li><a href="#" class="text-dark fs-17 text-decoration-none">Accessories</a></li>
+                    <li><a href="#" class="text-dark fs-17 text-decoration-none">Blog</a></li>
                 </ul>
             </div>
             <!-- Customer Services Section -->
             <div class="col-12 col-lg-2 col-md-6 mb-4 text-center text-md-start">
-                <h5>Customer Services</h5>
+                <h5 class="fs-20 fw-bold">Customer Services</h5>
                 <ul class="list-unstyled">
-                    <li><a href="#" class="text-dark fs-15 text-decoration-none">Orders FAQs</a></li>
-                    <li><a href="#" class="text-dark fs-15 text-decoration-none">Shipping</a></li>
-                    <li><a href="#" class="text-dark fs-15 text-decoration-none">Privacy Policy</a></li>
-                    <li><a href="#" class="text-dark fs-15 text-decoration-none">Return & Refund</a></li>
+                    <li><a href="#" class="text-dark fs-17 text-decoration-none">Orders FAQs</a></li>
+                    <li><a href="#" class="text-dark fs-17 text-decoration-none">Shipping</a></li>
+                    <li><a href="#" class="text-dark fs-17 text-decoration-none">Privacy Policy</a></li>
+                    <li><a href="#" class="text-dark fs-17 text-decoration-none">Return & Refund</a></li>
                 </ul>
             </div>
             <!-- Seller Zone Section -->
             <div class="col-12 col-lg-2 col-md-6 mb-4 text-center text-md-start">
-                <h5>Seller Zone</h5>
+                <h5 class="fs-20 fw-bold">Seller Zone</h5>
                 <ul class="list-unstyled">
                     <li class="mb-2">
-                        <p class="fs-15 text-dark text-secondary mb-0">
+                        <p class="fs-17 text-dark text-secondary mb-0">
                             Become A Seller
-                            <a href="#" class="fs-15 fw-700 text-warning ml-2">Apply Now</a>
+                            <a href="#" class="fs-17 fw-700 text-warning ml-2">Apply Now</a>
                         </p>
                     </li>
                     <li class="mb-2">
-                        <a class="fs-15 text-dark animate-underline-dark" href="#">Login to Seller Panel</a>
+                        <a class="fs-17 text-dark animate-underline-dark" href="#">Login to Seller Panel</a>
                     </li>
                     <li class="mb-2">
-                        <a class="fs-15 text-dark animate-underline-dark" target="_blank" href="#">Download Seller App</a>
+                        <a class="fs-17 text-dark animate-underline-dark" target="_blank" href="#">Download Seller App</a>
                     </li>
                 </ul>
             </div>
             <!-- Newsletter Section -->
             <div class="col-lg-2 col-md-12 text-center text-md-start">
-                <h5>Newsletter</h5>
-                <p class="fs-15">Sign up for our newsletter and get 10% off your first purchase</p>
+                <h5 class="fs-20 fw-bold">Newsletter</h5>
+                <p class="fs-17">Sign up for our newsletter and get 10% off your first purchase</p>
                 <div class="input-group mb-3">
                     <input type="email" class="form-control" placeholder="Enter your e-mail">
                     <button class="btn btn-secondary" type="button"><i class="fa-solid fa-arrow-right"></i></button>
@@ -301,13 +309,11 @@
         </div>
         <div class="row mt-5">
             <div class="col-lg-6  text-center text-md-start">
-                <p class="mb-0 fs-15">©2025 Bighouz. All Rights Reserved.</p>
+                <p class="mb-0 fs-17">©2025 Bighouz. All Rights Reserved.</p>
             </div>
             <div class="col-lg-6 text-lg-end  text-center text-md-start">
-                <span class="me-3 fs-15">English</span>
-                <span class="me-3 fs-15">USD</span>
                 <span>
-                    <img src="https://s.alicdn.com/@img/imgextra/i4/O1CN01dsw9V61Lbh0D1f9JG_!!6000000001318-2-tps-205-112.png" width="40px" alt="Visa">
+                    <img src="https://s.alicdn.com/@img/imgextra/i4/O1CN01dsw9V61Lbh0D1f9JG_!!6000000001320 fw-bold-2-tps-205-112.png" width="40px" alt="Visa">
                     <img src="https://s.alicdn.com/@img/imgextra/i4/O1CN01sXbha020agNJcLC4l_!!6000000006866-2-tps-148-112.png" width="40px" alt="Master">
                     <img src="https://s.alicdn.com/@img/imgextra/i4/O1CN010I5eGr1aDcQ82EcRH_!!6000000003296-2-tps-169-112.png" width="40px" alt="unionpay">
                     <img src="https://s.alicdn.com/@img/imgextra/i1/O1CN017IIzE71MpGLv2nxMd_!!6000000001483-2-tps-260-112.png" width="70px" alt="PayPal">
