@@ -552,7 +552,7 @@
                 </div>
         
                 <div class="modal-body">
-                    <div class="row g-5 h-100">
+                    <div class="row gx-5 h-100">
                         <!-- Left Section: You May Also Like -->
                         <div class="col-6 border-right cart-offers-section">
                         <div class="">
