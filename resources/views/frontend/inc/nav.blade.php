@@ -527,7 +527,7 @@
  
     <div class="modal fade slide-in-right" id="cartOffcanvas">
         <div class="modal-dialog modal-lg modal-dialog-right modal-dialog-zoom product-modal" id="modal-size" role="document">
-            <div class="modal-content position-relative p-3">
+            <div class="modal-content position-relative">
       
                 <div class="d-flex justify-content-end align-items-center d-md-none mt-3 mx-3">
                     <button type="button" class="btn-close d-flex justify-content-end" data-bs-dismiss="offcanvas" aria-label="Close"></button>
@@ -537,7 +537,7 @@
                     <div class="row g-0 h-100">
                         <!-- Left Section: You May Also Like -->
                         <div class="col-6 border-right cart-offers-section">
-                        <div class="p-4">
+                        <div class="pe-4">
                             <h4>You May Also Like</h4>
                             <div class="list-group mt-4">
                             <div class="d-flex align-items-center">
@@ -590,7 +590,7 @@
 
                         <!-- Right Section: Shopping Cart -->
                         <div class="col-6 d-flex flex-column">
-                            <div class="ps-4 pt-2 pe-1 flex-grow-1  ">
+                            <div class="ps-4 pe-1 flex-grow-1  ">
                             <div class="d-flex justify-content-between">
                                 <h4>Shopping Cart</h4>
                                 <button type="button" class="btn-close d-none d-md-block" data-bs-dismiss="offcanvas" aria-label="Close"></button>
@@ -610,103 +610,19 @@
                             
                             <!-- Fixed Bottom Section -->
                             <div class="p-3 bg-white">
-                            
-                                <div class="row">
-                                    <div class="d-flex direction-column note-shipping-coupon">
-                                        <!-- Modal for Note -->
-                                        <div class="offcanvas offcanvas-bottom d-none" tabindex="-1" id="noteOffcanvas" aria-labelledby="noteOffcanvasLabel">
-                                        <div class="offcanvas-header">
-                                            <h5 class="offcanvas-title" id="noteOffcanvasLabel">Add a Note</h5>
-                                            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-                                        </div>
-                                        <div class="offcanvas-body">
-                                            <textarea class="form-control" id="noteDescription" placeholder="Add your note here..."></textarea>
-                                        </div>
-                                        <div class="offcanvas-footer">
-                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="offcanvas">Cancel</button>
-                                            <button type="button" class="btn btn-primary" id="saveNoteBtn">Save Note</button>
-                                        </div>
-                                        </div>
-                                        <div class="col-4">
-                                        <button class="btn text-dark w-100" data-bs-toggle="offcanvas" data-bs-target="#noteOffcanvas" id="noteButton">
-                                            <i class="bi bi-pencil-square"></i> Note
-                                        </button>
-                                        </div>
-                                    
-                                        <!-- Modal for Shipping -->
-                                        <div class="offcanvas offcanvas-end d-none" tabindex="-1" id="shippingOffcanvas" aria-labelledby="shippingOffcanvasLabel">
-                                        <div class="offcanvas-header">
-                                            <h5 class="offcanvas-title" id="shippingOffcanvasLabel">Shipping Information</h5>
-                                            <button type="button" class="btn-close"  aria-label="Close"></button>
-                                        </div>
-                                        <div class="offcanvas-body">
-                                            <div class="mb-3">
-                                            <label for="shippingCountry" class="form-label">Country</label>
-                                            <select class="form-select" id="shippingCountry">
-                                                <option value="US">United States</option>
-                                                <option value="CA">Canada</option>
-                                                <option value="UK">United Kingdom</option>
-                                                <!-- Add more options as needed -->
-                                            </select>
-                                            </div>
-                                            <div class="mb-3">
-                                            <label for="shippingState" class="form-label">State</label>
-                                            <select class="form-select" id="shippingState">
-                                                <option value="NY">New York</option>
-                                                <option value="CA">California</option>
-                                                <option value="TX">Texas</option>
-                                                <!-- Add more options as needed -->
-                                            </select>
-                                            </div>
-                                            <div class="mb-3">
-                                            <label for="postalCode" class="form-label">Postal Code</label>
-                                            <input type="text" class="form-control" id="postalCode" placeholder="Enter postal code">
-                                            </div>
-                                        </div>
-                                        <div class="offcanvas-footer">
-                                            <button type="button" class="btn btn-secondary" >Cancel</button>
-                                            <button type="button" class="btn btn-primary">Save Shipping</button>
-                                        </div>
-                                        </div>
-                                        <div class="col-4">
-                                        <button class="btn text-dark w-100" data-bs-toggle="offcanvas" data-bs-target="#shippingOffcanvas">
-                                            <i class="bi bi-truck"></i> Shipping
-                                        </button>
-                                        </div>
-                                    
-                                        <!-- Modal for Coupon -->
-                                        <div class="offcanvas offcanvas-end d-none" tabindex="-1" id="couponOffcanvas" aria-labelledby="couponOffcanvasLabel">
-                                        <div class="offcanvas-header">
-                                            <h5 class="offcanvas-title" id="couponOffcanvasLabel">Coupon Code</h5>
-                                            <button type="button" class="btn-close"  ></button>
-                                        </div>
-                                        <div class="offcanvas-body">
-                                            <input type="text" class="form-control" id="couponCode" placeholder="Enter coupon code">
-                                        </div>
-                                        <div class="offcanvas-footer">
-                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="offcanvas">Cancel</button>
-                                            <button type="button" class="btn btn-primary">Apply Coupon</button>
-                                        </div>
-                                        </div>
-                                        <div class="col-4">
-                                        <button class="btn text-dark w-100" data-bs-toggle="offcanvas" data-bs-target="#couponOffcanvas">
-                                            <i class="bi bi-tag"></i> Coupon
-                                        </button>
-                                        </div>
-                                    </div>
-                                </div>
                                 
-                            <div class="d-flex justify-content-between mt-3">
-                                <h4>Subtotal</h4>
-                                <h4>$0.00</h4>
-                            </div>
-                        
-                        
-                            <div class="mt-3 d-flex direction-column gap-3">
-                                <button class="btn btn-outline-primary w-100 ">View Cart</button>
-                                <button class="btn btn-primary w-100">Check Out</button>
-                            </div>
-                            <p class="text-center mt-3">Or Continue Shopping </p>
+                                    
+                                <div class="d-flex justify-content-between mt-3">
+                                    <h4>Subtotal</h4>
+                                    <h4>$0.00</h4>
+                                </div>
+                            
+                            
+                                <div class="mt-3 d-flex direction-column gap-3">
+                                    <button class="btn btn-outline-primary w-100 ">View Cart</button>
+                                    <button class="btn btn-primary w-100">Check Out</button>
+                                </div>
+                                <p class="text-center mt-3 mb-0">Or Continue Shopping </p>
                             </div>
                         </div>
                         
