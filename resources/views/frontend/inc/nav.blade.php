@@ -406,7 +406,10 @@
         </div>
         <div class="col-8 d-flex justify-content-end align-items-center">
             <i class="fa-solid fa-user fs-20 me-3"></i>
-            <i class="fa-solid fa-cart-shopping fs-20"></i>
+            <button class="btn btn-light bg-white p-0 border-0 toggle-cart-modal">
+                <i class="fa-solid fa-cart-shopping fs-20"></i>
+            </button>
+            
         </div>
         <div class="col-12 mt-2">
             <input type="text" class="form-control fs-18 border-none search" placeholder="Search products..." style="background: rgba(0,0,0,.08); border-radius: 30px; padding: 3px 20px;height: auto;">

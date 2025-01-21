@@ -128,7 +128,19 @@
     grid-template-rows: 1fr 1fr 1fr ;
     height: 100%;
 }
+@media (max-width: 1800px){
+    .bighouz-business {
+        grid-template-columns: 1.5fr 1fr;
+        gap: 25px;
+    }
+}
 
+@media (max-width: 1300px){
+    .bighouz-business {
+        grid-template-columns: 1fr 1fr;
+        gap: 15px;
+    }
+}
 /* Mobile (small screens) layout - 1 column per row *//* For screens below 767px (Mobile) */
 @media (max-width: 767px) {
     .category-grid {
