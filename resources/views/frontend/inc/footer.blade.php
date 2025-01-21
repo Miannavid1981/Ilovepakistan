@@ -300,18 +300,22 @@
             </div>
         </div>
         <div class="row mt-5">
-            <div class="col-lg-6  text-center text-md-start">
-                <p class="mb-0 fs-17">©2025 Bighouz. All Rights Reserved.</p>
-            </div>
-            <div class="col-lg-6 text-lg-end  text-center text-md-start">
-                <span>
-                    <img src="https://s.alicdn.com/@img/imgextra/i4/O1CN01dsw9V61Lbh0D1f9JG_!!6000000001320 fw-bold-2-tps-205-112.png" width="40px" alt="Visa">
-                    <img src="https://s.alicdn.com/@img/imgextra/i4/O1CN01sXbha020agNJcLC4l_!!6000000006866-2-tps-148-112.png" width="40px" alt="Master">
-                    <img src="https://s.alicdn.com/@img/imgextra/i4/O1CN010I5eGr1aDcQ82EcRH_!!6000000003296-2-tps-169-112.png" width="40px" alt="unionpay">
-                    <img src="https://s.alicdn.com/@img/imgextra/i1/O1CN017IIzE71MpGLv2nxMd_!!6000000001483-2-tps-260-112.png" width="70px" alt="PayPal">
-                </span>
-            </div>
-        </div>
+    <!-- Images Section -->
+    <div class="col-lg-6 order-1 order-md-2 text-center text-md-end">
+        <span>
+            <img src="https://s.alicdn.com/@img/imgextra/i4/O1CN01dsw9V61Lbh0D1f9JG_!!6000000001320 fw-bold-2-tps-205-112.png" width="40px" alt="Visa">
+            <img src="https://s.alicdn.com/@img/imgextra/i4/O1CN01sXbha020agNJcLC4l_!!6000000006866-2-tps-148-112.png" width="40px" alt="Master">
+            <img src="https://s.alicdn.com/@img/imgextra/i4/O1CN010I5eGr1aDcQ82EcRH_!!6000000003296-2-tps-169-112.png" width="40px" alt="UnionPay">
+            <img src="https://s.alicdn.com/@img/imgextra/i1/O1CN017IIzE71MpGLv2nxMd_!!6000000001483-2-tps-260-112.png" width="70px" alt="PayPal">
+        </span>
+    </div>
+
+    <!-- Text Section -->
+    <div class="col-lg-6 order-2 order-md-1 text-center text-md-start">
+        <p class="mb-0 fs-17">©2025 Bighouz. All Rights Reserved.</p>
+    </div>
+</div>
+
     </div>
 </footer>
 
