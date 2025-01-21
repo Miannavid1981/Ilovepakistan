@@ -202,7 +202,7 @@
 
         <!-- Product name -->
         <span class="custom_card_tag mb-1"> Tag</span>
-        <h3 class="fw-400 fs-16 text-truncate-2 lh-1-4 mb-0 mt-1">
+        <h3 class="fw-400 fs-18 text-truncate-2 lh-1-4 mb-0 mt-1">
             
             <a href="{{ $product_url }}" class="d-block hov-text-primary" style="font-weight: 700; color: #424242; line-height: 1;" title="{{ $product->getTranslation('name') }}">{{ $product->getTranslation('name') }}</a>
 
