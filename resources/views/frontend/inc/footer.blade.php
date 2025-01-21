@@ -220,679 +220,104 @@
 
 @endphp
 
-<section class="py-lg-3 text-light footer-widget mt-3" style="background-color: #E8E8E8 !important;">
-
-    <!-- footer widgets ========== [Accordion Fotter widgets are bellow from this]-->
-
-    <div class="container d-none d-lg-block">
-
+<footer class="footer text-dark pt-5 pb-3" style="background-color: #E8E8E8; line-height: 40px;">
+    <div class="container">
         <div class="row">
-        <!-- Quick links -->
-            <div class="{{ $col_values }}">
-                <div class="text-center text-sm-left mt-4">
-                    <h4 class="fs-12 text-secondary text-uppercase fw-700 mb-3">
-                        {{ get_setting('widget_one', null, App::getLocale()) }}
-                    </h4>
-                    <ul class="list-unstyled">
-                        @if (get_setting('widget_one_labels', null, App::getLocale()) != null)
-                            @foreach (json_decode(get_setting('widget_one_labels', null, App::getLocale()), true) as $key => $value)
-                                @php
-                                    $widget_one_links = '';
-                                    if (isset(json_decode(get_setting('widget_one_links'), true)[$key])) {
-                                        $widget_one_links = json_decode(get_setting('widget_one_links'), true)[$key];
-                                    }
-                                @endphp
-                                <li class="mb-2">
-                                    <a href="{{ $widget_one_links }}" class="fs-11 text-soft-light animate-underline-white">
-                                        {{ $value }}
-                                    </a>
-                                </li>
-                            @endforeach
-                        @endif
-                    </ul>
-                </div>
+            <!-- About Section -->
+            <div class="col-lg-2 col-md-6 mb-4 text-center text-md-start">
+                <img src="https://allaaddin.com/public/images/1j+ojFVDOMkX9Wytexe43D6kh.png" width="100px" alt="">
+                <ul class="list-unstyled">
+                    <li class="fs-17"><strong>Mail:</strong> hi.avitex@gmail.com</li>
+                    <li class="fs-17"><strong>Phone:</strong> 1-333-345-6868</li>
+                    <li class="fs-17"><strong>Address:</strong> 549 Oak St. Crystal Lake, IL 60014</li>
+                </ul>
             </div>
-
-        <!-- Contacts -->
-        <div class="{{ $col_values }}">
-            <div class="text-center text-sm-left mt-4">
-                <h3 class="fs-14 text-dark text-uppercase fw-700 mb-3">{{ translate('Contacts') }}</h3>
+            <!-- Information Section -->
+            <div class="col-12 col-lg-2 col-md-6 mb-4 text-center text-md-start">
+                <h5 class="fs-20 fw-bold">Information</h5>
+                <ul class="list-unstyled">
+                    <li><a href="#" class="text-dark fs-17 text-decoration-none">Contact Us</a></li>
+                    <li><a href="#" class="text-dark fs-17 text-decoration-none">Career</a></li>
+                    <li><a href="#" class="text-dark fs-17 text-decoration-none">My Account</a></li>
+                    <li><a href="#" class="text-dark fs-17 text-decoration-none">Order & Returns</a></li>
+                    <li><a href="#" class="text-dark fs-17 text-decoration-none">FAQs</a></li>
+                </ul>
+            </div>
+            <!-- Quick Shop Section -->
+            <div class="col-12 col-lg-2 col-md-6 mb-4 text-center text-md-start">
+                <h5 class="fs-20 fw-bold fw-bold">Quick Shop</h5>
+                <ul class="list-unstyled">
+                    <li><a href="#" class="text-dark fs-17 text-decoration-none">Women</a></li>
+                    <li><a href="#" class="text-dark fs-17 text-decoration-none">Men</a></li>
+                    <li><a href="#" class="text-dark fs-17 text-decoration-none">Clothes</a></li>
+                    <li><a href="#" class="text-dark fs-17 text-decoration-none">Accessories</a></li>
+                    <li><a href="#" class="text-dark fs-17 text-decoration-none">Blog</a></li>
+                </ul>
+            </div>
+            <!-- Customer Services Section -->
+            <div class="col-12 col-lg-2 col-md-6 mb-4 text-center text-md-start">
+                <h5 class="fs-20 fw-bold">Customer Services</h5>
+                <ul class="list-unstyled">
+                    <li><a href="#" class="text-dark fs-17 text-decoration-none">Orders FAQs</a></li>
+                    <li><a href="#" class="text-dark fs-17 text-decoration-none">Shipping</a></li>
+                    <li><a href="#" class="text-dark fs-17 text-decoration-none">Privacy Policy</a></li>
+                    <li><a href="#" class="text-dark fs-17 text-decoration-none">Return & Refund</a></li>
+                </ul>
+            </div>
+            <!-- Seller Zone Section -->
+            <div class="col-12 col-lg-2 col-md-6 mb-4 text-center text-md-start">
+                <h5 class="fs-20 fw-bold">Seller Zone</h5>
                 <ul class="list-unstyled">
                     <li class="mb-2">
-                        <p class="fs-12 text-secondary mb-1">{{ translate('Address') }}</p>
-                        <p class="fs-12 text-secondary">{{ get_setting('contact_address', null, App::getLocale()) }}</p>
-                    </li>
-                    <li class="mb-2">
-                        <p class="fs-12 text-secondary mb-1">{{ translate('Phone') }}</p>
-                        <p class="fs-12 text-secondary">{{ get_setting('contact_phone') }}</p>
-                    </li>
-                    <li class="mb-2">
-                        <p class="fs-12 text-secondary mb-1">{{ translate('Email') }}</p>
-                        <p>
-                            <a href="mailto:{{ get_setting('contact_email') }}" class="fs-13 text-secondary hov-text-primary">
-                                {{ get_setting('contact_email') }}
-                            </a>
+                        <p class="fs-17 text-dark text-secondary mb-0">
+                            Become A Seller
+                            <a href="#" class="fs-17 fw-700 text-warning ml-2">Apply Now</a>
                         </p>
                     </li>
+                    <li class="mb-2">
+                        <a class="fs-17 text-dark animate-underline-dark" href="#">Login to Seller Panel</a>
+                    </li>
+                    <li class="mb-2">
+                        <a class="fs-17 text-dark animate-underline-dark" target="_blank" href="#">Download Seller App</a>
+                    </li>
                 </ul>
             </div>
-        </div>
-
-        <!-- My Account -->
-        <div class="{{ $col_values }}">
-            <div class="text-center text-sm-left mt-4">
-                <h4 class="fs-15 text-dark text-uppercase fw-700 mb-3">{{ translate('My Account') }}</h4>
-                <ul class="list-unstyled">
-                    @if (Auth::check())
-                        <li class="mb-2">
-                            <a class="fs-13 text-secondary animate-underline-white" href="{{ route('logout') }}">
-                                {{ translate('Logout') }}
-                            </a>
-                        </li>
-                    @else
-                        <li class="mb-2">
-                            <a class="fs-11 text-secondary animate-underline-white" href="{{ route('user.login') }}">
-                                {{ translate('Login') }}
-                            </a>
-                        </li>
-                    @endif
-                    <li class="mb-2">
-                        <a class="fs-11 text-secondary animate-underline-white" href="{{ route('purchase_history.index') }}">
-                            {{ translate('Order History') }}
-                        </a>
-                    </li>
-                    <li class="mb-2">
-                        <a class="fs-11 text-secondary animate-underline-white" href="{{ route('wishlists.index') }}">
-                            {{ translate('My Wishlist') }}
-                        </a>
-                    </li>
-                    <li class="mb-2">
-                        <a class="fs-11 text-secondary animate-underline-white" href="{{ route('orders.track') }}">
-                            {{ translate('Track Order') }}
-                        </a>
-                    </li>
-                    @if (addon_is_activated('affiliate_system'))
-                        <li class="mb-2">
-                            <a class="fs-11 text-secondary animate-underline-white" href="{{ route('affiliate.apply') }}">
-                                {{ translate('Be an affiliate partner') }}
-                            </a>
-                        </li>
-                    @endif
-                </ul>
+            <!-- Newsletter Section -->
+            <div class="col-lg-2 col-md-12 text-center text-md-start">
+                <h5 class="fs-20 fw-bold">Newsletter</h5>
+                <p class="fs-17">Sign up for our newsletter and get 10% off your first purchase</p>
+                <div class="input-group mb-3">
+                    <input type="email" class="form-control" placeholder="Enter your e-mail">
+                    <button class="btn btn-secondary" type="button"><i class="fa-solid fa-arrow-right"></i></button>
+                </div>
+                <div class="d-flex justify-content-center justify-content-md-start">
+                    <a href="#" class="me-3 text-dark"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="me-3 text-dark"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="me-3 text-dark"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="me-3 text-dark"><i class="fab fa-youtube"></i></a>
+                    <a href="#" class="text-dark"><i class="fab fa-pinterest"></i></a>
+                </div>
             </div>
         </div>
-
-        <!-- Seller & Delivery Boy -->
-            @if ((get_setting('vendor_system_activation') == 1) || addon_is_activated('delivery_boy'))
-                <div class="col-lg-3 col-md-4 col-sm-6">
-                    <div class="text-center text-sm-left mt-4">
-                        @if (get_setting('vendor_system_activation') == 1)
-                            <h4 class="fs-15 text-dark text-uppercase fw-700 mb-3">{{ translate('Seller Zone') }}</h4>
-                            <ul class="list-unstyled">
-                                <li class="mb-2">
-                                    <p class="fs-11 text-secondary mb-0">
-                                        {{ translate('Become A Seller') }}
-                                        <a href="{{ route('shops.create') }}" class="fs-13 fw-700 text-warning ml-2">
-                                            {{ translate('Apply Now') }}
-                                        </a>
-                                    </p>
-                                </li>
-                                @guest
-                                    <li class="mb-2">
-                                        <a class="fs-11 text-secondary animate-underline-white" href="{{ route('seller.login') }}">
-                                            {{ translate('Login to Seller Panel') }}
-                                        </a>
-                                    </li>
-                                @endguest
-                                @if (get_setting('seller_app_link'))
-                                    <li class="mb-2">
-                                        <a class="fs-11 text-secondary animate-underline-white" target="_blank" href="{{ get_setting('seller_app_link') }}">
-                                            {{ translate('Download Seller App') }}
-                                        </a>
-                                    </li>
-                                @endif
-                            </ul>
-                        @endif
-                        @if (addon_is_activated('delivery_boy'))
-                            <h4 class="fs-14 text-secondary text-uppercase fw-700 mt-4 mb-3">{{ translate('Delivery Boy') }}</h4>
-                            <ul class="list-unstyled">
-                                @guest
-                                    <li class="mb-2">
-                                        <a class="fs-11 text-secondary animate-underline-white" href="{{ route('deliveryboy.login') }}">
-                                            {{ translate('Login to Delivery Boy Panel') }}
-                                        </a>
-                                    </li>
-                                @endguest
-                                @if (get_setting('delivery_boy_app_link'))
-                                    <li class="mb-2">
-                                        <a class="fs-11 text-secondary animate-underline-white" target="_blank" href="{{ get_setting('delivery_boy_app_link') }}">
-                                            {{ translate('Download Delivery Boy App') }}
-                                        </a>
-                                    </li>
-                                @endif
-                            </ul>
-                        @endif
-
-                        <!-- Apps link -->
-
-                        @if((get_setting('play_store_link') != null) || (get_setting('app_store_link') != null))
-
-                                <h5 class="fs-12 fw-700 text-secondary text-uppercase mt-3">{{ translate('Mobile Apps') }}</h5>
-
-                                <div class="d-flex mt-3 mb-3">
-
-                                    <div class="">
-
-                                        <a href="{{ get_setting('play_store_link') }}" target="_blank" class="mr-2 mb-2 overflow-hidden hov-scale-img">
-
-                                            <img class="lazyload has-transition" src="{{ static_asset('assets/img/placeholder-rect.jpg') }}" data-src="{{ static_asset('assets/img/play.png') }}" alt="{{ env('APP_NAME') }}" height="44">
-
-                                        </a>
-
-                                    </div>
-
-                                    <div class="">
-
-                                        <a href="{{ get_setting('app_store_link') }}" target="_blank" class="overflow-hidden hov-scale-img">
-
-                                            <img class="lazyload has-transition" src="{{ static_asset('assets/img/placeholder-rect.jpg') }}" data-src="{{ static_asset('assets/img/app.png') }}" alt="{{ env('APP_NAME') }}" height="44">
-
-                                        </a>
-
-                                    </div>
-
-                                </div>
-
-                            @endif
-
-                            <!-- Social -->
-
-                            @if ( get_setting('show_social_links') )
-
-                                <h5 class="fs-12 fw-700 text-secondary text-uppercase mt-3 mt-lg-0">{{ translate('Connect with Allaaddin') }}</h5>
-
-                                <ul class="list-inline social colored  d-flex align-items-baseline">
-
-                                    @if (!empty(get_setting('facebook_link')))
-                                        <li class="list-inline-item ml-2 mr-2">
-                                            <a href="{{ get_setting('facebook_link') }}" target="_blank" class="bg-transparent">
-                                            <i class="fa-brands fa-facebook " style="background: transparent;"></i>
-                                            </a>
-                                        </li>
-                                    @endif
-
-                                    @if (!empty(get_setting('twitter_link')))
-
-                                        <li class="list-inline-item ml-2 mr-2">
-
-                                            <a href="{{ get_setting('twitter_link') }}" target="_blank"
-
-                                                class="bg-transparent"><i class="fa-brands fa-x-twitter" style="background: transparent;"></i></a>
-
-                                        </li>
-
-                                    @endif
-
-                                    @if (!empty(get_setting('pinterest_link')))
-
-                                        <li class="list-inline-item ml-2 mr-2">
-
-                                            <a href="{{ get_setting('pinterest_link') }}" target="_blank"
-
-                                                class="bg-transparent"><i class="fa-brands fa-pinterest" style="background: transparent;"></i></a>
-
-                                        </li>
-
-                                        @endif
-
-
-                                    @if (!empty(get_setting('instagram_link')))
-
-                                        <li class="list-inline-item ml-2 mr-2">
-
-                                            <a href="{{ get_setting('instagram_link') }}" target="_blank"
-
-                                                class="bg-transparent">
-                                                <i class="fa-brands fa-instagram" style="background: transparent;"></i>
-                                            </a>
-
-                                        </li>
-
-                                    @endif
-
-                                    @if (!empty(get_setting('youtube_link')))
-
-                                        <li class="list-inline-item ml-2 mr-2">
-
-                                            <a href="{{ get_setting('youtube_link') }}" target="_blank"
-
-                                                class="bg-transparent"><i class="fa-brands fa-youtube" style="background: transparent;"></i></a>
-
-                                        </li>
-
-                                    @endif
-
-                                    @if (!empty(get_setting('linkedin_link')))
-
-                                        <li class="list-inline-item ml-2 mr-2">
-
-                                            <a href="{{ get_setting('linkedin_link') }}" target="_blank"
-
-                                                class="bg-transparent"><i class="fa-brands fa-linkedin" style="background: transparent;"></i></a>
-
-                                        </li>
-
-                                    @endif
-
-                                </ul>
-
-                            @endif
-
-                            </div>
-                        </div>
-                    @endif
-                </div>
-
-
-                <div class="row">
-                    <!-- First Column -->
-                    <div class="col-6">
-                        <div class="text-center text-sm-left ">
-                            <h4 class="fs-12 text-secondary text-uppercase fw-700 mb-3">
-                                {{ translate('Security certification') }}
-                            </h4>
-                            <div class="d-flex flex-wrap justify-content-start align-items-start">
-                                <img class="lazyload has-transition m-2" src="{{ static_asset('assets/img/placeholder-rect.jpg') }}" data-src="{{ static_asset('assets/img/1.webp') }}" alt="{{ env('APP_NAME') }}" height="24">
-                                <img class="lazyload has-transition m-2" src="{{ static_asset('assets/img/placeholder-rect.jpg') }}" data-src="{{ static_asset('assets/img/2.webp') }}" alt="{{ env('APP_NAME') }}" height="24">
-                                <img class="lazyload has-transition m-2" src="{{ static_asset('assets/img/placeholder-rect.jpg') }}" data-src="{{ static_asset('assets/img/3.webp') }}" alt="{{ env('APP_NAME') }}" height="24">
-                                <img class="lazyload has-transition m-2" src="{{ static_asset('assets/img/placeholder-rect.jpg') }}" data-src="{{ static_asset('assets/img/4.webp') }}" alt="{{ env('APP_NAME') }}" height="24">
-                                <img class="lazyload has-transition m-2" src="{{ static_asset('assets/img/placeholder-rect.jpg') }}" data-src="{{ static_asset('assets/img/5.webp') }}" alt="{{ env('APP_NAME') }}" height="24">
-                                <img class="lazyload has-transition m-2" src="{{ static_asset('assets/img/placeholder-rect.jpg') }}" data-src="{{ static_asset('assets/img/6.webp') }}" alt="{{ env('APP_NAME') }}" height="24">
-                                <img class="lazyload has-transition m-2" src="{{ static_asset('assets/img/placeholder-rect.jpg') }}" data-src="{{ static_asset('assets/img/7.webp') }}" alt="{{ env('APP_NAME') }}" height="24">
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Second Column -->
-                    <div class="col-6">
-                        <div class="text-center text-sm-left ">
-                            <h4 class="fs-12 text-secondary text-uppercase fw-700 mb-3">
-                                {{ translate('We accept') }}
-                            </h4>
-                            <div class="d-flex flex-wrap justify-content-start">
-                                <img class="lazyload has-transition m-2" src="{{ static_asset('assets/img/placeholder-rect.jpg') }}" data-src="{{ static_asset('assets/img/1.1.webp') }}" alt="Image 4" height="24">
-                                <img class="lazyload has-transition m-2" src="{{ static_asset('assets/img/placeholder-rect.jpg') }}" data-src="{{ static_asset('assets/img/1.2.webp') }}" alt="Image 5" height="24">
-                                <img class="lazyload has-transition m-2" src="{{ static_asset('assets/img/placeholder-rect.jpg') }}" data-src="{{ static_asset('assets/img/1.3.webp') }}" alt="Image 6" height="24">
-                                <img class="lazyload has-transition m-2" src="{{ static_asset('assets/img/placeholder-rect.jpg') }}" data-src="{{ static_asset('assets/img/1.4.webp') }}" alt="Image 5" height="24">
-                                <img class="lazyload has-transition m-2" src="{{ static_asset('assets/img/placeholder-rect.jpg') }}" data-src="{{ static_asset('assets/img/1.5.webp') }}" alt="Image 6" height="24">
-                                <img class="lazyload has-transition m-2" src="{{ static_asset('assets/img/placeholder-rect.jpg') }}" data-src="{{ static_asset('assets/img/1.6.webp') }}" alt="Image 5" height="24">
-                                <img class="lazyload has-transition m-2" src="{{ static_asset('assets/img/placeholder-rect.jpg') }}" data-src="{{ static_asset('assets/img/1.7.webp') }}" alt="Image 6" height="24">
-                                <img class="lazyload has-transition m-2" src="{{ static_asset('assets/img/placeholder-rect.jpg') }}" data-src="{{ static_asset('assets/img/1.8.webp') }}" alt="Image 5" height="24">
-                                <img class="lazyload has-transition m-2" src="{{ static_asset('assets/img/placeholder-rect.jpg') }}" data-src="{{ static_asset('assets/img/1.9.webp') }}" alt="Image 6" height="24">
-                                <img class="lazyload has-transition m-2" src="{{ static_asset('assets/img/placeholder-rect.jpg') }}" data-src="{{ static_asset('assets/img/2.0.webp') }}" alt="Image 5" height="24">
-                                
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row justify-content-center mt-2" style="border-top: 1px solid #444;">
-                    <div class="col-auto d-flex justify-content-center align-items-center mt-2">
-                        <span>© 2024 Allaaddin All rights reserved.</span>
-                        <!-- <a href="#" class="text-white text-decoration-none mx-2">Terms of use</a>
-                        <a href="#" class="text-white text-decoration-none mx-2">Privacy policy</a>
-                        <a href="#" class="text-white text-decoration-none mx-2">Your privacy choices</a>
-                        <a href="#" class="text-white text-decoration-none mx-2">Ad Choices</a> -->
-                    </div>
-                </div>
-
-
-
-
-
+        <div class="row mt-5">
+            <div class="col-lg-6  text-center text-md-start">
+                <p class="mb-0 fs-17">©2025 Bighouz. All Rights Reserved.</p>
+            </div>
+            <div class="col-lg-6 text-lg-end  text-center text-md-start">
+                <span>
+                    <img src="https://s.alicdn.com/@img/imgextra/i4/O1CN01dsw9V61Lbh0D1f9JG_!!6000000001320 fw-bold-2-tps-205-112.png" width="40px" alt="Visa">
+                    <img src="https://s.alicdn.com/@img/imgextra/i4/O1CN01sXbha020agNJcLC4l_!!6000000006866-2-tps-148-112.png" width="40px" alt="Master">
+                    <img src="https://s.alicdn.com/@img/imgextra/i4/O1CN010I5eGr1aDcQ82EcRH_!!6000000003296-2-tps-169-112.png" width="40px" alt="unionpay">
+                    <img src="https://s.alicdn.com/@img/imgextra/i1/O1CN017IIzE71MpGLv2nxMd_!!6000000001483-2-tps-260-112.png" width="70px" alt="PayPal">
+                </span>
+            </div>
+        </div>
     </div>
+</footer>
 
 
 
-    <!-- Accordion Fotter widgets -->
 
-    <div class="d-lg-none bg-transparent">
-
-        <!-- Quick links -->
-
-        <div class="aiz-accordion-wrap bg-black">
-
-            <div class="aiz-accordion-heading container bg-black">
-
-                <button class="aiz-accordion fs-14 text-white bg-transparent">{{ get_setting('widget_one',null,App::getLocale()) }}</button>
-
-            </div>
-
-            <div class="aiz-accordion-panel bg-transparent" style="background-color: #212129 !important;">
-
-                <div class="container">
-
-                    <ul class="list-unstyled mt-3">
-
-                        @if ( get_setting('widget_one_labels',null,App::getLocale()) !=  null )
-
-                            @foreach (json_decode( get_setting('widget_one_labels',null,App::getLocale()), true) as $key => $value)
-
-							@php
-
-								$widget_one_links = '';
-
-								if(isset(json_decode(get_setting('widget_one_links'), true)[$key])) {
-
-									$widget_one_links = json_decode(get_setting('widget_one_links'), true)[$key];
-
-								}
-
-							@endphp
-
-                            <li class="mb-2 pb-2 @if (url()->current() == $widget_one_links) active @endif">
-
-                                <a href="{{ $widget_one_links }}" class="fs-13 text-soft-light text-sm-secondary animate-underline-white">
-
-                                    {{ $value }}
-
-                                </a>
-
-                            </li>
-
-                            @endforeach
-
-                        @endif
-
-                    </ul>
-
-                </div>
-
-            </div>
-
-        </div>
-
-        
-
-        <!-- Contacts -->
-
-        <div class="aiz-accordion-wrap bg-black">
-
-            <div class="aiz-accordion-heading container bg-black">
-
-                <button class="aiz-accordion fs-14 text-white bg-transparent">{{ translate('Contacts') }}</button>
-
-            </div>
-
-            <div class="aiz-accordion-panel bg-transparent" style="background-color: #212129 !important;">
-
-                <div class="container">
-
-                    <ul class="list-unstyled mt-3">
-
-                        <li class="mb-2">
-
-                            <p  class="fs-13 text-secondary mb-1">{{ translate('Address') }}</p>
-
-                            <p  class="fs-13 text-soft-light">{{ get_setting('contact_address',null,App::getLocale()) }}</p>
-
-                        </li>
-
-                        <li class="mb-2">
-
-                            <p  class="fs-13 text-secondary mb-1">{{ translate('Phone') }}</p>
-
-                            <p  class="fs-13 text-soft-light">{{ get_setting('contact_phone') }}</p>
-
-                        </li>
-
-                        <li class="mb-2">
-
-                            <p  class="fs-13 text-secondary mb-1">{{ translate('Email') }}</p>
-
-                            <p  class="">
-
-                                <a href="mailto:{{ get_setting('contact_email') }}" class="fs-13 text-soft-light hov-text-primary">{{ get_setting('contact_email')  }}</a>
-
-                            </p>
-
-                        </li>
-
-                    </ul>
-
-                </div>
-
-            </div>
-
-        </div>
-
-
-
-        <!-- My Account -->
-
-        <div class="aiz-accordion-wrap bg-black">
-
-            <div class="aiz-accordion-heading container bg-black">
-
-                <button class="aiz-accordion fs-14 text-white bg-transparent">{{ translate('My Account') }}</button>
-
-            </div>
-
-            <div class="aiz-accordion-panel bg-transparent" style="background-color: #212129 !important;">
-
-                <div class="container">
-
-                    <ul class="list-unstyled mt-3">
-
-                        @auth
-
-                            <li class="mb-2 pb-2">
-
-                                <a class="fs-13 text-soft-light text-sm-secondary animate-underline-white" href="{{ route('logout') }}">
-
-                                    {{ translate('Logout') }}
-
-                                </a>
-
-                            </li>
-
-                        @else
-
-                            <li class="mb-2 pb-2 {{ areActiveRoutes(['user.login'],' active')}}">
-
-                                <a class="fs-13 text-soft-light text-sm-secondary animate-underline-white" href="{{ route('user.login') }}">
-
-                                    {{ translate('Login') }}
-
-                                </a>
-
-                            </li>
-
-                        @endauth
-
-                        <li class="mb-2 pb-2 {{ areActiveRoutes(['purchase_history.index'],' active')}}">
-
-                            <a class="fs-13 text-soft-light text-sm-secondary animate-underline-white" href="{{ route('purchase_history.index') }}">
-
-                                {{ translate('Order History') }}
-
-                            </a>
-
-                        </li>
-
-                        <li class="mb-2 pb-2 {{ areActiveRoutes(['wishlists.index'],' active')}}">
-
-                            <a class="fs-13 text-soft-light text-sm-secondary animate-underline-white" href="{{ route('wishlists.index') }}">
-
-                                {{ translate('My Wishlist') }}
-
-                            </a>
-
-                        </li>
-
-                        <li class="mb-2 pb-2 {{ areActiveRoutes(['orders.track'],' active')}}">
-
-                            <a class="fs-13 text-soft-light text-sm-secondary animate-underline-white" href="{{ route('orders.track') }}">
-
-                                {{ translate('Track Order') }}
-
-                            </a>
-
-                        </li>
-
-                        @if (addon_is_activated('affiliate_system'))
-
-                            <li class="mb-2 pb-2 {{ areActiveRoutes(['affiliate.apply'],' active')}}">
-
-                                <a class="fs-13 text-soft-light text-sm-secondary animate-underline-white" href="{{ route('affiliate.apply') }}">
-
-                                    {{ translate('Be an affiliate partner')}}
-
-                                </a>
-
-                            </li>
-
-                        @endif
-
-                    </ul>
-
-                </div>
-
-            </div>
-
-        </div>
-
-
-
-        <!-- Seller -->
-
-        @if (get_setting('vendor_system_activation') == 1)
-
-        <div class="aiz-accordion-wrap bg-black">
-
-            <div class="aiz-accordion-heading container bg-black">
-
-                <button class="aiz-accordion fs-14 text-white bg-transparent">{{ translate('Seller Zone') }}</button>
-
-            </div>
-
-            <div class="aiz-accordion-panel bg-transparent" style="background-color: #212129 !important;">
-
-                <div class="container">
-
-                    <ul class="list-unstyled mt-3">
-
-                        <li class="mb-2 pb-2 {{ areActiveRoutes(['shops.create'],' active')}}">
-
-                            <p class="fs-13 text-soft-light text-sm-secondary mb-0">
-
-                                {{ translate('Become A Seller') }} 
-
-                                <a href="{{ route('shops.create') }}" class="fs-13 fw-700 text-warning ml-2">{{ translate('Apply Now') }}</a>
-
-                            </p>
-
-                        </li>
-
-                        @guest
-
-                            <li class="mb-2 pb-2 {{ areActiveRoutes(['deliveryboy.login'],' active')}}">
-
-                                <a class="fs-13 text-soft-light text-sm-secondary animate-underline-white" href="{{ route('seller.login') }}">
-
-                                    {{ translate('Login to Seller Panel') }}
-
-                                </a>
-
-                            </li>
-
-                        @endguest
-
-                        @if(get_setting('seller_app_link'))
-
-                            <li class="mb-2 pb-2">
-
-                                <a class="fs-13 text-soft-light text-sm-secondary animate-underline-white" target="_blank" href="{{ get_setting('seller_app_link')}}">
-
-                                    {{ translate('Download Seller App') }}
-
-                                </a>
-
-                            </li>
-
-                        @endif
-
-                    </ul>
-
-                </div>
-
-            </div>
-
-        </div>
-
-        @endif
-
-
-
-        <!-- Delivery Boy -->
-
-        @if (addon_is_activated('delivery_boy'))
-
-        <div class="aiz-accordion-wrap bg-black">
-
-            <div class="aiz-accordion-heading container bg-black">
-
-                <button class="aiz-accordion fs-14 text-white bg-transparent">{{ translate('Delivery Boy') }}</button>
-
-            </div>
-
-            <div class="aiz-accordion-panel bg-transparent" style="background-color: #212129 !important;">
-
-                <div class="container">
-
-                    <ul class="list-unstyled mt-3">
-
-                        @guest
-
-                            <li class="mb-2 pb-2 {{ areActiveRoutes(['deliveryboy.login'],' active')}}">
-
-                                <a class="fs-13 text-soft-light text-sm-secondary animate-underline-white" href="{{ route('deliveryboy.login') }}">
-
-                                    {{ translate('Login to Delivery Boy Panel') }}
-
-                                </a>
-
-                            </li>
-
-                        @endguest
-
-                        @if(get_setting('delivery_boy_app_link'))
-
-                            <li class="mb-2 pb-2">
-
-                                <a class="fs-13 text-soft-light text-sm-secondary animate-underline-white" target="_blank" href="{{ get_setting('delivery_boy_app_link')}}">
-
-                                    {{ translate('Download Delivery Boy App') }}
-
-                                </a>
-
-                            </li>
-
-                        @endif
-
-                    </ul>
-
-                </div>
-
-            </div>
-
-        </div>
-
-        @endif
-
-    </div>
-
-</section>
 
 
 
@@ -951,7 +376,7 @@
 
 <!-- Mobile bottom nav -->
 
-<div class="aiz-mobile-bottom-nav d-xl-none fixed-bottom border-top border-sm-bottom border-sm-left border-sm-right mx-auto mb-sm-2" style="background-color: rgb(255 255 255 / 90%)!important;">
+<div class="aiz-mobile-bottom-nav d-xl-none fixed-bottom border-top border-sm-bottom border-sm-left border-sm-right mx-auto mb-sm-2 " style="background-color: rgb(255 255 255 / 90%)!important;">
 
     <div class="row align-items-center gutters-5">
 

@@ -5,6 +5,14 @@
 
 @endphp
 <style>
+
+    .custom_card_tag{
+        background-color: yellow;
+        border: 1px solid yellow;
+        border-radius: 10px ;
+        width: fit-content;
+    }
+
    
 </style>
 <div class="aiz-card-box h-auto py-3 ">
@@ -201,20 +209,22 @@
     <div class="py-2 py-md-3 text-left">
 
         <!-- Product name -->
-        <span class="custom_card_tag mb-1"> Tag</span>
-        <h3 class="fw-400 fs-18 text-truncate-2 lh-1-4 mb-0 mt-1">
+
+        <button class="custom_card_tag mb-1"> Tag</button>
+        <h3 class="fw-400 fs-16 text-truncate-2 lh-1-4 mb-0 mt-1">
+
             
             <a href="{{ $product_url }}" class="d-block hov-text-primary" style="font-weight: 700; color: #424242; line-height: 1;" title="{{ $product->getTranslation('name') }}">{{ $product->getTranslation('name') }}</a>
 
         </h3>
-        <div class="d-flex justify-content-start align-items-center g-2 text-warning fs-12 mt-1">
+        <div class="d-flex justify-content-start align-items-center g-2 text-warning fs-18 mt-1">
             <i class="la la-star"></i>
             <i class="la la-star"></i>
             <i class="la la-star"></i>
             <i class="la la-star"></i>
             <i class="la la-star"></i>
         </div>
-        <div class="fs-14 d-flex ">
+        <div class="d-flex ">
 
             @if ($product->auction_product == 0)
 
@@ -222,9 +232,9 @@
 
                 @if (home_base_price($product) != home_discounted_base_price($product))
 
-                    <div class="disc-amount has-transition">
+                    <div class="">
 
-                        <del class="fw-400 text-secondary mr-1">{{ home_base_price($product) }}</del>
+                        <del class="fw-400 fs-14  text-secondary mr-1">{{ home_base_price($product) }}</del>
 
                     </div>
 
@@ -232,27 +242,29 @@
 
                 <!-- price -->
 
-                <div class="">
-                    <span class="currency_prefix fs-12">{{ get_system_default_currency()->code }}</span>
-                    <span class="fw-700 text-dark fs-21" style=" font-family: "Kanit", serif !important">{{ number_format(home_discounted_base_price($product, false)) }}</span>
+            @endif
+
+            
+
+        </div>
+        
+        <div class="">
+                    <span class="fs-15">{{ get_system_default_currency()->code }}</span>
+                    <span class="fw-700 text-dark text-start fs-26" style=" font-family: "Kanit", serif !important">{{ number_format(home_discounted_base_price($product, false)) }}</span>
 
                 </div>
 
-            @endif
-
-            @if ($product->auction_product == 1)
+        @if ($product->auction_product == 1)
 
                 <!-- Bid Amount -->
 
                 <div class="">
 
-                    <span class="fw-700 text-primary">{{ single_price($product->starting_bid) }}</span>
+                    <span class="fw-700 fs-22 text-primary ">{{ single_price($product->starting_bid) }}</span>
 
                 </div>
 
             @endif
-
-        </div>
 
     </div>
 
