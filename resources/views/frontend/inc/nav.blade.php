@@ -138,7 +138,9 @@
             opacity: 0;
         }
         }
-
+        .slide-in-right {
+            border-radius: 20px;
+        }
         .modal.fade.slide-in-right .modal-dialog {
         transform: translateX(100%);
         transition: transform 0.3s ease-out;
