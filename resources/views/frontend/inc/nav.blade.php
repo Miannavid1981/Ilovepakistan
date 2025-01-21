@@ -165,8 +165,11 @@
             right: 20px !important;
             top: 20px !important;
             bottom: 20px !important;
+            height: auto;
         }
-
+        .slide-in-right .modal-body {
+            max-height: 100%;
+        }
         header .dropdown-toggle {
             
             align-items: flex-end !important;
@@ -529,7 +532,7 @@
                 <div class="modal-body">
                     <div class="row g-0 h-100">
                         <!-- Left Section: You May Also Like -->
-                        <div class="col-6  left-section">
+                        <div class="col-6 border-right d-sm-none ">
                         <div class="p-4">
                             <h4>You May Also Like</h4>
                             <div class="list-group mt-4">
@@ -583,7 +586,7 @@
 
                         <!-- Right Section: Shopping Cart -->
                         <div class="col-6 d-flex flex-column">
-                            <div class="p-3 flex-grow-1 ">
+                            <div class="ps-4 pt-2 pe-1 flex-grow-1  ">
                             <div class="d-flex justify-content-between">
                                 <h4>Shopping Cart</h4>
                                 <button type="button" class="btn-close d-none d-md-block" data-bs-dismiss="offcanvas" aria-label="Close"></button>
