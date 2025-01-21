@@ -181,12 +181,26 @@
             
         }
 
+        
+
         @media (max-width: 991px){
             header {
                 display: none !important;
             }
             .cart-offers-section {
                 display: none !important;
+            }
+            .slide-in-right .modal-dialog {
+                right: 10px !important;
+                top: 10px !important;
+                bottom: 10px !important;
+                min-width: 200px;
+                max-width: 200px;
+                border-radius: 15px !important;
+                height: auto !important;
+            }
+            .slide-in-right .modal-body {
+                padding: 0 !important
             }
         }
     </style>
@@ -536,7 +550,7 @@
                 <div class="modal-body">
                     <div class="row g-0 h-100">
                         <!-- Left Section: You May Also Like -->
-                        <div class="col-6 border-right cart-offers-section">
+                        <div class="col-6 me-4 border-right cart-offers-section">
                         <div class="pe-4">
                             <h4>You May Also Like</h4>
                             <div class="list-group mt-4">
@@ -589,23 +603,23 @@
                         </div>
 
                         <!-- Right Section: Shopping Cart -->
-                        <div class="col-6 d-flex flex-column">
-                            <div class="ps-4 pe-1 flex-grow-1  ">
-                            <div class="d-flex justify-content-between">
-                                <h4>Shopping Cart</h4>
-                                <button type="button" class="btn-close d-none d-md-block" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-                            </div>
-                            <div class="alert mt-4 alert-success d-flex align-items-center" role="alert">
-                                <i class="bi bi-fire me-2"></i>
-                                <div>
-                                Your cart will expire in <strong>0:00</strong> minutes!<br>
-                                Please checkout now before your items sell out!
+                        <div class="col-md-6 col-12 d-flex flex-column minicart-main-left-section">
+                            <div class="px-1 flex-grow-1  ">
+                                <div class="d-flex justify-content-between">
+                                    <h4>Shopping Cart</h4>
+                                    <button type="button" class="btn-close d-none d-md-block" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                                 </div>
-                            </div>
-                            <p>Buy <strong>$150.00</strong> more to get <strong>Freeship</strong></p>
-                            <div class="progress mb-3">
-                                <div class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
+                                <div class="alert mt-4 alert-success d-flex align-items-center" role="alert">
+                                    <i class="bi bi-fire me-2"></i>
+                                    <div>
+                                    Your cart will expire in <strong>0:00</strong> minutes!<br>
+                                    Please checkout now before your items sell out!
+                                    </div>
+                                </div>
+                                <p>Buy <strong>$150.00</strong> more to get <strong>Freeship</strong></p>
+                                <div class="progress mb-3">
+                                    <div class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
                             </div>
                             
                             <!-- Fixed Bottom Section -->
