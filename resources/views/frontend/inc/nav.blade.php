@@ -509,7 +509,7 @@
 <!-- Offcanvas Sidebar -->
  
     <div class="modal fade slide-in-right" id="cartOffcanvas">
-        <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-zoom product-modal" id="modal-size" role="document">
+        <div class="modal-dialog modal-lg modal-dialog-right modal-dialog-zoom product-modal" id="modal-size" role="document">
             <div class="modal-content position-relative p-3">
       
                 <div class="d-flex justify-content-end align-items-center d-md-none mt-3 mx-3">
