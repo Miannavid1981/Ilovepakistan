@@ -251,7 +251,7 @@
         
         <div class="">
                     <span class="fs-15">{{ get_system_default_currency()->code }}</span>
-                    <span class="fw-700 text-dark text-start fs-26" style=" font-family: "Kanit", serif !important">{{ number_format(home_discounted_base_price($product, false)) }}</span>
+                    <span class="fw-700 text-dark text-start fs-20" style=" font-family: "Kanit", serif !important">{{ number_format(home_discounted_base_price($product, false)) }}</span>
 
                 </div>
 
@@ -261,7 +261,7 @@
 
                 <div class="">
 
-                    <span class="fw-700 fs-22 text-primary ">{{ single_price($product->starting_bid) }}</span>
+                    <span class="fw-700 fs-20 text-primary ">{{ single_price($product->starting_bid) }}</span>
 
                 </div>
 
