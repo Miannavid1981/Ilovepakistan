@@ -116,6 +116,47 @@
             border: unset !important;
             height: 100%;
         }
+        /* Slide in from right */
+        @keyframes slideInRight {
+        from {
+            transform: translateX(100%);
+            opacity: 0;
+        }
+        to {
+            transform: translateX(0);
+            opacity: 1;
+        }
+        }
+
+        @keyframes slideOutRight {
+        from {
+            transform: translateX(0);
+            opacity: 1;
+        }
+        to {
+            transform: translateX(100%);
+            opacity: 0;
+        }
+        }
+
+        .modal.fade.slide-in-right .modal-dialog {
+        transform: translateX(100%);
+        transition: transform 0.3s ease-out;
+        }
+
+        .modal.fade.show.slide-in-right .modal-dialog {
+        transform: translateX(0);
+        }
+
+        .modal.fade.slide-in-right {
+        animation: slideInRight 0.3s forwards;
+        }
+
+        .modal.fade.slide-in-right .modal.fade {
+        animation: slideOutRight 0.3s forwards;
+        }
+
+
         header .dropdown-toggle {
             
             align-items: flex-end !important;
@@ -467,7 +508,7 @@
     </div>
 <!-- Offcanvas Sidebar -->
  
-    <div class="modal fade" id="cartOffcanvas">
+    <div class="modal fade slide-in-right" id="cartOffcanvas">
         <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-zoom product-modal" id="modal-size" role="document">
             <div class="modal-content position-relative p-3">
       
