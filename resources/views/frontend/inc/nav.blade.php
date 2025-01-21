@@ -162,9 +162,9 @@
         animation: slideOutRight 0.3s forwards;
         }
         .slide-in-right .modal-dialog {
-            right: 10px;
-            top: 10px;
-            bottom: 10px;
+            right: 20px !important;
+            top: 20px !important;
+            bottom: 20px !important;
         }
 
         header .dropdown-toggle {
