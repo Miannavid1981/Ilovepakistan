@@ -6,13 +6,14 @@
 @endphp
 <style>
 
-    .custom_card_tag{
-        background-color: yellow;
-        border: 1px solid yellow;
-        border-radius: 10px ;
-        width: fit-content;
-    }
-
+.custom_card_tag {
+    background-color: #f4af3d;
+    border: 1px solid #f4af3d;
+    border-radius: 20px;
+    width: fit-content;
+    padding: 1px 5px;
+    font-weight: 600;
+}
    
 </style>
 <div class="aiz-card-box h-auto py-3 ">
@@ -211,10 +212,10 @@
         <!-- Product name -->
 
         <button class="custom_card_tag mb-1"> Tag</button>
-        <h3 class="fw-400 fs-16 text-truncate-2 lh-1-4 mb-0 mt-1">
+        <h3 class="fw-400 fs-18 lh-1-4 mb-0 mt-1">
 
             
-            <a href="{{ $product_url }}" class="d-block hov-text-primary" style="font-weight: 700; color: #424242; line-height: 1;" title="{{ $product->getTranslation('name') }}">{{ $product->getTranslation('name') }}</a>
+            <a href="{{ $product_url }}" class="d-block hov-text-primary text-dark" style="font-weight: 600; line-height: 1;" title="{{ $product->getTranslation('name') }}">{{ $product->getTranslation('name') }}</a>
 
         </h3>
         <div class="d-flex justify-content-start align-items-center g-2 text-warning fs-18 mt-1">
