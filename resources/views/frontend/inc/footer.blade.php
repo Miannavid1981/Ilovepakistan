@@ -227,7 +227,7 @@
     <div class="col-lg-2 col-md-6 col-sm-12 mb-4">
       <img src="https://allaaddin.com/public/images/1j+ojFVDOMkX9Wytexe43D6kh.png" width="100px"  alt="">
         <ul class="list-unstyled">
-            <li class="fs-15"><strong>Mail:</strong> hi.avitex@gmail.com</li>
+            <li class="fs-15"><strong>Mail:</strong> hi.avitex@gmail.com</li> 
             <li class="fs-15"><strong>Phone:</strong> 1-333-345-6868</li>
             <li class="fs-15"><strong>Address:</strong> 549 Oak St. Crystal Lake, IL 60014</li>
         </ul>
