@@ -140,6 +140,7 @@
         }
         .slide-in-right {
             border-radius: 20px;
+            height: 100vh;
         }
         .slide-in-right .modal-dialog {
             min-width: 800px;
@@ -201,6 +202,9 @@
             }
             .slide-in-right .modal-body {
                 padding: 0 !important
+            }
+            .slide-in-right .minicart-main-left-section {
+                padding-top: 15px ;
             }
         }
     </style>
