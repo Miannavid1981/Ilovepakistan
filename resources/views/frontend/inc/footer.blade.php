@@ -220,7 +220,7 @@
 
 @endphp
 
-<footer class="footer text-dark py-5" style="background-color: #E8E8E8;">
+<footer class="footer text-dark pt-5 pb-3" style="background-color: #E8E8E8; line-height: 40px;">
     <div class="container">
     <div class="row">
     <!-- About Section -->
@@ -306,7 +306,7 @@
     </div>
 </div>
 
-        <div class="row mt-4">
+        <div class="row mt-5">
             <div class="col-lg-6">
                 <p class="mb-0 fs-15">©2025 Bighouz. All Rights Reserved.</p>
             </div>
