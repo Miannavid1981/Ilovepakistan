@@ -237,7 +237,7 @@
                 <h5>Information</h5>
                 <ul class="list-unstyled">
                     <li><a href="#" class="text-dark fs-15 text-decoration-none">Contact Us</a></li>
-                    <li><a href="#" class="text-dark fs-15 text-decoration-none">Career</a></li>
+                    <li><a href="#" class="text-dark fs-15 text-decoration-none">Career</a></li> 
                     <li><a href="#" class="text-dark fs-15 text-decoration-none">My Account</a></li>
                     <li><a href="#" class="text-dark fs-15 text-decoration-none">Order & Returns</a></li>
                     <li><a href="#" class="text-dark fs-15 text-decoration-none">FAQs</a></li>
