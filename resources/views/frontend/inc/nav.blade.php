@@ -144,6 +144,7 @@
         .slide-in-right .modal-dialog {
             min-width: 800px;
             border-radius: 20px;
+            height: auto !important;
         }
         .modal.fade.slide-in-right .modal-dialog {
         transform: translateX(100%);
@@ -182,6 +183,9 @@
 
         @media (max-width: 991px){
             header {
+                display: none !important;
+            }
+            .cart-offers-section {
                 display: none !important;
             }
         }
@@ -532,7 +536,7 @@
                 <div class="modal-body">
                     <div class="row g-0 h-100">
                         <!-- Left Section: You May Also Like -->
-                        <div class="col-6 border-right d-sm-none ">
+                        <div class="col-6 border-right cart-offers-section">
                         <div class="p-4">
                             <h4>You May Also Like</h4>
                             <div class="list-group mt-4">
