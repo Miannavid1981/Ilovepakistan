@@ -222,38 +222,40 @@
 
 <footer class="footer text-dark pt-5 pb-3" style="background-color: #E8E8E8; line-height: 40px;">
     <div class="container">
-    <div class="row">
-    <!-- About Section -->
-    <div class="col-lg-2 col-md-6 col-sm-12 mb-4">
-      <img src="https://allaaddin.com/public/images/1j+ojFVDOMkX9Wytexe43D6kh.png" width="100px"  alt="">
-        <ul class="list-unstyled">
-            <li class="fs-15"><strong>Mail:</strong> hi.avitex@gmail.com</li> 
-            <li class="fs-15"><strong>Phone:</strong> 1-333-345-6868</li>
-            <li class="fs-15"><strong>Address:</strong> 549 Oak St. Crystal Lake, IL 60014</li>
-        </ul>
-    </div>
-    <!-- Information and Quick Shop in one row -->
-    <div class="col-6 col-lg-2 col-md-6 col-sm-6 mb-4">
-        <h5>Information</h5>
-        <ul class="list-unstyled">
-            <li><a href="#" class="text-dark fs-15 text-decoration-none">Contact Us</a></li>
-            <li><a href="#" class="text-dark fs-15 text-decoration-none">Career</a></li>
-            <li><a href="#" class="text-dark fs-15 text-decoration-none">My Account</a></li>
-            <li><a href="#" class="text-dark fs-15 text-decoration-none">Order & Returns</a></li>
-            <li><a href="#" class="text-dark fs-15 text-decoration-none">FAQs</a></li>
-        </ul>
-    </div>
-    <div class="col-6 col-lg-2 col-md-6 col-sm-6 mb-4">
-        <h5>Quick Shop</h5>
-        <ul class="list-unstyled">
-            <li><a href="#" class="text-dark fs-15 text-decoration-none">Women</a></li>
-            <li><a href="#" class="text-dark fs-15 text-decoration-none">Men</a></li>
-            <li><a href="#" class="text-dark fs-15 text-decoration-none">Clothes</a></li>
-            <li><a href="#" class="text-dark fs-15 text-decoration-none">Accessories</a></li>
-            <li><a href="#" class="text-dark fs-15 text-decoration-none">Blog</a></li>
-        </ul>
-    </div>
-            <div class="col-6 col-lg-2 col-md-6 col-sm-6 mb-4">
+        <div class="row">
+            <!-- About Section -->
+            <div class="col-lg-2 col-md-6 mb-4 text-center text-md-start">
+                <img src="https://allaaddin.com/public/images/1j+ojFVDOMkX9Wytexe43D6kh.png" width="100px" alt="">
+                <ul class="list-unstyled">
+                    <li class="fs-15"><strong>Mail:</strong> hi.avitex@gmail.com</li>
+                    <li class="fs-15"><strong>Phone:</strong> 1-333-345-6868</li>
+                    <li class="fs-15"><strong>Address:</strong> 549 Oak St. Crystal Lake, IL 60014</li>
+                </ul>
+            </div>
+            <!-- Information Section -->
+            <div class="col-12 col-lg-2 col-md-6 mb-4 text-center text-md-start">
+                <h5>Information</h5>
+                <ul class="list-unstyled">
+                    <li><a href="#" class="text-dark fs-15 text-decoration-none">Contact Us</a></li>
+                    <li><a href="#" class="text-dark fs-15 text-decoration-none">Career</a></li>
+                    <li><a href="#" class="text-dark fs-15 text-decoration-none">My Account</a></li>
+                    <li><a href="#" class="text-dark fs-15 text-decoration-none">Order & Returns</a></li>
+                    <li><a href="#" class="text-dark fs-15 text-decoration-none">FAQs</a></li>
+                </ul>
+            </div>
+            <!-- Quick Shop Section -->
+            <div class="col-12 col-lg-2 col-md-6 mb-4 text-center text-md-start">
+                <h5>Quick Shop</h5>
+                <ul class="list-unstyled">
+                    <li><a href="#" class="text-dark fs-15 text-decoration-none">Women</a></li>
+                    <li><a href="#" class="text-dark fs-15 text-decoration-none">Men</a></li>
+                    <li><a href="#" class="text-dark fs-15 text-decoration-none">Clothes</a></li>
+                    <li><a href="#" class="text-dark fs-15 text-decoration-none">Accessories</a></li>
+                    <li><a href="#" class="text-dark fs-15 text-decoration-none">Blog</a></li>
+                </ul>
+            </div>
+            <!-- Customer Services Section -->
+            <div class="col-12 col-lg-2 col-md-6 mb-4 text-center text-md-start">
                 <h5>Customer Services</h5>
                 <ul class="list-unstyled">
                     <li><a href="#" class="text-dark fs-15 text-decoration-none">Orders FAQs</a></li>
@@ -262,55 +264,46 @@
                     <li><a href="#" class="text-dark fs-15 text-decoration-none">Return & Refund</a></li>
                 </ul>
             </div>
-    <!-- Seller Zone -->
-    <div class="col-6 col-lg-2 col-md-6 col-sm-6 mb-4">
-        <div class="text-sm-left">
-            <h5>Seller Zone</h5>
-            <ul class="list-unstyled">
-                <li class="mb-2">
-                    <p class="fs-15 text-dark text-secondary mb-0">
-                        Become A Seller
-                        <a href="#" class="fs-15 fw-700 text-warning ml-2">
-                            Apply Now
-                        </a>
-                    </p>
-                </li>
-                <li class="mb-2">
-                    <a class="fs-15 text-dark animate-underline-dark" href="#">
-                        Login to Seller Panel
-                    </a>
-                </li>
-                <li class="mb-2">
-                    <a class="fs-15 text-dark animate-underline-dark" target="_blank" href="#">
-                        Download Seller App
-                    </a>
-                </li>
-            </ul>
+            <!-- Seller Zone Section -->
+            <div class="col-12 col-lg-2 col-md-6 mb-4 text-center text-md-start">
+                <h5>Seller Zone</h5>
+                <ul class="list-unstyled">
+                    <li class="mb-2">
+                        <p class="fs-15 text-dark text-secondary mb-0">
+                            Become A Seller
+                            <a href="#" class="fs-15 fw-700 text-warning ml-2">Apply Now</a>
+                        </p>
+                    </li>
+                    <li class="mb-2">
+                        <a class="fs-15 text-dark animate-underline-dark" href="#">Login to Seller Panel</a>
+                    </li>
+                    <li class="mb-2">
+                        <a class="fs-15 text-dark animate-underline-dark" target="_blank" href="#">Download Seller App</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- Newsletter Section -->
+            <div class="col-lg-2 col-md-12 text-center text-md-start">
+                <h5>Newsletter</h5>
+                <p class="fs-15">Sign up for our newsletter and get 10% off your first purchase</p>
+                <div class="input-group mb-3">
+                    <input type="email" class="form-control" placeholder="Enter your e-mail">
+                    <button class="btn btn-secondary" type="button"><i class="fa-solid fa-arrow-right"></i></button>
+                </div>
+                <div class="d-flex justify-content-center justify-content-md-start">
+                    <a href="#" class="me-3 text-dark"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="me-3 text-dark"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="me-3 text-dark"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="me-3 text-dark"><i class="fab fa-youtube"></i></a>
+                    <a href="#" class="text-dark"><i class="fab fa-pinterest"></i></a>
+                </div>
+            </div>
         </div>
-    </div>
-    <!-- Newsletter Section -->
-    <div class="col-lg-2 col-md-12">
-        <h5>Newsletter</h5>
-        <p class="fs-15">Sign up for our newsletter and get 10% off your first purchase</p>
-        <div class="input-group mb-3">
-            <input type="email" class="form-control" placeholder="Enter your e-mail">
-            <button class="btn btn-secondary" type="button"><i class="fa-solid fa-arrow-right"></i></button>
-        </div>
-        <div class="d-flex">
-            <a href="#" class="me-3 text-dark"><i class="fab fa-facebook-f"></i></a>
-            <a href="#" class="me-3 text-dark"><i class="fab fa-instagram"></i></a>
-            <a href="#" class="me-3 text-dark"><i class="fab fa-twitter"></i></a>
-            <a href="#" class="me-3 text-dark"><i class="fab fa-youtube"></i></a>
-            <a href="#" class="text-dark"><i class="fab fa-pinterest"></i></a>
-        </div>
-    </div>
-</div>
-
         <div class="row mt-5">
-            <div class="col-lg-6">
+            <div class="col-lg-6  text-center text-md-start">
                 <p class="mb-0 fs-15">©2025 Bighouz. All Rights Reserved.</p>
             </div>
-            <div class="col-lg-6 text-lg-end">
+            <div class="col-lg-6 text-lg-end  text-center text-md-start">
                 <span class="me-3 fs-15">English</span>
                 <span class="me-3 fs-15">USD</span>
                 <span>
