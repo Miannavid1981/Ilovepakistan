@@ -620,15 +620,15 @@
             $col_val = 4;
         }
     @endphp
-    <div class="container-fluid ">
-                <div class=" ">
-                <div class="row gutters-16">
+    <div class="container ">
+        
+        <div class="row ">
             <div class="col-12">
                 <div id="section_newest"></div>
             </div>
             <div class="col-xl-{{ $col_val }} mb-2 mb-md-3 mt-2 mt-md-3">
                 <!-- Best Selling  -->
-                <div id="section_best_selling">
+                <div id="section_best_selling" class="d-none">
 
                 </div>
             </div>
@@ -662,7 +662,7 @@
                 </div>
             @endif
         </div>
-                </div>
+                
     </div>
         
 <div class="mx-5">
@@ -764,7 +764,7 @@
 
                     <!-- Top Sellers -->
                     <div class="col mb-2 mb-md-3 mt-2 mt-md-3">
-                        <div class="h-100" id="section_top_sellers">
+                        <div class="h-100 d-none" id="section_top_sellers">
                             <div class="border px-3 py-2rem">
                                 <!-- Top Section -->
                                 <div class="d-flex mb-3 mb-md-4 align-items-baseline justify-content-between">
