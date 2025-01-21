@@ -143,6 +143,9 @@
 }
 /* Mobile (small screens) layout - 1 column per row *//* For screens below 767px (Mobile) */
 @media (max-width: 767px) {
+    .bighouz-business {
+        grid-template-columns: 1fr;
+    }
     .category-grid {
         display: grid;
         grid-template-columns: 1fr 1fr;
