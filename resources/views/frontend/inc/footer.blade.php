@@ -236,19 +236,11 @@
             <div class="col-12 col-lg-2 col-md-6 mb-4 text-center text-md-start">
                 <h5 class="fs-20 fw-bold">Information</h5>
                 <ul class="list-unstyled">
-<<<<<<< Updated upstream
-                    <li><a href="#" class="text-dark fs-15 text-decoration-none">Contact Us</a></li>
-                    <li><a href="#" class="text-dark fs-15 text-decoration-none">Career</a></li> 
-                    <li><a href="#" class="text-dark fs-15 text-decoration-none">My Account</a></li>
-                    <li><a href="#" class="text-dark fs-15 text-decoration-none">Order & Returns</a></li>
-                    <li><a href="#" class="text-dark fs-15 text-decoration-none">FAQs</a></li>
-=======
                     <li><a href="#" class="text-dark fs-17 text-decoration-none">Contact Us</a></li>
                     <li><a href="#" class="text-dark fs-17 text-decoration-none">Career</a></li>
                     <li><a href="#" class="text-dark fs-17 text-decoration-none">My Account</a></li>
                     <li><a href="#" class="text-dark fs-17 text-decoration-none">Order & Returns</a></li>
                     <li><a href="#" class="text-dark fs-17 text-decoration-none">FAQs</a></li>
->>>>>>> Stashed changes
                 </ul>
             </div>
             <!-- Quick Shop Section -->
