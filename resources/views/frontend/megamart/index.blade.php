@@ -133,19 +133,23 @@
 @media (max-width: 767px) {
     .category-grid {
         display: grid;
-        grid-template-columns: 1fr;
-        gap: 0;
+        grid-template-columns: 1fr 1fr;
+        gap: 15px;
     }
 
     .category-card {
         width: 100%; /* Ensure full-width category cards */
-        margin-bottom: 20px; /* Add space between cards */
+        margin-bottom: 0px; /* Add space between cards */
+        min-height: 170px !important;
     }
 
     .category-card img {
         width: 100%; /* Make images take the full width */
         max-height: 150px; /* Ensure images have a max height */
         object-fit: contain; /* Keep aspect ratio */
+    }
+    .category-card p {
+        font-size: 16px !important;
     }
 }
 
@@ -195,6 +199,71 @@
 
 </style>
 
+<div class="container py-4">
+
+    <div class="bighouz-business">
+                <!-- Left Section -->
+        <div class="left-section d-flex flex-column h-100" 
+            style="background-image: url({{ static_asset('assets/img/solarbg.png') }}); background-size: cover; background-position: center; background-color: #d3e7ff ; border-radius: 20px"
+        >
+            <!-- banner-home-page  -->
+            <div class="banner " >
+                    
+                <h1>BigHouz Business</h1>
+                <div class="d-flex gap-3">
+                    <p><i class="fas fa-check-circle"></i> Tax exemptions</p>
+                    <p><i class="fas fa-credit-card"></i> Express Payments</p>
+                    <p><i class="fas fa-dollar-sign"></i> Financial Support</p>
+                </div>
+                
+                <button class="btn btn-lg btn-dark">Shop now</button>
+
+
+          
+            </div>
+    
+        </div>
+
+                <!-- Right Section -->
+        <!-- Right Section -->
+            <div class="right-section flex-column h-100">
+                <div class="category-grid">
+                    <div class="category-card" style="background: #f4f4f4;">
+                        <p style="font-size: 20px; font-weight: 600;">Solar Inverters</p>
+                        <img src="https://www.pngall.com/wp-content/uploads/7/Solar-Panel-Inverter-PNG-Clipart.png" alt="Home Improvement & Lighting">
+                    </div>
+
+                    <div class="category-card" style="background: #eefac5;">
+                        <p style="font-size: 20px; font-weight: 600;">Solar Panels</p>
+                        <img src="https://file.aiquickdraw.com/imgcompressed/img/compressed_588b1d72a9a6e9550d13cd00c7de6fd5.webp" alt="Home Improvement & Lighting">
+                    </div>
+
+                    <div class="category-card" style="background: #ffd0d0;">
+                        <p style="font-size: 20px; font-weight: 600;">Electric Tools</p>
+                        <img src="https://png.pngtree.com/png-vector/20240626/ourmid/pngtree-electrician-tools-on-wooden-surface-instrument-manufacture-ohmmeter-png-image_12868398.png" alt="Home Improvement & Lighting">
+                    </div>
+
+                    <div class="category-card" style="background: #ffe39d;">
+                        <p style="font-size: 20px; font-weight: 600;">Hardware & Tools</p>
+                        <img src="https://www.solelyverified.in/wp-content/uploads/2024/11/Electrical-Supplies.png" alt="Home Improvement & Lighting">
+                    </div>
+
+                    <div class="category-card" style="background: #eae4ff;">
+                        <p style="font-size: 20px; font-weight: 600;">Solar Batteries</p>
+                        <img src="https://rameensolarenergy.com/wp-content/uploads/2023/10/veyron-1.2.png" alt="Home Improvement & Lighting">
+                    </div>
+
+                    <div class="category-card" style="background: #c1f2f9;">
+                        <p style="font-size: 20px; font-weight: 600;">Renewable Energy</p>
+                        <img src="https://cdn-icons-png.flaticon.com/512/1996/1996742.png" alt="Home Improvement & Lighting">
+                    </div>
+                </div>
+            </div>
+
+    </div>
+
+    <!-- Category-end -->
+</div>
 <img src="{{ static_asset('assets/img/mainbanner.jpg') }}" class="w-100 mt-2">
 
 
@@ -327,71 +396,6 @@
     
         
     
-</div>
-<div class="container py-4">
-
-<div class="bighouz-business">
-                <!-- Left Section -->
-        <div class="left-section d-flex flex-column h-100" 
-            style="background-image: url({{ static_asset('assets/img/solarbg.png') }}); background-size: cover; background-position: center; background-color: #d3e7ff ; border-radius: 20px"
-        >
-            <!-- banner-home-page  -->
-            <div class="banner " >
-                    
-                <h1>BigHouz Business</h1>
-                <div class="d-flex gap-3">
-                    <p><i class="fas fa-check-circle"></i> Tax exemptions</p>
-                    <p><i class="fas fa-credit-card"></i> Express Payments</p>
-                    <p><i class="fas fa-dollar-sign"></i> Financial Support</p>
-                </div>
-                
-                <button class="btn btn-lg btn-dark">Shop now</button>
-
-
-          
-            </div>
-    
-        </div>
-
-                <!-- Right Section -->
-        <!-- Right Section -->
-            <div class="right-section flex-column h-100">
-                <div class="category-grid">
-                    <div class="category-card" style="background: #f4f4f4;">
-                        <p style="font-size: 20px; font-weight: 600;">Solar Inverters</p>
-                        <img src="https://www.pngall.com/wp-content/uploads/7/Solar-Panel-Inverter-PNG-Clipart.png" alt="Home Improvement & Lighting">
-                    </div>
-
-                    <div class="category-card" style="background: #eefac5;">
-                        <p style="font-size: 20px; font-weight: 600;">Solar Panels</p>
-                        <img src="https://file.aiquickdraw.com/imgcompressed/img/compressed_588b1d72a9a6e9550d13cd00c7de6fd5.webp" alt="Home Improvement & Lighting">
-                    </div>
-
-                    <div class="category-card" style="background: #ffd0d0;">
-                        <p style="font-size: 20px; font-weight: 600;">Electric Tools</p>
-                        <img src="https://png.pngtree.com/png-vector/20240626/ourmid/pngtree-electrician-tools-on-wooden-surface-instrument-manufacture-ohmmeter-png-image_12868398.png" alt="Home Improvement & Lighting">
-                    </div>
-
-                    <div class="category-card" style="background: #ffe39d;">
-                        <p style="font-size: 20px; font-weight: 600;">Hardware & Tools</p>
-                        <img src="https://www.solelyverified.in/wp-content/uploads/2024/11/Electrical-Supplies.png" alt="Home Improvement & Lighting">
-                    </div>
-
-                    <div class="category-card" style="background: #eae4ff;">
-                        <p style="font-size: 20px; font-weight: 600;">Solar Batteries</p>
-                        <img src="https://rameensolarenergy.com/wp-content/uploads/2023/10/veyron-1.2.png" alt="Home Improvement & Lighting">
-                    </div>
-
-                    <div class="category-card" style="background: #c1f2f9;">
-                        <p style="font-size: 20px; font-weight: 600;">Renewable Energy</p>
-                        <img src="https://cdn-icons-png.flaticon.com/512/1996/1996742.png" alt="Home Improvement & Lighting">
-                    </div>
-                </div>
-            </div>
-
-    </div>
-
-<!-- Category-end -->
 </div>
 
 
