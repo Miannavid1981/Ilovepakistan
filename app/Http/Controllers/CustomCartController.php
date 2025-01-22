@@ -34,7 +34,7 @@ class CustomCartController extends Controller
                 'id' => $product->id,
                 'name' => $product->name,
                 'price' => home_base_price($product),
-                'price_int' => $product->unit_price,
+                'price_int' => $product->unit_price ?? 0,
                 'image' => $product->thumbnail != null ? my_asset($product->thumbnail->file_name) : static_asset('assets/img/placeholder.jpg'), // Ensure you have an image column in the Product model
                 'quantity' => 1,
             ];
