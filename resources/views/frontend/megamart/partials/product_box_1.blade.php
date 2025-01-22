@@ -315,7 +315,7 @@
 
                 @if (discount_in_percentage($product) > 0)
 
-                    <span class="bg-primary ml-1 mt-1 fs-11 fw-700 text-white w-35px text-center"
+                    <span class="bg-primary ml-1 fs-15 fw-700 text-white w-35px text-center rounded-3 px-2"
 
                         style="padding-top:2px;padding-bottom:2px;">-{{ discount_in_percentage($product) }}%</span>
 
