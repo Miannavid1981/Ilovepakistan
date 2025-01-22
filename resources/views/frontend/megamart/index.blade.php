@@ -130,12 +130,12 @@
 }
 @media (max-width: 1800px){
     .bighouz-business {
-        grid-template-columns: 1.5fr 1fr;
+        grid-template-columns: 1.7fr 1fr;
         gap: 25px;
     }
 }
 
-@media (max-width: 1300px){
+@media (max-width: 768px){
     .bighouz-business {
         grid-template-columns: 1fr 1fr;
         gap: 15px;
@@ -250,7 +250,7 @@
 
                     @foreach($banner_categories as $category)
         
-                    <div class="category-card" style="background-image: url({{uploaded_asset($category->cover_image)}}); background-size:cover;">
+                    <div class="category-card" style="background-image: url({{uploaded_asset($category->cover_image)}}); background-size:cover; aspect-ratio: 1 / 1;">
                         <p style="font-size: 20px; font-weight: 600;"> {{$category->name}}</p>
                         <!-- <img src="https://s.alicdn.com/@sc04/kf/H0c9193fb07984a3c8ee34970ef68472aP.png_300x300.png" alt="Home Improvement & Lighting"> -->
                     </div>
