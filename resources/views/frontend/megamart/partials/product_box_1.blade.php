@@ -54,6 +54,18 @@
         transition: all .3s ease-in-out;
         color: #fff !important;
     } 
+
+    @media (min-width: 768px){
+        .add-cart-btn button i {
+            display: none !important
+        }
+    }
+    @media (min-width: 767px){
+        .add-cart-btn button span {
+            display: none !important
+        }
+    }
+  
    
 </style>
 <div class="aiz-card-box h-auto py-3 ">
@@ -115,8 +127,9 @@
                     <button class="view-cart w-100"  href="javascript:void(0)"
                         onclick="showAddToCartModal({{ $product->id }})">
                         <i class="fa-regular fa-eye fs-24 me-2"></i>   
-                    Quick View</button>
-                    <button class="add-to-cart w-100" href="javascript:void(0)"  onclick="showAddToCartModal({{ $product->id }})"><i class="las la-shopping-cart fs-24 me-2"></i>Add to cart</button>
+                   <span> Quick View</span>
+                </button>
+                    <button class="add-to-cart w-100" href="javascript:void(0)"  onclick="showAddToCartModal({{ $product->id }})"><i class="las la-shopping-cart fs-24 me-2"></i> <span>Add to cart</span> </button>
 
         </div>
 
