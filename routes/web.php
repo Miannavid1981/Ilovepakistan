@@ -491,3 +491,4 @@ Route::controller(ContactController::class)->group(function () {
 Route::post('/cart/add', [CustomCartController::class, 'addToCart']);
 Route::post('/cart/remove', [CustomCartController::class, 'removeFromCart']);
 Route::post('/cart/update', [CustomCartController::class, 'updateCart']);
+Route::get('/cart', [CustomCartController::class, 'getCart']);

@@ -853,9 +853,8 @@
 
 $(document).ready(function(){
 
-    
-     // Add to Cart
-     $(document).on('click', '.g-add-to-cart', function () {
+    // Add to Cart
+    $(document).on('click', '.g-add-to-cart', function () {
         const productId = $(this).data('id');
         $.ajax({
             url: '/cart/add',
@@ -874,24 +873,17 @@ $(document).ready(function(){
         });
     });
 
-    // Remove from Cart
-    $(document).on('click', '.g-remove-from-cart', function () {
+    // Quantity Change with Switcher
+    $(document).on('click', '.quantity-switcher button', function () {
         const productId = $(this).data('id');
-        $.ajax({
-            url: '/cart/remove',
-            method: 'POST',
-            data: {
-                _token: $('meta[name="csrf-token"]').attr('content'),
-                product_id: productId,
-            },
-            success: function (response) {
-                if (response.success) {
-                    updateSidecart(response.cart);
-                } else {
-                    alert(response.message || 'Failed to remove product from cart.');
-                }
-            },
-        });
+        const operation = $(this).data('operation');
+        const $input = $(`.g-cart-qty[data-id="${productId}"]`);
+        let currentQty = parseInt($input.val());
+
+        if (operation === 'increment') currentQty++;
+        if (operation === 'decrement' && currentQty > 1) currentQty--;
+
+        $input.val(currentQty).trigger('change');
     });
 
     // Update Quantity
@@ -916,24 +908,45 @@ $(document).ready(function(){
         });
     });
 
-    // Update Sidecart
     function updateSidecart(cart) {
         const $sidecartItems = $('.sidecart-items');
         $sidecartItems.empty();
         cart.items.forEach((item) => {
             $sidecartItems.append(`
                 <div class="sidecart-item">
+                    <img src="${item.image}" alt="${item.name}" style="width: 50px; height: 50px;">
                     <div>${item.name}</div>
                     <div>${item.price}</div>
-                    <div>
+                    <div class="quantity-switcher">
+                        <button data-id="${item.id}" data-operation="decrement">-</button>
                         <input type="number" class="g-cart-qty" data-id="${item.id}" value="${item.quantity}">
-                        <button class="g-remove-from-cart" data-id="${item.id}">Remove</button>
+                        <button data-id="${item.id}" data-operation="increment">+</button>
                     </div>
+                    <button class="g-remove-from-cart" data-id="${item.id}">Remove</button>
                 </div>
             `);
         });
         $('.sidecart-subtotal').text(`Subtotal: ${cart.subtotal}`);
     }
+
+    function fetchCart() {
+        $.ajax({
+            url: '/cart',  // The URL of the cart endpoint
+            method: 'GET',
+            success: function (response) {
+                if (response.cart) {
+                    updateSidecart(response.cart);
+                } else {
+                    alert('Failed to retrieve cart.');
+                }
+            },
+            error: function () {
+                alert('An error occurred while fetching the cart.');
+            }
+        });
+    }
+
+    fetchCart()
 
 
 
