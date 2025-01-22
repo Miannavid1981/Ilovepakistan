@@ -136,17 +136,7 @@
         </a>
        
        
-        <!-- Discount percentage tag -->
-
-        <!-- @if (discount_in_percentage($product) > 0)
-
-            <span class="absolute-top-left bg-primary ml-1 mt-1 fs-11 fw-700 text-white w-35px text-center"
-
-                style="padding-top:2px;padding-bottom:2px;">-{{ discount_in_percentage($product) }}%</span>
-
-        @endif -->
-
-        <!-- Wholesale tag -->
+   
 
         @if ($product->wholesale_product)
 
@@ -318,10 +308,22 @@
         </div>
         
         <div class="">
-                    <span class="fs-15">{{ get_system_default_currency()->code }}</span>
-                    <span class="fw-700 text-dark text-start fs-20" style=" font-family: "Kanit", serif !important">{{ number_format(home_discounted_base_price($product, false)) }}</span>
+            <span class="fs-15">{{ get_system_default_currency()->code }}</span>
+            <span class="fw-700 text-dark text-start fs-20" style=" font-family: "Kanit", serif !important">{{ number_format(home_discounted_base_price($product, false)) }}</span>
 
-                </div>
+                 <!-- Discount percentage tag -->
+
+                @if (discount_in_percentage($product) > 0)
+
+                    <span class="bg-primary ml-1 mt-1 fs-11 fw-700 text-white w-35px text-center"
+
+                        style="padding-top:2px;padding-bottom:2px;">-{{ discount_in_percentage($product) }}%</span>
+
+                @endif 
+
+        <!-- Wholesale tag -->
+
+        </div>
 
         @if ($product->auction_product == 1)
 
