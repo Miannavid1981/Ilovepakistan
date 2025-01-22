@@ -108,7 +108,7 @@
 
 .bighouz-business {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1.7fr 1fr;
     gap: 25px;
 }
 
