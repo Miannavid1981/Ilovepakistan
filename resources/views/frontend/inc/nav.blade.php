@@ -970,7 +970,7 @@ $(document).ready(function(){
                 </div>
             `);
         });
-        $('.sidecart-subtotal').text(`Subtotal: ${cart.subtotal}`);
+        $('.sidecart-subtotal').text(`${cart.subtotal}`);
     }
 
     function fetchCart() {
