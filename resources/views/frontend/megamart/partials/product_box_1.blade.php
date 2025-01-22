@@ -60,7 +60,7 @@
             display: none !important
         }
     }
-    @media (min-width: 767px){
+    @media (max-width: 767px){
         .add-cart-btn button span {
             display: none !important
         }
