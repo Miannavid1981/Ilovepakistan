@@ -248,7 +248,8 @@
 $categories = \App\Models\Category::where('level', 0)->get();
 @endphp
                     @foreach($categories as $category)
-                    <div class="category-card" style="background-image: url({{uploaded_asset($category->icon)}}); background-size:cover;">
+        
+                    <div class="category-card" style="background-image: url({{uploaded_asset($category->banner)}}); background-size:cover;">
                         <p style="font-size: 20px; font-weight: 600;"> {{$category->name}}</p>
                         <!-- <img src="https://s.alicdn.com/@sc04/kf/H0c9193fb07984a3c8ee34970ef68472aP.png_300x300.png" alt="Home Improvement & Lighting"> -->
                     </div>
