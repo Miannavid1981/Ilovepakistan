@@ -909,26 +909,44 @@ $(document).ready(function(){
     });
 
     function updateSidecart(cart) {
-    const $sidecartItems = $('.sidecart-items');
-    $sidecartItems.empty();
-    cart.items.forEach((item) => {
-        $sidecartItems.append(`
-            <div class="sidecart-item">
-                <img src="${item.image}" alt="${item.name}" style="width: 50px; height: 50px;">
-                <div>${item.name}</div>
-                <div>${item.price}</div>
-                <div class="quantity-switcher">
-                    <button data-id="${item.id}" data-operation="decrement">-</button>
-                    <input type="number" class="g-cart-qty" data-id="${item.id}" value="${item.quantity}">
-                    <button data-id="${item.id}" data-operation="increment">+</button>
+        const $sidecartItems = $('.sidecart-items');
+        $sidecartItems.empty();
+        cart.items.forEach((item) => {
+            $sidecartItems.append(`
+                <div class="sidecart-item">
+                    <img src="${item.image}" alt="${item.name}" style="width: 50px; height: 50px;">
+                    <div>${item.name}</div>
+                    <div>${item.price}</div>
+                    <div class="quantity-switcher">
+                        <button data-id="${item.id}" data-operation="decrement">-</button>
+                        <input type="number" class="g-cart-qty" data-id="${item.id}" value="${item.quantity}">
+                        <button data-id="${item.id}" data-operation="increment">+</button>
+                    </div>
+                    <button class="g-remove-from-cart" data-id="${item.id}">Remove</button>
                 </div>
-                <button class="g-remove-from-cart" data-id="${item.id}">Remove</button>
-            </div>
-        `);
-    });
-    $('.sidecart-subtotal').text(`Subtotal: ${cart.subtotal}`);
-}
+            `);
+        });
+        $('.sidecart-subtotal').text(`Subtotal: ${cart.subtotal}`);
+    }
 
+    function fetchCart() {
+        $.ajax({
+            url: '/cart',  // The URL of the cart endpoint
+            method: 'GET',
+            success: function (response) {
+                if (response.cart) {
+                    updateSidecart(response.cart);
+                } else {
+                    alert('Failed to retrieve cart.');
+                }
+            },
+            error: function () {
+                alert('An error occurred while fetching the cart.');
+            }
+        });
+    }
+
+    fetchCart()
 
 
 
