@@ -57,7 +57,7 @@
 
     @media (min-width: 768px){
         .add-cart-btn button i {
-            display: none !important
+            display: none 
         }
     }
     @media (max-width: 767px){
