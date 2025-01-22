@@ -436,16 +436,23 @@
                                 </div>
                                 <i class="arrow fa fa-solid fa-chevron-right"></i>
                             </a>
-                            @php
-                                echo "<pre>";
-                                    print_r($category->childrenCategories);
-                                echo "</pre>";
-                            @endphp
-                            <ul class="submenu">
-                                <li>Submenu 1</li>
-                                <li>Submenu 2</li>
-                                <li>Submenu 3</li>
-                            </ul>
+                            @if(count($category->childrenCategories) > 0)
+                                <ul class="submenu">
+                                    @foreach($category->childrenCategories as $subcategory)
+                                    <li class="border-0">
+                                        <a class="fs-16 text-dark d-flex justify-content-between align-items-center w-100" href="" style="text-decoration: none !important">
+                                            <div class="d-flex align-items-center">
+                                                <img src="{{uploaded_asset($subcategory->icon)}}" style="width: 37px;height: auto;aspect-ratio: 1 / 1;" class="me-2 rounded">
+                                                {{$subcategory->name}}
+                                            </div>
+                                            <i class="arrow fa fa-solid fa-chevron-right"></i>
+                                        </a>
+                                       =
+                                    </li>
+                                    @endforeach
+                                   
+                                </ul>
+                            @endif
                         </li>
                     @endforeach
                 @endif
