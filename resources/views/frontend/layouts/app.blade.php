@@ -350,7 +350,7 @@
         position: fixed;
         top: auto;
         left: 300px;
-        width: 200px;
+        width: auto !important;
         background-color: #fff;
         display: none;
         /* box-shadow: 2px 0 5px rgba(0, 0, 0, 0.3); */
