@@ -952,10 +952,10 @@ $(document).ready(function(){
         $sidecartItems.empty();
         cart.items.forEach((item) => {
             $sidecartItems.append(`
-                <div class="sidecart-item d-flex justify-content-between">
-                    <div class="d-flex flex-column justify-content-start">
-                        <button class="btn btn-sm btn-icon btn-primary g-remove-from-cart" data-id="${item.id}"><i class="fa fa-trash"></i></button>
-                        <img src="${item.image}" alt="${item.name}" style="width: 50px; height: 50px;" class="rounded-2">
+                <div class="sidecart-item d-flex justify-content-between align-items-center">
+                    <div class="d-flex flex-row justify-content-start">
+                        <button class="btn btn-sm btn-icon btn-primary me-2 g-remove-from-cart" data-id="${item.id}"><i class="fa fa-trash"></i></button>
+                        <img src="${item.image}" alt="${item.name}" style="width: 50px; height: 50px;" class="rounded-2 me-2">
                         <div class="">
                             <div class="fs-15">${item.name}</div>
                             <div class="fs-18 font-weight-bold">${item.price}</div>
