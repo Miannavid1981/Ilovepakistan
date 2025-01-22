@@ -931,7 +931,7 @@ $(document).ready(function(){
 
     function fetchCart() {
         $.ajax({
-            url: '/cart',  // The URL of the cart endpoint
+            url: '/ajax/cart',  // The URL of the cart endpoint
             method: 'GET',
             success: function (response) {
                 if (response.cart) {
