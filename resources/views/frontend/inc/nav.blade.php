@@ -931,6 +931,7 @@ $(document).ready(function(){
         cart.items.forEach((item) => {
             $sidecartItems.append(`
                 <div class="sidecart-item d-flex">
+                     <button class="btn btn-sm btn-icon btn-primary g-remove-from-cart" data-id="${item.id}"><i class="fa fa-trash"></i></button>
                     <img src="${item.image}" alt="${item.name}" style="width: 50px; height: 50px;" class="rounded-2">
                     <div class="">
                         <div class="fs-15">${item.name}</div>
@@ -938,10 +939,10 @@ $(document).ready(function(){
                     </div>
                     <div class="quantity-switcher">
                         <button class="quantity-switcher-buttons" data-id="${item.id}" data-operation="decrement">-</button>
-                        <input type="number" class="g-cart-qty" data-id="${item.id}" value="${item.quantity}" class="max-width: 20px;border: none;text-align: center;pointer-events: none;">
+                        <input type="number" class="g-cart-qty" data-id="${item.id}" value="${item.quantity}" style="max-width: 20px;border: none;text-align: center;pointer-events: none;">
                         <button class="quantity-switcher-buttons" data-id="${item.id}" data-operation="increment">+</button>
                     </div>
-                    <button class="g-remove-from-cart" data-id="${item.id}">Remove</button>
+                   
                 </div>
             `);
         });
