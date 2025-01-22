@@ -129,7 +129,7 @@
                         <i class="fa-regular fa-eye fs-24 me-2"></i>   
                    <span> Quick View</span>
                 </button>
-                    <button class="add-to-cart w-100 d-block" href="javascript:void(0)"  onclick="showAddToCartModal({{ $product->id }})"><i class="las la-shopping-cart fs-24 me-2"></i> <span>Add to cart</span> </button>
+                    <button class="add-to-cart w-100 d-block g-add-to-cart" data-id="{{ $product->id }}"  ><i class="las la-shopping-cart fs-24 me-2"></i> <span>Add to cart</span> </button>
 
         </div>
 
