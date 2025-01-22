@@ -436,6 +436,11 @@
                                 </div>
                                 <i class="arrow fa fa-solid fa-chevron-right"></i>
                             </a>
+                            @php
+                                echo "<pre>";
+                                    print_r($category->childrenCategories);
+                                echo "</pre>";
+                            @endphp
                             <ul class="submenu">
                                 <li>Submenu 1</li>
                                 <li>Submenu 2</li>
