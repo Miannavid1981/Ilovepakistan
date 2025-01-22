@@ -361,7 +361,7 @@
 
                     <button class="btn btn-light bg-white border-0 me-3 p-0 position-relative toggle-cart-modal">
                         <i class="fa-solid fs-20 fa-cart-shopping"></i>
-                        <span class="cart-badge">0</span>
+                        <span class="cart-badge g-cart-items-count">0</span>
                         <p class="fw-bold mb-0">Cart</p>
                     </button>
 
@@ -975,6 +975,7 @@ $(document).ready(function(){
                 </div>
             `);
         });
+        $('.g-cart-items-count').text(`${count(cart.items)}`);
         $('.sidecart-subtotal').text(`${cart.subtotal}`);
     }
 
