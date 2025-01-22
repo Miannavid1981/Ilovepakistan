@@ -316,7 +316,7 @@
     .drawer_box {
         height: 100%;
         border: 1px solid #eee;
-        background: #f5f5f5;
+        background: #fff;
     }
     .drawer > ul {
         width: 100%;
@@ -342,18 +342,21 @@
     }
 
     .drawer ul li:hover {
-      background-color: #fff;
+      background-color: #f5f5f5;
       font-weight: 700;
     }
 
     .submenu {
-      position: fixed;
-      top: auto;
-      left: 300px;
-      width: 200px;
-      background-color: #eee;
-      display: none;
-      box-shadow: 2px 0 5px rgba(0, 0, 0, 0.3);
+        position: fixed;
+        top: auto;
+        left: 300px;
+        width: 200px;
+        background-color: #fff;
+        display: none;
+        /* box-shadow: 2px 0 5px rgba(0, 0, 0, 0.3); */
+        transform: translateY(60px);
+        border-radius: 0 10px 10px 0 ;
+        padding: 30px 20px !important
     }
     .submenu:hover {
         display: block !important;
@@ -364,19 +367,9 @@
     }
 
     .submenu li:hover {
-      background-color: #e1e1e1;
+      background-color: #f5f5f5;
     }
 
-    .toggle-btn {
-      /*position: absolute;*/
-      /*top: 20px;*/
-      /*left: 20px;*/
-      /*background-color: #333;*/
-      /*color: #fff;*/
-      /*border: none;*/
-      /*padding: 10px 15px;*/
-      /*cursor: pointer;*/
-    }
 
     .toggle-btn:hover {
       background-color: red;
@@ -431,7 +424,7 @@
                         <li>
                             <a class="fs-16 text-dark d-flex justify-content-between align-items-center w-100" href="" style="text-decoration: none !important">
                                 <div class="d-flex align-items-center">
-                                    <img src="{{uploaded_asset($category->icon)}}" style="width: 37px;height: auto;aspect-ratio: 1 / 1;" class="me-2 rounded">
+                                    <img src="{{uploaded_asset($category->icon)}}" style="width: 37px;height: auto;aspect-ratio: 1 / 1;" class="me-2 rounded-circle">
                                     {{$category->name}}
                                 </div>
                                 <i class="arrow fa fa-solid fa-chevron-right"></i>
@@ -442,12 +435,11 @@
                                     <li class="border-0">
                                         <a class="fs-16 text-dark d-flex justify-content-between align-items-center w-100" href="" style="text-decoration: none !important">
                                             <div class="d-flex align-items-center">
-                                                <img src="{{uploaded_asset($subcategory->icon)}}" style="width: 37px;height: auto;aspect-ratio: 1 / 1;" class="me-2 rounded">
+                                                <img src="{{uploaded_asset($subcategory->icon)}}" style="width: 37px;height: auto;aspect-ratio: 1 / 1;" class="me-2 rounded-circle">
                                                 {{$subcategory->name}}
                                             </div>
-                                            <i class="arrow fa fa-solid fa-chevron-right"></i>
+                                            <!-- <i class="arrow fa fa-solid fa-chevron-right"></i> -->
                                         </a>
-                                       =
                                     </li>
                                     @endforeach
                                    
