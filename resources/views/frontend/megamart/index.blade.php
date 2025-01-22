@@ -243,12 +243,18 @@
         <!-- Right Section -->
             <div class="right-section flex-column h-100">
                 <div class="category-grid">
-                    <div class="category-card" style="background-image: url(https://s.alicdn.com/@sc04/kf/H0c9193fb07984a3c8ee34970ef68472aP.png_300x300.png);">
-                        <p style="font-size: 20px; font-weight: 600;">Solar Inverters</p>
+                @php
+
+$categories = \App\Models\Category::where('level', 0)->get();
+@endphp
+                    @foreach($categories as $category)
+                    <div class="category-card" style="background-image: url({{uploaded_asset($category->icon)}}); background-size:cover;">
+                        <p style="font-size: 20px; font-weight: 600;"> {{$category->name}}</p>
                         <!-- <img src="https://s.alicdn.com/@sc04/kf/H0c9193fb07984a3c8ee34970ef68472aP.png_300x300.png" alt="Home Improvement & Lighting"> -->
                     </div>
+                    @endforeach
 
-                    <div class="category-card" style="background: #eefac5;">
+                    <!-- <div class="category-card" style="background: #eefac5;">
                         <p style="font-size: 20px; font-weight: 600;">Solar Panels</p>
                         <img src="https://file.aiquickdraw.com/imgcompressed/img/compressed_588b1d72a9a6e9550d13cd00c7de6fd5.webp" alt="Home Improvement & Lighting">
                     </div>
@@ -271,7 +277,7 @@
                     <div class="category-card" style="background: #c1f2f9;">
                         <p style="font-size: 20px; font-weight: 600;">Renewable Energy</p>
                         <img src="https://cdn-icons-png.flaticon.com/512/1996/1996742.png" alt="Home Improvement & Lighting">
-                    </div>
+                    </div> -->
                 </div>
             </div>
 
