@@ -924,6 +924,28 @@ $(document).ready(function(){
             },
         });
     });
+    $(document).on('click', '.g-remove-from-cart', function () {
+        const productId = $(this).data('id');  // Get the product ID from the data-id attribute
+
+        $.ajax({
+            url: '/cart/remove',  // The route for removing items from the cart
+            method: 'POST',  // Sending a POST request
+            data: {
+                product_id: productId,  // The product ID to remove
+                _token: $('meta[name="csrf-token"]').attr('content')  // CSRF token for security
+            },
+            success: function (response) {
+                if (response.cart) {
+                    updateSidecart(response.cart);  // Update the sidecart with the new data
+                } else {
+                    alert('Failed to remove the item.');
+                }
+            },
+            error: function () {
+                alert('An error occurred while removing the item.');
+            }
+        });
+    });
 
     function updateSidecart(cart) {
         const $sidecartItems = $('.sidecart-items');
@@ -931,6 +953,7 @@ $(document).ready(function(){
         cart.items.forEach((item) => {
             $sidecartItems.append(`
                 <div class="sidecart-item d-flex">
+                     <button class="btn btn-sm btn-icon btn-primary g-remove-from-cart" data-id="${item.id}"><i class="fa fa-trash"></i></button>
                     <img src="${item.image}" alt="${item.name}" style="width: 50px; height: 50px;" class="rounded-2">
                     <div class="">
                         <div class="fs-15">${item.name}</div>
@@ -938,10 +961,10 @@ $(document).ready(function(){
                     </div>
                     <div class="quantity-switcher">
                         <button class="quantity-switcher-buttons" data-id="${item.id}" data-operation="decrement">-</button>
-                        <input type="number" class="g-cart-qty" data-id="${item.id}" value="${item.quantity}" class="max-width: 20px;border: none;text-align: center;pointer-events: none;">
+                        <input type="number" class="g-cart-qty" data-id="${item.id}" value="${item.quantity}" style="max-width: 20px;border: none;text-align: center;pointer-events: none;">
                         <button class="quantity-switcher-buttons" data-id="${item.id}" data-operation="increment">+</button>
                     </div>
-                    <button class="g-remove-from-cart" data-id="${item.id}">Remove</button>
+                   
                 </div>
             `);
         });
