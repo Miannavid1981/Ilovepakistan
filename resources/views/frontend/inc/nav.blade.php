@@ -975,7 +975,7 @@ $(document).ready(function(){
                 </div>
             `);
         });
-        $('.g-cart-items-count').text(`${count(cart.items)}`);
+        $('.g-cart-items-count').text(`${cart.items.length}`);
         $('.sidecart-subtotal').text(`${cart.subtotal}`);
     }
 
