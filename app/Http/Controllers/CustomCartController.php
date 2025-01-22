@@ -87,13 +87,6 @@ class CustomCartController extends Controller
         $subtotal = array_sum(array_map(function ($item) {
             return $item['price'] * $item['quantity'];
         }, $cart));
-
-        // // Add full image URL
-        // $cart = array_map(function ($item) {
-        //     $item['image'] =  $product->thumbnail != null ? my_asset($product->thumbnail->file_name) : static_asset('assets/img/placeholder.jpg'); // Adjust path based on storage setup
-        //     return $item;
-        // }, $cart);
-
         return [
             'items' => array_values($cart),
             'subtotal' => number_format($subtotal, 2),
