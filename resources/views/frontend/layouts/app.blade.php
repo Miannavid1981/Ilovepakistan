@@ -430,9 +430,9 @@
                             @if(count($category->childrenCategories) > 0)
                                 <ul class="submenu">
                                     <li class="border-0">
-                                        <h5 class="my-1 mb-2 ">
+                                        <h6 class="my-1 mb-2 ">
                                         {{$category->name}}
-                                        </h5>
+                                        </h6>
                                     </li>
                                     @foreach($category->childrenCategories as $subcategory)
                                         <li class="border-0">
