@@ -924,6 +924,28 @@ $(document).ready(function(){
             },
         });
     });
+    $(document).on('click', '.g-remove-from-cart', function () {
+        const productId = $(this).data('id');  // Get the product ID from the data-id attribute
+
+        $.ajax({
+            url: '/cart/remove',  // The route for removing items from the cart
+            method: 'POST',  // Sending a POST request
+            data: {
+                product_id: productId,  // The product ID to remove
+                _token: $('meta[name="csrf-token"]').attr('content')  // CSRF token for security
+            },
+            success: function (response) {
+                if (response.cart) {
+                    updateSidecart(response.cart);  // Update the sidecart with the new data
+                } else {
+                    alert('Failed to remove the item.');
+                }
+            },
+            error: function () {
+                alert('An error occurred while removing the item.');
+            }
+        });
+    });
 
     function updateSidecart(cart) {
         const $sidecartItems = $('.sidecart-items');
