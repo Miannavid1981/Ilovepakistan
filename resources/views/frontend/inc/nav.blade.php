@@ -874,7 +874,7 @@ $(document).ready(function(){
     $(document).on('click', '.g-add-to-cart', function () {
         const productId = $(this).data('id');
         const prev_text = 'Add to Cart';
-        $(this).html('<i class="fa fa-spinner fa-spin "></i>');
+        $(this).html('<i class="fa fa-spinner fa-spin d-block "></i>');
         $.ajax({
             url: '/cart/add',
             method: 'POST',
