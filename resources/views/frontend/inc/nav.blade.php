@@ -617,7 +617,7 @@
                                     <h4>Shopping Cart</h4>
                                     <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
                                 </div>
-                                <div class="alert mt-4 alert-success d-flex align-items-center" role="alert">
+                                <!-- <div class="alert mt-4 alert-success d-flex align-items-center" role="alert">
                                     <i class="bi bi-fire me-2"></i>
                                     <div>
                                     Your cart will expire in <strong>0:00</strong> minutes!<br>
@@ -627,6 +627,10 @@
                                 <p>Buy <strong>$150.00</strong> more to get <strong>Freeship</strong></p>
                                 <div class="progress mb-3">
                                     <div class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div> -->
+
+                                <div class="sidecart-items">
+
                                 </div>
                             </div>
                             
@@ -636,7 +640,7 @@
                                     
                                 <div class="d-flex justify-content-between mt-3">
                                     <h4>Subtotal</h4>
-                                    <h4>$0.00</h4>
+                                    <h4 class="sidecart-subtotal"">$0.00</h4>
                                 </div>
                             
                             
@@ -848,6 +852,90 @@
 <script>
 
 $(document).ready(function(){
+
+    
+     // Add to Cart
+     $(document).on('click', '.g-add-to-cart', function () {
+        const productId = $(this).data('id');
+        $.ajax({
+            url: '/cart/add',
+            method: 'POST',
+            data: {
+                _token: $('meta[name="csrf-token"]').attr('content'),
+                product_id: productId,
+            },
+            success: function (response) {
+                if (response.success) {
+                    updateSidecart(response.cart);
+                } else {
+                    alert(response.message || 'Failed to add product to cart.');
+                }
+            },
+        });
+    });
+
+    // Remove from Cart
+    $(document).on('click', '.g-remove-from-cart', function () {
+        const productId = $(this).data('id');
+        $.ajax({
+            url: '/cart/remove',
+            method: 'POST',
+            data: {
+                _token: $('meta[name="csrf-token"]').attr('content'),
+                product_id: productId,
+            },
+            success: function (response) {
+                if (response.success) {
+                    updateSidecart(response.cart);
+                } else {
+                    alert(response.message || 'Failed to remove product from cart.');
+                }
+            },
+        });
+    });
+
+    // Update Quantity
+    $(document).on('change', '.g-cart-qty', function () {
+        const productId = $(this).data('id');
+        const quantity = $(this).val();
+        $.ajax({
+            url: '/cart/update',
+            method: 'POST',
+            data: {
+                _token: $('meta[name="csrf-token"]').attr('content'),
+                product_id: productId,
+                quantity: quantity,
+            },
+            success: function (response) {
+                if (response.success) {
+                    updateSidecart(response.cart);
+                } else {
+                    alert(response.message || 'Failed to update quantity.');
+                }
+            },
+        });
+    });
+
+    // Update Sidecart
+    function updateSidecart(cart) {
+        const $sidecartItems = $('.sidecart-items');
+        $sidecartItems.empty();
+        cart.items.forEach((item) => {
+            $sidecartItems.append(`
+                <div class="sidecart-item">
+                    <div>${item.name}</div>
+                    <div>${item.price}</div>
+                    <div>
+                        <input type="number" class="g-cart-qty" data-id="${item.id}" value="${item.quantity}">
+                        <button class="g-remove-from-cart" data-id="${item.id}">Remove</button>
+                    </div>
+                </div>
+            `);
+        });
+        $('.sidecart-subtotal').text(`Subtotal: ${cart.subtotal}`);
+    }
+
+
 
     $('.navbar-toggler').click(function(){
 
