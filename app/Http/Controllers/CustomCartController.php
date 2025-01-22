@@ -34,6 +34,7 @@ class CustomCartController extends Controller
                 'id' => $product->id,
                 'name' => $product->name,
                 'price' => home_base_price($product),
+                'price_int' => $product->unit_price,
                 'image' => $product->thumbnail != null ? my_asset($product->thumbnail->file_name) : static_asset('assets/img/placeholder.jpg'), // Ensure you have an image column in the Product model
                 'quantity' => 1,
             ];
@@ -93,7 +94,7 @@ class CustomCartController extends Controller
     {
         $cart = Session::get('cart', []);
         $subtotal = array_sum(array_map(function ($item) {
-            return $item['price'] * $item['quantity'];
+            return $item['price_int'] * $item['quantity'];
         }, $cart));
         return [
             'items' => array_values($cart),
