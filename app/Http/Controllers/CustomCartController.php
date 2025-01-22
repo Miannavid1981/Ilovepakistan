@@ -33,7 +33,7 @@ class CustomCartController extends Controller
             $cart[$productId] = [
                 'id' => $product->id,
                 'name' => $product->name,
-                'price' => $product->price,
+                'price' => home_base_price($product),
                 'image' => $product->thumbnail != null ? my_asset($product->thumbnail->file_name) : static_asset('assets/img/placeholder.jpg'), // Ensure you have an image column in the Product model
                 'quantity' => 1,
             ];
@@ -67,14 +67,22 @@ class CustomCartController extends Controller
     public function updateCart(Request $request)
     {
         $productId = $request->product_id;
-        $quantity = max(1, intval($request->quantity)); // Prevent negative or zero values
+        $quantity = max(0, intval($request->quantity));  // Prevent negative or zero values
+
         $cart = Session::get('cart', []);
-    
+        
         if (isset($cart[$productId])) {
-            $cart[$productId]['quantity'] = $quantity;
-            Session::put('cart', $cart);
+            // If the quantity is 0, remove the item from the cart
+            if ($quantity === 0) {
+                unset($cart[$productId]);
+            } else {
+                // Update the quantity if it's greater than 0
+                $cart[$productId]['quantity'] = $quantity;
+            }
+
+            Session::put('cart', $cart);  // Update the session with the new cart data
         }
-    
+
         return response()->json([
             'success' => true,
             'cart' => $this->getCartData(),
