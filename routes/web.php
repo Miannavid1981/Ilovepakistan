@@ -50,7 +50,7 @@ use App\Http\Controllers\SupportTicketController;
 use App\Http\Controllers\WalletController;
 use App\Http\Controllers\WishlistController;
 use App\Http\Controllers\SizeChartController;
-
+use App\Http\Controllers\CustomCartController;
 /*
   |--------------------------------------------------------------------------
   | Web Routes
@@ -485,3 +485,9 @@ Route::controller(PageController::class)->group(function () {
 Route::controller(ContactController::class)->group(function () {
     Route::post('/contact', 'contact')->name('contact');
 });
+
+
+
+Route::post('/cart/add', [CustomCartController::class, 'addToCart']);
+Route::post('/cart/remove', [CustomCartController::class, 'removeFromCart']);
+Route::post('/cart/update', [CustomCartController::class, 'updateCart']);
