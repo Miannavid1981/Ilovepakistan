@@ -16,6 +16,11 @@ use Cookie;
 
 class CustomCartController extends Controller
 {
+    public function getCart()
+    {
+        return response()->json(['cart' => $this->getCartData()]);
+    }
+
     public function addToCart(Request $request)
     {
         $productId = $request->product_id;
@@ -24,50 +29,58 @@ class CustomCartController extends Controller
         if (isset($cart[$productId])) {
             $cart[$productId]['quantity']++;
         } else {
-            // Fetch product details from the database (e.g., name, price)
-            $product = Product::find($productId);
+            $product = Product::find($productId); // Fetch product from database
             $cart[$productId] = [
                 'id' => $product->id,
                 'name' => $product->name,
                 'price' => $product->price,
+                'image' => $product->thumbnail != null ? my_asset($product->thumbnail->file_name) : static_asset('assets/img/placeholder.jpg'), // Ensure you have an image column in the Product model
                 'quantity' => 1,
             ];
         }
 
         Session::put('cart', $cart);
 
-        return response()->json(['success' => true, 'cart' => $this->getCartData()]);
+        return response()->json([
+            'success' => true,
+            'cart' => $this->getCartData(),
+        ]);
     }
+
 
     public function removeFromCart(Request $request)
     {
         $productId = $request->product_id;
         $cart = Session::get('cart', []);
-
+    
         if (isset($cart[$productId])) {
             unset($cart[$productId]);
             Session::put('cart', $cart);
-            return response()->json(['success' => true, 'cart' => $this->getCartData()]);
         }
-
-        return response()->json(['success' => false, 'message' => 'Product not found in cart.']);
+    
+        return response()->json([
+            'success' => true,
+            'cart' => $this->getCartData(),
+        ]);
     }
-
+    
     public function updateCart(Request $request)
     {
         $productId = $request->product_id;
-        $quantity = $request->quantity;
+        $quantity = max(1, intval($request->quantity)); // Prevent negative or zero values
         $cart = Session::get('cart', []);
-
+    
         if (isset($cart[$productId])) {
             $cart[$productId]['quantity'] = $quantity;
             Session::put('cart', $cart);
-            return response()->json(['success' => true, 'cart' => $this->getCartData()]);
         }
-
-        return response()->json(['success' => false, 'message' => 'Product not found in cart.']);
+    
+        return response()->json([
+            'success' => true,
+            'cart' => $this->getCartData(),
+        ]);
     }
-
+    
     private function getCartData()
     {
         $cart = Session::get('cart', []);
@@ -75,9 +88,16 @@ class CustomCartController extends Controller
             return $item['price'] * $item['quantity'];
         }, $cart));
 
+        // // Add full image URL
+        // $cart = array_map(function ($item) {
+        //     $item['image'] =  $product->thumbnail != null ? my_asset($product->thumbnail->file_name) : static_asset('assets/img/placeholder.jpg'); // Adjust path based on storage setup
+        //     return $item;
+        // }, $cart);
+
         return [
             'items' => array_values($cart),
             'subtotal' => number_format($subtotal, 2),
         ];
     }
+
 }
