@@ -7,12 +7,16 @@
 <style>
 
 .custom_card_tag {
-    background-color: #f4af3d;
-    border: 1px solid #f4af3d;
+    background-color: #FDE683;
+    border: none !important;
     border-radius: 20px;
     width: fit-content;
-    padding: 1px 5px;
-    font-weight: 600;
+    background: #FDE683;
+    border: none;
+    padding: 1px 6px;
+    letter-spacing: 1px;
+    text-transform: capitalize;
+    font-weight: 500;
 }
 .add-cart-btn { 
     transform: translateY(100%);
@@ -107,11 +111,12 @@
                 onerror="this.onerror=null;this.src='{{ static_asset('assets/img/placeholder.jpg') }}';">
 
 
-                <div class="absolute-bottom-left absolute-bottom-right d-flex justify-content-between align-items-center p-3 add-cart-btn">
-             <button class="view-cart"  href="javascript:void(0)"
-           onclick="showAddToCartModal({{ $product->id }})"><i class="fa-regular fa-eye fs-24 me-2"></i>   
-              Quick View</button>
-        <button class="add-to-cart" href="javascript:void(0)"  onclick="showAddToCartModal({{ $product->id }})"><i class="las la-shopping-cart fs-24 me-2"></i>Add to cart</button>
+                <div class="absolute-bottom-left absolute-bottom-right d-flex justify-content-between align-items-center p-3 add-cart-btn gap-2">
+                    <button class="view-cart w-100"  href="javascript:void(0)"
+                        onclick="showAddToCartModal({{ $product->id }})">
+                        <i class="fa-regular fa-eye fs-24 me-2"></i>   
+                    Quick View</button>
+                    <button class="add-to-cart w-100" href="javascript:void(0)"  onclick="showAddToCartModal({{ $product->id }})"><i class="las la-shopping-cart fs-24 me-2"></i>Add to cart</button>
 
         </div>
 
