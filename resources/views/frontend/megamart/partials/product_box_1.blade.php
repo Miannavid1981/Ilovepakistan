@@ -14,6 +14,42 @@
     padding: 1px 5px;
     font-weight: 600;
 }
+.add-cart-btn { 
+    transform: translateY(100%);
+    transition: all .3s ease-in-out;
+    
+}
+.aiz-card-box:hover  .add-cart-btn {
+    transform: translateY(0);
+    transition: all .3s ease-in-out;
+}
+
+.view-cart, .add-to-cart{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+        padding: 6px;
+        font-size: 12px !important;
+        background: #fff !important;
+        color: #000 !important;
+        border-radius: 20px;
+        right: 10px;
+        left: unset !important;
+        bottom: 10px;
+        border: 1px solid #ccc;
+        left: 10px !important;
+        text-decoration: none !important;
+        opacity: 1 !important;
+        text-transform: uppercase;
+        font-weight: 500 !important;
+}
+
+       .view-cart:hover ,
+       .add-to-cart:hover {
+        background: #000 !important;
+        transition: all .3s ease-in-out;
+        color: #fff !important;
+    } 
    
 </style>
 <div class="aiz-card-box h-auto py-3 ">
@@ -60,9 +96,9 @@
 
             <!--<div class="absolute-top-right bg-danger ml-1 mt-1 fs-11 fw-700 text-white w-35px text-center" style="padding-top:2px;padding-bottom:2px;margin-right: 0px;width: 70px;">sold out</div>-->
 
-        <a href="{{ $product_url }}" class="d-block h-100">
+        <a href="{{ $product_url }}" class="d-block h-100 position-relative">
 
-            <img class="lazyload mx-auto img-fit has-transition rounded-2" style="aspect-ratio: 1/1; border: 1px solid #dbdbdb;"
+            <img class="lazyload mx-auto img-fit has-transition " style="aspect-ratio: 1.5 /1.8; border: 1px solid #dbdbdb; border-radius: 15px; !important"
 
                 src="{{ $product->thumbnail != null ? my_asset($product->thumbnail->file_name) : static_asset('assets/img/placeholder.jpg') }}"
 
@@ -70,17 +106,27 @@
 
                 onerror="this.onerror=null;this.src='{{ static_asset('assets/img/placeholder.jpg') }}';">
 
-        </a>
 
+                <div class="absolute-bottom-left absolute-bottom-right d-flex justify-content-between align-items-center p-3 add-cart-btn">
+             <button class="view-cart"  href="javascript:void(0)"
+           onclick="showAddToCartModal({{ $product->id }})"><i class="fa-regular fa-eye fs-24 me-2"></i>   
+              Quick View</button>
+        <button class="add-to-cart" href="javascript:void(0)"  onclick="showAddToCartModal({{ $product->id }})"><i class="las la-shopping-cart fs-24 me-2"></i>Add to cart</button>
+
+        </div>
+
+        </a>
+       
+       
         <!-- Discount percentage tag -->
 
-        @if (discount_in_percentage($product) > 0)
+        <!-- @if (discount_in_percentage($product) > 0)
 
             <span class="absolute-top-left bg-primary ml-1 mt-1 fs-11 fw-700 text-white w-35px text-center"
 
                 style="padding-top:2px;padding-bottom:2px;">-{{ discount_in_percentage($product) }}%</span>
 
-        @endif
+        @endif -->
 
         <!-- Wholesale tag -->
 
@@ -150,16 +196,20 @@
 
             <!-- add to cart -->
 
-            <a class="cart-btn absolute-bottom-left aiz-p-hov-icon text-white fs-13 fw-700 d-flex justify-content-center align-items-center @if (in_array($product->id, $cart_added)) active @endif"
+            <div class="d-flex justify-content-between align-items-center">
+    <!-- <a class="cart-btn aiz-p-hov-icon text-white fs-13 fw-700 d-flex justify-content-center align-items-center @if (in_array($product->id, $cart_added)) active @endif"
+       href="javascript:void(0)"
+       @if (Auth::check()) onclick="showAddToCartModal({{ $product->id }})" @else onclick="showLoginModal()" @endif>
+        <span><i class="las la-cart-plus fs-24 me-2"></i></span>
+        Buy Now
+    </a>
+    <a class="cart-btn aiz-p-hov-icon text-white fs-13 fw-700 d-flex justify-content-center align-items-center"
+       href="{{ route('cart') }}">
+        <span><i class="las la-shopping-cart fs-24 me-2"></i></span>
+        View Cart
+    </a> -->
+</div>
 
-                href="javascript:void(0)"
-
-                @if (Auth::check()) onclick="showAddToCartModal({{ $product->id }})" @else onclick="showLoginModal()" @endif>
-
-
-                <span><i class="las la-cart-plus fs-24 me-2" ></i></span>
-                Buy Now
-            </a>
 
         @endif
 

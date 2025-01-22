@@ -243,9 +243,9 @@
         <!-- Right Section -->
             <div class="right-section flex-column h-100">
                 <div class="category-grid">
-                    <div class="category-card" style="background: #f4f4f4;">
+                    <div class="category-card" style="background-image: url(https://s.alicdn.com/@sc04/kf/H0c9193fb07984a3c8ee34970ef68472aP.png_300x300.png);">
                         <p style="font-size: 20px; font-weight: 600;">Solar Inverters</p>
-                        <img src="https://www.pngall.com/wp-content/uploads/7/Solar-Panel-Inverter-PNG-Clipart.png" alt="Home Improvement & Lighting">
+                        <!-- <img src="https://s.alicdn.com/@sc04/kf/H0c9193fb07984a3c8ee34970ef68472aP.png_300x300.png" alt="Home Improvement & Lighting"> -->
                     </div>
 
                     <div class="category-card" style="background: #eefac5;">
