@@ -4,7 +4,7 @@
     $rtl = get_session_language()->rtl;
 @endphp
 @php
-    $categories = \App\Models\Category::all();
+    $parent_categories = \App\Models\Category::where('parent_id', 0)->get();
 @endphp
 
 @if ($rtl == 1)
@@ -426,8 +426,8 @@
         <div class="drawer_box">
             <h4 class="my-3  mx-3">Explore Categories</h4>
                <ul>
-                @if(count($categories) > 0 )
-                    @foreach( $categories as $category)
+                @if(count($parent_categories) > 0 )
+                    @foreach( $parent_categories as $category)
                         <li>
                             <a class="fs-16 text-dark d-flex justify-content-between align-items-center w-100" href="" style="text-decoration: none !important">
                                 <div class="d-flex align-items-center">
