@@ -381,7 +381,7 @@
         transform: translateX(300px);
         transition: all .5s ease-in-out;
     }
-    .cart-btn {
+    /* .cart-btn {
         padding: 1px;
         font-size: 12px !important;
         background: #fff !important;
@@ -404,7 +404,7 @@
         background: #000 !important;
         transition: all .3s ease-in-out;
         color: #fff !important;
-    }
+    } */
   </style>
 
   <div class="drawer-container">

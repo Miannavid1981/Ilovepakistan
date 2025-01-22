@@ -9,6 +9,21 @@
             $xl_items = 1.8;
         }
     @endphp
+
+    <style> 
+    @media (min-width: 992px) { /* Desktop view */
+        .custom-col {
+            flex: 0 0 calc(100% / 5); /* Divide the row into 5 equal parts */
+            max-width: calc(100% / 5); /* Ensure proper width */
+        }
+    }
+    /* Desktop View: 5 Columns */
+    @media (min-width: 992px) {
+        .product-grid {
+            grid-template-columns: repeat(5, 1fr); /* 5 columns on desktop */
+        }
+    }
+    </style>
     <section >
         <div class="px-3">
             <!-- Top Section -->
@@ -25,15 +40,14 @@
                 </div> -->
             </div>
             <!-- Products Section -->
-            <div class="row">
-                <!-- <div class="aiz-carousel arrow-none sm-gutters-16" data-rows="2" data-items="{{ $xxl_items }}" data-xl-items="{{ $xxl_items }}" data-lg-items="4"  data-md-items="3" data-sm-items="2" data-xs-items="2" data-arrows='true' data-infinite='false'> -->
-                    @foreach ($newest_products as $key => $new_product)
-                    <div class="col-lg-3 col-md-4 col-sm-6 col-6 carousel-box position-relative has-transition hov-animate-outline">
-                        @include('frontend.'.get_setting('homepage_select').'.partials.product_box_1',['product' => $new_product])
-                    </div>
-                    @endforeach
-                <!-- </div> -->
-            </div>
+            <div class="row gx-3">
+    @foreach ($newest_products as $key => $new_product)
+    <div class="col-6 col-md-4 col-lg custom-col position-relative has-transition hov-animate-outline">
+        @include('frontend.'.get_setting('homepage_select').'.partials.product_box_1',['product' => $new_product])
+    </div>
+    @endforeach
+</div>
+
         </div>
     </section>
 @endif
