@@ -343,7 +343,6 @@
 
     .drawer ul li:hover {
       background-color: #f5f5f5;
-      font-weight: 700;
     }
 
     .submenu {
@@ -355,8 +354,7 @@
         display: none;
         /* box-shadow: 2px 0 5px rgba(0, 0, 0, 0.3); */
         transform: translateY(60px);
-        border-radius: 0 10px 10px 0 ;
-        padding: 30px 20px !important
+        border-radius: 0 10px 10px 0;
     }
     .submenu:hover {
         display: block !important;
@@ -424,23 +422,28 @@
                         <li>
                             <a class="fs-16 text-dark d-flex justify-content-between align-items-center w-100" href="" style="text-decoration: none !important">
                                 <div class="d-flex align-items-center">
-                                    <img src="{{uploaded_asset($category->icon)}}" style="width: 37px;height: auto;aspect-ratio: 1 / 1;" class="me-2 rounded-circle">
+                                    <img src="{{uploaded_asset($category->icon)}}" class="me-2 p-1 rounded-circle border-1 border" style="width: 35px;height: auto;aspect-ratio: 1 / 1;" >
                                     {{$category->name}}
                                 </div>
-                                <i class="arrow fa fa-solid fa-chevron-right"></i>
+                                <i class="arrow fa fa-solid fa-chevron-right fs-12"></i>
                             </a>
                             @if(count($category->childrenCategories) > 0)
                                 <ul class="submenu">
-                                    @foreach($category->childrenCategories as $subcategory)
                                     <li class="border-0">
-                                        <a class="fs-16 text-dark d-flex justify-content-between align-items-center w-100" href="" style="text-decoration: none !important">
-                                            <div class="d-flex align-items-center">
-                                                <img src="{{uploaded_asset($subcategory->icon)}}" style="width: 37px;height: auto;aspect-ratio: 1 / 1;" class="me-2 rounded-circle">
-                                                {{$subcategory->name}}
-                                            </div>
-                                            <!-- <i class="arrow fa fa-solid fa-chevron-right"></i> -->
-                                        </a>
+                                        <h5 class="my-1 mb-2 ">
+                                        {{$category->name}}
+                                        </h5>
                                     </li>
+                                    @foreach($category->childrenCategories as $subcategory)
+                                        <li class="border-0">
+                                            <a class="fs-16 text-dark d-flex justify-content-between align-items-center w-100" href="" style="text-decoration: none !important">
+                                                <div class="d-flex align-items-center">
+                                                    <img src="{{uploaded_asset($subcategory->icon)}}" style="width: 37px;height: auto;aspect-ratio: 1 / 1;" class="me-2 rounded-circle">
+                                                    {{$subcategory->name}}
+                                                </div>
+                                                <!-- <i class="arrow fa fa-solid fa-chevron-right"></i> -->
+                                            </a>
+                                        </li>
                                     @endforeach
                                    
                                 </ul>
