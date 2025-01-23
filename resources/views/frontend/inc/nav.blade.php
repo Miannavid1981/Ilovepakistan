@@ -212,19 +212,34 @@
             display: flex;
         }
 
-       .quantity-switcher-buttons {  
+        .quantity-switcher-buttons {
             background: var(--primary);
             border: none;
-            width: 20px;
+            width: 25px;
             color: #fff;
-            font-size: 18px;
+            font-size: 23px;
             border-radius: 50%;
             aspect-ratio: 1 / 1;
-            height: 20px;
+            height: 25px;
             display: flex;
             justify-content: center;
             align-items: center;
-       }
+        }
+        .cart-item-count {
+            position: absolute;
+            bottom: 0;
+            right: 10px;
+            background: red;
+            width: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            aspect-ratio: 1 / 1;
+            border-radius: 50%;
+            height: 20px;
+            color: #fff;
+            font-weight: bold;
+        }
     </style>
 
 <header class="container bg-white pt-2">
@@ -959,19 +974,27 @@ $(document).ready(function(){
         cart.items.forEach((item) => {
             $sidecartItems.append(`
                 <div class="sidecart-item d-flex justify-content-between align-items-center py-3 border-bottom">
-                    <div class="d-flex flex-row justify-content-start">
-                        <button class="btn btn-sm btn-icon btn-primary me-2 g-remove-from-cart" data-id="${item.id}"><i class="fa fa-trash"></i></button>
-                        <img src="${item.image}" alt="${item.name}" style="width: 50px; height: 50px;" class="rounded-2 me-2">
+                    <div class="d-flex flex-row justify-content-start align-items-center">
+                        <button class="px-1 text-primary g-remove-from-car btn-light bg-white border-0 btn-lg" data-id="${item.id}"><i class="fa fa-trash"></i></button>
+                        <div class="position-relative mx-2" style="width: 50px; height: 50px;" >
+                            <img src="${item.image}" alt="${item.name}" class="rounded-2 ">
+                            <span class="cart-item-count">1</span>
+                        </div>
+                        
                         <div class="">
                             <div class="fs-15">${item.name}</div>
                             <div class="fs-18 font-weight-bold">${item.price}</div>
                         </div>
                     </div>
-                    <div class="quantity-switcher">
-                        <button class="quantity-switcher-buttons" data-id="${item.id}" data-operation="decrement">-</button>
-                        <input type="number" class="g-cart-qty" data-id="${item.id}" value="${item.quantity}" style="max-width: 20px;border: none;text-align: center;pointer-events: none;">
-                        <button class="quantity-switcher-buttons" data-id="${item.id}" data-operation="increment">+</button>
+                    <div>
+                        <div class="fs-18 font-weight-bold">${item.price * item.quantity}</div>
+                        <div class="quantity-switcher">
+                            <button class="quantity-switcher-buttons" data-id="${item.id}" data-operation="decrement">-</button>
+                            <input type="number" class="g-cart-qty" data-id="${item.id}" value="${item.quantity}" style="max-width: 20px;border: none;text-align: center;pointer-events: none;">
+                            <button class="quantity-switcher-buttons" data-id="${item.id}" data-operation="increment">+</button>
+                        </div>
                     </div>
+                    
                    
                 </div>
             `);
