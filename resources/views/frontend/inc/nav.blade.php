@@ -675,8 +675,16 @@
                                 
                                     
                                 <div class="d-flex justify-content-between mt-3">
-                                    <h4>Subtotal</h4>
-                                    <h4 class="sidecart-subtotal"">$0.00</h4>
+                                    <h5>Subtotal</h5>
+                                    <h5 class="sidecart-subtotal">$0.00</h5>
+                                </div>
+                                <div class="d-flex justify-content-between mt-3 g_discount_wrapper">
+                                    <h6>Discount</h6>
+                                    <h6 class="sidecart-total-discount"></h6>
+                                </div>
+                                <div class="d-flex justify-content-between mt-3 g_total">
+                                    <h4>Total</h4>
+                                    <h4 class="sidecart-total-discount"></h4>
                                 </div>
                             
                             
