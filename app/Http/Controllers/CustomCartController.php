@@ -111,7 +111,7 @@ class CustomCartController extends Controller
             $items_subtotal = $qty *  home_base_price($product, false);
             $subtotal = $subtotal + $items_subtotal;
             $discount_amount = discount_in_percentage($product) > 0 ?  home_base_price($product, false) -  home_discounted_base_price($product, false) : 0;
-            $items_discount = $items_discount + $discount_amount;
+            $items_discount = $items_discount + ( $qty * $discount_amount);
 
         }
         return [
