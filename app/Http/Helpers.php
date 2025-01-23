@@ -1764,9 +1764,28 @@ if (!function_exists('get_best_selling_products')) {
 if (!function_exists('get_seller_products')) {
     function get_seller_products($user_id)
     {
-        $product_query = Product::query();
-        return $product_query->where('user_id', $user_id)->isApprovedPublished()->orderBy('created_at', 'desc')->limit(15)->get();
-    }
+        // Query for products created by the seller
+        $sellerProductsQuery = Product::query()
+            ->where('user_id', $user_id)
+            ->isApprovedPublished()
+            ->select('id', 'name', 'price', 'image', 'created_at');
+    
+        // Query for products imported by the seller
+        $importedProductsQuery = Product::query()
+            ->join('seller_imported_products', 'products.id', '=', 'seller_imported_products.product_id')
+            ->where('seller_imported_products.user_id', $user_id)
+            ->isApprovedPublished()
+            ->select('products.id', 'products.name', 'products.price', 'products.image', 'products.created_at');
+    
+        // Combine the two queries and ensure no duplicates
+        $allProducts = $sellerProductsQuery
+            ->union($importedProductsQuery)
+            ->orderBy('created_at', 'desc')
+            ->limit(15)
+            ->get();
+    
+        return $allProducts;
+    }    
 }
 
 // Get Seller Best Selling Products
