@@ -227,8 +227,8 @@
         }
         .cart-item-count {
             position: absolute;
-            bottom: 0;
-            right: 10px;
+            bottom: -10px;
+            right: -10px;
             background: red;
             width: 20px;
             display: flex;
@@ -976,7 +976,7 @@ $(document).ready(function(){
                 <div class="sidecart-item d-flex justify-content-between align-items-center py-3 border-bottom">
                     <div class="d-flex flex-row justify-content-start align-items-center">
                         <button class="px-1 text-primary g-remove-from-car btn-light bg-white border-0 btn-lg" data-id="${item.id}"><i class="fa fa-trash"></i></button>
-                        <div class="position-relative mx-2" style="width: 50px; height: 50px;" >
+                        <div class="position-relative ms-2 me-4" style="width: 50px; height: 50px;" >
                             <img src="${item.image}" alt="${item.name}" class="rounded-2 w-100 h-100 " style="object-fit: contain;">
                             <span class="cart-item-count">${item.quantity}</span>
                         </div>
