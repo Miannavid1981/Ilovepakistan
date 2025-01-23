@@ -1,6 +1,20 @@
 @extends('seller.layouts.app')
 
 @section('panel_content')
+<style>
+#category-tree {
+    margin: 10px 0;
+}
+
+.category-item {
+    margin-left: 20px;
+}
+
+.children {
+    margin-left: 20px;
+}
+
+</style>
     <div class="aiz-titlebar mt-2 mb-4">
       <div class="row align-items-center">
         <div class="col-md-6">
@@ -437,6 +451,15 @@
 
 @section('script')
     <script type="text/javascript">
+        $(document).on('change', '.category-checkbox', function () {
+            const maxSelection = 3;
+            const selected = $('.category-checkbox:checked');
+
+            if (selected.length > maxSelection) {
+                alert(`You can only select up to ${maxSelection} categories.`);
+                $(this).prop('checked', false); // Uncheck the current selection
+            }
+        });
 
         $('.new-email-verification').on('click', function() {
             $(this).find('.loading').removeClass('d-none');
