@@ -213,17 +213,21 @@
         }
 
         .quantity-switcher-buttons {
-            background: var(--primary);
+            background: #e6e6e6;
             border: none;
             width: 25px;
-            color: #fff;
-            font-size: 23px;
+            color: #000000;
+            font-size: 20px;
             border-radius: 50%;
             aspect-ratio: 1 / 1;
             height: 25px;
             display: flex;
             justify-content: center;
             align-items: center;
+            margin: 0;
+            padding: 0;
+            line-height: 0;
+            vertical-align: middle;
         }
         .cart-item-count {
             position: absolute;
@@ -987,11 +991,11 @@ $(document).ready(function(){
                         </div>
                     </div>
                     <div>
-                        <div class="fs-18 font-weight-bold">${item.price * item.quantity}</div>
+                        <div class="fs-18 font-weight-bold">${parseFloat(item.price_int) * parseFloat(item.quantity)}</div>
                         <div class="quantity-switcher">
-                            <button class="quantity-switcher-buttons" data-id="${item.id}" data-operation="decrement">-</button>
+                            <button class="quantity-switcher-buttons" data-id="${item.id}" data-operation="decrement"><i class="fa fa-minus"></i></button>
                             <input type="number" class="g-cart-qty" data-id="${item.id}" value="${item.quantity}" style="max-width: 20px;border: none;text-align: center;pointer-events: none;">
-                            <button class="quantity-switcher-buttons" data-id="${item.id}" data-operation="increment">+</button>
+                            <button class="quantity-switcher-buttons" data-id="${item.id}" data-operation="increment"><i class="fa fa-plus"></i></button>
                         </div>
                     </div>
                     
