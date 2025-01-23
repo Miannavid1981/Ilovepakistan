@@ -28,6 +28,9 @@
         </button>
     </div>
 
+@endsection
+
+@section('script')
     <script>
         // Preload selected products
 
@@ -91,4 +94,4 @@
             }
         });
     </script>
-@endsection
+    @endsection
