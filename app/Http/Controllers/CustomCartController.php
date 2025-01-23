@@ -25,7 +25,7 @@ class CustomCartController extends Controller
     {
         $productId = $request->product_id;
         $cart = Session::get('cart', []);
-
+        $qty = isset($cart[$productId]) ? $cart[$productId]['quantity'] : 1;
         if (isset($cart[$productId])) {
             $cart[$productId]['quantity']++;
         } else {
@@ -39,7 +39,7 @@ class CustomCartController extends Controller
                 'quantity' => 1,
                 'discounted_price' => home_discounted_base_price($product),
                 'discounted_price_int' => home_discounted_base_price($product, false), 
-                'subtotal' => $cart[$productId]['quantity'] *  home_base_price($product, false),
+                'subtotal' => $qty *  home_base_price($product, false),
                 'discount' => discount_in_percentage($product) > 0 
             ];
         }
