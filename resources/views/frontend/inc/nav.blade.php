@@ -979,7 +979,7 @@ $(document).ready(function(){
             $sidecartItems.append(`
                 <div class="sidecart-item d-flex justify-content-between align-items-center py-3 border-bottom">
                     <div class="d-flex flex-row justify-content-start align-items-center">
-                        <button class="px-1 text-primary g-remove-from-car btn-light bg-white border-0 btn-lg" data-id="${item.id}"><i class="fa fa-trash"></i></button>
+                        <button class="px-1 text-primary g-remove-from-cart btn-light bg-white border-0 btn-lg" data-id="${item.id}"><i class="fa fa-trash"></i></button>
                         <div class="position-relative ms-2 me-4" style="width: 50px; height: 50px;" >
                             <img src="${item.image}" alt="${item.name}" class="rounded-2 w-100 h-100 " style="object-fit: contain;">
                             <span class="cart-item-count">${item.quantity}</span>
@@ -987,11 +987,19 @@ $(document).ready(function(){
                         
                         <div class="">
                             <div class="fs-15">${item.name}</div>
-                            <div class="fs-18 font-weight-bold">${item.price}</div>
+                            <div class="d-flex">
+                                 <div class="  ${ item.discount ? ` fs-14 text-muted` : 'fs-16' } font-weight-bold">${item.price}</div>
+                                ${
+                                 item.discount ? `<div class="fs-16 font-weight-bold">${item.discounted_price}</div>`
+                                 : ``
+                                }
+                            </div>
+
+                           
                         </div>
                     </div>
                     <div>
-                        <div class="fs-18 font-weight-bold">${parseFloat(item.price_int) * parseFloat(item.quantity)}</div>
+                        <div class="fs-18 font-weight-bold">${item.subtotal}</div>
                         <div class="quantity-switcher">
                             <button class="quantity-switcher-buttons" data-id="${item.id}" data-operation="decrement"><i class="fa fa-minus"></i></button>
                             <input type="number" class="g-cart-qty" data-id="${item.id}" value="${item.quantity}" style="max-width: 20px;border: none;text-align: center;pointer-events: none;">

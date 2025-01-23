@@ -34,9 +34,13 @@ class CustomCartController extends Controller
                 'id' => $product->id,
                 'name' => $product->name,
                 'price' => home_base_price($product),
-                'price_int' => $product->unit_price ?? 0,
+                'price_int' =>  home_base_price($product, false),
                 'image' => $product->thumbnail != null ? my_asset($product->thumbnail->file_name) : static_asset('assets/img/placeholder.jpg'), // Ensure you have an image column in the Product model
                 'quantity' => 1,
+                'discounted_price' => home_discounted_base_price($product),
+                'discounted_price_int' => home_discounted_base_price($product, false), 
+                'subtotal' => $cart[$productId]['quantity'] *  home_base_price($product, false),
+                'discount' => discount_in_percentage($product) > 0 
             ];
         }
 
