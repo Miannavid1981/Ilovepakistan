@@ -1037,6 +1037,7 @@ $(document).ready(function(){
         ]
        
         $('.sidecart-subtotal').text(`${cart.subtotal}`);
+        $('.sidecart-total').text(`${cart.total}`);
     }
 
     function fetchCart() {
