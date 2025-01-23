@@ -684,7 +684,7 @@
                                 </div>
                                 <div class="d-flex justify-content-between mt-3 g_total">
                                     <h4>Total</h4>
-                                    <h4 class="sidecart-total-discount"></h4>
+                                    <h4 class="sidecart-total"></h4>
                                 </div>
                             
                             
@@ -1029,7 +1029,15 @@ $(document).ready(function(){
             `);
         });
         $('.g-cart-items-count').text(`${cart.items.length}`);
+        if(cart.items_discount){
+            $('.sidecart-total-discount').text(`${cart.items_discount}`)
+
+        } else [
+            $("g_discount_wrapper").hide()
+        ]
+       
         $('.sidecart-subtotal').text(`${cart.subtotal}`);
+        $('.sidecart-total').text(`${cart.total}`);
     }
 
     function fetchCart() {

@@ -99,19 +99,24 @@ class CustomCartController extends Controller
     private function getCartData()
     {
         $cart = Session::get('cart', []);
+        $total = 0;
         $subtotal = 0;
         $items_discount = 0;
         foreach ( $cart as $productId => $item){
             $qty = $item['quantity'];
             $product = Product::find($productId);
-            $item_subtotal = discount_in_percentage($product) > 0 ? ($qty *  home_discounted_base_price($product, false) )  :  ($qty *  home_base_price($product, false) );
-            $cart[$productId]['subtotal'] = format_price($item_subtotal);
-            $subtotal = $subtotal + $item_subtotal;
+            $item_total = discount_in_percentage($product) > 0 ? ($qty *  home_discounted_base_price($product, false) )  :  ($qty *  home_base_price($product, false) );
+            $cart[$productId]['subtotal'] = format_price($item_total);
+            $total = $total + $item_total;
+            $items_subtotal = $qty *  home_base_price($product, false);
+            $subtotal = $subtotal + $items_subtotal;
             $discount_amount = discount_in_percentage($product) > 0 ?  home_base_price($product, false) -  home_discounted_base_price($product, false) : 0;
             $items_discount = $items_discount + $discount_amount;
+
         }
         return [
             'items' => array_values($cart),
+            'total' => format_price($total),
             'subtotal' => format_price($subtotal),
             'items_discount' => format_price($items_discount)
         ];
