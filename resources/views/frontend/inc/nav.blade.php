@@ -998,9 +998,9 @@ $(document).ready(function(){
                                  <div>
                                  ${
                                  item.discount ?
-                                    `<span class="bg-primary px-2 py-1 fs-15 rounded-3 text-white font-weight-bold"> - ${item.discounted_percentage}</span>`
+                                    `<span class="bg-primary px-2 py-1 fs-16 rounded-3 text-white font-weight-bold"> - ${item.discounted_percentage}%</span>`
                                     : '' 
-                                }
+                                 }
                                  </div>
                             </div>
 
@@ -1008,7 +1008,7 @@ $(document).ready(function(){
                         </div>
                     </div>
                     <div>
-                        <div class="fs-18 font-weight-bold">${item.subtotal}</div>
+                        <div class="fs-18 font-weight-bold text-end">${item.subtotal}</div>
                         <div class="quantity-switcher">
                             <button class="quantity-switcher-buttons" data-id="${item.id}" data-operation="decrement"><i class="fa fa-minus"></i></button>
                             <input type="number" class="g-cart-qty" data-id="${item.id}" value="${item.quantity}" style="max-width: 20px;border: none;text-align: center;pointer-events: none;">

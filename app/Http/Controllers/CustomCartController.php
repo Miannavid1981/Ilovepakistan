@@ -30,6 +30,7 @@ class CustomCartController extends Controller
             $cart[$productId]['quantity']++;
         } else {
             $product = Product::find($productId); // Fetch product from database
+            $subtotal = discount_in_percentage($product) > 0 ? ($qty *  home_discounted_base_price($product, false) )  :  ($qty *  home_base_price($product, false) );
             $cart[$productId] = [
                 'id' => $product->id,
                 'name' => $product->name,
@@ -39,7 +40,7 @@ class CustomCartController extends Controller
                 'quantity' => 1,
                 'discounted_price' => home_discounted_base_price($product),
                 'discounted_price_int' => home_discounted_base_price($product, false), 
-                'subtotal' => $qty *  home_base_price($product, false),
+                'subtotal' => format_price($subtotal) ,
                 'discount' => discount_in_percentage($product) > 0,
                 'discounted_percentage' => discount_in_percentage($product)
             ];
