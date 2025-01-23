@@ -106,7 +106,7 @@ class CustomCartController extends Controller
             $qty = $item['quantity'];
             $product = Product::find($productId);
             $subtotal = discount_in_percentage($product) > 0 ? ($qty *  home_discounted_base_price($product, false) )  :  ($qty *  home_base_price($product, false) );
-            $item['subtotal'] = format_price($subtotal);
+            $cart[$productId]['subtotal'] = format_price($subtotal);
         }
         return [
             'items' => array_values($cart),
