@@ -1767,8 +1767,7 @@ if (!function_exists('get_seller_products')) {
         // Query for products created by the seller
         $sellerProductsQuery = Product::query()
             ->where('user_id', $user_id)
-            ->isApprovedPublished()
-            ->select('id', 'name', 'price', 'image', 'created_at');
+            ->isApprovedPublished();
     
         // Query for products imported by the seller
         $importedProductsQuery = Product::query()
