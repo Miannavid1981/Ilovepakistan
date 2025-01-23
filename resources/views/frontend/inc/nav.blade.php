@@ -874,6 +874,7 @@ $(document).ready(function(){
     $(document).on('click', '.g-add-to-cart', function () {
         const productId = $(this).data('id');
         const prev_text = 'Add to Cart';
+        var elm = $(this);
         $(this).html('<i class="fa fa-spinner fa-spin d-block "></i>');
         $.ajax({
             url: '/cart/add',
@@ -885,7 +886,7 @@ $(document).ready(function(){
             success: function (response) {
                 if (response.success) {
                     updateSidecart(response.cart);
-                    $(this).html(prev_text)
+                    elm.html(prev_text)
                     $('#cartOffcanvas').modal("show");
 
                 } else {
