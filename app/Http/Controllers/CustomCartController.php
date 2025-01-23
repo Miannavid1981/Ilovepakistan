@@ -40,7 +40,8 @@ class CustomCartController extends Controller
                 'discounted_price' => home_discounted_base_price($product),
                 'discounted_price_int' => home_discounted_base_price($product, false), 
                 'subtotal' => $qty *  home_base_price($product, false),
-                'discount' => discount_in_percentage($product) > 0 
+                'discount' => discount_in_percentage($product) > 0,
+                'discounted_percentage' => discount_in_percentage($product)
             ];
         }
 

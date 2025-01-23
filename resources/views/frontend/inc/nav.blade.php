@@ -996,7 +996,11 @@ $(document).ready(function(){
                                 }
                                  </div>
                                  <div>
-                                    <span class="bg-primary px-2 py-1 fs-15 rounded-3 text-white font-weight-bold"> - 30%</span>
+                                 ${
+                                 item.discount ?
+                                    `<span class="bg-primary px-2 py-1 fs-15 rounded-3 text-white font-weight-bold"> - ${item.discounted_percentage}</span>`
+                                    : '' 
+                                }
                                  </div>
                             </div>
 
