@@ -63,4 +63,27 @@ class ProfileController extends Controller
         flash(translate('Your Profile has been updated successfully!'))->success();
         return back();
     }
+
+    public function savePreferences(Request $request)
+    {
+        $request->validate([
+            'categories' => 'required|array|max:3', // Allow only 3 categories
+            'categories.*' => 'exists:categories,id'
+        ]);
+
+        $user = auth()->user();
+
+        // Clear previous preferences
+        $user->categoryPreferences()->delete();
+
+        // Save new preferences
+        foreach ($request->categories as $categoryId) {
+            SellerCategoryPreference::create([
+                'user_id' => $user->id,
+                'category_id' => $categoryId,
+            ]);
+        }
+
+        return redirect()->back()->with('success', 'Category preferences saved successfully!');
+    }
 }

@@ -10,7 +10,7 @@ use App\Models\Cart;
 use App\Notifications\EmailVerificationNotification;
 use App\Traits\PreventDemoModeChanges;
 use Spatie\Permission\Traits\HasRoles;
-
+use App\Models\SellerCategoryPreference;
 class User extends Authenticatable implements MustVerifyEmail
 {
     use Notifiable, HasApiTokens, HasRoles;
@@ -158,5 +158,9 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function userCoupon(){
         return $this->hasOne(UserCoupon::class);
+    }
+    public function categoryPreferences()
+    {
+        return $this->hasMany(SellerCategoryPreference::class);
     }
 }

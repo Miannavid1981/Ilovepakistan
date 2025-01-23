@@ -241,6 +241,60 @@
         </div>
     </form>
 
+    <!-- Change Email -->
+        @php
+            $categories = \App\Models\Category::where('parent_id', 0)->get();
+            $selectedCategories = auth()->user()->categoryPreferences->pluck('category_id')->toArray(); // User's selected categories
+
+        @endphp
+        <div class="card">
+          <div class="card-header">
+              <h5 class="mb-0 h6">{{ translate('Category Preferences')}}</h5>
+          </div>
+            <div class="card-body">
+                <div class="row">
+                    <form action="{{ route('seller.save.preferences') }}" method="POST">
+                        @csrf
+                        <div id="category-tree">
+                            @foreach ($categories as $category)
+                                <div class="category-item">
+                                    <label>
+                                        <input type="checkbox" name="categories[]" value="{{ $category->id }}" 
+                                            {{ in_array($category->id, $selectedCategories) ? 'checked' : '' }}
+                                            class="category-checkbox">
+                                        {{ $category->name }}
+                                    </label>
+                                    @if ($category->childrenCategories->count())
+
+                                       
+                                        <div class="children">
+                                            @foreach ($category->childrenCategories as $child)
+                                                <div class="category-item">
+                                                    <label>
+                                                        <input type="checkbox" name="categories[]" value="{{ $child->id }}" 
+                                                            {{ in_array($child->id, $selectedCategories) ? 'checked' : '' }}
+                                                            class="category-checkbox">
+                                                        {{ $child->name }}
+                                                    </label>
+                                                    @if ($child->children->count())
+                                                        <div class="children">
+                                                            @include('partials.category-children', ['children' => $child->children, 'selectedCategories' => $selectedCategories])
+                                                        </div>
+                                                    @endif
+                                                </div>
+                                            @endforeach
+
+                                        </div>
+                                    @endif
+                                </div>
+                            @endforeach
+                        </div>
+
+                        <button type="submit">Save Preferences</button>
+                    </form>
+                </div>
+            </div>
+        </div>
 @endsection
 
 @section('modal')
