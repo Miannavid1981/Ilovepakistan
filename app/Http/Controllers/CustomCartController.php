@@ -25,12 +25,16 @@ class CustomCartController extends Controller
     {
         $productId = $request->product_id;
         $cart = Session::get('cart', []);
-        $qty = $cart[$productId]['quantity'] ?? 1;
+        $qty = 1;
         if (isset($cart[$productId])) {
+            $product = Product::find($productId);
             $cart[$productId]['quantity']++;
+            $qty = $cart[$productId]['quantity'];
+            $subtotal = discount_in_percentage($product) > 0 ? ($qty *  home_discounted_base_price($product, false) )  :  ($qty *  home_base_price($product, false) );
+            $cart[$productId]['subtotal'] = format_price($subtotal);
         } else {
             $product = Product::find($productId); // Fetch product from database
-            $subtotal = discount_in_percentage($product) > 0 ? ($qty *  home_discounted_base_price($product, false) )  :  ($qty *  home_base_price($product, false) );
+            $subtotal = discount_in_percentage($product) > 0 ? (1*  home_discounted_base_price($product, false) )  :  (1 *  home_base_price($product, false) );
             $cart[$productId] = [
                 'id' => $product->id,
                 'name' => $product->name,
