@@ -1767,14 +1767,15 @@ if (!function_exists('get_seller_products')) {
         // Query for products created by the seller
         $sellerProductsQuery = Product::query()
             ->where('user_id', $user_id)
-            ->isApprovedPublished();
+            ->isApprovedPublished()
+            ->get();
     
         // Query for products imported by the seller
         $importedProductsQuery = Product::query()
             ->join('seller_imported_products', 'products.id', '=', 'seller_imported_products.product_id')
             ->where('seller_imported_products.user_id', $user_id)
             ->isApprovedPublished()
-            ->select('products.id', 'products.name', 'products.price', 'products.image', 'products.created_at');
+            ->get();
     
         // Combine the two queries and ensure no duplicates
         $allProducts = $sellerProductsQuery
