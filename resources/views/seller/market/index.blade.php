@@ -29,9 +29,11 @@
     </div>
 
     <script>
-        let selectedProductIds = @json($importedProductIds); // Preload selected products
+        // Preload selected products
 
         $(document).ready(function () {
+
+            let selectedProductIds = @json($importedProductIds);
             // Handle search
             $('#product-search').on('keyup', function () {
                 const search = $(this).val();
