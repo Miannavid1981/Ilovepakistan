@@ -43,8 +43,7 @@ class SellerMarketController extends Controller
 
         foreach ($productIds as $productId) {
             SellerImportedProduct::updateOrCreate(
-                ['user_id' => $userId, 'product_id' => $productId],
-                [] // Additional fields can go here
+                ['user_id' => $userId, 'product_id' => $productId, 'created_at' => now(), 'updated_at' => now(), ]
             );
         }
 

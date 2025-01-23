@@ -23,6 +23,8 @@ class SellerImportedProduct extends Model
     protected $fillable = [
         'user_id',
         'product_id',
+        'updated_at',
+        'created_at'
     ];
 
     /**
