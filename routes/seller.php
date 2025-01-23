@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\AizUploadController;
-
+use App\Http\Controllers\Seller\SellerMarketController;
 //Upload
 Route::group(['prefix' => 'seller', 'middleware' => ['seller', 'verified', 'user', 'prevent-back-history'], 'as' => 'seller.'], function () {
     Route::controller(AizUploadController::class)->group(function () {
@@ -171,5 +171,10 @@ Route::group(['namespace' => 'App\Http\Controllers\Seller', 'prefix' => 'seller'
 
     });
 
+    Route::controller(SellerMarketController::class)->group(function () {
+        Route::get('/market', 'index')->name('market');
+    });
+    
+    
 });
 
