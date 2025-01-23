@@ -73,7 +73,7 @@
             // Fetch products function
             function fetchProducts(page, search = '') {
                 $.ajax({
-                    url: "{{ route('seller.market.index') }}?page=" + page + "&search=" + search,
+                    url: "{{ route('seller.market') }}?page=" + page + "&search=" + search,
                     success: function (data) {
                         $('#product-cards-container').html(data.html);
                         $('#pagination-container').html(data.pagination);
