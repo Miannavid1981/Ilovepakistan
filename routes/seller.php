@@ -115,7 +115,7 @@ Route::group(['namespace' => 'App\Http\Controllers\Seller', 'prefix' => 'seller'
     Route::controller(ProfileController::class)->group(function () {
         Route::get('/profile', 'index')->name('profile.index');
         Route::post('/profile/update/{id}', 'update')->name('profile.update');
-        Route::post('/preferences/save', [ProfileController::class, 'savePreferences'])->name('save.preferences');
+        Route::post('/preferences/save',  'savePreferences')->name('save.preferences');
 
     });
 
