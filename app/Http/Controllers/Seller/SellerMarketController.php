@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Seller;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Models\SellerImportedProduct;
+use Auth;
 class SellerMarketController extends Controller
 {
 
