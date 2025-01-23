@@ -987,7 +987,7 @@ $(document).ready(function(){
                         
                         <div class="">
                             <div class="fs-15">${item.name}</div>
-                            <div class="d-flex">
+                            <div class="d-flex align-items-center gap-2">
                                 <div>
                                  <div class="font-weight-bold  ${ item.discount ? ` fs-14 text-secondary" style="text-decoration: line-through;` : 'fs-16' }" >${item.price}</div>
                                 ${
@@ -996,7 +996,7 @@ $(document).ready(function(){
                                 }
                                  </div>
                                  <div>
-                                    <span class="badge badge-danger"> - 30%</span>
+                                    <span class="bg-primary px-2 py-1 fs-15 rounded-3 text-white font-weight-bold"> - 30%</span>
                                  </div>
                             </div>
 
