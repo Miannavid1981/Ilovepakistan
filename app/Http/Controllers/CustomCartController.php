@@ -25,7 +25,7 @@ class CustomCartController extends Controller
     {
         $productId = $request->product_id;
         $cart = Session::get('cart', []);
-        $qty = isset($cart[$productId]) ? $cart[$productId]['quantity'] : 1;
+        $qty = $cart[$productId]['quantity'] ?? 1;
         if (isset($cart[$productId])) {
             $cart[$productId]['quantity']++;
         } else {
