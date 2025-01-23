@@ -174,19 +174,19 @@ class CheckoutController extends Controller
             }
         }
 
-        foreach ($cart as $key => $cartItem) {
-            $product = Product::find($cartItem['product_id']);
+        foreach ($cart as $productId => $cartItem) {
+            $product = Product::find($productId);
             $tax += cart_product_tax($cartItem, $product, false) * $cartItem['quantity'];
             $subtotal += cart_product_price($cartItem, $product, false, false) * $cartItem['quantity'];
 
             if (get_setting('shipping_type') == 'carrier_wise_shipping') {
-                $cart[$key]['shipping_cost'] = $country_id != 0 ? getShippingCost($cart, $key, $shipping_info, $default_carrier_id) : 0;
+                $cart[$productId]['shipping_cost'] = $country_id != 0 ? getShippingCost($cart, $productId, $shipping_info, $default_carrier_id) : 0;
             } else {
-                $cart[$key]['shipping_cost'] = getShippingCost($cart, $key, $shipping_info);
+                $cart[$productId]['shipping_cost'] = getShippingCost($cart, $productId, $shipping_info);
             }
-            $cart[$key]['shipping_type'] = $default_shipping_type;
-            $cart[$key]['carrier_id'] = $default_carrier_id;
-            $shipping += $cart[$key]['shipping_cost'];
+            $cart[$productId]['shipping_type'] = $default_shipping_type;
+            $cart[$productId]['carrier_id'] = $default_carrier_id;
+            $shipping += $cart[$productId]['shipping_cost'];
         }
 
         // Save the updated cart to the session
