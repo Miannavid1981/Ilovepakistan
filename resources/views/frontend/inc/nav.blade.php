@@ -978,7 +978,7 @@ $(document).ready(function(){
                         <button class="px-1 text-primary g-remove-from-car btn-light bg-white border-0 btn-lg" data-id="${item.id}"><i class="fa fa-trash"></i></button>
                         <div class="position-relative mx-2" style="width: 50px; height: 50px;" >
                             <img src="${item.image}" alt="${item.name}" class="rounded-2 ">
-                            <span class="cart-item-count">1</span>
+                            <span class="cart-item-count">${item.quantity}</span>
                         </div>
                         
                         <div class="">
