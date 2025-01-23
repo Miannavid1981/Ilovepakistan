@@ -276,9 +276,9 @@
                                                             class="category-checkbox">
                                                         {{ $child->name }}
                                                     </label>
-                                                    @if ($child->children->count())
+                                                    @if ($child->childrenCategories->count())
                                                         <div class="children">
-                                                            @include('partials.category-children', ['children' => $child->children, 'selectedCategories' => $selectedCategories])
+                                                            @include('partials.category-children', ['children' => $category->childrenCategories, 'selectedCategories' => $selectedCategories])
                                                         </div>
                                                     @endif
                                                 </div>
