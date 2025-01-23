@@ -173,7 +173,7 @@ Route::group(['namespace' => 'App\Http\Controllers\Seller', 'prefix' => 'seller'
 
     Route::controller(SellerMarketController::class)->group(function () {
         Route::get('/market', 'index')->name('market');
-        Route::get('/store/imported/products', 'store')->name('imported.products.store');
+        Route::post('/store/imported/products', 'store')->name('imported.products.store');
     });
     
     
