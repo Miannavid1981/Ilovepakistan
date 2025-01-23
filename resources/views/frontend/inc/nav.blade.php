@@ -958,7 +958,7 @@ $(document).ready(function(){
         $sidecartItems.empty();
         cart.items.forEach((item) => {
             $sidecartItems.append(`
-                <div class="sidecart-item d-flex justify-content-between align-items-center">
+                <div class="sidecart-item d-flex justify-content-between align-items-center py-3 border-bottom">
                     <div class="d-flex flex-row justify-content-start">
                         <button class="btn btn-sm btn-icon btn-primary me-2 g-remove-from-cart" data-id="${item.id}"><i class="fa fa-trash"></i></button>
                         <img src="${item.image}" alt="${item.name}" style="width: 50px; height: 50px;" class="rounded-2 me-2">
