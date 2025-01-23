@@ -988,11 +988,16 @@ $(document).ready(function(){
                         <div class="">
                             <div class="fs-15">${item.name}</div>
                             <div class="d-flex">
+                                <div>
                                  <div class="font-weight-bold  ${ item.discount ? ` fs-14 text-secondary" style="text-decoration: line-through;` : 'fs-16' }" >${item.price}</div>
                                 ${
                                  item.discount ? `<div class="fs-16 font-weight-bold">${item.discounted_price}</div>`
                                  : ``
                                 }
+                                 </div>
+                                 <div>
+                                    <span class="badge badge-danger"> - 30%</span>
+                                 </div>
                             </div>
 
                            
