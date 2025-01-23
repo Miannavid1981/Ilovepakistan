@@ -1030,11 +1030,11 @@ $(document).ready(function(){
         });
         $('.g-cart-items-count').text(`${cart.items.length}`);
         if(cart.items_discount){
-            $('.sidecart-total-discount').text(`${cart.items_discount}`)
+            $('.sidecart-total-discount').text(`-${cart.items_discount}`)
 
-        } else [
+        } else {
             $("g_discount_wrapper").hide()
-        ]
+        }
        
         $('.sidecart-subtotal').text(`${cart.subtotal}`);
         $('.sidecart-total').text(`${cart.total}`);
