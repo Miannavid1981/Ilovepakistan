@@ -58,7 +58,7 @@ use App\Models\PaymentMethod;
 use App\Models\UserCoupon;
 use App\Models\NotificationType;
 use App\Utility\EmailUtility;
-
+use App\Models\SellerImportedProduct;
 //sensSMS function for OTP
 if (!function_exists('sendSMS')) {
     function sendSMS($to, $from, $text, $template_id)
@@ -1764,28 +1764,34 @@ if (!function_exists('get_best_selling_products')) {
 if (!function_exists('get_seller_products')) {
     function get_seller_products($user_id)
     {
-        // Query for products created by the seller
-        $sellerProductsQuery = Product::query()
+        // Get the product IDs created by the seller
+        $sellerProductIds = Product::query()
             ->where('user_id', $user_id)
             ->isApprovedPublished()
-            ->get();
-    
-        // Query for products imported by the seller
-        $importedProductsQuery = Product::query()
-            ->join('seller_imported_products', 'products.id', '=', 'seller_imported_products.product_id')
-            ->where('seller_imported_products.user_id', $user_id)
-            ->isApprovedPublished()
-            ->get();
-    
-        // Combine the two queries and ensure no duplicates
-        $allProducts = $sellerProductsQuery
-            ->union($importedProductsQuery)
             ->orderBy('created_at', 'desc')
             ->limit(15)
+            ->pluck('id') // Get only the IDs
+            ->toArray();
+
+        // Get the product IDs from the seller_imported_products table
+        $importedProductIds = SellerImportedProduct::query()
+            ->where('user_id', $user_id)
+            ->pluck('product_id') // Get only the product IDs
+            ->toArray();
+
+        // Merge the IDs and ensure they are distinct
+        $allProductIds = array_unique(array_merge($sellerProductIds, $importedProductIds));
+
+        // Fetch all products using the distinct IDs
+        $allProducts = Product::query()
+            ->whereIn('id', $allProductIds)
+            ->isApprovedPublished()
+            ->orderBy('created_at', 'desc')
             ->get();
-    
+
         return $allProducts;
-    }    
+    }
+  
 }
 
 // Get Seller Best Selling Products
