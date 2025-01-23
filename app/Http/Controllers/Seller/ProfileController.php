@@ -7,6 +7,7 @@ use App\Models\User;
 use Auth;
 use Hash;
 use Illuminate\Http\Request;
+use App\Models\SellerCategoryPreference;
 
 class ProfileController extends Controller
 {
