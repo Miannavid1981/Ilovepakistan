@@ -27,11 +27,7 @@ class CustomCartController extends Controller
         $cart = Session::get('cart', []);
         $qty = 1;
         if (isset($cart[$productId])) {
-            $product = Product::find($productId);
             $cart[$productId]['quantity']++;
-            $qty = $cart[$productId]['quantity'];
-            $subtotal = discount_in_percentage($product) > 0 ? ($qty *  home_discounted_base_price($product, false) )  :  ($qty *  home_base_price($product, false) );
-            $cart[$productId]['subtotal'] = format_price($subtotal);
         } else {
             $product = Product::find($productId); // Fetch product from database
             $subtotal = discount_in_percentage($product) > 0 ? (1*  home_discounted_base_price($product, false) )  :  (1 *  home_base_price($product, false) );
@@ -106,6 +102,12 @@ class CustomCartController extends Controller
         $subtotal = array_sum(array_map(function ($item) {
             return $item['price_int'] * $item['quantity'];
         }, $cart));
+        foreach ( $cart as $productId => $item){
+            $qty = $item['quantity'];
+            $product = Product::find($productId);
+            $subtotal = discount_in_percentage($product) > 0 ? ($qty *  home_discounted_base_price($product, false) )  :  ($qty *  home_base_price($product, false) );
+            $item['subtotal'] = format_price($subtotal);
+        }
         return [
             'items' => array_values($cart),
             'subtotal' => number_format($subtotal, 2),
