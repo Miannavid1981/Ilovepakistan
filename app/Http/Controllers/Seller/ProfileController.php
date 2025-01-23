@@ -6,6 +6,7 @@ use App\Http\Requests\SellerProfileRequest;
 use App\Models\User;
 use Auth;
 use Hash;
+use Illuminate\Http\Request;
 
 class ProfileController extends Controller
 {
