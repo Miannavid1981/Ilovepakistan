@@ -32,13 +32,13 @@ class CheckoutController extends Controller
 
     public function index(Request $request)
     {
-        if(get_setting('guest_checkout_activation') == 0 && auth()->user() == null){
-            return redirect()->route('user.login');
-        }
+        // if(get_setting('guest_checkout_activation') == 0 && auth()->user() == null){
+        //     return redirect()->route('user.login');
+        // }
 
-        if(auth()->check() && !$request->user()->hasVerifiedEmail()){
-            return redirect()->route('verification.notice');
-        }
+        // if(auth()->check() && !$request->user()->hasVerifiedEmail()){
+        //     return redirect()->route('verification.notice');
+        // }
 
         $country_id = 0;
         $city_id = 0;
