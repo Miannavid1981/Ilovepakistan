@@ -4,6 +4,19 @@
     $cart_added = [];
 
 @endphp
+
+
+@php
+
+$product_url = route('product', $product->slug);
+
+if ($product->auction_product == 1) {
+
+    $product_url = route('auction-product', $product->slug);
+
+}
+
+@endphp
 <style>
 
 .custom_card_tag {
@@ -69,20 +82,12 @@
    
 </style>
 <div class="aiz-card-box h-auto py-3 ">
-
+    <a href="{{$product_url}}" >
+        
+  
     <div class="position-relative h-100  img-fit overflow-hidden">
 
-        @php
-
-            $product_url = route('product', $product->slug);
-
-            if ($product->auction_product == 1) {
-
-                $product_url = route('auction-product', $product->slug);
-
-            }
-
-        @endphp
+      
 
         <!-- Image -->
 
@@ -112,7 +117,7 @@
 
             <!--<div class="absolute-top-right bg-danger ml-1 mt-1 fs-11 fw-700 text-white w-35px text-center" style="padding-top:2px;padding-bottom:2px;margin-right: 0px;width: 70px;">sold out</div>-->
 
-        <a href="javascript:void(0);" class="d-block h-100 position-relative">
+        <div class="d-block h-100 position-relative">
 
             <img class="lazyload mx-auto img-fit has-transition " style="aspect-ratio: 1.5 /1.8; border: 1px solid #dbdbdb; border-radius: 15px; !important; object-fit: contain"
 
@@ -133,7 +138,7 @@
 
         </div>
 
-        </a>
+        </div>
        
        
    
@@ -338,6 +343,6 @@
             @endif
 
     </div>
-
+    </a>
 </div>
 

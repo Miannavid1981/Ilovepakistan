@@ -248,6 +248,7 @@
         </div>
     </div>
 
+
     <!-- Size chart show Modal -->
     @include('modals.size_chart_show_modal')
 
