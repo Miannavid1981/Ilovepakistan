@@ -114,7 +114,7 @@
 
         <a href="javascript:void(0);" class="d-block h-100 position-relative">
 
-            <img class="lazyload mx-auto img-fit has-transition " style="aspect-ratio: 1.5 /1.8; border: 1px solid #dbdbdb; border-radius: 15px; !important"
+            <img class="lazyload mx-auto img-fit has-transition " style="aspect-ratio: 1.5 /1.8; border: 1px solid #dbdbdb; border-radius: 15px; !important; object-fit: contain"
 
                 src="{{ $product->thumbnail != null ? my_asset($product->thumbnail->file_name) : static_asset('assets/img/placeholder.jpg') }}"
 
