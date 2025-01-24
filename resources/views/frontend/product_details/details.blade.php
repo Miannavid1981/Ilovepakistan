@@ -1,3 +1,375 @@
+
+<style>
+
+    .aun {
+      display: flex;
+      flex-direction: row;
+      align-items: flex-start;
+      gap: 30px;
+      max-width: 1200px;
+      width: 100%;
+    }
+
+    .blue {
+      width: 60%;
+    }
+
+    .paisa {
+      width: 35%;
+    }
+
+
+
+    .pr {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .prise {
+      color: #fb2364;
+      font-size: 17px;
+      font-weight: 600;
+    }
+
+    .price {
+      font-size: 40px;
+      color: #1c1c1c;
+      font-weight: 800;
+    }
+
+    .upcoming-price {
+      font-size: 22px;
+      color: white;
+      font-weight: 550;
+    }
+
+    .mm {
+      display: flex;
+      color: #fd4680;
+      background-color: #fff2f2;
+      padding: 10px 20px;
+      align-items: center;
+      border-radius: 5px;
+      margin: 10px 0;
+    }
+
+    .pink {
+      color: #f53a72;
+    }
+
+    .title {
+      margin: 15px 0;
+      font-size: 18px;
+      line-height: 1.6;
+      font-weight: 600;
+    }
+
+    .reviews {
+      margin: 15px 0;
+      font-weight: 549;
+      font-size: 17px;
+      padding-bottom: 15px;
+      color: #000000;
+    }
+
+    .me {
+      font-weight: 549;
+      color: #000000;
+      padding-top: 10px;
+    }
+
+    .image-section img {
+      width: 80px;
+      margin-right: 10px;
+      padding-top: 10px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .product-container {
+      width: 100%;
+      padding: 20px;
+      background: #fff;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .seller-info,
+    .shipping-info,
+    .security-info,
+    .quantity,
+    .actions,
+    .social-share {
+      margin-bottom: 10px;
+    }
+
+    .quantity-selector {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .quantity-selector button {
+      padding: 5px 10px;
+      border: 1px solid #ddd;
+      background: #f5f5f5;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+
+    .quantity-selector input {
+      width: 40px;
+      text-align: center;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+    }
+
+    .actions {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .buy-now {
+      padding: 13px;
+      background: #ed3838;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      font-size: 16px;
+      font-weight: 550;
+      cursor: pointer;
+    }
+
+    .add-to-cart {
+      padding: 13px;
+      background: #f5f5f5;
+      border: 1px solid #464646;
+      border-radius: 4px;
+      font-size: 16px;
+      font-weight: 550;
+      cursor: pointer;
+    }
+
+    .social-share {
+      display: flex;
+      justify-content: space-between;
+      font-size: 15px;
+      color: #000000;
+    }
+
+    /* Media Queries for Responsive Design */
+    @media (max-width: 768px) {
+      .aun {
+        flex-direction: column;
+        gap: 20px;
+      }
+
+      .blue,
+      .paisa {
+        width: 100%;
+      }
+
+      .price {
+        font-size: 30px;
+      }
+
+      .container {
+        padding: 10px 15px;
+      }
+
+      .image-section img {
+        width: 60px;
+      }
+
+      .buy-now,
+      .add-to-cart {
+        font-size: 14px;
+        padding: 10px;
+      }
+
+      .social-share {
+        flex-direction: column;
+        gap: 5px;
+        text-align: center;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .price {
+        font-size: 24px;
+      }
+
+      .prise {
+        font-size: 14px;
+      }
+
+      .upcoming-price {
+        font-size: 18px;
+      }
+
+      .mm {
+        padding: 8px 15px;
+        font-size: 14px;
+      }
+
+      .title {
+        font-size: 16px;
+      }
+
+      .reviews {
+        font-size: 14px;
+      }
+
+      .image-section img {
+        width: 50px;
+      }
+
+      .quantity-selector input {
+        width: 35px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="aun">
+    <div class="blue">
+      <h2> {{ $detailedProduct->getTranslation('name') }}</h2>
+      <br>
+      <div class="pr">
+        <div class="price">PKR 4,433</div>
+        <div class="prise">Starts: 23 47 16</div>
+      </div>
+      <div class="sale-price">PKR 852 each, 10 pieces</div>
+      <div class="change">Tax excluded, add at checkout if applicable. Extra 5% off with coins.</div>
+      <br>
+      <div class="mm">
+        <div class="pink">☰ PKR 836 off over PKR 13,932</div>
+      </div>
+      <div class="title">
+        Uworld Irregular Stacking Rings: With Irregular Shapes Irregular Dainty Ring Textured Thick Thin Band Fall
+        Essentials Gift For He.
+      </div>
+      @if ($detailedProduct->auction_product != 1)
+            <div class="col-12">
+                @php
+                    $total = 0;
+                    $total += $detailedProduct->reviews->where('status', 1)->count();
+                @endphp
+                <span class="rating rating-mr-2">
+                    {{ renderStarRating($detailedProduct->rating) }}
+                </span>
+                <span class="ml-1 opacity-50 fs-14">({{ $total }}
+                    {{ translate('reviews') }})</span>
+            </div>
+        @endif
+        @if (get_setting('conversation_system') == 1)
+            <div class="">
+                <button class="btn btn-sm btn-soft-secondary-base btn-outline-secondary-base hov-svg-white hov-text-white rounded-4"
+                    onclick="show_chat_modal()">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"
+                        class="mr-2 has-transition">
+                        <g id="Group_23918" data-name="Group 23918" transform="translate(1053.151 256.688)">
+                            <path id="Path_3012" data-name="Path 3012"
+                                d="M134.849,88.312h-8a2,2,0,0,0-2,2v5a2,2,0,0,0,2,2v3l2.4-3h5.6a2,2,0,0,0,2-2v-5a2,2,0,0,0-2-2m1,7a1,1,0,0,1-1,1h-8a1,1,0,0,1-1-1v-5a1,1,0,0,1,1-1h8a1,1,0,0,1,1,1Z"
+                                transform="translate(-1178 -341)" fill="{{ get_setting('secondary_base_color', '#ffc519') }}" />
+                            <path id="Path_3013" data-name="Path 3013"
+                                d="M134.849,81.312h8a1,1,0,0,1,1,1v5a1,1,0,0,1-1,1h-.5a.5.5,0,0,0,0,1h.5a2,2,0,0,0,2-2v-5a2,2,0,0,0-2-2h-8a2,2,0,0,0-2,2v.5a.5.5,0,0,0,1,0v-.5a1,1,0,0,1,1-1"
+                                transform="translate(-1182 -337)" fill="{{ get_setting('secondary_base_color', '#ffc519') }}" />
+                            <path id="Path_3014" data-name="Path 3014"
+                                d="M131.349,93.312h5a.5.5,0,0,1,0,1h-5a.5.5,0,0,1,0-1"
+                                transform="translate(-1181 -343.5)" fill="{{ get_setting('secondary_base_color', '#ffc519') }}" />
+                            <path id="Path_3015" data-name="Path 3015"
+                                d="M131.349,99.312h5a.5.5,0,1,1,0,1h-5a.5.5,0,1,1,0-1"
+                                transform="translate(-1181 -346.5)" fill="{{ get_setting('secondary_base_color', '#ffc519') }}" />
+                        </g>
+                    </svg>
+
+                    {{ translate('Message Seller') }}
+                </button>
+            </div>
+        @endif
+      <hr>
+      <div class="me"><strong>Main Stone Color: JDRW2405031</strong></div>
+      <div class="image-section">
+        <img src="https://via.placeholder.com/80" alt="Product Image">
+        <img src="https://via.placeholder.com/80" alt="Product Image">
+        <img src="https://via.placeholder.com/80" alt="Product Image">
+      </div>
+      <hr>
+    </div>
+    <div class="paisa">
+      <div class="product-container">
+        <div class="seller-info">
+          <strong>Sold by </strong><span class="location">Uworld Official Store (Trader)</span>
+        </div>
+        <hr>
+        <div class="shipping-info">
+          <strong>Ship to:</strong> <span class="location">Pakistan</span>
+          <p><span class="choice-label">Choice</span> <strong>AliExpress Commitment</strong></p>
+          <p><strong>Free shipping over PKR 2,786</strong></p>
+          <p>Delivery: <strong>Jan. 22 - Feb. 01</strong></p>
+        </div>
+        <div class="security-info">
+          <p>🔒 <strong>Security & Privacy</strong></p>
+          <small>Your information is protected. We do not share personal details.</small>
+        </div>
+        <hr>
+        <div class="quantity">
+          <p><strong>Quantity</strong></p>
+          <div class="quantity-selector">
+            <button>-</button>
+            <input type="number" value="1" min="1">
+            <button>+</button>
+          </div>
+        </div>
+        <div class="mt-3">
+            @if ($detailedProduct->digital == 0)
+                @if (((get_setting('product_external_link_for_seller') == 1) && ($detailedProduct->added_by == "seller") && ($detailedProduct->external_link != null)) ||
+                    (($detailedProduct->added_by != "seller") && ($detailedProduct->external_link != null)))
+                    <a type="button" class="btn btn-primary buy-now fw-600 add-to-cart px-4 rounded-0"
+                        href="{{ $detailedProduct->external_link }}">
+                        <i class="la la-share"></i> {{ translate($detailedProduct->external_link_btn) }}
+                    </a>
+                @else
+                    <button type="button"
+                        class="btn btn-secondary-base mr-2 add-to-cart fw-600 min-w-150px rounded-0 text-white"
+                        @if (Auth::check() || get_Setting('guest_checkout_activation') == 1) onclick="addToCart()" @else onclick="showLoginModal()" @endif>
+                        <i class="las la-shopping-bag"></i> {{ translate('Add to cart') }}
+                    </button>
+                    <button type="button" class="btn btn-primary buy-now fw-600 add-to-cart min-w-150px rounded-0"
+                        @if (Auth::check() || get_Setting('guest_checkout_activation') == 1) onclick="addToCart()" @else onclick="showLoginModal()" @endif>
+                        <i class="la la-shopping-cart"></i> {{ translate('Buy Now') }}
+                    </button>
+                @endif
+                <button type="button" class="btn btn-secondary out-of-stock fw-600 d-none" disabled>
+                    <i class="la la-cart-arrow-down"></i> {{ translate('Out of Stock') }}
+                </button>
+            @elseif ($detailedProduct->digital == 1)
+                <button type="button"
+                    class="btn btn-secondary-base mr-2 add-to-cart fw-600 min-w-150px rounded-0 text-white"
+                    @if (Auth::check() || get_Setting('guest_checkout_activation') == 1) onclick="addToCart()" @else onclick="showLoginModal()" @endif>
+                    <i class="las la-shopping-bag"></i> {{ translate('Add to cart') }}
+                </button>
+                <button type="button" class="btn btn-primary buy-now fw-600 add-to-cart min-w-150px rounded-0"
+                    @if (Auth::check() || get_Setting('guest_checkout_activation') == 1) onclick="addToCart()" @else onclick="showLoginModal()" @endif>
+                    <i class="la la-shopping-cart"></i> {{ translate('Buy Now') }}
+                </button>
+            @endif
+        </div>
+        <div class="social-share">
+        <div class="col-sm-12">
+            <div class="aiz-share"></div>
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+
 <div class="text-left">
     <!-- Product Name -->
     <h2 class="mb-4 fs-16 fw-700 text-dark">
