@@ -2742,7 +2742,7 @@ if (!function_exists('get_seller_serial_num')) {
      * @param int $digits Number of digits in the numeric part (default: 9)
      * @return string
      */
-    function get_seller_serial_num($digits = 8)
+    function get_seller_serial_num($digits = 8, $formatted = true)
     {
         // Prefix for the serial number
         $prefix = 'BH';
@@ -2765,6 +2765,6 @@ if (!function_exists('get_seller_serial_num')) {
         $formattedNumber = str_pad($newSerialNumber, $digits, '0', STR_PAD_LEFT);
 
         // Return the final serial number with the prefix
-        return $prefix . $formattedNumber;
+        return $formatted ? $prefix . $formattedNumber : $newSerialNumber ;
     }
 }
