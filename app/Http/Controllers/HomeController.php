@@ -770,4 +770,10 @@ class HomeController extends Controller
         $sql_path = base_path('public/uploads/demo_data.sql');
         DB::unprepared(file_get_contents($sql_path));
     }
+    public function new_detail_page($slug, $skin){
+        echo $slug;
+        echo "<br>";
+        echo $skin;
+        die;
+    }
 }

@@ -2733,3 +2733,38 @@ if (!function_exists('timezones')) {
         );
     }
 }
+
+
+if (!function_exists('get_seller_serial_num')) {
+    /**
+     * Generate a unique serial number for a new seller.
+     *
+     * @param int $digits Number of digits in the numeric part (default: 9)
+     * @return string
+     */
+    function get_seller_serial_num($digits = 8)
+    {
+        // Prefix for the serial number
+        $prefix = 'BH';
+
+        // Fetch the latest serial number from the database
+        $latestSerial = DB::table('users')
+            ->where('user_type', 'seller')
+            ->orderBy('serial_no', 'desc')
+            ->value('serial_no');
+
+        // Determine the numeric part of the serial number
+        if ($latestSerial) {
+            $numericPart = intval(substr($latestSerial, 1)); // Remove the prefix 'A' and get the numeric part
+            $newSerialNumber = $numericPart + 1;
+        } else {
+            $newSerialNumber = 786; // Starting point if no serial number exists
+        }
+
+        // Format the serial number with leading zeros based on the number of digits
+        $formattedNumber = str_pad($newSerialNumber, $digits, '0', STR_PAD_LEFT);
+
+        // Return the final serial number with the prefix
+        return $prefix . $formattedNumber;
+    }
+}

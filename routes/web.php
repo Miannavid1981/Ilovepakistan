@@ -143,7 +143,7 @@ Route::controller(HomeController::class)->group(function () {
     Route::post('/product/variant-price', 'variant_price')->name('products.variant_price');
     Route::get('/store/{slug}', 'shop')->name('shop.visit');
     Route::get('/store/{slug}/{type}', 'filter_shop')->name('shop.visit.type');
-
+    Route::get('/product/{slug}/{e_skin}', 'new_detail_page')->name('product.skin_url');
     Route::get('/customer-packages', 'premium_package_index')->name('customer_packages_list_show');
 
     Route::get('/brands', 'all_brands')->name('brands.all');

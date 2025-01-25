@@ -64,6 +64,9 @@ class ShopController extends Controller
         $user->email = $request->email;
         $user->user_type = "seller";
         $user->password = Hash::make($request->password);
+        
+        // Generate a new serial number for the seller
+        $user->serial_no = get_seller_serial_num();
 
         if ($user->save()) {
             $shop = new Shop;
