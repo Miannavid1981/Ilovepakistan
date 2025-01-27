@@ -1,6 +1,6 @@
 
 <style>
-    #short_description p {
+    #short_description, #short_description p {
         font-size: 17px;
         letter-spacing: 0.2px;
     }
