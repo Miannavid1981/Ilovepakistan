@@ -773,7 +773,7 @@ class HomeController extends Controller
     public function new_detail_page($slug, $skin){
         echo $slug;
         echo "<br>";
-        echo "Hidden skin from URL : ". decrypt_full_product_skin($slug);
+        echo "Hidden skin from URL : ". decrypt_full_product_skin($skin);
         die;
     }
 }
