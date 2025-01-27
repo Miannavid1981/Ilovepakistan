@@ -1766,7 +1766,7 @@ if (!function_exists('get_seller_products')) {
     {
         $product_query = Product::query();
         return $product_query->where('user_id', $user_id)->isApprovedPublished()->orderBy('num_of_sale', 'desc')->paginate(24);
-        
+
         // Get the product IDs created by the seller
         $sellerProductIds = Product::query()
             ->where('user_id', $user_id)
@@ -2779,7 +2779,7 @@ if (!function_exists('generate_seller_serial_num')) {
 
 if (!function_exists('get_product_full_skin_no')) {
     function get_product_full_skin_no($seller, $product){
-
+        dd($product->stocks);
         if( ! $product->stocks->sku) {
             return null;
         }
