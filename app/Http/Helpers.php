@@ -2799,25 +2799,25 @@ if (!function_exists('get_product_full_skin_no')) {
 if (!function_exists('generate_encrypted_full_product_skin')) {
     function generate_encrypted_full_product_skin($value){
 
-        $originalValue = $value;
-        $key = config('app.key');  // Use the app's encryption key
-        $iv = '1234567890123456'; // Fixed IV (this should be kept secret)
+        $encrypted = Crypt::encryptString($value);
 
-        $encrypted = openssl_encrypt($originalValue, 'AES-256-CBC', $key, 0, $iv);
+        // Hash the encrypted string to get a fixed length (e.g., sha256) and encode it in base64
+        $hashed = hash('sha256', $encrypted); // You can use a fixed length hash like sha256
+        $base64 = base64_encode($hashed);  // Encode hash to Base64 for display or storage
+        
+        // Truncate the hash to get a 10-character length for example purposes
+        $encryptedValue = Str::limit($base64, 10, '');
+        
         // echo "Encrypted with Fixed IV: " . $encrypted . '<br>';
-        return $encrypted;
+        return $encryptedValue;
 
     }
 }
 if (!function_exists('decrypt_full_product_skin')) {
     function decrypt_full_product_skin($value){
 
-        $originalValue = $value;
-        $key = config('app.key');  // Use the app's encryption key
-        $iv = '1234567890123456'; // Fixed IV (this should be kept secret)
-
-        $decrypted = openssl_decrypt($value, 'AES-256-CBC', $key, 0, $iv);
-        return $decrypted;
+        $decryptedValue = Crypt::decryptString($value); 
+        return $decryptedValue;
         // echo "Decrypted Value: " . $decrypted;
 
     }
