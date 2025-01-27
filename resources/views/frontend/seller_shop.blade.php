@@ -508,6 +508,42 @@
                     </div>
                 @endif
             </div>
+            @php
+                // Get the product IDs from the seller_imported_products table
+                $importedProductIds = \App\Models\SellerImportedProduct::query()
+                    ->where('user_id', $shop->user->id)
+                    ->pluck('product_id') // Get only the product IDs
+                    ->toArray();
+
+                    // Fetch all products using the distinct IDs
+                $importedProducts = \App\Models\Product::query()
+                    ->whereIn('id', $importedProductIds)
+                    ->isApprovedPublished()
+                    ->orderBy('created_at', 'desc')
+                    ->get();
+            @endphp
+
+            <div class="px-sm-3 pb-3">
+                <div class="aiz-carousel sm-gutters-16 arrow-none" data-items="6" data-xl-items="5" data-lg-items="4"  data-md-items="3" data-sm-items="2" data-xs-items="2" data-arrows='true' data-infinite='false'>
+                    @foreach ($importedProducts as $key => $product)
+
+                        @php
+                            $seller = \App\Models\User::find($shop->user->id);
+                            $skin = get_product_full_skin_no($seller,$product );
+                            $encrypted_skin = \Illuminate\Support\Facades\Crypt::encrypt($skin);
+
+                            // Generate the URL
+                            $product_url = url('/product/' .$product->slug. '/' .$encrypted_skin);
+                            $product->product_custom_url = $product_url;
+                        @endphp
+                    <div class="carousel-box px-3 position-relative has-transition hov-animate-outline border-right border-top border-bottom @if($key == 0) border-left @endif">
+                        @include('frontend.'.get_setting('homepage_select').'.partials.product_box_1',['product' => $product])
+                    </div>
+                    @endforeach
+                </div>
+            </div>
+
+
 
             @php
                 if (!isset($type)){

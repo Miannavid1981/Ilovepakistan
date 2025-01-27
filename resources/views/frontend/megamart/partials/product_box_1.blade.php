@@ -3,10 +3,6 @@
 
     $cart_added = [];
 
-@endphp
-
-
-@php
 
 $product_url = route('product', $product->slug);
 
@@ -14,6 +10,11 @@ if ($product->auction_product == 1) {
 
     $product_url = route('auction-product', $product->slug);
 
+}
+
+if(!empty($product->product_custom_url)){
+
+    $product_url = $product->product_custom_url;
 }
 
 @endphp

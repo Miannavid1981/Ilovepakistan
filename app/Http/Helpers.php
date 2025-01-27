@@ -1764,6 +1764,9 @@ if (!function_exists('get_best_selling_products')) {
 if (!function_exists('get_seller_products')) {
     function get_seller_products($user_id)
     {
+        $product_query = Product::query();
+        return $product_query->where('user_id', $user_id)->isApprovedPublished()->orderBy('num_of_sale', 'desc')->paginate(24);
+        
         // Get the product IDs created by the seller
         $sellerProductIds = Product::query()
             ->where('user_id', $user_id)
@@ -2734,28 +2737,14 @@ if (!function_exists('timezones')) {
     }
 }
 
-
-if (!function_exists('get_seller_serial_num')) {
-    /**
-     * Generate a unique serial number for a new seller.
-     *
-     * @param int $digits Number of digits in the numeric part (default: 9)
-     * @return string
-     */
-    function get_seller_serial_num($digits = 10, $formatted = true)
-    {
+if (!function_exists('format_seller_serial_num')) {
+    function format_seller_serial_num($serial_no, $digits){
         // Prefix for the serial number
         $prefix = 'BH';
 
-        // Fetch the latest serial number from the database
-        $latestSerial = DB::table('users')
-            ->where('user_type', 'seller')
-            ->orderBy('serial_no', 'desc')
-            ->value('serial_no');
-
-        // Determine the numeric part of the serial number
-        if ($latestSerial) {
-            $numericPart = intval(substr($latestSerial, 1)); // Remove the prefix 'A' and get the numeric part
+         // Determine the numeric part of the serial number
+        if ($serial_no) {
+            $numericPart = intval(substr($serial_no, 1)); // Remove the prefix 'A' and get the numeric part
             $newSerialNumber = $numericPart + 1;
         } else {
             $newSerialNumber = 786; // Starting point if no serial number exists
@@ -2765,6 +2754,37 @@ if (!function_exists('get_seller_serial_num')) {
         $formattedNumber = str_pad($newSerialNumber, ($digits - strlen($prefix)) , '0', STR_PAD_LEFT);
 
         // Return the final serial number with the prefix
-        return $formatted ? $prefix . $formattedNumber : $newSerialNumber ;
+        return $prefix . $formattedNumber ;
+
+    }
+}
+if (!function_exists('generate_seller_serial_num')) {
+    /**
+     * Generate a unique serial number for a new seller.
+     *
+     * @param int $digits Number of digits in the numeric part (default: 9)
+     * @return string
+     */
+    function generate_seller_serial_num($digits = 10, $formatted = true)
+    {
+        // Fetch the latest serial number from the database
+        $latestSerial = DB::table('users')
+            ->where('user_type', 'seller')
+            ->orderBy('serial_no', 'desc')
+            ->value('serial_no');
+
+        return $formatted ? format_seller_serial_num($latestSerial, $digits) : $latestSerial;  
+    }
+}
+
+if (!function_exists('get_product_full_skin_no')) {
+    function get_product_full_skin_no($seller, $product){
+
+        if( ! $product->stocks->sku) {
+            return null;
+        }
+        
+        $skin = format_seller_serial_num($seller->serial_no, 10) .'-'.$product->stocks->sku;
+        return $skin ?? null;
     }
 }
