@@ -2742,27 +2742,29 @@ if (!function_exists('format_seller_serial_num')) {
         // Prefix for the serial number
         $prefix = 'BH';
 
-         // Determine the numeric part of the serial number
+        // If serial_no is not empty, extract the numeric part, otherwise set it to the starting point
         if ($serial_no) {
-            $numericPart = intval(substr($serial_no, 1)); // Remove the prefix 'A' and get the numeric part
-            $newSerialNumber = $numericPart + 1;
+            // Remove the prefix and get the numeric part
+            $numericPart = intval(substr($serial_no, strlen($prefix))); // Start at the length of the prefix
+            $newSerialNumber = $numericPart + 1; // Increment the serial number by 1
         } else {
             $newSerialNumber = 786; // Starting point if no serial number exists
         }
 
-        // Format the serial number with leading zeros based on the number of digits
-        $formattedNumber = str_pad($newSerialNumber, ($digits - strlen($prefix)) , '0', STR_PAD_LEFT);
+        // Format the serial number with leading zeros based on the number of digits required
+        $formattedNumber = str_pad($newSerialNumber, $digits - strlen($prefix), '0', STR_PAD_LEFT);
 
         // Return the final serial number with the prefix
-        return $prefix . $formattedNumber ;
-
+        return $prefix . $formattedNumber;
     }
 }
+
 if (!function_exists('generate_seller_serial_num')) {
     /**
      * Generate a unique serial number for a new seller.
      *
-     * @param int $digits Number of digits in the numeric part (default: 9)
+     * @param int $digits Number of digits in the numeric part (default: 10)
+     * @param bool $formatted Return a formatted serial number (default: true)
      * @return string
      */
     function generate_seller_serial_num($digits = 10, $formatted = true)
@@ -2773,6 +2775,7 @@ if (!function_exists('generate_seller_serial_num')) {
             ->orderBy('serial_no', 'desc')
             ->value('serial_no');
 
+        // If a latest serial number exists, format it. Otherwise, generate a new one.
         return $formatted ? format_seller_serial_num($latestSerial, $digits) : $latestSerial;  
     }
 }
