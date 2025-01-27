@@ -772,11 +772,9 @@ class HomeController extends Controller
     }
     public function new_detail_page($slug, $skin)
     {
-        echo "Slug: " . $slug . "<br>";
-    
+        // echo "Slug: " . $slug . "<br>";
         // Decrypt the skin value
         $decrypted_skin = decrypt_full_product_skin($skin);
-        
         // Assuming the format is "BH0000768-IP16PRO"
         $parts = explode('-', $decrypted_skin); // Split into two parts: seller code and product SKU
         
@@ -786,11 +784,10 @@ class HomeController extends Controller
         $seller_serial_no = get_seller_serial_num_int($sellerCode) ;
 
         $seller =  User::where('serial_no', $seller_serial_no)->first();
-       // Query the product based on SKU
+        // Query the product based on SKU
         $product = Product::whereHas('stocks', function($query) use ($productSKU) {
             $query->where('sku', $productSKU);
         })->first();
-        dd($product, $seller);
         die;
     }
 }
