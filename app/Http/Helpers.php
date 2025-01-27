@@ -2736,23 +2736,20 @@ if (!function_exists('timezones')) {
         );
     }
 }
-
 if (!function_exists('format_seller_serial_num')) {
-    function format_seller_serial_num($serial_no, $digits){
+    /**
+     * Format the seller serial number with leading zeros.
+     *
+     * @param int $numericPart The numeric part of the serial number
+     * @param int $digits Number of total digits (including prefix)
+     * @return string
+     */
+    function format_seller_serial_num($numericPart, $digits){
         // Prefix for the serial number
         $prefix = 'BH';
 
-        // If serial_no is not empty, extract the numeric part, otherwise set it to the starting point
-        if ($serial_no) {
-            // Remove the prefix and get the numeric part
-            $numericPart = intval(substr($serial_no, strlen($prefix))); // Start at the length of the prefix
-            $newSerialNumber = $numericPart + 1; // Increment the serial number by 1
-        } else {
-            $newSerialNumber = 786; // Starting point if no serial number exists
-        }
-
-        // Format the serial number with leading zeros based on the number of digits required
-        $formattedNumber = str_pad($newSerialNumber, $digits - strlen($prefix), '0', STR_PAD_LEFT);
+        // Format the numeric part with leading zeros based on the number of digits required
+        $formattedNumber = str_pad($numericPart, $digits - strlen($prefix), '0', STR_PAD_LEFT);
 
         // Return the final serial number with the prefix
         return $prefix . $formattedNumber;
@@ -2775,8 +2772,17 @@ if (!function_exists('generate_seller_serial_num')) {
             ->orderBy('serial_no', 'desc')
             ->value('serial_no');
 
-        // If a latest serial number exists, format it. Otherwise, generate a new one.
-        return $formatted ? format_seller_serial_num($latestSerial, $digits) : $latestSerial;  
+        // If no serial number exists, start from 786
+        if (!$latestSerial) {
+            $numericPart = 786;
+        } else {
+            // Remove the prefix and get the numeric part
+            $numericPart = intval(substr($latestSerial, strlen('BH'))); // Strip 'BH' and convert to integer
+            $numericPart++; // Increment the serial number by 1
+        }
+
+        // Return the formatted serial number if required
+        return $formatted ? format_seller_serial_num($numericPart, $digits) : $numericPart;
     }
 }
 
