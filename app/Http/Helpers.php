@@ -2787,3 +2787,29 @@ if (!function_exists('get_product_full_skin_no')) {
         return $skin ?? null;
     }
 }
+if (!function_exists('generate_encrypted_full_product_skin')) {
+    function generate_encrypted_full_product_skin($value){
+
+        $originalValue = $value;
+        $key = config('app.key');  // Use the app's encryption key
+        $iv = '1234567890123456'; // Fixed IV (this should be kept secret)
+
+        $encrypted = openssl_encrypt($originalValue, 'AES-256-CBC', $key, 0, $iv);
+        // echo "Encrypted with Fixed IV: " . $encrypted . '<br>';
+        return $encrypted;
+
+    }
+}
+if (!function_exists('decrypt_full_product_skin')) {
+    function decrypt_full_product_skin($value){
+
+        $originalValue = $value;
+        $key = config('app.key');  // Use the app's encryption key
+        $iv = '1234567890123456'; // Fixed IV (this should be kept secret)
+
+        $decrypted = openssl_decrypt($value, 'AES-256-CBC', $key, 0, $iv);
+        return $decrypted;
+        // echo "Decrypted Value: " . $decrypted;
+
+    }
+}
