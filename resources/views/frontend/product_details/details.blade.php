@@ -1,6 +1,9 @@
 
 <style>
-
+    #short_description p {
+        font-size: 17px;
+        letter-spacing: 0.2px;
+    }
     .aun {
       display: flex;
       flex-direction: row;
@@ -90,9 +93,9 @@
 
     .product-container {
       width: 100%;
-      padding: 20px;
+      padding: 10px 20px;
       background: #fff;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); */
     }
 
     .seller-info,
@@ -131,7 +134,7 @@
       gap: 10px;
     }
 
-    .buy-now {
+    /* .buy-now {
       padding: 13px;
       background: #ed3838;
       color: #fff;
@@ -140,18 +143,19 @@
       font-size: 16px;
       font-weight: 550;
       cursor: pointer;
-    }
+    } */
 
-    .add-to-cart {
-      padding: 13px;
-      background: #f5f5f5;
-      border: 1px solid #464646;
-      border-radius: 4px;
-      font-size: 16px;
-      font-weight: 550;
-      cursor: pointer;
-    }
+    .add-to-cart, .buy-now {
+            
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        justify-content: center;
 
+    }
+    .add-to-cart i , .buy-now i {
+        font-size: 25px ;
+    }
     .social-share {
       display: flex;
       justify-content: space-between;
@@ -230,19 +234,71 @@
         width: 35px;
       }
     }
-  </style>
-</head>
 
-<body>
-  <div class="aun">
-    <div class="blue">
-      <h2> {{ $detailedProduct->getTranslation('name') }}</h2>
-      <br>
-      <div class="pr">
-        <div class="price">PKR 4,433</div>
-        <div class="prise">Starts: 23 47 16</div>
-      </div>
-      <div class="sale-price">PKR 852 each, 10 pieces</div>
+    .rating i {
+    
+        font-size: 1.3rem;
+
+    }
+  </style>
+
+  <div class="row">
+    <div class="col-md-7">
+        <h2 class="mb-0"> {{ $detailedProduct->getTranslation('name') }}</h2>
+        @if ($detailedProduct->unit != null)
+            <span class="opacity-70 mt-1">( {{ $detailedProduct->getTranslation('unit') }} )</span>
+        @endif
+        <!-- Discount percentage -->
+       
+        <br>
+        <br>
+        @if ($detailedProduct->auction_product != 1)
+            @php
+           // dd($detailedProduct);
+                $total = 0;
+                $total += $detailedProduct->reviews->where('status', 1)->count();
+            @endphp
+            <span class="rating rating-mr-2">
+                {{ renderStarRating($detailedProduct->rating) }}
+            </span>
+            <span class="ml-1 opacity-50 fs-15">({{ $total }}
+                {{ translate('reviews') }})</span>
+        
+        @endif
+        
+        <br>
+        <br>
+        @if (home_price($detailedProduct) != home_discounted_price($detailedProduct))
+        <div class="d-flex align-items-end ">
+            
+            
+            <div class="pr m-0" style="justify-content: start; gap:10px; align-items:end">
+                <div class="price" style="line-height: 0.8em;">    {{ home_discounted_price($detailedProduct) }}</div>
+                <h5 class="text-secondary  mb-0" style="text-decoration: line-through">{{ home_price($detailedProduct) }}</h5>
+                <!-- <div class="prise">Starts: 23 47 16</div> -->
+                @if (discount_in_percentage($detailedProduct) > 0)
+                    <span class="bg-primary  text-center py-1 px-3 rounded-2 text-white fs-17 font-weight-bold"
+                        style="">{{ discount_in_percentage($detailedProduct) }}% Off</span>
+                @endif
+            </div>
+
+        </div>
+           
+        @else
+            <div class="pr">
+                <div class="price">{{ home_price($detailedProduct) }}</div>
+                <!-- <div class="prise">Starts: 23 47 16</div> -->
+                
+            </div>
+            
+        @endif
+
+       
+            <div id="short_description" class="mt-3">
+            {!! $detailedProduct->description !!}
+            </div>
+       
+      <!-- <div class="sale-price">PKR 852 each, 10 pieces</div>
       <div class="change">Tax excluded, add at checkout if applicable. Extra 5% off with coins.</div>
       <br>
       <div class="mm">
@@ -251,126 +307,156 @@
       <div class="title">
         Uworld Irregular Stacking Rings: With Irregular Shapes Irregular Dainty Ring Textured Thick Thin Band Fall
         Essentials Gift For He.
-      </div>
-      @if ($detailedProduct->auction_product != 1)
-            <div class="col-12">
-                @php
-                    $total = 0;
-                    $total += $detailedProduct->reviews->where('status', 1)->count();
-                @endphp
-                <span class="rating rating-mr-2">
-                    {{ renderStarRating($detailedProduct->rating) }}
-                </span>
-                <span class="ml-1 opacity-50 fs-14">({{ $total }}
-                    {{ translate('reviews') }})</span>
-            </div>
-        @endif
-        @if (get_setting('conversation_system') == 1)
-            <div class="">
-                <button class="btn btn-sm btn-soft-secondary-base btn-outline-secondary-base hov-svg-white hov-text-white rounded-4"
-                    onclick="show_chat_modal()">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"
-                        class="mr-2 has-transition">
-                        <g id="Group_23918" data-name="Group 23918" transform="translate(1053.151 256.688)">
-                            <path id="Path_3012" data-name="Path 3012"
-                                d="M134.849,88.312h-8a2,2,0,0,0-2,2v5a2,2,0,0,0,2,2v3l2.4-3h5.6a2,2,0,0,0,2-2v-5a2,2,0,0,0-2-2m1,7a1,1,0,0,1-1,1h-8a1,1,0,0,1-1-1v-5a1,1,0,0,1,1-1h8a1,1,0,0,1,1,1Z"
-                                transform="translate(-1178 -341)" fill="{{ get_setting('secondary_base_color', '#ffc519') }}" />
-                            <path id="Path_3013" data-name="Path 3013"
-                                d="M134.849,81.312h8a1,1,0,0,1,1,1v5a1,1,0,0,1-1,1h-.5a.5.5,0,0,0,0,1h.5a2,2,0,0,0,2-2v-5a2,2,0,0,0-2-2h-8a2,2,0,0,0-2,2v.5a.5.5,0,0,0,1,0v-.5a1,1,0,0,1,1-1"
-                                transform="translate(-1182 -337)" fill="{{ get_setting('secondary_base_color', '#ffc519') }}" />
-                            <path id="Path_3014" data-name="Path 3014"
-                                d="M131.349,93.312h5a.5.5,0,0,1,0,1h-5a.5.5,0,0,1,0-1"
-                                transform="translate(-1181 -343.5)" fill="{{ get_setting('secondary_base_color', '#ffc519') }}" />
-                            <path id="Path_3015" data-name="Path 3015"
-                                d="M131.349,99.312h5a.5.5,0,1,1,0,1h-5a.5.5,0,1,1,0-1"
-                                transform="translate(-1181 -346.5)" fill="{{ get_setting('secondary_base_color', '#ffc519') }}" />
-                        </g>
-                    </svg>
-
-                    {{ translate('Message Seller') }}
-                </button>
-            </div>
-        @endif
+      </div> -->
+     
+       
       <hr>
-      <div class="me"><strong>Main Stone Color: JDRW2405031</strong></div>
+      <!-- <div class="me"><strong>Main Stone Color: JDRW2405031</strong></div>
       <div class="image-section">
         <img src="https://via.placeholder.com/80" alt="Product Image">
         <img src="https://via.placeholder.com/80" alt="Product Image">
         <img src="https://via.placeholder.com/80" alt="Product Image">
-      </div>
+      </div> -->
       <hr>
     </div>
-    <div class="paisa">
-      <div class="product-container">
-        <div class="seller-info">
-          <strong>Sold by </strong><span class="location">Uworld Official Store (Trader)</span>
-        </div>
-        <hr>
-        <div class="shipping-info">
-          <strong>Ship to:</strong> <span class="location">Pakistan</span>
-          <p><span class="choice-label">Choice</span> <strong>AliExpress Commitment</strong></p>
-          <p><strong>Free shipping over PKR 2,786</strong></p>
-          <p>Delivery: <strong>Jan. 22 - Feb. 01</strong></p>
-        </div>
-        <div class="security-info">
-          <p>🔒 <strong>Security & Privacy</strong></p>
-          <small>Your information is protected. We do not share personal details.</small>
-        </div>
-        <hr>
-        <div class="quantity">
-          <p><strong>Quantity</strong></p>
-          <div class="quantity-selector">
-            <button>-</button>
-            <input type="number" value="1" min="1">
-            <button>+</button>
-          </div>
-        </div>
-        <div class="mt-3">
-            @if ($detailedProduct->digital == 0)
-                @if (((get_setting('product_external_link_for_seller') == 1) && ($detailedProduct->added_by == "seller") && ($detailedProduct->external_link != null)) ||
-                    (($detailedProduct->added_by != "seller") && ($detailedProduct->external_link != null)))
-                    <a type="button" class="btn btn-primary buy-now fw-600 add-to-cart px-4 rounded-0"
-                        href="{{ $detailedProduct->external_link }}">
-                        <i class="la la-share"></i> {{ translate($detailedProduct->external_link_btn) }}
-                    </a>
-                @else
-                    <button type="button"
-                        class="btn btn-secondary-base mr-2 add-to-cart fw-600 min-w-150px rounded-0 text-white"
-                        @if (Auth::check() || get_Setting('guest_checkout_activation') == 1) onclick="addToCart()" @else onclick="showLoginModal()" @endif>
-                        <i class="las la-shopping-bag"></i> {{ translate('Add to cart') }}
+    <div class="col-md-5">
+        <div class="product-container border border-1">
+            @if (get_setting('conversation_system') == 1)
+                <div class="d-none">
+                    <button class="btn btn-sm btn-soft-secondary-base btn-outline-secondary-base hov-svg-white hov-text-white rounded-4"
+                        onclick="show_chat_modal()">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"
+                            class="mr-2 has-transition">
+                            <g id="Group_23918" data-name="Group 23918" transform="translate(1053.151 256.688)">
+                                <path id="Path_3012" data-name="Path 3012"
+                                    d="M134.849,88.312h-8a2,2,0,0,0-2,2v5a2,2,0,0,0,2,2v3l2.4-3h5.6a2,2,0,0,0,2-2v-5a2,2,0,0,0-2-2m1,7a1,1,0,0,1-1,1h-8a1,1,0,0,1-1-1v-5a1,1,0,0,1,1-1h8a1,1,0,0,1,1,1Z"
+                                    transform="translate(-1178 -341)" fill="{{ get_setting('secondary_base_color', '#ffc519') }}" />
+                                <path id="Path_3013" data-name="Path 3013"
+                                    d="M134.849,81.312h8a1,1,0,0,1,1,1v5a1,1,0,0,1-1,1h-.5a.5.5,0,0,0,0,1h.5a2,2,0,0,0,2-2v-5a2,2,0,0,0-2-2h-8a2,2,0,0,0-2,2v.5a.5.5,0,0,0,1,0v-.5a1,1,0,0,1,1-1"
+                                    transform="translate(-1182 -337)" fill="{{ get_setting('secondary_base_color', '#ffc519') }}" />
+                                <path id="Path_3014" data-name="Path 3014"
+                                    d="M131.349,93.312h5a.5.5,0,0,1,0,1h-5a.5.5,0,0,1,0-1"
+                                    transform="translate(-1181 -343.5)" fill="{{ get_setting('secondary_base_color', '#ffc519') }}" />
+                                <path id="Path_3015" data-name="Path 3015"
+                                    d="M131.349,99.312h5a.5.5,0,1,1,0,1h-5a.5.5,0,1,1,0-1"
+                                    transform="translate(-1181 -346.5)" fill="{{ get_setting('secondary_base_color', '#ffc519') }}" />
+                            </g>
+                        </svg>
+
+                        {{ translate('Message Seller') }}
                     </button>
-                    <button type="button" class="btn btn-primary buy-now fw-600 add-to-cart min-w-150px rounded-0"
-                        @if (Auth::check() || get_Setting('guest_checkout_activation') == 1) onclick="addToCart()" @else onclick="showLoginModal()" @endif>
-                        <i class="la la-shopping-cart"></i> {{ translate('Buy Now') }}
-                    </button>
-                @endif
-                <button type="button" class="btn btn-secondary out-of-stock fw-600 d-none" disabled>
-                    <i class="la la-cart-arrow-down"></i> {{ translate('Out of Stock') }}
-                </button>
-            @elseif ($detailedProduct->digital == 1)
-                <button type="button"
-                    class="btn btn-secondary-base mr-2 add-to-cart fw-600 min-w-150px rounded-0 text-white"
-                    @if (Auth::check() || get_Setting('guest_checkout_activation') == 1) onclick="addToCart()" @else onclick="showLoginModal()" @endif>
-                    <i class="las la-shopping-bag"></i> {{ translate('Add to cart') }}
-                </button>
-                <button type="button" class="btn btn-primary buy-now fw-600 add-to-cart min-w-150px rounded-0"
-                    @if (Auth::check() || get_Setting('guest_checkout_activation') == 1) onclick="addToCart()" @else onclick="showLoginModal()" @endif>
-                    <i class="la la-shopping-cart"></i> {{ translate('Buy Now') }}
-                </button>
+                </div>
             @endif
+            @if ($detailedProduct->added_by == 'seller' && get_setting('vendor_system_activation') == 1)
+                <div class="d-flex align-items-center justify-content-between border-bottom py-2">
+                    <h6 class="mb-0">Sold by </h6><a href="{{ route('shop.visit', $detailedProduct->user->shop->slug) }}" class="fs-15">{{ $detailedProduct->user->shop->name }}<i class="fa fa-chevron-right ms-2"></i></a>
+                </div>
+            @endif
+            @if ($detailedProduct->brand != null)
+                <div class="d-flex align-items-center justify-content-between py-2">
+                    <h6 class="mb-0">Brand </h6><a href="{{ route('products.brand', $detailedProduct->brand->slug) }}" class="fs-15">{{ $detailedProduct->brand->name }}<i class="fa fa-chevron-right ms-2"></i></a>
+                </div>
+            @endif
+            
+
+            <!-- <div class="shipping-info">
+                <strong>Ship to:</strong> <span class="location">Pakistan</span>
+                <p><span class="choice-label">Choice</span> <strong>AliExpress Commitment</strong></p>
+                <p><strong>Free shipping over PKR 2,786</strong></p>
+                <p>Delivery: <strong>Jan. 22 - Feb. 01</strong></p>
+            </div>
+            <div class="security-info">
+                <p>🔒 <strong>Security & Privacy</strong></p>
+                <small>Your information is protected. We do not share personal details.</small>
+            </div>
+             -->
+            <div class="row  my-3">
+                
+                <div class="col-12">
+
+                    <h6>Quantity</h6>
+                    <div class="product-quantity">
+                        <div class="row align-items-center aiz-plus-minus mr-3 ml-0" style="width: 130px;">
+                            <button class="btn col-auto btn-icon btn-sm btn-light rounded-0" type="button"
+                                data-type="minus" data-field="quantity" disabled="">
+                                <i class="las la-minus"></i>
+                            </button>
+                            <input type="number" name="quantity"
+                                class="col border-0 text-center flex-grow-1 fs-16 input-number" placeholder="1"
+                                value="{{ $detailedProduct->min_qty }}" min="{{ $detailedProduct->min_qty }}"
+                                max="10" lang="en">
+                            <button class="btn col-auto btn-icon btn-sm btn-light rounded-0" type="button"
+                                data-type="plus" data-field="quantity">
+                                <i class="las la-plus"></i>
+                            </button>
+                        </div>
+                        
+
+                        @php
+                            $qty = 0;
+                            foreach ($detailedProduct->stocks as $key => $stock) {
+                                $qty += $stock->qty;
+                            }
+                        @endphp
+                        <p class="avialable-amount opacity-60 mb-0 mt-1">
+                            @if ($detailedProduct->stock_visibility_state == 'quantity')
+                                (Only <span id="available-quantity">{{ $qty }}</span> left
+                                )
+                            @elseif($detailedProduct->stock_visibility_state == 'text' && $qty >= 1)
+                                (<span id="available-quantity">{{ translate('In Stock') }}</span>)
+                            @endif
+                        </p>
+                    </div>
+                </div>
+            </div>
+                <div class="mt-3">
+                    @if ($detailedProduct->digital == 0)
+                        @if (((get_setting('product_external_link_for_seller') == 1) && ($detailedProduct->added_by == "seller") && ($detailedProduct->external_link != null)) ||
+                            (($detailedProduct->added_by != "seller") && ($detailedProduct->external_link != null)))
+                            <a type="button" class="btn btn-primary buy-now fw-600 add-to-cart px-4 rounded-0"
+                                href="{{ $detailedProduct->external_link }}">
+                                <i class="la la-share"></i> {{ translate($detailedProduct->external_link_btn) }}
+                            </a>
+                        @else
+                           
+                            <button type="button" class="btn py-2 w-100 btn-primary buy-now fw-600 add-to-cart min-w-150px rounded-0"
+                                @if (Auth::check() || get_Setting('guest_checkout_activation') == 1) onclick="addToCart()" @else onclick="showLoginModal()" @endif>
+                                <i class="la la-shopping-cart"></i> {{ translate('Buy Now') }}
+                            </button>
+                            <button type="button"
+                                class="btn py-2 btn-light w-100 mt-2 add-to-cart fw-600  rounded-0 text-dark border border-dark"
+                                @if (Auth::check() || get_Setting('guest_checkout_activation') == 1) onclick="addToCart()" @else onclick="showLoginModal()" @endif>
+                                <i class="las la-shopping-bag"></i> {{ translate('Add to cart') }}
+                            </button>
+                        @endif
+                        <button type="button" class="btn btn-secondary out-of-stock fw-600 d-none" disabled>
+                            <i class="la la-cart-arrow-down"></i> {{ translate('Out of Stock') }}
+                        </button>
+                    @elseif ($detailedProduct->digital == 1)
+                        <button type="button" class="btn btn-primary buy-now fw-600 add-to-cart min-w-150px rounded-0"
+                            @if (Auth::check() || get_Setting('guest_checkout_activation') == 1) onclick="addToCart()" @else onclick="showLoginModal()" @endif>
+                            <i class="la la-shopping-cart"></i> {{ translate('Buy Now') }}
+                        </button>
+                        <button type="button"
+                            class="btn btn-secondary-base mt-2  mr-2 add-to-cart fw-600 min-w-150px rounded-0 text-white"
+                            @if (Auth::check() || get_Setting('guest_checkout_activation') == 1) onclick="addToCart()" @else onclick="showLoginModal()" @endif>
+                            <i class="las la-shopping-bag"></i> {{ translate('Add to cart') }}
+                        </button>
+                        
+                    @endif
+                </div>
+                <div class="social-share">
+                <div class="col-sm-12">
+                    <div class="aiz-share"></div>
+                </div>
+            </div>
         </div>
-        <div class="social-share">
-        <div class="col-sm-12">
-            <div class="aiz-share"></div>
-        </div>
-        </div>
-      </div>
     </div>
   </div>
 </body>
 
 
-<div class="text-left">
+<div class=" d-none">
     <!-- Product Name -->
     <h2 class="mb-4 fs-16 fw-700 text-dark">
         {{ $detailedProduct->getTranslation('name') }}
@@ -779,43 +865,6 @@
                 @endif
 
                 <!-- Quantity + Add to cart -->
-                <div class="row no-gutters mb-3">
-                    <div class="col-sm-2">
-                        <div class="text-secondary fs-14 fw-400 mt-2">{{ translate('Quantity') }}</div>
-                    </div>
-                    <div class="col-sm-10">
-                        <div class="product-quantity d-flex align-items-center">
-                            <div class="row no-gutters align-items-center aiz-plus-minus mr-3" style="width: 130px;">
-                                <button class="btn col-auto btn-icon btn-sm btn-light rounded-0" type="button"
-                                    data-type="minus" data-field="quantity" disabled="">
-                                    <i class="las la-minus"></i>
-                                </button>
-                                <input type="number" name="quantity"
-                                    class="col border-0 text-center flex-grow-1 fs-16 input-number" placeholder="1"
-                                    value="{{ $detailedProduct->min_qty }}" min="{{ $detailedProduct->min_qty }}"
-                                    max="10" lang="en">
-                                <button class="btn col-auto btn-icon btn-sm btn-light rounded-0" type="button"
-                                    data-type="plus" data-field="quantity">
-                                    <i class="las la-plus"></i>
-                                </button>
-                            </div>
-                            @php
-                                $qty = 0;
-                                foreach ($detailedProduct->stocks as $key => $stock) {
-                                    $qty += $stock->qty;
-                                }
-                            @endphp
-                            <div class="avialable-amount opacity-60">
-                                @if ($detailedProduct->stock_visibility_state == 'quantity')
-                                    (<span id="available-quantity">{{ $qty }}</span>
-                                    {{ translate('available') }})
-                                @elseif($detailedProduct->stock_visibility_state == 'text' && $qty >= 1)
-                                    (<span id="available-quantity">{{ translate('In Stock') }}</span>)
-                                @endif
-                            </div>
-                        </div>
-                    </div>
-                </div>
             @else
                 <!-- Quantity -->
                 <input type="hidden" name="quantity" value="1">
