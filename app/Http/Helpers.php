@@ -2802,6 +2802,9 @@ if (!function_exists('get_product_full_skin_no')) {
 if (!function_exists('generate_encrypted_full_product_skin')) {
     function generate_encrypted_full_product_skin($value)
     {
+        if(empty($originalValue)) {
+            return null;
+        }
         // Original value
         $originalValue = $value;
 
@@ -2818,16 +2821,16 @@ if (!function_exists('generate_encrypted_full_product_skin')) {
             // Truncate the hash to get a 10-character length (example length)
             $encryptedHash = Str::limit($base64, 10, '');
     
-            if(!empty($originalValue)) {
+           
 
-                // Save the encrypted value and its hash in the database
-                $entry = new EncryptedProductSkinHash();
-                $entry->original_value = $originalValue; // Optionally save the original value
-                $entry->encrypted_value = $encrypted;
-                $entry->encrypted_hash = $encryptedHash;
-                $entry->save();
+            // Save the encrypted value and its hash in the database
+            $entry = new EncryptedProductSkinHash();
+            $entry->original_value = $originalValue; // Optionally save the original value
+            $entry->encrypted_value = $encrypted;
+            $entry->encrypted_hash = $encryptedHash;
+            $entry->save();
 
-            }
+        
         
         }
          
