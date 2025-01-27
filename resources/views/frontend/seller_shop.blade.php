@@ -530,7 +530,8 @@
                         @php
                             $seller = \App\Models\User::find($shop->user->id);
                             $skin = get_product_full_skin_no($seller,$product );
-                            $encrypted_skin = \Illuminate\Support\Facades\Crypt::encrypt($skin);
+                           
+                            $encrypted_skin = generate_encrypted_full_product_skin($skin);
 
                             // Generate the URL
                             $product_url = url('/product/' .$product->slug. '/' .$encrypted_skin);

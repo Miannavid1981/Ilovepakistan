@@ -1,4 +1,19 @@
 
+@php
+
+
+
+// Custom encryption with a fixed IV
+$originalValue = 'BH000768-SMS21';
+echo "Encrypted with Fixed IV: " . generate_encrypted_full_product_skin($originalValue) . '<br>';
+
+
+echo "Decrypted Value: " . decrypt_full_product_skin(generate_encrypted_full_product_skin($originalValue));
+
+
+die;
+
+@endphp
 <style>
     #short_description, #short_description p {
         font-size: 17px;
