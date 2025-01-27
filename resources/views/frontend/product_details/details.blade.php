@@ -254,7 +254,8 @@
         <br>
         @if ($detailedProduct->auction_product != 1)
             @php
-           // dd($detailedProduct);
+            $skin = get_product_full_skin_no($detailedProduct->user, $detailedProduct);
+                // dd($skin);
                 $total = 0;
                 $total += $detailedProduct->reviews->where('status', 1)->count();
             @endphp
