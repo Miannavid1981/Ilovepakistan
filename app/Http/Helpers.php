@@ -2815,13 +2815,17 @@ if (!function_exists('generate_encrypted_full_product_skin')) {
          // Truncate the hash to get a 10-character length (example length)
          $encryptedHash = Str::limit($base64, 10, '');
  
+        if(!empty($originalValue)) {
 
-        // Save the encrypted value and its hash in the database
-        $product = new EncryptedProductSkinHash();
-        $product->original_value = $originalValue; // Optionally save the original value
-        $product->encrypted_value = $encrypted;
-        $product->encrypted_hash = $encryptedHash;
-        $product->save();
+             // Save the encrypted value and its hash in the database
+            $product = new EncryptedProductSkinHash();
+            $product->original_value = $originalValue; // Optionally save the original value
+            $product->encrypted_value = $encrypted;
+            $product->encrypted_hash = $encryptedHash;
+            $product->save();
+
+        }
+       
 
         // Return the encrypted hash for display or use
         return $encryptedHash;
@@ -2830,7 +2834,7 @@ if (!function_exists('generate_encrypted_full_product_skin')) {
 
 // Decrypt the value from the database
 if (!function_exists('decrypt_full_product_skin')) {
-    function decrypt_full_product_skin_by_hash($shortHash)
+    function decrypt_full_product_skin($shortHash)
     {
         // Retrieve the product record using the truncated hash (short string)
         $product = EncryptedProductSkinHash::where('encrypted_hash', $shortHash)->first();
