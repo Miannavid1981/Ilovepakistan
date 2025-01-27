@@ -2830,7 +2830,7 @@ if (!function_exists('generate_encrypted_full_product_skin')) {
 
 // Decrypt the value from the database
 if (!function_exists('decrypt_full_product_skin')) {
-    function decrypt_full_product_skin_by_hash($shortHash)
+    function decrypt_full_product_skin($shortHash)
     {
         // Retrieve the product record using the truncated hash (short string)
         $product = EncryptedProductSkinHash::where('encrypted_hash', $shortHash)->first();
