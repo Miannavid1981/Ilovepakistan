@@ -2756,6 +2756,22 @@ if (!function_exists('format_seller_serial_num')) {
         return $prefix . $formattedNumber;
     }
 }
+if (!function_exists('get_seller_serial_num_int')) {
+    /**
+     * Extract the right-most numeric part of the seller serial number.
+     *
+     * @param string $serialNumber The seller serial number (e.g., 'BH0000786')
+     * @return int The numeric part of the serial number (e.g., 768)
+     */
+    function get_seller_serial_num_int($serialNumber)
+    {
+        // Remove the prefix (e.g., 'BH') and get the numeric part
+        $numericPart = str_replace('BH', '', $serialNumber);
+
+        // Return the numeric part as an integer
+        return (int) $numericPart;
+    }
+}
 
 if (!function_exists('generate_seller_serial_num')) {
     /**
