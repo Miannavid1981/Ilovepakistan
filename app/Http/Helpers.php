@@ -58,7 +58,8 @@ use App\Models\PaymentMethod;
 use App\Models\UserCoupon;
 use App\Models\NotificationType;
 use App\Utility\EmailUtility;
-use App\Models\SellerImportedProduct;
+use App\Models\EncryptedProductSkinHash;
+;
 //sensSMS function for OTP
 if (!function_exists('sendSMS')) {
     function sendSMS($to, $from, $text, $template_id)
@@ -2796,29 +2797,52 @@ if (!function_exists('get_product_full_skin_no')) {
         return $skin ?? null;
     }
 }
+
+// Encrypt and store function
 if (!function_exists('generate_encrypted_full_product_skin')) {
-    function generate_encrypted_full_product_skin($value){
+    function generate_encrypted_full_product_skin($value)
+    {
+         // Original value
+         $originalValue = $value;
 
-        $encrypted = Crypt::encryptString($value);
+         // Encrypt the value using Laravel's Crypt
+         $encrypted = Crypt::encryptString($originalValue);
+ 
+         // Hash the encrypted string (sha256) and encode it in base64
+         $hashed = hash('sha256', $encrypted);  // You can use sha256 or another fixed-length hash
+         $base64 = base64_encode($hashed);      // Encode hash to Base64 for display or storage
+ 
+         // Truncate the hash to get a 10-character length (example length)
+         $encryptedHash = Str::limit($base64, 10, '');
+ 
 
-        // Hash the encrypted string to get a fixed length (e.g., sha256) and encode it in base64
-        $hashed = hash('sha256', $encrypted); // You can use a fixed length hash like sha256
-        $base64 = base64_encode($hashed);  // Encode hash to Base64 for display or storage
-        
-        // Truncate the hash to get a 10-character length for example purposes
-        $encryptedValue = Str::limit($base64, 10, '');
-        
-        // echo "Encrypted with Fixed IV: " . $encrypted . '<br>';
-        return $encryptedValue;
+        // Save the encrypted value and its hash in the database
+        $product = new EncryptedProductSkinHash();
+        $product->original_value = $originalValue; // Optionally save the original value
+        $product->encrypted_value = $encrypted;
+        $product->encrypted_hash = $encryptedHash;
+        $product->save();
 
+        // Return the encrypted hash for display or use
+        return $encryptedHash;
     }
 }
+
+// Decrypt the value from the database
 if (!function_exists('decrypt_full_product_skin')) {
-    function decrypt_full_product_skin($value){
+    function decrypt_full_product_skin_by_hash($shortHash)
+    {
+        // Retrieve the product record using the truncated hash (short string)
+        $product = EncryptedProductSkinHash::where('encrypted_hash', $shortHash)->first();
 
-        $decryptedValue = Crypt::decryptString($value); 
+        if (!$product) {
+            return "No matching record found for the given hash.";
+        }
+
+        // Decrypt the encrypted value stored in the database
+        $decryptedValue = Crypt::decryptString($product->encrypted_value);
+
+        // Return the decrypted value
         return $decryptedValue;
-        // echo "Decrypted Value: " . $decrypted;
-
     }
 }
