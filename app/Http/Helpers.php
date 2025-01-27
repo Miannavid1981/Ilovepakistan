@@ -2802,11 +2802,12 @@ if (!function_exists('get_product_full_skin_no')) {
 if (!function_exists('generate_encrypted_full_product_skin')) {
     function generate_encrypted_full_product_skin($value)
     {
+         // Original value
+         $originalValue = $value;
         if(empty($originalValue)) {
             return null;
         }
-        // Original value
-        $originalValue = $value;
+       
 
         $entry = EncryptedProductSkinHash::where('original_value', $value)->first();
         if(!$entry){
