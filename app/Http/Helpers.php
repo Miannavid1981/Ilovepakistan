@@ -2783,7 +2783,7 @@ if (!function_exists('get_product_full_skin_no')) {
             return null;
         }
         
-        $skin = format_seller_serial_num($seller->serial_no, 10) .'-'.$product->stocks->sku;
+        $skin = format_seller_serial_num($seller->serial_no, 10) .'-'.$product->stocks->first()->sku;
         return $skin ?? null;
     }
 }
