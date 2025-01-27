@@ -2802,33 +2802,38 @@ if (!function_exists('get_product_full_skin_no')) {
 if (!function_exists('generate_encrypted_full_product_skin')) {
     function generate_encrypted_full_product_skin($value)
     {
-         // Original value
-         $originalValue = $value;
+        // Original value
+        $originalValue = $value;
 
-         // Encrypt the value using Laravel's Crypt
-         $encrypted = Crypt::encryptString($originalValue);
- 
-         // Hash the encrypted string (sha256) and encode it in base64
-         $hashed = hash('sha256', $encrypted);  // You can use sha256 or another fixed-length hash
-         $base64 = base64_encode($hashed);      // Encode hash to Base64 for display or storage
- 
-         // Truncate the hash to get a 10-character length (example length)
-         $encryptedHash = Str::limit($base64, 10, '');
- 
-        if(!empty($originalValue)) {
+        $entry = EncryptedProductSkinHash::where('original_value', $value)->first();
+        if(!$entry){
+            
+            // Encrypt the value using Laravel's Crypt
+            $encrypted = Crypt::encryptString($originalValue);
+    
+            // Hash the encrypted string (sha256) and encode it in base64
+            $hashed = hash('sha256', $encrypted);  // You can use sha256 or another fixed-length hash
+            $base64 = base64_encode($hashed);      // Encode hash to Base64 for display or storage
+    
+            // Truncate the hash to get a 10-character length (example length)
+            $encryptedHash = Str::limit($base64, 10, '');
+    
+            if(!empty($originalValue)) {
 
-             // Save the encrypted value and its hash in the database
-            $product = new EncryptedProductSkinHash();
-            $product->original_value = $originalValue; // Optionally save the original value
-            $product->encrypted_value = $encrypted;
-            $product->encrypted_hash = $encryptedHash;
-            $product->save();
+                // Save the encrypted value and its hash in the database
+                $entry = new EncryptedProductSkinHash();
+                $entry->original_value = $originalValue; // Optionally save the original value
+                $entry->encrypted_value = $encrypted;
+                $entry->encrypted_hash = $encryptedHash;
+                $entry->save();
 
+            }
+        
         }
-       
+         
 
         // Return the encrypted hash for display or use
-        return $encryptedHash;
+        return $entry->encrypted_hash;
     }
 }
 
@@ -2847,6 +2852,6 @@ if (!function_exists('decrypt_full_product_skin')) {
         $decryptedValue = Crypt::decryptString($product->encrypted_value);
 
         // Return the decrypted value
-        return $decryptedValue;
+        return $product->original_value;
     }
 }
