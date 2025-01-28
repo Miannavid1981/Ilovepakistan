@@ -2818,7 +2818,7 @@ if (!function_exists('generate_seller_serial_num')) {
 
 if (!function_exists('get_product_full_skin_no')) {
     function get_product_full_skin_no($seller, $product){
-        dd($seller, $product);
+       
         if ($product->stocks->isEmpty() || !$product->stocks->first()->sku) {
             return null;
         }
