@@ -528,6 +528,7 @@
                             
                             // Generate the SKIN for the product
                             $skin = get_product_full_skin_no($seller, $product);
+                            echo "skin ".$skin;
                             $encrypted_skin = generate_encrypted_full_product_skin($skin);
                             
                             // Generate the URL for the product
