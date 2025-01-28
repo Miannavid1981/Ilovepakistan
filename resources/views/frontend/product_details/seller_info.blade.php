@@ -107,7 +107,92 @@
     @endif
 @else 
 
-
-{{$product_child_seller->name}}
+<div class="border mb-4" style="background: #fcfcfd;">
+            <div class="position-relative p-3 p-sm-4 text-left">
+                <div class="opacity-60 fs-14 mb-3">{{ translate('Seller') }}</div>
+                <div class="mt-1">
+                    <!-- Shop Logo -->
+                    @if ($detailedProduct->added_by == 'seller' && get_setting('vendor_system_activation') == 1)
+                    <a href="{{ route('shop.visit',$product_child_seller->shop->slug) }}" class="avatar avatar-md mr-2 overflow-hidden border float-left float-lg-none float-xl-left">
+                        <img class="lazyload"
+                            src="{{ static_asset('assets/img/placeholder.jpg') }}"
+                            data-src="{{ uploaded_asset($product_child_seller->shop->logo) }}"
+                            onerror="this.onerror=null;this.src='{{ static_asset('assets/img/placeholder.jpg') }}';">
+                    </a>
+                    @endif
+                    <!-- Shop Name & Verification status -->
+                    <div>
+                        <a href="{{ route('shop.visit',$product_child_seller->shop->slug) }}"
+                            class="text-reset hov-text-primary d-block fs-14 fw-700">
+                            {{ $product_child_seller->shop->name}}
+                           
+                        </a>
+                        <div class="location opacity-70">{{$product_child_seller->shop->address }}</div>
+                    </div>
+                </div>
+                <!-- Ratting -->
+                <div class="mt-3">
+                    <div class="rating rating-mr-2">
+                        {{ renderStarRating($product_child_seller->shop->rating) }}
+                    </div>
+                    <div class="opacity-60 fs-12">
+                        ({{ $product_child_seller->shop->num_of_reviews }}
+                        {{ translate('customer reviews') }})
+                    </div>
+                </div>
+                <!-- Social Links -->
+                @if ($product_child_seller->shop->facebook || $product_child_seller->shop->google || $product_child_seller->shop->twitter || $product_child_seller->shop->youtube)
+                    <div class="mt-3">
+                        <ul class="social list-inline mb-0">
+                            @if ($product_child_seller->shop->facebook)
+                            <li class="list-inline-item mr-2 mb-2">
+                                <a href="{{ $product_child_seller->shop->facebook }}" class="facebook"
+                                    target="_blank">
+                                    <i class="lab la-facebook-f opacity-60"></i>
+                                </a>
+                            </li>
+                            @endif
+                            @if ($product_child_seller->shop->instagram)
+                            <li class="list-inline-item mr-2 mb-2">
+                                <a href="{{ $product_child_seller->shop->instagram }}" class="instagram"
+                                    target="_blank">
+                                    <i class="lab la-instagram opacity-60"></i>
+                                </a>
+                            </li>
+                            @endif
+                            @if ($product_child_seller->shop->google)
+                            <li class="list-inline-item mr-2 mb-2">
+                                <a href="{{ $product_child_seller->shop->google }}" class="google"
+                                    target="_blank">
+                                    <i class="lab la-google opacity-60"></i>
+                                </a>
+                            </li>
+                            @endif
+                            @if ($product_child_seller->shop->twitter)
+                            <li class="list-inline-item mr-2 mb-2">
+                                <a href="{{ $product_child_seller->shop->twitter }}" class="twitter"
+                                    target="_blank">
+                                    <i class="lab la-twitter opacity-60"></i>
+                                </a>
+                            </li>
+                            @endif
+                            @if ($product_child_seller->shop->youtube)
+                            <li class="list-inline-item">
+                                <a href="{{ $product_child_seller->shop->youtube }}" class="youtube"
+                                    target="_blank">
+                                    <i class="lab la-youtube opacity-60"></i>
+                                </a>
+                            </li>
+                            @endif
+                        </ul>
+                    </div>
+                @endif
+                <!-- shop link button -->
+                <div class="mt-3">
+                    <a href="{{ route('shop.visit', $product_child_seller->shop->slug) }}"
+                        class="btn btn-block btn-slide-secondary-base fs-14 fw-700 rounded-0">{{ translate('Visit Store') }}</a>
+                </div>
+            </div>
+        </div>
 
 @endif
