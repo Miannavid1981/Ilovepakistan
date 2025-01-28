@@ -2778,11 +2778,9 @@ if (!function_exists('get_seller_serial_num_int')) {
      */
     function get_seller_serial_num_int($serialNumber)
     {
-        // Remove the prefix (e.g., 'BH') and get the numeric part
-        $numericPart = str_replace(get_global_skin_company_prefix(), '', $serialNumber);
-
-        // Return the numeric part as an integer
-        return (int) $numericPart;
+        $numericString = preg_replace('/[a-zA-Z]/', '', $serialNumber);
+        $integerValue = (int) filter_var($numericString, FILTER_SANITIZE_NUMBER_INT);
+        return $integerValue;
     }
 }
 
