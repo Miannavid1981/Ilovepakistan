@@ -16,6 +16,9 @@ use App\Models\User;
 use App\Notifications\ShopProductNotification;
 use Artisan;
 use Auth;
+use App\Models\ProductSellerMap;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Crypt;
 
 
 use App\Services\ProductService;
@@ -126,6 +129,36 @@ class ProductController extends Controller
 
             Notification::send($users, new ShopProductNotification($data));
         }
+
+        $skin = get_product_full_skin_no(auth()->user(), $product);
+                
+        // Encrypt the value using Laravel's Crypt
+        $encrypted = Crypt::encryptString($skin);
+
+        // Hash the encrypted string (sha256) and encode it in base64
+        $hashed = hash('sha256', $encrypted);  // You can use sha256 or another fixed-length hash
+        $base64 = base64_encode($hashed);      // Encode hash to Base64 for display or storage
+
+        // Truncate the hash to get a 10-character length (example length)
+        $encryptedHash = Str::limit($base64, 10, '');
+
+        // Create or update the ProductSellerMap
+        ProductSellerMap::updateOrCreate(
+            [
+                'product_id' => $product->id,
+                'seller_id' => auth()->user()->id,
+                'source_seller_id' => $product->user_id,
+                'original_skin' => !empty($skin)  ? $skin :  ''
+            ],
+            [
+                'encrypted_hash' => !empty($skin)  ? $encryptedHash  : null,
+                'encrypted_value' => !empty($skin)  ?  $encrypted : null,
+                'sku' => $product->stocks ? $product->stocks[0]->sku : null,
+                'imported' => 1,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ]
+        );
 
         flash(translate('Product has been inserted successfully'))->success();
 
