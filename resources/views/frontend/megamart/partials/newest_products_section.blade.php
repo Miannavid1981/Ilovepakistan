@@ -46,7 +46,7 @@
         @php
             $seller_map = \App\Models\ProductSellerMap::where('product_id', $product->id)->where('seller_id', $new_product->user_id)->where('source_seller_id',$new_product->user_id )->first();
             $encrypted_skin = $seller_map->encrypted_hash ?? '';
-            $product_url = url('/product/' . $product->slug . '/' . $encrypted_skin);
+            $product_url = url('/product/' . $new_product->slug . '/' . $encrypted_skin);
             $product->product_custom_url = $product_url;
         @endphp
         @include('frontend.'.get_setting('homepage_select').'.partials.product_box_1',['product' => $new_product])
