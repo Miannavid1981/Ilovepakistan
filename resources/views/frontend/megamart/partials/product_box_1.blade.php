@@ -4,7 +4,7 @@
     $cart_added = [];
 
 
-$product_url = route('product', $product->slug);
+$product_url = route('product', $product->slug, 'ABC1234');
 
 if ($product->auction_product == 1) {
 
