@@ -257,15 +257,17 @@ class HomeController extends Controller
     {
         // echo "Slug: " . $slug . "<br>";
         // Decrypt the skin value
-        $decrypted_skin = decrypt_full_product_skin($skin);
+        // $decrypted_skin = decrypt_full_product_skin($skin);
+        $seller_map = ProductSellerMap::where('encrypted_hash',  $skin)->first();
+        
         // Assuming the format is "BH0000768-IP16PRO"
-        $skin_parts = explode('-', $decrypted_skin); // Split into two parts: seller code and product SKU
+        $skin_parts = explode('-', $seller_map->original_skin); // Split into two parts: seller code and product SKU
         
         // Extract the seller code and product SKU
         $sellerCode = $skin_parts[0];  // This is 'BH0000768'
         $productSKU = isset($skin_parts[1]) ? $skin_parts[1] : null;  // This is 'IP16PRO', or null if it doesn't exist
         $seller_serial_no = get_seller_serial_num_int($sellerCode) ;
-dd($skin_parts);
+// dd($skin_parts);
         $product_child_seller =  User::where('serial_no', $seller_serial_no)->first();
         // Query the product based on SKU
         $detailedProduct  = Product::with('reviews', 'brand', 'stocks', 'user', 'user.shop')->where('auction_product', 0)->where('slug', $slug)->where('approved', 1)->first();
