@@ -289,7 +289,7 @@ class HomeController extends Controller
                  $sourceSellerId = $mapping->source_seller_id;
              }
          } else {
-             $sellerId = $product->seller_id;
+             $sellerId = $product->user_id;
          }
 
 
