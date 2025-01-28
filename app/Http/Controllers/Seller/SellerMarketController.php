@@ -42,7 +42,6 @@ class SellerMarketController extends Controller
 
     public function store(Request $request)
     {
-        dd(auth());
         $productIds = $request->input('product_ids', []);
         $seller_id = Auth::id();
         $seller = User::find($seller_id)->get();
@@ -51,7 +50,7 @@ class SellerMarketController extends Controller
         
             if ($product) {
 
-                $skin = get_product_full_skin_no($seller, $product);
+                $skin = get_product_full_skin_no(auth()->user(), $product);
                 
                 // Encrypt the value using Laravel's Crypt
                 $encrypted = Crypt::encryptString($skin);
