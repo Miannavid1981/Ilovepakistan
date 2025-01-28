@@ -49,7 +49,7 @@ class SellerMarketController extends Controller
             if ($product) {
                 
                 // Find or create the seller
-                $source_seller = User::where('serial_no', $product->user_id)->first();
+                $source_seller = User::find($product->user_id)->get();
         
                 // Create or update the ProductSellerMap
                 ProductSellerMap::updateOrCreate(
