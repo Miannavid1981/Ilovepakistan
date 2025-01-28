@@ -2821,8 +2821,16 @@ if (!function_exists('get_product_full_skin_no')) {
         if ($product->stocks->isEmpty() || !$product->stocks->first()->sku) {
             return null;
         }
-        
         $skin = format_seller_serial_num($seller->serial_no, 10) .'-'.$product->stocks->first()->sku;
+        if(!empty($skin)){
+
+            if($product->user_id != $seller->id) {
+                $skin = get_imported_skin_prefix().$skin;
+            }  
+
+        }
+         
+        
         return $skin ?? null;
     }
 }
