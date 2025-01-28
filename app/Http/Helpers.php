@@ -2737,6 +2737,19 @@ if (!function_exists('timezones')) {
         );
     }
 }
+
+
+if (!function_exists('get_imported_skin_prefix')) {
+    function get_imported_skin_prefix(){
+        return "I";
+    }
+}
+if (!function_exists('get_global_skin_company_prefix')) {
+    function get_global_skin_company_prefix(){
+        return "BH";
+    }
+}
+
 if (!function_exists('format_seller_serial_num')) {
     /**
      * Format the seller serial number with leading zeros.
@@ -2747,7 +2760,7 @@ if (!function_exists('format_seller_serial_num')) {
      */
     function format_seller_serial_num($numericPart, $digits){
         // Prefix for the serial number
-        $prefix = 'BH';
+        $prefix = get_global_skin_company_prefix();
 
         // Format the numeric part with leading zeros based on the number of digits required
         $formattedNumber = str_pad($numericPart, $digits - strlen($prefix), '0', STR_PAD_LEFT);
@@ -2766,7 +2779,7 @@ if (!function_exists('get_seller_serial_num_int')) {
     function get_seller_serial_num_int($serialNumber)
     {
         // Remove the prefix (e.g., 'BH') and get the numeric part
-        $numericPart = str_replace('BH', '', $serialNumber);
+        $numericPart = str_replace(get_global_skin_company_prefix(), '', $serialNumber);
 
         // Return the numeric part as an integer
         return (int) $numericPart;
@@ -2794,7 +2807,7 @@ if (!function_exists('generate_seller_serial_num')) {
             $numericPart = 786;
         } else {
             // Remove the prefix and get the numeric part
-            $numericPart = intval(substr($latestSerial, strlen('BH'))); // Strip 'BH' and convert to integer
+            $numericPart = intval(substr($latestSerial, strlen(get_global_skin_company_prefix()))); // Strip 'BH' and convert to integer
             $numericPart++; // Increment the serial number by 1
         }
 

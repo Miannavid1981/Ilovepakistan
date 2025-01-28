@@ -33,6 +33,7 @@ use DB;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\URL;
 use ZipArchive;
+use App\Models\ProductSellerMap;
 
 class HomeController extends Controller
 {
@@ -252,11 +253,45 @@ class HomeController extends Controller
         return view('frontend.track_order');
     }
 
-    public function product(Request $request, $slug)
+    public function product(Request $request, $slug, $skin)
     {
-        if (!Auth::check()) {
-            session(['link' => url()->current()]);
-        }
+        // echo "Slug: " . $slug . "<br>";
+        // Decrypt the skin value
+        $decrypted_skin = decrypt_full_product_skin($skin);
+        // Assuming the format is "BH0000768-IP16PRO"
+        $skin_parts = explode('-', $decrypted_skin); // Split into two parts: seller code and product SKU
+        
+        // Extract the seller code and product SKU
+        $sellerCode = $skin_parts[0];  // This is 'BH0000768'
+        $productSKU = isset($skin_parts[1]) ? $skin_parts[1] : null;  // This is 'IP16PRO', or null if it doesn't exist
+        $seller_serial_no = get_seller_serial_num_int($sellerCode) ;
+
+        $seller =  User::where('serial_no', $seller_serial_no)->first();
+        // Query the product based on SKU
+        $product = Product::whereHas('stocks', function($query) use ($productSKU) {
+            $query->where('sku', $productSKU);
+        })->first();
+
+         // Detect if the product is imported (prefix "I")
+         $isImported = str_starts_with($skin, get_imported_skin_prefix());
+         $cleanSku = $isImported ? substr($productSKU, 1) : $productSKU;
+ 
+         
+         $sellerId = null;
+         $sourceSellerId = null;
+ 
+         if ($isImported) {
+             // Fetch the import mapping
+             $mapping = ProductSellerMap::where('product_id', $product->product_id)
+                 ->first();
+             if ($mapping) {
+                 $sellerId = $mapping->seller_id;
+                 $sourceSellerId = $mapping->source_seller_id;
+             }
+         } else {
+             $sellerId = $product->seller_id;
+         }
+
 
         $detailedProduct  = Product::with('reviews', 'brand', 'stocks', 'user', 'user.shop')->where('auction_product', 0)->where('slug', $slug)->where('approved', 1)->first();
 
@@ -329,7 +364,7 @@ class HomeController extends Controller
                 lastViewedProducts($detailedProduct->id, auth()->user()->id);
             }
 
-            return view('frontend.product_details', compact('detailedProduct', 'product_queries', 'total_query', 'reviews', 'review_status'));
+            return view('frontend.product_details', compact('detailedProduct', 'product_queries', 'total_query', 'reviews', 'review_status', 'seller', 'isImported'));
         }
         abort(404);
     }
@@ -788,6 +823,32 @@ class HomeController extends Controller
         $product = Product::whereHas('stocks', function($query) use ($productSKU) {
             $query->where('sku', $productSKU);
         })->first();
+
+         // Detect if the product is imported (prefix "I")
+         $isImported = str_starts_with($skin, 'IBH');
+         $cleanSku = $isImported ? substr($productSKU, 1) : $productSKU;
+ 
+         
+         $sellerId = null;
+         $sourceSellerId = null;
+ 
+         if ($isImported) {
+             // Fetch the import mapping
+             $mapping = ProductSellerMap::where('product_id', $product->product_id)
+                 ->first();
+ 
+             if ($mapping) {
+                 $sellerId = $mapping->seller_id;
+                 $sourceSellerId = $mapping->source_seller_id;
+             }
+         } else {
+             $sellerId = $product->seller_id;
+         }
+
+
+       
+         return view('product.detail', compact('product', 'isImported', 'sellerId', 'sourceSellerId'));
+ 
         die;
     }
 }
