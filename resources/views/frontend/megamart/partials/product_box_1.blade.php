@@ -4,7 +4,8 @@
     $cart_added = [];
 
 
-$product_url = route('product', $product->slug, 'ABC1234');
+    $product_url = route('product', ['slug' => $product->slug, 'e_skin' => 'ABC1234']);
+
 
 if ($product->auction_product == 1) {
 
