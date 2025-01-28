@@ -42,7 +42,7 @@ class SellerMarketController extends Controller
 
     public function store(Request $request)
     {
-        dd(auth()->user);
+        dd(auth());
         $productIds = $request->input('product_ids', []);
         $seller_id = Auth::id();
         $seller = User::find($seller_id)->get();
