@@ -8,6 +8,8 @@ use App\Models\SellerImportedProduct;
 use Auth;
 use App\Models\User;
 use App\Models\ProductSellerMap;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Crypt;
 class SellerMarketController extends Controller
 {
 
@@ -42,21 +44,36 @@ class SellerMarketController extends Controller
     {
         $productIds = $request->input('product_ids', []);
         $seller_id = Auth::id();
-        
+        $seller = User::find($seller_id)->get();
         foreach ($productIds as $productId) {
             $product = Product::find($productId);
         
             if ($product) {
+
+                $skin = get_product_full_skin_no($seller, $product);
                 
+                // Encrypt the value using Laravel's Crypt
+                $encrypted = Crypt::encryptString($skin);
+        
+                // Hash the encrypted string (sha256) and encode it in base64
+                $hashed = hash('sha256', $encrypted);  // You can use sha256 or another fixed-length hash
+                $base64 = base64_encode($hashed);      // Encode hash to Base64 for display or storage
+        
+                // Truncate the hash to get a 10-character length (example length)
+                $encryptedHash = Str::limit($base64, 10, '');
+        
                 // Create or update the ProductSellerMap
                 ProductSellerMap::updateOrCreate(
                     [
                         'product_id' => $product->id,
                         'seller_id' => $seller_id,
-                        'source_seller_id' => $product->user_id
+                        'source_seller_id' => $product->user_id,
+                        'original_skin' => !empty($skin)  ? $skin :  ''
                     ],
                     [
-                        'sku' => $product->sku,
+                        'encrypted_hash' => !empty($skin)  ? $encryptedHash  : null,
+                        'encrypted_value' => !empty($skin)  ?  $encrypted : null,
+                        'sku' => $product->stocks ? $product->stocks[0]->sku : null,
                         'created_at' => now(),
                         'updated_at' => now(),
                     ]
