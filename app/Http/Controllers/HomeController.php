@@ -362,7 +362,7 @@ class HomeController extends Controller
                 lastViewedProducts($detailedProduct->id, auth()->user()->id);
             }
 
-            return view('frontend.product_details', compact('detailedProduct', 'product_queries', 'total_query', 'reviews', 'review_status', 'seller', 'isImported'));
+            return view('frontend.product_details', compact('detailedProduct', 'product_queries', 'total_query', 'reviews', 'review_status', 'product_child_seller', 'isImported'));
         }
         abort(404);
     }
