@@ -112,14 +112,14 @@
                 <div class="opacity-60 fs-14 mb-3">{{ translate('Seller') }}</div>
                 <div class="mt-1">
                     <!-- Shop Logo -->
-                    @if ($detailedProduct->added_by == 'seller' && get_setting('vendor_system_activation') == 1)
+                   
                     <a href="{{ route('shop.visit',$product_child_seller->shop->slug) }}" class="avatar avatar-md mr-2 overflow-hidden border float-left float-lg-none float-xl-left">
                         <img class="lazyload"
                             src="{{ static_asset('assets/img/placeholder.jpg') }}"
                             data-src="{{ uploaded_asset($product_child_seller->shop->logo) }}"
                             onerror="this.onerror=null;this.src='{{ static_asset('assets/img/placeholder.jpg') }}';">
                     </a>
-                    @endif
+                  
                     <!-- Shop Name & Verification status -->
                     <div>
                         <a href="{{ route('shop.visit',$product_child_seller->shop->slug) }}"
