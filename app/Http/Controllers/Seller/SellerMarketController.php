@@ -6,6 +6,8 @@ use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Models\SellerImportedProduct;
 use Auth;
+use App\Models\User;
+use App\Models\ProductSellerMap;
 class SellerMarketController extends Controller
 {
 
@@ -39,15 +41,33 @@ class SellerMarketController extends Controller
     public function store(Request $request)
     {
         $productIds = $request->input('product_ids', []);
-        $userId = Auth::id();
-
+        $seller_id = Auth::id();
+        
         foreach ($productIds as $productId) {
-            SellerImportedProduct::updateOrCreate(
-                ['user_id' => $userId, 'product_id' => $productId, 'created_at' => now(), 'updated_at' => now(), ]
-            );
+            $product = Product::find($productId);
+        
+            if ($product) {
+                
+                // Find or create the seller
+                $source_seller = User::where('serial_no', $product->user_id)->first();
+        
+                // Create or update the ProductSellerMap
+                ProductSellerMap::updateOrCreate(
+                    [
+                        'product_id' => $product->id,
+                        'seller_id' => $seller_id,
+                        'source_seller_id' => $source_seller
+                    ],
+                    [
+                        'sku' => $product->sku,
+                        'created_at' => now(),
+                        'updated_at' => now(),
+                    ]
+                );
+            }
         }
-
-        return response()->json(['success' => true, 'message' => 'Products imported successfully.']);
+        
+        return response()->json(['success' => true, 'message' => 'Products mapped to sellers successfully.']);
     }
 
 }
