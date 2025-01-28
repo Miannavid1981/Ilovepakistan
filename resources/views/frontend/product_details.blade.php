@@ -86,6 +86,10 @@
                 <!-- Product Query -->
                 @include('frontend.product_details.product_queries')
             @else
+
+            @php
+                dd($product_child_seller);
+            @endphp
                 <div class="row gutters-16">
                     <!-- Left side -->
                     <div class="col-lg-3">
