@@ -268,9 +268,7 @@ class HomeController extends Controller
 
         $seller =  User::where('serial_no', $seller_serial_no)->first();
         // Query the product based on SKU
-        $product = Product::whereHas('stocks', function($query) use ($productSKU) {
-            $query->where('sku', $productSKU);
-        })->first();
+        $detailedProduct  = Product::with('reviews', 'brand', 'stocks', 'user', 'user.shop')->where('auction_product', 0)->where('slug', $slug)->where('approved', 1)->first();
 
          // Detect if the product is imported (prefix "I")
          $isImported = str_starts_with($skin, get_imported_skin_prefix());
@@ -282,18 +280,18 @@ class HomeController extends Controller
  
          if ($isImported) {
              // Fetch the import mapping
-             $mapping = ProductSellerMap::where('product_id', $product->product_id)
+             $mapping = ProductSellerMap::where('product_id', $detailedProduct->id)
                  ->first();
              if ($mapping) {
                  $sellerId = $mapping->seller_id;
                  $sourceSellerId = $mapping->source_seller_id;
              }
          } else {
-             $sellerId = $product->user_id;
+             $sellerId = $detailedProduct->user_id;
          }
 
 
-        $detailedProduct  = Product::with('reviews', 'brand', 'stocks', 'user', 'user.shop')->where('auction_product', 0)->where('slug', $slug)->where('approved', 1)->first();
+        
 
         if ($detailedProduct != null && $detailedProduct->published) {
             if ((get_setting('vendor_system_activation') != 1) && $detailedProduct->added_by == 'seller') {
