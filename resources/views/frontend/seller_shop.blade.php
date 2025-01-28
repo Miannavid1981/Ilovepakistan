@@ -529,7 +529,7 @@
                             // Generate the SKIN for the product
                             $skin = get_product_full_skin_no($seller, $product);
                             $seller_map = \App\Models\ProductSellerMap::where('original_skin', get_product_full_skin_no())->first();
-                            $encrypted_skin = $seller_map->original_value ?? '';
+                            $encrypted_skin = $seller_map->encrypted_hash ?? '';
                             // Generate the URL for the product
                             $product_url = url('/product/' . $product->slug . '/' . $encrypted_skin);
                         @endphp
