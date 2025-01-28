@@ -154,7 +154,7 @@ class ProductController extends Controller
                 'encrypted_hash' => !empty($skin)  ? $encryptedHash  : null,
                 'encrypted_value' => !empty($skin)  ?  $encrypted : null,
                 'sku' => $product->stocks ? $product->stocks[0]->sku : null,
-                'imported' => 1,
+                'imported' => 0,
                 'created_at' => now(),
                 'updated_at' => now(),
             ]

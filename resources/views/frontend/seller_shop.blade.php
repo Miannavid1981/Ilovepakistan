@@ -512,6 +512,7 @@
                 // Get the product IDs from the seller_imported_products table
                 $importedProductIds = \App\Models\ProductSellerMap::query()
                     ->where('seller_id', $shop->user->id)
+                    ->where('imported', 1)
                     ->pluck('product_id') // Get only the product IDs
                     ->toArray();
 
