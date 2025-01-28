@@ -516,19 +516,19 @@
                     ->toArray();
 
                 // Get all products in one query to avoid multiple queries inside the loop
-                $products = \App\Models\Product::whereIn('id', $importedProductIds)->get();
+                $importedProducts = \App\Models\Product::whereIn('id', $importedProductIds)->get();
             @endphp
 
             <div class="px-sm-3 pb-3">
                 <div class="aiz-carousel sm-gutters-16 arrow-none" data-items="6" data-xl-items="5" data-lg-items="4" data-md-items="3" data-sm-items="2" data-xs-items="2" data-arrows='true' data-infinite='false'>
-                    @foreach ($products as $key => $product)
+                    @foreach ($importedProducts as $key => $product)
                         @php
                             // Assuming the seller is the same for all products in this loop
                             $seller = \App\Models\User::find($shop->user->id);
                             
                             // Generate the SKIN for the product
                             $skin = get_product_full_skin_no($seller, $product);
-                            $encrypted_skin = generate_encrypted_full_product_skin("I".$skin);
+                            $encrypted_skin = generate_encrypted_full_product_skin($skin);
                             
                             // Generate the URL for the product
                             $product_url = url('/product/' . $product->slug . '/' . $encrypted_skin);
