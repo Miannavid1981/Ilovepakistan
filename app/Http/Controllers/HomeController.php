@@ -266,7 +266,7 @@ class HomeController extends Controller
         $productSKU = isset($skin_parts[1]) ? $skin_parts[1] : null;  // This is 'IP16PRO', or null if it doesn't exist
         $seller_serial_no = get_seller_serial_num_int($sellerCode) ;
 
-        $seller =  User::where('serial_no', $seller_serial_no)->first();
+        $product_child_seller =  User::where('serial_no', $seller_serial_no)->first();
         // Query the product based on SKU
         $detailedProduct  = Product::with('reviews', 'brand', 'stocks', 'user', 'user.shop')->where('auction_product', 0)->where('slug', $slug)->where('approved', 1)->first();
 
