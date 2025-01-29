@@ -204,7 +204,7 @@
             padding: 0.3rem 1.2rem;
             font-size: 1rem;
             font-weight: inherit;
-            border-radius: 10px ;
+            border-radius: 10px !important;
         }
         .form-control:focus {
             border-width: 2px !important;
