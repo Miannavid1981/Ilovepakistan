@@ -74,6 +74,8 @@ $photos = [];
         aspect-ratio: 1 / 1;
         border-radius: 10px;
         cursor: grab;
+        object-fit: contain;
+        object-position: center;
     }
 
     .main-image:active {
