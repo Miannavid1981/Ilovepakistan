@@ -30,10 +30,10 @@ class CheckoutController extends Controller
     //humza
     public function checkout(Request $request)
     {
-        if ($request->payment_option == null) {
-            flash(translate('There is no payment option selected.'))->warning();
-            return redirect()->route('checkout.shipping_info');
-        }
+        // if ($request->payment_option == null) {
+        //     flash(translate('There is no payment option selected.'))->warning();
+        //     return redirect()->route('checkout.shipping_info');
+        // }
         $user_id = Auth::user()->id;
 
         $carts = Cart::where('user_id', $user_id)->get();
