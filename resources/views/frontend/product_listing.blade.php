@@ -36,13 +36,227 @@
 
 @section('content')
 
+<style> 
+
+.size-circle{
+    gap: 10px;
+}
+.size {
+    width: 40px;
+    height: 40px;
+    aspect-ratio: 1 / 1;
+    border-radius: 50%;
+    background: #ffffff;
+    display: flex;
+    border: 1px solid #000;
+    justify-content: center;
+    align-items: center;
+}
+    #collapse_1 .list-group {
+    border: none;
+}
+
+li.list-group-item.text-dark {
+ border: none;
+ padding: 8px 0px 8px 0px;
+}
+
+.range_container {
+            width: 100%;
+            max-width: 400px;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+        .sliders_control {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        input[type="range"] {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 100%;
+            position: absolute;
+            background: transparent;
+            pointer-events: none;
+        }
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 16px;
+            height: 16px;
+            background: #000;
+            border: 2px solid #000;
+            border-radius: 50%;
+            pointer-events: all;
+            cursor: pointer;
+        }
+        .slider-tooltip {
+            position: absolute;
+            top: -30px;
+            background: rgba(0, 0, 0, 0.7);
+            color: #fff;
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: 12px;
+            text-align: center;
+            white-space: nowrap;
+            transform: translateX(-50%);
+        }
+        .scale {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+            font-size: 12px;
+            color: #555;
+        }
+
+</style>
+<section class="text-center d-flex justify-content-center align-items-center" style="height: 200px; background-color: #E8E8E8;">
+    <div class="container text-center">
+        <!-- Shop Page Title -->
+        <h2 class="text-dark mb-4">Shop Page</h2>
+
+        <!-- Navbar -->
+        <nav class="navbar navbar-expand-lg navbar-light justify-content-center w-100">         
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav justify-content-center w-100">
+                    <li class="nav-item"><a class="nav-link" href="#">T-Shirt</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Dress</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Top</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Swimwear</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Shirt</a></li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+</section>
+
+
+
+
+
     <section class="mb-4 pt-4">
         <div class="container sm-px-0 pt-2">
             <form class="" id="search-form" action="" method="GET">
                 <div class="row">
 
-                    <!-- Sidebar Filters -->
-                    <div class="col-xl-3">
+                    <aside class="col-md-3">
+                        <h5>Products Type</h5>
+                        <div class="bg-white  mb-3">
+                            {{-- <div class="fs-16 fw-700 p-3">
+                                <a href="#collapse_1" class="dropdown-toggle filter-section text-dark d-flex align-items-center justify-content-between" data-toggle="collapse">
+                                    {{ translate('Categories') }}
+                                </a>
+                            </div> --}}
+                            <div class="collapse show" id="collapse_1">
+                                <ul class="list-group mb-0">
+                                    @if (!isset($category_id))
+                                        @foreach ($categories as $category)
+                                            <li class="list-group-item text-dark">
+                                                <a class="text-reset fs-14 hov-text-primary" href="{{ route('products.category', $category->slug) }}">
+                                                    {{ $category->getTranslation('name') }} ({{ $category->products_count }})
+                                                </a>
+                                            </li>
+                                        @endforeach
+                                    @else
+                                        <li class="list-group-item">
+                                            <a class="text-reset fs-14 fw-600 hov-text-primary" href="{{ route('search') }}">
+                                                <i class="las la-angle-left"></i>
+                                                {{ translate('All Categories') }}
+                                            </a>
+                                        </li>
+                                        
+                                        @if ($category->parent_id != 0)
+                                            <li class="list-group-item">
+                                                <a class="text-reset fs-14 fw-600 hov-text-primary" href="{{ route('products.category', get_single_category($category->parent_id)->slug) }}">
+                                                    <i class="las la-angle-left"></i>
+                                                    {{ get_single_category($category->parent_id)->getTranslation('name') }}
+                                                </a>
+                                            </li>
+                                        @endif
+                            
+                                        <li class="list-group-item">
+                                            <a class="text-reset fs-14 fw-600 hov-text-primary" href="{{ route('products.category', $category->slug) }}">
+                                                <i class="las la-angle-left"></i>
+                                                {{ $category->getTranslation('name') }}
+                                            </a>
+                                        </li>
+                                        
+                                        @foreach ($category->childrenCategories as $key => $immediate_children_category)
+                                            <li class="list-group-item ml-4">
+                                                <a class="text-reset fs-14 hov-text-primary" href="{{ route('products.category', $immediate_children_category->slug) }}">
+                                                    {{ $immediate_children_category->getTranslation('name') }}
+                                                </a>
+                                            </li>
+                                        @endforeach
+                                    @endif
+                                </ul>
+                            </div>
+                            
+                        </div>
+                        
+                        <h5>Size</h5>
+                        <div class="d-flex size-circle">
+                            <div class="size">S</div>
+                            <div class="size m">M</div>
+                            <div class="size l">L</div>
+                            <div class="size xl">XL</div>
+                        </div>
+                        
+                    
+                        <h5 class="mt-3">Price Range</h5>
+                        <p>Price Range</p>
+                        <div class="range_container">
+                            <div class="sliders_control">
+                                <div id="fromSliderTooltip" class="slider-tooltip">0</div>
+                                <input id="fromSlider" type="range" value="0" min="0" max="100000" step="500">
+                                <div id="toSliderTooltip" class="slider-tooltip">100000</div>
+                                <input id="toSlider" type="range" value="100000" min="0" max="100000" step="500">
+                            </div>
+                            <div id="scale" class="scale"></div>
+                        </div>
+                    
+                     <!-- Brands Section -->
+<h5 class="mt-3">Brands</h5>
+<div class="bg-white  mb-3">
+    <ul class="list-unstyled ">
+        <!-- Example Brand Options (Replace with actual brand data) -->
+        <li class="mb-2">
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="brand1" id="brand_1">
+                <label class="form-check-label" for="brand_1">
+                    Brand 1
+                </label>
+            </div>
+        </li>
+        <li class="mb-2">
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="brand2" id="brand_2">
+                <label class="form-check-label" for="brand_2">
+                    Brand 2
+                </label>
+            </div>
+        </li>
+        <li class="mb-2">
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="brand3" id="brand_3">
+                <label class="form-check-label" for="brand_3">
+                    Brand 3
+                </label>
+            </div>
+        </li>
+        <!-- Add more brands as needed -->
+    </ul>
+</div>
+
+                    </aside>
+                    
+                    {{-- <div class="col-xl-3">
                         <div class="aiz-filter-sidebar collapse-sidebar-wrap sidebar-xl sidebar-right z-1035">
                             <div class="overlay overlay-fixed dark c-pointer" data-toggle="class-toggle" data-target=".aiz-filter-sidebar" data-same=".filter-sidebar-thumb"></div>
                             <div class="collapse-sidebar c-scrollbar-light text-left">
@@ -227,7 +441,7 @@
                                 @endif
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
                     
                     <!-- Contents -->
                     <div class="col-xl-9">
@@ -326,5 +540,43 @@
             $('input[name=max_price]').val(arg[1]);
             filter();
         }
+     
+        document.addEventListener('DOMContentLoaded', () => {
+            const fromSlider = document.getElementById("fromSlider");
+            const toSlider = document.getElementById("toSlider");
+            const fromTooltip = document.getElementById("fromSliderTooltip");
+            const toTooltip = document.getElementById("toSliderTooltip");
+            const scale = document.getElementById("scale");
+
+            function updateTooltip(slider, tooltip) {
+                tooltip.textContent = "Rs. " + slider.value;
+                const percent = ((slider.value - slider.min) / (slider.max - slider.min)) * 100;
+                tooltip.style.left = `calc(${percent}% - 10px)`;
+            }
+            
+            function updateSlider() {
+                if (parseInt(fromSlider.value) > parseInt(toSlider.value)) {
+                    fromSlider.value = toSlider.value;
+                }
+                updateTooltip(fromSlider, fromTooltip);
+                updateTooltip(toSlider, toTooltip);
+            }
+            
+            function createScale(min, max, step) {
+                scale.innerHTML = "";
+                for (let i = min; i <= max; i += step) {
+                    const mark = document.createElement("div");
+                    mark.textContent = "Rs. " + i;
+                    mark.style.flex = "1";
+                    scale.appendChild(mark);
+                }
+            }
+
+            fromSlider.addEventListener("input", updateSlider);
+            toSlider.addEventListener("input", updateSlider);
+            
+            updateSlider();
+            createScale(0, 100000, 20000);
+        });
     </script>
 @endsection
