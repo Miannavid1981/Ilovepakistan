@@ -1052,7 +1052,7 @@ $(document).ready(function(){
                 }
             },
             error: function () {
-                alert('An error occurred while fetching the cart.');
+                // alert('An error occurred while fetching the cart.');
             }
         });
     }
