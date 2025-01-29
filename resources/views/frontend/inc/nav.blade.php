@@ -900,7 +900,7 @@ $(document).ready(function(){
     // Add to Cart
     $(document).on('click', '.g-add-to-cart', function () {
         const productId = $(this).data('id');
-        const skin_code = $($this).data('skin_code') ?? null;
+        const skin_code = $(this).data('skin_code') ?? null;
         const prev_text = 'Add to Cart';
         var elm = $(this);
         $(this).html('<i class="fa fa-spinner fa-spin d-block fs-20 "></i>');
