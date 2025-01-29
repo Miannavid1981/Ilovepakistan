@@ -274,7 +274,7 @@ Route::group(['prefix' => 'checkout'], function () {
         Route::post('/payment-select', 'store_delivery_info')->name('checkout.store_delivery_info');
         Route::get('/order-confirmed', 'order_confirmed')->name('order_confirmed');
         Route::post('/finalize_order_checkout', 'finalizeOrderCheckout')->name('finalize_order_checkout'); 
-        Route::post('/payment', 'checkout')->name('payment.checkout');
+        Route::post('/payment', 'finalizeOrderCheckout')->name('payment.checkout');
         Route::post('/get-pick-up-points', 'get_pick_up_points')->name('shipping_info.get_pick_up_points');
         Route::get('/payment-select', 'get_payment_info')->name('checkout.payment_info');
         Route::post('/apply-coupon-code', 'apply_coupon_code')->name('checkout.apply_coupon_code');
