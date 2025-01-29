@@ -947,7 +947,7 @@ $(document).ready(function(){
             method: 'POST',
             data: {
                 _token: $('meta[name="csrf-token"]').attr('content'),
-                product_id: productId,
+                id: productId,
                 quantity: quantity,
             },
             success: function (response) {

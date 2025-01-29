@@ -94,15 +94,14 @@ class CustomCartController extends Controller
             'cart' => $this->getCartData(),
         ]);
     }
-
     public function updateCart(Request $request)
     {
-        $productId = $request->product_id;
+        $id = $request->id;
         $quantity = max(0, intval($request->quantity));
         $userId = Auth::id();
         $tempUserId = session('guest_cart_id');
-
-        $cartItem = Cart::where('product_id', $productId)
+    
+        $cartItem = Cart::where('id', $id)
             ->where(function ($query) use ($userId, $tempUserId) {
                 if ($userId) {
                     $query->where('user_id', $userId);
@@ -110,22 +109,29 @@ class CustomCartController extends Controller
                     $query->where('temp_user_id', $tempUserId);
                 }
             })->first();
-
+    
         if ($cartItem) {
             if ($quantity === 0) {
                 $cartItem->delete();
             } else {
+                // Update the quantity if it's greater than 0
                 $cartItem->quantity = $quantity;
                 $cartItem->save();
             }
+        } else {
+            // Handle the case when the cart item doesn't exist (optional)
+            return response()->json([
+                'success' => false,
+                'message' => 'Item not found in cart.'
+            ]);
         }
-
+    
         return response()->json([
             'success' => true,
             'cart' => $this->getCartData(),
         ]);
     }
-
+    
     private function getCartData()
     {
         $userId = Auth::id();
