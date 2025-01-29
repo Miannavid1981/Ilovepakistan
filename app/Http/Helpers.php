@@ -59,6 +59,7 @@ use App\Models\UserCoupon;
 use App\Models\NotificationType;
 use App\Utility\EmailUtility;
 use App\Models\EncryptedProductSkinHash;
+use App\Models\ProductSellerMap;
 ;
 //sensSMS function for OTP
 if (!function_exists('sendSMS')) {
@@ -2893,5 +2894,27 @@ if (!function_exists('decrypt_full_product_skin')) {
 
         // Return the decrypted value
         return $product->original_value;
+    }
+}
+// Decrypt the value from the database
+if (!function_exists('get_product_seller_map_skin')) {
+    function get_product_seller_map_skin($product, $seller = null)
+    {
+       
+        $seller_id = null;
+        if (!$product) {
+            return null;
+        }
+        if(!$seller){
+            $seller_id = $product->user_id;
+        } else {
+            $seller_id = $seller->id;
+        }
+        // Retrieve the product record using the truncated hash (short string)
+        $map = ProductSellerMap::where('product_id', $product->id)->where('seller_id', $seller_id)->first();
+          
+
+        // Return the decrypted value
+        return $map->original_skin ?? null;
     }
 }
