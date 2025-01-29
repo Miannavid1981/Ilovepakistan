@@ -24,7 +24,7 @@ class CustomCartController extends Controller
     public function addToCart(Request $request)
     {
         $productId = $request->product_id;
-        $skin_code = $request->product_id;  // Assuming skin_code is related to product_id for now
+        $skin_code = $request->skin_code;  // Assuming skin_code is related to product_id for now
         $userId = Auth::id() ?? null;
         $tempUserId = session('guest_cart_id', str()->uuid());
         session(['guest_cart_id' => $tempUserId]);
