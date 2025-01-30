@@ -19,7 +19,7 @@
          width: 90%;
          max-width: 1200px;
          display: grid;
-         grid-template-columns: 1fr 1fr;
+         grid-template-columns: 1.3fr 1fr;
          grid-template-rows: auto 1fr;
          gap: 20px;
          margin: 20px auto;
