@@ -334,14 +334,13 @@
     @csrf
     <input type="hidden" name="owner_id" value="{{ $carts[0]['owner_id'] }}">
 
-    <div class="checkout-container">
+    <div class="container" style="background: linear-gradient(to left, #fff 50%, #f5f5f5 50%); height: 100vh">
         <!-- Header -->
-        <div class="checkout-header">
-            <h1>Checkout</h1>
-        </div>
+        <div class="row">
+          
 
 
-        <div class="payment-section">
+        <div class="col-md-7">
             
             <div id="cart_summary">
 
@@ -933,7 +932,7 @@
         </div>
 
         <!-- Summary Section -->
-        <div class="summary-section">
+        <div class="col-md-5">
             <h3>Your Purchase</h3>
             <div class="summary-cart">
                 @if ($cart && $cart->count() > 0)
@@ -997,7 +996,7 @@
 
 
 
-
+    </div>
 
 
 
