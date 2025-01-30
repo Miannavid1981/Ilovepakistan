@@ -362,7 +362,16 @@
                 <li><i class="fa fa-chevron-right"></i></li>
                 <li>Checkout</li>
             </ul>
-           
+            <div class="row">
+                <div class="col-6">
+
+                    <input class="form-control" type="text">
+
+                </div>
+                <div class="col-6">
+                    <input class="form-control" type="text">
+                </div>
+            </div>
             
             <div>
                 <h5 class="mt-5">Addresses</h5>
