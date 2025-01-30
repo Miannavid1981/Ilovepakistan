@@ -356,7 +356,7 @@
 
 
         <div class="col-md-7 checkout_columns">
-            <img src="https://allaaddin.com/public/images/1j+ojFVDOMkX9Wytexe43D6kh.png" style="width: 100px" alt="Bighouz" class="img-fluid">
+            <img src="https://allaaddin.com/public/images/1j+ojFVDOMkX9Wytexe43D6kh.png" style="width: 130px" alt="Bighouz" class="img-fluid">
             <ul class="d-flex gap-2 list-unstyled fs-13 text-muted">
                 <li>Home</li>
                 <li><i class="fa fa-chevron-right"></i></li>
@@ -365,7 +365,7 @@
            
             
             <div>
-                <h5 class="mt-4">Addresses</h5>
+                <h5 class="mt-5">Addresses</h5>
                 <div class="addresses  mb-3">
                     <div class="address_item p-3">
                         <div>
@@ -949,6 +949,8 @@
 
         <!-- Summary Section -->
         <div class="col-md-5 checkout_columns" style="background: #f5f5f5; border-left: 1px solid #DEDEDE;">
+            
+            <br>
             <h4>Your Purchase</h4>
             <div class="summary-cart">
                 @if ($cart && $cart->count() > 0)
