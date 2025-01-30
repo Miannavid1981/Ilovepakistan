@@ -298,6 +298,64 @@
              <img src="./apple-logo.png" alt="Apple Pay">
              Apple Pay
          </button>
+
+         @if (addon_is_activated('offline_payment'))
+            @foreach (get_all_manual_payment_methods() as $method)
+                <div class="col-6 col-xl-3 col-md-4">
+                    <label class="aiz-megabox d-block mb-3">
+                        <input value="{{ $method->heading }}" type="radio"
+                            name="payment_option" class="offline_payment_option"
+                            onchange="toggleManualPaymentData({{ $method->id }})"
+                            data-id="{{ $method->id }}" checked>
+                        <span class="d-block aiz-megabox-elem rounded-0 p-3">
+                            <img src="{{ uploaded_asset($method->photo) }}"
+                                class="img-fit mb-2">
+                            <span class="d-block text-center">
+                                <span
+                                    class="d-block fw-600 fs-15">{{ $method->heading }}</span>
+                            </span>
+                        </span>
+                    </label>
+                </div>
+
+                <button onclick="selectPayment(this)">
+                    <label class="d-block mb-3">
+                        <input value="{{ $method->heading }}" type="radio"
+                            name="payment_option" class="offline_payment_option"
+                            onchange="toggleManualPaymentData({{ $method->id }})"
+                            data-id="{{ $method->id }}" checked>
+                        <span class="d-block rounded-0 p-3">
+                            <img src="{{ uploaded_asset($method->photo) }}"
+                                class="img-fit mb-2">
+                            <span class="d-block text-center">
+                                <span
+                                    class="d-block fw-600 fs-15">{{ $method->heading }}</span>
+                            </span>
+                        </span>
+                    </label>
+                </button>
+            @endforeach
+
+            @foreach (get_all_manual_payment_methods() as $method)
+                <div id="manual_payment_info_{{ $method->id }}" class="d-none">
+                    @php echo $method->description @endphp
+                    @if ($method->bank_info != null)
+                        <ul>
+                            @foreach (json_decode($method->bank_info) as $key => $info)
+                                <li>{{ translate('Bank Name') }} -
+                                    {{ $info->bank_name }},
+                                    {{ translate('Account Name') }} -
+                                    {{ $info->account_name }},
+                                    {{ translate('Account Number') }} -
+                                    {{ $info->account_number }},
+                                    {{ translate('Routing Number') }} -
+                                    {{ $info->routing_number }}</li>
+                            @endforeach
+                        </ul>
+                    @endif
+                </div>
+            @endforeach
+        @endif
      </div>
 
      <button class="continue-button" onclick="openPopup()">Enter New Card Information</button>
