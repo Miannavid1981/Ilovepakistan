@@ -365,7 +365,7 @@
            
             
             <div>
-                <h5 class="">Addresses</h5>
+                <h5 class="mt-4">Addresses</h5>
                 <div class="addresses  mb-3">
                     <div class="address_item p-3">
                         <div>
@@ -427,7 +427,7 @@
 
 
        
-            <h3>Payment Method</h3>
+            <h5 class="mt-4">Payment Method</h5>
             <div class="payment-method">
                 
 
@@ -949,7 +949,7 @@
 
         <!-- Summary Section -->
         <div class="col-md-5 checkout_columns" style="background: #f5f5f5; border-left: 1px solid #DEDEDE;">
-            <h3>Your Purchase</h3>
+            <h4>Your Purchase</h4>
             <div class="summary-cart">
                 @if ($cart && $cart->count() > 0)
                     @foreach ($cart as $key => $item  )

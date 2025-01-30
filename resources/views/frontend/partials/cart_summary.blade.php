@@ -183,8 +183,8 @@
                 @endphp
                 <!-- Total -->
                 <tr class="cart-total">
-                    <th class="pl-0 fs-14 text-dark fw-600"><span class="strong-600">{{ translate('Total') }}</span></th>
-                    <td class="text-right pr-0 fs-14 fw-600 text-primary">
+                    <th class="pl-0 fs-22 text-dark fw-600"><span class="strong-600">{{ translate('Total') }}</span></th>
+                    <td class="text-right pr-0 fs-22 fw-600 text-primary">
                         <strong><span>{{ single_price($total) }}</span></strong>
                     </td>
                 </tr>
