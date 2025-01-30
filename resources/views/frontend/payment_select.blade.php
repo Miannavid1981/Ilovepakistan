@@ -1044,7 +1044,7 @@
     }
 </script>
     <!-- Steps -->
-    <section class="pt-5 mb-4">
+    <section class="pt-5 mb-4 d-none">
         <div class="container">
             <div class="row">
                 <div class="col-xl-8 mx-auto">
@@ -1090,7 +1090,7 @@
     </section>
 
     <!-- Payment Info -->
-    <section class="mb-4">
+    <section class="mb-4 d-none">
         <div class="container text-left">
             <div class="row">
                 <div class="col-lg-8">
