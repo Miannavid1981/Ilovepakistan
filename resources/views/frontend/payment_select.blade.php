@@ -982,8 +982,8 @@
                             <div class="quantity-circle">{{ $qty }}</div>
                             <div class="cart-item-info">
                                 <p class="mb-0">{{  $product->name }}</p>
-                                <small>Size: <span>38</span></small>
-                                <small>Color: <span>Blue</span></small>
+                                <small class="mb-0">Size: <span>38</span></small>
+                                <small class="mb-0">Color: <span>Blue</span></small>
                             </div>
                             @if (discount_in_percentage($product) > 0)
 
