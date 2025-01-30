@@ -8,6 +8,9 @@
     body {
         background: #FAFAFA !important
     }
+    .front-header-search {
+        display: none !important
+    }
     .checkout-container {
          background-color: white;
          border-radius: 8px;
