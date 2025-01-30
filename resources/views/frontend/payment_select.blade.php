@@ -936,7 +936,7 @@
         
                 <!-- Return to shop -->
                
-                <button type="button" onclick="submitOrder(this)"  class="w-100 btn btn-lg btn-primary fs-16 fw-700 rounded-0 px-4 py-2">{{ translate('Complete Order') }}</button>
+                <button type="button" onclick="submitOrder(this)"  class="w-100 btn btn-lg btn-primary fs-16 fw-300 rounded-0 p-2 ">{{ translate('Place Order') }}</button>
        
                     <a href="{{ route('home') }}" class="btn btn-link fs-14 fw-700 px-0 mt-2">
                         <i class="las la-arrow-left fs-16"></i>
