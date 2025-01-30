@@ -5,6 +5,9 @@
     header, footer {
         display: none !important;
     }
+    body {
+        background: #FAFAFA !important
+    }
     .checkout-container {
          background-color: white;
          border-radius: 8px;
