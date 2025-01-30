@@ -533,6 +533,52 @@
  </div>
 </div>
 
+
+<script>
+    let currentCard = null;
+
+    function selectPayment(element) {
+        document.querySelectorAll('.payment-method button').forEach(button => {
+            button.classList.remove('selected');
+            button.querySelector('.tick').style.display = 'none'; // Hide tick on all buttons
+        });
+
+        // Add 'selected' class and show tick on the clicked button
+        element.classList.add('selected');
+        element.querySelector('.tick').style.display = 'block';
+    }
+
+    function editPaymentMethod(card) {
+        currentCard = card;
+        document.getElementById('card-number').value = card;  // Pre-fill the card number in the popup
+        openPopup();
+    }
+
+    function deletePaymentMethod(card) {
+        if (confirm(`Are you sure you want to delete the card ending in ${card.slice(-4)}?`)) {
+            // Here you can add logic to remove the card from your saved cards list
+            alert(`Card ending in ${card.slice(-4)} has been deleted.`);
+            // For now, we'll just hide the card info.
+            document.querySelector('.saved-payment-info').style.display = 'none';
+        }
+    }
+
+    // Open the card information popup
+    function openPopup() {
+        document.getElementById('popup').style.display = 'flex';
+    }
+
+    // Close the card information popup
+    function closePopup() {
+        document.getElementById('popup').style.display = 'none';
+    }
+
+    // Handle form submission (for now it just closes the popup)
+    function submitForm() {
+        alert("Card information submitted!");
+        closePopup();
+    }
+</script>
     <!-- Steps -->
     <section class="pt-5 mb-4">
         <div class="container">
