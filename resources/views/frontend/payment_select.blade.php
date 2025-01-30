@@ -947,7 +947,7 @@
         </div>
 
         <!-- Summary Section -->
-        <div class="col-md-5 checkout_columns" style="background: #f5f5f5">
+        <div class="col-md-5 checkout_columns" style="background: #f5f5f5; border-left: 1px solid #DEDEDE;">
             <h3>Your Purchase</h3>
             <div class="summary-cart">
                 @if ($cart && $cart->count() > 0)
