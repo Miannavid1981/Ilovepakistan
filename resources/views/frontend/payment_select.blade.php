@@ -932,7 +932,7 @@
         </div>
 
         <!-- Summary Section -->
-        <div class="col-md-5">
+        <div class="col-md-5" style="background: #f5f5f5">
             <h3>Your Purchase</h3>
             <div class="summary-cart">
                 @if ($cart && $cart->count() > 0)
