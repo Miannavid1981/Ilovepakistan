@@ -981,9 +981,9 @@
                             <img src="{{ $product->thumbnail != null ? my_asset($product->thumbnail->file_name) : static_asset('assets/img/placeholder.jpg') }}" alt="Levis Men Jeans" style="">
                             <div class="quantity-circle">{{ $qty }}</div>
                             <div class="cart-item-info">
-                                <h4>{{  $product->name }}</h4>
-                                <p>Size: <span>38</span></p>
-                                <p>Color: <span>Blue</span></p>
+                                <p class="mb-0">{{  $product->name }}</p>
+                                <small>Size: <span>38</span></small>
+                                <small>Color: <span>Blue</span></small>
                             </div>
                             @if (discount_in_percentage($product) > 0)
 
