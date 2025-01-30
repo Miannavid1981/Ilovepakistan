@@ -321,6 +321,12 @@
 
 }
 
+@media (min-width: 768px) {
+    .checkout_columns {
+        padding: 0 40px !important
+    }
+}
+
 </style>
 @php
     $auth_user_id = auth()->user()->id;
@@ -330,17 +336,17 @@
     $subtotal = 0;
     // dd($cart);
 @endphp
-<form action="{{ route('payment.checkout') }}" class="form-default" role="form" method="POST" id="checkout-form">
+<form action="{{ route('payment.checkout') }}" class="form-default" role="form" method="POST" id="checkout-form" style="background: linear-gradient(to right, #fff 70%, #f5f5f5 0%);">
     @csrf
     <input type="hidden" name="owner_id" value="{{ $carts[0]['owner_id'] }}">
 
-    <div class="container" style="background: linear-gradient(to right, #fff 70%, #f5f5f5 0%); height: 100vh">
+    <div class="container" style=" height: 100vh">
         <!-- Header -->
         <div class="row h-100">
           
 
 
-        <div class="col-md-7">
+        <div class="col-md-7 checkout_columns">
             
             <div id="cart_summary">
 
@@ -932,7 +938,7 @@
         </div>
 
         <!-- Summary Section -->
-        <div class="col-md-5" style="background: #f5f5f5">
+        <div class="col-md-5 checkout_columns" style="background: #f5f5f5">
             <h3>Your Purchase</h3>
             <div class="summary-cart">
                 @if ($cart && $cart->count() > 0)
