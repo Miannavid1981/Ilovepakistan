@@ -348,7 +348,7 @@
 
         <div class="col-md-7 checkout_columns">
             <img src="https://allaaddin.com/public/images/1j+ojFVDOMkX9Wytexe43D6kh.png" style="width: 100px" alt="Bighouz" class="img-fluid">
-            <ul class="d-flex">
+            <ul class="d-flex gap-2">
                 <li>Home</li>
                 <li><i class="fa fa-chevron-right"></i></li>
                 <li>Checkout</li>
