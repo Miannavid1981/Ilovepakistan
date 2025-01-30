@@ -690,7 +690,7 @@
                             
                                 <div class="mt-3 d-flex direction-column gap-3">
                                     <button class="btn btn-outline-primary w-100 ">View Cart</button>
-                                    <button class="btn btn-primary w-100">Check Out</button>
+                                    <a href="{{ url('/checkout') }}" class="btn btn-primary w-100">Check Out</a>
                                 </div>
                                 <p class="text-center mt-3 mb-0">Or Continue Shopping </p>
                             </div>
