@@ -195,7 +195,7 @@
          width: 30px;
          height: 30px;
          border-radius: 50%;
-         background-color: #004d40;
+         background-color: var(--primary);
          color: white;
          font-size: 1rem;
          font-weight: bold;
@@ -981,8 +981,13 @@
                     @endphp
 
                         <div class="cart-item">
-                            <img src="{{ $product->thumbnail != null ? my_asset($product->thumbnail->file_name) : static_asset('assets/img/placeholder.jpg') }}" alt="Levis Men Jeans" style="">
-                            <div class="quantity-circle">{{ $qty }}</div>
+                            <div class="position-relative"> 
+                                <img src="{{ $product->thumbnail != null ? my_asset($product->thumbnail->file_name) : static_asset('assets/img/placeholder.jpg') }}" alt="Levis Men Jeans" style="">
+                                <div class="quantity-circle">{{ $qty }}</div>
+
+                            </div>
+                           
+                            
                             <div class="cart-item-info">
                                 <p class="mb-0">{{  $product->name }}</p>
                                 <small class="mb-0">Size: <span>38</span></small>
