@@ -2,6 +2,9 @@
 
 @section('content')
 <style>
+    header, footer {
+        display: none !important;
+    }
     .checkout-container {
          background-color: white;
          border-radius: 8px;
