@@ -329,14 +329,11 @@
 
 
 
-// SETTINGS - VARIABLES
-
 $color-link: #007c89;
 $color-separator: #767676;
 $size-icon: 16px;
 $space-separator: 8px;
 
-// TOOLS - MIXINS
 
 @mixin text-underline($color: currentColor) {
   background-image: linear-gradient($color, $color);
@@ -345,18 +342,11 @@ $space-separator: 8px;
   background-position: 0 calc(50% + 1ex);
 }
 
-// TOOLS - FUNCTIONS
-
-/// Returns SVG-Image embedded in a Data-URI.
-/// @parameter {color} Hexadecimal value for stroke color
-/// @returns {string} Data-URI
-/// @example background: url(icon-svg-uri('arrow-left', #000000)) center / 16px no-repeat;
-/// @link https://feathericons.com/ Icon design by Cole Bemis
 @function icon-svg-uri($icon-name, $color) {
   @if (type_of($color) == 'color') and (str-index(inspect($color), '#') == 1)  {
     $encoded-color: '%23' + str-slice(inspect($color), 2);
 
-    // MS Edge is turning single quotes to double quotes. (`url('data:` -> `url("data:`)
+   
     $icon-set: (
       arrow-left: "%3Cline x1='19' y1='12' x2='5' y2='12'%3E%3C/line%3E%3Cpolyline points='12 19 5 12 12 5'%3E%3C/polyline%3E",
       chevron-right: "%3Cpolyline points='9 18 15 12 9 6'%3E%3C/polyline%3E"
@@ -371,8 +361,6 @@ $space-separator: 8px;
     @error 'Invalid HEX value: `#{$color}`'
   }
 }
-
-// GENERIC - RESET
 
 a:link {
   text-decoration: none;
@@ -393,17 +381,12 @@ ol {
   margin-bottom: 0;
 }
 
-// GENERIC - NORMALIZE
-
 a:focus {
   outline: thin dotted;
 }
 
-// GENERIC - FONTS
-
 @import url('https://fonts.googleapis.com/css?family=Work+Sans&display=swap');
 
-// ELEMENTS - A
 
 a:link {
   touch-action: manipulation;
@@ -418,14 +401,6 @@ a:visited:not([rel='external']) {
   color: currentColor;
 }
 
-// ELEMENTS - BODY
-
-body {
-  margin: 32px;
-  font: 16px/32px 'Work Sans', sans-serif;
-}
-
-// OBJECTS - INLINE-SVG-ICON
 
 .o-inline-svg-icon {
   stroke: currentColor;
@@ -438,7 +413,6 @@ body {
   }
 }
 
-// COMPONENTS - NAVIGATION-BREADCRUMBS
 
 .c-navigation-breadcrumbs {
   &__directory {
@@ -453,7 +427,7 @@ body {
     }
   }
 
-  // Shorten the breadcrumb trail to include only the next higher level. (Prevent wrap to multiple lines on small screen sizes)
+  
   @media (max-width: 500px) {
     &__item {
       &:not(:nth-last-child(2)) {
@@ -492,7 +466,7 @@ body {
   }
 }
 
-// UTILITIES - VISUALLY-HIDDEN
+
 
 .u-visually-hidden {
   position: absolute;
