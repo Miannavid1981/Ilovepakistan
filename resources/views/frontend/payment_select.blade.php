@@ -1012,7 +1012,7 @@
 
                 
             </div>
-
+            <hr>
             <div id="cart_summary">
 
             
