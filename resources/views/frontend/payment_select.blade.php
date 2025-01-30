@@ -70,7 +70,7 @@
      }
 
      .payment-method button.selected {
-         background-color: #004d40;
+         background-color: var(--primary);
          color: white;
      }
 
@@ -95,7 +95,7 @@
      .continue-button {
          width: 100%;
          padding: 10px;
-         background-color: #004d40;
+         background-color: var(--primary);
          color: white;
          font-size: 1em;
          border: none;
