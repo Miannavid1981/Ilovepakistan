@@ -327,156 +327,6 @@
     }
 }
 
-
-
-$color-link: #007c89;
-$color-separator: #767676;
-$size-icon: 16px;
-$space-separator: 8px;
-
-
-@mixin text-underline($color: currentColor) {
-  background-image: linear-gradient($color, $color);
-  background-size: auto 1px;
-  background-repeat: repeat-x;
-  background-position: 0 calc(50% + 1ex);
-}
-
-@function icon-svg-uri($icon-name, $color) {
-  @if (type_of($color) == 'color') and (str-index(inspect($color), '#') == 1)  {
-    $encoded-color: '%23' + str-slice(inspect($color), 2);
-
-   
-    $icon-set: (
-      arrow-left: "%3Cline x1='19' y1='12' x2='5' y2='12'%3E%3C/line%3E%3Cpolyline points='12 19 5 12 12 5'%3E%3C/polyline%3E",
-      chevron-right: "%3Cpolyline points='9 18 15 12 9 6'%3E%3C/polyline%3E"
-    );
-
-    @if map-has-key($icon-set, $icon-name) {
-      @return "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='#{$encoded-color}' stroke-width='2' stroke-linecap='round' stroke-linejoin='round%5C'%3E#{map-get($icon-set, $icon-name)}%3C/svg%3E";
-    } @else {
-      @error 'Invalid icon name: `#{$icon-name}`'
-    }
-  }@else {
-    @error 'Invalid HEX value: `#{$color}`'
-  }
-}
-
-a:link {
-  text-decoration: none;
-}
-
-body {
-  margin: 0;
-}
-
-html {
-  -webkit-text-size-adjust: 100%;
-}
-
-ol {
-  list-style-type: none;
-  padding-left: 0;
-  margin-top: 0;
-  margin-bottom: 0;
-}
-
-a:focus {
-  outline: thin dotted;
-}
-
-@import url('https://fonts.googleapis.com/css?family=Work+Sans&display=swap');
-
-
-a:link {
-  touch-action: manipulation;
-}
-
-a:active,
-a:hover {
-  outline: 0;
-}
-
-a:visited:not([rel='external']) {
-  color: currentColor;
-}
-
-
-.o-inline-svg-icon {
-  stroke: currentColor;
-
-  &--baseline {
-    position: relative;
-    top: .125em;
-    width: 1em;
-    height: 1em;
-  }
-}
-
-
-.c-navigation-breadcrumbs {
-  &__directory {
-    display: flex;
-  }
-
-  &__link:link {
-    color: $color-link;
-
-    &:hover {
-      @include text-underline();
-    }
-  }
-
-  
-  @media (max-width: 500px) {
-    &__item {
-      &:not(:nth-last-child(2)) {
-        display: none;
-      }
-    }
-
-    &__link {
-      &:before {
-        display: inline-block;
-        // Invisible space character (sets auto-height for element)
-        content: '\200b';
-        // User goes "up one level" instead of "navigating back" to the last view or page.
-        background: url(icon-svg-uri('arrow-left', $color-link)) center / $size-icon $size-icon no-repeat;
-        width: $size-icon;
-      }
-    }
-  }
-
-  @media (min-width: 501px) {
-    &__item {
-      &:nth-last-child(n+2):after {
-        display: inline-block;
-        content: '\200b';
-        // "Greater-than sign" indicates higher-level page.
-        background: url(icon-svg-uri('chevron-right', $color-separator)) center / $size-icon $size-icon no-repeat;
-        width: $size-icon;
-        margin: 0 $space-separator;
-      }
-    }
-
-    &__link {
-      display: block;
-      float: left;
-    }
-  }
-}
-
-
-
-.u-visually-hidden {
-  position: absolute;
-  left:     -10000px;
-  top:      auto;
-  width:    1px;
-  height:   1px;
-  overflow: hidden;
-}
-
 </style>
 @php
     $auth_user_id = auth()->user()->id;
@@ -490,57 +340,19 @@ a:visited:not([rel='external']) {
     @csrf
     <input type="hidden" name="owner_id" value="{{ $carts[0]['owner_id'] }}">
 
-    <div class="container" style=" height: 100vh">
+    <div class="container pt-4" style=" height: 100vh">
         <!-- Header -->
         <div class="row h-100">
           
 
 
         <div class="col-md-7 checkout_columns">
-                                <!--
-                    Breadcrumbs are intended to show the hierarchical structure of the site (NOT the history of pages traversed during a session on the site).
-                    -->
-                    <nav class="c-navigation-breadcrumbs" aria-label="Breadcrumb" vocab="https://schema.org/" typeof="BreadcrumbList">
-                        <ol class="c-navigation-breadcrumbs__directory">
-                    
-                        <!-- Duplicating the "Home" link in both the global navigation and the breadcrumb trail is not recommended. -->
-                        <li class="c-navigation-breadcrumbs__item" property="itemListElement" typeof="ListItem">
-                            <a class="c-navigation-breadcrumbs__link" href="https://example.com/" property="item" typeof="WebPage">
-                            <svg class="o-inline-svg-icon o-inline-svg-icon--baseline" aria-hidden="true">
-                                <title>Home</title> <!-- Tooltip -->
-                                <use href="#icon-home"></use>
-                            </svg>
-                            <span class="u-visually-hidden" property="name">Home</span>
-                            </a>
-                            <meta property="position" content="1">
-                        </li>
-                    
-                       =
-                    
-                        <li class="c-navigation-breadcrumbs__item" property="itemListElement" typeof="ListItem">
-                            <!--
-                            `aria-current: location`: Screen readers announce this item as "Current location { text }"
-                            The breadcrumb corresponding to the current location should not be an enabled link.
-                            -->
-                            <a class="c-navigation-breadcrumbs__link" property="name" aria-current="location">Checkout</a>
-                            <meta property="item" typeof="WebPage" content="https://example.com/articles/development/shared-vocabulary">
-                            <meta property="position" content="4">
-                        </li>
-                            
-                        </ol>
-                    </nav>
-                    <!-- /c-navigation-breadcrumbs -->
-                    
-                    <svg aria-hidden="true">
-                        <defs>
-                        <!-- Icon design by Cole Bemis - https://feathericons.com/ -->
-                        <symbol id="icon-home" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
-                            <polyline points="9 22 9 12 15 12 15 22"></polyline>
-                        </symbol>
-                        </defs>
-                    </svg>
-  
+            <img src="https://allaaddin.com/public/images/1j+ojFVDOMkX9Wytexe43D6kh.png" style="width: 100px" alt="Bighouz" class="img-fluid">
+            <ul class="d-flex gap-2">
+                <li>Home</li>
+                <li><i class="fa fa-chevron-right"></i></li>
+                <li>Checkout</li>
+            </ul>
             <div id="cart_summary">
 
             
