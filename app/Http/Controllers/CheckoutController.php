@@ -441,6 +441,7 @@ class CheckoutController extends Controller
     // }
     public function store_shipping_info(Request $request)
     {
+       
         if ($request->address_id == null) {
             flash(translate("Please add shipping address"))->warning();
             return back();
@@ -483,6 +484,9 @@ class CheckoutController extends Controller
     }
     public function store_delivery_info(Request $request)
     {
+        if(empty(Auth::id())) {
+            return redirect()->route('user.login');
+        }
         $carts = Cart::where('user_id', Auth::user()->id)
             ->get();
         if ($carts->isEmpty()) {
