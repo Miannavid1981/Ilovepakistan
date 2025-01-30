@@ -149,10 +149,14 @@
      }
 
      .cart-item img {
-         width: 100px;
-         height: auto;
-         border-radius: 4px;
-     }
+        width: 50px;
+        height: auto;
+        border-radius: 4px;
+        aspect-ratio: 1/1;
+        object-fit: contain;
+        background: #fff;
+        border: 1px solid #ccc;
+    }
 
      .cart-item-info {
          flex: 1;
@@ -323,7 +327,8 @@
 
 @media (min-width: 768px) {
     .checkout_columns {
-        padding: 0 40px !important
+        padding: 0 40px !important;
+        padding-top: 40px !important;
     }
 }
 
@@ -348,16 +353,12 @@
 
         <div class="col-md-7 checkout_columns">
             <img src="https://allaaddin.com/public/images/1j+ojFVDOMkX9Wytexe43D6kh.png" style="width: 100px" alt="Bighouz" class="img-fluid">
-            <ul class="d-flex gap-2">
+            <ul class="d-flex gap-2 list-unstyled fs-13 text-muted">
                 <li>Home</li>
                 <li><i class="fa fa-chevron-right"></i></li>
                 <li>Checkout</li>
             </ul>
-            <div id="cart_summary">
-
-            
-                @include('frontend.partials.cart_summary')
-            </div>
+           
             
             <div>
                 <h5 class="">Addresses</h5>
@@ -977,7 +978,7 @@
                     @endphp
 
                         <div class="cart-item">
-                            <img src="{{ $product->thumbnail != null ? my_asset($product->thumbnail->file_name) : static_asset('assets/img/placeholder.jpg') }}" alt="Levis Men Jeans">
+                            <img src="{{ $product->thumbnail != null ? my_asset($product->thumbnail->file_name) : static_asset('assets/img/placeholder.jpg') }}" alt="Levis Men Jeans" style="">
                             <div class="quantity-circle">{{ $qty }}</div>
                             <div class="cart-item-info">
                                 <h4>{{  $product->name }}</h4>
@@ -998,9 +999,16 @@
                         
                     @endforeach
                 @endif
+
+
                 
             </div>
 
+            <div id="cart_summary">
+
+            
+                @include('frontend.partials.cart_summary')
+            </div>
             
         </div>
 
