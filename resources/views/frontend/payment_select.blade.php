@@ -334,9 +334,9 @@
     @csrf
     <input type="hidden" name="owner_id" value="{{ $carts[0]['owner_id'] }}">
 
-    <div class="container" style="background: linear-gradient(to right, #fff 50%, #f5f5f5 50%); height: 100vh">
+    <div class="container" style="background: linear-gradient(to right, #fff 70%, #f5f5f5 0%); height: 100vh">
         <!-- Header -->
-        <div class="row">
+        <div class="row h-100">
           
 
 
