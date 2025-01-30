@@ -40,7 +40,7 @@
      }
 
      .summary-section {
-         background-color: #fff;
+         background-color: #f5f5f5;
          border-radius: 8px;
          padding: 20px;
          height: 100%;
