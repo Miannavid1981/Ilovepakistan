@@ -143,9 +143,9 @@
          position: relative;
          gap: 15px;
          padding: 15px;
-         background-color: #f9f9f9;
+         /* background-color: #f9f9f9; */
          border-radius: 8px;
-         border: 1px solid #e4e4e4;
+         /* border: 1px solid #e4e4e4; */
      }
 
      .cart-item img {
