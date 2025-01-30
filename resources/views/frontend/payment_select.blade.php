@@ -375,11 +375,11 @@
                         <div class="address_action_buttons d-flex justify-content-end">
                             <button class="p-2 text-danger bg-white border-0 fs-16">
                                 <i class="fa fa-trash"></i>
-                                Remove
+                                
                             </button>
                             <button class="p-2 text-dark bg-white border-0 fs-16">
                                 <i class="fa fa-pen"></i>
-                                Edit
+                                
                             </button>
                         </div>
                     </div>
