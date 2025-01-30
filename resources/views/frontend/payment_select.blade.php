@@ -11,6 +11,9 @@
     .front-header-search {
         display: none !important
     }
+    .container {
+        max-width: 1400px !important
+    }
     .checkout-container {
          background-color: white;
          border-radius: 8px;
