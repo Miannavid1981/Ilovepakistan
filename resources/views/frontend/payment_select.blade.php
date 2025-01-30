@@ -151,14 +151,14 @@
          /* border: 1px solid #e4e4e4; */
      }
      .cart-item img {
-            width: 62px;
-            height: 60px;
-            border-radius: 4px;
-            aspect-ratio: 1/1;
-            object-fit: contain;
-            background: #fff;
-            border: 1px solid #ccc;
-        }
+        width: 62px;
+        height: 60px;
+        border-radius: 4px;
+        aspect-ratio: 1/1;
+        object-fit: contain;
+        background: #fff;
+        border: 1px solid #ccc;
+    }
 
      .cart-item-info {
          flex: 1;
@@ -989,9 +989,9 @@
                            
                             
                             <div class="cart-item-info">
-                                <p class="mb-0">{{  $product->name }}</p>
-                                <small class="mb-0">Size: <span>38</span></small>
-                                <small class="mb-0">Color: <span>Blue</span></small>
+                                <p class="m-0 fs-16">{{  $product->name }}</p>
+                                <small class="mb-0">{{  $item->skin_code ?? "-" }}</small>
+                                
                             </div>
                             @if (discount_in_percentage($product) > 0)
 
