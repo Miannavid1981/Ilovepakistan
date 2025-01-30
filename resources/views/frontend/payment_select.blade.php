@@ -135,17 +135,18 @@
      }
 
      .summary-cart {
-         display: flex;
-         flex-direction: column;
-         gap: 15px;
-     }
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin-top: 30px;
+}
 
      .cart-item {
          display: flex;
          align-items: center;
          position: relative;
          gap: 15px;
-         padding: 15px;
+         padding: 0;
          /* background-color: #f9f9f9; */
          border-radius: 8px;
          /* border: 1px solid #e4e4e4; */

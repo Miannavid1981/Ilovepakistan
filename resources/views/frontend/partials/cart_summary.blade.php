@@ -5,7 +5,7 @@
 </style>
 <div class=" rounded-0 border-0 shadow-none">
 
-    <div class=" pt-4 pb-1 border-bottom-0 px-0 d-flex align-items-center justify-content-between">
+    <div class=" pt-4 pb-1 border-bottom-0 px-0 d-flex align-items-center justify-content-between d-none">
         <h5>{{ translate('Summary') }}</h5>
         <div class="text-right">
             <!-- Items Count -->
