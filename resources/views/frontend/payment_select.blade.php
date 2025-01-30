@@ -6,7 +6,10 @@
         display: none !important;
     }
     body {
-        background: #FAFAFA !important
+        background: linear-gradient(to left, #fff 50%, #f5f5f5 50%);
+    }
+    .front-header-search {
+        display: none !important
     }
     .checkout-container {
          background-color: white;
@@ -16,11 +19,12 @@
          width: 90%;
          max-width: 1200px;
          display: grid;
-         grid-template-columns: 1fr 1fr;
+         grid-template-columns: 1.3fr 1fr;
          grid-template-rows: auto 1fr;
          gap: 20px;
          margin: 20px auto;
          align-items: start;
+         height: 100vh;
          
      }
 
@@ -36,9 +40,10 @@
      }
 
      .summary-section {
-         background-color: #fff;
+         background-color: #f5f5f5;
          border-radius: 8px;
          padding: 20px;
+         height: 100%;
      }
 
      .payment-section {
@@ -49,6 +54,7 @@
  background-color: white;
  /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); */
  /* Only position: sticky is required */
+ height: 100%;
 }
 
      .payment-section h3 {
