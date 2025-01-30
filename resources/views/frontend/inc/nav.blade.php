@@ -905,7 +905,7 @@ $(document).ready(function(){
         var elm = $(this);
         $(this).html('<i class="fa fa-spinner fa-spin d-block fs-20 "></i>');
         $.ajax({
-            url: '/cart/add',
+            url: '{{  url("/cart/add") }}',
             method: 'POST',
             data: {
                 _token: $('meta[name="csrf-token"]').attr('content'),
@@ -943,7 +943,7 @@ $(document).ready(function(){
         const productId = $(this).data('id');
         const quantity = $(this).val();
         $.ajax({
-            url: '/cart/update',
+            url: '{{  url("/cart/update") }}',
             method: 'POST',
             data: {
                 _token: $('meta[name="csrf-token"]').attr('content'),
@@ -963,7 +963,7 @@ $(document).ready(function(){
         const productId = $(this).data('id');  // Get the product ID from the data-id attribute
 
         $.ajax({
-            url: '/cart/remove',  // The route for removing items from the cart
+            url: '{{ url("/cart/remove") }}',  // The route for removing items from the cart
             method: 'POST',  // Sending a POST request
             data: {
                 product_id: productId,  // The product ID to remove
@@ -1044,7 +1044,7 @@ $(document).ready(function(){
 
     function fetchCart() {
         $.ajax({
-            url: '/ajax/cart',  // The URL of the cart endpoint
+            url: '{{ url("/ajax/cart") }}',  // The URL of the cart endpoint
             method: 'GET',
             success: function (response) {
                 if (response.cart) {
