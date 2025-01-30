@@ -38,100 +38,218 @@
 
 <style> 
 
-.size-circle{
-    gap: 10px;
-}
-.size {
-    width: 40px;
-    height: 40px;
-    aspect-ratio: 1 / 1;
-    border-radius: 50%;
-    background: #ffffff;
-    display: flex;
-    border: 1px solid #000;
-    justify-content: center;
-    align-items: center;
-}
+    /* Size Circle */
+    .size-circle {
+        gap: 10px;
+    }
+
+    .size {
+        width: 40px;
+        height: 40px;
+        aspect-ratio: 1 / 1;
+        border-radius: 50%;
+        background: #ffffff;
+        display: flex;
+        border: 1px solid gray;
+        justify-content: center;
+        align-items: center;
+    }
+
+    /* Collapse List */
     #collapse_1 .list-group {
-    border: none;
-}
+        border: none;
+    }
 
-li.list-group-item.text-dark {
- border: none;
- padding: 8px 0px 8px 0px;
-}
+    li.list-group-item.text-dark {
+        border: none;
+        padding: 8px 0;
+    }
 
-.range_container {
-            width: 100%;
-            max-width: 400px;
-            display: flex;
-            flex-direction: column;
-            position: relative;
-        }
-        .sliders_control {
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        input[type="range"] {
-            -webkit-appearance: none;
-            appearance: none;
-            width: 100%;
-            position: absolute;
-            background: transparent;
-            pointer-events: none;
-        }
-        input[type="range"]::-webkit-slider-thumb {
-            -webkit-appearance: none;
-            width: 16px;
-            height: 16px;
-            background: #000;
-            border: 2px solid #000;
-            border-radius: 50%;
-            pointer-events: all;
-            cursor: pointer;
-        }
-        .slider-tooltip {
-            position: absolute;
-            top: -30px;
-            background: rgba(0, 0, 0, 0.7);
-            color: #fff;
-            padding: 5px 10px;
-            border-radius: 4px;
-            font-size: 12px;
-            text-align: center;
-            white-space: nowrap;
-            transform: translateX(-50%);
-        }
-        .scale {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 10px;
-            font-size: 12px;
-            color: #555;
-        }
+    /* Range Slider */
+    .range-slider {
+        width: 300px;
+        text-align: center;
+        position: relative;
+    }
+
+    input[type="range"] {
+        -webkit-appearance: none;
+        border: 1px solid white;
+        width: 300px;
+        position: absolute;
+        left: 0;
+    }
+
+    input[type="range"]::-webkit-slider-runnable-track {
+        width: 300px;
+        height: 5px;
+        background: #ddd;
+        border: none;
+        border-radius: 3px;
+    }
+
+    input[type="range"]::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        border: none;
+        height: 16px;
+        width: 16px;
+        border-radius: 50%;
+        background: var(--bs-primary);
+        margin-top: -4px;
+        cursor: pointer;
+        position: relative;
+        z-index: 1;
+    }
+
+    input[type="range"]:focus {
+        outline: none;
+    }
+
+    input[type="range"]:focus::-webkit-slider-runnable-track {
+        background: #ccc;
+    }
+
+    /* Firefox */
+    input[type="range"]::-moz-range-track {
+        width: 300px;
+        height: 5px;
+        background: #ddd;
+        border: none;
+        border-radius: 3px;
+    }
+
+    input[type="range"]::-moz-range-thumb {
+        border: none;
+        height: 16px;
+        width: 16px;
+        border-radius: 50%;
+        background: var(--bs-primary);
+    }
+
+    input[type="range"]:-moz-focusring {
+        outline: 1px solid white;
+        outline-offset: -1px;
+    }
+
+    /* Internet Explorer */
+    input[type="range"]::-ms-track {
+        width: 300px;
+        height: 5px;
+        background: transparent;
+        border-color: transparent;
+        border-width: 6px 0;
+        color: transparent;
+        z-index: -4;
+    }
+
+    input[type="range"]::-ms-fill-lower {
+        background: #777;
+        border-radius: 10px;
+    }
+
+    input[type="range"]::-ms-fill-upper {
+        background: #ddd;
+        border-radius: 10px;
+    }
+
+    input[type="range"]::-ms-thumb {
+        border: none;
+        height: 16px;
+        width: 16px;
+        border-radius: 50%;
+        background: #21c1ff;
+    }
+
+    input[type="range"]:focus::-ms-fill-lower {
+        background: #888;
+    }
+
+    input[type="range"]:focus::-ms-fill-upper {
+        background: #ccc;
+    }
+
+    /* Color Selector */
+    .color-selector {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    .color-selector input {
+        display: none;
+    }
+
+    .color-selector label {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 12px;
+        border: 2px solid transparent;
+        border-radius: 20px;
+        cursor: pointer;
+        font-size: 16px;
+        background-color: #fff;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        transition: 0.3s;
+    }
+
+    .color-selector label:hover {
+        box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .color-selector input:checked + label {
+        border-color: black;
+    }
+
+    .color-dot {
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        display: inline-block;
+    }
 
 </style>
+
 <section class="text-center d-flex justify-content-center align-items-center" style="height: 200px; background-color: #E8E8E8;">
     <div class="container text-center">
         <!-- Shop Page Title -->
         <h2 class="text-dark mb-4">Shop Page</h2>
-
+        <ul class="breadcrumb bg-transparent py-0 px-1 d-flex justify-content-center align-items-center">
+            <li class="breadcrumb-item has-transition opacity-50 hov-opacity-100">
+                <a class="text-reset" href="{{ route('home') }}">{{ translate('Home')}}</a>
+            </li>
+            @if(!isset($category_id))
+                <li class="breadcrumb-item fw-700 text-dark">
+                    "{{ translate('All Categories')}}"
+                </li>
+            @else
+                <li class="breadcrumb-item opacity-50 hov-opacity-100">
+                    <a class="text-reset" href="{{ route('search') }}">{{ translate('All Categories')}}</a>
+                </li>
+            @endif
+            @if(isset($category_id))
+                <li class="text-dark fw-600 breadcrumb-item">
+                    "{{ $category->getTranslation('name') }}"
+                </li>
+            @endif
+        </ul>
         <!-- Navbar -->
         <nav class="navbar navbar-expand-lg navbar-light justify-content-center w-100">         
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav justify-content-center w-100">
-                    <li class="nav-item"><a class="nav-link" href="#">T-Shirt</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Dress</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Top</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Swimwear</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Shirt</a></li>
-                </ul>
-            </div>
+    <ul class="navbar-nav justify-content-center w-100">
+        @foreach ($categories as $category)
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('products.category', $category->slug) }}">
+                    {{ $category->getTranslation('name') }}
+                </a>
+            </li>
+        @endforeach
+    </ul>
+</div>
+
         </nav>
     </div>
 </section>
@@ -144,23 +262,18 @@ li.list-group-item.text-dark {
         <div class="container sm-px-0 pt-2">
             <form class="" id="search-form" action="" method="GET">
                 <div class="row">
-
                     <aside class="col-md-3">
-                        <h5>Products Type</h5>
-                        <div class="bg-white  mb-3">
-                            {{-- <div class="fs-16 fw-700 p-3">
-                                <a href="#collapse_1" class="dropdown-toggle filter-section text-dark d-flex align-items-center justify-content-between" data-toggle="collapse">
-                                    {{ translate('Categories') }}
-                                </a>
-                            </div> --}}
+                        <h5>All Categories</h5>
+                        <div class="bg-white mb-3">
                             <div class="collapse show" id="collapse_1">
                                 <ul class="list-group mb-0">
                                     @if (!isset($category_id))
                                         @foreach ($categories as $category)
-                                            <li class="list-group-item text-dark">
+                                            <li class="list-group-item text-dark d-flex justify-content-between align-items-center">
                                                 <a class="text-reset fs-14 hov-text-primary" href="{{ route('products.category', $category->slug) }}">
-                                                    {{ $category->getTranslation('name') }} ({{ $category->products_count }})
+                                                    {{ $category->getTranslation('name') }}
                                                 </a>
+                                                <span class="category-count">({{ $category->products_count }})</span>
                                             </li>
                                         @endforeach
                                     @else
@@ -179,7 +292,7 @@ li.list-group-item.text-dark {
                                                 </a>
                                             </li>
                                         @endif
-                            
+
                                         <li class="list-group-item">
                                             <a class="text-reset fs-14 fw-600 hov-text-primary" href="{{ route('products.category', $category->slug) }}">
                                                 <i class="las la-angle-left"></i>
@@ -187,18 +300,19 @@ li.list-group-item.text-dark {
                                             </a>
                                         </li>
                                         
-                                        @foreach ($category->childrenCategories as $key => $immediate_children_category)
-                                            <li class="list-group-item ml-4">
+                                        @foreach ($category->childrenCategories as $immediate_children_category)
+                                            <li class="list-group-item d-flex justify-content-between align-items-center ml-4">
                                                 <a class="text-reset fs-14 hov-text-primary" href="{{ route('products.category', $immediate_children_category->slug) }}">
                                                     {{ $immediate_children_category->getTranslation('name') }}
                                                 </a>
+                                                <span class="category-count">({{ $immediate_children_category->products_count }})</span>
                                             </li>
                                         @endforeach
                                     @endif
                                 </ul>
                             </div>
-                            
                         </div>
+
                         
                         <h5>Size</h5>
                         <div class="d-flex size-circle">
@@ -210,49 +324,89 @@ li.list-group-item.text-dark {
                         
                     
                         <h5 class="mt-3">Price Range</h5>
-                        <p>Price Range</p>
-                        <div class="range_container">
-                            <div class="sliders_control">
-                                <div id="fromSliderTooltip" class="slider-tooltip">0</div>
-                                <input id="fromSlider" type="range" value="0" min="0" max="100000" step="500">
-                                <div id="toSliderTooltip" class="slider-tooltip">100000</div>
-                                <input id="toSlider" type="range" value="100000" min="0" max="100000" step="500">
-                            </div>
-                            <div id="scale" class="scale"></div>
+                      
+                       
+                        <div class="range-slider mb-5">
+                        <span class="rangeValues"></span>
+                        <input value="100" min="100" max="100000" step="500" type="range">
+                        <input value="100000" min="100" max="100000" step="500" type="range">
+
                         </div>
+
+                        <h5>Colors</h5>
+                            <div class="color-selector">
+                                <input type="radio" id="pink" name="color" checked>
+                                <label for="pink">
+                                    <span class="color-dot" style="background-color: pink;"></span> Pink
+                                </label>
+
+                                <input type="radio" id="red" name="color">
+                                <label for="red">
+                                    <span class="color-dot" style="background-color: red;"></span> Red
+                                </label>
+
+                                <input type="radio" id="green" name="color">
+                                <label for="green">
+                                    <span class="color-dot" style="background-color: lightgreen;"></span> Green
+                                </label>
+
+                                <input type="radio" id="yellow" name="color">
+                                <label for="yellow">
+                                    <span class="color-dot" style="background-color: gold;"></span> Yellow
+                                </label>
+
+                                <input type="radio" id="purple" name="color">
+                                <label for="purple">
+                                    <span class="color-dot" style="background-color: purple;"></span> Purple
+                                </label>
+
+                                <input type="radio" id="black" name="color">
+                                <label for="black">
+                                    <span class="color-dot" style="background-color: black;"></span> Black
+                                </label>
+
+                                <input type="radio" id="white" name="color">
+                                <label for="white">
+                                    <span class="color-dot" style="background-color: beige;"></span> White
+                                </label>
+                            </div>
                     
                      <!-- Brands Section -->
-<h5 class="mt-3">Brands</h5>
-<div class="bg-white  mb-3">
-    <ul class="list-unstyled ">
-        <!-- Example Brand Options (Replace with actual brand data) -->
-        <li class="mb-2">
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="brand1" id="brand_1">
-                <label class="form-check-label" for="brand_1">
-                    Brand 1
-                </label>
-            </div>
-        </li>
-        <li class="mb-2">
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="brand2" id="brand_2">
-                <label class="form-check-label" for="brand_2">
-                    Brand 2
-                </label>
-            </div>
-        </li>
-        <li class="mb-2">
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="brand3" id="brand_3">
-                <label class="form-check-label" for="brand_3">
-                    Brand 3
-                </label>
-            </div>
-        </li>
-        <!-- Add more brands as needed -->
-    </ul>
-</div>
+                        <h5 class="mt-3">Brands</h5>
+                        <div class="bg-white mb-3">
+                            <ul class="list-unstyled">
+                                <!-- Example Brand Options with Count -->
+                                <li class="mb-2">
+                                    <div class="form-check d-flex justify-content-between align-items-center">
+                                        <div>
+                                            <input class="form-check-input" type="checkbox" value="brand1" id="brand_1">
+                                            <label class="form-check-label" for="brand_1">Brand 1</label>
+                                        </div>
+                                        <span class="brand-count">(10)</span>
+                                    </div>
+                                </li>
+                                <li class="mb-2">
+                                    <div class="form-check d-flex justify-content-between align-items-center">
+                                        <div>
+                                            <input class="form-check-input" type="checkbox" value="brand2" id="brand_2">
+                                            <label class="form-check-label" for="brand_2">Brand 2</label>
+                                        </div>
+                                        <span class="brand-count">(5)</span>
+                                    </div>
+                                </li>
+                                <li class="mb-2">
+                                    <div class="form-check d-flex justify-content-between align-items-center">
+                                        <div>
+                                            <input class="form-check-input" type="checkbox" value="brand3" id="brand_3">
+                                            <label class="form-check-label" for="brand_3">Brand 3</label>
+                                        </div>
+                                        <span class="brand-count">(8)</span>
+                                    </div>
+                                </li>
+                                <!-- Add more brands as needed -->
+                            </ul>
+                        </div>
+
 
                     </aside>
                     
@@ -447,25 +601,7 @@ li.list-group-item.text-dark {
                     <div class="col-xl-9">
                         
                         <!-- Breadcrumb -->
-                        <ul class="breadcrumb bg-transparent py-0 px-1">
-                            <li class="breadcrumb-item has-transition opacity-50 hov-opacity-100">
-                                <a class="text-reset" href="{{ route('home') }}">{{ translate('Home')}}</a>
-                            </li>
-                            @if(!isset($category_id))
-                                <li class="breadcrumb-item fw-700  text-dark">
-                                    "{{ translate('All Categories')}}"
-                                </li>
-                            @else
-                                <li class="breadcrumb-item opacity-50 hov-opacity-100">
-                                    <a class="text-reset" href="{{ route('search') }}">{{ translate('All Categories')}}</a>
-                                </li>
-                            @endif
-                            @if(isset($category_id))
-                                <li class="text-dark fw-600 breadcrumb-item">
-                                    "{{ $category->getTranslation('name') }}"
-                                </li>
-                            @endif
-                        </ul>
+                      
                         
                         <!-- Top Filters -->
                         <div class="text-left">
@@ -541,42 +677,35 @@ li.list-group-item.text-dark {
             filter();
         }
      
-        document.addEventListener('DOMContentLoaded', () => {
-            const fromSlider = document.getElementById("fromSlider");
-            const toSlider = document.getElementById("toSlider");
-            const fromTooltip = document.getElementById("fromSliderTooltip");
-            const toTooltip = document.getElementById("toSliderTooltip");
-            const scale = document.getElementById("scale");
+        function getVals(){
+  // Get slider values
+  let parent = this.parentNode;
+  let slides = parent.getElementsByTagName("input");
+    let slide1 = parseFloat( slides[0].value );
+    let slide2 = parseFloat( slides[1].value );
+  // Neither slider will clip the other, so make sure we determine which is larger
+  if( slide1 > slide2 ){ let tmp = slide2; slide2 = slide1; slide1 = tmp; }
+  
+  let displayElement = parent.getElementsByClassName("rangeValues")[0];
+      displayElement.innerHTML = "Rs " + slide1 + " - Rs " + slide2;
+}
 
-            function updateTooltip(slider, tooltip) {
-                tooltip.textContent = "Rs. " + slider.value;
-                const percent = ((slider.value - slider.min) / (slider.max - slider.min)) * 100;
-                tooltip.style.left = `calc(${percent}% - 10px)`;
-            }
-            
-            function updateSlider() {
-                if (parseInt(fromSlider.value) > parseInt(toSlider.value)) {
-                    fromSlider.value = toSlider.value;
-                }
-                updateTooltip(fromSlider, fromTooltip);
-                updateTooltip(toSlider, toTooltip);
-            }
-            
-            function createScale(min, max, step) {
-                scale.innerHTML = "";
-                for (let i = min; i <= max; i += step) {
-                    const mark = document.createElement("div");
-                    mark.textContent = "Rs. " + i;
-                    mark.style.flex = "1";
-                    scale.appendChild(mark);
-                }
-            }
+window.onload = function(){
+  // Initialize Sliders
+  let sliderSections = document.getElementsByClassName("range-slider");
+      for( let x = 0; x < sliderSections.length; x++ ){
+        let sliders = sliderSections[x].getElementsByTagName("input");
+        for( let y = 0; y < sliders.length; y++ ){
+          if( sliders[y].type ==="range" ){
+            sliders[y].oninput = getVals;
+            // Manually trigger event first time to display values
+            sliders[y].oninput();
+          }
+        }
+      }
+}
 
-            fromSlider.addEventListener("input", updateSlider);
-            toSlider.addEventListener("input", updateSlider);
-            
-            updateSlider();
-            createScale(0, 100000, 20000);
-        });
+
+
     </script>
 @endsection

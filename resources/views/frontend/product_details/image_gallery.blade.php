@@ -193,6 +193,8 @@ $photos = [];
 
         <button class="thumbnail-arrow thumbnail-right" onclick="slideThumbnails('right')">&#10095;</button>
     </div>
+
+
     @php
 
 // Map the photo IDs to URLs
@@ -201,6 +203,7 @@ $photoUrls = array_map(function($photoId) {
 }, $photos);
 
 @endphp
+
 
 <script>
     // Pass the mapped photo URLs from PHP to JavaScript
