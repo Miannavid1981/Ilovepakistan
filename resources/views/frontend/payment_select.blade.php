@@ -364,11 +364,12 @@
             </ul>
             <div class="row">
                 <div class="col-6">
-
+                    <label>First name</label>
                     <input class="form-control" type="text">
 
                 </div>
                 <div class="col-6">
+                    <label>Last name</label>
                     <input class="form-control" type="text">
                 </div>
             </div>
