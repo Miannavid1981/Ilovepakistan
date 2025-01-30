@@ -384,6 +384,12 @@
                         </div>
                     </div>
                 </div>
+                <div class="d-flex justify-content-end">
+                    <button class="btn btn-primary" id="new_address_modal">
+                        Add New Address
+                    </button>
+                </div>
+                
         
                 <table style="width: 100%; border-collapse: collapse; border: 1px solid #ddd; margin-bottom: 15px; display: none">
                     <!-- Table Header -->
@@ -1269,6 +1275,10 @@
 @section('script')
     <script type="text/javascript">
         $(document).ready(function() {
+            $("#new_address_modal").click(function(){
+                $('#new-address-modal').modal('show')
+            });
+
             $(".online_payment").click(function() {
                 $('#manual_payment_description').parent().addClass('d-none');
             });
