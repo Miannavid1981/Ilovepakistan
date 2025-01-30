@@ -24,6 +24,7 @@
          gap: 20px;
          margin: 20px auto;
          align-items: start;
+         height: 100vh;
          
      }
 
