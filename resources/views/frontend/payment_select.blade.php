@@ -6,7 +6,7 @@
         display: none !important;
     }
     body {
-        background: #FAFAFA !important
+        background: linear-gradient(to left, #fff 50%, #f5f5f5 50%);
     }
     .front-header-search {
         display: none !important
