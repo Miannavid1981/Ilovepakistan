@@ -955,7 +955,7 @@
                     @endphp
 
                         <div class="cart-item">
-                            <img src="{{ uploaded_asset($product->thumbnail) }}" alt="Levis Men Jeans">
+                            <img src="{{ $product->thumbnail != null ? my_asset($product->thumbnail->file_name) : static_asset('assets/img/placeholder.jpg') }}" alt="Levis Men Jeans">
                             <div class="quantity-circle">{{ $qty }}</div>
                             <div class="cart-item-info">
                                 <h4>{{  $product->name }}</h4>
