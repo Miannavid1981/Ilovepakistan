@@ -56,6 +56,38 @@
 @endsection
 
 @section('content')
+
+<style>
+     .tabs-container {
+        width: 100%;
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    .tabs {
+        list-style: none;
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+        padding: 0;
+        margin: 0;
+        border-bottom: 2px solid #ddd;
+    }
+
+    .tab {
+        padding: 10px 15px;
+        cursor: pointer;
+        font-weight: bold;
+        border-bottom: 2px solid transparent;
+        transition: 0.3s;
+    }
+
+    .tab:hover,
+    .tab.active {
+        border-bottom: 2px solid #000;
+        color: #000;
+    }
+</style>
     <section class="mb-4 pt-3">
         <div class="container">
             <div class="bg-white py-3">
@@ -71,6 +103,21 @@
                     </div>
                 </div>
             </div>
+        </div>
+    </section>
+    <section>
+        <div class="container">
+            <!-- Tabs section below the thumbnail slider -->
+<div class="tabs-container mb-5">
+    <ul class="tabs">
+        <li class="tab active">Customer Reviews</li>
+        <li class="tab">Specifications</li>
+        <li class="tab">Description</li>
+        <li class="tab">Store</li>
+        <li class="tab">More to love</li>
+    </ul>
+</div>
+
         </div>
     </section>
 
@@ -426,5 +473,11 @@
                 }
             });
         }
+        document.querySelectorAll(".tab").forEach(tab => {
+        tab.addEventListener("click", function () {
+            document.querySelectorAll(".tab").forEach(t => t.classList.remove("active"));
+            this.classList.add("active");
+        });
+    });
     </script>
 @endsection

@@ -270,10 +270,10 @@
                                         {{ translate('SKU') }}
                                     </label>
                                     <div class="col-md-6">
-                                        <input type="text" placeholder="{{ translate('SKU') }}" name="sku"
-                                            class="form-control">
+                                        <input type="text" placeholder="{{ translate('SKU') }}" name="sku" class="form-control" required>
                                     </div>
                                 </div>
+                                
                             </div>
                             @if(get_setting('product_external_link_for_seller') == 1)
                                 <div class="form-group row">
