@@ -150,10 +150,9 @@
          border-radius: 8px;
          /* border: 1px solid #e4e4e4; */
      }
-
      .cart-item img {
-        width: 50px;
-        height: auto;
+        width: 62px;
+        height: 60px;
         border-radius: 4px;
         aspect-ratio: 1/1;
         object-fit: contain;
@@ -189,22 +188,23 @@
      }
 
      .quantity-circle {
-         display: flex;
-         justify-content: center;
-         align-items: center;
-         width: 30px;
-         height: 30px;
-         border-radius: 50%;
-         background-color: var(--primary);
-         color: white;
-         font-size: 1rem;
-         font-weight: bold;
-         margin-top: 10px;
-         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-         position: absolute;
-         left: 2px;
-         bottom: 97px;
-     }
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 25px;
+        height: 25px;
+        border-radius: 50%;
+        background-color: var(--primary);
+        color: white;
+        font-size: 1rem;
+        font-weight: bold;
+        margin-top: 10px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        position: absolute;
+        right: -10px;
+        /* bottom: 97px; */
+        top: -20px;
+    }
 
      /* Popup Form Styles */
      .popup {
@@ -947,7 +947,7 @@
         </div>
 
         <!-- Summary Section -->
-        <div class="col-md-5 checkout_columns" style="background: #f5f5f5">
+        <div class="col-md-5 checkout_columns" style="background: #f5f5f5; border-left: 1px solid #DEDEDE;">
             <h3>Your Purchase</h3>
             <div class="summary-cart">
                 @if ($cart && $cart->count() > 0)
@@ -989,9 +989,9 @@
                            
                             
                             <div class="cart-item-info">
-                                <p class="mb-0">{{  $product->name }}</p>
-                                <small class="mb-0">Size: <span>38</span></small>
-                                <small class="mb-0">Color: <span>Blue</span></small>
+                                <p class="m-0 fs-16">{{  $product->name }}</p>
+                                <small class="mb-0">{{  $item->skin_code ?? "-" }}</small>
+                                
                             </div>
                             @if (discount_in_percentage($product) > 0)
 
