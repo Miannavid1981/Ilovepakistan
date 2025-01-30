@@ -375,15 +375,21 @@
                         <div class="address_action_buttons d-flex justify-content-end">
                             <button class="p-2 text-danger bg-white border-0 fs-16">
                                 <i class="fa fa-trash"></i>
-                                Remove
+                                
                             </button>
                             <button class="p-2 text-dark bg-white border-0 fs-16">
                                 <i class="fa fa-pen"></i>
-                                Edit
+                                
                             </button>
                         </div>
                     </div>
                 </div>
+                <div class="d-flex justify-content-end">
+                    <button class="btn btn-primary" id="new_address_modal">
+                        Add New Address
+                    </button>
+                </div>
+                
         
                 <table style="width: 100%; border-collapse: collapse; border: 1px solid #ddd; margin-bottom: 15px; display: none">
                     <!-- Table Header -->
@@ -936,7 +942,7 @@
         
                 <!-- Return to shop -->
                
-                <button type="button" onclick="submitOrder(this)"  class="w-100 btn btn-lg btn-primary fs-16 fw-700 rounded-0 px-4 py-2">{{ translate('Complete Order') }}</button>
+                <button type="button" onclick="submitOrder(this)"  class="w-100 btn btn-lg btn-primary fs-16 fw-300 rounded-0 p-2 ">{{ translate('Place Order') }}</button>
        
                     <a href="{{ route('home') }}" class="btn btn-link fs-14 fw-700 px-0 mt-2">
                         <i class="las la-arrow-left fs-16"></i>
@@ -1269,6 +1275,10 @@
 @section('script')
     <script type="text/javascript">
         $(document).ready(function() {
+            $("#new_address_modal").click(function(){
+                $('#new-address-modal').modal('show')
+            });
+
             $(".online_payment").click(function() {
                 $('#manual_payment_description').parent().addClass('d-none');
             });
