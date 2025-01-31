@@ -105,20 +105,20 @@
         }
         @media only screen and (max-width: 1800px) {
 
-            .container {
+            .container:not(#checkout_container) {
                padding-left: 100px !important;
                padding-right: 100px !important
             }
         }
         @media only screen and (max-width: 1200px) {
 
-            .container {
+            .container:not(#checkout_container) {
             padding-left: 50px !important;
             padding-right: 50px !important
             }
         }   
         @media only screen and (max-width: 768px) {
-            .container {
+            .container:not(#checkout_container) {
                 padding-left: 20px !important;
                 padding-right: 20px !important;
             }
