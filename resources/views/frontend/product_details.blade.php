@@ -58,35 +58,49 @@
 @section('content')
 
 <style>
-     .tabs-container {
-        width: 100%;
-        text-align: center;
-        margin-top: 20px;
-    }
+.tabs-container {
+    width: 100%;
+    text-align: start;
+    margin-top: 20px;
+}
 
-    .tabs {
-        list-style: none;
-        display: flex;
-        justify-content: center;
-        gap: 15px;
-        padding: 0;
-        margin: 0;
-        border-bottom: 2px solid #ddd;
-    }
+.tabs {
+    list-style: none;
+    display: flex;
+    justify-content: start;
+    gap: 15px;
+    padding: 0;
+    margin: 0;
+    color: #707070;
+}
 
-    .tab {
-        padding: 10px 15px;
-        cursor: pointer;
-        font-weight: bold;
-        border-bottom: 2px solid transparent;
-        transition: 0.3s;
-    }
+.tab {
+    padding: 10px 15px;
+    cursor: pointer;
+    font-weight: bold;
+    border-bottom: 2px solid transparent;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center; /* Ensures vertical alignment */
+    justify-content: start; /* Ensures horizontal alignment */
+    text-align: center;
+}
 
-    .tab:hover,
-    .tab.active {
-        border-bottom: 2px solid #000;
-        color: #000;
-    }
+.tab:hover,
+.tab.active {
+    color: #000;
+    font-size: 15px;
+    transform: scale(1.1);
+}
+
+/* Ensures tabs stay centered */
+.tabs-container,
+.tabs {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+}
+
 </style>
     <section class="mb-4 pt-3">
         <div class="container">
@@ -108,15 +122,16 @@
     <section>
         <div class="container">
             <!-- Tabs section below the thumbnail slider -->
-<div class="tabs-container mb-5">
-    <ul class="tabs">
-        <li class="tab active">Customer Reviews</li>
-        <li class="tab">Specifications</li>
-        <li class="tab">Description</li>
-        <li class="tab">Store</li>
-        <li class="tab">More to love</li>
-    </ul>
-</div>
+            <div class="tabs-container mb-5">
+                <ul class="tabs">
+                    <li class="tab active">Description</li>
+                    <li class="tab">Specifications</li>
+                    <li class="tab">Downloads</li>
+                    <li class="tab">Video</li>
+                    <li class="tab">Customer reviews</li>
+                    <li class="tab">Shipping info</li>
+                </ul>
+            </div>
 
         </div>
     </section>
