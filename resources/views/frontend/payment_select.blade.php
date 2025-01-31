@@ -6,14 +6,14 @@
         display: none !important;
     }
     body {
-        background: linear-gradient(to left, #fff 50%, #f5f5f5 50%);
+        background: linear-gradient(to right, #fff 70%, #f5f5f5 0%) !important
     }
     .front-header-search {
         display: none !important
     }
     .container {
-        max-width: 1400px !important
-    }
+    max-width: 1350px !important;
+}
     .checkout-container {
          background-color: white;
          border-radius: 8px;
@@ -22,7 +22,7 @@
          width: 90%;
          max-width: 1200px;
          display: grid;
-         grid-template-columns: 1.3fr 1fr;
+         grid-template-columns: 1.1fr 1fr;
          grid-template-rows: auto 1fr;
          gap: 20px;
          margin: 20px auto;
@@ -154,13 +154,17 @@
      .cart-item img {
         width: 62px;
         height: 60px;
-        border-radius: 4px;
+        border-radius: 2px;
         aspect-ratio: 1/1;
         object-fit: contain;
-        background: #fff;
-        border: 1px solid #ccc;
+        background: transparent;
+        border: 2px solid #dedede;
+        max-width: 62px;
+        max-height: 60px;
+        height: 100%;
+        min-height: 60px;
+        padding: 5px;
     }
-
      .cart-item-info {
          flex: 1;
      }
@@ -183,9 +187,9 @@
      }
 
      .price {
-         font-size: 1rem;
-         font-weight: bold;
-         color: #004d40;
+         font-size: 1.1rem;
+         font-weight: 300;
+         color: #000;
      }
 
      .quantity-circle {
@@ -316,13 +320,13 @@
         opacity: 0;
      } */
 .addresses {
-    border-top: 1px solid #dfdfdf;
-    border-right: 1px solid #dfdfdf;
-    border-left: 1px solid #dfdfdf;
+    border-top: 2px solid #dedede;
+    border-right: 2px solid #dedede;
+    border-left: 2px solid #dedede;
 
 }
 .address_item {
-    border-bottom: 1px solid #dfdfdf;
+    border-bottom: 2px solid #dedede;
     display: grid;
     grid-template-columns: 1.5fr 1fr;
     gap: 20px;
@@ -336,6 +340,42 @@
     }
 }
 
+.form-control {
+    padding: 0.6rem 1rem;
+    font-size: 1rem;
+    height: calc(1.3125rem + 1.2rem + 2px);
+    border: 1px solid #dfdfe6;
+    color: #898b92;
+    /* padding: 20px !important; */
+   
+    border: 2px solid #e0e0e0;
+    border-radius: 0 !important;
+    font-weight: 300  !important;
+}
+.form-control:not(textarea){
+    height: 3.1rem !important;
+}
+.horizontal_line {
+    display: flex;
+    width: 100%;
+    margin: 30px 0;
+    align-items: center;
+    justify-content: center;
+    
+}
+
+.horizontal_line .line_text {
+    position: absolute;
+    background: #fff;
+    padding: 0 20px;
+    font-size: 15px;
+    font-weight: 300;
+
+}
+.horizontal_line .line_bar {
+    border-bottom: 2px solid #dedede;
+    width: 100%;
+}
 </style>
 @php
     $auth_user_id = auth()->user()->id;
@@ -343,102 +383,232 @@
 
     $cart = \App\Models\Cart::where('user_id', $auth_user_id)->get();
     $subtotal = 0;
+
+    $user = auth()->user();
+    $addresses = $user->addresses;  
+
     // dd($cart);
 @endphp
-<form action="{{ route('payment.checkout') }}" class="form-default" role="form" method="POST" id="checkout-form" style="background: linear-gradient(to right, #fff 70%, #f5f5f5 0%);">
+<form action="{{ route('payment.checkout') }}" class="form-default m-0" role="form" method="POST" id="checkout-form" style="background: linear-gradient(to right, #fff 70%, #f5f5f5 0%);">
     @csrf
     <input type="hidden" name="owner_id" value="{{ $carts[0]['owner_id'] }}">
 
-    <div class="container" style=" height: 100vh">
+    <div class="container p-0 h-100" id="checkout_container" style=" height: 100vh">
         <!-- Header -->
-        <div class="row h-100">
+        <div class="h-100" style="display: grid; grid-template-columns: minmax( min-content, calc(50% + calc( calc( 66rem - 52rem ) / 2 )) ) 1fr;">
           
 
 
-        <div class="col-md-7 checkout_columns">
+        <div class="checkout_columns">
             <img src="https://allaaddin.com/public/images/1j+ojFVDOMkX9Wytexe43D6kh.png" style="width: 130px" alt="Bighouz" class="img-fluid">
-            <ul class="d-flex gap-2 list-unstyled fs-13 text-muted">
+            <ul class="d-flex gap-2 list-unstyled fs-15 text-muted">
                 <li>Home</li>
                 <li><i class="fa fa-chevron-right"></i></li>
                 <li>Checkout</li>
             </ul>
-            <div class="row">
-                <div class="col-6">
-                    <label>First name</label>
-                    <input class="form-control" type="text">
-
+            <br>
+            <p class="text-muted text-center fs-15">Express Checkout
+            </p>
+            <div class="row w-100">
+                <div class="col-4">
+                    <button class="btn btn-success py-2 w-100">EasyPaisa</button>
                 </div>
-                <div class="col-6">
-                    <label>Last name</label>
-                    <input class="form-control" type="text">
+                <div class="col-4">
+                    <button class="btn btn-info py-2 w-100">Bank</button>
+                </div>
+                <div class="col-4">
+                    <button class="btn btn-warning py-2 w-100">Jazz Cash</button>
                 </div>
             </div>
             
-            <div>
-                <h5 class="mt-5">Addresses</h5>
-                <div class="addresses  mb-3">
-                    <div class="address_item p-3">
-                        <div>
-                            <h5 class="mb-0">Address title</h5>
-                            <p class="mb-0">Address title</p>
+            <div class="horizontal_line" style="">
+                <div class="line_bar"> 
+                </div>
+                <div class="line_text">
+                    OR
+                </div>
+            </div>
+            
+            <h5>Contact Information</h5>
+            <div class="row g-3">
+                <div class="col-6">
+                    
+                    <input class="form-control mt-1" type="text" placeholder="First Name">
+
+                </div>
+                <div class="col-6">
+                    
+                    <input class="form-control mt-1" type="text" placeholder="Last Name">
+                </div>
+            
+                <div class="col-12">
+                    
+                    <input class="form-control mt-1" type="text" placeholder="Company Name (Optional)">
+
+                </div>
+                <div class="col-12">
+                    
+                    <input class="form-control mt-1" type="text" placeholder="Phone">
+                </div>
+               
+                <h5 class="mt-5">Delivery Info</h5>
+                @if(count($addresses) ==0)
+
+
+                    <div class="col-6">
+                        
+                        <select class="form-control  mt-1 rounded-0" data-live-search="true" data-placeholder="{{ translate('Select your country') }}" name="country_id" required>
+                            <option value="">{{ translate('Select your country') }}</option>
+                            @foreach (get_active_countries() as $key => $country)
+                                <option value="{{ $country->id }}">{{ $country->name }}</option>
+                            @endforeach
+                        </select>
+
+                    </div>
+                    <div class="col-6">
+                            <select class="form-control mt-1  rounded-0" data-live-search="true" name="state_id" required>
+
+                            </select>
+                       
+                    </div>
+
+                    <!-- City -->
+                    <div class="col-6">
+                            <select class="form-control mt-1 rounded-0" data-live-search="true" name="city_id" required>
+
+                            </select>
+                      
+                    </div>
+
+                    <div class="col-6">
+                        <input type="text" class="form-control mt-1 rounded-0" placeholder="{{ translate('Postal Code')}}" name="postal_code" value="" required>
+                    </div>
+                    @if (get_setting('google_map') == 1)
+                    <!-- Google Map -->
+                    <div class="row mt-3 mb-3">
+                        <input id="searchInput" class="controls" type="text" placeholder="{{translate('Enter a location')}}">
+                        <div id="map"></div>
+                        <ul id="geoData">
+                            <li style="display: none;">Full Address: <span id="location"></span></li>
+                            <li style="display: none;">Postal Code: <span id="postal_code"></span></li>
+                            <li style="display: none;">Country: <span id="country"></span></li>
+                            <li style="display: none;">Latitude: <span id="lat"></span></li>
+                            <li style="display: none;">Longitude: <span id="lon"></span></li>
+                        </ul>
+                    </div>
+                    <!-- Longitude -->
+                    <div class="row">
+                        <div class="col-md-2" id="">
+                            <label for="exampleInputuname">{{ translate('Longitude')}}</label>
                         </div>
-                        <div class="address_action_buttons d-flex justify-content-end">
-                            <button class="p-2 text-danger bg-white border-0 fs-16">
-                                <i class="fa fa-trash"></i>
-                                
-                            </button>
-                            <button class="p-2 text-dark bg-white border-0 fs-16">
-                                <i class="fa fa-pen"></i>
-                                
-                            </button>
+                        <div class="col-md-10" id="">
+                            <input type="text" class="form-control mb-3 rounded-0" id="longitude" name="longitude" readonly="">
                         </div>
                     </div>
+                    <!-- Latitude -->
+                    <div class="row">
+                        <div class="col-md-2" id="">
+                            <label for="exampleInputuname">{{ translate('Latitude')}}</label>
+                        </div>
+                        <div class="col-md-10" id="">
+                            <input type="text" class="form-control mb-3 rounded-0" id="latitude" name="latitude" readonly="">
+                        </div>
+                    </div>
+                @endif
+
+                @else
+
+
+                    <div class="addresses  mb-3">
+                        <div class="address_item p-3">
+                            <div>
+                                <h5 class="mb-0">Address title</h5>
+                                <p class="mb-0">Address title</p>
+                            </div>
+                            <div class="address_action_buttons d-flex justify-content-end">
+                                <button class="p-2 text-danger bg-white border-0 fs-16">
+                                    <i class="fa fa-trash"></i>
+                                    
+                                </button>
+                                <button class="p-2 text-dark bg-white border-0 fs-16">
+                                    <i class="fa fa-pen"></i>
+                                    
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-end">
+                        <button type="button" class="btn btn-primary" id="new_address_modal">
+                            Add New Address
+                        </button>
+                    </div>
+                    
+
+
+
+                @endif
+
+                <div class="col-12">
+                    <textarea class="form-control" name="order_note" rows="3" placeholder="Order Note"></textarea>
                 </div>
-                <div class="d-flex justify-content-end">
-                    <button class="btn btn-primary" id="new_address_modal">
-                        Add New Address
-                    </button>
-                </div>
+
+            </div>
+            
+            <div>
                 
-        
-                <table style="width: 100%; border-collapse: collapse; border: 1px solid #ddd; margin-bottom: 15px; display: none">
-                    <!-- Table Header -->
-                    <thead style="background-color: #f4f4f4;">
-                        <tr>
-                            <th style="padding: 10px; font-size: 1rem; color: #333; text-align: left;">Card Payment</th>
-                            <th style="padding: 10px; text-align: right;">Action</th>
-                        </tr>
-                    </thead>
-            
-                    <!-- Table Body (List of Saved Cards) -->
-                    <tbody>
-                        <!-- Saved Card Row 1 -->
-                        <tr>
-                            <td style="padding: 10px; font-size: 1rem; color: #333;">
-                                <input type="radio" name="payment-method" value="Visa ending in 1234" onclick="selectPaymentMethod('Visa ending in 1234')">
-                                <span>Visa ending in 1234</span>
-                            </td>
-                            <td style="padding: 10px; text-align: right;">
-                                <span class="delete-icon" onclick="deletePaymentMethod('Visa ending in 1234')" style="cursor: pointer; font-size: 16px; color: #e74c3c;">🗑️ Delete</span>
-                                <span class="edit-icon" onclick="editPaymentMethod('Visa ending in 1234')" style="cursor: pointer; font-size: 16px; color: #004d40;">✎ Edit</span>
-                            </td>
-                        </tr>
-            
-                        <!-- Saved Card Row 2 -->
-                        <tr>
-                            <td style="padding: 10px; font-size: 1rem; color: #333;">
-                                <input type="radio" name="payment-method" value="MasterCard ending in 5678" onclick="selectPaymentMethod('MasterCard ending in 5678')">
-                                <span>MasterCard ending in 5678</span>
-                            </td>
-                            <td style="padding: 10px; text-align: right;">
-                                <span class="delete-icon" onclick="deletePaymentMethod('MasterCard ending in 5678')" style="cursor: pointer; font-size: 16px; color: #e74c3c;">🗑️ Delete</span>
-                                <span class="edit-icon" onclick="editPaymentMethod('MasterCard ending in 5678')" style="cursor: pointer; font-size: 16px; color: #004d40;">✎ Edit</span>
-                            </td>
-                        </tr>
-            
-                        <!-- More Saved Card Rows can be added here -->
-                    </tbody>
-                </table>
+              
+               
+                
+                @foreach ($addresses as $key => $address)
+                    <div class="col-lg-4">
+                        <div class="border p-3 pr-5 rounded mb-3 position-relative">
+                            <div>
+                                <span class="w-50 fw-600">{{ translate('Address') }}:</span>
+                                <span class="ml-2">{{ $address->address }}</span>
+                            </div>
+                            <div>
+                                <span class="w-50 fw-600">{{ translate('Postal Code') }}:</span>
+                                <span class="ml-2">{{ $address->postal_code }}</span>
+                            </div>
+                            <div>
+                                <span class="w-50 fw-600">{{ translate('City') }}:</span>
+                                <span class="ml-2">{{ optional($address->city)->name }}</span>
+                            </div>
+                            <div>
+                                <span class="w-50 fw-600">{{ translate('State') }}:</span>
+                                <span class="ml-2">{{ optional($address->state)->name }}</span>
+                            </div>
+                            <div>
+                                <span class="w-50 fw-600">{{ translate('Country') }}:</span>
+                                <span class="ml-2">{{ optional($address->country)->name }}</span>
+                            </div>
+                            <div>
+                                <span class="w-50 fw-600">{{ translate('Phone') }}:</span>
+                                <span class="ml-2">{{ $address->phone }}</span>
+                            </div>
+                            @if ($address->set_default)
+                                <div class="position-absolute right-0 bottom-0 pr-2 pb-3">
+                                    <span class="badge badge-inline badge-primary">{{ translate('Default') }}</span>
+                                </div>
+                            @endif
+                            <div class="dropdown position-absolute right-0 top-0">
+                                <button class="btn bg-gray px-2" type="button" data-toggle="dropdown">
+                                    <i class="la la-ellipsis-v"></i>
+                                </button>
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+                                    <a class="dropdown-item" onclick="edit_address('{{$address->id}}')">
+                                        {{ translate('Edit') }}
+                                    </a>
+                                    @if (!$address->set_default)
+                                        <a class="dropdown-item" href="{{ route('seller.addresses.set_default', $address->id) }}">{{ translate('Make This Default') }}</a>
+                                    @endif
+                                    <a class="dropdown-item" href="{{ route('seller.addresses.destroy', $address->id) }}">{{ translate('Delete') }}</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+                
             </div>
 
 
@@ -964,8 +1134,9 @@
         </div>
 
         <!-- Summary Section -->
-        <div class="col-md-5 checkout_columns" style="background: #f5f5f5; border-left: 1px solid #DEDEDE;">
-            
+        <div class="checkout_columns" style="background: #f5f5f5; border-left: 2px solid #DEDEDE;">
+            <div style="position: sticky; top: 20px;">
+           
             <br>
             <h4>Your Purchase</h4>
             <div class="summary-cart">
@@ -1008,8 +1179,8 @@
                            
                             
                             <div class="cart-item-info">
-                                <p class="m-0 fs-16">{{  $product->name }}</p>
-                                <small class="mb-0">{{  $item->skin_code ?? "-" }}</small>
+                                <p class="m-0 fs-17 fw-300 text-dark">{{  $product->name }}</p>
+                                <small class="mb-0 fs-13 text-muted">{{  $item->skin_code ?? "-" }}</small>
                                 
                             </div>
                             @if (discount_in_percentage($product) > 0)
@@ -1036,7 +1207,7 @@
             
                 @include('frontend.partials.cart_summary')
             </div>
-            
+            </div>
         </div>
 
 
@@ -1281,7 +1452,60 @@
         </div>
     </section>
 @endsection
-
+@section('modal')
+    <!-- Address Modal -->
+    @include('frontend.partials.address.address_modal')
+@endsection
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+function delete_address(addressId) {
+    Swal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            var url = `/addresses/${addressId}`; 
+            
+            $.ajax({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                url: url,
+                type: 'DELETE', 
+                success: function(response) {
+                    if (response.success) {
+                        Swal.fire(
+                            'Deleted!',
+                            response.message || 'Your address has been deleted.',
+                            'success'
+                        ).then(() => {
+                            location.reload(); 
+                        });
+                    } else {
+                        Swal.fire(
+                            'Error!',
+                            response.message || 'Failed to delete the address. Please try again.',
+                            'error'
+                        );
+                    }
+                },
+                error: function(xhr, ajaxOptions, thrownError) {
+                    Swal.fire(
+                        'Error!',
+                        `Failed to delete the address. Please try again. (Status: ${xhr.status})`,
+                        'error'
+                    );
+                }
+            });
+        }
+    });
+}
+</script>
 @section('script')
     <script type="text/javascript">
         $(document).ready(function() {

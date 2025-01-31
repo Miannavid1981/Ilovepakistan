@@ -12,8 +12,8 @@
                 @csrf
                 <div class="modal-body c-scrollbar-light">
                     <div class="p-3">
-                        <!-- Address -->
-                        <div class="row">
+                         <!-- Address -->
+                         <div class="row">
                             <div class="col-md-2">
                                 <label>{{ translate('Address')}}</label>
                             </div>
@@ -29,7 +29,7 @@
                             </div>
                             <div class="col-md-10">
                                 <div class="mb-3">
-                                    <select class="form-control aiz-selectpicker rounded-0" data-live-search="true" data-placeholder="{{ translate('Select your country') }}" name="country_id" required>
+                                    <select class="form-control  rounded-0" data-live-search="true" data-placeholder="{{ translate('Select your country') }}" name="country_id" required>
                                         <option value="">{{ translate('Select your country') }}</option>
                                         @foreach (get_active_countries() as $key => $country)
                                             <option value="{{ $country->id }}">{{ $country->name }}</option>
@@ -45,7 +45,7 @@
                                 <label>{{ translate('State')}}</label>
                             </div>
                             <div class="col-md-10">
-                                <select class="form-control mb-3 aiz-selectpicker rounded-0" data-live-search="true" name="state_id" required>
+                                <select class="form-control mb-3  rounded-0" data-live-search="true" name="state_id" required>
 
                                 </select>
                             </div>
@@ -57,7 +57,7 @@
                                 <label>{{ translate('City')}}</label>
                             </div>
                             <div class="col-md-10">
-                                <select class="form-control mb-3 aiz-selectpicker rounded-0" data-live-search="true" name="city_id" required>
+                                <select class="form-control mb-3  rounded-0" data-live-search="true" name="city_id" required>
 
                                 </select>
                             </div>
@@ -95,7 +95,7 @@
                                 </div>
                             </div>
                         @endif
-
+                        
                         <!-- Postal code -->
                         <div class="row">
                             <div class="col-md-2">
@@ -107,16 +107,14 @@
                         </div>
 
                         <!-- Phone -->
-                        <div class="row mb-3">
+                        <div class="row">
                             <div class="col-md-2">
                                 <label>{{ translate('Phone')}}</label>
                             </div>
                             <div class="col-md-10">
-                                <input type="tel" id="phone-code" class="form-control rounded-0" placeholder="" name="phone" autocomplete="off" required>
-                                <input type="hidden" name="country_code" value="">
+                                <input type="text" class="form-control mb-3 rounded-0" placeholder="{{ translate('+880')}}" name="phone" value="" required>
                             </div>
                         </div>
-
                         <!-- Save button -->
                         <div class="form-group text-right">
                             <button type="submit" class="btn btn-primary rounded-0 w-150px">{{translate('Save')}}</button>

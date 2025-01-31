@@ -163,6 +163,7 @@
         </div>
         <div class="card-body">
             <div class="row gutters-10">
+                $addresses = $user->addresses; 
                 @foreach ($addresses as $key => $address)
                     <div class="col-lg-4">
                         <div class="border p-3 pr-5 rounded mb-3 position-relative">
