@@ -141,9 +141,9 @@
       });
     }
     function get_full_address() {
-        const state = $("#state option:selected").text() || ''; // Default to empty string if null/undefined
-        const country = $("#country option:selected").text() || ''; // Ensure this fetches the correct country
-        const city = $("#city option:selected").text() || '';
+        const state = $("#state").val() != "" ? $("#state option:selected").text() : ''; // Default to empty string if null/undefined
+        const country = $("#country").val() != "" ? $("#country option:selected").text() : ''; // Ensure this fetches the correct country
+        const city = $("#city").val() != "" ? $("#city option:selected").text() : '';
         const area = $("#area option:selected").text() || '';
         const address = $("#address").val() || '';
         const land_mark = $("#land_mark").val() || '';

@@ -345,12 +345,15 @@
     font-size: 1rem;
     height: calc(1.3125rem + 1.2rem + 2px);
     border: 1px solid #dfdfe6;
-    color: #898b92;
+    color: #333;
     /* padding: 20px !important; */
    
     border: 2px solid #e0e0e0;
     border-radius: 0 !important;
     font-weight: 300  !important;
+}
+.form-control::placeholder {
+    color: #898b92;
 }
 .form-control:not(textarea){
     height: 3.1rem !important;
@@ -428,17 +431,25 @@
                     OR
                 </div>
             </div>
+
+            @php
+                $fullname = auth()->user()->name;
+                $fullname = explode(" ", $fullname);
+
+                $firstname = $fullname[0] ?? "";
+                $lastname = $fullname[1] ?? "";
+            @endphp
             
             <h5>Contact Information</h5>
             <div class="row g-3">
                 <div class="col-6">
                     
-                    <input class="form-control " type="text" placeholder="First Name">
+                    <input class="form-control " type="text" placeholder="First Name" value="{{ $firstname }}">
 
                 </div>
                 <div class="col-6">
                     
-                    <input class="form-control " type="text" placeholder="Last Name">
+                    <input class="form-control " type="text" placeholder="Last Name" value="{{ $lastname }}">
                 </div>
             
                 <div class="col-12">
@@ -450,16 +461,18 @@
                     
                     <input class="form-control " type="text" placeholder="Phone">
                 </div>
-               
-                <h5 class="mt-5">Delivery Info</h5>
+            </div>
+                
+            <h5 class=" mt-4">Delivery Info</h5>
+            <div class="row g-3">
                 @if(count($addresses) ==0)
 
 
                     <div class="col-6">
-                        <select class="form-control   rounded-0" data-live-search="true" data-placeholder="{{ translate('Select your country') }}" name="country_id" id="country" required>
+                        <select class="form-control   rounded-0" data-live-search="true" data-placeholder="{{ translate('Select your country') }}" name="country_id" data-code="92" id="country" required>
                             <option value="">{{ translate('Select your country') }}</option>
                             @foreach (get_active_countries() as $key => $country)
-                                <option value="{{ $country->id }}">{{ $country->name }}</option>
+                                <option value="{{ $country->id }}" data-code="{{ $country->code }}">{{ $country->name }}</option>
                             @endforeach
                         </select>
 
@@ -482,42 +495,42 @@
                     </div>
                     <!-- City -->
                     <div class="col-12">
-                        <input type="text" class="form-control  rounded-0" placeholder="{{ translate('Landmark')}}" name="landmark" id="land_mark" value="" required>
+                        <input type="text" class="form-control  rounded-0" placeholder="{{ translate('Nearest Landmark')}}" name="landmark" id="land_mark" value="" required>
                     </div>
 
                     <div class="col-12">
                         <input type="text" class="form-control  rounded-0" placeholder="{{ translate('Address')}}" id="address" name="address" value="" required>
                     </div>
                     @if (get_setting('google_map') == 1)
-                    <!-- Google Map -->
-                    <div class="col-12">
-                        <input id="searchInput" class="controls" type="text" placeholder="{{translate('Enter a location')}}" style="display: none">
-                        <div id="map"></div>
-                        {{-- <ul id="geoData">
-                            <li style="display: none;">Full Address: <span id="location"></span></li>
-                            <li style="display: none;">Postal Code: <span id="postal_code"></span></li>
-                            <li style="display: none;">Country: <span id="country"></span></li>
-                            <li style="display: none;">Latitude: <span id="lat"></span></li>
-                            <li style="display: none;">Longitude: <span id="lon"></span></li>
-                        </ul> --}}
-                    </div>
-                    <!-- Longitude -->
-                
-                    <div class="col-md-6" id="">
-                        <input type="text" class="form-control mb-3 rounded-0" id="longitude" name="longitude" readonly="" placeholder="Latitude">
-                    </div>
-                
+                        <!-- Google Map -->
+                        <div class="col-12">
+                            <input id="searchInput" class="controls" type="text" placeholder="{{translate('Enter a location')}}" style="display: none">
+                            <div id="map"></div>
+                            {{-- <ul id="geoData">
+                                <li style="display: none;">Full Address: <span id="location"></span></li>
+                                <li style="display: none;">Postal Code: <span id="postal_code"></span></li>
+                                <li style="display: none;">Country: <span id="country"></span></li>
+                                <li style="display: none;">Latitude: <span id="lat"></span></li>
+                                <li style="display: none;">Longitude: <span id="lon"></span></li>
+                            </ul> --}}
+                        </div>
+                        <!-- Longitude -->
                     
-                    <div class="col-md-6" id="">
-                        <input type="text" class="form-control mb-3 rounded-0" id="latitude" name="latitude" readonly="" placeholder="Longitude">
-                    </div>
-                
-                @endif
+                        <div class="col-md-6" id="">
+                            <input type="text" class="form-control rounded-0" id="longitude" name="longitude" readonly="" placeholder="Latitude">
+                        </div>
+                    
+                        
+                        <div class="col-md-6" id="">
+                            <input type="text" class="form-control rounded-0" id="latitude" name="latitude" readonly="" placeholder="Longitude">
+                        </div>
+                    
+                    @endif
 
                 @else
 
 
-                    <div class="addresses  mb-3">
+                    <div class="addresses ">
                         <div class="address_item p-3">
                             <div>
                                 <h5 class="mb-0">Address title</h5>
@@ -549,11 +562,13 @@
 
 
                 @endif
-
+            </div>
+            <h5 class="mt-4">Payment Method</h5>
+            <div class="row g-3">
 
                 <div class="col-12">
 
-                    <h5 class="mt-4">Payment Method</h5>
+                    
                     <div class="payment-method">
                         
         
@@ -1517,6 +1532,83 @@ function delete_address(addressId) {
 @section('script')
     <script type="text/javascript">
         $(document).ready(function() {
+
+
+            $(document).on('change', '[name=country_id]', function() {
+        var country_id = $(this).val();
+        get_states(country_id);
+        
+        var countryCode = $(this).find(':selected').data('code');
+
+        $.ajax({
+            url: `https://restcountries.com/v3.1/alpha/${countryCode}`,
+            method: 'GET',
+            success: function(response) {
+                if (response && response[0] && response[0].idd && response[0].idd.root) {
+                    // Extract the calling code, which may have root and suffixes
+                    const rootCode = response[0].idd.root; // e.g., "+92"
+                    const suffixCode = (response[0].idd.suffixes && response[0].idd.suffixes[0]) || "";
+                    const fullCode = rootCode + suffixCode;
+    
+                    // Set the placeholder with the calling code
+                    $('[name="phone"]').attr('value', fullCode);
+                }
+            },
+            error: function() {
+                console.error('Could not retrieve country calling code');
+                $('[name="phone"]').attr('placeholder', ''); // Reset if API fails
+            }
+        });
+    });
+    
+    $(document).on('change', '[name=state_id]', function() {
+        var state_id = $(this).val();
+        get_city(state_id);
+    });
+
+    function get_states(country_id) {
+        $('[name="state"]').html("");
+        $.ajax({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            url: "{{route('get-state')}}",
+            type: 'POST',
+            data: {
+                country_id: country_id
+            },
+            success: function(response) {
+                var obj = JSON.parse(response);
+                if (obj != '') {
+                    $('[name="state_id"]').html(obj);
+                    AIZ.plugins.bootstrapSelect('refresh');
+                }
+            }
+        });
+    }
+
+    function get_city(state_id) {
+        $('[name="city"]').html("");
+        $.ajax({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            url: "{{route('get-city')}}",
+            type: 'POST',
+            data: {
+                state_id: state_id
+            },
+            success: function(response) {
+                var obj = JSON.parse(response);
+                if (obj != '') {
+                    $('[name="city_id"]').html(obj);
+                    AIZ.plugins.bootstrapSelect('refresh');
+                }
+            }
+        });
+    }
+
+
             $("#new_address_modal").click(function(){
                 $('#new-address-modal').modal('show')
             });
