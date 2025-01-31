@@ -7,7 +7,7 @@
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
-            url: "{{route('guest_customer_info_check')}}",
+            url: "{{route('user.login')}}",
             type: 'POST',
             data: {
                 email : email,
