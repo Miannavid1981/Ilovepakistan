@@ -572,7 +572,7 @@
 
                         if($original_skin_code){
                             
-                            $product_seller_map = \App\Models\ProductSellerMap::where('original_skin', $original_skin_code )->get();
+                            $product_seller_map = \App\Models\ProductSellerMap::where('original_skin', $original_skin_code )->first();
                             $seller = \App\Models\User::find($product_seller_map->seller_id)->get();
 
 
