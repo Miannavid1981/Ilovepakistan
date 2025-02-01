@@ -396,10 +396,11 @@ class CheckoutController extends Controller
     public function order_confirmed()
     {
         $orders = CombinedOrder::findOrFail(Session::get('combined_order_id'));
+        $combined_order = $orders;
         Cart::where('user_id', $orders->user_id)->where('checked', 1)
             ->delete();
         session()->forget(['payment_type', 'payment_option', 'payment_data', 'combined_order_id']);
-        return view('frontend.order_confirmed', compact('orders'));
+        return view('frontend.order_confirmed', compact('orders', 'combined_order'));
     }
 
     public function downloadOrderReceipt($orderId)
