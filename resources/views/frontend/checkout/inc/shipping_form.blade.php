@@ -9,29 +9,29 @@
         @if($address_type == "personal")
 
             <div class="col-6">
-                <label>
-                    <input type="radio" class="form-cheeck  rounded-0" name="address_label" id="address_label" value="Home" {{   $address_label == "Home" ? 'checked' : '' }} required>
+                <label class="btn btn-light w-100">
+                    <input type="radio" class="  rounded-0" name="address_label" id="address_label" value="Home" {{   $address_label == "Home" ? 'checked' : '' }} required>
                     Home
                 </label>
             </div>
         
             <div class="col-6">
-                <label>
-                    <input type="radio" class="form-check  rounded-0" name="address_label" id="address_label" value="Office" {{   $address_label == "Office" ? 'checked' : '' }} required>
+                <label class="btn btn-light w-100">
+                    <input type="radio" class="  rounded-0" name="address_label" id="address_label" value="Office" {{   $address_label == "Office" ? 'checked' : '' }} required>
                     Office
                 </label>
             </div>
         @endif
 
         @if($address_type == "family_friends")
-
+{{-- 
             <div class="col-12">
-                <label>
-                <input type="text" class="form-control  rounded-0"  placeholder="{{ translate('Area')}}" name="address_label" id="address_label" placeholder="Label Your Address" >
+             
+                <input type="text" class="form-control  rounded-0 bg-light"  placeholder="{{ translate('Label your Address')}}" name="address_label" id="address_label" placeholder="Label Your Address" >
                     
                 
             </div>
-        
+         --}}
             
         @endif
 

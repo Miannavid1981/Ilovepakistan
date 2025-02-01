@@ -573,7 +573,8 @@
                         if($original_skin_code){
                             
                             $product_seller_map = \App\Models\ProductSellerMap::where('original_skin', $original_skin_code )->first();
-                            $seller = \App\Models\User::find($product_seller_map->seller_id)->get();
+                            //dd($product_seller_map->getAttributes());
+                            $seller = \App\Models\User::where("id", $product_seller_map->seller_id)->first();
 
 
                         }
@@ -589,9 +590,11 @@
                            
                             
                             <div class="cart-item-info">
+                                <small class="mb-0 fs-13 text-dark fw-500">{{  $seller ? $seller->name : "-" }}</small>
                                 <p class="m-0 fs-17 fw-300 text-dark">{{  $product->name }}</p>
                                 <small class="mb-0 fs-13 text-muted">{{  $product_seller_map ? $product_seller_map->encrypted_hash : "-" }}</small>
-                                <small class="mb-0 fs-13 text-muted">{{  $seller ? $seller->name : "-" }}</small>
+                                
+                                
                                 
                             </div>
                             @if (discount_in_percentage($product) > 0)
@@ -643,6 +646,8 @@ $(document).ready(function() {
     $('.delivery_type input').click(function() {
         // alert("t"+$('input[name="delivery_type"]:checked').val())
         // Get the value of the selected radio button
+        $('#shipping_info').hide();
+        $("#shipping_preloader").attr("style", 'display: flex')
         var delivery_type = $('input[name="delivery_type"]:checked').val();
         // console.log("Selected delivery type: " + selectedValue);
         $.ajax({
@@ -657,14 +662,18 @@ $(document).ready(function() {
             success: function(response) {
                 var obj = response;
                 if (obj != '') {
+                    $("#shipping_preloader").hide();
+                    $('#shipping_info').show();
                     $('#shipping_info').html(obj.html);
            
                 }
             }
         });
     });
-
-    // $('[name="selected_address_id"]')[0].click();
+    if($('[name="selected_address_id"]').length > 0){
+        $('[name="selected_address_id"]')[0].click();
+    }
+    
     $(document).on('change', '[name=country_id]', function() {
         var country_id = $(this).val();
         get_states(country_id);
