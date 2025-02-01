@@ -165,4 +165,15 @@ class AddressController extends Controller
 
         return back();
     }
+    public function changeAddressType(Request $request) {
+        
+        $address_type = $request->address_type ?? '';
+        $data['address_type'] = $address_type;
+        $user_id = auth()->user()->id;
+        $addresses = Address::where('user_id', $user_id)->where('address_type', $address_type)->get();
+        $data['addresses'] = $addresses;
+        $returnHTML = view('frontend.checkout.inc.shipping_form', $data)->render();
+
+        return response()->json(array('data' => $data, 'html' => $returnHTML));
+    }
 }

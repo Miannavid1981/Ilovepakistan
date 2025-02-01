@@ -296,7 +296,7 @@ class CheckoutController extends Controller
         // dd($user_id, $carts);
 
         $address_type = $request->delivery_type ?? '';
-
+        $address_label = $request->address_label ?? '(No Label)';
         $selected_address_id = $request->selected_address_id;
 
         $shipping_address = [];
@@ -333,7 +333,7 @@ class CheckoutController extends Controller
             $address->phone = $request->phone ?? '';
             $address->set_default = false;
             $address->address_type = $address_type;
-            $address->address_label = "Home";
+            $address->address_label = $address_label;
             $address->save();
 
             $state = \App\Models\State::where("id", $request->state_id)->first();

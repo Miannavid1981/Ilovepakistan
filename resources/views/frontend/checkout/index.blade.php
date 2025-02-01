@@ -424,7 +424,7 @@
 <form action="{{ route('payment.checkout') }}" class="form-default m-0" role="form" method="POST" id="checkout-form" style="background: linear-gradient(to right, #fff 70%, #f5f5f5 0%);">
     @csrf
     <input type="hidden" name="owner_id" value="{{ $carts[0]['owner_id'] }}">
-    <input type="hidden" name="address_type" value="" id="address_type">
+    {{-- <input type="hidden" name="address_type" value="" id="address_type"> --}}
     
 
     <div class="container p-0 h-100" id="checkout_container" style=" height: 100vh">
@@ -567,28 +567,17 @@
                     @php
                         $qty = $item->quantity;
                         $product = \App\Models\Product::find($item->product_id);
-                        // $item_total = discount_in_percentage($product) > 0 ? ($qty * home_discounted_base_price($product, false)) : ($qty * home_base_price($product, false));
-                        // $item->subtotal = format_price($item_total);
-                        // $total += $item_total;
-                        // $items_subtotal = $qty * home_base_price($product, false);
-                        // $subtotal += $items_subtotal;
-                        // $discount_amount = discount_in_percentage($product) > 0 ? home_base_price($product, false) - home_discounted_base_price($product, false) : 0;
-                        // $items_discount += ($qty * $discount_amount);
-                
-                        // // Assigning cart item keys with the correct values
-                        // $item->product_id = $product->id;
-                        // $item->name = $product->name;
-                        // $item->price = home_base_price($product);
-                        // $item->price_int = home_base_price($product, false);
-                        // $item->image = $product->thumbnail ? my_asset($product->thumbnail->file_name) : static_asset('assets/img/placeholder.jpg');
-                        // $item->quantity = $qty;
-                        // $item->discounted_price = home_discounted_base_price($product);
-                        // $item->discounted_price_int = home_discounted_base_price($product, false);
-                        // $item->subtotal = format_price($subtotal);
-                        // $item->discount = discount_in_percentage($product) > 0;
-                        // $item->discounted_percentage = discount_in_percentage($product);
-                        // $item->user_id = $userId;
-                        // $item->temp_user_id = $tempUserId;
+
+                        $original_skin_code = $item->skin_code ;
+
+                        if($original_skin_code){
+                            
+                            $product_seller_map = \App\Models\ProductSellerMap::where('original_skin', $original_skin_code )->get();
+                            $seller = \App\Models\User::find($product_seller_map->seller_id)->get();
+
+
+                        }
+                       
                     @endphp
 
                         <div class="cart-item">
@@ -601,7 +590,8 @@
                             
                             <div class="cart-item-info">
                                 <p class="m-0 fs-17 fw-300 text-dark">{{  $product->name }}</p>
-                                <small class="mb-0 fs-13 text-muted">{{  $item->skin_code ?? "-" }}</small>
+                                <small class="mb-0 fs-13 text-muted">{{  $product_seller_map ? $product_seller_map->encrypted_hash : "-" }}</small>
+                                <small class="mb-0 fs-13 text-muted">{{  $seller ? $seller->name : "-" }}</small>
                                 
                             </div>
                             @if (discount_in_percentage($product) > 0)
@@ -653,8 +643,25 @@ $(document).ready(function() {
     $('.delivery_type input').click(function() {
         // alert("t"+$('input[name="delivery_type"]:checked').val())
         // Get the value of the selected radio button
-        // var selectedValue = $('input[name="delivery_type"]:checked').val();
+        var delivery_type = $('input[name="delivery_type"]:checked').val();
         // console.log("Selected delivery type: " + selectedValue);
+        $.ajax({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            url: "{{route('change-address-type')}}",
+            type: 'POST',
+            data: {
+                address_type: delivery_type
+            },
+            success: function(response) {
+                var obj = response;
+                if (obj != '') {
+                    $('#shipping_info').html(obj.html);
+           
+                }
+            }
+        });
     });
 
     // $('[name="selected_address_id"]')[0].click();
@@ -835,120 +842,6 @@ $(document).ready(function() {
        
     </script>
 
-<script>
-    let map, geocoder, marker;
-   
-
-    function initMap() {
-        // Initialize the Geocoder
-        geocoder = new google.maps.Geocoder();
-
-        // Default location for map center (Lahore, Pakistan) in case geolocation is denied
-        const defaultCenter = { lat: 31.5497, lng: 74.3436 };
-        map = new google.maps.Map(document.getElementById('map'), {
-            zoom: 12,
-            center: defaultCenter,
-        });
-
-        // Initialize a marker at the default location
-        marker = new google.maps.Marker({
-            map: map,
-            position: defaultCenter,
-        });
-
-        // Try to access the user's current location
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(
-                function(position) {
-                    const currentLocation = {
-                        lat: position.coords.latitude,
-                        lng: position.coords.longitude
-                    };
-                    console.log("User's current location:", currentLocation);
-
-                    // Update map center and marker position to user's location
-                    map.setCenter(currentLocation);
-                    marker.setPosition(currentLocation);
-                    updateLocationDetails(currentLocation);
-                },
-                function(error) {
-                    console.warn("Geolocation permission denied or unavailable. Using default location.");
-                    updateLocationDetails(defaultCenter); // Use default location if access is denied
-                },
-                { timeout: 10000 } // Timeout after 10 seconds if no response
-            );
-        } else {
-            console.warn("Geolocation not supported by this browser. Using default location.");
-            updateLocationDetails(defaultCenter);
-        }
-
-        // Set up search box for user-entered location
-        setupSearchBox();
-    }
-
-    function setupSearchBox() {
-        const searchInput = document.getElementById('searchInput');
-        const searchBox = new google.maps.places.SearchBox(searchInput);
-        map.controls[google.maps.ControlPosition.TOP_LEFT].push(searchInput);
-
-        // Listen for search box location selection
-        searchBox.addListener('places_changed', function() {
-            const places = searchBox.getPlaces();
-            if (places.length === 0) return;
-
-            const place = places[0];
-            if (!place.geometry) {
-                console.warn("Selected place has no geometry data.");
-                return;
-            }
-            const latLng = place.geometry.location;
-            console.log("Selected place location:", latLng.toJSON());
-
-            // Update map and marker to the searched place
-            map.setCenter(latLng);
-            marker.setPosition(latLng);
-            updateLocationDetails({
-                lat: latLng.lat(),
-                lng: latLng.lng()
-            }, place);
-        });
-    }
-
-    function updateLocationDetails(location, place = null) {
-        // Update HTML elements with location data
-        if (place && place.formatted_address) {
-            document.getElementById('location').textContent = place.formatted_address;
-        }
-        document.getElementById('lat').textContent = location.lat;
-        document.getElementById('lon').textContent = location.lng;
-
-        // Geocode location to get additional details
-        geocoder.geocode({ location: { lat: location.lat, lng: location.lng } }, function(results, status) {
-            if (status === 'OK' && results[0]) {
-                const addressComponents = results[0].address_components || [];
-                document.getElementById('postal_code').textContent = getAddressComponent(addressComponents, 'postal_code');
-                document.getElementById('country').textContent = getAddressComponent(addressComponents, 'country');
-                console.log("Geocoded address components:", addressComponents);
-            } else {
-                console.warn("Geocode failed due to:", status);
-            }
-        });
-    }
-
-    // Utility function to get specific address components by type
-    function getAddressComponent(components, type) {
-        const component = components.find(c => c.types && c.types.includes(type));
-        return component ? component.long_name : '';
-    }
-
-    // Ensure initMap is globally available
-    window.initMap = initMap;
-    
-</script>
-
-    @include('frontend.partials.google_map')
-
-    
 <script>
     let currentCard = null;
 
