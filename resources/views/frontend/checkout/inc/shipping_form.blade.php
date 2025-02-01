@@ -163,7 +163,7 @@
                         <input type="radio" name="selected_address_id" value="{{ $address->type }}">
                     </div>
                     <div>
-                        <h5 class="mb-0 text-capitalize">{{ $address->type }}</h5>
+                        <h5 class="mb-0 text-capitalize">{{ $address->address_label }}</h5>
                         <p class="mb-0">{{ $address->address }}</p>
                         <p class="mb-0">{{ optional($address->city)->name.", ".optional($address->state)->name.", ".optional($address->country)->name }}</p>
 
