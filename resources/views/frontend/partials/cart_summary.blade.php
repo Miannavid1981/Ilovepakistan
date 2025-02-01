@@ -136,21 +136,24 @@
                 <tr class="cart-subtotal">
                     <th class="pl-0 fs-16 pt-0 pb-2 text-dark fw-300  border-top-0">{{ translate('Subtotal') }}</th>
                     <td class="text-right pr-0 fs-16 pt-0 pb-2 fw-300  text-dark border-top-0">
-                        <span class="fw-300 ">{{ single_price($subtotal) }}</span>
+                        <small class="fw-300">{{ currency_symbol() }}</small>
+                        <span class="fw-300 ">{{ $subtotal }}</span>
                     </td>
                 </tr>
                 <!-- Tax -->
                 <tr class="cart-shipping">
                     <th class="pl-0 fs-16 pt-0 pb-2 text-dark fw-300  border-top-0">{{ translate('Tax') }}</th>
                     <td class="text-right pr-0 fs-16 pt-0 pb-2 fw-300  text-dark border-top-0">
-                        <span class="fw-300 ">{{ single_price($tax) }}</span>
+                        <small class="fw-300">{{ currency_symbol() }}</small>
+                        <span class="fw-300 ">{{ $tax }}</span>
                     </td>
                 </tr>
                 <!-- Total Shipping -->
                 <tr class="cart-shipping">
-                    <th class="pl-0 fs-16 pt-0 pb-2 text-dark fw-300  border-top-0">{{ translate('Total Shipping') }}</th>
+                    <th class="pl-0 fs-16 pt-0 pb-2 text-dark fw-300  border-top-0">{{ translate('Delivery Charges') }}</th>
                     <td class="text-right pr-0 fs-16 pt-0 pb-2 fw-300  text-dark border-top-0">
-                        <span class="fw-300 ">{{ single_price($shipping) }}</span>
+                        <small class="fw-300">{{ currency_symbol() }}</small>
+                        <span class="fw-300 ">{{ $shipping}}</span>
                     </td>
                 </tr>
                 <!-- Redeem point -->
@@ -158,7 +161,8 @@
                     <tr class="cart-shipping">
                         <th class="pl-0 fs-16 pt-0 pb-2 text-dark fw-300  border-top-0">{{ translate('Redeem point') }}</th>
                         <td class="text-right pr-0 fs-16 pt-0 pb-2 fw-300  text-dark border-top-0">
-                            <span class="fw-300 ">{{ single_price(Session::get('club_point')) }}</span>
+                            <small class="fw-300">{{ currency_symbol() }}</small>
+                            <span class="fw-300 ">{{ Session::get('club_point') }}</span>
                         </td>
                     </tr>
                 @endif
@@ -167,7 +171,8 @@
                     <tr class="cart-shipping">
                         <th class="pl-0 fs-16 pt-0 pb-2 text-dark fw-300  border-top-0">{{ translate('Coupon Discount') }}</th>
                         <td class="text-right pr-0 fs-16 pt-0 pb-2 fw-300  text-dark border-top-0">
-                            <span class="fw-300 ">{{ single_price($coupon_discount) }}</span>
+                            <small>{{ currency_symbol() }}</small>
+                            <span class="fw-300 ">{{ $coupon_discount }}</span>
                         </td>
                     </tr>
                 @endif
@@ -185,7 +190,10 @@
                 <tr class="cart-total">
                     <th class="pl-0 fs-22 text-dark fw-600"><span class="strong-600">{{ translate('Total') }}</span></th>
                     <td class="text-right pr-0 fs-22 fw-600 text-dark">
-                        <p><span>{{ single_price($total) }}</span></p>
+                        <p>
+                            <small class="fw-300">{{ currency_symbol() }}</small>
+                            <span>{{ $total }}</span>
+                        </p>
                     </td>
                 </tr>
             </tfoot>

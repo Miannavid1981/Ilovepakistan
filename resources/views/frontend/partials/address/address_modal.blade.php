@@ -18,7 +18,7 @@
                                 <label>{{ translate('Address')}}</label>
                             </div>
                             <div class="col-md-10">
-                                <textarea class="form-control mb-3 rounded-0" placeholder="{{ translate('Your Address')}}" rows="2" name="address" required></textarea>
+                                <textarea class="form-control mb-3 rounded-0" placeholder="{{ translate('Your Address')}}" rows="2" name="address" id="address" required></textarea>
                             </div>
                         </div>
 
@@ -29,7 +29,7 @@
                             </div>
                             <div class="col-md-10">
                                 <div class="mb-3">
-                                    <select class="form-control  rounded-0" data-live-search="true" data-placeholder="{{ translate('Select your country') }}" name="country_id" required>
+                                    <select class="form-control  rounded-0" data-live-search="true" data-placeholder="{{ translate('Select your country') }}" name="country_id"  id="country" required>
                                         <option value="">{{ translate('Select your country') }}</option>
                                         @foreach (get_active_countries() as $key => $country)
                                             <option value="{{ $country->id }}">{{ $country->name }}</option>
@@ -45,7 +45,7 @@
                                 <label>{{ translate('State')}}</label>
                             </div>
                             <div class="col-md-10">
-                                <select class="form-control mb-3  rounded-0" data-live-search="true" name="state_id" required>
+                                <select class="form-control mb-3  rounded-0" data-live-search="true" name="state_id" id="state" required>
 
                                 </select>
                             </div>
@@ -57,7 +57,7 @@
                                 <label>{{ translate('City')}}</label>
                             </div>
                             <div class="col-md-10">
-                                <select class="form-control mb-3  rounded-0" data-live-search="true" name="city_id" required>
+                                <select class="form-control mb-3  rounded-0" data-live-search="true" name="city_id" id="city" required>
 
                                 </select>
                             </div>

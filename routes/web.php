@@ -345,6 +345,7 @@ Route::get('translation-check/{check}', [LanguageController::class, 'get_transla
 Route::controller(AddressController::class)->group(function () {
     Route::post('/get-states', 'getStates')->name('get-state');
     Route::post('/get-cities', 'getCities')->name('get-city');
+    Route::post('/change-address-type', 'changeAddressType')->name('change-address-type');
 });
 
 Route::group(['middleware' => ['auth']], function () {
