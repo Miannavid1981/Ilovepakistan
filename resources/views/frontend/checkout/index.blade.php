@@ -380,7 +380,7 @@
     width: 100%;
 }
 .delivery_type {
-    background:#fefefe;
+
     border: 1px solid #ccc;
     border-radius: 5px;
     padding: 10px;
@@ -388,7 +388,8 @@
     align-items: center;
     justify-content: center;
     gap:5px;
-    cursor: pointer
+    cursor: pointer;
+    
 }
 .delivery_type input {
     position: absolute;
@@ -404,8 +405,12 @@
 
 }
 .delivery_type:has(input:checked){
-    background: #000;
-    color: #fff
+    /* background: #000;
+    color: #fff */
+
+    transform: scale(1.1) ;
+    border: 1px solid #000;
+    
 }
 
 </style>
@@ -444,21 +449,21 @@
            
             <div class="row g-3">
                 <div class="col-4 m-0">
-                    <div class=" py-2 w-100 delivery_type fs-16">
+                    <div class=" py-2 w-100 delivery_type fs-16 btn-success">
                         <input type="radio" class="form-check "  name="delivery_type" value="personal" checked>
                             <i class="fa fa-home"></i>
                             Personal
                     </div>
                 </div>
                 <div class="col-4 m-0">
-                    <div class=" py-2 w-100 delivery_type fs-16">
+                    <div class=" py-2 w-100 delivery_type fs-16 btn-warning">
                         <input type="radio" class="form-check " name="delivery_type" value="family_friends" >
                             <i class="fa fa-users"></i>
                             Family & Friends
                     </div>
                 </div>
                 <div class="col-4 m-0">
-                    <div class=" py-2 w-100 delivery_type fs-16">
+                    <div class=" py-2 w-100 delivery_type fs-16 btn-info">
                         <input type="radio" class="form-check " name="delivery_type" value="others" >
                             <i class="fa fa-box"></i>
                             Others

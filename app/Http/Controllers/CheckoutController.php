@@ -396,6 +396,7 @@ class CheckoutController extends Controller
     public function order_confirmed()
     {
         $orders = CombinedOrder::findOrFail(Session::get('combined_order_id'));
+        dd($orders);
         $combined_order = $orders;
         Cart::where('user_id', $orders->user_id)->where('checked', 1)
             ->delete();
