@@ -284,13 +284,85 @@ class CheckoutController extends Controller
     
     public function finalizeOrderCheckout(Request $request)
     {
+       
         // Retrieve session data
         $payment_option = $request->session()->get('payment_option');
         $payment_data = $request->session()->get('payment_data');
         $user_id = Auth::id();
 
+
         // Retrieve the user's cart items
-        $carts = Cart::where('user_id', $user_id)->where('checked', 1)->get();
+        $carts = Cart::where('user_id', $user_id)->get();
+        // dd($user_id, $carts);
+
+        $address_type = $request->delivery_type ?? '';
+
+        $selected_address_id = $request->selected_address_id;
+
+        $shipping_address = [];
+        
+        if ($selected_address_id) {
+            $address = Address::find($selected_address_id);
+            $state = \App\Models\State::where("id", $address->state_id)->first();
+            $country = \App\Models\Country::where("id",$address->country_id)->first();
+            $city = \App\Models\City::where('id', $address->city_id)->first();
+
+            $shipping_address = [
+                'name' => Auth::user()->name,
+                'email' => Auth::user()->email,
+                'phone' => $address->phone,
+                'address' => $address->address,
+               'city' => $city ? $city->name : '',
+                'state' => $state ? $state->name : '',
+                'postal_code' => $address->postal_code,
+                'country' => $country ? $country->name : '',
+                'latitude' => $address->latitude,
+                'longitude' => $address->longitude
+            ];
+        } else {
+            // Create a new address if not selected
+            $address = new Address();
+            $address->user_id = $user_id;
+            $address->address = $request->address ?? '';
+            $address->country_id = $request->country_id ?? null;
+            $address->state_id = $request->state_id ?? null;
+            $address->city_id = $request->city_id ?? null;
+            $address->postal_code = $request->postal_code ?? '';
+            $address->longitude = $request->longitude ?? null;
+            $address->latitude = $request->latitude ?? null;
+            $address->phone = $request->phone ?? '';
+            $address->set_default = false;
+            $address->address_type = $address_type;
+            $address->address_label = "Home";
+            $address->save();
+
+            $state = \App\Models\State::where("id", $request->state_id)->first();
+            $country = \App\Models\Country::where("id",$request->country_id)->first();
+            $city = \App\Models\City::where('id', $request->city_id)->first();
+            // dd($request, $city);
+            $shipping_address = [
+                'name' => Auth::user()->name,
+                'email' => Auth::user()->email,
+                'phone' => $request->phone,
+                'address' => $request->address,
+                'city' => $city ? $city->name : '',
+                'state' => $state ? $state->name : '',
+                'postal_code' => $request->postal_code,
+                'country' => $country ? $country->name : '',
+                'latitude' => $request->latitude,
+                'longitude' => $request->longitude
+            ];
+
+
+        }
+    
+          // Update carts with the address_id
+          foreach ($carts as $cart) {
+            $cart->address_id = $selected_address_id;
+            $cart->save();
+        }
+        $request->merge(['shipping_address' => json_encode($shipping_address)]);
+
 
         // Check if the cart is empty
         if ($carts->isEmpty()) {
@@ -480,7 +552,7 @@ class CheckoutController extends Controller
         }
         $total = $subtotal + $tax + $shipping;
         $shipping_info = Address::where('id', $carts[0]['address_id'])->first();
-        return view('frontend.payment_select', compact('carts', 'total', 'shipping_info'));
+        return view('frontend.checkout.index', compact('carts', 'total', 'shipping_info'));
     }
     public function store_delivery_info(Request $request)
     {
@@ -523,7 +595,7 @@ class CheckoutController extends Controller
                 $cartItem->save();
             }
             $total = $subtotal + $tax + $shipping;
-            return view('frontend.payment_select', compact('carts', 'shipping_info', 'total'));
+            return view('frontend.checkout.index', compact('carts', 'shipping_info', 'total'));
         } else {
             flash(translate('Your Cart was empty'))->warning();
             return redirect()->route('home');

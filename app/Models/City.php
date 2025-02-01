@@ -9,6 +9,7 @@ use App;
 class City extends Model
 {
     use PreventDemoModeChanges;
+    protected $table = 'cities';
 
     public function getTranslation($field = '', $lang = false){
         $lang = $lang == false ? App::getLocale() : $lang;
