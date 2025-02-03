@@ -112,8 +112,8 @@
             <div class="tabs-container mb-5">
                 <ul class="tabs">
                     <li class="tab active" data-tab="description">Description</li>
-                    <li class="tab" data-tab="video">Video</li>
                     <li class="tab" data-tab="specifications">Specifications</li>
+                    <li class="tab" data-tab="video">Video</li>
                     <li class="tab" data-tab="downloads">Downloads</li>
                     <li class="tab" data-tab="reviews">Customer reviews</li>
                     <li class="tab" data-tab="shipping">Shipping info</li>
