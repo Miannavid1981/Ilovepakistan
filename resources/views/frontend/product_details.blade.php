@@ -58,40 +58,26 @@
 @section('content')
 
 <style>
-.tabs-container {
-    width: 100%;
-    text-align: start;
-    margin-top: 20px;
-}
-
 .tabs {
-    list-style: none;
     display: flex;
-    justify-content: start;
-    gap: 15px;
+    gap: 10px;
+    list-style: none;
     padding: 0;
-    margin: 0;
-    color: #707070;
-    font-size: 15px;
+    font-size: 16px !important;
 }
 
 .tab {
     padding: 10px 15px;
     cursor: pointer;
-    font-weight: bold;
-    border-bottom: 2px solid transparent;
+    border-bottom: 3px solid transparent;
     transition: all 0.3s ease;
-    display: flex;
-    align-items: center; /* Ensures vertical alignment */
-    justify-content: start; /* Ensures horizontal alignment */
-    text-align: center;
 }
-
 .tab:hover,
 .tab.active {
     color: #000;
-    font-size: 15px;
+    font-size: 18px;
     transform: scale(1.1);
+    font-weight: bold;
 }
 
 /* Ensures tabs stay centered */
@@ -126,9 +112,9 @@
             <div class="tabs-container mb-5">
                 <ul class="tabs">
                     <li class="tab active" data-tab="description">Description</li>
+                    <li class="tab" data-tab="video">Video</li>
                     <li class="tab" data-tab="specifications">Specifications</li>
                     <li class="tab" data-tab="downloads">Downloads</li>
-                    <li class="tab" data-tab="video">Video</li>
                     <li class="tab" data-tab="reviews">Customer reviews</li>
                     <li class="tab" data-tab="shipping">Shipping info</li>
                 </ul>
@@ -508,5 +494,25 @@
             this.classList.add("active");
         });
     });
+
+    document.addEventListener("DOMContentLoaded", function () {
+    const tabs = document.querySelectorAll(".tab");
+    const tabPanes = document.querySelectorAll(".tab-pane");
+
+    tabs.forEach(tab => {
+        tab.addEventListener("click", function () {
+            const targetTab = this.getAttribute("data-tab");
+
+            // Remove active class from all tabs and tab panes
+            tabs.forEach(t => t.classList.remove("active"));
+            tabPanes.forEach(pane => pane.classList.remove("active"));
+
+            // Add active class to the clicked tab and corresponding content
+            this.classList.add("active");
+            document.getElementById(targetTab).classList.add("active");
+        });
+    });
+});
+
     </script>
 @endsection
