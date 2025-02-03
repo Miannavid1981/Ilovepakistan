@@ -72,6 +72,7 @@
     padding: 0;
     margin: 0;
     color: #707070;
+    font-size: 15px;
 }
 
 .tab {
@@ -124,15 +125,28 @@
             <!-- Tabs section below the thumbnail slider -->
             <div class="tabs-container mb-5">
                 <ul class="tabs">
-                    <li class="tab active">Description</li>
-                    <li class="tab">Specifications</li>
-                    <li class="tab">Downloads</li>
-                    <li class="tab">Video</li>
-                    <li class="tab">Customer reviews</li>
-                    <li class="tab">Shipping info</li>
+                    <li class="tab active" data-tab="description">Description</li>
+                    <li class="tab" data-tab="specifications">Specifications</li>
+                    <li class="tab" data-tab="downloads">Downloads</li>
+                    <li class="tab" data-tab="video">Video</li>
+                    <li class="tab" data-tab="reviews">Customer reviews</li>
+                    <li class="tab" data-tab="shipping">Shipping info</li>
                 </ul>
             </div>
-
+    
+            <!-- Tab Content -->
+            <div class="tab-content">
+                <div class="tab-pane active" id="description">
+                    @include('frontend.product_details.description')
+                </div>
+                <div class="tab-pane" id="specifications">Specifications Content</div>
+                <div class="tab-pane" id="downloads">Downloads Content</div>
+                <div class="tab-pane" id="video">Video Content</div>
+                <div class="tab-pane" id="reviews">
+                    @include('frontend.product_details.review_section')
+                </div>
+                <div class="tab-pane" id="shipping">Shipping Info Content</div>
+            </div>
         </div>
     </section>
 
@@ -140,10 +154,10 @@
         <div class="container">
             @if ($detailedProduct->auction_product)
                 <!-- Reviews & Ratings -->
-                @include('frontend.product_details.review_section')
+                {{-- @include('frontend.product_details.review_section') --}}
                 
                 <!-- Description, Video, Downloads -->
-                @include('frontend.product_details.description')
+                {{-- @include('frontend.product_details.description') --}}
                 
                 <!-- Product Query -->
                 @include('frontend.product_details.product_queries')
@@ -156,19 +170,19 @@
                         @include('frontend.product_details.seller_info')
 
                         <!-- Top Selling Products -->
-                       <div class="d-none d-lg-block">
+                       {{-- <div class="d-none d-lg-block">
                             @include('frontend.product_details.top_selling_products')
-                       </div>
+                       </div> --}}
                     </div>
 
                     <!-- Right side -->
                     <div class="col-lg-9">
                         
                         <!-- Reviews & Ratings -->
-                        @include('frontend.product_details.review_section')
+                        {{-- @include('frontend.product_details.review_section') --}}
 
                         <!-- Description, Video, Downloads -->
-                        @include('frontend.product_details.description')
+                        {{-- @include('frontend.product_details.description') --}}
                         
                         <!-- Frequently Bought products -->
                         @include('frontend.product_details.frequently_bought_products')
