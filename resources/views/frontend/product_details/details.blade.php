@@ -235,29 +235,52 @@
 
     }
 
-
-    /* this is for share button and social icons  */
-    .social-share {
+.social-share {
     text-align: center;
     margin-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.share-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 15px;
+    border: none;
+    background-color: #fff;
+    color: #333;
+    font-size: 20px;
+    cursor: pointer;
+    transition: color 0.3s ease, background-color 0.3s ease;
+    justify-content: center;
 }
 
-.share-btn {
-    width: 100%;
-    padding: 10px 20px;
-    font-size: 16px;
-    border: none;
-    background: var(--primary);
-    color: white;
-    cursor: pointer;
-    border-radius: 5px;
-    transition: 0.3s ease-in-out;
+.share-btn i {
+    transition: color 0.3s ease, transform 0.3s ease;
 }
 
 .share-btn:hover {
-    background: var(--primary);
+    color: var(--primary); /* Change text color on hover */
 }
 
+.share-btn:hover i {
+    color: var(--primary);/* Change icon color on hover */
+    transform: scale(1.1); /* Slightly enlarge icon */
+}
+
+.wishlist-icon {
+    font-size: 20px;
+    margin-right: 5px;
+    cursor: pointer;
+    color: #333; /* Default color */
+    transition: color 0.3s ease, background-color 0.3s ease;
+}
+
+.wishlist-icon.active {
+    color: var(--primary);/* Active color when clicked */
+    transform: scale(1.2);
+}
 
 /* Popup Styles */
 .popup {
@@ -527,7 +550,11 @@
                     @endif
                 </div>
                 <div class="social-share">
-                    <button class="share-btn" onclick="openSharePopup()">Share</button>
+                    <button class="share-btn" onclick="openSharePopup()">
+                        <i class="fa-solid fa-share"> </i>Share
+                    </button>
+                    
+                    <i class="fa-solid fa-heart wishlist-icon"></i> Whislist
                 
                     <!-- Popup Modal -->
                     <div id="sharePopup" class="popup">
@@ -1167,4 +1194,14 @@ window.onclick = function(event) {
         closeSharePopup();
     }
 };
+
+
+document.addEventListener("DOMContentLoaded", function () {
+    const wishlistIcon = document.querySelector(".wishlist-icon");
+
+    wishlistIcon.addEventListener("click", function () {
+        this.classList.toggle("active"); // Toggle the active class
+    });
+});
+
 </script>
