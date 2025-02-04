@@ -286,7 +286,7 @@ class CheckoutController extends Controller
     {
        
         // Retrieve session data
-        $payment_option = $request->session()->get('payment_option');
+        $payment_option = $request->payment_method ?? 'cash_on_delivery';
         $payment_data = $request->session()->get('payment_data');
         $user_id = Auth::id();
 
@@ -297,7 +297,7 @@ class CheckoutController extends Controller
 
         $address_type = $request->delivery_type ?? '';
         $address_label = $request->address_label ?? '(No Label)';
-        $selected_address_id = $request->selected_address_id;
+        $selected_address_id = !empty($request->selected_address_id) ? $request->selected_address_id : null;
 
         $shipping_address = [];
         
@@ -356,8 +356,8 @@ class CheckoutController extends Controller
 
         }
     
-          // Update carts with the address_id
-          foreach ($carts as $cart) {
+        // Update carts with the address_id
+        foreach ($carts as $cart) {
             $cart->address_id = $selected_address_id;
             $cart->save();
         }
@@ -389,7 +389,7 @@ class CheckoutController extends Controller
 
         // Redirect to the order confirmation page
         flash(translate('Your order has been placed successfully!'))->success();
-        return redirect()->route('order_confirmed');
+        return redirect()->route('thank-you');
     }
 
 

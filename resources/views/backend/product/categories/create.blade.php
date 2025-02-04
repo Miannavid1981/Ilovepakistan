@@ -113,7 +113,7 @@
                             <textarea name="meta_description" rows="5" class="form-control"></textarea>
                         </div>
                     </div>
-                    @if (get_setting('category_wise_commission') == 1)
+                  
                         <div class="form-group row">
                             <label class="col-md-3 col-form-label">{{translate('Commission Rate')}}</label>
                             <div class="col-md-9 input-group">
@@ -123,7 +123,7 @@
                                 </div>
                             </div>
                         </div>
-                    @endif
+                  
                     <div class="form-group row">
                         <label class="col-md-3 col-form-label">{{translate('Filtering Attributes')}}</label>
                         <div class="col-md-9">
