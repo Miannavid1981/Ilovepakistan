@@ -1,4 +1,182 @@
-<div class="payment-method">
+<style>
+    .payment-method-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .payment-method-header img {
+      width: 24px;
+      margin-left: 8px;
+    }
+
+    .payment-method-details {
+      background-color: #f8f9fa;
+      padding: 1rem;
+      /* border-top: 1px solid #dedede; */
+    }
+
+    .redirect-info {
+      display: flex;
+      align-items: center;
+      margin-top: 1rem;
+    }
+
+    .redirect-info img {
+      width: 32px;
+      margin-right: 10px;
+    }
+
+    input[type="radio"] {
+
+        appearance: none;
+
+        width: 20px;
+
+        height: 20px;
+
+        border: 2px solid #999;
+
+        border-radius: 50%;
+
+        position: relative;
+
+    }
+
+    input[type="radio"]:checked::after {
+
+        content: '';
+
+        position: absolute;
+
+        width: 12px;
+
+        height: 12px;
+
+        background: black;
+
+        border-radius: 50%;
+
+        top: 50%;
+
+        left: 50%;
+
+        transform: translate(-50%, -50%);
+
+    }
+    .card {
+        border-radius: 0 !important;
+    }
+    .card:not(:last-child) {
+        border-bottom: unset !important;
+        /* border-top: unset !important; */
+    }
+    .card:has( input:checked) > .card-header {
+        border: 1px solid #000 !important;
+        transition:  all .1s ease-in-out
+    }
+    .card .card-header {
+        width: 100% !important
+    }
+
+    .card:not(:first-child) .card-body {
+        margin: 2px 0 !important;
+    }
+
+  </style>
+
+  <div class="accordion" id="paymentAccordion">
+
+    <div class="card mb-0 shadow-none p-0" style="border: 1px solid #c1c1c1;">
+        <div class="card-header p-0" id="cash_on_deliveryHeading">
+          
+            <button class="btn btn-link text-decoration-none w-100 p-0 "  type="button" data-toggle="collapse" data-target="#cash_on_delivery">
+              <label class="payment-method-header d-flex justify-content-between w-100 mb-0 p-2 px-3">
+                  <div class="  text-dark d-flex align-items-center mb-0">
+                    <input type="radio" class=" mb-0 me-2" name="payment_method" value="cash_on_delivery" checked> Cash On Delivery
+                  </div>
+                  <span>
+                      <img src="https://static.vecteezy.com/system/resources/previews/014/455/904/non_2x/delivery-truck-icon-icon-on-transparent-background-free-png.png" style="width: 35px; height: auto" alt="Discover">
+                  </span>
+              </label>
+            </button>
+          
+        </div>
+        <div id="cash_on_delivery" class="collapse show" aria-labelledby="cash_on_deliveryHeading" data-parent="#paymentAccordion">
+          <div class="card-body payment-method-details p-0 m-0">
+         
+          </div>
+        </div>
+      </div>
+   
+
+    <!-- PayPal Option -->
+    <div class="card mb-0 shadow-none p-0" style="border: 1px solid #c1c1c1;">
+      <div class="card-header p-0" id="direct_bank_transferHeading">
+        
+          <button class="btn btn-link text-decoration-none w-100 p-0 collapsed" type="button" data-toggle="collapse" data-target="#direct_bank_transfer">
+            <label class="payment-method-header d-flex justify-content-between w-100 mb-0 p-2 px-3">
+                <div class="  text-dark d-flex align-items-center mb-0">
+                  <input type="radio" class=" mb-0 me-2" name="payment_method" value="direct_bank_transfer"> Direct Bank Transfer
+                </div>
+                <span>
+                    <img src="https://dogmovers.com.au/app/uploads/2021/03/Bank-transfer-logo-250x160-1.png" style="width: 45px; height: auto" alt="Discover">
+                  </span>
+              </label>
+          </button>
+        
+      </div>
+      <div id="direct_bank_transfer" class="collapse" aria-labelledby="direct_bank_transferHeading" data-parent="#paymentAccordion">
+        <div class="card-body payment-method-details p-4 bg-light">
+          You will be redirected to PayPal to complete your purchase securely.
+        </div>
+      </div>
+    </div>
+ <!-- Credit Card Option -->
+ <div class="card mb-0 shadow-none p-0" style="border: 1px solid #c1c1c1;">
+    <div class="card-header p-0" id="creditCardHeading">
+      
+        <button class="btn btn-link text-decoration-none w-100 p-0 collapsed" type="button" data-toggle="collapse" data-target="#creditCard" aria-expanded="true">
+          <label class="payment-method-header d-flex justify-content-between w-100 mb-0 p-2 px-3">
+            <div class="  text-dark d-flex align-items-center mb-0">
+            
+              <input type="radio" class=" mb-0 me-2" name="payment_method" value="credit_card"  > Credit Card
+            </div>
+            <span>
+              <img src="https://img.icons8.com/color/48/visa.png" alt="Visa">
+              <img src="https://img.icons8.com/color/48/mastercard.png" alt="MasterCard">
+              <img src="https://img.icons8.com/color/48/amex.png" alt="Amex">
+              <img src="https://img.icons8.com/color/48/discover.png" alt="Discover">
+            </span>
+          </label>
+        </button>
+      
+    </div>
+    <div id="creditCard" class="collapse " aria-labelledby="creditCardHeading" data-parent="#paymentAccordion">
+      <div class="card-body payment-method-details p-4 bg-light">
+        Enter your credit card details securely to complete the payment.
+      </div>
+    </div>
+  </div>
+   
+  </div>
+<script>
+$("#paymentAccordion .card-header, #pau").click(function(){
+    $(this).closest("input").click()
+    $(this).closest("input").prop("checked", true)
+});
+
+</script>
+
+
+
+
+
+
+
+
+
+<div class="payment-method d-none">
                         
     <!-- Paypal -->
     @if (get_setting('paypal_payment') == 1)

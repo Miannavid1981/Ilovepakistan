@@ -320,16 +320,17 @@
         opacity: 0;
      } */
 .addresses {
-    border-top: 2px solid #dedede;
-    border-right: 2px solid #dedede;
-    border-left: 2px solid #dedede;
+    border-top: 1px solid #dedede;
+    border-right: 1px solid #dedede;
+    border-left: 1px solid #dedede;
 
 }
 .address_item {
-    border-bottom: 2px solid #dedede;
+    border-bottom: 1px solid #dedede;
     display: grid;
     grid-template-columns: 1.5fr 1fr;
     gap: 20px;
+    margin-bottom: 0;
 
 }
 
@@ -344,11 +345,11 @@
     padding: 0.6rem 1rem;
     font-size: 1rem;
     height: calc(1.3125rem + 1.2rem + 2px);
-    border: 1px solid #dfdfe6;
+
     color: #333;
     /* padding: 20px !important; */
    
-    border: 2px solid #e0e0e0;
+    border: 1px solid #dedede;
     border-radius: 0 !important;
     font-weight: 300  !important;
 }
@@ -411,6 +412,10 @@
     transform: scale(1.1) ;
     border: 1px solid #000;
     
+}
+
+.address_item:has(input:checked){
+    border: 1px solid #000
 }
 
 </style>
@@ -560,7 +565,7 @@
         </div>
 
         <!-- Summary Section -->
-        <div class="checkout_columns" style="background: #f5f5f5; border-left: 2px solid #DEDEDE;">
+        <div class="checkout_columns" style="background: #f5f5f5; border-left: 1px solid #DEDEDE;">
             <div style="position: sticky; top: 20px;">
            
             <br>
@@ -646,7 +651,6 @@
 $(document).ready(function() {
 
    
-
     // Attach a change event handler to the radio buttons
     $('.delivery_type input').click(function() {
         // alert("t"+$('input[name="delivery_type"]:checked').val())
@@ -654,6 +658,7 @@ $(document).ready(function() {
         $('#shipping_info').hide();
         $("#shipping_preloader").attr("style", 'display: flex')
         var delivery_type = $('input[name="delivery_type"]:checked').val();
+        
         // console.log("Selected delivery type: " + selectedValue);
         $.ajax({
             headers: {

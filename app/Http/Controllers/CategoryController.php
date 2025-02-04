@@ -50,7 +50,7 @@ class CategoryController extends Controller
             ->with('childrenCategories')
             ->get();
 
-        return view('backend.product.categories.create', compact('categories'));
+    return view('backend.product.categories.create', compact('categories'));
     }
 
     /**
