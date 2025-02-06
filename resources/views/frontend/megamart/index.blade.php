@@ -493,6 +493,7 @@
             </div>
         </div>
     </div>
+    @include('frontend/megamart/partials/brand_slider');
 
     <!-- Flash Deal -->
     @php
@@ -595,7 +596,7 @@
         </section>
     @endif
 
-    @include('frontend/megamart/partials/brand_slider')
+    
     <!-- Today's deal -->
     @php
         $todays_deal_section_bg = get_setting('todays_deal_section_bg_color');
