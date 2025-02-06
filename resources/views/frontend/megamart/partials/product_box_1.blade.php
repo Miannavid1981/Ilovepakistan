@@ -275,7 +275,12 @@ if(!empty($product->product_custom_url)){
 
             <!-- Product name -->
 
-            <button class="custom_card_tag mb-1"> Tag</button>
+            <!-- Product Categories -->
+    @if($product->categories)
+    @foreach ($product->categories as $category)
+        <button class="custom_card_tag mb-1">{{ $category->getTranslation('name') }}</button>
+    @endforeach
+@endif
             <h3 class="fw-400 fs-18 lh-1-4 mb-0 mt-1">
 
                 
