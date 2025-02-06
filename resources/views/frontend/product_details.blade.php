@@ -512,6 +512,10 @@
             document.getElementById(targetTab).classList.add("active");
         });
     });
+
+    // Set the first tab and content as active by default on page load
+    tabs[0].classList.add("active");
+    tabPanes[0].classList.add("active");
 });
 
     </script>
