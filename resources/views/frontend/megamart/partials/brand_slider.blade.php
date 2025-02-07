@@ -20,11 +20,11 @@
 }
 
 .brand-logos-slider .slide img {
-    height: 100px; /* Adjust height as needed */
-    width: auto; /* Keeps aspect ratio */
-    object-fit: contain; /* Ensures images fit nicely */
+    height: 50px;
+    width: auto;
+    object-fit: contain;
+    width: 100%;
 }
-
     </style>
     <div class="container">
        <hr>
