@@ -40,11 +40,7 @@
 
 
             @foreach ( $brands_slides as $slide )
-
-                @php
-                    dd($slide );
-                @endphp
-                <div class="slide"><img src="https://logopond.com/logos/dc5cc8314658dcbce4536affc4772f78.png" alt="Logo"></div>
+                <div class="slide"><img src="{{ uploaded_asset($brand->logo) }}" alt="{{translate('Brand')}}"></div>
             @endforeach
             
          
