@@ -100,6 +100,7 @@ Route::controller(LoginController::class)->group(function () {
     Route::post('/apple-callback', 'handleAppleCallback');
     Route::get('/account-deletion', 'account_deletion')->name('account_delete');
     Route::get('/handle-demo-login', 'handle_demo_login')->name('handleDemoLogin');
+    Route::post('/login', 'login')->name('login')->middleware('handle-demo-login');
 });
 
 Route::controller(VerificationController::class)->group(function () {
@@ -110,6 +111,7 @@ Route::controller(VerificationController::class)->group(function () {
 Route::controller(HomeController::class)->group(function () {
     Route::get('/email-change/callback', 'email_change_callback')->name('email_change.callback');
     Route::post('/password/reset/email/submit', 'reset_password_with_code')->name('password.update');
+    
     Route::get('/login', 'login')->name('user.login')->middleware('handle-demo-login');
     Route::get('/admin/login', 'login')->name('admin.login')->middleware('handle-demo-login');
     Route::get('/seller/login', 'login')->name('seller.login')->middleware('handle-demo-login');
