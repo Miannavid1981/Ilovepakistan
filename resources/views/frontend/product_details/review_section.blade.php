@@ -1,8 +1,8 @@
 <div class="bg-white border mb-4">
     <div class="p-3 p-sm-4">
-        <h3 class="fs-16 fw-700 mb-0">
+        {{-- <h3 class="fs-16 fw-700 mb-0">
             <span class="mr-4">{{ translate('Reviews & Ratings') }}</span>
-        </h3>
+        </h3> --}}
     </div>
     <!-- Ratting -->
     <div class="px-3 px-sm-4 mb-4">
