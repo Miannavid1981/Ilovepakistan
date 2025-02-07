@@ -110,8 +110,8 @@ Route::controller(VerificationController::class)->group(function () {
 Route::controller(HomeController::class)->group(function () {
     Route::get('/email-change/callback', 'email_change_callback')->name('email_change.callback');
     Route::post('/password/reset/email/submit', 'reset_password_with_code')->name('password.update');
-
-    Route::get('/users/login', 'login')->name('user.login')->middleware('handle-demo-login');
+    Route::get('/login', 'login')->name('user.login')->middleware('handle-demo-login');
+    Route::get('/admin/login', 'login')->name('admin.login')->middleware('handle-demo-login');
     Route::get('/seller/login', 'login')->name('seller.login')->middleware('handle-demo-login');
     Route::get('/deliveryboy/login', 'login')->name('deliveryboy.login')->middleware('handle-demo-login');
     Route::get('/users/registration', 'registration')->name('user.registration')->middleware('handle-demo-login');
