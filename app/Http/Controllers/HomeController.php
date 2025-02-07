@@ -109,7 +109,7 @@ class HomeController extends Controller
         } else if (Route::currentRouteName() == 'deliveryboy.login' && addon_is_activated('delivery_boy')) {
             return view('auth.' . get_setting('authentication_layout_select') . '.deliveryboy_login');
         }
-        return view('auth.' . get_setting('authentication_layout_select') . '.s');
+        return view('auth.' . get_setting('authentication_layout_select') . '.user_login');
     }
 
     public function registration(Request $request)
