@@ -40,7 +40,7 @@
 
 
             @foreach ( $brands_slides as $slide )
-                <div class="slide"><img src="{{ uploaded_asset($brand->logo) }}" alt="{{translate('Brand')}}"></div>
+                <div class="slide"><img src="{{ uploaded_asset($slide->logo) }}" alt="{{translate('Brand')}}"></div>
             @endforeach
             
          
