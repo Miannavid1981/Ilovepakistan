@@ -495,3 +495,7 @@ Route::post('/cart/add', [CustomCartController::class, 'addToCart']);
 Route::post('/cart/remove', [CustomCartController::class, 'removeFromCart']);
 Route::post('/cart/update', [CustomCartController::class, 'updateCart']);
 Route::get('/ajax/cart', [CustomCartController::class, 'getCart']);
+
+
+
+Route::get('/order-received/{id}',  [CheckoutController::class, 'thank_you'])->name('order-received');

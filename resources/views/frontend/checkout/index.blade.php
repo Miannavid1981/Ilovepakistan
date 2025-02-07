@@ -658,8 +658,7 @@ $(document).ready(function() {
         $('#shipping_info').hide();
         $("#shipping_preloader").attr("style", 'display: flex')
         var delivery_type = $('input[name="delivery_type"]:checked').val();
-        
-        // console.log("Selected delivery type: " + selectedValue);
+
         $.ajax({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

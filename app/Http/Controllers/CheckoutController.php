@@ -298,10 +298,10 @@ class CheckoutController extends Controller
         $address_type = $request->delivery_type ?? '';
         $address_label = $request->address_label ?? '(No Label)';
         $selected_address_id = !empty($request->selected_address_id) ? $request->selected_address_id : null;
-
+        // dd($selected_address_id);
         $shipping_address = [];
         
-        if ($selected_address_id) {
+        if (!empty($selected_address_id)){
             $address = Address::find($selected_address_id);
             $state = \App\Models\State::where("id", $address->state_id)->first();
             $country = \App\Models\Country::where("id",$address->country_id)->first();
@@ -312,7 +312,7 @@ class CheckoutController extends Controller
                 'email' => Auth::user()->email,
                 'phone' => $address->phone,
                 'address' => $address->address,
-               'city' => $city ? $city->name : '',
+                'city' => $city ? $city->name : '',
                 'state' => $state ? $state->name : '',
                 'postal_code' => $address->postal_code,
                 'country' => $country ? $country->name : '',
@@ -361,7 +361,7 @@ class CheckoutController extends Controller
             $cart->address_id = $selected_address_id;
             $cart->save();
         }
-        $request->merge(['shipping_address' => json_encode($shipping_address)]);
+        $request->merge(['shipping_address' => json_encode($shipping_address), 'address_type' => $address_type]);
 
 
         // Check if the cart is empty
@@ -385,11 +385,11 @@ class CheckoutController extends Controller
         (new OrderController)->store($request, $payment_option, $payment_data);
 
         // Clear the user's cart
-        Cart::where('user_id', $user_id)->where('checked', 1)->delete();
+        Cart::where('user_id', $user_id)->delete();
 
         // Redirect to the order confirmation page
         flash(translate('Your order has been placed successfully!'))->success();
-        return redirect()->route('thank-you');
+        return redirect()->route('order-received', ['id' => 'BH000'.Session::get('combined_order_id')]);
     }
 
 
@@ -738,4 +738,12 @@ class CheckoutController extends Controller
     //     session()->forget(['payment_type', 'payment_option', 'payment_data', 'combined_order_id']);
     //     return view('frontend.order_confirmed', compact('combined_order'));
     // }
+    public function thank_you(Request $request, $id){
+        $id = intval(str_replace('BH', "",  $id));
+        // dd($id);
+        $order = CombinedOrder::where('id', $id)->first();
+        // dd($order);
+        return view('frontend.checkout.thankyou', ['order_id'=> $id, 'order'=> $order]);
+    }
 }
+
