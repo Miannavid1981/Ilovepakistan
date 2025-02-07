@@ -2930,6 +2930,6 @@ if (!function_exists('get_percentage_amount')) {
         // Calculate the percentage amount
         $result = ($percentage / 100) * $amount;
 
-        return $result;
+        return (int) $result;
     }
 }

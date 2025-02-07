@@ -29,14 +29,25 @@
     <div class="container">
        <hr>
         <section class="brand-logos-slider slider">
-            <div class="slide"><img src="https://logopond.com/logos/dc5cc8314658dcbce4536affc4772f78.png" alt="Logo"></div>
-            <div class="slide"><img src="https://logopond.com/logos/dc5cc8314658dcbce4536affc4772f78.png" alt="Logo"></div>
-            <div class="slide"><img src="https://logopond.com/logos/dc5cc8314658dcbce4536affc4772f78.png" alt="Logo"></div>
-            <div class="slide"><img src="https://logopond.com/logos/dc5cc8314658dcbce4536affc4772f78.png" alt="Logo"></div>
-            <div class="slide"><img src="https://logopond.com/logos/dc5cc8314658dcbce4536affc4772f78.png" alt="Logo"></div>
-            <div class="slide"><img src="https://logopond.com/logos/dc5cc8314658dcbce4536affc4772f78.png" alt="Logo"></div>
-            <div class="slide"><img src="https://logopond.com/logos/dc5cc8314658dcbce4536affc4772f78.png" alt="Logo"></div>
-            <div class="slide"><img src="https://logopond.com/logos/dc5cc8314658dcbce4536affc4772f78.png" alt="Logo"></div>
+
+            @php
+                $brands_slides = \App\Models\Brand::all();
+
+               // dd($brands_slides);
+
+            @endphp
+
+
+
+            @foreach ( $brands_slides as $slide )
+
+                @php
+                    dd($slide );
+                @endphp
+                <div class="slide"><img src="https://logopond.com/logos/dc5cc8314658dcbce4536affc4772f78.png" alt="Logo"></div>
+            @endforeach
+            
+         
         </section>
         <hr>
     </div>

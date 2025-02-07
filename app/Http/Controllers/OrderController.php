@@ -268,45 +268,99 @@ class OrderController extends Controller
                     $admin_id = $admin_user->id;
 
                     $target_cat = Category::where("id",$product->category_id)->first();
-
-                    $admin_commission_rate = $target_cat->commision_rate;
-                    $seller_commission_rate = $target_cat->seller_commission_rate;
-
-                    $item_price = 250000;
-                   
-                    $admin_profit_per_amount = get_percentage_amount($admin_commission_rate, $item_price);
-                    $brand_profit_amount = $item_price - $admin_profit_per_amount;
-
-                   
-
-                
-                    $order_detail->source_seller_profit_per = $seller_commission_rate;
-                    $order_detail->source_seller_profit_amount = $brand_profit_amount;
-                    $order_detail->source_seller_id = $source_seller_id;
-                    $order_detail->seller_id = $seller_id;
-
-                    $seller_profit = 0;
-                    if($source_seller_id != $seller_id){
-                        
-                        $seller_profit_per_amount = get_percentage_amount($seller_commission_rate, $admin_profit_per_amount);
-                        $seller_profit = ($seller_commission_rate / 100) * $admin_profit_per_amount;
-
-                    } 
-
-
+                    // dd($target_cat);
+                    $admin_commission_type = null;
+                    $seller_commission_type = null;
                     
-                    $admin_profit_final_amount = $admin_profit_per_amount - $seller_profit;
+                    $admin_commission_rate = null;
+                    $seller_commission_rate = null;
+                    $brand_profit_amount = null;
+                    $seller_profit = null;
+                    $admin_profit_per_amount = null;
+                    $admin_profit_final_amount = null;
+                    $commission = 0;
 
+                    if($target_cat->commission == 1){
+                        $commission = 1;
+                        $admin_commission_type = $target_cat->commission_rate_type;
+                        $seller_commission_type = $target_cat->seller_commission_rate_type;
 
+                        $admin_commission_rate = (float) $target_cat->commision_rate;
+                        $seller_commission_rate = (float)  $target_cat->seller_commission_rate;
 
+                    } else {
 
-                    $order_detail->admin_profit_per = $admin_commission_rate;
-                    $order_detail->admin_profit_amount = $admin_profit_per_amount;
+                        if($product->commission == 1){
+                            $commission = 1;
+                            $admin_commission_type = $product->admin_commission_type;
+                            $seller_commission_type = $product->seller_commission_type;
+                            
+                            $admin_commission_rate = (float)  $product->admin_commission_rate;
+                            $seller_commission_rate = (float)  $product->seller_commission_rate;
+                        }
+                        
 
+                    }
+                    
+                    
+                    $item_price = 250000; // Example item price
 
-                    dd($item_price, $cartItem['quantity'], $brand_profit_amount, $admin_profit_per_amount, $seller_profit, $admin_profit_final_amount,  $product_seller_map);
-                
+                    if($commission ) {
+                        
+                        echo "commission on";
+                        
+                        if( !empty($admin_commission_type) && !empty($admin_commission_rate)  ){
+
+                            echo "rate and type ".$admin_commission_type;
+
+                            // Calculate admin profit per amount depending on the commission type (percentage or fixed amount)
+                            if ($admin_commission_type === 'percentage') {
+                                $admin_profit_per_amount = get_percentage_amount($admin_commission_rate, $item_price);
+                            } else {
+                                // If it's an amount, use it directly
+                                $admin_profit_per_amount = $admin_commission_rate;
+                            }
+                            
+                            $brand_profit_amount = $item_price - $admin_profit_per_amount;
+                            
+                            $order_detail->source_seller_profit_per = $seller_commission_rate;
+                            $order_detail->source_seller_profit_amount = $brand_profit_amount;
+                            $order_detail->source_seller_id = $source_seller_id;
+                            $order_detail->seller_id = $seller_id;
+                            
+                            $seller_profit = 0;
+                            if ($source_seller_id != $seller_id) {
+
+                                if( !empty($seller_commission_type) && !empty($seller_commission_rate)  ){
+                                    // Handle seller commission
+                                    if ($seller_commission_type === 'percentage') {
+                                        $seller_profit_per_amount = get_percentage_amount($seller_commission_rate, $admin_profit_per_amount);
+                                        $seller_profit = (int) ($seller_commission_rate / 100) * $admin_profit_per_amount;
+                                    } else {
+                                        // If it's a fixed amount, use the fixed value
+                                        $seller_profit_per_amount = $seller_commission_rate;
+                                        $seller_profit =  (int)  $seller_commission_rate; // Fixed amount, so no percentage calculation needed
+                                    }
+                                }
+                            }
+                            
+                            // Final admin profit after subtracting seller's profit
+                            $admin_profit_final_amount = $admin_profit_per_amount - $seller_profit;
+                            
+                            // Assign final admin profit to order detail
+                            $order_detail->admin_profit_per = $admin_commission_rate;
+                            $order_detail->admin_profit_amount = $admin_profit_per_amount;
+                            
+                            
+                            
+
+                        } 
+                    }
+                    dd($item_price, $cartItem['quantity'], $brand_profit_amount, $admin_profit_per_amount, $seller_profit, $admin_profit_final_amount, $product_seller_map);
+                   
                 }
+
+
              
                 $order_detail->save();
 
