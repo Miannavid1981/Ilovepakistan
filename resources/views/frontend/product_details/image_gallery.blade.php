@@ -126,6 +126,7 @@ $photos = [];
 .fullscreen img {
     width: 90%;
     max-height: 90%;
+    object-fit: contain;
     border-radius: 10px;
 }
 
@@ -185,7 +186,10 @@ $photos = [];
 <body>
     <!-- Main image -->
     <div class="slider-container">
-        <img src="{{ uploaded_asset($photos[0]) }}" class="main-image" id="mainImage" onclick="openFullscreen()">
+        <div class="w-auto h-full">
+            <img src="{{ uploaded_asset($photos[0]) }}" class="main-image" id="mainImage" onclick="openFullscreen()">
+        </div>
+        
     </div>
 
     <!-- Thumbnail section -->
