@@ -287,7 +287,7 @@
 
     <!-- Category-end -->
 </div>
-<img src="{{ static_asset('assets/img/mainbanner.jpg') }}" class="w-100 mt-2">
+<img src="{{ static_asset('/public/assets/img/mainbanner.jpg') }}" class="w-100 mt-2">
 
 
 <!-- Category-start -->
@@ -493,7 +493,7 @@
             </div>
         </div>
     </div>
-    @include('frontend/megamart/partials/brand_slider');
+   
 
     <!-- Flash Deal -->
     @php
@@ -596,6 +596,7 @@
         </section>
     @endif
 
+    @include('frontend/megamart/partials/brand_slider');
     
     <!-- Today's deal -->
     @php
