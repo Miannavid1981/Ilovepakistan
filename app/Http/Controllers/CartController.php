@@ -41,6 +41,7 @@ class CartController extends Controller
             $carts = $carts->fresh();
         }
 
+       
         return view('frontend.view_cart', compact('carts'));
     }
 

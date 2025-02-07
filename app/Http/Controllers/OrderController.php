@@ -26,6 +26,9 @@ use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Notification;
 use App\Notifications\OrderNotification;
 use App\Utility\EmailUtility;
+use App\Models\Wallet;
+use App\Models\ProductSellerMap;
+use App\Models\Category;
 
 class OrderController extends Controller
 {
@@ -175,6 +178,8 @@ class OrderController extends Controller
         $combined_order = new CombinedOrder;
         $combined_order->user_id = Auth::user()->id;
         $combined_order->shipping_address = json_encode($shippingAddress);
+        $combined_order->payment_method = $request->payment_method;
+        $combined_order->order_type = $request->address_type;
         $combined_order->save();
 
         $seller_products = array();
@@ -210,6 +215,9 @@ class OrderController extends Controller
             foreach ($seller_product as $cartItem) {
                 $product = Product::find($cartItem['product_id']);
 
+               
+
+
                 $subtotal += cart_product_price($cartItem, $product, false, false) * $cartItem['quantity'];
                 $tax +=  cart_product_tax($cartItem, $product, false) * $cartItem['quantity'];
                 $coupon_discount += $cartItem['discount'];
@@ -220,18 +228,19 @@ class OrderController extends Controller
                 if ($product->digital != 1 && $cartItem['quantity'] > $product_stock->qty) {
                     flash(translate('The requested quantity is not available for ') . $product->getTranslation('name'))->warning();
                     $order->delete();
-                    return redirect()->route('cart')->send();
+                    
+                    return redirect()->route('home')->send();
                 } elseif ($product->digital != 1) {
                     $product_stock->qty -= $cartItem['quantity'];
                     $product_stock->save();
                 }
-
+                $item_price = cart_product_price($cartItem, $product, false, false) * $cartItem['quantity'];
                 $order_detail = new OrderDetail;
                 $order_detail->order_id = $order->id;
                 $order_detail->seller_id = $product->user_id;
                 $order_detail->product_id = $product->id;
                 $order_detail->variation = $product_variation;
-                $order_detail->price = cart_product_price($cartItem, $product, false, false) * $cartItem['quantity'];
+                $order_detail->price = $item_price;
                 $order_detail->tax = cart_product_tax($cartItem, $product, false) * $cartItem['quantity'];
                 $order_detail->shipping_type = $cartItem['shipping_type'];
                 $order_detail->product_referral_code = $cartItem['product_referral_code'];
@@ -245,7 +254,60 @@ class OrderController extends Controller
                 if (addon_is_activated('club_point')) {
                     $order_detail->earn_point = $product->earn_point;
                 }
+                $product_seller_map = ProductSellerMap::where('original_skin', $cartItem['skin_code'])->first();
+                if( $product_seller_map ) {
 
+                    $order_detail->item_skin = $product_seller_map->original_skin;
+                    $order_detail->item_enc_skin = $product_seller_map->encrypted_hash;
+
+
+                    
+                    $source_seller_id = $product_seller_map->source_seller_id ?? null;
+                    $seller_id = $product_seller_map->seller_id ?? null;
+                    $admin_user = User::where('email', 'admin@bighouz.com')->first();
+                    $admin_id = $admin_user->id;
+
+                    $target_cat = Category::where("id",$product->category_id)->first();
+
+                    $admin_commission_rate = $target_cat->commision_rate;
+                    $seller_commission_rate = $target_cat->seller_commission_rate;
+
+                    $item_price = 250000;
+                   
+                    $admin_profit_per_amount = get_percentage_amount($admin_commission_rate, $item_price);
+                    $brand_profit_amount = $item_price - $admin_profit_per_amount;
+
+                   
+
+                
+                    $order_detail->source_seller_profit_per = $seller_commission_rate;
+                    $order_detail->source_seller_profit_amount = $brand_profit_amount;
+                    $order_detail->source_seller_id = $source_seller_id;
+                    $order_detail->seller_id = $seller_id;
+
+                    $seller_profit = 0;
+                    if($source_seller_id != $seller_id){
+                        
+                        $seller_profit_per_amount = get_percentage_amount($seller_commission_rate, $admin_profit_per_amount);
+                        $seller_profit = ($seller_commission_rate / 100) * $admin_profit_per_amount;
+
+                    } 
+
+
+                    
+                    $admin_profit_final_amount = $admin_profit_per_amount - $seller_profit;
+
+
+
+
+                    $order_detail->admin_profit_per = $admin_commission_rate;
+                    $order_detail->admin_profit_amount = $admin_profit_per_amount;
+
+
+                    dd($item_price, $cartItem['quantity'], $brand_profit_amount, $admin_profit_per_amount, $seller_profit, $admin_profit_final_amount,  $product_seller_map);
+                
+                }
+             
                 $order_detail->save();
 
                 $product->num_of_sale += $cartItem['quantity'];
@@ -295,6 +357,9 @@ class OrderController extends Controller
         }
 
         $combined_order->save();
+
+
+        
 
         $request->session()->put('combined_order_id', $combined_order->id);
     }

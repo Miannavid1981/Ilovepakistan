@@ -69,7 +69,11 @@ class CompareController extends Controller
 
         $rn = curl_exec($stream);
         curl_close($stream);
+
+        
         $rn = "bad";
+
+
         if ($rn == "bad" && env('DEMO_MODE') != 'On') {
             translation_tables($unique_identifier);
             return redirect()->route('home');

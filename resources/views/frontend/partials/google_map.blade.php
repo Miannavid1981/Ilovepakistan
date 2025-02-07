@@ -155,7 +155,7 @@
         return addressParts.join(', ');
         
     }
-    if($(document).find('[name="selected_address_id"]').length == 0  ) {
+    if($(document).find('input[name="selected_address_id"]').length == 0  ) {
 
         document.getElementById("country").addEventListener("change", function () { 
             const fullAddress = get_full_address();

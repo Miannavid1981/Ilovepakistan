@@ -2918,3 +2918,18 @@ if (!function_exists('get_product_seller_map_skin')) {
         return $map->original_skin ?? null;
     }
 }
+
+if (!function_exists('get_percentage_amount')) {
+    function get_percentage_amount($percentage, $amount)
+    {
+        // Validate inputs
+        if (!is_numeric($percentage) || !is_numeric($amount)) {
+            return null;
+        }
+
+        // Calculate the percentage amount
+        $result = ($percentage / 100) * $amount;
+
+        return $result;
+    }
+}
