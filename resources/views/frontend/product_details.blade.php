@@ -109,7 +109,7 @@
     <section>
         <div class="container">
             <!-- Tabs section below the thumbnail slider -->
-            <div class="tabs-container mb-5">
+            <div class="tabs-container ">
                 <ul class="tabs">
                     <li class="tab active" data-tab="description">Description</li>
                     <li class="tab" data-tab="specifications">Specifications</li>
@@ -136,7 +136,7 @@
         </div>
     </section>
 
-    <section class="mb-4">
+    <section class="">
         <div class="container">
             @if ($detailedProduct->auction_product)
                 <!-- Reviews & Ratings -->

@@ -29,7 +29,7 @@ $photos = [];
     aspect-ratio: 1 / 1;
     border-radius: 10px;
     cursor: grab;
-    object-fit: contain;
+    object-fit: cover;
     object-position: center;
 }
 
@@ -111,6 +111,7 @@ $photos = [];
 /* Fullscreen styles */
 .fullscreen {
     position: fixed;
+    object-fit: cover;
     top: 0;
     left: 0;
     width: 100vw;
@@ -123,7 +124,7 @@ $photos = [];
 }
 
 .fullscreen img {
-    max-width: 90%;
+    width: 90%;
     max-height: 90%;
     border-radius: 10px;
 }
