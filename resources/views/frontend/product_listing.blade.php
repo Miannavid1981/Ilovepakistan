@@ -66,11 +66,14 @@
     }
 
     /* Range Slider */
-    .range-slider {
+            .range-slider {
         width: 300px;
         text-align: center;
         position: relative;
-    }
+        .rangeValues {
+            display: block;
+        }
+        }
 
     input[type="range"] {
         -webkit-appearance: none;
@@ -314,8 +317,8 @@
                         </div>
 
                         
-                        <h5>Size</h5>
-                        <div class="d-flex size-circle">
+                        <h5 class="mt-5">Size</h5>
+                        <div class="d-flex size-circle mb-5">
                             <div class="size">S</div>
                             <div class="size m">M</div>
                             <div class="size l">L</div>
@@ -323,7 +326,7 @@
                         </div>
                         
                     
-                        <h5 class="mt-3">Price Range</h5>
+                        <h5 class="mt-5">Price Range</h5>
                       
                        
                         <div class="range-slider mb-5">
@@ -333,8 +336,8 @@
 
                         </div>
 
-                        <h5>Colors</h5>
-                            <div class="color-selector">
+                        <h5 class="mt-5">Colors</h5>
+                            <div class="color-selector mb-5">
                                 <input type="radio" id="pink" name="color" checked>
                                 <label for="pink">
                                     <span class="color-dot" style="background-color: pink;"></span> Pink

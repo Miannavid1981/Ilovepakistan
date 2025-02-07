@@ -493,6 +493,7 @@
             </div>
         </div>
     </div>
+    @include('frontend/megamart/partials/brand_slider');
 
     <!-- Flash Deal -->
     @php
@@ -595,9 +596,11 @@
         </section>
     @endif
 
+    
     <!-- Today's deal -->
     @php
         $todays_deal_section_bg = get_setting('todays_deal_section_bg_color');
+
     @endphp
     <div id="todays_deal" @if(get_setting('todays_deal_section_bg') == 1) style="background: {{ $todays_deal_section_bg }};" @endif>
 
@@ -1128,3 +1131,31 @@
 
 @endsection
 
+
+
+@section('script')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.js"></script>
+<script>
+    $(document).ready(function(){
+        $('.brand-logos-slider').slick({
+            slidesToShow: 5,
+            slidesToScroll: 1,
+            autoplay: true,
+            autoplaySpeed: 1500,
+            arrows: false,
+            dots: false,
+            pauseOnHover: false,
+            responsive: [
+                {
+                    breakpoint: 768,
+                    settings: { slidesToShow: 3 }
+                },
+                {
+                    breakpoint: 520,
+                    settings: { slidesToShow: 2 }
+                }
+            ]
+        });
+    });
+</script>
+@endsection

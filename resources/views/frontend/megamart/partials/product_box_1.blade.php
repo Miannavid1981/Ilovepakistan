@@ -120,7 +120,7 @@ if(!empty($product->product_custom_url)){
 
             <div class="d-block h-100 position-relative">
 
-                <img class="lazyload mx-auto img-fit has-transition " style="aspect-ratio: 1.5 /1.8; border: 1px solid #dbdbdb; border-radius: 15px; !important; object-fit: contain"
+                <img class="lazyload mx-auto img-fit has-transition " style="aspect-ratio: 1.5 /1.8; border: 1px solid #dbdbdb; border-radius: 15px; !important;"
 
                     src="{{ $product->thumbnail != null ? my_asset($product->thumbnail->file_name) : static_asset('assets/img/placeholder.jpg') }}"
 
@@ -275,7 +275,12 @@ if(!empty($product->product_custom_url)){
 
             <!-- Product name -->
 
-            <button class="custom_card_tag mb-1"> Tag</button>
+            <!-- Product Categories -->
+    @if($product->categories)
+    @foreach ($product->categories as $category)
+        <button class="custom_card_tag mb-1">{{ $category->getTranslation('name') }}</button>
+    @endforeach
+@endif
             <h3 class="fw-400 fs-18 lh-1-4 mb-0 mt-1">
 
                 

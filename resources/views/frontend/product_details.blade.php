@@ -58,35 +58,36 @@
 @section('content')
 
 <style>
-     .tabs-container {
-        width: 100%;
-        text-align: center;
-        margin-top: 20px;
-    }
+.tabs {
+    display: flex;
+    gap: 10px;
+    list-style: none;
+    padding: 0;
+    font-size: 16px !important;
+}
 
-    .tabs {
-        list-style: none;
-        display: flex;
-        justify-content: center;
-        gap: 15px;
-        padding: 0;
-        margin: 0;
-        border-bottom: 2px solid #ddd;
-    }
+.tab {
+    padding: 10px 15px;
+    cursor: pointer;
+    border-bottom: 3px solid transparent;
+    transition: all 0.3s ease;
+}
+.tab:hover,
+.tab.active {
+    color: #000;
+    font-size: 18px;
+    transform: scale(1.1);
+    font-weight: bold;
+}
 
-    .tab {
-        padding: 10px 15px;
-        cursor: pointer;
-        font-weight: bold;
-        border-bottom: 2px solid transparent;
-        transition: 0.3s;
-    }
+/* Ensures tabs stay centered */
+.tabs-container,
+.tabs {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+}
 
-    .tab:hover,
-    .tab.active {
-        border-bottom: 2px solid #000;
-        color: #000;
-    }
 </style>
     <section class="mb-4 pt-3">
         <div class="container">
@@ -108,16 +109,30 @@
     <section>
         <div class="container">
             <!-- Tabs section below the thumbnail slider -->
-<div class="tabs-container mb-5">
-    <ul class="tabs">
-        <li class="tab active">Customer Reviews</li>
-        <li class="tab">Specifications</li>
-        <li class="tab">Description</li>
-        <li class="tab">Store</li>
-        <li class="tab">More to love</li>
-    </ul>
-</div>
-
+            <div class="tabs-container mb-5">
+                <ul class="tabs">
+                    <li class="tab active" data-tab="description">Description</li>
+                    <li class="tab" data-tab="specifications">Specifications</li>
+                    <li class="tab" data-tab="video">Video</li>
+                    <li class="tab" data-tab="downloads">Downloads</li>
+                    <li class="tab" data-tab="reviews">Customer reviews</li>
+                    <li class="tab" data-tab="shipping">Shipping info</li>
+                </ul>
+            </div>
+    
+            <!-- Tab Content -->
+            <div class="tab-content">
+                <div class="tab-pane active" id="description">
+                    @include('frontend.product_details.description')
+                </div>
+                <div class="tab-pane" id="specifications">Specifications Content</div>
+                <div class="tab-pane" id="downloads">Downloads Content</div>
+                <div class="tab-pane" id="video">Video Content</div>
+                <div class="tab-pane" id="reviews">
+                    @include('frontend.product_details.review_section')
+                </div>
+                <div class="tab-pane" id="shipping">Shipping Info Content</div>
+            </div>
         </div>
     </section>
 
@@ -125,10 +140,10 @@
         <div class="container">
             @if ($detailedProduct->auction_product)
                 <!-- Reviews & Ratings -->
-                @include('frontend.product_details.review_section')
+                {{-- @include('frontend.product_details.review_section') --}}
                 
                 <!-- Description, Video, Downloads -->
-                @include('frontend.product_details.description')
+                {{-- @include('frontend.product_details.description') --}}
                 
                 <!-- Product Query -->
                 @include('frontend.product_details.product_queries')
@@ -141,19 +156,19 @@
                         @include('frontend.product_details.seller_info')
 
                         <!-- Top Selling Products -->
-                       <div class="d-none d-lg-block">
+                       {{-- <div class="d-none d-lg-block">
                             @include('frontend.product_details.top_selling_products')
-                       </div>
+                       </div> --}}
                     </div>
 
                     <!-- Right side -->
                     <div class="col-lg-9">
                         
                         <!-- Reviews & Ratings -->
-                        @include('frontend.product_details.review_section')
+                        {{-- @include('frontend.product_details.review_section') --}}
 
                         <!-- Description, Video, Downloads -->
-                        @include('frontend.product_details.description')
+                        {{-- @include('frontend.product_details.description') --}}
                         
                         <!-- Frequently Bought products -->
                         @include('frontend.product_details.frequently_bought_products')
@@ -479,5 +494,29 @@
             this.classList.add("active");
         });
     });
+
+    document.addEventListener("DOMContentLoaded", function () {
+    const tabs = document.querySelectorAll(".tab");
+    const tabPanes = document.querySelectorAll(".tab-pane");
+
+    tabs.forEach(tab => {
+        tab.addEventListener("click", function () {
+            const targetTab = this.getAttribute("data-tab");
+
+            // Remove active class from all tabs and tab panes
+            tabs.forEach(t => t.classList.remove("active"));
+            tabPanes.forEach(pane => pane.classList.remove("active"));
+
+            // Add active class to the clicked tab and corresponding content
+            this.classList.add("active");
+            document.getElementById(targetTab).classList.add("active");
+        });
+    });
+
+    // Set the first tab and content as active by default on page load
+    tabs[0].classList.add("active");
+    tabPanes[0].classList.add("active");
+});
+
     </script>
 @endsection

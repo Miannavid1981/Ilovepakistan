@@ -139,17 +139,6 @@
       gap: 10px;
     }
 
-    /* .buy-now {
-      padding: 13px;
-      background: #ed3838;
-      color: #fff;
-      border: none;
-      border-radius: 4px;
-      font-size: 16px;
-      font-weight: 550;
-      cursor: pointer;
-    } */
-
     .add-to-cart, .buy-now {
             
         display: flex;
@@ -245,6 +234,121 @@
         font-size: 1.3rem;
 
     }
+
+.social-share {
+    text-align: center;
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.share-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 15px;
+    border: none;
+    background-color: #fff;
+    color: #333;
+    font-size: 20px;
+    cursor: pointer;
+    transition: color 0.3s ease, background-color 0.3s ease;
+    justify-content: center;
+}
+
+.share-btn i {
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.share-btn:hover {
+    color: var(--primary); /* Change text color on hover */
+}
+
+.share-btn:hover i {
+    color: var(--primary);/* Change icon color on hover */
+    transform: scale(1.1); /* Slightly enlarge icon */
+}
+
+.wishlist-icon {
+    font-size: 20px;
+    margin-right: 5px;
+    cursor: pointer;
+    color: #333; /* Default color */
+    transition: color 0.3s ease, background-color 0.3s ease;
+}
+
+.wishlist-icon.active {
+    color: var(--primary);/* Active color when clicked */
+    transform: scale(1.2);
+}
+
+/* Popup Styles */
+.popup {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+}
+
+.popup-content {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    width: 300px;
+    position: relative;
+}
+
+.close-btn {
+    position: absolute;
+    top: 0px;
+    bottom: 10px;
+    right: 15px;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+#qrCode {
+    margin: 15px 0;
+}
+
+/* Social Icons */
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.social-icon {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    border-radius: 50%;
+    color: white;
+    text-decoration: none;
+    transition: 0.3s ease-in-out;
+}
+
+/* Different Colors for Each Icon */
+.facebook { background: #1877F2; }
+.twitter { background: #1DA1F2; }
+.linkedin { background: #0077B5; }
+.whatsapp { background: #25D366; }
+
+/* Hover Effects */
+.social-icon:hover {
+    opacity: 0.8;
+}
+
+
   </style>
 
   <div class="row">
@@ -370,18 +474,6 @@
                 </div>
             @endif
             
-
-            <!-- <div class="shipping-info">
-                <strong>Ship to:</strong> <span class="location">Pakistan</span>
-                <p><span class="choice-label">Choice</span> <strong>AliExpress Commitment</strong></p>
-                <p><strong>Free shipping over PKR 2,786</strong></p>
-                <p>Delivery: <strong>Jan. 22 - Feb. 01</strong></p>
-            </div>
-            <div class="security-info">
-                <p>🔒 <strong>Security & Privacy</strong></p>
-                <small>Your information is protected. We do not share personal details.</small>
-            </div>
-             -->
             <div class="row  my-3">
                 
                 <div class="col-12">
@@ -458,10 +550,43 @@
                     @endif
                 </div>
                 <div class="social-share">
-                <div class="col-sm-12">
-                    <div class="aiz-share"></div>
+                    <button class="share-btn" onclick="openSharePopup()">
+                        <i class="fa-solid fa-share"> </i>Share
+                    </button>
+                    
+                    <i class="fa-solid fa-heart wishlist-icon"></i> Whislist
+                
+                    <!-- Popup Modal -->
+                    <div id="sharePopup" class="popup">
+                        <div class="popup-content">
+                            <span class="close-btn" onclick="closeSharePopup()">&times;</span>
+                            <h3>Scan & Share</h3>
+                
+                            <!-- QR Code -->
+                            <div id="qrCode">
+                                <img src="{{ static_asset('assets/img/istockphoto-828088276-612x612.jpg') }}" height="auto" width="100px">
+                            </div>
+                
+                            <!-- Social Media Icons -->
+                            <div class="social-links">
+                                <a href="https://www.facebook.com/sharer/sharer.php?u=YOUR_URL" target="_blank" class="social-icon facebook">
+                                    <i class="fab fa-facebook-f"></i>
+                                </a>
+                                <a href="https://twitter.com/intent/tweet?url=YOUR_URL" target="_blank" class="social-icon twitter">
+                                    <i class="fab fa-twitter"></i>
+                                </a>
+                                <a href="https://www.linkedin.com/sharing/share-offsite/?url=YOUR_URL" target="_blank" class="social-icon linkedin">
+                                    <i class="fab fa-linkedin-in"></i>
+                                </a>
+                                <a href="https://api.whatsapp.com/send?text=YOUR_URL" target="_blank" class="social-icon whatsapp">
+                                    <i class="fab fa-whatsapp"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
+                
+                
         </div>
     </div>
   </div>
@@ -1051,3 +1176,32 @@
         </div>
     </div>
 </div>
+
+
+<script>
+   function openSharePopup() {
+    document.getElementById("sharePopup").style.display = "flex";
+}
+
+function closeSharePopup() {
+    document.getElementById("sharePopup").style.display = "none";
+}
+
+// Close the popup when clicking outside the content
+window.onclick = function(event) {
+    let popup = document.getElementById("sharePopup");
+    if (event.target === popup) {
+        closeSharePopup();
+    }
+};
+
+
+document.addEventListener("DOMContentLoaded", function () {
+    const wishlistIcon = document.querySelector(".wishlist-icon");
+
+    wishlistIcon.addEventListener("click", function () {
+        this.classList.toggle("active"); // Toggle the active class
+    });
+});
+
+</script>

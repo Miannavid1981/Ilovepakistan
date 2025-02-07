@@ -23,7 +23,7 @@
                             <!-- Titles -->
                             <div class="text-center text-lg-left">
                                 <h1 class="fs-20 fs-md-24 fw-700 text-primary" style="text-transform: uppercase;">{{ translate('Welcome Back !')}}</h1>
-                                <h5 class="fs-14 fw-400 text-dark">{{ translate('Login to your account')}}</h5>
+                                <h5 class="fs-14 fw-400 text-dark">{{ translate('Login fjakjflkto your account')}}</h5>
                             </div>
                             <!-- Login form -->
                             <div class="pt-3 pt-lg-4">
