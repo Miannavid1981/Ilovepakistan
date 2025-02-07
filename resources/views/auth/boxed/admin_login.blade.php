@@ -27,6 +27,7 @@
                                 <div class="">
                                     <form class="form-default" role="form" action="{{ route('login') }}" method="POST">
                                         @csrf
+                                        <input type="hidden" name="user_type" value="admin">
                                         
                                         <!-- Email -->
                                         <div class="form-group">
