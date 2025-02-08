@@ -73,6 +73,13 @@
                         {{ translate('Frequently Bought') }}
                     </a>
                 </li>
+                 <!-- Frequently Bought Product -->
+                 <li class="nav-item">
+                    <a class="nav-link" id="product-commissions-tab" href="#product-commissions"
+                        data-toggle="tab" data-target="#product-commissions" type="button" role="tab" aria-controls="product-commissions" aria-selected="false">
+                        {{ translate('Commission & Profit') }}
+                    </a>
+                </li>
             </ul>
         </div>
 
@@ -853,7 +860,62 @@
                             </div>
                         </div>
                     </div>
+                    <div class="tab-pane fade" id="product-commissions" role="tabpanel" aria-labelledby="product-commissions-tab">
+                        <div class="bg-white p-3 p-sm-2rem">
+                            <!-- tab Title -->
+                            <h5 class="mb-1 pb-3 fs-17 fw-700">{{translate('Commission & Profit')}}
 
+                                
+                            </h5>
+                            
+                            <label class="aiz-switch aiz-switch-success mb-0">
+                                <input name="commission" id="commission" type="checkbox" value="1" {{ $product->commission == 1 ? 'checked' : '' }}>
+                                <span class="slider round"></span>
+                            </label>
+                            <br>
+                            <br>
+                            @php
+                                
+                                //dd($product);
+
+                            @endphp
+                            <div class="w-100">
+                                <label class="fs-15">Admin Profit</label>
+                                <div class="row">
+                                    <div class="col-md-3 col-4">
+                                        <select class="form-control" name="admin_commission_type">
+                                            <option value=""> - Type -</option>
+                                            <option value="percentage" {{ $product->admin_commission_type == 'percentage' ? 'selected' : '' }}> Percentage</option>
+                                            <option value="amount" {{ $product->admin_commission_type == 'amount' ? 'selected' : '' }}> Flat</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-3 col-8">
+                                        
+                                        <input type="number" class="form-control" name="admin_commission_rate" value="{{ $product->admin_commission_rate }}">
+                                    </div>
+                                </div>
+                                <br>
+                                <label class="fs-15">Local Seller</label>
+                                <div class="row">
+                                    <div class="col-md-3 col-4">
+                                        
+                                        <select class="form-control" name="seller_commission_type">
+                                            <option value=""> - Type -</option>
+                                            <option value="percentage" {{ $product->seller_commission_type == 'percentage' ? 'selected' : '' }}> Percentage</option>
+                                            <option value="amount" {{ $product->seller_commission_type == 'amount' ? 'selected' : '' }}> Flat</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-3 col-8">
+                                        
+                                        <input type="number" class="form-control"  name="seller_commission_rate" value="{{ $product->seller_commission_rate }}">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+
+
+                    </div>
                     <!-- Frequently Bought Product -->
                     <div class="tab-pane fade" id="frequenty-bought-product" role="tabpanel" aria-labelledby="frequenty-bought-product-tab">
                         <div class="bg-white p-3 p-sm-2rem">
@@ -1006,6 +1068,11 @@
 <script type="text/javascript">
     $(document).ready(function (){
         show_hide_shipping_div();
+
+
+        $("#commission").click(function(){
+            $(this).
+        });
 
         $("#treeview").hummingbird();
         var main_id = '{{ $product->category_id != null ? $product->category_id : 0 }}';

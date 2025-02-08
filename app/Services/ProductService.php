@@ -168,8 +168,12 @@ class ProductService
 
     public function update(array $data, Product $product)
     {
+       
         $collection = collect($data);
 
+        // dd($collection);
+        $commission = $data['commission'] ? 1 : 0;
+        
         $slug = Str::slug($collection['name']);
         $slug = $collection['slug'] ? Str::slug($collection['slug']) : Str::slug($collection['name']);
         $same_slug_count = Product::where('slug', 'LIKE', $slug . '%')->count();
@@ -299,6 +303,8 @@ class ProductService
         
         unset($collection['button']);
         
+       
+        
         $data = $collection->merge(compact(
             'discount_start_date',
             'discount_end_date',
@@ -307,9 +313,12 @@ class ProductService
             'colors',
             'choice_options',
             'attributes',
+            'commission'
         ))->toArray();
         
         $product->update($data);
+
+
 
         return $product;
     }

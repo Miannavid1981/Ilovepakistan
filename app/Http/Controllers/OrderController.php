@@ -348,7 +348,7 @@ class OrderController extends Controller
                             
                             // Assign final admin profit to order detail
                             $order_detail->admin_profit_per = $admin_commission_rate;
-                            $order_detail->admin_profit_amount = $admin_profit_per_amount;
+                            $order_detail->admin_profit_amount = $admin_profit_final_amount;
                             
                             
                             
