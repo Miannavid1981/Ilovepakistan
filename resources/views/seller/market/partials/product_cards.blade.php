@@ -109,7 +109,7 @@
                             $brand_profit_amount = $item_price - $admin_profit_per_amount;
                       
                             $seller_profit = 0;
-                            if ($source_seller_id != $seller_id) {
+                            
 
                                 if( !empty($seller_commission_type) && !empty($seller_commission_rate)  ){
                                     // Handle seller commission
@@ -122,7 +122,7 @@
                                         $seller_profit =  (int)  $seller_commission_rate; // Fixed amount, so no percentage calculation needed
                                     }
                                 }
-                            } 
+                            }
                             
                             // Final admin profit after subtracting seller's profit
                             $admin_profit_final_amount = $admin_profit_per_amount - $seller_profit;
