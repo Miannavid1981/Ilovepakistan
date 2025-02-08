@@ -533,6 +533,7 @@
                             // Generate the URL for the product
                             $product_url = url('/product/' . $product->slug . '/' . $encrypted_skin);
                             $product->product_custom_url = $product_url;
+                            $product->product_skin = $seller_map->original_skin;
                         @endphp
                         <div class="carousel-box px-3 position-relative has-transition hov-animate-outline border-right border-top border-bottom @if($key == 0) border-left @endif">
                             @include('frontend.' . get_setting('homepage_select') . '.partials.product_box_1', ['product' => $product, 'product_url' => $product_url])
