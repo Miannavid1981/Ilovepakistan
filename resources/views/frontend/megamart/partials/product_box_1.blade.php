@@ -3,7 +3,7 @@
 
     $cart_added = [];
 
-    dd($product->product_custom_url);
+    
 $product_url = route('product', $product->slug);
 
 if ($product->auction_product == 1) {
