@@ -528,7 +528,7 @@
                           //  $seller = \App\Models\User::find($shop->user->id);
                         
                             $seller_map = \App\Models\ProductSellerMap::where('product_id', $product->id)->where('seller_id', $shop->user->id)->where('imported', 1)->first();
-                            dd($seller_map);
+                          
                             $encrypted_skin = $seller_map->encrypted_hash ?? '';
                             // Generate the URL for the product
                             $product_url = url('/product/' . $product->slug . '/' . $encrypted_skin);
