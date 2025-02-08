@@ -49,7 +49,7 @@
                     </div>
 
                     @php
-
+                    $item_price = discount_in_percentage($product) > 0 ? home_discounted_base_price($product, false) : home_base_price($product, false);
                   
                     $admin_user = \App\Models\User::where('email', 'admin@bighouz.com')->first();
                     $admin_id = $admin_user->id;
