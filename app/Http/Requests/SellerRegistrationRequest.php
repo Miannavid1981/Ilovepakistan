@@ -30,7 +30,12 @@ class SellerRegistrationRequest extends FormRequest
         $rules = [];
         
         $rules['name']          = 'required|string|max:255';
-        $rules['email']         = 'required|email|unique:users|max:255';
+        $rules['email']         = [
+            'required', 
+            'email', 
+            'max:255', 
+            Rule::unique('users')->where('user_type', 'seller')
+        ];
         $rules['password' ]     = 'required|string|min:6|confirmed';
         $rules['shop_name' ]    = 'required|max:255';
         $rules['address']       = 'required';
