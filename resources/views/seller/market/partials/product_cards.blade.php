@@ -154,7 +154,7 @@
                    
 
                     @endphp
-                    <span class="profit_pill"> You'll earn PKR {{ $seller_profit }}</span>
+                    <span class="profit_pill"> You'll earn PKR {{ number_format($seller_profit) }}</span>
                     <input type="checkbox" 
                            name="product_ids[]" 
                            value="{{ $product->id }}" 
