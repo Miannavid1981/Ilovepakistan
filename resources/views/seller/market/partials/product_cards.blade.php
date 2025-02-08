@@ -51,10 +51,10 @@
                     @php
 
                   
-                    $admin_user = User::where('email', 'admin@bighouz.com')->first();
+                    $admin_user = \App\Models\User::where('email', 'admin@bighouz.com')->first();
                     $admin_id = $admin_user->id;
 
-                    $target_cat = Category::where("id",$product->category_id)->first();
+                    $target_cat = \App\Models\Category::where("id",$product->category_id)->first();
                         
 
                     $admin_commission_type = null;
