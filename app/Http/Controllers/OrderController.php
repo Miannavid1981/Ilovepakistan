@@ -306,11 +306,7 @@ class OrderController extends Controller
 
                     if($commission ) {
                         
-                        // echo "commission on";
-                        
                         if( !empty($admin_commission_type) && !empty($admin_commission_rate)  ){
-
-                            // echo "rate and type ".$admin_commission_type;
 
                             // Calculate admin profit per amount depending on the commission type (percentage or fixed amount)
                             if ($admin_commission_type === 'percentage') {
