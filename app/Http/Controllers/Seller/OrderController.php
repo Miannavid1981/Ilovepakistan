@@ -53,7 +53,7 @@ class OrderController extends Controller
             $order->viewed = 1;
             $order->save();
         }
-        dd($orders);
+       
 
         return view('seller.orders.index', compact('orders', 'payment_status', 'delivery_status', 'sort_search'));
     }
