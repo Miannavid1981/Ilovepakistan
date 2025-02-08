@@ -303,15 +303,15 @@ class OrderController extends Controller
                     }
                     
                     
-                    $item_price = 250000; // Example item price
+            
 
                     if($commission ) {
                         
-                        echo "commission on";
+                        // echo "commission on";
                         
                         if( !empty($admin_commission_type) && !empty($admin_commission_rate)  ){
 
-                            echo "rate and type ".$admin_commission_type;
+                            // echo "rate and type ".$admin_commission_type;
 
                             // Calculate admin profit per amount depending on the commission type (percentage or fixed amount)
                             if ($admin_commission_type === 'percentage') {
@@ -342,7 +342,7 @@ class OrderController extends Controller
                                         $seller_profit =  (int)  $seller_commission_rate; // Fixed amount, so no percentage calculation needed
                                     }
                                 }
-                            }
+                            } 
                             
                             // Final admin profit after subtracting seller's profit
                             $admin_profit_final_amount = $admin_profit_per_amount - $seller_profit;
@@ -356,8 +356,14 @@ class OrderController extends Controller
 
                         } 
                     }
-                    dd($item_price, $cartItem['quantity'], $brand_profit_amount, $admin_profit_per_amount, $seller_profit, $admin_profit_final_amount, $product_seller_map);
-                   
+                    // dd($item_price, $cartItem['quantity'], $brand_profit_amount, $admin_profit_per_amount, $seller_profit, $admin_profit_final_amount, $product_seller_map);
+                    
+
+                    // No profit for the seller if they are the same
+                    if ($source_seller_id != $seller_id) {
+                        $order_detail->seller_profit_per = $seller_profit_per_amount;
+                        $order_detail->seller_profit_amount = $seller_profit;
+                    }
                 }
 
 
