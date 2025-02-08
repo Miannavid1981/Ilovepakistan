@@ -347,7 +347,7 @@ class OrderController extends Controller
                             $admin_profit_final_amount = $admin_profit_per_amount - $seller_profit;
                             
                             // Assign final admin profit to order detail
-                            $order_detail->admin_profit_per = $admin_commission_rate;
+                            $order_detail->admin_profit_per = $admin_commission_type === 'percentage' ? $admin_commission_rate : null;
                             $order_detail->admin_profit_amount = $admin_profit_final_amount;
                             
                             
@@ -360,7 +360,7 @@ class OrderController extends Controller
 
                     // No profit for the seller if they are the same
                     if ($source_seller_id != $seller_id) {
-                        $order_detail->seller_profit_per = $seller_profit_per_amount;
+                        $order_detail->seller_profit_per = $seller_commission_type === 'percentage' ? $seller_profit_per_amount : null;
                         $order_detail->seller_profit_amount = $seller_profit;
                     }
                 }

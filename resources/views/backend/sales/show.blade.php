@@ -274,13 +274,13 @@
                                             @endphp
                                     
                                             @if($sold_by_seller)
-                                            <b>{{ $sold_by_seller->name }}</b> (Earnings: <span class="text-success">+ PKR {{ number_format($orderDetail->seller_profit_amount) }}</span>) — Profit Margin: <span class="text-success">{{ $orderDetail->seller_profit_per }}%</span>
+                                            <b>{{ $sold_by_seller->name }}</b> (Earnings: <span class="text-success">+ PKR {{ number_format($orderDetail->seller_profit_amount) }}</span>) — @if ($orderDetail->seller_profit_per) Profit Margin: <span class="text-success">{{ $orderDetail->seller_profit_per }}%</span> @endif
                                             @else
                                                 Seller not found.
                                             @endif
                                         @endif
                                         <br>
-                                        Company earned total  <span class="text-success">+ PKR {{ number_format($orderDetail->admin_profit_amount) }} </span>  — Profit Margin: <span class="text-success">{{ $orderDetail->admin_profit_per }}%</span>
+                                        Company earned total  <span class="text-success">+ PKR {{ number_format($orderDetail->admin_profit_amount) }} </span>  @if ($orderDetail->admin_profit_per)  — Profit Margin: <span class="text-success">{{ $orderDetail->admin_profit_per }}%</span> @endif
                                     </td>
                                     <td>
                                         {{  $orderDetail->source_seller_id == $orderDetail->seller_id ? $brand_sold_seller->name :  $sold_by_seller->name }}
