@@ -2,6 +2,7 @@
 
 @section('panel_content')
 
+
     <div class="card">
         <form class="" action="" id="sort_orders" method="GET">
             <div class="card-header row gutters-5">
@@ -89,6 +90,14 @@
                                 @php
                                     $order = \App\Models\Order::find($order_id->id);
                                 @endphp
+
+                                
+@php
+    
+dd($order);
+
+@endphp
+
                                 @if ($order != null)
                                     <tr>
                                         <td>
