@@ -274,7 +274,7 @@
                                             @endphp
                                     
                                             @if($sold_by_seller)
-                                            <b>{{ $sold_by_seller->name }}</b> (Earnings: <span class="text-success">+ PKR {{ number_format($orderDetail->seller_profit_amount) }}</span>) — @if ($orderDetail->seller_profit_per) Profit Margin: <span class="text-success">{{ $orderDetail->seller_profit_per }}%</span> @endif
+                                            <b>{{ $sold_by_seller->name }}</b> (Earnings: <span class="text-success">+ PKR {{ number_format($orderDetail->seller_profit_amount) }}</span>)  @if ($orderDetail->seller_profit_per) Profit Margin: <span class="text-success">{{ $orderDetail->seller_profit_per }}%</span> @endif
                                             @else
                                                 Seller not found.
                                             @endif
