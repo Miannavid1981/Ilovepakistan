@@ -1,3 +1,18 @@
+<style>
+
+.profit_pill {
+    position: absolute;
+    right: 0;
+    background: #46a646;
+    border-radius: 10px;
+    padding: 5px 10px;
+    color: #fff;
+    font-weight: 600;
+    letter-spacing: 1px;
+    font-size: 15px;
+}
+
+</style>
 <div class="row">
     @foreach ($products as $product)
         <div class="col-md-4 col-sm-6 mb-4">
@@ -139,7 +154,7 @@
                    
 
                     @endphp
-                    <span class="text-success"> +{{ $seller_profit }}</span>
+                    <span class="profit_pill"> You'll earn PKR {{ $seller_profit }}</span>
                     <input type="checkbox" 
                            name="product_ids[]" 
                            value="{{ $product->id }}" 
