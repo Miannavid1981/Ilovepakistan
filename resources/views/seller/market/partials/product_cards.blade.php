@@ -122,7 +122,7 @@
                                         $seller_profit =  (int)  $seller_commission_rate; // Fixed amount, so no percentage calculation needed
                                     }
                                 }
-                            }
+                            å
                             
                             // Final admin profit after subtracting seller's profit
                             $admin_profit_final_amount = $admin_profit_per_amount - $seller_profit;
