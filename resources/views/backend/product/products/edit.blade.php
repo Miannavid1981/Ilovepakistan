@@ -73,6 +73,13 @@
                         {{ translate('Frequently Bought') }}
                     </a>
                 </li>
+                 <!-- Frequently Bought Product -->
+                 <li class="nav-item">
+                    <a class="nav-link" id="product-commissions-tab" href="#product-commissions"
+                        data-toggle="tab" data-target="#product-commissions" type="button" role="tab" aria-controls="product-commissions" aria-selected="false">
+                        {{ translate('Frequently Bought') }}
+                    </a>
+                </li>
             </ul>
         </div>
 
@@ -853,7 +860,9 @@
                             </div>
                         </div>
                     </div>
+                    <div class="tab-pane fade" id="product-commissions" role="tabpanel" aria-labelledby="product-commissions-tab">
 
+                    </div>
                     <!-- Frequently Bought Product -->
                     <div class="tab-pane fade" id="frequenty-bought-product" role="tabpanel" aria-labelledby="frequenty-bought-product-tab">
                         <div class="bg-white p-3 p-sm-2rem">
