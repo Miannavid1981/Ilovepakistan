@@ -242,7 +242,7 @@
             border: 1px solid #dedede !important; 
             transition: all .3s ease-in-out
         }
-        .add_to_cart_small_btn:hover{
+        .add_to_cart_small_btn:hover, .add_to_cart_small_btn:disabled, .add_to_cart_small_btn[disabled]{
             border-radius: 50%;
             background: #f1f1f1;
             color: #000;
