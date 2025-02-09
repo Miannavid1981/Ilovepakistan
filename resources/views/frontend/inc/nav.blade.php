@@ -901,8 +901,10 @@ $(document).ready(function(){
     $(document).on('click', '.g-add-to-cart', function () {
         const productId = $(this).data('id');
         const skin_code = $(this).data('skin_code') ?? null;
-        const prev_text = 'Add to Cart';
+        const prev_text = $(this).html();
+
         var elm = $(this);
+        elm.attr("disabled", "disabled");
         $(this).html('<i class="fa fa-spinner fa-spin d-block fs-20 "></i>');
         $.ajax({
             url: '{{  url("/cart/add") }}',
@@ -916,6 +918,7 @@ $(document).ready(function(){
                 if (response.success) {
                     updateSidecart(response.cart);
                     elm.html(prev_text)
+                    elm.removeAttr("disabled")
                     $('#cartOffcanvas').modal("show");
 
                 } else {
