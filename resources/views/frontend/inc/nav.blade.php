@@ -278,7 +278,7 @@
             <!-- Search Bar -->
             <div class="col">
                 <div class="input-group search-bar">
-                    <select class="search-option1" id="search_cat" style="border: unset;">
+                    <select class="search-option1" id="search_cat" style="border: unset; field-sizing:content">
                         <option value="" class="search-option2 ">All</option>
                         @php
                             // Fetch categories with level = 0 and status = 1 directly in the view
@@ -1074,14 +1074,14 @@ $(document).ready(function(){
 
     });
 
-    $('#search_cat').change(function () {
-        var select = $(this);
-        var selectedOption = select.find('option:selected');
-        var optionWidth = getTextWidth(selectedOption.text(), select.css('font'));
-        optionWidth += 30
-        // Set the dropdown width to fit the selected option's text width
-        select.css('width', optionWidth + 'px');
-    });
+    // $('#search_cat').change(function () {
+    //     var select = $(this);
+    //     var selectedOption = select.find('option:selected');
+    //     var optionWidth = getTextWidth(selectedOption.text(), select.css('font'));
+    //     optionWidth += 30
+    //     // Set the dropdown width to fit the selected option's text width
+    //     select.css('width', optionWidth + 'px');
+    // });
 
     // Function to calculate the width of a text string
     function getTextWidth(text, font) {
