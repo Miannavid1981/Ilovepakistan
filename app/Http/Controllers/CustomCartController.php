@@ -104,7 +104,8 @@ class CustomCartController extends Controller
     public function updateCart(Request $request)
     {
         $id = $request->id;
-        $quantity = max(0, intval($request->quantity));
+        $quantity = $request->quantity;
+        // dd($quantity);
         $userId = Auth::id();
         $tempUserId = session('guest_cart_id');
     
@@ -118,7 +119,7 @@ class CustomCartController extends Controller
             })->first();
     
         if ($cartItem) {
-            if ($quantity === 0) {
+            if ($quantity == 0) {
                 $cartItem->delete();
             } else {
                 // Update the quantity if it's greater than 0
