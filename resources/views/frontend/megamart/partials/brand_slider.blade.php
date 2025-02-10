@@ -17,24 +17,23 @@
         .brand-logos-slider {
     max-height: 150px; /* Adjust the height as needed */
     overflow: hidden; /* Ensures no extra spacing */
+    
 }
 
-.brand-logos-slider .slide img {
-    height: 30px;
-    width: auto;
-    object-fit: contain;
-    width: 100%;
-}
+        .brand-logos-slider .slide img {
+            object-fit: contain;
+            width: 100%;
+            height: auto;
+            max-width: 100px;
+        }
     </style>
     <div class="container">
-       <hr>
+       
+      
         <section class="brand-logos-slider slider">
 
             @php
                 $brands_slides = \App\Models\Brand::all();
-
-               // dd($brands_slides);
-
             @endphp
 
 

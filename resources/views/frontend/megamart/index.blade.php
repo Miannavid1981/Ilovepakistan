@@ -596,7 +596,38 @@
         </section>
     @endif
 
-    @include('frontend/megamart/partials/brand_slider');
+<style>
+    .home_categories_grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+        gap: 10px;
+        margin-bottom: 50px;
+        margin-top: 30px
+    }
+    </style>
+    <div class="container">
+        <h4 class="text-center">Explore Categories</h4>
+        <div class="home_categories_grid">
+            @php
+                // Fetch categories with level = 0 and status = 1 directly in the view
+                $categories = \App\Models\Category::where('level', 0)->get();
+            @endphp
+                @foreach ($categories as $category )
+                   
+                        <a href="{{ route('products.category', $category->slug) }}" class="d-flex flex-column align-items-center justify-content-center">
+                            <img src="{{uploaded_asset($category->icon)}}" class="me-2 p-1 rounded-circle border-1 border" style="width: 65px;height: auto;aspect-ratio: 1 / 1;" >
+                            <p class="mt-2">   {{$category->name}}</p>
+                        </a>
+                   
+                @endforeach
+
+           
+        </div>
+
+
+    </div>
+
+
     @include('frontend/megamart/partials/toggle_tabs');
     
     <!-- Today's deal -->
@@ -608,10 +639,6 @@
 
     </div>
 
-    <!-- Featured Products -->
-    <div id="section_featured">
-
-    </div>
 
     <!-- Banner section 2 -->
     @php $homeBanner2Images = get_setting('home_banner2_images', null, $lang);   @endphp
@@ -1171,6 +1198,8 @@
     @endif
 
 
+    @include('frontend/megamart/partials/brand_slider');
+    
     
 
 
