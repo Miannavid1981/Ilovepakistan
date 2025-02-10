@@ -1190,7 +1190,7 @@
 <script>
     $(document).ready(function(){
         $('.brand-logos-slider').slick({
-            slidesToShow: 5,
+            slidesToShow: 7,
             slidesToScroll: 1,
             autoplay: true,
             autoplaySpeed: 1500,
