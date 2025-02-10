@@ -596,8 +596,6 @@
         </section>
     @endif
 
-    @include('frontend/megamart/partials/brand_slider');
-    
 <style>
     .home_categories_grid {
         display: grid;
@@ -1200,6 +1198,8 @@
     @endif
 
 
+    @include('frontend/megamart/partials/brand_slider');
+    
     
 
 
