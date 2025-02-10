@@ -17,6 +17,7 @@
         .brand-logos-slider {
     max-height: 150px; /* Adjust the height as needed */
     overflow: hidden; /* Ensures no extra spacing */
+    margin-top: 30px
 }
 
         .brand-logos-slider .slide img {
@@ -27,7 +28,8 @@
         }
     </style>
     <div class="container">
-       <hr>
+       
+       <h4 class="text-center">Popular Brands</h4>
         <section class="brand-logos-slider slider">
 
             @php
