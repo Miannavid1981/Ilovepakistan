@@ -44,9 +44,9 @@
     <!-- Tabs -->
     <div class="custom-tabs-wrapper mx-auto">
         <div class="bubble"></div>
-        <div class="custom-tab active" onclick="showTab('newArrivals', 2)">New Arrivals</div>
-        <div class="custom-tab " onclick="showTab('bestSellers', 0)">Best Sellers</div>
-        <div class="custom-tab" onclick="showTab('onSale', 1)">On Sale</div>
+        <div class="custom-tab active" onclick="showTab('newArrivals', 0)">New Arrivals</div>
+        <div class="custom-tab " onclick="showTab('bestSellers', 1)">Best Sellers</div>
+        <div class="custom-tab" onclick="showTab('onSale', 2)">On Sale</div>
       
     </div>
 
