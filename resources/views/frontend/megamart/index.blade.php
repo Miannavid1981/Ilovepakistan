@@ -603,11 +603,12 @@
         display: grid;
         grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
         gap: 10px;
-        margin-bottom: 50px
+        margin-bottom: 50px;
+        margin-top: 20px
     }
     </style>
     <div class="container">
-        <h4>Explore Categories</h4>
+        <h4 class="text-center">Explore Categories</h4>
         <div class="home_categories_grid">
             @php
                 // Fetch categories with level = 0 and status = 1 directly in the view
