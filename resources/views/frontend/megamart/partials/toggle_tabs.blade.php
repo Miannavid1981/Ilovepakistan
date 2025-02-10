@@ -3,7 +3,7 @@
         position: relative;
         display: inline-flex;
         background: #f5f5f5;
-        padding: 8px;
+        padding: 4px;
         border-radius: 50px;
         width: fit-content;
         position: relative;
@@ -24,6 +24,7 @@
     .custom-tab.active {
         color: black;
         font-weight: 700;
+        background: #fff
     }
 
     /* Moving Bubble Indicator */
@@ -46,7 +47,7 @@
         <div class="bubble"></div>
         <div class="custom-tab active" onclick="showTab('newArrivals', 0)">New Arrivals</div>
         <div class="custom-tab " onclick="showTab('bestSellers', 1)">Best Sellers</div>
-        <div class="custom-tab" onclick="showTab('onSale', 2)">On Sale</div>
+        <div class="custom-tab" onclick="showTab('onSale', 2)">Discounts & Sale</div>
       
     </div>
 
