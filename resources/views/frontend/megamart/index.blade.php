@@ -597,6 +597,7 @@
     @endif
 
     @include('frontend/megamart/partials/brand_slider');
+    @include('frontend/megamart/partials/toggle_tabs');
     
     <!-- Today's deal -->
     @php
@@ -1158,5 +1159,24 @@
             ]
         });
     });
+
+    function showTab(tabId, index) {
+        // Remove active class from all tabs
+        document.querySelectorAll('.custom-tab').forEach(tab => {
+            tab.classList.remove('active');
+        });
+
+        // Hide all tab contents
+        document.querySelectorAll('.tab-content').forEach(content => {
+            content.classList.add('d-none');
+        });
+
+        // Move the bubble to the selected tab
+        document.querySelector('.bubble').style.transform = `translateX(${index * 100}%)`;
+
+        // Show the selected content and activate the tab
+        document.getElementById(tabId).classList.remove('d-none');
+        document.querySelectorAll('.custom-tab')[index].classList.add('active');
+    }
 </script>
 @endsection
