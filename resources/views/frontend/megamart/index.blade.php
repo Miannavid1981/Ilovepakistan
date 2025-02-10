@@ -107,16 +107,13 @@
 }
 
 .bighouz-business {
-    display: grid;
-    grid-template-columns: 1.7fr 1fr;
-    gap: 25px;
+    display: flex;
 }
 
 /* For screens below 767px (Mobile View) */
 @media (max-width: 767px) {
-    .bighouz-business {
-        grid-template-columns: 1fr; /* Stack the columns vertically */
-        gap: 20px; /* Reduced space between items */
+    .bighouz-business .right-section, .bighouz-business .main_banner_slider{
+        width: 100%;
     }
 }
 
@@ -129,22 +126,26 @@
     height: 100%;
 }
 @media (max-width: 1800px){
-    .bighouz-business {
-        grid-template-columns: 1.7fr 1fr;
-        gap: 25px;
+    .bighouz-business .main_banner_slider{
+        width: 65%;
+    }
+    .bighouz-business .right-section{
+        width: 35%;
     }
 }
 
 @media (max-width: 768px){
-    .bighouz-business {
-        grid-template-columns: 1fr 1fr;
-        gap: 15px;
+    .bighouz-business .main_banner_slider{
+        width: 50%;
+    }
+    .bighouz-business .right-section{
+        width: 5px;
     }
 }
 /* Mobile (small screens) layout - 1 column per row *//* For screens below 767px (Mobile) */
 @media (max-width: 767px) {
-    .bighouz-business {
-        grid-template-columns: 1fr;
+    .bighouz-business .right-section, .bighouz-business .main_banner_slider{
+        width: 100%;
     }
     .category-grid {
         display: grid;
@@ -217,27 +218,44 @@
 <div class="container py-4">
 
     <div class="bighouz-business">
-                <!-- Left Section -->
-        <div class="left-section d-flex flex-column h-100" 
-            style="background-image: url({{ static_asset('assets/img/solarbg.png') }}); background-size: cover; background-position: center; background-color: #d3e7ff ; border-radius: 20px"
-        >
-            <!-- banner-home-page  -->
-            <div class="banner " >
+
+        <div class="main_banner_slider" >
+            <div class="left-section d-flex flex-column h-100" style="background-image: url({{ static_asset('assets/img/solarbg.png') }}); background-size: cover; background-position: center; background-color: #d3e7ff ; border-radius: 20px">
+                <!-- banner-home-page  -->
+                <div class="banner " >
+                        
+                    <h1>BigHouz Business</h1>
+                    <div class="d-flex gap-3">
+                        <p><i class="fas fa-check-circle"></i> Tax exemptions</p>
+                        <p><i class="fas fa-credit-card"></i> Express Payments</p>
+                        <p><i class="fas fa-dollar-sign"></i> Financial Support</p>
+                    </div>
                     
-                <h1>BigHouz Business</h1>
-                <div class="d-flex gap-3">
-                    <p><i class="fas fa-check-circle"></i> Tax exemptions</p>
-                    <p><i class="fas fa-credit-card"></i> Express Payments</p>
-                    <p><i class="fas fa-dollar-sign"></i> Financial Support</p>
+                    <button class="btn btn-lg btn-dark">Shop now</button>
+            
                 </div>
-                
-                <button class="btn btn-lg btn-dark">Shop now</button>
-
-
-          
+        
             </div>
-    
+            <div class="left-section d-flex flex-column h-100" style="background-image: url({{ static_asset('assets/img/solarbg.png') }}); background-size: cover; background-position: center; background-color: #d3e7ff ; border-radius: 20px">
+                <!-- banner-home-page  -->
+                <div class="banner " >
+                        
+                    <h1>BigHouz Business</h1>
+                    <div class="d-flex gap-3">
+                        <p><i class="fas fa-check-circle"></i> Tax exemptions</p>
+                        <p><i class="fas fa-credit-card"></i> Express Payments</p>
+                        <p><i class="fas fa-dollar-sign"></i> Financial Support</p>
+                    </div>
+                    
+                    <button class="btn btn-lg btn-dark">Shop now</button>
+            
+                </div>
+        
+            </div>
         </div>
+
+                <!-- Left Section -->
+            
 
                 <!-- Right Section -->
         <!-- Right Section -->
@@ -1224,6 +1242,25 @@
             autoplay: true,
             autoplaySpeed: 1500,
             arrows: false,
+            dots: false,
+            pauseOnHover: false,
+            responsive: [
+                {
+                    breakpoint: 768,
+                    settings: { slidesToShow: 3 }
+                },
+                {
+                    breakpoint: 520,
+                    settings: { slidesToShow: 2 }
+                }
+            ]
+        });
+        $(".main_banner_slider").slick({
+            slidesToShow: 1,
+            slidesToScroll: 1,
+            autoplay: false,
+            autoplaySpeed: 1500,
+            arrows: true,
             dots: false,
             pauseOnHover: false,
             responsive: [
