@@ -114,7 +114,7 @@ if(!empty($product->product_custom_url)){
 
                 <!--<div class="absolute-top-right bg-danger ml-1 mt-1 fs-11 fw-700 text-white w-35px text-center" style="padding-top:2px;padding-bottom:2px;margin-right: 0px;width: 70px;">sold out</div>-->
 
-            <div class="d-block h-100 position-relative">
+            <div class="d-block h-100 position-relative"> 
 
                 <img class="lazyload mx-auto img-fit has-transition " style="aspect-ratio: 1.5 /1.8; border: 1px solid #dbdbdb; border-radius: 15px; !important;"
 
