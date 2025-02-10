@@ -941,7 +941,7 @@ $(document).ready(function(){
         let currentQty = parseInt($input.val());
 
         if (operation === 'increment') currentQty++;
-        if (operation === 'decrement' && currentQty > 1) currentQty--;
+        if (operation === 'decrement' && currentQty > 0) currentQty--;
 
         $input.val(currentQty).trigger('change');
     });
