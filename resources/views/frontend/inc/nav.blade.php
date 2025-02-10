@@ -265,7 +265,7 @@
                  @php
 
                 $header_logo =  get_setting('header_logo');
-                $logo_url = 'https://allaaddin.com/public/images/1j+ojFVDOMkX9Wytexe43D6kh.png';
+                $logo_url = uploaded_asset(get_setting('header_logo'));
                 $my_account_url =  route('profile');
                 if( Auth::user() ) {
                     $my_account_url = Auth::user()->user_type == "staff" ? '/admin/profile/' : route('profile');
@@ -273,18 +273,19 @@
                 
                 
             @endphp
+                <a href="{{ url('/') }}">
+                    @if ($header_logo != null)
 
-            @if ($header_logo != null)
+                        <img src="{{ $logo_url }}" alt="{{ env('APP_NAME') }}" class="img-fluid">
 
-                <img src="{{ $logo_url }}" alt="{{ env('APP_NAME') }}" class="img-fluid">
+                    @else
 
-            @else
+                        <img src="{{ static_asset('assets/img/logo.png') }}" alt="{{ env('APP_NAME') }}"
 
-                <img src="{{ static_asset('assets/img/logo.png') }}" alt="{{ env('APP_NAME') }}"
+                            class="mw-100 h-30px h-md-40px" height="40" width="50">
 
-                    class="mw-100 h-30px h-md-40px" height="40" width="50">
-
-            @endif
+                    @endif
+                </a>
             </div>
             <!-- Search Bar -->
             <div class="col">
