@@ -110,8 +110,8 @@
         @media only screen and (max-width: 1800px) {
 
             .container:not(#checkout_container) {
-               padding-left: 100px !important;
-               padding-right: 100px !important
+                padding-left: 50px !important;
+                padding-right: 50px !important;
             }
         }
         @media only screen and (max-width: 1200px) {
@@ -204,7 +204,7 @@
             margin: 0 5px;
         }
 
-        .btn {
+        .btn:not(.rounded-circle) {
             padding: 0.3rem 1.2rem;
             font-size: 1rem;
             font-weight: inherit;
@@ -218,7 +218,7 @@
         }
         .modal-content {
             border: 0 !important;
-            border-radius: 20px !important;
+            border-radius: 15px !important;
         }
 
         .tagify.tagify--focus{
@@ -235,6 +235,24 @@
             height: 250px;
         }
 
+        .add_to_cart_small_btn {
+            border-radius: 50%;
+            background: #000;
+            color: #fff;
+            border: 1px solid #dedede !important; 
+            transition: all .3s ease-in-out
+        }
+        .add_to_cart_small_btn:hover, .add_to_cart_small_btn:disabled, .add_to_cart_small_btn[disabled]{
+            border-radius: 50%;
+            background: #f1f1f1;
+            color: #000;
+            transition: all .3s ease-in-out
+        }
+        #addToCart-modal-body .slick-vertical .slick-slide {
+
+            width: auto !important;
+            margin: 0 !important
+        }
         .pac-container { z-index: 100000; }
     </style>
 
@@ -644,7 +662,7 @@
     @include('frontend.partials.account_delete_modal')
 
     <div class="modal fade" id="addToCart">
-        <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-zoom product-modal" id="modal-size" role="document">
+        <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-zoom product-modal" id="modal-size" role="document">
             <div class="modal-content position-relative">
                 <div class="c-preloader text-center p-3">
                     <i class="las la-spinner la-spin la-3x"></i>

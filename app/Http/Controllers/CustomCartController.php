@@ -104,7 +104,8 @@ class CustomCartController extends Controller
     public function updateCart(Request $request)
     {
         $id = $request->id;
-        $quantity = max(0, intval($request->quantity));
+        $quantity = $request->quantity;
+        // dd($quantity);
         $userId = Auth::id();
         $tempUserId = session('guest_cart_id');
     
@@ -118,7 +119,7 @@ class CustomCartController extends Controller
             })->first();
     
         if ($cartItem) {
-            if ($quantity === 0) {
+            if ($quantity == 0) {
                 $cartItem->delete();
             } else {
                 // Update the quantity if it's greater than 0
@@ -176,7 +177,7 @@ class CustomCartController extends Controller
             $item->quantity = $qty;
             $item->discounted_price = home_discounted_base_price($product);
             $item->discounted_price_int = home_discounted_base_price($product, false);
-            $item->subtotal = format_price($subtotal);
+            $item->subtotal = format_price($items_subtotal);
             $item->discount = discount_in_percentage($product) > 0;
             $item->discounted_percentage = discount_in_percentage($product);
             $item->user_id = $userId;

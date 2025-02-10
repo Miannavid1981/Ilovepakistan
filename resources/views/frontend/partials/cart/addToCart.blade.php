@@ -1,12 +1,12 @@
-<div class="modal-body px-4 py-5 c-scrollbar-light">
-    <div class="row">
+<div class="modal-body p-3 c-scrollbar-light">
+    <div class="row mx-0">
         <!-- Product Image gallery -->
         <div class="col-lg-6">
-            <div class="row gutters-10 flex-row-reverse">
+            <div class="row flex-row-reverse">
                 @php
                     $photos = explode(',',$product->photos);
                 @endphp
-                <div class="col">
+                <div class="col mx-0 px-0">
                     <div class="aiz-carousel product-gallery" data-nav-for='.product-gallery-thumb' data-fade='true' data-auto-height='true'>
                         @foreach ($photos as $key => $photo)
                         <div class="carousel-box img-zoom rounded-0">
@@ -28,10 +28,10 @@
                         @endforeach
                     </div>
                 </div>
-                <div class="col-auto w-90px">
+                <div class="col-auto  mx-0 px-0">
                     <div class="aiz-carousel carousel-thumb product-gallery-thumb" data-items='5' data-nav-for='.product-gallery' data-vertical='true' data-focus-select='true'>
                         @foreach ($photos as $key => $photo)
-                        <div class="carousel-box c-pointer border rounded-0">
+                        <div class="carousel-box c-pointer border rounded-0 w-70px">
                             <img class="lazyload mw-100 size-60px mx-auto"
                                 src="{{ static_asset('assets/img/placeholder.jpg') }}"
                                 data-src="{{ uploaded_asset($photo) }}"
@@ -40,7 +40,7 @@
                         @endforeach
                         @foreach ($product->stocks as $key => $stock)
                             @if ($stock->image != null)
-                                <div class="carousel-box c-pointer border rounded-0" data-variation="{{ $stock->variant }}">
+                                <div class="carousel-box c-pointer border rounded-0 w-70px" data-variation="{{ $stock->variant }}" >
                                     <img class="lazyload mw-100 size-50px mx-auto"
                                         src="{{ static_asset('assets/img/placeholder.jpg') }}"
                                         data-src="{{ uploaded_asset($stock->image) }}"

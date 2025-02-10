@@ -3,7 +3,7 @@
 
     $cart_added = [];
 
-
+    
 $product_url = route('product', $product->slug);
 
 if ($product->auction_product == 1) {
@@ -69,11 +69,7 @@ if(!empty($product->product_custom_url)){
         color: #fff !important;
     } 
 
-    @media (min-width: 768px){
-        .add-cart-btn button i {
-            display: none 
-        }
-    }
+
     @media (max-width: 767px){
         .add-cart-btn button span {
             display: none !important
@@ -135,7 +131,7 @@ if(!empty($product->product_custom_url)){
                             <i class="fa-regular fa-eye fs-24 me-2"></i>   
                     <span> Quick View</span>
                     </button>
-                        <button class="add-to-cart w-100 d-block g-add-to-cart" data-id="{{ $product->id }}" data-skin_code="{{ get_product_seller_map_skin($product) }}" ><i class="las la-shopping-cart fs-24 me-2"></i> <span>Add to cart</span> </button>
+                       
 
             </div>
 
@@ -318,9 +314,14 @@ if(!empty($product->product_custom_url)){
 
             </div>
             
-            <div class="">
-                <span class="fs-15">{{ get_system_default_currency()->code }}</span>
-                <span class="fw-700 text-dark text-start fs-20" style=" font-family: "Kanit", serif !important">{{ number_format(home_discounted_base_price($product, false)) }}</span>
+            <div class="d-flex justify-content-between align-items-center">
+            
+                <div>
+
+          
+
+                    <span class="fs-15">{{ get_system_default_currency()->code }}</span>
+                    <span class="fw-700 text-dark text-start fs-20" style=" font-family: "Kanit", serif !important">{{ number_format(home_discounted_base_price($product, false)) }}</span>
 
                     <!-- Discount percentage tag -->
 
@@ -331,22 +332,24 @@ if(!empty($product->product_custom_url)){
                             style="padding-top:2px;padding-bottom:2px;">-{{ discount_in_percentage($product) }}%</span>
 
                     @endif 
-
-            <!-- Wholesale tag -->
+                </div>
+                <button class=" add_to_cart_small_btn rounded-circle p-2 d-flex align-items-center justify-content-center g-add-to-cart" style="aspect-ratio:1/1"  data-id="{{ $product->id }}" data-skin_code="{{ $product->product_skin ?? get_product_seller_map_skin($product) }}" ><i class="las la-cart-plus fs-24"></i>  </button>
+                
 
             </div>
+           
 
             @if ($product->auction_product == 1)
 
-                    <!-- Bid Amount -->
+                <!-- Bid Amount -->
 
-                    <div class="">
+                <div class="">
 
-                        <span class="fw-700 fs-20 text-primary ">{{ single_price($product->starting_bid) }}</span>
+                    <span class="fw-700 fs-20 text-primary ">{{ single_price($product->starting_bid) }}</span>
 
-                    </div>
+                </div>
 
-                @endif
+            @endif
 
         </div>
     {{-- </a> --}}

@@ -14,6 +14,7 @@
                     $delivery_status = $order->delivery_status;
                     $payment_status = $order->payment_status;
                     $admin_user_id = get_admin()->id;
+                    
                 @endphp
                 @if ($order->seller_id == $admin_user_id || get_setting('product_manage_by_admin') == 1)
 
@@ -188,7 +189,11 @@
                                 <th data-breakpoints="lg" class="min-col">#</th>
                                 <th width="10%">{{ translate('Photo') }}</th>
                                 <th class="text-uppercase">{{ translate('Description') }}</th>
-                                <th data-breakpoints="lg" class="text-uppercase">{{ translate('Delivery Type') }}</th>
+                                <th class="text-uppercase">{{ translate('Status') }}</th>
+                                <th data-breakpoints="lg" class="text-uppercase">{{ translate(' Commission') }}</th>
+                                <th data-breakpoints="lg" class="text-uppercase">{{ translate(' Seller') }}</th>
+                                
+                                <th  data-breakpoints="lg" class="text-uppercase d-none">{{ translate('Delivery Type') }}</th>
                                 <th data-breakpoints="lg" class="min-col text-uppercase text-center">
                                     {{ translate('Qty') }}
                                 </th>
@@ -227,11 +232,12 @@
                                                 {{ $orderDetail->variation }}
                                             </small>
                                             <br>
-                                            <small>
+                                            <small class="fs-13 font-weight-bold">
                                                 @php
                                                     $product_stock = $orderDetail->product->stocks->where('variant', $orderDetail->variation)->first();
                                                 @endphp
-                                                {{translate('SKU')}}: {{ $product_stock['sku'] ?? '' }}
+                                               {{ $orderDetail->item_skin ?? '' }}
+
                                             </small>
                                         @elseif ($orderDetail->product != null && $orderDetail->product->auction_product == 1)
                                             <strong>
@@ -245,6 +251,41 @@
                                         @endif
                                     </td>
                                     <td>
+                                       <span class="badge badge-primary w-auto text-uppercase"> {{ $order->delivery_status }}</span>
+                                    </td>
+                                    <td>
+                                        
+                                        @php
+                                            $sold_by_seller_id = $orderDetail->source_seller_id != $orderDetail->seller_id ? $orderDetail->seller_id : $orderDetail->source_seller_id;
+                                            $brand_sold_seller = \App\Models\User::where('id', $orderDetail->source_seller_id)->first();
+                                        @endphp
+                                    
+                                        @if($brand_sold_seller)
+                                        Product listed by <b>{{ $brand_sold_seller->name }}</b> (Earnings: <span class="text-success">+ PKR {{ number_format($orderDetail->source_seller_profit_amount) }}</span>) 
+                                        @else
+                                            Seller not found.
+                                        @endif
+                                        <br>
+                                        {{ $orderDetail->source_seller_id == $orderDetail->seller_id ? '' : 'Imported by' }}
+                                    
+                                        @if($orderDetail->source_seller_id != $orderDetail->seller_id) 
+                                            @php
+                                                $sold_by_seller = \App\Models\User::where('id', $sold_by_seller_id)->first();
+                                            @endphp
+                                    
+                                            @if($sold_by_seller)
+                                            <b>{{ $sold_by_seller->name }}</b> (Earnings: <span class="text-success">+ PKR {{ number_format($orderDetail->seller_profit_amount) }}</span>)  @if ($orderDetail->seller_profit_per) Profit Margin: <span class="text-success">{{ $orderDetail->seller_profit_per }}%</span> @endif
+                                            @else
+                                                Seller not found.
+                                            @endif
+                                        @endif
+                                        <br>
+                                        Company earned total  <span class="text-success">+ PKR {{ number_format($orderDetail->admin_profit_amount) }} </span>  @if ($orderDetail->admin_profit_per)  — Profit Margin: <span class="text-success">{{ $orderDetail->admin_profit_per }}%</span> @endif
+                                    </td>
+                                    <td>
+                                        {{  $orderDetail->source_seller_id == $orderDetail->seller_id ? $brand_sold_seller->name :  $sold_by_seller->name }}
+                                    </td>
+                                    <td class="d-none">
                                         @if ($order->shipping_type != null && $order->shipping_type == 'home_delivery')
                                             {{ translate('Home Delivery') }}
                                         @elseif ($order->shipping_type == 'pickup_point')

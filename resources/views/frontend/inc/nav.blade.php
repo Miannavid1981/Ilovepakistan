@@ -210,6 +210,11 @@
         }
         .quantity-switcher {
             display: flex;
+            justify-content: flex-end;
+        }
+        .sidecart-items.disabled {
+            opacity: 0.5;
+            pointer-events: none;
         }
 
         .quantity-switcher-buttons {
@@ -243,6 +248,12 @@
             height: 20px;
             color: #fff;
             font-weight: bold;
+        }
+
+        .grid_sidecart {
+            display: grid !important;
+            grid-template-columns: 1.2fr 3fr;
+            gap: 25px;
         }
     </style>
 
@@ -279,7 +290,7 @@
             <!-- Search Bar -->
             <div class="col">
                 <div class="input-group search-bar">
-                    <select class="search-option1" id="search_cat" style="border: unset;">
+                    <select class="search-option1" id="search_cat" style="border: unset; field-sizing:content">
                         <option value="" class="search-option2 ">All</option>
                         @php
                             // Fetch categories with level = 0 and status = 1 directly in the view
@@ -902,8 +913,10 @@ $(document).ready(function(){
     $(document).on('click', '.g-add-to-cart', function () {
         const productId = $(this).data('id');
         const skin_code = $(this).data('skin_code') ?? null;
-        const prev_text = 'Add to Cart';
+        const prev_text = $(this).html();
+
         var elm = $(this);
+        elm.attr("disabled", "disabled");
         $(this).html('<i class="fa fa-spinner fa-spin d-block fs-20 "></i>');
         $.ajax({
             url: '{{  url("/cart/add") }}',
@@ -917,6 +930,7 @@ $(document).ready(function(){
                 if (response.success) {
                     updateSidecart(response.cart);
                     elm.html(prev_text)
+                    elm.removeAttr("disabled")
                     $('#cartOffcanvas').modal("show");
 
                 } else {
@@ -934,7 +948,7 @@ $(document).ready(function(){
         let currentQty = parseInt($input.val());
 
         if (operation === 'increment') currentQty++;
-        if (operation === 'decrement' && currentQty > 1) currentQty--;
+        if (operation === 'decrement' && currentQty > 0) currentQty--;
 
         $input.val(currentQty).trigger('change');
     });
@@ -943,6 +957,7 @@ $(document).ready(function(){
     $(document).on('change', '.g-cart-qty', function () {
         const productId = $(this).data('id');
         const quantity = $(this).val();
+        $(".sidecart-items").addClass("disabled")
         $.ajax({
             url: '{{  url("/cart/update") }}',
             method: 'POST',
@@ -953,6 +968,7 @@ $(document).ready(function(){
             },
             success: function (response) {
                 if (response.success) {
+                    $(".sidecart-items").removeClass("disabled")
                     updateSidecart(response.cart);
                 } else {
                     alert(response.message || 'Failed to update quantity.');
@@ -989,10 +1005,10 @@ $(document).ready(function(){
         cart.items.forEach((item) => {
             $sidecartItems.append(`
                 <div class="sidecart-item d-flex justify-content-between align-items-center py-3 border-bottom">
-                    <div class="d-flex flex-row justify-content-start align-items-center">
-                        <button class="px-1 text-primary g-remove-from-cart btn-light bg-white border-0 btn-lg" data-id="${item.id}"><i class="fa fa-trash"></i></button>
-                        <div class="position-relative ms-2 me-4" style="width: 50px; height: 50px;" >
-                            <img src="${item.image}" alt="${item.name}" class="rounded-2 w-100 h-100 " style="object-fit: contain;">
+                    <div class="grid_sidecart">
+                        
+                        <div class="position-relative ms-2 me-4" style="width: 100%;height: auto;aspect-ratio: 1 / 1;min-width: 35px;" >
+                            <img src="${item.image}" alt="${item.name}" class="rounded-2 w-100 h-100 " style="object-fit: cover;">
                             <span class="cart-item-count">${item.quantity}</span>
                         </div>
                         
@@ -1075,14 +1091,14 @@ $(document).ready(function(){
 
     });
 
-    $('#search_cat').change(function () {
-        var select = $(this);
-        var selectedOption = select.find('option:selected');
-        var optionWidth = getTextWidth(selectedOption.text(), select.css('font'));
-        optionWidth += 30
-        // Set the dropdown width to fit the selected option's text width
-        select.css('width', optionWidth + 'px');
-    });
+    // $('#search_cat').change(function () {
+    //     var select = $(this);
+    //     var selectedOption = select.find('option:selected');
+    //     var optionWidth = getTextWidth(selectedOption.text(), select.css('font'));
+    //     optionWidth += 30
+    //     // Set the dropdown width to fit the selected option's text width
+    //     select.css('width', optionWidth + 'px');
+    // });
 
     // Function to calculate the width of a text string
     function getTextWidth(text, font) {
