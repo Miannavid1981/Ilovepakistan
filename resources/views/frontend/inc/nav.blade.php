@@ -1000,7 +1000,7 @@ $(document).ready(function(){
                 <div class="sidecart-item d-flex justify-content-between align-items-center py-3 border-bottom">
                     <div class="d-flex flex-row justify-content-start align-items-center">
                         
-                        <div class="position-relative ms-2 me-4" style="width: 60px;height: auto;aspect-ratio: 1 / 1;" >
+                        <div class="position-relative ms-2 me-4" style="width: 100px;height: auto;aspect-ratio: 1 / 1;" >
                             <img src="${item.image}" alt="${item.name}" class="rounded-2 w-100 h-100 " style="object-fit: cover;">
                             <span class="cart-item-count">${item.quantity}</span>
                         </div>
