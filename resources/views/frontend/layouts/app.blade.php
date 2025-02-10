@@ -248,7 +248,7 @@
             color: #000;
             transition: all .3s ease-in-out
         }
-        #addToCart-modal-body .slick-slide {
+        #addToCart-modal-body .slick-vertical .slick-slide {
 
             width: auto !important;
             margin: 0 !important
