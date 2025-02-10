@@ -231,7 +231,7 @@
             @else
                 <li class="breadcrumb-item opacity-50 hov-opacity-100">
                     <a class="text-reset" href="{{ route('search') }}">{{ translate('All Categories')}}</a>
-                </li>
+                </li> 
             @endif
             @if(isset($category_id))
                 <li class="text-dark fw-600 breadcrumb-item">
