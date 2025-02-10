@@ -32,9 +32,6 @@
 
             @php
                 $brands_slides = \App\Models\Brand::all();
-
-               // dd($brands_slides);
-
             @endphp
 
 

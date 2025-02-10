@@ -597,6 +597,28 @@
     @endif
 
     @include('frontend/megamart/partials/brand_slider');
+    
+
+    <div class="container">
+
+        <div class="row">
+            
+                @foreach ($categories as $category )
+                    <div class="col-md-2">
+                        <div class="category-card">
+                            <img src="{{uploaded_asset($category->icon)}}" class="me-2 p-1 rounded-circle border-1 border" style="width: 65px;height: auto;aspect-ratio: 1 / 1;" >
+                            <h4>   {{$category->name}}</h4>
+                        </div>
+                    </div>
+                @endforeach
+
+           
+        </div>
+
+
+    </div>
+
+
     @include('frontend/megamart/partials/toggle_tabs');
     
     <!-- Today's deal -->
@@ -608,10 +630,6 @@
 
     </div>
 
-    <!-- Featured Products -->
-    <div id="section_featured">
-
-    </div>
 
     <!-- Banner section 2 -->
     @php $homeBanner2Images = get_setting('home_banner2_images', null, $lang);   @endphp

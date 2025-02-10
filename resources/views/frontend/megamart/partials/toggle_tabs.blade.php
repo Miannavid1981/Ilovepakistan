@@ -161,7 +161,10 @@
             
         </div>
         <div id="bestSellers" class="tab-content d-none">
-            
+            <!-- Featured Products -->
+            <div id="section_featured">
+
+            </div>
         </div>
         <div id="onSale" class="tab-content d-none">
             
