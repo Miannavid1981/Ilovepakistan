@@ -608,7 +608,7 @@
             @endphp
                 @foreach ($categories as $category )
                     <div class="col-md-2">
-                        <div class="d-flex align-items-center justify-content-center">
+                        <div class="d-flex flex-column align-items-center justify-content-center">
                             <img src="{{uploaded_asset($category->icon)}}" class="me-2 p-1 rounded-circle border-1 border" style="width: 65px;height: auto;aspect-ratio: 1 / 1;" >
                             <p class="mt-2">   {{$category->name}}</p>
                         </div>
