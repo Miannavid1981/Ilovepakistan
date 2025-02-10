@@ -604,7 +604,7 @@
         grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
         gap: 10px;
         margin-bottom: 50px;
-        margin-top: 20px
+        margin-top: 30px
     }
     </style>
     <div class="container">
