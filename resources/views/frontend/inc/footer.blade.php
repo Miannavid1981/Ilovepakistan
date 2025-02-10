@@ -225,7 +225,30 @@
         <div class="row">
             <!-- About Section -->
             <div class="col-lg-2 col-md-6 mb-4 text-center text-md-start">
-                <img src="https://allaaddin.com/public/images/1j+ojFVDOMkX9Wytexe43D6kh.png" width="100px" alt="">
+                @php
+
+                $header_logo =  get_setting('header_logo');
+                $logo_url = uploaded_asset(get_setting('header_logo'));
+                $my_account_url =  route('profile');
+                if( Auth::user() ) {
+                    $my_account_url = Auth::user()->user_type == "staff" ? '/admin/profile/' : route('profile');
+                }
+                
+                
+            @endphp
+                <a href="{{ url('/') }}">
+                    @if ($header_logo != null)
+
+                        <img src="{{ $logo_url }}" alt="{{ env('APP_NAME') }}" class="img-fluid">
+
+                    @else
+
+                        <img src="{{ static_asset('assets/img/logo.png') }}" alt="{{ env('APP_NAME') }}"
+
+                            class="mw-100 h-67px h-md-40px" height="67px">
+
+                    @endif
+                </a>
                 <ul class="list-unstyled">
                     <li class="fs-17"><strong>Mail:</strong> hi.avitex@gmail.com</li>
                     <li class="fs-17"><strong>Phone:</strong> 1-333-345-6868</li>
