@@ -176,7 +176,7 @@ class CustomCartController extends Controller
             $item->quantity = $qty;
             $item->discounted_price = home_discounted_base_price($product);
             $item->discounted_price_int = home_discounted_base_price($product, false);
-            $item->subtotal = format_price($subtotal);
+            $item->subtotal = format_price($items_subtotal);
             $item->discount = discount_in_percentage($product) > 0;
             $item->discounted_percentage = discount_in_percentage($product);
             $item->user_id = $userId;

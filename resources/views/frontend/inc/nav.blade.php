@@ -210,6 +210,11 @@
         }
         .quantity-switcher {
             display: flex;
+            justify-content: flex-end;
+        }
+        .sidecart-items.disabled {
+            opacity: 0.5;
+            pointer-events: none;
         }
 
         .quantity-switcher-buttons {
@@ -945,6 +950,7 @@ $(document).ready(function(){
     $(document).on('change', '.g-cart-qty', function () {
         const productId = $(this).data('id');
         const quantity = $(this).val();
+        $(".sidecart-items").addClass("disabled")
         $.ajax({
             url: '{{  url("/cart/update") }}',
             method: 'POST',
@@ -955,6 +961,7 @@ $(document).ready(function(){
             },
             success: function (response) {
                 if (response.success) {
+                    $(".sidecart-items").removeClass("disabled")
                     updateSidecart(response.cart);
                 } else {
                     alert(response.message || 'Failed to update quantity.');
@@ -992,9 +999,9 @@ $(document).ready(function(){
             $sidecartItems.append(`
                 <div class="sidecart-item d-flex justify-content-between align-items-center py-3 border-bottom">
                     <div class="d-flex flex-row justify-content-start align-items-center">
-                        <button class="px-1 text-primary g-remove-from-cart btn-light bg-white border-0 btn-lg" data-id="${item.id}"><i class="fa fa-trash"></i></button>
-                        <div class="position-relative ms-2 me-4" style="width: 50px; height: 50px;" >
-                            <img src="${item.image}" alt="${item.name}" class="rounded-2 w-100 h-100 " style="object-fit: contain;">
+                        
+                        <div class="position-relative ms-2 me-4" style="width: 60px;height: auto;aspect-ratio: 1 / 1;" >
+                            <img src="${item.image}" alt="${item.name}" class="rounded-2 w-100 h-100 " style="object-fit: cover;">
                             <span class="cart-item-count">${item.quantity}</span>
                         </div>
                         
