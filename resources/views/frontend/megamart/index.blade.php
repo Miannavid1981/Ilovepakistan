@@ -706,59 +706,7 @@
         
         <div class="row ">
             <div class="col-12">
-                <div class="skeleton_grid">
-                    <div class="">
-                        <div class="skeleton image"></div>
-                        <div class="skeleton text medium"></div>
-                        <div class="skeleton text"></div>
-                        <div class="skeleton text"></div>
                 
-                        <div class="skeleton text short"></div>
-                        
-                    </div>
-                    
-                    <div class="">
-                        <div class="skeleton image"></div>
-                        <div class="skeleton text medium"></div>
-                        <div class="skeleton text"></div>
-                        <div class="skeleton text"></div>
-                
-                        <div class="skeleton text short"></div>
-                        
-                    </div>
-                    
-                    <div class="">
-                        <div class="skeleton image"></div>
-                        <div class="skeleton text medium"></div>
-                        <div class="skeleton text"></div>
-                        <div class="skeleton text"></div>
-                
-                        <div class="skeleton text short"></div>
-                        
-                    </div>
-                    
-                    <div class="">
-                        <div class="skeleton image"></div>
-                        <div class="skeleton text medium"></div>
-                        <div class="skeleton text"></div>
-                        <div class="skeleton text"></div>
-                
-                        <div class="skeleton text short"></div>
-                        
-                    </div>
-                    
-                    <div class="">
-                        <div class="skeleton image"></div>
-                        <div class="skeleton text medium"></div>
-                        <div class="skeleton text"></div>
-                        <div class="skeleton text"></div>
-                
-                        <div class="skeleton text short"></div>
-                        
-                    </div>
-                    
-                </div>
-                <div id="section_newest"></div>
             </div>
             <div class="col-xl-{{ $col_val }} mb-2 mb-md-3 mt-2 mt-md-3">
                 <!-- Best Selling  -->
