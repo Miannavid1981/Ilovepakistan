@@ -213,8 +213,11 @@
 
 </style>
 
-<section class="text-center d-flex justify-content-center align-items-center" style="height: 200px; background-color: #E8E8E8;">
-    <div class="container text-center">
+<section class="text-center d-flex justify-content-center align-items-center position-relative" style="height: 250px; background-color: #E8E8E8;">
+    @if(isset($category_id) && $category->banner)
+        <div class="position-absolute top-0 start-0 w-100 h-100" style="background: url('{{ asset($category->banner) }}') no-repeat center center; background-size: cover; opacity: 0.3;"></div>
+    @endif
+    <div class="container text-center position-relative">
         <!-- Shop Page Title -->
         <h2 class="text-dark mb-4">Shop Page</h2>
         <ul class="breadcrumb bg-transparent py-0 px-1 d-flex justify-content-center align-items-center">
@@ -242,20 +245,20 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
-    <ul class="navbar-nav justify-content-center w-100">
-        @foreach ($categories as $category)
-            <li class="nav-item">
-                <a class="nav-link" href="{{ route('products.category', $category->slug) }}">
-                    {{ $category->getTranslation('name') }}
-                </a>
-            </li>
-        @endforeach
-    </ul>
-</div>
-
+                <ul class="navbar-nav justify-content-center w-100">
+                    @foreach ($categories as $category)
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('products.category', $category->slug) }}">
+                                {{ $category->getTranslation('name') }}
+                            </a>
+                        </li>
+                    @endforeach
+                </ul>
+            </div>
         </nav>
     </div>
 </section>
+
 
 
 
