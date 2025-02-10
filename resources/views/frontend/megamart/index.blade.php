@@ -602,7 +602,10 @@
     <div class="container">
 
         <div class="row">
-            
+            @php
+                // Fetch categories with level = 0 and status = 1 directly in the view
+                $categories = \App\Models\Category::where('level', 0)->get();
+            @endphp
                 @foreach ($categories as $category )
                     <div class="col-md-2">
                         <div class="category-card">
