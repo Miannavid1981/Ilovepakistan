@@ -20,7 +20,7 @@
 }
 
 .brand-logos-slider .slide img {
-    height: 50px;
+    height: 30px;
     width: auto;
     object-fit: contain;
     width: 100%;
