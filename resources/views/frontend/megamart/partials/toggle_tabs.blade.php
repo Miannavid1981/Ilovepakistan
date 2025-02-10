@@ -1,4 +1,3 @@
-
 <style>
     .custom-tabs-wrapper {
         position: relative;
@@ -33,7 +32,8 @@
         top: 5px;
         bottom: 5px;
         left: 5px;
-        width: calc(100% / 3 - 10px); /* Adjust width to fit */
+        width: calc(100% / 3 - 3px);
+        /* Adjust width to fit */
         background: white;
         border-radius: 25px;
         transition: transform 0.3s ease-in-out;
@@ -41,24 +41,81 @@
     }
 </style>
 <div class="container mt-5 text-center">
-<!-- Tabs -->
-<div class="custom-tabs-wrapper mx-auto">
-    <div class="bubble"></div>
-    <div class="custom-tab active" onclick="showTab('bestSellers', 0)">Best Sellers</div>
-    <div class="custom-tab" onclick="showTab('onSale', 1)">On Sale</div>
-    <div class="custom-tab" onclick="showTab('newArrivals', 2)">New Arrivals</div>
-</div>
+    <!-- Tabs -->
+    <div class="custom-tabs-wrapper mx-auto">
+        <div class="bubble"></div>
+        <div class="custom-tab active" onclick="showTab('newArrivals', 2)">New Arrivals</div>
+        <div class="custom-tab " onclick="showTab('bestSellers', 0)">Best Sellers</div>
+        <div class="custom-tab" onclick="showTab('onSale', 1)">On Sale</div>
+      
+    </div>
 
-<!-- Cards -->
-<div class="mt-4">
-    <div id="bestSellers" class="tab-content">
-        <div class="card p-3 shadow-sm">Best Sellers Content</div>
+    <!-- Cards -->
+    <div class="mt-4">
+        <div id="newArrivals" class="tab-content">
+
+            <div id="section_newest">
+                <div class="skeleton_grid">
+                    <div class="">
+                        <div class="skeleton image"></div>
+                        <div class="skeleton text medium"></div>
+                        <div class="skeleton text"></div>
+                        <div class="skeleton text"></div>
+                
+                        <div class="skeleton text short"></div>
+                        
+                    </div>
+                    
+                    <div class="">
+                        <div class="skeleton image"></div>
+                        <div class="skeleton text medium"></div>
+                        <div class="skeleton text"></div>
+                        <div class="skeleton text"></div>
+                
+                        <div class="skeleton text short"></div>
+                        
+                    </div>
+                    
+                    <div class="">
+                        <div class="skeleton image"></div>
+                        <div class="skeleton text medium"></div>
+                        <div class="skeleton text"></div>
+                        <div class="skeleton text"></div>
+                
+                        <div class="skeleton text short"></div>
+                        
+                    </div>
+                    
+                    <div class="">
+                        <div class="skeleton image"></div>
+                        <div class="skeleton text medium"></div>
+                        <div class="skeleton text"></div>
+                        <div class="skeleton text"></div>
+                
+                        <div class="skeleton text short"></div>
+                        
+                    </div>
+                    
+                    <div class="">
+                        <div class="skeleton image"></div>
+                        <div class="skeleton text medium"></div>
+                        <div class="skeleton text"></div>
+                        <div class="skeleton text"></div>
+                
+                        <div class="skeleton text short"></div>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+            
+        </div>
+        <div id="bestSellers" class="tab-content d-none">
+            
+        </div>
+        <div id="onSale" class="tab-content d-none">
+            
+        </div>
+       
     </div>
-    <div id="onSale" class="tab-content d-none">
-        <div class="card p-3 shadow-sm">On Sale Content</div>
-    </div>
-    <div id="newArrivals" class="tab-content d-none">
-        <div class="card p-3 shadow-sm">New Arrivals Content</div>
-    </div>
-</div>
 </div>
