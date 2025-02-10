@@ -19,12 +19,12 @@
     overflow: hidden; /* Ensures no extra spacing */
 }
 
-.brand-logos-slider .slide img {
-    height: 30px;
-    width: auto;
-    object-fit: contain;
-    width: 100%;
-}
+        .brand-logos-slider .slide img {
+            object-fit: contain;
+            width: 100%;
+            height: auto;
+            max-width: 100px;
+        }
     </style>
     <div class="container">
        <hr>
