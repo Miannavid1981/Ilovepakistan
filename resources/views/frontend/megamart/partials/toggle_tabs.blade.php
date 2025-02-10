@@ -106,6 +106,55 @@
                         <div class="skeleton text short"></div>
                         
                     </div>
+                    <div class="">
+                        <div class="skeleton image"></div>
+                        <div class="skeleton text medium"></div>
+                        <div class="skeleton text"></div>
+                        <div class="skeleton text"></div>
+                
+                        <div class="skeleton text short"></div>
+                        
+                    </div>
+                    
+                    <div class="">
+                        <div class="skeleton image"></div>
+                        <div class="skeleton text medium"></div>
+                        <div class="skeleton text"></div>
+                        <div class="skeleton text"></div>
+                
+                        <div class="skeleton text short"></div>
+                        
+                    </div>
+                    
+                    <div class="">
+                        <div class="skeleton image"></div>
+                        <div class="skeleton text medium"></div>
+                        <div class="skeleton text"></div>
+                        <div class="skeleton text"></div>
+                
+                        <div class="skeleton text short"></div>
+                        
+                    </div>
+                    
+                    <div class="">
+                        <div class="skeleton image"></div>
+                        <div class="skeleton text medium"></div>
+                        <div class="skeleton text"></div>
+                        <div class="skeleton text"></div>
+                
+                        <div class="skeleton text short"></div>
+                        
+                    </div>
+                    
+                    <div class="">
+                        <div class="skeleton image"></div>
+                        <div class="skeleton text medium"></div>
+                        <div class="skeleton text"></div>
+                        <div class="skeleton text"></div>
+                
+                        <div class="skeleton text short"></div>
+                        
+                    </div>
                     
                 </div>
             </div>
