@@ -706,7 +706,7 @@
         
         <div class="row ">
             <div class="col-12">
-                
+
             </div>
             <div class="col-xl-{{ $col_val }} mb-2 mb-md-3 mt-2 mt-md-3">
                 <!-- Best Selling  -->
