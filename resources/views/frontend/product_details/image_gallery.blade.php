@@ -26,7 +26,6 @@ $photos = [];
     width: 100%;
     height: auto;
     max-width: 500px;
-    aspect-ratio: 1 / 1;
     border-radius: 10px;
     cursor: grab;
     object-fit: cover;
