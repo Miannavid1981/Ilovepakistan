@@ -598,21 +598,27 @@
 
     @include('frontend/megamart/partials/brand_slider');
     
-
+<style>
+    .home_categories_grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+        gap: 10px;
+    }
+    </style>
     <div class="container">
 
-        <div class="row">
+        <div class="home_categories_grid">
             @php
                 // Fetch categories with level = 0 and status = 1 directly in the view
                 $categories = \App\Models\Category::where('level', 0)->get();
             @endphp
                 @foreach ($categories as $category )
-                    <div class="col-md-2">
+                   
                         <div class="d-flex flex-column align-items-center justify-content-center">
                             <img src="{{uploaded_asset($category->icon)}}" class="me-2 p-1 rounded-circle border-1 border" style="width: 65px;height: auto;aspect-ratio: 1 / 1;" >
                             <p class="mt-2">   {{$category->name}}</p>
                         </div>
-                    </div>
+                   
                 @endforeach
 
            
