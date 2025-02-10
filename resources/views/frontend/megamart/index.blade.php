@@ -652,10 +652,112 @@
             $col_val = 4;
         }
     @endphp
+
+    <style>
+         .skeleton_grid{
+            display: grid;
+            width: 100%;
+            grid-template-columns:  1fr 1fr 1fr 1fr 1fr;
+            gap: 20px; margin: 0 15px
+        }
+          .skeleton {
+            background: #dedede;
+            background-size: 200% 100%;
+            animation: pulse 1.5s infinite ease-in-out;
+        }
+        .skeleton.image {
+            width: 100%;
+            border-radius: 10px;
+            aspect-ratio: 1 / 1.3;
+        }
+        .skeleton.text {
+    height: 18px;
+    margin: 10px 0;
+    border-radius: 10px;
+}
+        .skeleton.text.short {
+            width: 50%;
+        }
+        .skeleton.text.medium {
+            width: 80%;
+        }
+        .skeleton.text.long {
+            width: 100%;
+        }
+        .skeleton.stars {
+            width: 70%;
+            height: 20px;
+            border-radius: 5px;
+        }
+        @keyframes pulse {
+      0% {
+        opacity: 1;
+      }
+      50% {
+        opacity: 0.4;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+        </style>
+
     <div class="container ">
         
         <div class="row ">
             <div class="col-12">
+                <div class="skeleton_grid">
+                    <div class="">
+                        <div class="skeleton image"></div>
+                        <div class="skeleton text medium"></div>
+                        <div class="skeleton text"></div>
+                        <div class="skeleton text"></div>
+                
+                        <div class="skeleton text short"></div>
+                        
+                    </div>
+                    
+                    <div class="">
+                        <div class="skeleton image"></div>
+                        <div class="skeleton text medium"></div>
+                        <div class="skeleton text"></div>
+                        <div class="skeleton text"></div>
+                
+                        <div class="skeleton text short"></div>
+                        
+                    </div>
+                    
+                    <div class="">
+                        <div class="skeleton image"></div>
+                        <div class="skeleton text medium"></div>
+                        <div class="skeleton text"></div>
+                        <div class="skeleton text"></div>
+                
+                        <div class="skeleton text short"></div>
+                        
+                    </div>
+                    
+                    <div class="">
+                        <div class="skeleton image"></div>
+                        <div class="skeleton text medium"></div>
+                        <div class="skeleton text"></div>
+                        <div class="skeleton text"></div>
+                
+                        <div class="skeleton text short"></div>
+                        
+                    </div>
+                    
+                    <div class="">
+                        <div class="skeleton image"></div>
+                        <div class="skeleton text medium"></div>
+                        <div class="skeleton text"></div>
+                        <div class="skeleton text"></div>
+                
+                        <div class="skeleton text short"></div>
+                        
+                    </div>
+                    
+                </div>
                 <div id="section_newest"></div>
             </div>
             <div class="col-xl-{{ $col_val }} mb-2 mb-md-3 mt-2 mt-md-3">
