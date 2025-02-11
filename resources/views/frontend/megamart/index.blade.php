@@ -281,9 +281,9 @@
                         
                     <h1>BigHouz Business</h1>
                     <div class="d-flex gap-3">
-                        <p><i class="fas fa-check-circle"></i> Tax exemptions</p>
-                        <p><i class="fas fa-credit-card"></i> Express Payments</p>
-                        <p><i class="fas fa-dollar-sign"></i> Financial Support</p>
+                        <p><i class="fas fa-check-circle"></i>Renewable Energy</p>
+                        <p><i class="fas fa-credit-card"></i> Electronics</p>
+                        <p><i class="fas fa-dollar-sign"></i> Consumer Electronics</p>
                     </div>
                     
                     <button class="btn btn-lg btn-dark">Shop now</button>
