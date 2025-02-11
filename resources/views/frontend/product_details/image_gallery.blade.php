@@ -235,7 +235,7 @@ $photoUrls = array_map(function($photoId) {
             fullscreenDiv.classList.add("fullscreen");
             fullscreenDiv.innerHTML = `
                 <span class="arrow left-arrow" onclick="prevImage(event)">&#10094;</span>
-                <img src="${imageSrc}" id="fullscreenImage" onclick="event.stopPropagation()">
+                <img src="${imageSrc}" @if(!$popup_check) id="fullscreenImage" onclick="event.stopPropagation()" @endif>
                 <span class="arrow right-arrow" onclick="nextImage(event)">&#10095;</span>
             `;
             fullscreenDiv.addEventListener("click", closeFullscreen);

@@ -48,7 +48,14 @@ class CartController extends Controller
     public function showCartModal(Request $request)
     {
         $product = Product::find($request->id);
-        return view('frontend.partials.cart.addToCart', compact('product'));
+        $detailedProduct = $product;
+
+        $data = [
+            'product'=>$product, 
+            'detailedProduct' => $detailedProduct,
+            'popup_check' => true,
+        ];
+        return view('frontend.partials.cart.addToCart', $data);
     }
 
     public function showCartModalAuction(Request $request)
