@@ -119,11 +119,19 @@
         display: none !important
     }
 }
+.left-section {
+    display: none !important;
+}
 
 .bighouz-business {
     display: flex;
 }
-
+.bighouz-business .main_banner_slider{
+    width: 65%;
+}
+.bighouz-business .right-section{
+    width: 35%;
+}
 /* For screens below 767px (Mobile View) */
 @media (max-width: 767px) {
     .bighouz-business .right-section, .bighouz-business .main_banner_slider{
