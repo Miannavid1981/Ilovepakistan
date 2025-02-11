@@ -1305,11 +1305,11 @@
             responsive: [
                 {
                     breakpoint: 768,
-                    settings: { slidesToShow: 3 }
+                    settings: { slidesToShow: 5}
                 },
                 {
                     breakpoint: 520,
-                    settings: { slidesToShow: 2 }
+                    settings: { slidesToShow: 3 }
                 }
             ]
         });
