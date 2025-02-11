@@ -157,9 +157,20 @@ class CustomCartController extends Controller
         $subtotal = 0;
         $items_discount = 0;
         $categoryIds = [];
-        foreach ($cartItems as $item) {
+        foreach ($cartItems as $key => $item) {
+
             $qty = $item->quantity;
-            $product = Product::find($item->product_id);
+            $product = Product::with('thumbnail')->select(
+                'id',
+                'name',
+                'unit_price',
+                'discount',
+                'discount_type',
+                'category_id',
+                'user_id',
+                'thumbnail_img'
+            )->find($item->product_id); 
+            // dd($product);
             $item_total = discount_in_percentage($product) > 0 ? ($qty * home_discounted_base_price($product, false)) : ($qty * home_base_price($product, false));
             $item->subtotal = format_price($item_total);
             $total += $item_total;
@@ -167,21 +178,34 @@ class CustomCartController extends Controller
             $subtotal += $items_subtotal;
             $discount_amount = discount_in_percentage($product) > 0 ? home_base_price($product, false) - home_discounted_base_price($product, false) : 0;
             $items_discount += ($qty * $discount_amount);
-    
-            // Assigning cart item keys with the correct values
-            $item->product_id = $product->id;
-            $item->name = $product->name;
-            $item->price = home_base_price($product);
-            $item->price_int = home_base_price($product, false);
-            $item->image = $product->thumbnail ? my_asset($product->thumbnail->file_name) : static_asset('assets/img/placeholder.jpg');
-            $item->quantity = $qty;
-            $item->discounted_price = home_discounted_base_price($product);
-            $item->discounted_price_int = home_discounted_base_price($product, false);
-            $item->subtotal = format_price($items_subtotal);
-            $item->discount = discount_in_percentage($product) > 0;
-            $item->discounted_percentage = discount_in_percentage($product);
-            $item->user_id = $userId;
-            $item->temp_user_id = $tempUserId;
+            
+            
+            // Initialize ret as an object or array depending on your structure
+            $ret = new \stdClass();  // Use stdClass if it's an object
+
+            // Assign necessary values to $ret
+            $ret->id = $item->id;
+            $ret->product_id = $product->id;
+            $ret->name = $product->name;
+            $ret->price = home_base_price($product);
+            $ret->price_int = home_base_price($product, false);
+            $ret->image = $product->thumbnail ? my_asset($product->thumbnail->file_name) : static_asset('assets/img/placeholder.jpg');
+            $ret->quantity = $qty;
+            $ret->discounted_price = home_discounted_base_price($product);
+            $ret->discounted_price_int = home_discounted_base_price($product, false);
+            $ret->subtotal = format_price($items_subtotal);
+            $ret->discount = discount_in_percentage($product) > 0;
+            $ret->discounted_percentage = discount_in_percentage($product);
+            $ret->user_id = $userId;
+            $ret->temp_user_id = $tempUserId;
+            $ret->product_skin = get_product_seller_map_skin($product);
+            
+
+            // You can then add it to your $item array like this
+            $cartItems[$key] = new \stdClass();
+            $cartItems[$key]  = $ret;
+
+            
 
 
             $categoryIds[] = $product->category_id;
@@ -218,10 +242,19 @@ class CustomCartController extends Controller
             $suggestedProducts = $suggestedProducts->take(10);
 
 
-            foreach ($suggestedProducts as $item) {
+            foreach ($suggestedProducts as $key => $item) {
 
                 $qty = $item->quantity;
-                $product = Product::find($item->id);
+                $product = Product::with('thumbnail')->select(
+                    'id',
+                    'name',
+                    'unit_price',
+                    'discount',
+                    'discount_type',
+                    'category_id',
+                    'user_id',
+                    'thumbnail_img'
+                )->find($item->product_id);
                 $item_total = discount_in_percentage($product) > 0 ? ($qty * home_discounted_base_price($product, false)) : ($qty * home_base_price($product, false));
                 $item->subtotal = format_price($item_total);
                 $total += $item_total;
@@ -229,20 +262,33 @@ class CustomCartController extends Controller
                 $subtotal += $items_subtotal;
                 $discount_amount = discount_in_percentage($product) > 0 ? home_base_price($product, false) - home_discounted_base_price($product, false) : 0;
                 $items_discount += ($qty * $discount_amount);
-                $item->product_id = $product->id;
-                $item->name = $product->name;
-                $item->price = home_base_price($product);
-                $item->price_int = home_base_price($product, false);
-                $item->image = $product->thumbnail ? my_asset($product->thumbnail->file_name) : static_asset('assets/img/placeholder.jpg');
-                $item->quantity = $qty;
-                $item->discounted_price = home_discounted_base_price($product);
-                $item->discounted_price_int = home_discounted_base_price($product, false);
-                $item->subtotal = format_price($items_subtotal);
-                $item->discount = discount_in_percentage($product) > 0;
-                $item->discounted_percentage = discount_in_percentage($product);
-                $item->user_id = $userId;
-                $item->temp_user_id = $tempUserId;
-                $item->product_skin = get_product_seller_map_skin($product);
+                
+                
+              // Initialize ret as an object or array depending on your structure
+                $ret = new \stdClass();  // Use stdClass if it's an object
+
+                // Assign necessary values to $ret
+                $ret->product_id = $product->id;
+                $ret->name = $product->name;
+                $ret->price = home_base_price($product);
+                $ret->price_int = home_base_price($product, false);
+                $ret->image = $product->thumbnail ? my_asset($product->thumbnail->file_name) : static_asset('assets/img/placeholder.jpg');
+                $ret->quantity = $qty;
+                $ret->discounted_price = home_discounted_base_price($product);
+                $ret->discounted_price_int = home_discounted_base_price($product, false);
+                $ret->subtotal = format_price($items_subtotal);
+                $ret->discount = discount_in_percentage($product) > 0;
+                $ret->discounted_percentage = discount_in_percentage($product);
+                $ret->user_id = $userId;
+                $ret->temp_user_id = $tempUserId;
+                $ret->product_skin = get_product_seller_map_skin($product);
+               
+
+                // You can then add it to your $item array like this
+                $suggestedProducts[$key] = new \stdClass();
+                $suggestedProducts[$key]  = $ret;  // Add ret to the array, $item will hold all products for suggestions
+                    // dd($ret);
+
             }
         }
 

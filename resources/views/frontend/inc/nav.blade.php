@@ -591,11 +591,11 @@
                 </div>
         
                 <div class="modal-body" style="overflow-y: hidden;">
-                    <div class="row gx-5 h-100">
+                    <div class="row gx-5 h-100 justify-content-end">
                         <!-- Left Section: You May Also Like -->
                         <div class="col-md-6 border-right cart-offers-section h-100">
                         
-                            <h4>You May Also Like</h4>
+                            
 
                             <div class="sidecart_suggested-products" style="overflow-y: scroll;height: 95%;">
                                 
@@ -605,7 +605,7 @@
 
                         <!-- Right Section: Shopping Cart -->
                         <div class="col-md-6 col-12 d-flex flex-column minicart-main-left-section  h-100">
-                            <div class="px-1 flex-grow-1  ">
+                            <div class="px-1 flex-grow-1  " style="height: 60%; max-height: 60%">
                                 <div class="d-flex justify-content-between">
                                     <h4>Shopping Cart</h4>
                                     <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
@@ -628,7 +628,7 @@
                             </div>
                             
                             <!-- Fixed Bottom Section -->
-                            <div class="p-3 bg-white">
+                            <div class="p-3 bg-white d-flex  flex-column justify-content-end" style="height: 40%">
                                 
                                     
                                 <div class="d-flex justify-content-between mt-3">
@@ -1005,11 +1005,21 @@ $(document).ready(function(){
         getSuggestedProducts(cart.suggested_products ?? []);
     }
     function getSuggestedProducts(products) {
-        const $sidecartItems = $('.sidecart_suggested-products');
-        $sidecartItems.empty();
         if(products.length == 0){
+            $('.cart-offers-section').hide()
+            $(".minicart-main-left-section").removeClass("col-md-6")
+            $('.slide-in-right .modal-dialog').css('min-width', '400px');
+
             return;
         }
+        $('.cart-offers-section').show()
+        $('.slide-in-right .modal-dialog').css('min-width', '800px');
+        $(".minicart-main-left-section").addClass("col-md-6")
+        const $sidecartItems = $('.sidecart_suggested-products');
+        
+        $sidecartItems.empty();
+        $sidecartItems.append('<h4>You May Also Like</h4>')
+        
         products.forEach((item) => {
             $sidecartItems.append(`
                 <div class="sidecart-item d-flex justify-content-between align-items-center py-3 border-bottom">
