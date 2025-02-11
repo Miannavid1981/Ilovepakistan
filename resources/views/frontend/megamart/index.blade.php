@@ -125,6 +125,7 @@
 
 .bighouz-business {
     display: flex;
+    gap: 25px;
 }
 .bighouz-business .main_banner_slider{
     width: 65%;
