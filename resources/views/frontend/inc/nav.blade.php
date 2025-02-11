@@ -259,6 +259,9 @@
             grid-template-columns: 0.4fr 1.2fr 3fr;
             gap: 5px;
         }
+        .home_category:hover {
+            transform: scale(1.1);
+        }
     </style>
 
 <header class="container bg-white pt-2">
