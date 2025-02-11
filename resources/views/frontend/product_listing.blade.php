@@ -213,32 +213,38 @@
 
 </style>
 
-<section class="text-center d-flex justify-content-center align-items-center position-relative" style="height: 250px; background-color: #E8E8E8;">
+<section class="text-center d-flex justify-content-center align-items-center position-relative" style="height: 250px; background: url('https://img.freepik.com/premium-photo/black-friday-cyber-monday-sale-concept-black-recyclable-paper-shopping-bag-with-discount-percent-sign-black-background_391310-808.jpg?uid=R186178891&ga=GA1.1.620024412.1726558842&semt=ais_hybrid') no-repeat center center; background-size: cover;">
     @if($category && $category->banner)
-        <div class="position-absolute top-0 start-0 w-100 h-100" style="background: url('{{ uploaded_asset($category->banner) }}') no-repeat center center; background-size: cover; opacity: 0.3;"></div>
+        <div class="position-absolute top-0 start-0 w-100 h-100">
+            <!-- Background Image -->
+            <div style="background: url('{{ uploaded_asset($category->banner) }}') no-repeat center center; background-size: cover; width: 100%; height: 100%; position: absolute;"></div>
+            <!-- Dark Mask Overlay -->
+            <div style="background: rgba(0, 0, 0, 0.5); width: 100%; height: 100%; position: absolute; top: 0; left: 0;"></div>
+        </div>
     @endif
     <div class="container text-center position-relative">
         <!-- Shop Page Title -->
-        <h2 class="text-dark mb-4">Shop Page</h2>
+        <h2 class="text-white mb-4">Shop Page</h2>
         <ul class="breadcrumb bg-transparent py-0 px-1 d-flex justify-content-center align-items-center">
-            <li class="breadcrumb-item has-transition opacity-50 hov-opacity-100">
-                <a class="text-reset" href="{{ route('home') }}">{{ translate('Home')}}</a>
+            <li class="breadcrumb-item has-transition">
+                <a class="text-reset" href="{{ route('home') }}" style="color: white !important;">{{ translate('Home')}}</a>
             </li>
             @if(!isset($category_id))
-                <li class="breadcrumb-item fw-700 text-dark">
+                <li class="breadcrumb-item fw-700 text-white">
                     "{{ translate('All Categories')}}"
                 </li>
             @else
-                <li class="breadcrumb-item opacity-50 hov-opacity-100">
-                    <a class="text-reset" href="{{ route('search') }}">{{ translate('All Categories')}}</a>
+                <li class="breadcrumb-item text-white ">
+                    <a class="text-reset" href="{{ route('search') }}" style="color: white !important;">{{ translate('All Categories')}}</a>
                 </li> 
             @endif
             @if(isset($category_id))
-                <li class="text-dark fw-600 breadcrumb-item">
+                <li class="text-white fw-600 breadcrumb-item">
                     "{{ $category->getTranslation('name') }}"
                 </li>
             @endif
         </ul>
+        
         <!-- Navbar -->
         <nav class="navbar navbar-expand-lg navbar-light justify-content-center w-100">         
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -246,9 +252,10 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav justify-content-center w-100">
+                   
                     @foreach ($categories as $category)
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('products.category', $category->slug) }}">
+                            <a class="nav-link text-white" href="{{ route('products.category', $category->slug) }}">
                                 {{ $category->getTranslation('name') }}
                             </a>
                         </li>
@@ -263,7 +270,6 @@
 
 
 
-
     <section class="mb-4 pt-4">
         <div class="container sm-px-0 pt-2">
             <form class="" id="search-form" action="" method="GET">
@@ -273,13 +279,17 @@
                         <div class="bg-white mb-3">
                             <div class="collapse show" id="collapse_1">
                                 <ul class="list-group mb-0">
+                                  
                                     @if (!isset($category_id))
                                         @foreach ($categories as $category)
+                                        @php
+                                        $products_count = \App\Models\Product::where('category_id', $category->id)->count();
+                                    @endphp
                                             <li class="list-group-item text-dark d-flex justify-content-between align-items-center">
                                                 <a class="text-reset fs-14 hov-text-primary" href="{{ route('products.category', $category->slug) }}">
                                                     {{ $category->getTranslation('name') }}
                                                 </a>
-                                                <span class="category-count">({{ $category->products_count }})</span>
+                                                <span class="category-count">({{ $products_count ?? 0 }})</span>
                                             </li>
                                         @endforeach
                                     @else
@@ -307,11 +317,14 @@
                                         </li>
                                         
                                         @foreach ($category->childrenCategories as $immediate_children_category)
+                                        @php
+                                        $products_count = \App\Models\Product::where('category_id', $immediate_children_category->id)->count();
+                                    @endphp
                                             <li class="list-group-item d-flex justify-content-between align-items-center ml-4">
                                                 <a class="text-reset fs-14 hov-text-primary" href="{{ route('products.category', $immediate_children_category->slug) }}">
                                                     {{ $immediate_children_category->getTranslation('name') }}
                                                 </a>
-                                                <span class="category-count">({{ $immediate_children_category->products_count }})</span>
+                                                <span class="category-count">({{ $products_count ?? 0 }})</span>
                                             </li>
                                         @endforeach
                                     @endif
@@ -320,13 +333,13 @@
                         </div>
 
                         
-                        <h5 class="mt-5">Size</h5>
+                        {{-- <h5 class="mt-5">Size</h5>
                         <div class="d-flex size-circle mb-5">
                             <div class="size">S</div>
                             <div class="size m">M</div>
                             <div class="size l">L</div>
                             <div class="size xl">XL</div>
-                        </div>
+                        </div> --}}
                         
                     
                         <h5 class="mt-5">Price Range</h5>
@@ -339,7 +352,7 @@
 
                         </div>
 
-                        <h5 class="mt-5">Colors</h5>
+                        {{-- <h5 class="mt-5">Colors</h5>
                             <div class="color-selector mb-5">
                                 <input type="radio" id="pink" name="color" checked>
                                 <label for="pink">
@@ -375,43 +388,36 @@
                                 <label for="white">
                                     <span class="color-dot" style="background-color: beige;"></span> White
                                 </label>
-                            </div>
+                            </div> --}}
                     
                      <!-- Brands Section -->
-                        <h5 class="mt-3">Brands</h5>
-                        <div class="bg-white mb-3">
-                            <ul class="list-unstyled">
-                                <!-- Example Brand Options with Count -->
+                  <!-- Brands Section -->
+                  @php
+                      $brands = \App\Models\Brand::all();
+                  @endphp
+                    <h5 class="mt-3">Brands</h5>
+                    <div class="bg-white mb-3">
+                        <ul class="list-unstyled">
+                            @foreach($brands as $brand)
+
+                                @php
+                                    $products_count = \App\Models\Product::where('brand_id', $brand->id )->count();
+                                @endphp
                                 <li class="mb-2">
                                     <div class="form-check d-flex justify-content-between align-items-center">
                                         <div>
-                                            <input class="form-check-input" type="checkbox" value="brand1" id="brand_1">
-                                            <label class="form-check-label" for="brand_1">Brand 1</label>
+                                            <input class="form-check-input" type="checkbox" value="{{ $brand->id }}" id="brand_{{ $brand->id }}">
+                                            <label class="form-check-label" for="brand_{{ $brand->id }}">
+                                                {{ $brand->getTranslation('name') }}
+                                            </label>
                                         </div>
-                                        <span class="brand-count">(10)</span>
+                                        <span class="brand-count">({{ $products_count ?? 0 }})</span>
                                     </div>
                                 </li>
-                                <li class="mb-2">
-                                    <div class="form-check d-flex justify-content-between align-items-center">
-                                        <div>
-                                            <input class="form-check-input" type="checkbox" value="brand2" id="brand_2">
-                                            <label class="form-check-label" for="brand_2">Brand 2</label>
-                                        </div>
-                                        <span class="brand-count">(5)</span>
-                                    </div>
-                                </li>
-                                <li class="mb-2">
-                                    <div class="form-check d-flex justify-content-between align-items-center">
-                                        <div>
-                                            <input class="form-check-input" type="checkbox" value="brand3" id="brand_3">
-                                            <label class="form-check-label" for="brand_3">Brand 3</label>
-                                        </div>
-                                        <span class="brand-count">(8)</span>
-                                    </div>
-                                </li>
-                                <!-- Add more brands as needed -->
-                            </ul>
-                        </div>
+                            @endforeach
+                        </ul>
+                    </div>
+
 
 
                     </aside>
