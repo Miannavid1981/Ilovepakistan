@@ -655,7 +655,7 @@
                         <div class="px-3">
                             <div class="row gutters-16 row-cols-xxl-4 row-cols-xl-3 row-cols-lg-4 row-cols-md-3 row-cols-2 border-top border-left">
                                 @foreach ($products as $key => $product)
-                                    <div class="col border-right border-bottom has-transition hov-shadow-out z-1">
+                                    <div class="col">
                                         @include('frontend.'.get_setting('homepage_select').'.partials.product_box_1',['product' => $product])
                                     </div>
                                 @endforeach
