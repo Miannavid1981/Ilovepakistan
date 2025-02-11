@@ -252,8 +252,8 @@
 
         .grid_sidecart {
             display: grid !important;
-            grid-template-columns: 1.2fr 3fr;
-            gap: 25px;
+            grid-template-columns: 0.4fr 1.2fr 3fr;
+            gap: 5px;
         }
     </style>
 
@@ -593,7 +593,7 @@
                 <div class="modal-body" style="overflow-y: hidden;">
                     <div class="row gx-5 h-100 justify-content-end">
                         <!-- Left Section: You May Also Like -->
-                        <div class="col-md-6 border-right cart-offers-section h-100 pe-0">
+                        <div class="col-md-5 border-right cart-offers-section h-100 pe-0">
                         
                             
                             <h4>You May Also Like</h4>
@@ -604,7 +604,7 @@
                         </div>
 
                     <!-- Right Section: Shopping Cart -->
-                        <div class="col-md-6 col-12 d-flex flex-column minicart-main-left-section justify-content-between h-100">
+                        <div class="col-md-7 col-12 d-flex flex-column minicart-main-left-section justify-content-between h-100">
                             <div class="d-flex justify-content-between">
                                 <h4>Shopping Cart</h4>
                                 <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
@@ -629,7 +629,7 @@
                             </div>
                             
                             <!-- Fixed Bottom Section -->
-                            <div class="p-3 bg-white d-flex  flex-column justify-content-end" >
+                            <div class="pt-3 px-3 bg-white d-flex  flex-column justify-content-end" >
                                 
                                     
                                 <div class="d-flex justify-content-between mt-3">
@@ -647,10 +647,10 @@
                             
                             
                                 <div class="mt-3 d-flex direction-column gap-3">
-                                    <button class="btn btn-outline-primary w-100 ">View Cart</button>
+                                    <a href="{{ url('/shop') }}" class="btn btn-outline-primary w-100 ">View More</button>
                                     <a href="{{ url('/checkout') }}" class="btn btn-primary w-100">Check Out</a>
                                 </div>
-                                <p class="text-center mt-3 mb-0">Or Continue Shopping </p>
+                                
                             </div>
                         </div>
                         
@@ -923,20 +923,20 @@ $(document).ready(function(){
         });
     });
     $(document).on('click', '.g-remove-from-cart', function () {
-        const productId = $(this).data('id');  // Get the product ID from the data-id attribute
+        const id = $(this).data('id');  // Get the product ID from the data-id attribute
 
         $.ajax({
             url: '{{ url("/cart/remove") }}',  // The route for removing items from the cart
             method: 'POST',  // Sending a POST request
             data: {
-                product_id: productId,  // The product ID to remove
+                id,  // The product ID to remove
                 _token: $('meta[name="csrf-token"]').attr('content')  // CSRF token for security
             },
             success: function (response) {
                 if (response.cart) {
                     updateSidecart(response.cart);  // Update the sidecart with the new data
                 } else {
-                    alert('Failed to remove the item.');
+                    // alert('Failed to remove the item.');
                 }
             },
             error: function () {
@@ -952,13 +952,16 @@ $(document).ready(function(){
             $sidecartItems.append(`
                 <div class="sidecart-item d-flex justify-content-between align-items-center py-3 border-bottom">
                     <div class="grid_sidecart">
+                        <div class="d-flex align-items-center">
+                            <button class="bg-primary p-2 h-auto border-0 text-white rounded-2 g-remove-from-cart" data-id="${item.id}"><i class="fa fa-trash fs-16"></i></button>
+                        </div>
                         
-                        <div class="position-relative ms-2 me-4" style="width: 100%;height: auto;aspect-ratio: 1 / 1;min-width: 35px;" >
-                            <img src="${item.image}" alt="${item.name}" class="rounded-2 w-100 h-100 " style="object-fit: cover;">
+                        <div class="position-relative ms-2 me-4" style="width: 100%;height: auto;aspect-ratio: 1 / 1;min-width: 35px;background: #eee;border-radius: 10px;" >
+                            <img src="${item.image}" alt="${item.name}" class="rounded-2 w-100 h-100 " style="object-fit: contain;">
                             <span class="cart-item-count">${item.quantity}</span>
                         </div>
                         
-                        <div class="">
+                        <div class=" ms-4">
                             <div class="fs-15">${item.name}</div>
                             <div class="d-flex align-items-center gap-2">
                                 <div>
@@ -1008,14 +1011,14 @@ $(document).ready(function(){
     function getSuggestedProducts(products) {
         if(products.length == 0){
             $('.cart-offers-section').hide()
-            $(".minicart-main-left-section").removeClass("col-md-6")
-            $('.slide-in-right .modal-dialog').css('min-width', '400px');
+            $(".minicart-main-left-section").removeClass("col-md-7")
+            $('.slide-in-right .modal-dialog').css('min-width', '500px');
 
             return;
         }
         $('.cart-offers-section').show()
         $('.slide-in-right .modal-dialog').css('min-width', '800px');
-        $(".minicart-main-left-section").addClass("col-md-6")
+        $(".minicart-main-left-section").addClass("col-md-7")
         const $sidecartItems = $('.sidecart_suggested-products');
         
         $sidecartItems.empty();
