@@ -606,18 +606,18 @@
                 <div class="modal-body">
                     <div class="row gx-5 h-100">
                         <!-- Left Section: You May Also Like -->
-                        <div class="col-md-6 border-right cart-offers-section">
-                        <div class="h-100">
+                        <div class="col-md-6 border-right cart-offers-section h-100">
+                        
                             <h4>You May Also Like</h4>
 
                             <div class="sidecart_suggested-products h-100" style="overflow-y: scroll">
                                 
                             </div>
-                        </div>
+                        
                         </div>
 
                         <!-- Right Section: Shopping Cart -->
-                        <div class="col-md-6 col-12 d-flex flex-column minicart-main-left-section">
+                        <div class="col-md-6 col-12 d-flex flex-column minicart-main-left-section  h-100">
                             <div class="px-1 flex-grow-1  ">
                                 <div class="d-flex justify-content-between">
                                     <h4>Shopping Cart</h4>
