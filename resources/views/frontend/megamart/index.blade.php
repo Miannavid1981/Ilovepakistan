@@ -243,18 +243,18 @@
     <div class="bighouz-business">
 
         <div class="main_banner_slider" >
-            <div class="left-section d-flex flex-column h-100" style="background-image: url(https://theunitedindian.com/images/gadgets-20-05-24-E-Hero.webp); background-size: cover; background-position: center; background-color: #d3e7ff ; border-radius: 20px">
+            <div class="left-section d-flex flex-column h-100" style="background-image: url(https://d1csarkz8obe9u.cloudfront.net/posterpreviews/headphone-earphones-electronics-gadgets-flyer-design-template-b05a4f0dc69582a6a53b013be4845f33_screen.jpg?ts=1663685911); background-size: cover; background-position: center; background-color: #d3e7ff ; border-radius: 20px">
                 <!-- banner-home-page  -->
                 <div class="banner " >
                         
-                    <h1>Electronics On Sale</h1>
+                    {{-- <h1>Electronics On Sale</h1>
                     <div class="d-flex gap-3">
                         <p><i class="fas fa-check-circle"></i> Tax exemptions</p>
                         <p><i class="fas fa-credit-card"></i> Express Payments</p>
                         <p><i class="fas fa-dollar-sign"></i> Financial Support</p>
                     </div>
                     
-                    <button class="btn btn-lg btn-dark">Shop now</button>
+                    <button class="btn btn-lg btn-dark">Shop now</button> --}}
             
                 </div>
         
