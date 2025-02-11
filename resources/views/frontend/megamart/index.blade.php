@@ -100,16 +100,39 @@
 }
 
 
+.main_banner_slider .slick-list , .main_banner_slider .slick-track {
+    height: 100%;
+}
+
+.main_banner_slider .slick-next:before, .slick-prev:before {
+    font-size: 40px;
+}
+.main_banner_slider .slick-next {
+    right: 30px
+}
+.main_banner_slider .slick-prev {
+   left: 10px;
+    z-index: 999;
+}
 @media (max-width: 768px){
     .left-section {
         display: none !important
     }
 }
+.left-section {
+   margin: 0  !important;
+}
 
 .bighouz-business {
     display: flex;
+    gap: 25px;
 }
-
+.bighouz-business .main_banner_slider{
+    width: 65%;
+}
+.bighouz-business .right-section{
+    width: 35%;
+}
 /* For screens below 767px (Mobile View) */
 @media (max-width: 767px) {
     .bighouz-business .right-section, .bighouz-business .main_banner_slider{
@@ -220,18 +243,34 @@
     <div class="bighouz-business">
 
         <div class="main_banner_slider" >
-            <div class="left-section d-flex flex-column h-100" style="background-image: url({{ static_asset('assets/img/solarbg.png') }}); background-size: cover; background-position: center; background-color: #d3e7ff ; border-radius: 20px">
+            <div class="left-section d-flex flex-column h-100" style="background-image: url(https://static.vecteezy.com/system/resources/previews/008/174/591/non_2x/beauty-skincare-product-square-banner-for-social-media-illustration-vector.jpg); background-size: cover; background-position: center; background-color: #d3e7ff ; border-radius: 20px">
                 <!-- banner-home-page  -->
                 <div class="banner " >
                         
-                    <h1>BigHouz Business</h1>
+                    {{-- <h1>Electronics On Sale</h1>
                     <div class="d-flex gap-3">
                         <p><i class="fas fa-check-circle"></i> Tax exemptions</p>
                         <p><i class="fas fa-credit-card"></i> Express Payments</p>
                         <p><i class="fas fa-dollar-sign"></i> Financial Support</p>
                     </div>
                     
-                    <button class="btn btn-lg btn-dark">Shop now</button>
+                    <button class="btn btn-lg btn-dark">Shop now</button> --}}
+            
+                </div>
+        
+            </div>
+            <div class="left-section d-flex flex-column h-100" style="background-image: url(https://d1csarkz8obe9u.cloudfront.net/posterpreviews/headphone-earphones-electronics-gadgets-flyer-design-template-f2a41ff7a4f5e05ae8bb552d8903f906_screen.jpg?ts=1660304194); background-size: cover; background-position: center; background-color: #d3e7ff ; border-radius: 20px">
+                <!-- banner-home-page  -->
+                <div class="banner " >
+                        
+                    {{-- <h1>Electronics On Sale</h1>
+                    <div class="d-flex gap-3">
+                        <p><i class="fas fa-check-circle"></i> Tax exemptions</p>
+                        <p><i class="fas fa-credit-card"></i> Express Payments</p>
+                        <p><i class="fas fa-dollar-sign"></i> Financial Support</p>
+                    </div>
+                    
+                    <button class="btn btn-lg btn-dark">Shop now</button> --}}
             
                 </div>
         
@@ -242,9 +281,9 @@
                         
                     <h1>BigHouz Business</h1>
                     <div class="d-flex gap-3">
-                        <p><i class="fas fa-check-circle"></i> Tax exemptions</p>
-                        <p><i class="fas fa-credit-card"></i> Express Payments</p>
-                        <p><i class="fas fa-dollar-sign"></i> Financial Support</p>
+                        <p><i class="fas fa-check-circle"></i>Renewable Energy</p>
+                        <p><i class="fas fa-credit-card"></i> Electronics</p>
+                        <p><i class="fas fa-dollar-sign"></i> Consumer Electronics</p>
                     </div>
                     
                     <button class="btn btn-lg btn-dark">Shop now</button>
@@ -1237,7 +1276,7 @@
 <script>
     $(document).ready(function(){
         $('.brand-logos-slider').slick({
-            slidesToShow: 7,
+            slidesToShow: 8,
             slidesToScroll: 1,
             autoplay: true,
             autoplaySpeed: 1500,
@@ -1258,7 +1297,7 @@
         $(".main_banner_slider").slick({
             slidesToShow: 1,
             slidesToScroll: 1,
-            autoplay: false,
+            autoplay: true,
             autoplaySpeed: 1500,
             arrows: true,
             dots: false,
@@ -1266,11 +1305,11 @@
             responsive: [
                 {
                     breakpoint: 768,
-                    settings: { slidesToShow: 3 }
+                    settings: { slidesToShow: 5}
                 },
                 {
                     breakpoint: 520,
-                    settings: { slidesToShow: 2 }
+                    settings: { slidesToShow: 3 }
                 }
             ]
         });
