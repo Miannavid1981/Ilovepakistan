@@ -593,10 +593,10 @@
                 <div class="modal-body" style="overflow-y: hidden;">
                     <div class="row gx-5 h-100 justify-content-end">
                         <!-- Left Section: You May Also Like -->
-                        <div class="col-md-6 border-right cart-offers-section h-100">
+                        <div class="col-md-6 border-right cart-offers-section h-100 pe-0">
                         
                             
-
+                            <h4>You May Also Like</h4>
                             <div class="sidecart_suggested-products custom_scrollbar" style="height: 95%;">
                                 
                             </div>
@@ -609,7 +609,7 @@
                                 <h4>Shopping Cart</h4>
                                 <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
                             </div>
-                            <div class="px-1 flex-grow-1  custom_scrollbar ">
+                            <div class="flex-grow-1  custom_scrollbar ">
                                 
                                 <!-- <div class="alert mt-4 alert-success d-flex align-items-center" role="alert">
                                     <i class="bi bi-fire me-2"></i>
@@ -1019,7 +1019,7 @@ $(document).ready(function(){
         const $sidecartItems = $('.sidecart_suggested-products');
         
         $sidecartItems.empty();
-        $sidecartItems.append('<h4>You May Also Like</h4>')
+        
         
         products.forEach((item) => {
             $sidecartItems.append(`

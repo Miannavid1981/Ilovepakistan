@@ -435,11 +435,12 @@
     /* Custom scrollbar for the entire page */
 
     .custom_scrollbar{
-        overflow-y: scroll
+        overflow-y: scroll;
+        padding-right: 20px;
     }    
     .custom_scrollbar::-webkit-scrollbar {
-        width: 12px; /* Width of the scrollbar */
-        height: 12px; /* Height of the horizontal scrollbar */
+        width: 5px; /* Width of the scrollbar */
+        height: 5px; /* Height of the horizontal scrollbar */
     }
 
     /* Custom track (background) of the scrollbar */
