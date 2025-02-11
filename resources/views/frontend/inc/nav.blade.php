@@ -597,19 +597,19 @@
                         
                             
 
-                            <div class="sidecart_suggested-products" style="overflow-y: scroll;height: 95%;">
+                            <div class="sidecart_suggested-products custom_scrollbar" style="height: 95%;">
                                 
                             </div>
                         
                         </div>
 
-                        <!-- Right Section: Shopping Cart -->
+                    <!-- Right Section: Shopping Cart -->
                         <div class="col-md-6 col-12 d-flex flex-column minicart-main-left-section justify-content-between h-100">
                             <div class="d-flex justify-content-between">
                                 <h4>Shopping Cart</h4>
                                 <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
                             </div>
-                            <div class="px-1 flex-grow-1  " style="overflow-y: scroll;">
+                            <div class="px-1 flex-grow-1  custom_scrollbar ">
                                 
                                 <!-- <div class="alert mt-4 alert-success d-flex align-items-center" role="alert">
                                     <i class="bi bi-fire me-2"></i>

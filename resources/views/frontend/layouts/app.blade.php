@@ -428,10 +428,37 @@
         color: #fff !important;
     } */
 
-    .sidecart-items {
+    /* .sidecart-items {
         max-height: 550px;
     overflow-y: scroll;
+    } */
+    /* Custom scrollbar for the entire page */
+
+    .custom_scrollbar{
+        overflow-y: scroll
+    }    
+    .custom_scrollbar::-webkit-scrollbar {
+        width: 12px; /* Width of the scrollbar */
+        height: 12px; /* Height of the horizontal scrollbar */
     }
+
+    /* Custom track (background) of the scrollbar */
+    .custom_scrollbar::-webkit-scrollbar-track {
+        background-color: #f1f1f1; /* Light gray background */
+        border-radius: 10px; /* Rounded corners */
+    }
+
+    /* Custom thumb (the draggable part) of the scrollbar */
+    .custom_scrollbar::-webkit-scrollbar-thumb {
+        background-color: #888; /* Darker gray color */
+        border-radius: 10px; /* Rounded corners */
+    }
+
+    /* Custom thumb when hovering */
+    .custom_scrollbar::-webkit-scrollbar-thumb:hover {
+        background-color: #555; /* Darker gray on hover */
+    }
+
   </style>
 
   <div class="drawer-container">
