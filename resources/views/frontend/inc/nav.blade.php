@@ -312,16 +312,7 @@
                     <div class="">
                        
                     </div>
-                    <div class="d-flex align-items-center gap-2" style="min-width: 150px;">
-                        <div>
-                            <i class="fa-solid fs-20 fa-phone"></i>
-                        </div>
-                        <div>
-                            <p class="mb-0 mb-0 fs-14">Call Helpline</p>
-                            <h6 class="fw-bold mb-0">+92 302 1234 123</h6>
-                        </div>
-                       
-                    </div>
+                
                     
                     <!-- User Profile and Seller Area with Dropdown -->
 
@@ -435,9 +426,10 @@
                         <li class="nav-item me-3">
                             <a class="nav-link" href="#">Contact</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Helpline</a>
-                        </li>
+                        <li class="nav-item d-flex align-items-center">
+                            <i class="fa-solid fa-phone fs-20 me-2"></i> 
+                            <a class="nav-link p-0" href="tel:+923021234123" title="+92 302 1234 123">Call Helpline</a>
+                        </li>                                              
                     </ul>
                 </div>
                 
@@ -1262,6 +1254,36 @@ function resetMenu(){
                 });
 
             }
+
+            document.addEventListener("DOMContentLoaded", function () {
+        const helplineLink = document.getElementById("helpline-link");
+        const helplineNumber = document.getElementById("helpline-number");
+
+        // Show number when hovering over the helpline text
+        helplineLink.addEventListener("mouseover", function () {
+            helplineNumber.style.display = "block";
+        });
+
+        // Hide number when mouse leaves both the link and the number
+        helplineLink.addEventListener("mouseleave", function () {
+            setTimeout(() => {
+                helplineNumber.style.display = "none";
+            }, 300); // Slight delay to avoid flickering
+        });
+
+        helplineNumber.addEventListener("mouseover", function () {
+            helplineNumber.style.display = "block";
+        });
+
+        helplineNumber.addEventListener("mouseleave", function () {
+            helplineNumber.style.display = "none";
+        });
+
+        // Click on helpline text to call the number
+        helplineLink.addEventListener("click", function () {
+            window.location.href = "tel:+923021234123";
+        });
+    });
 
         </script>
 
