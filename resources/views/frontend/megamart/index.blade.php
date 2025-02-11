@@ -243,7 +243,7 @@
     <div class="bighouz-business">
 
         <div class="main_banner_slider" >
-            <div class="left-section d-flex flex-column h-100" style="background-image: url(https://d1csarkz8obe9u.cloudfront.net/posterpreviews/headphone-earphones-electronics-gadgets-flyer-design-template-dc4ee08dd20a62f75a2c9fc72e952d1f_screen.jpg?ts=1658424096); background-size: cover; background-position: center; background-color: #d3e7ff ; border-radius: 20px">
+            <div class="left-section d-flex flex-column h-100" style="background-image: url(https://d1csarkz8obe9u.cloudfront.net/posterpreviews/headphone-earphones-electronics-gadgets-flyer-design-template-f2a41ff7a4f5e05ae8bb552d8903f906_screen.jpg?ts=1660304194); background-size: cover; background-position: center; background-color: #d3e7ff ; border-radius: 20px">
                 <!-- banner-home-page  -->
                 <div class="banner " >
                         
