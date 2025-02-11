@@ -306,13 +306,8 @@
                 
                    
             </div>
-            <div class="col-lg-5 col-md-6 col-12">
+            <div class="col-lg-3 col-md-6 col-12">
                 <div class="d-flex justify-content-end align-items-center gap-4">
-                    <!-- Language and Currency -->
-                    <div class="">
-                       
-                    </div>
-                
                     
                     <!-- User Profile and Seller Area with Dropdown -->
 
@@ -426,9 +421,9 @@
                         <li class="nav-item me-3">
                             <a class="nav-link" href="#">Contact</a>
                         </li>
-                        <li class="nav-item d-flex align-items-center">
-                            <i class="fa-solid fa-phone fs-20 me-2"></i> 
-                            <a class="nav-link p-0" href="tel:+923021234123" title="+92 302 1234 123">Call Helpline</a>
+                        <li class="nav-item d-flex align-items-center ">
+                            <i class="fa-solid fa-phone fs-17 me-2"></i> 
+                            <a class="nav-link p-0 fw-bold text-dark" href="tel:+923021234123" title="+92 302 1234 123">Call Helpline</a>
                         </li>                                              
                     </ul>
                 </div>
