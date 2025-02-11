@@ -603,7 +603,7 @@
                     <button type="button" class="btn-close d-flex justify-content-end" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                 </div>
         
-                <div class="modal-body">
+                <div class="modal-body" style="overflow-y: hidden;">
                     <div class="row gx-5 h-100">
                         <!-- Left Section: You May Also Like -->
                         <div class="col-md-6 border-right cart-offers-section h-100">
