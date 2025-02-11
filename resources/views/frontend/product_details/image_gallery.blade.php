@@ -181,8 +181,6 @@ $photos = [];
 }
 
 </style>
-
-<body>
     <!-- Main image -->
     <div class="slider-container">
         <div class="w-auto h-full">
