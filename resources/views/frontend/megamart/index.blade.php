@@ -100,6 +100,20 @@
 }
 
 
+.main_banner_slider .slick-list , .main_banner_slider .slick-track {
+    height: 100%;
+}
+
+.main_banner_slider .slick-next:before, .slick-prev:before {
+    font-size: 40px;
+}
+.main_banner_slider .slick-next {
+    right: 10px
+}
+.main_banner_slider .slick-prev {
+   left: 10px;
+    z-index: 999;
+}
 @media (max-width: 768px){
     .left-section {
         display: none !important
@@ -1258,7 +1272,7 @@
         $(".main_banner_slider").slick({
             slidesToShow: 1,
             slidesToScroll: 1,
-            autoplay: false,
+            autoplay: true,
             autoplaySpeed: 1500,
             arrows: true,
             dots: false,
