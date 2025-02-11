@@ -427,6 +427,11 @@
         transition: all .3s ease-in-out;
         color: #fff !important;
     } */
+
+    .sidecart-items {
+        max-height: 550px;
+    overflow-y: scroll;
+    }
   </style>
 
   <div class="drawer-container">

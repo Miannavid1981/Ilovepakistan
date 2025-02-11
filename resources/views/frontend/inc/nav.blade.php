@@ -599,53 +599,11 @@
                     <div class="row gx-5 h-100">
                         <!-- Left Section: You May Also Like -->
                         <div class="col-md-6 border-right cart-offers-section">
-                        <div class="">
+                        <div class="h-100">
                             <h4>You May Also Like</h4>
-                            <div class="list-group mt-4">
-                            <div class="d-flex align-items-center">
-                                <img src="https://anvogue.vercel.app/_next/image?url=%2Fimages%2Fproduct%2Ffashion%2F2-1.png&w=384&q=75" width="100px" height="100px" alt="Mesh Shirt" class="rounded me-3">
-                                <div>
-                                <h6 class="mb-0">Mesh Shirt</h6>
-                                <small class="text-muted"><s>$55.00</s> $45.00</small>
-                                </div>
-                                <button class="btn btn-outline-secondary ms-auto left-section-icon">
-                            <i class="bi bi-bag-check"></i>
-                                </button>
-                            </div>
-                            <hr>
-                            <div class="d-flex align-items-center">
-                                <img src="https://anvogue.vercel.app/_next/image?url=%2Fimages%2Fproduct%2Ffashion%2F2-1.png&w=384&q=75"  width="100px" height="100px" alt="Raglan Sleeve T-Shirt" class="rounded me-3">
-                                <div>
-                                <h6 class="mb-0">Raglan Sleeve T-Shirt</h6>
-                                <small class="text-muted"><s>$36.00</s> $28.00</small>
-                                </div>
-                                <button class="btn btn-outline-secondary ms-auto left-section-icon">
-                            <i class="bi bi-bag-check"></i>
-                                </button>
-                            </div>
-                            <hr>
-                            <div class="d-flex align-items-center">
-                                <img src="https://anvogue.vercel.app/_next/image?url=%2Fimages%2Fproduct%2Ffashion%2F2-1.png&w=384&q=75"  width="100px" height="100px" alt="Off-The-Shoulder Blouse" class="rounded me-3">
-                                <div>
-                                <h6 class="mb-0">Off-The-Shoulder Blouse</h6>
-                                <small class="text-muted"><s>$40.00</s> $32.00</small>
-                                </div>
-                                <button class="btn btn-outline-secondary ms-auto left-section-icon">
-                            <i class="bi bi-bag-check"></i>
-                                </button>
-                            </div>
-                            <hr>
-                            <div class="d-flex align-items-center">
-                                <img src="https://anvogue.vercel.app/_next/image?url=%2Fimages%2Fproduct%2Ffashion%2F2-1.png&w=384&q=75"  width="100px" height="100px" alt="Kimono Sleeve Top" class="rounded me-3">
-                                <div>
-                                <h6 class="mb-0">Kimono Sleeve Top</h6>
-                                <small class="text-muted"><s>$32.00</s> $24.00</small>
-                                </div>
-                                <button class="btn btn-outline-secondary ms-auto left-section-icon">
-                            <i class="bi bi-bag-check"></i>
-                                </button>
-                            </div>
-                            <hr>
+
+                            <div class="sidecart_suggested-products h-100" style="overflow-y: scroll">
+                                
                             </div>
                         </div>
                         </div>
@@ -1049,6 +1007,54 @@ $(document).ready(function(){
        
         $('.sidecart-subtotal').text(`${cart.subtotal}`);
         $('.sidecart-total').text(`${cart.total}`);
+        getSuggestedProducts(cart.suggested_products ?? []);
+    }
+    function getSuggestedProducts(products) {
+        const $sidecartItems = $('.sidecart_suggested-products');
+        $sidecartItems.empty();
+        if(products.length == 0){
+            return;
+        }
+        products.forEach((item) => {
+            $sidecartItems.append(`
+                <div class="sidecart-item d-flex justify-content-between align-items-center py-3 border-bottom">
+                    <div class="grid_sidecart">
+                        
+                        <div class="position-relative ms-2 me-4" style="width: 100%;height: auto;aspect-ratio: 1 / 1;min-width: 35px;" >
+                            <img src="${item.image}" alt="${item.name}" class="rounded-2 w-100 h-100 " style="object-fit: cover;">
+                           
+                        </div>
+                        
+                        <div class="">
+                            <div class="fs-15">${item.name}</div>
+                            <div class="d-flex align-items-center gap-2">
+                                <div>
+                                 <div class="font-weight-bold  ${ item.discount ? ` fs-14 text-secondary" style="text-decoration: line-through;` : 'fs-16' }" >${item.price}</div>
+                                ${
+                                 item.discount ? `<div class="fs-16 font-weight-bold">${item.discounted_price}</div>`
+                                 : ``
+                                }
+                                 </div>
+                                 <div>
+                                 ${
+                                 item.discount ?
+                                    `<span class="bg-primary px-2 py-1 fs-16 rounded-3 text-white font-weight-bold"> - ${item.discounted_percentage}%</span>`
+                                    : '' 
+                                 }
+                                 </div>
+                            </div>
+
+                           
+                        </div>
+                    </div>
+                    <div>
+                        <button class=" add_to_cart_small_btn rounded-circle p-2 d-flex align-items-center justify-content-center g-add-to-cart" style="aspect-ratio:1/1"  data-id="${item.id}" data-skin_code="${item.product_skin}" ><i class="las la-cart-plus fs-24"></i>  </button>
+                    </div>
+                    
+                   
+                </div>
+            `);
+        });
     }
 
     function fetchCart() {
