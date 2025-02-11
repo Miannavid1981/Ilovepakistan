@@ -243,11 +243,11 @@
     <div class="bighouz-business">
 
         <div class="main_banner_slider" >
-            <div class="left-section d-flex flex-column h-100" style="background-image: url({{ static_asset('assets/img/solarbg.png') }}); background-size: cover; background-position: center; background-color: #d3e7ff ; border-radius: 20px">
+            <div class="left-section d-flex flex-column h-100" style="background-image: url(https://theunitedindian.com/images/gadgets-20-05-24-E-Hero.webp); background-size: cover; background-position: center; background-color: #d3e7ff ; border-radius: 20px">
                 <!-- banner-home-page  -->
                 <div class="banner " >
                         
-                    <h1>BigHouz Business</h1>
+                    <h1>Electronics On Sale</h1>
                     <div class="d-flex gap-3">
                         <p><i class="fas fa-check-circle"></i> Tax exemptions</p>
                         <p><i class="fas fa-credit-card"></i> Express Payments</p>
