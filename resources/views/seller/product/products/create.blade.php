@@ -311,8 +311,8 @@
                         </div>
                         <div class="card-body">
                             <div class="form-group row">
-                                <label class="fs-13">{{translate('Short Description')}}</label>
-                                <div class="">
+                                <label class="col-md-3 col-from-label fs-13">{{translate('Short Description')}}</label>
+                                <div class="col-md-8">
                                     <textarea class="aiz-text-editor" name="short_description">{{ old('short_description') }}</textarea>
                                 </div>
                                 <label class="col-md-3 col-from-label">{{ translate('Description') }}</label>
