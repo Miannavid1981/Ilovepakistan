@@ -214,8 +214,8 @@
 </style>
 
 <section class="text-center d-flex justify-content-center align-items-center position-relative" style="height: 250px; background-color: #E8E8E8;">
-    @if(isset($category_id) && $category->banner)
-        <div class="position-absolute top-0 start-0 w-100 h-100" style="background: url('{{ asset($category->banner) }}') no-repeat center center; background-size: cover; opacity: 0.3;"></div>
+    @if($category && $category->banner)
+        <div class="position-absolute top-0 start-0 w-100 h-100" style="background: url('{{ uploaded_asset($category->banner) }}') no-repeat center center; background-size: cover; opacity: 0.3;"></div>
     @endif
     <div class="container text-center position-relative">
         <!-- Shop Page Title -->
@@ -231,7 +231,7 @@
             @else
                 <li class="breadcrumb-item opacity-50 hov-opacity-100">
                     <a class="text-reset" href="{{ route('search') }}">{{ translate('All Categories')}}</a>
-                </li>
+                </li> 
             @endif
             @if(isset($category_id))
                 <li class="text-dark fw-600 breadcrumb-item">
