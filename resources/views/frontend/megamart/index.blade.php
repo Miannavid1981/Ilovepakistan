@@ -120,7 +120,7 @@
     }
 }
 .left-section {
-    display: none !important;
+   margin: 0  !important;
 }
 
 .bighouz-business {
