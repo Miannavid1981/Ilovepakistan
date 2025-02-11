@@ -108,7 +108,7 @@
     font-size: 40px;
 }
 .main_banner_slider .slick-next {
-    right: 10px
+    right: 30px
 }
 .main_banner_slider .slick-prev {
    left: 10px;
