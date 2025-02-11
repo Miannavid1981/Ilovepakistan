@@ -27,7 +27,7 @@
             max-width: 100px;
         }
     </style>
-    <div class="container">
+    <div class="">
        
       
         <section class="brand-logos-slider slider">
