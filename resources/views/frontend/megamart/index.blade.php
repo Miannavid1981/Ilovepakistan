@@ -243,6 +243,22 @@
     <div class="bighouz-business">
 
         <div class="main_banner_slider" >
+            <div class="left-section d-flex flex-column h-100" style="background-image: url(https://static.vecteezy.com/system/resources/previews/008/174/591/non_2x/beauty-skincare-product-square-banner-for-social-media-illustration-vector.jpg); background-size: cover; background-position: center; background-color: #d3e7ff ; border-radius: 20px">
+                <!-- banner-home-page  -->
+                <div class="banner " >
+                        
+                    {{-- <h1>Electronics On Sale</h1>
+                    <div class="d-flex gap-3">
+                        <p><i class="fas fa-check-circle"></i> Tax exemptions</p>
+                        <p><i class="fas fa-credit-card"></i> Express Payments</p>
+                        <p><i class="fas fa-dollar-sign"></i> Financial Support</p>
+                    </div>
+                    
+                    <button class="btn btn-lg btn-dark">Shop now</button> --}}
+            
+                </div>
+        
+            </div>
             <div class="left-section d-flex flex-column h-100" style="background-image: url(https://d1csarkz8obe9u.cloudfront.net/posterpreviews/headphone-earphones-electronics-gadgets-flyer-design-template-f2a41ff7a4f5e05ae8bb552d8903f906_screen.jpg?ts=1660304194); background-size: cover; background-position: center; background-color: #d3e7ff ; border-radius: 20px">
                 <!-- banner-home-page  -->
                 <div class="banner " >
