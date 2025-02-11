@@ -268,6 +268,7 @@ class CustomCartController extends Controller
                 $ret = new \stdClass();  // Use stdClass if it's an object
 
                 // Assign necessary values to $ret
+                $ret->id = $item->id;
                 $ret->product_id = $product->id;
                 $ret->name = $product->name;
                 $ret->price = home_base_price($product);
