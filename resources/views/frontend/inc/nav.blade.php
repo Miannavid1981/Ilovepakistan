@@ -249,7 +249,11 @@
             color: #fff;
             font-weight: bold;
         }
-
+        .grid_sidecart_suggested {
+            display: grid !important;
+            grid-template-columns: 1.2fr 3fr;
+            gap:25px;
+        }
         .grid_sidecart {
             display: grid !important;
             grid-template-columns: 0.4fr 1.2fr 3fr;
@@ -606,7 +610,11 @@
                     <!-- Right Section: Shopping Cart -->
                         <div class="col-md-7 col-12 d-flex flex-column minicart-main-left-section justify-content-between h-100">
                             <div class="d-flex justify-content-between">
-                                <h4>Shopping Cart</h4>
+                                <div class="d-flex">
+                                    <button class="bg-primary px-2 py-1 border-0 text-white border-0 rounded-2 me-2 fs-16" style="transform: translateX(-7px);">Clear</button>
+                                    <h4>Shopping Cart</h4>
+                                </div>
+                               
                                 <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="flex-grow-1  custom_scrollbar ">
@@ -1027,7 +1035,7 @@ $(document).ready(function(){
         products.forEach((item) => {
             $sidecartItems.append(`
                 <div class="sidecart-item d-flex justify-content-between align-items-center py-3 border-bottom">
-                    <div class="grid_sidecart">
+                    <div class="grid_sidecart_suggested">
                         
                         <div class="position-relative ms-2 me-4" style="width: 100%;height: auto;aspect-ratio: 1 / 1;min-width: 35px;" >
                             <img src="${item.image}" alt="${item.name}" class="rounded-2 w-100 h-100 " style="object-fit: cover;">
