@@ -110,15 +110,15 @@
         @media only screen and (max-width: 1800px) {
 
             .container:not(#checkout_container) {
-                padding-left: 50px !important;
-                padding-right: 50px !important;
+                padding-left: 25px !important;
+                padding-right: 25px !important;
             }
         }
         @media only screen and (max-width: 1200px) {
 
             .container:not(#checkout_container) {
-            padding-left: 50px !important;
-            padding-right: 50px !important
+            padding-left: 25px !important;
+            padding-right: 25px !important
             }
         }   
         @media only screen and (max-width: 768px) {
