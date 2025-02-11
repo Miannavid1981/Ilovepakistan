@@ -207,6 +207,10 @@
 
                                 <!-- Description -->
                                 <div class="form-group">
+                                    <label class="fs-13">{{translate('Short Description')}}</label>
+                                    <div class="">
+                                        <textarea class="aiz-text-editor" name="short_description">{{ old('short_description') }}</textarea>
+                                    </div>
                                     <label class="fs-13">{{translate('Description')}}</label>
                                     <div class="">
                                         <textarea class="aiz-text-editor" name="description">{{ old('description') }}</textarea>
