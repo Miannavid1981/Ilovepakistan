@@ -254,7 +254,7 @@ class CustomCartController extends Controller
                     'category_id',
                     'user_id',
                     'thumbnail_img'
-                )->find($item->product_id);
+                )->find($item->id);
                 $item_total = discount_in_percentage($product) > 0 ? ($qty * home_discounted_base_price($product, false)) : ($qty * home_base_price($product, false));
                 $item->subtotal = format_price($item_total);
                 $total += $item_total;
