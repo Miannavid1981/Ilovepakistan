@@ -602,7 +602,7 @@
                         
                             <h4>You May Also Like</h4>
 
-                            <div class="sidecart_suggested-products h-100" style="overflow-y: scroll">
+                            <div class="sidecart_suggested-products" style="overflow-y: scroll;height: 95%;">
                                 
                             </div>
                         
