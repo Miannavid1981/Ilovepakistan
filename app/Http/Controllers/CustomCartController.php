@@ -83,11 +83,11 @@ class CustomCartController extends Controller
 
     public function removeFromCart(Request $request)
     {
-        $productId = $request->product_id;
+        $id = $request->id;
         $userId = Auth::id();
         $tempUserId = session('guest_cart_id');
 
-        Cart::where('product_id', $productId)
+        Cart::where('id', $id)
             ->where(function ($query) use ($userId, $tempUserId) {
                 if ($userId) {
                     $query->where('user_id', $userId);
