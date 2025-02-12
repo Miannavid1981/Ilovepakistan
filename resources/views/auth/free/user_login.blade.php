@@ -147,6 +147,42 @@
         }
     }
 
+
+    .custom-input {
+    border-radius: 25px !important; /* Border radius for rounded corners */
+    border: 1px solid #ececec !important; /* Border color */
+    background-color: #f9f9f9 !important; /* Input background color */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1) !important; /* Border shadow */
+    padding: 20px !important; /* Padding inside the input */
+    font-size: 14px !important; /* Font size */
+    width: 100% !important; /* Full width */
+    transition: all 0.3s ease !important; /* Smooth transition on focus */
+    height: 50px !important; 
+    outline: none !important; 
+}
+
+/* Focused state styling */
+.custom-input:focus {
+    border-color: #cacaca !important; /* Change border color on focus */
+    background-color: #fff !important; /* Change background color on focus */
+    box-shadow: 0 0 8px rgba(153, 155, 158, 0.4) !important; /* Change shadow color on focus */
+    outline: none !important; /* Remove default outline */
+}
+
+/* Styling for invalid inputs */
+.custom-input.is-invalid {
+    border-color: #e3342f !important; /* Red border for invalid input */
+    background-color: #ffe5e5 !important; /* Light red background for invalid input */
+}
+
+.Login-btn{
+    border-radius: 25px !important;
+}
+
+.password-toggle{
+    right: 20px !important;
+}
+
 </style>
     <!-- aiz-main-wrapper -->
     <div class="aiz-main-wrapper d-flex flex-column justify-content-center bg-white">
@@ -165,7 +201,7 @@
                                 <!-- Titles -->
                                 <div class="text-center text-lg-center">
                                     <h1 class="fs-20 fs-md-24 fw-700 text-primary" style="text-transform: uppercase;">{{ translate('Welcome Back !')}}</h1>
-                                    <h5 class="fs-14 fw-400 text-dark">{{ translate('Login todwada your account')}}</h5>
+                                    <h5 class="fs-14 fw-400 text-dark">{{ translate('Login to your account')}}</h5>
                                 </div>
                                 <!-- Login form -->
                                 <div class="pt-3 pt-lg-4 bg-white">
@@ -217,22 +253,32 @@
                                                     <button class="btn btn-link p-0 text-primary" type="button" onclick="toggleEmailPhone(this)"><i>*{{ translate('Use Email Instead') }}</i></button>
                                                 </div>
                                             @else
-                                                <div class="form-group">
-                                                    <label for="email" class="fs-12 fw-700 text-soft-dark">{{  translate('Email') }}</label>
-                                                    <input type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }} rounded-0" value="{{ old('email') }}" placeholder="{{  translate('johndoe@example.com') }}" name="email" id="email" autocomplete="off">
-                                                    @if ($errors->has('email'))
-                                                        <span class="invalid-feedback" role="alert">
-                                                            <strong>{{ $errors->first('email') }}</strong>
-                                                        </span>
-                                                    @endif
-                                                </div>
+                                            <div class="form-group">
+                                                <label for="email" class="fs-16 fw-700 text-soft-dark mx-4">{{ translate('Email') }}</label>
+                                                <input type="email" 
+                                                       class="form-control custom-input {{ $errors->has('email') ? 'is-invalid' : '' }}" 
+                                                       value="{{ old('email') }}" 
+                                                       placeholder="{{ translate('johndoe@example.com') }}" 
+                                                       name="email" 
+                                                       id="email" 
+                                                       autocomplete="off">
+                                                @if ($errors->has('email'))
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $errors->first('email') }}</strong>
+                                                    </span>
+                                                @endif
+                                            </div>
                                             @endif
                                             <div class="password-login-block">
                                                 <!-- password -->
                                                 <div class="form-group">
-                                                    <label for="password" class="fs-12 fw-700 text-soft-dark">{{  translate('Password') }}</label>
+                                                    <label for="password" class="fs-16 fw-700 text-soft-dark mx-4">{{ translate('Password') }}</label>
                                                     <div class="position-relative">
-                                                        <input type="password" class="form-control rounded-0 {{ $errors->has('password') ? ' is-invalid' : '' }}" placeholder="{{ translate('Password')}}" name="password" id="password">
+                                                        <input type="password" 
+                                                               class="form-control custom-input {{ $errors->has('password') ? 'is-invalid' : '' }}" 
+                                                               placeholder="{{ translate('Password') }}" 
+                                                               name="password" 
+                                                               id="password">
                                                         <i class="password-toggle las la-2x la-eye"></i>
                                                     </div>
                                                 </div>
@@ -258,7 +304,7 @@
 
                                             <!-- Submit Button -->
                                             <div class="mb-4 mt-4">
-                                                <button type="submit" class="btn btn-primary btn-block fw-700 fs-14 rounded-0 submit-button">{{  translate('Login') }}</button>
+                                                <button type="submit" class="btn btn-primary btn-block fw-700 fs-16 Login-btn">{{  translate('Login') }}</button>
                                             </div>
                                         </form>
 
@@ -285,9 +331,9 @@
                                         <a href="{{ route('user.registration') }}" class="ml-2 fs-14 fw-700 animate-underline-primary">{{ translate('Register Now')}}</a>
                                     </p>
                                     <!-- Go Back -->
-                                    <a href="{{ url()->previous() }}" class="mt-3 fs-14 fw-700 d-flex align-items-center text-primary" style="max-width: fit-content;">
+                                    <a href="{{ url('/') }}" class="mt-3 fs-14 fw-700 d-flex align-items-center text-primary" style="max-width: fit-content;">
                                         <i class="las la-arrow-left fs-20 mr-1"></i>
-                                        {{ translate('Back to Previous Page')}}
+                                        {{ translate('Back to Home Page')}}
                                     </a>
                                 </div>
                             </div>
