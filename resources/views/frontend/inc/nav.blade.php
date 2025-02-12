@@ -944,7 +944,7 @@ $(document).ready(function(){
     });
     $(document).on('click', '.g-remove-from-cart', function () {
         const id = $(this).data('id');  // Get the product ID from the data-id attribute
-
+        $(".sidecart-items").addClass("disabled")
         $.ajax({
             url: '{{ url("/cart/remove") }}',  // The route for removing items from the cart
             method: 'POST',  // Sending a POST request
@@ -954,7 +954,9 @@ $(document).ready(function(){
             },
             success: function (response) {
                 if (response.cart) {
-                    updateSidecart(response.cart);  // Update the sidecart with the new data
+                    $(".sidecart-items").removeClass("disabled")
+                    updateSidecart(response.cart); 
+                     // Update the sidecart with the new data
                 } else {
                     // alert('Failed to remove the item.');
                 }
@@ -970,7 +972,7 @@ $(document).ready(function(){
         $sidecartItems.empty();
         cart.items.forEach((item) => {
             $sidecartItems.append(`
-                <div class="sidecart-item d-flex justify-content-between align-items-center py-3 border-bottom">
+                <div class="sidecart-item d-flex justify-content-between align-items-center py-2 border-bottom">
                     <div class="grid_sidecart">
                         <div class="d-flex align-items-center">
                             <button class="bg-white h-auto border-0 text-white rounded-2 g-remove-from-cart text-primary p-0" data-id="${item.id}"><i class="fa fa-trash fs-16"></i></button>
