@@ -31,14 +31,14 @@
             background-color: red;
             color: white;
             border-radius: 50%;
-            font-size: 0.8rem;
-            width: 20px;
-            height: 20px;
+            font-size: 0.7rem;
+            width: 15px;
+            height: 15px;
             display: inline-flex;
             align-items: center;
             justify-content: center;
             position: absolute;
-            top: -8px;
+            top: -3px;
             right: -6px;
         }
         .dropdown {
@@ -90,7 +90,7 @@
         }
 
         .navbar .nav-link {
-            font-size: 16px;
+            font-size: 14px;
             font-weight: 400;
             color: #000;
         }
@@ -106,11 +106,10 @@
         
 
         #search_cat {
-            background: #ccc;
             background: #e9e9e9;
             border-radius: 30px;
             font-size: 16px;
-            padding: 2px 20px;
+            padding: 0px 20px;
             color: #000000 !important;
             margin: 4px;
             border: unset !important;
@@ -264,7 +263,7 @@
         }
     </style>
 
-<header class="container bg-white pt-2">
+<header class="container bg-white pt-1">
         <!-- Header Top -->
         <div class="row align-items-center header-top">
             <!-- Logo -->
@@ -307,7 +306,7 @@
                             <option value="{{ $category->id }}" class="search-option2">{{ $category->name }}</option>
                         @endforeach
                     </select>
-                    <input type="text" class="form-control search-input h-100 p-0 fs-17" id="search"  placeholder="Search products...">
+                    <input type="text" class="form-control search-input h-100 p-0 fs-15" id="search"  placeholder="Search products...">
                     <button class="btn btn-dark search_button_icon h-100"><i class="fa-solid fa-magnifying-glass"></i></button>
                 </div>
                 
