@@ -284,7 +284,7 @@ if(!empty($product->product_custom_url)){
                 <a href="{{ $product_url }}" class="d-block hov-text-primary text-dark" style="font-weight: 600; line-height: 1;" title="{{ $product->getTranslation('name') }}">{{ $product->getTranslation('name') }}</a>
 
             </h3>
-            <div class="d-flex justify-content-start align-items-center g-2 text-warning fs-18 mt-1">
+            <div class="d-flex justify-content-start align-items-center g-2 text-warning fs-16 mt-1">
                 <i class="la la-star"></i>
                 <i class="la la-star"></i>
                 <i class="la la-star"></i>
