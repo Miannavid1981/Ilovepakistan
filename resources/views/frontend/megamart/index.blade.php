@@ -189,7 +189,13 @@
         object-fit: contain; /* Keep aspect ratio */
     }
     .category-card p {
-        font-size: 16px !important;
+        font-size: 10px !important;
+    }
+    .custom-tab {
+        padding: 2px 5px !important;
+      
+        font-size: 9px !important;
+    
     }
 }
 
@@ -661,6 +667,15 @@
         gap: 10px;
         margin-bottom: 50px;
         margin-top: 30px
+    }
+
+    @media (max-width: 768px){
+        .home_categories_grid {
+            grid-template-columns: 1fr 1fr !important;
+        }
+        .main_banner_slider {
+            display: none !important
+        }
     }
     </style>
     <div class="container">
