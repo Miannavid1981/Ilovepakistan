@@ -78,7 +78,7 @@ if(!empty($product->product_custom_url)){
   
    
 </style>
-<div class="aiz-card-box h-auto py-3 ">
+<div class="aiz-card-box h-auto pb-3 ">
     {{-- <a href="{{$product_url}}" > --}}
         
   
