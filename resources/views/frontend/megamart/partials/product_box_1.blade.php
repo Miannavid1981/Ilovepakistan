@@ -48,7 +48,7 @@ if(!empty($product->product_custom_url)){
     align-items: center;
     justify-content: center;
         padding: 6px;
-        font-size: 12px !important;
+        font-size: 10px !important;
         background: #fff !important;
         color: #000 !important;
         border-radius: 20px;
@@ -129,7 +129,7 @@ if(!empty($product->product_custom_url)){
                     <div class="absolute-bottom-left absolute-bottom-right d-flex justify-content-between align-items-center p-3 add-cart-btn gap-2">
                         <button class="view-cart w-100"  href="javascript:void(0)"
                             onclick="showAddToCartModal({{ $product->id }})">
-                            <i class="fa-regular fa-eye fs-24 me-2"></i>   
+                            <i class="fa-regular fa-eye fs-15 me-2"></i>   
                     <span> Quick View</span>
                     </button>
                        
