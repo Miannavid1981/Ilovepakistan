@@ -216,6 +216,9 @@
             .slide-in-right .minicart-main-left-section {
                 padding-top: 15px ;
             }
+            .slide-in-right .modal-dialog {
+                width: 80vw !important;
+            }
         }
         .quantity-switcher {
             display: flex;
@@ -984,8 +987,12 @@ $(document).ready(function(){
                         </div>
                         
                         <div class=" ms-4">
-                            <div class="fs-13">${item.name}</div>
-                            <div class="d-flex align-items-center gap-2">
+                            <div class="fs-13" style="display: inline-block;
+    max-width: 90px;
+    word-wrap: break-word;">${item.name}</div>
+                            <div class="d-flex align-items-center gap-2" style="display: inline-block;
+    max-width: 90px;
+    word-wrap: break-word;">
                                 <div>
                                  <div class="font-weight-bold  ${ item.discount ? ` fs-13 text-secondary" style="text-decoration: line-through;` : 'fs-16' }" >${item.price}</div>
                                 ${
