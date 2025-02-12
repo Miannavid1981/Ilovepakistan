@@ -405,7 +405,7 @@
 
        
             <div id="short_description" class="mt-3">
-            {!! $detailedProduct->description !!}
+            {!! $detailedProduct->short_description !!}
             </div>
        
       <!-- <div class="sale-price">PKR 852 each, 10 pieces</div>
