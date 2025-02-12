@@ -180,7 +180,7 @@
     .category-card {
         width: 100%; /* Ensure full-width category cards */
         margin-bottom: 0px; /* Add space between cards */
-        min-height: 170px !important;
+       
     }
 
     .category-card img {
