@@ -344,7 +344,7 @@
 
     <!-- Category-end -->
 </div>
-<img src="{{ static_asset('/public/assets/img/mainbanner.jpg') }}" class="w-100 mt-2">
+
 
 
 <!-- Category-start -->
@@ -683,10 +683,10 @@
 
 
     </div>
-
+    <img src="https://media.licdn.com/dms/image/v2/D4E12AQHHPK-wrGnwOg/article-cover_image-shrink_720_1280/article-cover_image-shrink_720_1280/0/1693333464172?e=2147483647&amp;v=beta&amp;t=wlIU1NtUMOVAEgDvUSD_q5s6I7ExuF-_ZmTr22YUOXo" class="w-100 mt-2 mb-4">
 
     @include('frontend/megamart/partials/toggle_tabs');
-    
+   
     <!-- Today's deal -->
     @php
         $todays_deal_section_bg = get_setting('todays_deal_section_bg_color');

@@ -10,10 +10,10 @@
     }
 
     .custom-tab {
-        padding: 10px 20px;
+        padding: 2px 20px;
         border-radius: 25px;
         cursor: pointer;
-        font-size: 18px;
+        font-size: 15px;
         font-weight: 500;
         color: #666;
         transition: color 0.3s ease;

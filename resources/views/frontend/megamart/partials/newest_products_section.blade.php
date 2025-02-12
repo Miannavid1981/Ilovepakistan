@@ -13,14 +13,14 @@
     <style> 
     @media (min-width: 992px) { /* Desktop view */
         .custom-col {
-            flex: 0 0 calc(100% / 5); /* Divide the row into 5 equal parts */
-            max-width: calc(100% / 5); /* Ensure proper width */
+            flex: 0 0 calc(100% / 6); /* Divide the row into 5 equal parts */
+            max-width: calc(100% / 6); /* Ensure proper width */
         }
     }
     /* Desktop View: 5 Columns */
     @media (min-width: 992px) {
         .product-grid {
-            grid-template-columns: repeat(5, 1fr); /* 5 columns on desktop */
+            grid-template-columns: repeat(6, 1fr); /* 5 columns on desktop */
         }
     }
     </style>
