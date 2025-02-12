@@ -189,13 +189,11 @@
         object-fit: contain; /* Keep aspect ratio */
     }
     .category-card p {
-        font-size: 10px !important;
-    }
+    font-size: 16px !important;
+}
     .custom-tab {
-        padding: 2px 5px !important;
-      
-        font-size: 9px !important;
-    
+        padding: 2px 8px !important;
+        font-size: 15px !important;
     }
 }
 
