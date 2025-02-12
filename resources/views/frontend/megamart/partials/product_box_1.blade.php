@@ -31,6 +31,7 @@ if(!empty($product->product_custom_url)){
     letter-spacing: 1px;
     text-transform: capitalize;
     font-weight: 500;
+    font-size: 0.6rem;
 }
 .add-cart-btn { 
     transform: translateY(100%);
@@ -277,13 +278,13 @@ if(!empty($product->product_custom_url)){
         <button class="custom_card_tag mb-1">{{ $category->getTranslation('name') }}</button>
     @endforeach
 @endif
-            <h3 class="fw-400 fs-18 lh-1-4 mb-0 mt-1">
+            <h3 class="fw-400 fs-16 lh-1-4 mb-0 mt-1">
 
                 
                 <a href="{{ $product_url }}" class="d-block hov-text-primary text-dark" style="font-weight: 600; line-height: 1;" title="{{ $product->getTranslation('name') }}">{{ $product->getTranslation('name') }}</a>
 
             </h3>
-            <div class="d-flex justify-content-start align-items-center g-2 text-warning fs-18 mt-1">
+            <div class="d-flex justify-content-start align-items-center g-2 text-warning fs-16 mt-1">
                 <i class="la la-star"></i>
                 <i class="la la-star"></i>
                 <i class="la la-star"></i>
@@ -320,9 +321,8 @@ if(!empty($product->product_custom_url)){
 
           
 
-                    <span class="fs-15">{{ get_system_default_currency()->code }}</span>
-                    <span class="fw-700 text-dark text-start fs-20" style=" font-family: "Kanit", serif !important">{{ number_format(home_discounted_base_price($product, false)) }}</span>
-
+                    <span class="fs-14">{{ get_system_default_currency()->code }}</span>
+                    <span class="fw-700 text-dark text-start fs-18" style=" font-family: "Kanit", serif !important">{{ number_format(home_discounted_base_price($product, false)) }}</span>
                     <!-- Discount percentage tag -->
 
                     @if (discount_in_percentage($product) > 0)
@@ -345,7 +345,7 @@ if(!empty($product->product_custom_url)){
 
                 <div class="">
 
-                    <span class="fw-700 fs-20 text-primary ">{{ single_price($product->starting_bid) }}</span>
+                    <span class="fw-700 fs-18 text-primary ">{{ single_price($product->starting_bid) }}</span>
 
                 </div>
 
