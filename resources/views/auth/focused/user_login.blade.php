@@ -5,12 +5,6 @@
     <div class="aiz-main-wrapper d-flex flex-column justify-content-center bg-white">
         <section class="bg-white overflow-hidden" style="min-height:100vh;">
             <div class="row no-gutters" style="min-height: 100vh;">
-                <!-- Left Side -->
-                <div class="col-xxl-9 col-lg-8">
-                    <div class="h-100" style="max-height: 100vh">
-                        <img src="{{ uploaded_asset(get_setting('customer_login_page_image')) }}" alt="" class="img-fit h-100">
-                    </div>
-                </div>
                 
                 <!-- Right Side Image -->
                 <div class="col-xxl-3 col-lg-4">
@@ -23,7 +17,7 @@
                             <!-- Titles -->
                             <div class="text-center text-lg-left">
                                 <h1 class="fs-20 fs-md-24 fw-700 text-primary" style="text-transform: uppercase;">{{ translate('Welcome Back !')}}</h1>
-                                <h5 class="fs-14 fw-400 text-dark">{{ translate('Login fjakjflkto your account')}}</h5>
+                                <h5 class="fs-14 fw-400 text-dark">{{ translate('Login to your account')}}</h5>
                             </div>
                             <!-- Login form -->
                             <div class="pt-3 pt-lg-4">

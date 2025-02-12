@@ -73,7 +73,6 @@
         @media (max-width: 991px) {
             .right-content{
                 background: var(--white);
-                margin-top: -60%;
                 border-radius: 24px;
                 min-height: 550px;
             }
