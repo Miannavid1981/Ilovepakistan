@@ -127,11 +127,12 @@
     display: flex;
     gap: 15px;
 }
+
 .bighouz-business .main_banner_slider{
-    width: 60%;
+    width: 65%;
 }
 .bighouz-business .right-section{
-    width: 40%;
+    width: 35%;
 }
 /* For screens below 767px (Mobile View) */
 @media (max-width: 767px) {
@@ -150,10 +151,10 @@
 }
 @media (max-width: 1800px){
     .bighouz-business .main_banner_slider{
-        width: 60%;
+        width: 65%;
     }
     .bighouz-business .right-section{
-        width: 40%;
+        width: 35%;
     }
 }
 
@@ -238,7 +239,7 @@
 
 </style>
 
-<div class="container py-4">
+<div class="container  pt-2 pb-4">
 
     <div class="bighouz-business">
 

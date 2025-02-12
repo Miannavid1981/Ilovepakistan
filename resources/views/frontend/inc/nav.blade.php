@@ -142,9 +142,13 @@
             height: 100vh;
         }
         .slide-in-right .modal-dialog {
-            min-width: 800px;
+            min-width: 30vw;
             border-radius: 20px;
             height: auto !important;
+        }
+
+        .slide-in-right .modal-content .modal-body {
+            padding: .7rem !important;
         }
         .modal.fade.slide-in-right .modal-dialog {
         transform: translateX(100%);
@@ -155,6 +159,9 @@
         transform: translateX(0);
         }
 
+        .slide-in-cart-extended {
+            min-width: 60vw;
+        }
         .modal.fade.slide-in-right {
         animation: slideInRight 0.3s forwards;
         }
@@ -163,9 +170,9 @@
         animation: slideOutRight 0.3s forwards;
         }
         .slide-in-right .modal-dialog {
-            right: 20px !important;
-            top: 20px !important;
-            bottom: 20px !important;
+            right: .5rem  !important;
+            top: .5rem !important;
+            bottom: .5rem !important;
             height: auto;
         }
         .slide-in-right .modal-body {
@@ -182,7 +189,9 @@
         }
 
         
-
+        @media (max-width: 1024px){
+            
+        }
         @media (max-width: 991px){
             header {
                 display: none !important;
@@ -338,8 +347,8 @@
                                 </div>
                             @else 
                                 <div class="d-flex flex-column">
-                                    <span class="d-block fs-15"> Customer Area</span>
-                                    <span class="fw-bold fs-16">My Account</span>
+                                    <span class="d-block fs-14"> Customer Area</span>
+                                    <span class="fw-bold fs-15">My Account</span>
                                 </div>
                             @endauth
                         </button>
@@ -383,7 +392,7 @@
                 
 
                     <button class="btn btn-light bg-white border-0 me-3 p-0 position-relative toggle-cart-modal">
-                        <i class="fa-solid fs-20 fa-cart-shopping"></i>
+                        <i class="fa-solid fs-18 fa-cart-shopping"></i>
                         <span class="cart-badge g-cart-items-count">0</span>
                         <p class="fw-bold mb-0">Cart</p>
                     </button>
@@ -614,7 +623,7 @@
                             <div class="d-flex justify-content-between">
                                 <div class="d-flex">
                                     <button class="bg-primary px-2 py-1 border-0 text-white border-0 rounded-2 me-2 fs-16" style="transform: translateX(-7px);">Clear</button>
-                                    <h4>Shopping Cart</h4>
+                                    <h5>Shopping Cart</h5>
                                 </div>
                                
                                 <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
@@ -1022,12 +1031,12 @@ $(document).ready(function(){
         if(products.length == 0){
             $('.cart-offers-section').hide()
             $(".minicart-main-left-section").removeClass("col-md-7")
-            $('.slide-in-right .modal-dialog').css('min-width', '500px');
+            $('.slide-in-right .modal-dialog').css('min-width', '35vw');
 
             return;
         }
         $('.cart-offers-section').show()
-        $('.slide-in-right .modal-dialog').css('min-width', '800px');
+        $('.slide-in-right .modal-dialog').css('min-width', '60vw');
         $(".minicart-main-left-section").addClass("col-md-7")
         const $sidecartItems = $('.sidecart_suggested-products');
         
