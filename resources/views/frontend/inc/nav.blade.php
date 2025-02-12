@@ -970,7 +970,7 @@ $(document).ready(function(){
         $sidecartItems.empty();
         cart.items.forEach((item) => {
             $sidecartItems.append(`
-                <div class="sidecart-item d-flex justify-content-between align-items-center py-3 border-bottom">
+                <div class="sidecart-item d-flex justify-content-between align-items-center py-2 border-bottom">
                     <div class="grid_sidecart">
                         <div class="d-flex align-items-center">
                             <button class="bg-white h-auto border-0 text-white rounded-2 g-remove-from-cart text-primary p-0" data-id="${item.id}"><i class="fa fa-trash fs-16"></i></button>
