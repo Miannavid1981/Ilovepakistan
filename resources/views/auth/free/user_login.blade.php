@@ -152,26 +152,20 @@
     <div class="aiz-main-wrapper d-flex flex-column justify-content-center bg-white">
         <section class="bg-white overflow-hidden" style="min-height:100vh;">
             <div class="row" style="min-height: 100vh;">
-                <!-- Left Side Image-->
-                <div class="col-xxl-6 col-lg-7">
-                    <div class="h-100">
-                        <img src="{{ uploaded_asset(get_setting('customer_login_page_image')) }}" alt="" class="img-fit h-100">
-                    </div>
-                </div>
                 
                 <!-- Right Side -->
-                <div class="col-xxl-6 col-lg-5">
+                <div class="col-xxl-12 col-lg-12">
                     <div class="right-content">
-                        <div class="row align-items-center justify-content-center justify-content-lg-start h-100">
-                            <div class="col-xxl-6 p-4 p-lg-5">
+                        <div class="row align-items-center justify-content-center justify-content-lg-center h-100">
+                            <div class="col-xxl-3 p-4 p-lg-5">
                                 <!-- Site Icon -->
-                                <div class="size-48px mb-3 mx-auto mx-lg-0">
-                                    <img src="{{ uploaded_asset(get_setting('site_icon')) }}" alt="{{ translate('Site Icon')}}" class="img-fit h-100">
+                                <div class="size-100px w-100 text-lg-center mb-2">
+                                    <img src="{{ uploaded_asset(get_setting('site_icon')) }}" alt="{{ translate('Site Icon')}}" class="">
                                 </div>
                                 <!-- Titles -->
-                                <div class="text-center text-lg-left">
+                                <div class="text-center text-lg-center">
                                     <h1 class="fs-20 fs-md-24 fw-700 text-primary" style="text-transform: uppercase;">{{ translate('Welcome Back !')}}</h1>
-                                    <h5 class="fs-14 fw-400 text-dark">{{ translate('Login to your account')}}</h5>
+                                    <h5 class="fs-14 fw-400 text-dark">{{ translate('Login todwada your account')}}</h5>
                                 </div>
                                 <!-- Login form -->
                                 <div class="pt-3 pt-lg-4 bg-white">
@@ -209,15 +203,15 @@
 
                                                 <input type="hidden" name="country_code" value="">
                                                 
-                                                <div class="form-group email-form-group mb-1 d-none">
-                                                    <label for="email" class="fs-12 fw-700 text-soft-dark">{{  translate('Email') }}</label>
-                                                    <input type="email" class="form-control rounded-0 {{ $errors->has('email') ? ' is-invalid' : '' }}" value="{{ old('email') }}" placeholder="{{  translate('johndoe@example.com') }}" name="email" id="email" autocomplete="off">
-                                                    @if ($errors->has('email'))
-                                                        <span class="invalid-feedback" role="alert">
-                                                            <strong>{{ $errors->first('email') }}</strong>
-                                                        </span>
-                                                    @endif
-                                                </div>
+                                                 <div class="form-group">
+                                            <label for="email" class="fs-12 fw-700 text-soft-dark">{{  translate('Email') }}</label>
+                                            <input type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }} rounded-0" value="{{ old('email') }}" placeholder="{{  translate('johndoe@example.com') }}" name="email" id="email" autocomplete="off">
+                                            @if ($errors->has('email'))
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $errors->first('email') }}</strong>
+                                                </span>
+                                            @endif
+                                        </div>
                                                 
                                                 <div class="form-group text-right">
                                                     <button class="btn btn-link p-0 text-primary" type="button" onclick="toggleEmailPhone(this)"><i>*{{ translate('Use Email Instead') }}</i></button>

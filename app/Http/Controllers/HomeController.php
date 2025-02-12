@@ -105,7 +105,7 @@ class HomeController extends Controller
         if (Route::currentRouteName() == 'seller.login' && get_setting('vendor_system_activation') == 1) {
             return view('auth.' . get_setting('authentication_layout_select') . '.seller_login');
         } else if (Route::currentRouteName() == 'admin.login' && get_setting('vendor_system_activation') == 1) {
-            return view('auth.boxed.admin_login');
+            return view('auth.free.admin_login');
         } else if (Route::currentRouteName() == 'deliveryboy.login' && addon_is_activated('delivery_boy')) {
             return view('auth.' . get_setting('authentication_layout_select') . '.deliveryboy_login');
         }
