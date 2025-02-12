@@ -127,6 +127,7 @@
     display: flex;
     gap: 15px;
 }
+
 .bighouz-business .main_banner_slider{
     width: 60%;
 }
@@ -238,7 +239,7 @@
 
 </style>
 
-<div class="container py-4">
+<div class="container  pt-2 pb-4">
 
     <div class="bighouz-business">
 

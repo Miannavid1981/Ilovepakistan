@@ -193,7 +193,7 @@
                 <div class="col-xxl-12 col-lg-12">
                     <div class="right-content">
                         <div class="row align-items-center justify-content-center justify-content-lg-center h-100">
-                            <div class="col-xxl-3 p-4 p-lg-5">
+                            <div class="col-md-5 p-4 p-lg-5">
                                 <!-- Site Icon -->
                                 <div class="size-100px w-100 text-lg-center mb-2">
                                     <img src="{{ uploaded_asset(get_setting('site_icon')) }}" alt="{{ translate('Site Icon')}}" class="">
