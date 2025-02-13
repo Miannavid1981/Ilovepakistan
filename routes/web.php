@@ -189,8 +189,8 @@ Route::controller(CustomerProductController::class)->group(function () {
 
 // Search
 Route::controller(SearchController::class)->group(function () {
-    Route::get('/search', 'index')->name('search');
-    Route::get('/search?keyword={search}', 'index')->name('suggestion.search');
+    Route::get('/shop', 'index')->name('search');
+    Route::get('/shop?keyword={search}', 'index')->name('suggestion.search');
     Route::post('/ajax-search', 'ajax_search')->name('search.ajax');
     Route::get('/category/{category_slug}', 'listingByCategory')->name('products.category');
     Route::get('/brand/{brand_slug}', 'listingByBrand')->name('products.brand');
