@@ -154,6 +154,42 @@
         }
     }
 
+
+    .custom-input {
+    border-radius: 25px !important; /* Border radius for rounded corners */
+    border: 1px solid #ececec !important; /* Border color */
+    background-color: #f9f9f9 !important; /* Input background color */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1) !important; /* Border shadow */
+    padding: 20px !important; /* Padding inside the input */
+    font-size: 14px !important; /* Font size */
+    width: 100% !important; /* Full width */
+    transition: all 0.3s ease !important; /* Smooth transition on focus */
+    height: 50px !important; 
+    outline: none !important; 
+}
+
+/* Focused state styling */
+.custom-input:focus {
+    border-color: #cacaca !important; /* Change border color on focus */
+    background-color: #fff !important; /* Change background color on focus */
+    box-shadow: 0 0 8px rgba(153, 155, 158, 0.4) !important; /* Change shadow color on focus */
+    outline: none !important; /* Remove default outline */
+}
+
+/* Styling for invalid inputs */
+.custom-input.is-invalid {
+    border-color: #e3342f !important; /* Red border for invalid input */
+    background-color: #ffe5e5 !important; /* Light red background for invalid input */
+}
+
+.Login-btn{
+    border-radius: 25px !important;
+}
+
+.password-toggle{
+    right: 20px !important;
+}
+
 </style>
     <!-- aiz-main-wrapper -->
     <div class="aiz-main-wrapper d-flex flex-column justify-content-center bg-white">
@@ -170,10 +206,12 @@
                                     <img src="{{ uploaded_asset(get_setting('site_icon')) }}" alt="{{ translate('Site Icon')}}" class=" h-100 w-auto m-auto">
                                 </div>
                                 <!-- Titles -->
+
                                 {{-- <div class="text-center text-lg-center">
                                     <h3 class="fs-20 fs-md-24 fw-700 text-primary" style="text-transform: uppercase;">{{ translate('Welcome Back !')}}</h3>
                                     <h6 class="fs-14 fw-400 text-dark">{{ translate('Login todwada your account')}}</h6>
                                 </div> --}}
+
                                 <!-- Login form -->
                                 <div class="bg-white">
                                     <div class="">
@@ -224,6 +262,7 @@
                                                     <button class="btn btn-link p-0 text-primary" type="button" onclick="toggleEmailPhone(this)"><i>*{{ translate('Use Email Instead') }}</i></button>
                                                 </div>
                                             @else
+
                                                 <div class="form-group">
                                                     {{-- <label for="email" class="fs-12 fw-700 text-soft-dark">{{  translate('Email') }}</label> --}}
                                                     <input type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }} rounded-2" value="{{ old('email') }}" placeholder="{{  translate('Email') }}" name="email" id="email" autocomplete="off">
@@ -237,9 +276,11 @@
                                             <div class="password-login-block">
                                                 <!-- password -->
                                                 <div class="form-group">
+
                                                     {{-- <label for="password" class="fs-12 fw-700 text-soft-dark">{{  translate('Password') }}</label> --}}
                                                     <div class="position-relative">
                                                         <input type="password" class="form-control rounded-2 {{ $errors->has('password') ? ' is-invalid' : '' }}" placeholder="{{ translate('Password')}}" name="password" id="password">
+
                                                         <i class="password-toggle las la-2x la-eye"></i>
                                                     </div>
                                                 </div>
@@ -264,8 +305,10 @@
                                             </div>
 
                                             <!-- Submit Button -->
+
                                             <div class="mb-2 mt-2">
                                                 <button type="submit" class="btn btn-primary btn-block fw-700 fs-14 rounded-2 submit-button">{{  translate('Login') }}</button>
+
                                             </div>
                                         </form>
 
@@ -293,9 +336,11 @@
                                     </p>
                                     <a href="{{ route('user.registration') }}" class="btn btn-light w-100">{{ translate('Create an Account')}}</a>
                                     <!-- Go Back -->
+
                                     <a href="{{ url()->previous() }}" class="mt-5 fs-14 fw-700 text-center w-100 " >
                                         <i class="las la-arrow-left fs-20 mr-1"></i>
                                         {{ translate('Back to Home')}}
+
                                     </a>
                                 </div>
                             </div>
