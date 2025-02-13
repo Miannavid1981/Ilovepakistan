@@ -97,21 +97,21 @@
     /*   border-radius: 25px !important;*/
     /*}*/
 
- .login-buttons .btn {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 100%;
-     padding: 12px;
-      margin: 10px 0;
-      border: none;
-      border-radius: 25px;
-      font-size: 16px;
-      font-weight: bold;
-      text-decoration: none;
-      color: white;
-      cursor: pointer;
-    }
+    .login-buttons .btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 8px 10px;
+    margin: 6px 0;
+    border: none;
+    border-radius: 15px;
+    font-size: 15px;
+    font-weight: 500;
+    text-decoration: none;
+    color: white;
+    cursor: pointer;
+}
 
     .btn-facebook {
       background-color: #1877f2;
@@ -133,7 +133,10 @@
     }
 
 
- 
+    .form-control {
+    padding: 8px 12px !important;
+    height: auto !important;
+}
 
     .login-buttons {
       display: flex;
@@ -157,18 +160,18 @@
                 <div class="col-xxl-12 col-lg-12">
                     <div class="right-content">
                         <div class="row align-items-center justify-content-center justify-content-lg-center h-100">
-                            <div class="col-md-5 p-4 p-lg-5">
+                            <div class="col-md-4">
                                 <!-- Site Icon -->
-                                <div class="size-100px w-100 text-lg-center mb-2">
-                                    <img src="{{ uploaded_asset(get_setting('site_icon')) }}" alt="{{ translate('Site Icon')}}" class="">
+                                <div class="size-80px w-100 text-lg-center mb-2">
+                                    <img src="{{ uploaded_asset(get_setting('site_icon')) }}" alt="{{ translate('Site Icon')}}" class=" h-100 w-auto m-auto">
                                 </div>
                                 <!-- Titles -->
-                                <div class="text-center text-lg-center">
-                                    <h1 class="fs-20 fs-md-24 fw-700 text-primary" style="text-transform: uppercase;">{{ translate('Welcome Back !')}}</h1>
-                                    <h5 class="fs-14 fw-400 text-dark">{{ translate('Login todwada your account')}}</h5>
-                                </div>
+                                {{-- <div class="text-center text-lg-center">
+                                    <h3 class="fs-20 fs-md-24 fw-700 text-primary" style="text-transform: uppercase;">{{ translate('Welcome Back !')}}</h3>
+                                    <h6 class="fs-14 fw-400 text-dark">{{ translate('Login todwada your account')}}</h6>
+                                </div> --}}
                                 <!-- Login form -->
-                                <div class="pt-3 pt-lg-4 bg-white">
+                                <div class="bg-white">
                                     <div class="">
                                         <form class="form-default loginForm" role="form" action="{{ route('login') }}" method="POST">
                                             @csrf
@@ -205,7 +208,7 @@
                                                 
                                                  <div class="form-group">
                                             <label for="email" class="fs-12 fw-700 text-soft-dark">{{  translate('Email') }}</label>
-                                            <input type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }} rounded-0" value="{{ old('email') }}" placeholder="{{  translate('johndoe@example.com') }}" name="email" id="email" autocomplete="off">
+                                            <input type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }} rounded-2" value="{{ old('email') }}" placeholder="{{  translate('johndoe@example.com') }}" name="email" id="email" autocomplete="off">
                                             @if ($errors->has('email'))
                                                 <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $errors->first('email') }}</strong>
@@ -218,8 +221,8 @@
                                                 </div>
                                             @else
                                                 <div class="form-group">
-                                                    <label for="email" class="fs-12 fw-700 text-soft-dark">{{  translate('Email') }}</label>
-                                                    <input type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }} rounded-0" value="{{ old('email') }}" placeholder="{{  translate('johndoe@example.com') }}" name="email" id="email" autocomplete="off">
+                                                    {{-- <label for="email" class="fs-12 fw-700 text-soft-dark">{{  translate('Email') }}</label> --}}
+                                                    <input type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }} rounded-2" value="{{ old('email') }}" placeholder="{{  translate('Email') }}" name="email" id="email" autocomplete="off">
                                                     @if ($errors->has('email'))
                                                         <span class="invalid-feedback" role="alert">
                                                             <strong>{{ $errors->first('email') }}</strong>
@@ -230,9 +233,9 @@
                                             <div class="password-login-block">
                                                 <!-- password -->
                                                 <div class="form-group">
-                                                    <label for="password" class="fs-12 fw-700 text-soft-dark">{{  translate('Password') }}</label>
+                                                    {{-- <label for="password" class="fs-12 fw-700 text-soft-dark">{{  translate('Password') }}</label> --}}
                                                     <div class="position-relative">
-                                                        <input type="password" class="form-control rounded-0 {{ $errors->has('password') ? ' is-invalid' : '' }}" placeholder="{{ translate('Password')}}" name="password" id="password">
+                                                        <input type="password" class="form-control rounded-2 {{ $errors->has('password') ? ' is-invalid' : '' }}" placeholder="{{ translate('Password')}}" name="password" id="password">
                                                         <i class="password-toggle las la-2x la-eye"></i>
                                                     </div>
                                                 </div>
@@ -257,8 +260,8 @@
                                             </div>
 
                                             <!-- Submit Button -->
-                                            <div class="mb-4 mt-4">
-                                                <button type="submit" class="btn btn-primary btn-block fw-700 fs-14 rounded-0 submit-button">{{  translate('Login') }}</button>
+                                            <div class="mb-2 mt-2">
+                                                <button type="submit" class="btn btn-primary btn-block fw-700 fs-14 rounded-2 submit-button">{{  translate('Login') }}</button>
                                             </div>
                                         </form>
 
@@ -282,10 +285,11 @@
                                     <!-- Register Now -->
                                     <p class="fs-12 text-gray mb-0">
                                         {{ translate('Dont have an account?')}}
-                                        <a href="{{ route('user.registration') }}" class="ml-2 fs-14 fw-700 animate-underline-primary">{{ translate('Register Now')}}</a>
+                                        
                                     </p>
+                                    <a href="{{ route('user.registration') }}" class="btn btn-light w-100">{{ translate('Create an Account')}}</a>
                                     <!-- Go Back -->
-                                    <a href="{{ url()->previous() }}" class="mt-3 fs-14 fw-700 d-flex align-items-center text-primary" style="max-width: fit-content;">
+                                    <a href="{{ url()->previous() }}" class="mt-3 fs-14 fw-700 text-center w-100 " >
                                         <i class="las la-arrow-left fs-20 mr-1"></i>
                                         {{ translate('Back to Previous Page')}}
                                     </a>
