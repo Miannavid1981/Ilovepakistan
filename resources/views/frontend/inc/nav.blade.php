@@ -421,7 +421,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link category-btn" href="#">Deals</a>
+                            <a class="nav-link category-btn" href="{{ url('/shop') }}">Shop</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link category-btn" href="#">Bestsellers</a>
