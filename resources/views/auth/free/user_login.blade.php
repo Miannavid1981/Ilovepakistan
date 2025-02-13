@@ -105,9 +105,9 @@
     padding: 8px 10px;
     margin: 6px 0;
     border: none;
-    border-radius: 15px;
+    border-radius: 10px;
     font-size: 15px;
-    font-weight: 500;
+    font-weight: 400;
     text-decoration: none;
     color: white;
     cursor: pointer;
@@ -243,7 +243,7 @@
                                                 <div class="row mb-2">
                                                     <!-- Remember Me -->
                                                     <div class="col-5">
-                                                        <label class="aiz-checkbox">
+                                                        <label class="aiz-checkbox mb-0">
                                                             <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}>
                                                             <span class="has-transition fs-12 fw-400 text-gray-dark hov-text-primary">{{  translate('Remember Me') }}</span>
                                                             <span class="aiz-square-check"></span>
@@ -289,7 +289,7 @@
                                     </p>
                                     <a href="{{ route('user.registration') }}" class="btn btn-light w-100">{{ translate('Create an Account')}}</a>
                                     <!-- Go Back -->
-                                    <a href="{{ url()->previous() }}" class="mt-3 fs-14 fw-700 text-center w-100 " >
+                                    <a href="{{ url()->previous() }}" class="mt-5 fs-14 fw-700 text-center w-100 " >
                                         <i class="las la-arrow-left fs-20 mr-1"></i>
                                         {{ translate('Back to Previous Page')}}
                                     </a>
