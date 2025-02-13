@@ -130,14 +130,14 @@
 
     <section>
   <!-- Banner -->
-  <div class="banner">
+  {{-- <div class="banner">
     <div>
       <h1>SMART GADGETS & TOOLS FOR ANY THINGS</h1>
       <p class="mt-2">Since 1983</p>
     </div>
-  </div>
+  </div> --}}
 
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light d-none">
     <div class="container d-flex justify-content-between align-items-center">
       <!-- KitchenSmart Branding -->
       <a class="navbar-brand d-flex flex-column align-items-start" href="#">
