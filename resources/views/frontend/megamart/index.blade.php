@@ -129,10 +129,10 @@
 }
 
 .bighouz-business .main_banner_slider{
-    width: 65%;
+    width: 60%;
 }
 .bighouz-business .right-section{
-    width: 35%;
+    width: 40%;
 }
 /* For screens below 767px (Mobile View) */
 @media (max-width: 767px) {
@@ -151,10 +151,10 @@
 }
 @media (max-width: 1800px){
     .bighouz-business .main_banner_slider{
-        width: 65%;
+        width: 60%;
     }
     .bighouz-business .right-section{
-        width: 35%;
+        width: 40%;
     }
 }
 
