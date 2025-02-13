@@ -25,7 +25,7 @@
     }
     </style>
     <section >
-        <div class="px-3">
+        
             <!-- Top Section -->
             <div class="d-flex mb-2 mb-md-3 mt-2 align-items-baseline justify-content-between">
                 <!-- Title -->
@@ -54,6 +54,6 @@
                 @endforeach
             </div>
 
-        </div>
+       
     </section>
 @endif
