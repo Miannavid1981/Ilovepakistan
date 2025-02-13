@@ -183,6 +183,21 @@
     right: 20px !important;
 }
 
+.nav-pills .nav-link {
+    background-color: white; /* Default white background */
+    color: black; /* Default black text */
+    border-radius: 20px;
+    background-color: rgb(240, 240, 240) !important;
+    margin-top: 10px;
+}
+
+.nav-pills .nav-link.active {
+    background-color: var(--primary) !important;
+    color: white !important; /* White text when active */
+}
+
+
+
 </style>
     <!-- aiz-main-wrapper -->
     <div class="aiz-main-wrapper d-flex flex-column justify-content-center bg-white">
@@ -205,136 +220,93 @@
                                 </div>
                                 <!-- Login form -->
                                 <div class="pt-3 pt-lg-4 bg-white">
-                                    <div class="">
+                                    <div class="container">
                                         <form class="form-default loginForm" role="form" action="{{ route('login') }}" method="POST">
                                             @csrf
+                                            <input type="hidden" name="user_type" value="customer">
+
+                                            <div class="login-buttons">
+                                                <a href="{{ route('social.login', ['provider' => 'google']) }}" class="btn btn-google">
+                                                    <img src="https://cdn4.iconfinder.com/data/icons/logos-brands-7/512/google_logo-google_icongoogle-512.png" alt="Google Logo">
+                                                    Continue with Google
+                                                </a>
+                                                <a href="{{ route('social.login', ['provider' => 'facebook']) }}" class="btn btn-facebook">
+                                                    <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="Facebook Logo">
+                                                    Continue with Facebook
+                                                </a>
+                                                <a href="{{ route('social.login', ['provider' => 'apple']) }}" class="btn btn-apple">
+                                                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRNw7QG9ltH125HUWoX0GoIi5_d3zGvmJc2zg&s" alt="Apple Logo">
+                                                    Continue with Apple
+                                                </a>
+                                            </div>
                                             
-                                               <input type="hidden" name="user_type" value="customer">
-                                                
-                                                <div class="login-buttons">
-       
-                                                   
-                                                    <a href="{{ route('social.login', ['provider' => 'google']) }}" class="btn btn-google">
-                                                      <img src="https://cdn4.iconfinder.com/data/icons/logos-brands-7/512/google_logo-google_icongoogle-512.png" alt="Google Logo">
-                                                      Continue with Google
-                                                    </a>
-                                                    <a href="{{ route('social.login', ['provider' => 'facebook']) }}" class="btn btn-facebook">
-                                                      <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="Facebook Logo">
-                                                      Continue with Facebook
-                                                    </a>
-                                                    <a href="{{ route('social.login', ['provider' => 'apple']) }}" class="btn btn-apple">
-                                                      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRNw7QG9ltH125HUWoX0GoIi5_d3zGvmJc2zg&s" alt="Apple Logo">
-                                                      Continue with Apple
-                                                    </a>
-                                                    <br>
-                                                    
-                                                  </div>
-                                             
-                                            <!-- Email or Phone -->
-                                            @if (addon_is_activated('otp_system'))
-                                                <div class="form-group phone-form-group mb-1">
-                                                    <label for="phone" class="fs-12 fw-700 text-soft-dark">{{  translate('Phone') }}</label>
-                                                    <input type="tel" id="phone-code" class="form-control{{ $errors->has('phone') ? ' is-invalid' : '' }} rounded-0" value="{{ old('phone') }}" placeholder="" name="phone" autocomplete="off">
+                                
+                                            <!-- Tab Navigation -->
+                                            <ul class="nav nav-pills mb-3 " id="login-tab" role="tablist">
+                                                <li class="nav-item">
+                                                    <a class="nav-link active" id="email-tab" data-toggle="pill" href="#email-login" role="tab">Email</a>
+                                                </li>
+                                                <li class="nav-item mx-2">
+                                                    <a class="nav-link" id="phone-tab" data-toggle="pill" href="#phone-login" role="tab">Phone</a>
+                                                </li>
+                                            </ul>
+                                
+                                            <div class="tab-content">
+                                                <!-- Email Login -->
+                                                <div class="tab-pane fade show active" id="email-login" role="tabpanel">
+                                                    <div class="form-group">
+                                                        <label for="email" class="fs-16 fw-700 text-soft-dark">Email</label>
+                                                        <input type="email" class="form-control custom-input" name="email" id="email" placeholder="johndoe@example.com">
+                                                    </div>
                                                 </div>
-
-                                                <input type="hidden" name="country_code" value="">
-                                                
-                                                 <div class="form-group">
-                                            <label for="email" class="fs-12 fw-700 text-soft-dark">{{  translate('Email') }}</label>
-                                            <input type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }} rounded-0" value="{{ old('email') }}" placeholder="{{  translate('johndoe@example.com') }}" name="email" id="email" autocomplete="off">
-                                            @if ($errors->has('email'))
-                                                <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $errors->first('email') }}</strong>
-                                                </span>
-                                            @endif
-                                        </div>
-                                                
-                                                <div class="form-group text-right">
-                                                    <button class="btn btn-link p-0 text-primary" type="button" onclick="toggleEmailPhone(this)"><i>*{{ translate('Use Email Instead') }}</i></button>
+                                
+                                                <!-- Phone Login -->
+                                                <div class="tab-pane fade" id="phone-login" role="tabpanel">
+                                                    <div class="form-group">
+                                                        <label for="phone" class="fs-16 fw-700 text-soft-dark">Phone Number</label>
+                                                        <input type="tel" class="form-control custom-input" name="phone" id="phone" placeholder="+1234567890">
+                                                    </div>
                                                 </div>
-                                            @else
+                                            </div>
+                                
+                                            <!-- Password Field (Same for both) -->
                                             <div class="form-group">
-                                                <label for="email" class="fs-16 fw-700 text-soft-dark mx-4">{{ translate('Email') }}</label>
-                                                <input type="email" 
-                                                       class="form-control custom-input {{ $errors->has('email') ? 'is-invalid' : '' }}" 
-                                                       value="{{ old('email') }}" 
-                                                       placeholder="{{ translate('johndoe@example.com') }}" 
-                                                       name="email" 
-                                                       id="email" 
-                                                       autocomplete="off">
-                                                @if ($errors->has('email'))
-                                                    <span class="invalid-feedback" role="alert">
-                                                        <strong>{{ $errors->first('email') }}</strong>
-                                                    </span>
-                                                @endif
-                                            </div>
-                                            @endif
-                                            <div class="password-login-block">
-                                                <!-- password -->
-                                                <div class="form-group">
-                                                    <label for="password" class="fs-16 fw-700 text-soft-dark mx-4">{{ translate('Password') }}</label>
-                                                    <div class="position-relative">
-                                                        <input type="password" 
-                                                               class="form-control custom-input {{ $errors->has('password') ? 'is-invalid' : '' }}" 
-                                                               placeholder="{{ translate('Password') }}" 
-                                                               name="password" 
-                                                               id="password">
-                                                        <i class="password-toggle las la-2x la-eye"></i>
-                                                    </div>
-                                                </div>
-
-                                                <div class="row mb-2">
-                                                    <!-- Remember Me -->
-                                                    <div class="col-5">
-                                                        <label class="aiz-checkbox">
-                                                            <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}>
-                                                            <span class="has-transition fs-12 fw-400 text-gray-dark hov-text-primary">{{  translate('Remember Me') }}</span>
-                                                            <span class="aiz-square-check"></span>
-                                                        </label>
-                                                    </div>
-                                                    <!-- Forgot password -->
-                                                    <div class="col-7 text-right">
-                                                        @if(get_setting('login_with_otp'))
-                                                            <a href="javascript:void(0);" class="text-reset fs-12 fw-400 text-gray-dark hov-text-primary toggle-login-with-otp" onclick="toggleLoginPassOTP(this)">{{ translate('Login With OTP') }} / </a>
-                                                        @endif
-                                                        <a href="{{ route('password.request') }}" class="text-reset fs-12 fw-400 text-gray-dark hov-text-primary"><u>{{ translate('Forgot password?')}}</u></a>
-                                                    </div>
+                                                <label for="password" class="fs-16 fw-700 text-soft-dark">Password</label>
+                                                <div class="position-relative">
+                                                    <input type="password" class="form-control custom-input" name="password" id="password" placeholder="Password">
+                                                    <i class="password-toggle las la-eye la-2x"></i>
                                                 </div>
                                             </div>
-
-                                            <!-- Submit Button -->
+                                
+                                            <!-- Remember Me & Forgot Password -->
+                                            <div class="row mb-2">
+                                                <div class="col-5">
+                                                    <label class="aiz-checkbox">
+                                                        <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}>
+                                                        <span class="has-transition fs-12 fw-400 text-gray-dark hov-text-primary">{{  translate('Remember Me') }}</span>
+                                                        <span class="aiz-square-check"></span>
+                                                    </label>
+                                                </div>
+                                                <div class="col-7 text-right">
+                                                    <a href="{{ route('password.request') }}" class="text-reset fs-12 fw-400 text-gray-dark"><u>Forgot password?</u></a>
+                                                </div>
+                                            </div>
+                                
+                                            <!-- Login Button -->
                                             <div class="mb-4 mt-4">
                                                 <button type="submit" class="btn btn-primary btn-block fw-700 fs-16 Login-btn">{{  translate('Login') }}</button>
                                             </div>
                                         </form>
-
-                                        <!-- DEMO MODE -->
-                                        @if (env("DEMO_MODE") == "On")
-                                            <div class="mb-4">
-                                                <table class="table table-bordered mb-0">
-                                                    <tbody>
-                                                        <tr>
-                                                            <td>{{ translate('Customer Account')}}</td>
-                                                            <td>
-                                                                <button class="btn btn-info btn-sm" onclick="autoFillCustomer()">{{ translate('Copy credentials') }}</button>
-                                                            </td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                        @endif
-
-                                       
-                                    <!-- Register Now -->
-                                    <p class="fs-12 text-gray mb-0">
-                                        {{ translate('Dont have an account?')}}
-                                        <a href="{{ route('user.registration') }}" class="ml-2 fs-14 fw-700 animate-underline-primary">{{ translate('Register Now')}}</a>
-                                    </p>
-                                    <!-- Go Back -->
-                                    <a href="{{ url('/') }}" class="mt-3 fs-14 fw-700 d-flex align-items-center text-primary" style="max-width: fit-content;">
-                                        <i class="las la-arrow-left fs-20 mr-1"></i>
-                                        {{ translate('Back to Home Page')}}
-                                    </a>
+                                
+                                        <!-- Register Now & Back to Home -->
+                                        <p class="fs-12 text-gray mb-0">
+                                            Don't have an account?
+                                            <a href="{{ route('user.registration') }}" class="ml-2 fs-14 fw-700">Register Now</a>
+                                        </p>
+                                        <a href="{{ url('/') }}" class="mt-3 fs-14 fw-700 text-primary">
+                                            <i class="las la-arrow-left fs-20"></i> Back to Home Page
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -351,5 +323,11 @@
             $('#email').val('customer@example.com');
             $('#password').val('123456');
         }
+
+
+        document.querySelector(".password-toggle").addEventListener("click", function() {
+        let passwordField = document.getElementById("password");
+        passwordField.type = passwordField.type === "password" ? "text" : "password";
+    });
     </script>
 @endsection
