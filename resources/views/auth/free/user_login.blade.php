@@ -291,7 +291,7 @@
                                     <!-- Go Back -->
                                     <a href="{{ url()->previous() }}" class="mt-5 fs-14 fw-700 text-center w-100 " >
                                         <i class="las la-arrow-left fs-20 mr-1"></i>
-                                        {{ translate('Back to Previous Page')}}
+                                        {{ translate('Back to Home')}}
                                     </a>
                                 </div>
                             </div>
