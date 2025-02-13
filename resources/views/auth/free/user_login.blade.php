@@ -105,12 +105,16 @@
     padding: 8px 10px;
     margin: 6px 0;
     border: none;
-    border-radius: 10px;
+    border-radius: 8px;
     font-size: 15px;
     font-weight: 400;
     text-decoration: none;
     color: white;
     cursor: pointer;
+}
+.login-buttons .btn:hover {
+
+    background: #ccc !important
 }
 
     .btn-facebook {
@@ -190,7 +194,7 @@
                                                       Continue with Facebook
                                                     </a>
                                                     <a href="{{ route('social.login', ['provider' => 'apple']) }}" class="btn btn-apple">
-                                                      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRNw7QG9ltH125HUWoX0GoIi5_d3zGvmJc2zg&s" alt="Apple Logo">
+                                                      <img src="https://cdn1.iconfinder.com/data/icons/smallicons-logotypes/32/apple-512.png" alt="Apple Logo">
                                                       Continue with Apple
                                                     </a>
                                                     <br>
