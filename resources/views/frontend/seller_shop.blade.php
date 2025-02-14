@@ -482,17 +482,6 @@ label.category_tree_item:has(input:checked) .checkbox_circle {
             <div class="col-md-3">
 
                 @php
-               
-//                 // Get product mappings for the authenticated seller
-//                 $seller_maps = \App\Models\ProductSellerMap::where('seller_id', $shop->user->id)->get();
-//                 // Extract product IDs
-//                 $product_ids = $seller_maps->pluck('product_id');
-//                 $category_ids = \App\Models\Product::whereIn('id',$product_ids)->pluck('id');
-//                 // dd($category_ids);
-//                 // Get categories of those products
-//                 $all_categories = \App\Models\Category::whereIn('id', $category_ids)->get();
-// dd($all_categories);
-
                 // Get product mappings for the authenticated seller
                 $preferences_cat = \App\Models\SellerCategoryPreference::where('user_id', $shop->user->id)->pluck('category_id');
                 // dd($preferences_cat);
@@ -525,11 +514,7 @@ label.category_tree_item:has(input:checked) .checkbox_circle {
                             </span>
                         </h6>
                         @if (!isset($type))
-                            <!-- Links -->
-                            <div class="d-flex">
-                                <a type="button" class="arrow-prev slide-arrow link-disable text-secondary mr-2" onclick="clickToSlide('slick-prev','section_types')"><i class="las la-angle-left fs-20 fw-600"></i></a>
-                                <a type="button" class="arrow-next slide-arrow text-secondary ml-2" onclick="clickToSlide('slick-next','section_types')"><i class="las la-angle-right fs-20 fw-600"></i></a>
-                            </div>
+                         
                         @endif
                     </div>
                     @php
@@ -583,10 +568,9 @@ label.category_tree_item:has(input:checked) .checkbox_circle {
         
                     @if (!isset($type))
                         <!-- New Arrival Products Section -->
-                        <div class=" pb-3">
-                            <div class="row" id="seller_products_section"  data-items="6" data-xl-items="5" data-lg-items="4"  data-md-items="3" data-sm-items="2" data-xs-items="2" data-arrows='true' data-infinite='false'>
-                                
-                                {!!get_product_skeleton() !!}
+                        <div class="pb-3">
+                            <div id="seller_products_section" data-items="6" data-xl-items="5" data-lg-items="4"  data-md-items="3" data-sm-items="2" data-xs-items="2" data-arrows='true' data-infinite='false'> 
+                                {!! get_product_skeleton() !!}
                             </div>
                         </div>
         
@@ -882,21 +866,33 @@ label.category_tree_item:has(input:checked) .checkbox_circle {
 @section('script')
     <script type="text/javascript">
 
-function fetchSellerProducts(shopId) {
+function fetchSellerProducts() {
+    var shopId = {{ $shop->user->id }};
+    let selectedCategories = [];
+    
+    $('.category-checkbox:checked').each(function() {
+        selectedCategories.push($(this).val());
+    });
+
     $.ajax({
-        url: `{{ url('/') }}/seller-products/${shopId}`,
-        type: 'GET',
+        url: `{{ url('/seller-products') }}`,
+        type: 'POST',
+        data: {
+            categories: selectedCategories,
+            seller_id: shopId, // Replace with the actual seller ID
+            _token: $('meta[name="csrf-token"]').attr('content') // Add CSRF token if using Laravel
+        },
         success: function(response) {
             $('#seller_products_section').html(response);
         },
         error: function(xhr, status, error) {
-            console.error("Error fetching seller products:", error);
+            console.error("Error fetching products:", error);
         }
     });
 }
 
 // Call the function with a dynamic shopId (replace with actual shopId)
-fetchSellerProducts({{ $shop->user->id }});
+fetchSellerProducts();
 
 
         function filter(){

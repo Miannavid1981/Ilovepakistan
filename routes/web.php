@@ -506,20 +506,42 @@ use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\ProductSellerMap;
 
-Route::get('/seller-products/{shopId}', function ($shopId) {
+
+Route::post('/seller-products', function (Request $request) {
+    $categoryIds = $request->input('categories', []);
+    $sellerId = $request->input('seller_id');
+
     // Get seller's product mappings
-    $sellerMaps = ProductSellerMap::where('seller_id', $shopId)->get()->keyBy('product_id');
+    $sellerMaps = ProductSellerMap::where('seller_id', $sellerId)
+                       
+                                  ->get()->keyBy('product_id');
 
     // Get product IDs
     $productIds = $sellerMaps->keys();
 
-    // Fetch products and attach `product_skin`
-    $products = Product::whereIn('id', $productIds)->get()->map(function ($product) use ($sellerMaps) {
-        $sellerMap = $sellerMaps[$product->id] ?? null;
-        $product->product_custom_url = url('/product/' . $product->slug . '/' . ($sellerMap->encrypted_hash ?? ''));
-        $product->product_skin = $sellerMap->original_skin ?? null;
-        return $product;
-    });
+    if(!empty($categoryIds)){
+        $products = Product::whereIn('id', $productIds)
+        ->whereIn('category_id', $categoryIds)
+        ->get()
+        ->map(function ($product) use ($sellerMaps) {
+            $sellerMap = $sellerMaps[$product->id] ?? null;
+            $product->product_custom_url = url('/product/' . $product->slug . '/' . ($sellerMap->encrypted_hash ?? ''));
+            $product->product_skin = $sellerMap->original_skin ?? null;
+            return $product;
+        });
+    } else {
+        $products = Product::whereIn('id', $productIds)
+                      
+                      ->get()
+                      ->map(function ($product) use ($sellerMaps) {
+                          $sellerMap = $sellerMaps[$product->id] ?? null;
+                          $product->product_custom_url = url('/product/' . $product->slug . '/' . ($sellerMap->encrypted_hash ?? ''));
+                          $product->product_skin = $sellerMap->original_skin ?? null;
+                          return $product;
+                      });
+    }
+    // Fetch products in selected categories
+    
 
     // Generate HTML
     $html = '';
