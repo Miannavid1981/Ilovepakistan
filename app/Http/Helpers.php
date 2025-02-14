@@ -2960,11 +2960,12 @@ function renderCategoryTree($selectedCategories = [], $categories = null) {
 
 function renderCategoryNode($category, $categories, $selectedCategories) {
     $subCategories = $categories->where('parent_id', $category->id);
-    
-    $html = '<li style="list-style-type: none;">';
-    $html .= '<label>';
-    $html .= '<input type="checkbox" class="category-checkbox" name="categories[]" value="' . $category->id . '" style="display: none" checked>';
-    $html .= '<img src="' . uploaded_asset($category->icon) . '" alt="' . $category->name . '" style="width: 28px; height: 28px; padding: 5px;border-radius: 50%; border: 1px solid #ccc" class="mx-1">';
+    $html = '';
+    $html .= '<li style="list-style-type: none;">';
+    $html .= '<label class="category_tree_item d-flex align-items-center" >';
+    $html .= '<div class="rounded-circle p-1 border w-20px checkbox_circle" style="aspect-ratio: 1 / 1"><i  class="fa fa-check text-white m-0 fs-10 p-0" ></i></div>';
+    $html .= '<input type="checkbox" class="category-checkbox" name="categories[]" value="' . $category->id . '" style="display: none"  onchange="fetchSellerProducts()">';
+    $html .= '<img src="' . uploaded_asset($category->icon) . '" alt="' . $category->name . '" style="width: 28px; height: 28px; padding: 2px;border-radius: 50%;" class="mx-1">';
     $html .= ' ' . htmlspecialchars($category->name);
 
     if ($subCategories->isNotEmpty()) {
