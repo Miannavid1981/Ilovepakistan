@@ -110,13 +110,16 @@
   transform: scale(1.2); /* Slightly enlarge the icon when liked */
 }
 
-    .store_banner {
-        height: 300px;
-        background: url('https://www.unitedmobile.pk/wp-content/uploads/2022/11/Samsung-Brand-Banner.webp');
-        background-position: center;
-        background-attachment: fixed;
-        background-size: cover
-    }
+.store_banner {
+    /* padding-top: 150px; */
+    height: 220px;
+    background: url('https://www.unitedmobile.pk/wp-content/uploads/2022/11/Samsung-Brand-Banner.webp');
+    background-attachment: fixed;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: top;
+    /* margin-top: -100px; */
+}
 
 
     .product-five-col {
