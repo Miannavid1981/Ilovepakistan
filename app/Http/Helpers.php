@@ -2967,7 +2967,7 @@ function renderCategoryNode($category, $categories, $selectedCategories) {
     $html .= '<input type="checkbox" class="category-checkbox" name="categories[]" value="' . $category->id . '" style="display: none"  onchange="fetchSellerProducts()">';
     $html .= '<img src="' . uploaded_asset($category->icon) . '" alt="' . $category->name . '" style="width: 28px; height: 28px; padding: 2px;border-radius: 50%;" class="mx-1">';
     $html .= ' ' . htmlspecialchars($category->name);
-
+    $html .='</label>';
     if ($subCategories->isNotEmpty()) {
         $html .= '<ul>';
         foreach ($subCategories as $subCategory) {
@@ -2976,7 +2976,7 @@ function renderCategoryNode($category, $categories, $selectedCategories) {
         $html .= '</ul>';
     }
 
-    $html .= '</label></li>';
+    $html .= '</li>';
     
     return $html;
 }
