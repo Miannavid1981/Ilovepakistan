@@ -2948,7 +2948,7 @@ function renderCategoryTree($selectedCategories = [], $categories = null) {
     // Filter to get only the selected parent categories
     $selectedParents = $categories->whereIn('id', $selectedCategories)->where('parent_id', 0);
 
-    $html = '<ul class="' . $ul_class . '">';
+    $html = '<ul class="' . $ul_class . ' h-100">';
 
     foreach ($selectedParents as $parentCategory) {
         $html .= renderCategoryNode($parentCategory, $categories, $selectedCategories);
@@ -2981,6 +2981,23 @@ function renderCategoryNode($category, $categories, $selectedCategories) {
     return $html;
 }
 
+function getMinMaxPriceFromSeller($sellerId) {
+    // Get seller's product mappings
+    $sellerMaps = \App\Models\ProductSellerMap::where('seller_id', $sellerId)->get()->keyBy('product_id');
+    $productIds = $sellerMaps->keys();
+
+    // Base query for products
+    $query = Product::whereIn('id', $productIds);
+
+    // Get updated min and max price from filtered products
+    $minPrice = $query->min('unit_price');
+    $maxPrice = $query->max('unit_price');
+
+    return [
+        'min_price' => $minPrice ?? 0,
+        'max_price' => $maxPrice ?? 0
+    ];
+}
 
 function get_product_skeleton(){
     return ' <div class="skeleton_grid mx-0">
