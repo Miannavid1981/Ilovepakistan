@@ -2933,7 +2933,7 @@ if (!function_exists('get_percentage_amount')) {
         return (int) $result;
     }
 }
-function renderCategoryTree($categories = null, $selectedCategories = []) {
+function renderCategoryTree($selectedCategories = [], $categories = null) {
     $ul_class = '';
     if (!$categories) {
         $ul_class = 'pl-0';
