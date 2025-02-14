@@ -491,9 +491,7 @@ label.category_tree_item:has(input:checked) .checkbox_circle {
                 // Get product mappings for the authenticated seller
                 $preferences_cat = \App\Models\SellerCategoryPreference::where('user_id', $shop->user->id)->pluck('category_id');
                 // dd($preferences_cat);
-             
-                $all_categories = \App\Models\Category::whereIn('id', $preferences_cat)->get();
-                
+           
                 @endphp
                 <h6>Categories</h6>
                 <div style="max-height: 300px; overflow-y: scroll">
@@ -875,6 +873,8 @@ label.category_tree_item:has(input:checked) .checkbox_circle {
 function fetchSellerProducts() {
     var shopId = {{ $shop->user->id }};
     let selectedCategories = [];
+    $('#seller_products_section').html('')
+    $('#seller_products_section').html(`{!! get_product_skeleton() !!}`);
     
     $('.category-checkbox:checked').each(function() {
         selectedCategories.push($(this).val());
