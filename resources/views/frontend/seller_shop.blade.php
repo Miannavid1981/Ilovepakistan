@@ -112,7 +112,10 @@
 
     .store_banner {
         height: 300px;
-        object-fit: cover;
+        background: url('https://www.unitedmobile.pk/wp-content/uploads/2022/11/Samsung-Brand-Banner.webp');
+        background-position: center;
+        background-attachment: fixed;
+        background-size: cover
     }
 
 
@@ -121,7 +124,8 @@
         max-width: calc(100% / 5);
     }
   </style>
-  <img class="store_banner" src="https://www.unitedmobile.pk/wp-content/uploads/2022/11/Samsung-Brand-Banner.webp">
+  <div class="store_banner">
+  </div>
     <section class="mt-3 mb-3 bg-white d-none">
         <div class="container">
             <!--  Top Menu -->
