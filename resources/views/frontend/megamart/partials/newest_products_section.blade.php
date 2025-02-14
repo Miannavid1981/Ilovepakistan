@@ -37,7 +37,7 @@
             <!-- Products Section -->
             <div class="row gx-3">
                 @foreach ($newest_products as $key => $new_product)
-                <div class="col-6 col-md-4 col-lg custom-col position-relative has-transition hov-animate-outline">
+                <div class="col-6 col-md-4 col-lg product-custom-col position-relative has-transition hov-animate-outline">
                     @php
                         $seller_map = \App\Models\ProductSellerMap::where('product_id', $new_product->id)->where('seller_id', $new_product->user_id)->where('source_seller_id',$new_product->user_id )->first();
                         $encrypted_skin = $seller_map->encrypted_hash ?? '';
