@@ -125,7 +125,7 @@
                     <input type="radio" class=" mb-0 me-2" name="payment_method" value="cash_on_delivery" checked> Cash On Delivery
                   </div>
                   <span>
-                      <img src="https://static.vecteezy.com/system/resources/previews/014/455/904/non_2x/delivery-truck-icon-icon-on-transparent-background-free-png.png" style="width: 35px; height: auto" alt="Discover">
+                      <img src="https://cdn-icons-png.flaticon.com/512/936/936810.png" style="width: 35px; height: auto" alt="Discover">
                   </span>
               </label>
             </button>
@@ -146,7 +146,7 @@
                     <input type="radio" class=" mb-0 me-2" name="payment_method" value="mobile_wallet"> Mobile Wallet
                   </div>
                   <span>
-                      <img src="https://dogmovers.com.au/app/uploads/2021/03/Bank-transfer-logo-250x160-1.png" style="width: 45px; height: auto" alt="Discover">
+                      <img src="https://cdn-icons-png.flaticon.com/512/1796/1796819.png" style="width: 35px; height: auto" alt="Discover">
                     </span>
                 </label>
             </button>
@@ -217,7 +217,7 @@
                     <input type="radio" class=" mb-0 me-2" name="payment_method" value="bighouz_wallet"> Bighouz Wallet
                   </div>
                   <span>
-                      <img src="https://dogmovers.com.au/app/uploads/2021/03/Bank-transfer-logo-250x160-1.png" style="width: 45px; height: auto" alt="Discover">
+                      <img src="{{ asset('/public/assets/img/main-lamp-pic.jpeg') }}" style="width: 45px; height: auto" alt="Discover">
                     </span>
                 </label>
             </button>
@@ -226,6 +226,36 @@
         <div id="bighouz_wallet" class="collapse" aria-labelledby="mobile_walletHeading" data-parent="#paymentAccordion">
           <div class="card-body payment-method-details p-4 bg-light">
             You will be redirected to PayPal to complete your purchase securely.
+          </div>
+        </div>
+      </div>
+    <div class="card mb-0 shadow-none p-0" style="border: 1px solid #c1c1c1;">
+        <div class="card-header p-0" id="cash_on_counterHeading">
+          
+            <button class="btn btn-link text-decoration-none w-100 p-0 collapsed" type="button" data-toggle="collapse" data-target="#cash_on_counter">
+              <label class="payment-method-header d-flex justify-content-between w-100 mb-0 p-2 px-3">
+                  <div class="  text-dark d-flex align-items-center mb-0">
+                    <input type="radio" class=" mb-0 me-2" name="payment_method" value="cash_on_counter"> Cash On Counter
+                  </div>
+                  <span>
+                      <img src="https://www.pngkey.com/png/full/11-114087_cash-in-hand-icon.png" style="width: 45px; height: auto" alt="Discover">
+                    </span>
+                </label>
+            </button>
+          
+        </div>
+        <div id="cash_on_counter" class="collapse" aria-labelledby="cash_on_counterHeading" data-parent="#paymentAccordion">
+          <div class="card-body payment-method-details p-4 bg-light fs-15 fw-300">
+            We offer a Cash on Counter payment option for your convenience! Place your order online and pay when you pick it up at our store. No advance payment required—simply visit us, verify your order, and complete the payment at the counter.
+            <br><br>
+            <i class="fa fa-check fs-16 bg-success p-1 text-white rounded-circle me-2 mt-1"></i> Secure & Hassle-Free
+            <br>
+            <i class="fa fa-check fs-16 bg-success p-1 text-white rounded-circle me-2  mt-1"></i> No Online Payment Needed
+            <br>
+            <i class="fa fa-check fs-16 bg-success p-1 text-white rounded-circle me-2  mt-1"></i> Pay Only When You Collect
+            <br>
+            <br>
+            Visit our store and shop with confidence! 
           </div>
         </div>
       </div>
