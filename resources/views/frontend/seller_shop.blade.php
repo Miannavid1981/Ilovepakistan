@@ -873,6 +873,8 @@ label.category_tree_item:has(input:checked) .checkbox_circle {
 function fetchSellerProducts() {
     var shopId = {{ $shop->user->id }};
     let selectedCategories = [];
+    $('#seller_products_section').html('')
+    $('#seller_products_section').html(`{!! get_product_skeleton() !!}`);
     
     $('.category-checkbox:checked').each(function() {
         selectedCategories.push($(this).val());
