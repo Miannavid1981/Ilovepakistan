@@ -2948,7 +2948,7 @@ function renderCategoryTree( $selectedCategories = [], $categories = null, $pare
     $html = '<ul class="'.$ul_class.'">';
    
     foreach ($categories as $category) {
-        if ($category->parent_id == $parent_id) {
+        if ($parent_id = 0 || $category->parent_id == $parent_id) {
             $subCategories = renderCategoryTree($selectedCategories, $categories, $category->id );
             
             // Check if the category is selected or if any child category is selected
