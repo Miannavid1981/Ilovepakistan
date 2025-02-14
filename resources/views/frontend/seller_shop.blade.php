@@ -456,14 +456,24 @@
     @endif
 <style>
 label.category_tree_item:has(input:checked) {
-    background: #ffd6d6;
+    background: #ffefef;
     border-radius: 20px;
     padding: 0 10px; 
-    transition: all .3s ease-in-out
+    transition: all .1s ease-in-out
 }
 label.category_tree_item:has(input:checked) img {
     border : unset !important;
-    transition: all .3s ease-in-out
+    transition: all .1s ease-in-out
+}
+label.category_tree_item .checkbox_circle {
+    aspect-ratio: 1 / 1;
+    width: 20px;
+    height: 20px !important;
+    display: flex;
+    align-items: center
+}
+label.category_tree_item:has(input:checked) .checkbox_circle {
+    background: var(--primary)
 }
 </style>
    <div class="container">
@@ -534,7 +544,7 @@ label.category_tree_item:has(input:checked) img {
                     @endphp
         
                     <div class="px-sm-3 pb-3">
-                        <div class="aiz-carousel sm-gutters-16 arrow-none" data-items="6" data-xl-items="5" data-lg-items="4" data-md-items="3" data-sm-items="2" data-xs-items="2" data-arrows='true' data-infinite='false'>
+                        <div class="sm-gutters-16 arrow-none" data-items="6" data-xl-items="5" data-lg-items="4" data-md-items="3" data-sm-items="2" data-xs-items="2" data-arrows='false' data-infinite='false'>
                             @foreach ($importedProducts as $key => $product)
                                 @php
                                     // Assuming the seller is the same for all products in this loop
