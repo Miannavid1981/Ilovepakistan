@@ -85,12 +85,10 @@
 
   </style>
 @php
-    
-    // dd($total);
 
     $cod_method = false;
-    $banktransfer = false;  
-    $mobile_method = false;
+    $banktransfer = true;  
+    $mobilewallet_method = false;
     $card_method = false;
 
     if($total <25000){
@@ -99,10 +97,17 @@
 
     }
 
+    if($total <50000){
+
+        $mobilewallet_method = true;
+
+    }
+
+
     if($total <= 500000){
         $card_method = true;
     }
-
+    
 
 
 
@@ -126,14 +131,60 @@
             </button>
           
         </div>
-        <div id="cash_on_delivery" class="collapse show {{  $cod_method ? 'd-block' : 'd-none' }}" aria-labelledby="cash_on_deliveryHeading" data-parent="#paymentAccordion">
+        <div id="cash_on_delivery" class="collapse show {{  $cod_method ? '' : 'd-none' }}" aria-labelledby="cash_on_deliveryHeading" data-parent="#paymentAccordion">
           <div class="card-body payment-method-details p-0 m-0">
          
           </div>
         </div>
       </div>
-   
+      <div class="card mb-0 shadow-none p-0 {{  $mobilewallet_method ? 'd-block' : 'd-none' }}" style="border: 1px solid #c1c1c1;">
+        <div class="card-header p-0" id="mobile_walletHeading">
+          
+            <button class="btn btn-link text-decoration-none w-100 p-0 collapsed" type="button" data-toggle="collapse" data-target="#mobile_wallet">
+              <label class="payment-method-header d-flex justify-content-between w-100 mb-0 p-2 px-3">
+                  <div class="  text-dark d-flex align-items-center mb-0">
+                    <input type="radio" class=" mb-0 me-2" name="payment_method" value="mobile_wallet"> Mobile Wallet
+                  </div>
+                  <span>
+                      <img src="https://dogmovers.com.au/app/uploads/2021/03/Bank-transfer-logo-250x160-1.png" style="width: 45px; height: auto" alt="Discover">
+                    </span>
+                </label>
+            </button>
+          
+        </div>
+        <div id="mobile_wallet" class="collapse {{  $mobilewallet_method ? '' : 'd-none' }}" aria-labelledby="mobile_walletHeading" data-parent="#paymentAccordion">
+          <div class="card-body payment-method-details p-4 bg-light">
+            You will be redirected to PayPal to complete your purchase securely.
+          </div>
+        </div>
+      </div>
 
+      <!-- Credit Card Option -->
+ <div class="card mb-0 shadow-none p-0 {{  $card_method ? 'd-block' : 'd-none' }}" style="border: 1px solid #c1c1c1;">
+    <div class="card-header p-0" id="creditCardHeading">
+      
+        <button class="btn btn-link text-decoration-none w-100 p-0 collapsed" type="button" data-toggle="collapse" data-target="#creditCard" aria-expanded="true">
+          <label class="payment-method-header d-flex justify-content-between w-100 mb-0 p-2 px-3">
+            <div class="  text-dark d-flex align-items-center mb-0">
+            
+              <input type="radio" class=" mb-0 me-2" name="payment_method" value="credit_card"  > Credit / Debit Card
+            </div>
+            <span>
+              <img src="https://img.icons8.com/color/48/visa.png" alt="Visa">
+              <img src="https://img.icons8.com/color/48/mastercard.png" alt="MasterCard">
+              <img src="https://img.icons8.com/color/48/amex.png" alt="Amex">
+              <img src="https://img.icons8.com/color/48/discover.png" alt="Discover">
+            </span>
+          </label>
+        </button>
+      
+    </div>
+    <div id="creditCard" class="collapse {{  $card_method ? '' : 'd-none' }}" aria-labelledby="creditCardHeading" data-parent="#paymentAccordion">
+      <div class="card-body payment-method-details p-4 bg-light">
+        Enter your credit card details securely to complete the payment.
+      </div>
+    </div>
+  </div>
     <!-- PayPal Option -->
     <div class="card mb-0 shadow-none p-0" style="border: 1px solid #c1c1c1;">
       <div class="card-header p-0" id="direct_bank_transferHeading">
@@ -156,33 +207,28 @@
         </div>
       </div>
     </div>
- <!-- Credit Card Option -->
- <div class="card mb-0 shadow-none p-0 {{  $card_method ? 'd-block' : 'd-none' }}" style="border: 1px solid #c1c1c1;">
-    <div class="card-header p-0" id="creditCardHeading">
-      
-        <button class="btn btn-link text-decoration-none w-100 p-0 collapsed" type="button" data-toggle="collapse" data-target="#creditCard" aria-expanded="true">
-          <label class="payment-method-header d-flex justify-content-between w-100 mb-0 p-2 px-3">
-            <div class="  text-dark d-flex align-items-center mb-0">
-            
-              <input type="radio" class=" mb-0 me-2" name="payment_method" value="credit_card"  > Credit / Debit Card
-            </div>
-            <span>
-              <img src="https://img.icons8.com/color/48/visa.png" alt="Visa">
-              <img src="https://img.icons8.com/color/48/mastercard.png" alt="MasterCard">
-              <img src="https://img.icons8.com/color/48/amex.png" alt="Amex">
-              <img src="https://img.icons8.com/color/48/discover.png" alt="Discover">
-            </span>
-          </label>
-        </button>
-      
-    </div>
-    <div id="creditCard" class="collapse {{  $card_method ? 'd-block' : 'd-none' }}" aria-labelledby="creditCardHeading" data-parent="#paymentAccordion">
-      <div class="card-body payment-method-details p-4 bg-light">
-        Enter your credit card details securely to complete the payment.
+ 
+    <div class="card mb-0 shadow-none p-0" style="border: 1px solid #c1c1c1;">
+        <div class="card-header p-0" id="bighouz_walletHeading">
+          
+            <button class="btn btn-link text-decoration-none w-100 p-0 collapsed" type="button" data-toggle="collapse" data-target="#bighouz_wallet">
+              <label class="payment-method-header d-flex justify-content-between w-100 mb-0 p-2 px-3">
+                  <div class="  text-dark d-flex align-items-center mb-0">
+                    <input type="radio" class=" mb-0 me-2" name="payment_method" value="bighouz_wallet"> Bighouz Wallet
+                  </div>
+                  <span>
+                      <img src="https://dogmovers.com.au/app/uploads/2021/03/Bank-transfer-logo-250x160-1.png" style="width: 45px; height: auto" alt="Discover">
+                    </span>
+                </label>
+            </button>
+          
+        </div>
+        <div id="bighouz_wallet" class="collapse" aria-labelledby="mobile_walletHeading" data-parent="#paymentAccordion">
+          <div class="card-body payment-method-details p-4 bg-light">
+            You will be redirected to PayPal to complete your purchase securely.
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
-   
   </div>
 <script>
 $("#paymentAccordion .card-header, #pau").click(function(){
