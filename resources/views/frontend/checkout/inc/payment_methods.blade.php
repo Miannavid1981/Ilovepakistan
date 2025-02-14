@@ -111,7 +111,7 @@
 
 
     
-    <div class="card mb-0 shadow-none p-0" style="border: 1px solid #c1c1c1;">
+    <div class="card mb-0 shadow-none p-0 {{  $cod_method ? 'd-block' : 'd-none' }}" style="border: 1px solid #c1c1c1;">
         <div class="card-header p-0" id="cash_on_deliveryHeading">
           
             <button class="btn btn-link text-decoration-none w-100 p-0 "  type="button" data-toggle="collapse" data-target="#cash_on_delivery">
@@ -126,7 +126,7 @@
             </button>
           
         </div>
-        <div id="cash_on_delivery" class="collapse show" aria-labelledby="cash_on_deliveryHeading" data-parent="#paymentAccordion">
+        <div id="cash_on_delivery" class="collapse show {{  $cod_method ? 'd-block' : 'd-none' }}" aria-labelledby="cash_on_deliveryHeading" data-parent="#paymentAccordion">
           <div class="card-body payment-method-details p-0 m-0">
          
           </div>
