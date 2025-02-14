@@ -11,12 +11,7 @@
     @endphp
 
     <style> 
-    @media (min-width: 992px) { /* Desktop view */
-        .custom-col {
-            flex: 0 0 calc(100% / 6); /* Divide the row into 5 equal parts */
-            max-width: calc(100% / 6); /* Ensure proper width */
-        }
-    }
+
     /* Desktop View: 5 Columns */
     @media (min-width: 992px) {
         .product-grid {

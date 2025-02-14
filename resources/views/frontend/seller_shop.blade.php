@@ -545,8 +545,7 @@ label.category_tree_item:has(input:checked) .checkbox_circle {
                     @endphp
         
                     <div class="px-sm-3 pb-3">
-                        <div class="sm-gutters-16 arrow-none" data-items="6" data-xl-items="5" data-lg-items="4" data-md-items="3" data-sm-items="2" data-xs-items="2" data-arrows='false' data-infinite='false'>
-                            @foreach ($importedProducts as $key => $product)
+                           {{-- @foreach ($importedProducts as $key => $product)
                                 @php
                                     // Assuming the seller is the same for all products in this loop
                                   //  $seller = \App\Models\User::find($shop->user->id);
@@ -562,7 +561,9 @@ label.category_tree_item:has(input:checked) .checkbox_circle {
                                 <div class="carousel-box px-3 position-relative has-transition hov-animate-outline border-right border-top border-bottom @if($key == 0) border-left @endif">
                                     @include('frontend.' . get_setting('homepage_select') . '.partials.product_box_1', ['product' => $product, 'product_url' => $product_url])
                                 </div>
-                            @endforeach
+                            @endforeach --}}
+                        <div class="sm-gutters-16 arrow-none"  data-items="6" data-xl-items="5" data-lg-items="4" data-md-items="3" data-sm-items="2" data-xs-items="2" data-arrows='false' data-infinite='false'>
+                         
                         </div>
                     </div>
         
@@ -582,19 +583,10 @@ label.category_tree_item:has(input:checked) .checkbox_circle {
         
                     @if (!isset($type))
                         <!-- New Arrival Products Section -->
-                        <div class="px-sm-3 pb-3">
-                            <div class="aiz-carousel sm-gutters-16 arrow-none" data-items="6" data-xl-items="5" data-lg-items="4"  data-md-items="3" data-sm-items="2" data-xs-items="2" data-arrows='true' data-infinite='false'>
-                                @foreach ($products as $key => $product)
-                                @php
-                                    $seller_map = \App\Models\ProductSellerMap::where('product_id', $product->id)->where('seller_id', $product->user_id)->where('source_seller_id',$product->user_id )->first();
-                                    $encrypted_skin = $seller_map->encrypted_hash ?? '';
-                                    $product_url = url('/product/' . $product->slug . '/' . $encrypted_skin);
-                                    $product->product_custom_url = $product_url;
-                                @endphp
-                                <div class="carousel-box ">
-                                    @include('frontend.'.get_setting('homepage_select').'.partials.product_box_1',['product' => $product])
-                                </div>
-                                @endforeach
+                        <div class=" pb-3">
+                            <div class="row" id="seller_products_section"  data-items="6" data-xl-items="5" data-lg-items="4"  data-md-items="3" data-sm-items="2" data-xs-items="2" data-arrows='true' data-infinite='false'>
+                                
+                                {!!get_product_skeleton() !!}
                             </div>
                         </div>
         
@@ -851,11 +843,11 @@ label.category_tree_item:has(input:checked) .checkbox_circle {
                                     <!-- Products -->
                                     <div class="px-3">
                                         <div class="row gutters-16 row-cols-xxl-4 row-cols-xl-3 row-cols-lg-4 row-cols-md-3 row-cols-2 border-top border-left">
-                                            @foreach ($products as $key => $product)
+                                            {{-- @foreach ($products as $key => $product)
                                                 <div class="col border-right border-bottom has-transition hov-shadow-out z-1">
                                                     @include('frontend.'.get_setting('homepage_select').'.partials.product_box_1',['product' => $product])
                                                 </div>
-                                            @endforeach
+                                            @endforeach --}}
                                         </div>
                                     </div>
                                     <div class="aiz-pagination mt-4">
@@ -889,6 +881,24 @@ label.category_tree_item:has(input:checked) .checkbox_circle {
 
 @section('script')
     <script type="text/javascript">
+
+function fetchSellerProducts(shopId) {
+    $.ajax({
+        url: `{{ url('/') }}/seller-products/${shopId}`,
+        type: 'GET',
+        success: function(response) {
+            $('#seller_products_section').html(response);
+        },
+        error: function(xhr, status, error) {
+            console.error("Error fetching seller products:", error);
+        }
+    });
+}
+
+// Call the function with a dynamic shopId (replace with actual shopId)
+fetchSellerProducts({{ $shop->user->id }});
+
+
         function filter(){
             $('#search-form').submit();
         }
