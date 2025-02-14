@@ -993,10 +993,13 @@ function fetchSellerProducts() {
 fetchSellerProducts();
 
 
-$('.price-slider').on('change input', function(){
-    setTimeout(() => {
-        fetchSellerProducts()
-    }, 1000);   
+let debounceTimer;
+
+$('.price-slider').on('input', function() {
+    clearTimeout(debounceTimer); // Reset the timer if the event fires again
+    debounceTimer = setTimeout(() => {
+        fetchSellerProducts(); // Call the function after the user stops changing
+    }, 500); // Adjust the delay time as needed (500ms is a good balance)
 });
 
         function rangefilter(arg){
