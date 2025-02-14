@@ -456,7 +456,7 @@
     @endif
 <style>
 li:has(label.category_tree_item input:checked) {
-    background: #f4f4f4;
+    background: #fff3f3;
     border-radius: 10px;
     padding: 0 10px; 
     transition: all .1s ease-in-out;
