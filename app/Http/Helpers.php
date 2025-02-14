@@ -2933,3 +2933,42 @@ if (!function_exists('get_percentage_amount')) {
         return (int) $result;
     }
 }
+
+function renderCategoryTree( $selectedCategories = [], $categories = null, $parent_id = 0) {
+    $ul_class = '';
+    if(!$categories){
+        $ul_class = 'pl-0';
+        $categories = \App\Models\Category::all();
+    }
+    
+    // Ensure $selectedCategories is an array
+    if ($selectedCategories instanceof Illuminate\Support\Collection) {
+        $selectedCategories = $selectedCategories->toArray();
+    }
+    $html = '<ul class="'.$ul_class.' bg-white">';
+   
+    foreach ($categories as $category) {
+        if ($category->parent_id == $parent_id) {
+            $subCategories = renderCategoryTree($selectedCategories, $categories, $category->id );
+            
+            // Check if the category is selected or if any child category is selected
+            if (in_array($category->id, $selectedCategories) ) {
+                $html .= '<li style="list-style-type: none;">';
+                $html .= '<label class="category_tree_item">';
+                $html .= '<input type="checkbox" name="categories[]" value="' . $category->id . '" style="display: none" >';
+                $html .= '<img src="' . uploaded_asset($category->icon) . '" alt="' . $category->name . '" style="width: 28px; height: 28px; padding: 5px;border-radius: 50%; border: 1px solid #ccc" class="mx-1">';
+                $html .= ' ' . htmlspecialchars($category->name);
+                $html .='</label>';
+                if (!empty($subCategories)) {
+                    $html .= $subCategories;
+                }
+                
+                $html .= '</li>';
+            }
+        }
+    }
+    
+    $html .= '</ul>';
+    return $html;
+}
+

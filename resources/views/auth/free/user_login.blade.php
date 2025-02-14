@@ -262,7 +262,6 @@
                                                     <button class="btn btn-link p-0 text-primary" type="button" onclick="toggleEmailPhone(this)"><i>*{{ translate('Use Email Instead') }}</i></button>
                                                 </div>
                                             @else
-
                                                 <div class="form-group">
                                                     {{-- <label for="email" class="fs-12 fw-700 text-soft-dark">{{  translate('Email') }}</label> --}}
                                                     <input type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }} rounded-2" value="{{ old('email') }}" placeholder="{{  translate('Email') }}" name="email" id="email" autocomplete="off">
@@ -276,11 +275,9 @@
                                             <div class="password-login-block">
                                                 <!-- password -->
                                                 <div class="form-group">
-
                                                     {{-- <label for="password" class="fs-12 fw-700 text-soft-dark">{{  translate('Password') }}</label> --}}
                                                     <div class="position-relative">
                                                         <input type="password" class="form-control rounded-2 {{ $errors->has('password') ? ' is-invalid' : '' }}" placeholder="{{ translate('Password')}}" name="password" id="password">
-
                                                         <i class="password-toggle las la-2x la-eye"></i>
                                                     </div>
                                                 </div>
@@ -305,10 +302,8 @@
                                             </div>
 
                                             <!-- Submit Button -->
-
                                             <div class="mb-2 mt-2">
                                                 <button type="submit" class="btn btn-primary btn-block fw-700 fs-14 rounded-2 submit-button">{{  translate('Login') }}</button>
-
                                             </div>
                                         </form>
 
@@ -336,11 +331,9 @@
                                     </p>
                                     <a href="{{ route('user.registration') }}" class="btn btn-light w-100">{{ translate('Create an Account')}}</a>
                                     <!-- Go Back -->
-
                                     <a href="{{ url()->previous() }}" class="mt-5 fs-14 fw-700 text-center w-100 " >
                                         <i class="las la-arrow-left fs-20 mr-1"></i>
                                         {{ translate('Back to Home')}}
-
                                     </a>
                                 </div>
                             </div>
