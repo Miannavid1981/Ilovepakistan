@@ -506,46 +506,41 @@ use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\ProductSellerMap;
 
-
 Route::post('/seller-products', function (Request $request) {
     $categoryIds = $request->input('categories', []);
     $sellerId = $request->input('seller_id');
+    $minPrice = $request->input('min_price') ?? 0;
+    $maxPrice = $request->input('max_price') ?? 0;
 
     // Get seller's product mappings
-    $sellerMaps = ProductSellerMap::where('seller_id', $sellerId)
-                       
-                                  ->get()->keyBy('product_id');
-
-    // Get product IDs
+    $sellerMaps = ProductSellerMap::where('seller_id', $sellerId)->get()->keyBy('product_id');
     $productIds = $sellerMaps->keys();
 
-    if(!empty($categoryIds)){
-        $products = Product::whereIn('id', $productIds)
-        ->whereIn('category_id', $categoryIds)
-        ->get()
-        ->map(function ($product) use ($sellerMaps) {
-            $sellerMap = $sellerMaps[$product->id] ?? null;
-            $product->product_custom_url = url('/product/' . $product->slug . '/' . ($sellerMap->encrypted_hash ?? ''));
-            $product->product_skin = $sellerMap->original_skin ?? null;
-            return $product;
-        });
-    } else {
-        $products = Product::whereIn('id', $productIds)
-                      
-                      ->get()
-                      ->map(function ($product) use ($sellerMaps) {
-                          $sellerMap = $sellerMaps[$product->id] ?? null;
-                          $product->product_custom_url = url('/product/' . $product->slug . '/' . ($sellerMap->encrypted_hash ?? ''));
-                          $product->product_skin = $sellerMap->original_skin ?? null;
-                          return $product;
-                      });
-    }
-    // Fetch products in selected categories
-    
+    // Base query for products
+    $query = Product::whereIn('id', $productIds);
 
-    // Generate HTML
+    // Apply category filter if selected
+    if (!empty($categoryIds)) {
+        $query->whereIn('category_id', $categoryIds);
+    }
+
+    // Apply price filter if provided
+    if ($minPrice !== null && $maxPrice !== null) {
+        $query->whereBetween('unit_price', [$minPrice, $maxPrice]);
+    }
+
+    // Fetch products
+    $products = $query->get()->map(function ($product) use ($sellerMaps) {
+        $sellerMap = $sellerMaps[$product->id] ?? null;
+        $product->product_custom_url = url('/product/' . $product->slug . '/' . ($sellerMap->encrypted_hash ?? ''));
+        $product->product_skin = $sellerMap->original_skin ?? null;
+        return $product;
+    });
+
+
+    // Generate product HTML
     $html = '';
-    foreach ($products as $key => $product) {
+    foreach ($products as $product) {
         $productUrl = $product->product_custom_url;
         $html .= '
             <div class="col-6 col-md-4 col-lg product-five-col position-relative has-transition hov-animate-outline">
@@ -553,5 +548,8 @@ Route::post('/seller-products', function (Request $request) {
             </div>';
     }
 
-    return response($html);
+    return response()->json([
+        'html' => $html,
+    ]);
 });
+

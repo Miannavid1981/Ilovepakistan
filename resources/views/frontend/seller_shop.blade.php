@@ -495,13 +495,91 @@ label.category_tree_item:has(input:checked) .checkbox_circle {
             <div class="col-md-3">
 
                 @php
-                // Get product mappings for the authenticated seller
+
                 $preferences_cat = \App\Models\SellerCategoryPreference::where('user_id', $shop->user->id)->pluck('category_id');
-                // dd($preferences_cat);
-           
+        
+                    $seller_price_range = getMinMaxPriceFromSeller($shop->user->id);
+
                 @endphp
+
+                <h6>Price</h6>
+                <div class="price-filter">
+                    <div class="slider-container">
+                        <input type="range" id="minPrice" class="price-slider" min="0" max="{{ $seller_price_range['max_price'] }}" value="0">
+                        <input type="range" id="maxPrice" class="price-slider" min="0" max="{{ $seller_price_range['max_price'] }}" value="{{ $seller_price_range['max_price'] }}">
+                    </div>
+                    <div class="price-values d-flex justify-content-between">
+                        <span id="minPriceLabel"><small>PKR</small> 0 </span>  <span id="maxPriceLabel"><small>PKR</small> {{ $seller_price_range['max_price'] }}</span>
+                    </div>
+                </div>
+                
+                <style>
+                    .price-filter {
+                        width: 100%;
+                        /* max-width: 300px; */
+                        margin: 20px auto;
+                        text-align: center;
+                    }
+                
+                    .slider-container {
+                        position: relative;
+                        width: 100%;
+                        background: #000000;
+                        height: 3px;
+                    }
+                
+                    .price-slider {
+                        -webkit-appearance: none;
+                        width: 100%;
+                        position: absolute;
+                        top: -6px;
+                        background: transparent;
+                        pointer-events: none;
+                        right: 0;
+                    }
+                
+                    .price-slider::-webkit-slider-thumb {
+                        -webkit-appearance: none;
+                        width: 16px;
+                        height: 16px;
+                        background: black;
+                        border-radius: 50%;
+                        pointer-events: auto;
+                        cursor: pointer;
+                    }
+                
+                    .price-values {
+                        margin-top: 10px;
+                        font-size: 16px;
+                        font-weight: bold;
+                    }
+                </style>
+                
+                <script>
+                    const minPrice = document.getElementById('minPrice');
+                    const maxPrice = document.getElementById('maxPrice');
+                    const minPriceLabel = document.getElementById('minPriceLabel');
+                    const maxPriceLabel = document.getElementById('maxPriceLabel');
+                
+                    function updatePriceLabels() {
+                        let minValue = parseInt(minPrice.value);
+                        let maxValue = parseInt(maxPrice.value);
+                
+                        if (minValue >= maxValue) {
+                            minValue = maxValue - 10;
+                            minPrice.value = minValue;
+                        }
+                
+                        minPriceLabel.innerHTML = `<small>PKR</small> ${minValue}`;
+                        maxPriceLabel.innerHTML = `<small>PKR</small> ${maxValue}`;
+                    }
+                
+                    minPrice.addEventListener('input', updatePriceLabels);
+                    maxPrice.addEventListener('input', updatePriceLabels);
+                </script>
+                
                 <h6>Categories</h6>
-                <div style="max-height: 300px; overflow-y: scroll">
+                <div style=" ">
                     {!! renderCategoryTree($preferences_cat) !!}
                 </div>
                 
@@ -510,9 +588,9 @@ label.category_tree_item:has(input:checked) .checkbox_circle {
             </div>
             <div class="col-md-9">
                 <section class="mb-3" id="section_types">
-                    <!-- Top Section -->
+                    <!-- Top Section -
                     <div class="d-flex align-items-baseline justify-content-between">
-                        <!-- Title -->
+                       
                         <h6 class="fw-500 mb-3 mb-sm-0">
                             <span class="pb-3">
                                 @if (!isset($type))
@@ -887,16 +965,23 @@ function fetchSellerProducts() {
         selectedCategories.push($(this).val());
     });
 
+    var minPrice = $("#minPrice").val() > 0 ?  $("#minPrice").val() : null
+    var maxPrice = $("#maxPrice").val() > 0 ? $("#maxPrice").val() : null 
+
     $.ajax({
         url: `{{ url('/seller-products') }}`,
         type: 'POST',
         data: {
             categories: selectedCategories,
             seller_id: shopId, // Replace with the actual seller ID
+            min_price: minPrice,
+            max_price: maxPrice,
             _token: $('meta[name="csrf-token"]').attr('content') // Add CSRF token if using Laravel
         },
         success: function(response) {
-            $('#seller_products_section').html(response);
+            $('#seller_products_section').html(response.html);
+          
+
         },
         error: function(xhr, status, error) {
             console.error("Error fetching products:", error);
@@ -908,9 +993,11 @@ function fetchSellerProducts() {
 fetchSellerProducts();
 
 
-        function filter(){
-            $('#search-form').submit();
-        }
+$('.price-slider').on('change input', function(){
+    setTimeout(() => {
+        fetchSellerProducts()
+    }, 1000);   
+});
 
         function rangefilter(arg){
             $('input[name=min_price]').val(arg[0]);
@@ -919,14 +1006,14 @@ fetchSellerProducts();
         }
 
         document.querySelector('.heart-icon').addEventListener('click', function () {
-  if (this.classList.contains('bi-heart')) {
-    this.classList.remove('bi-heart'); // Remove outline version
-    this.classList.add('bi-heart-fill'); // Add filled version
-  } else {
-    this.classList.remove('bi-heart-fill'); // Remove filled version
-    this.classList.add('bi-heart'); // Add outline version
-  }
-});
+            if (this.classList.contains('bi-heart')) {
+                this.classList.remove('bi-heart'); // Remove outline version
+                this.classList.add('bi-heart-fill'); // Add filled version
+            } else {
+                this.classList.remove('bi-heart-fill'); // Remove filled version
+                this.classList.add('bi-heart'); // Add outline version
+            }
+        });
     </script>
 
 @endsection
