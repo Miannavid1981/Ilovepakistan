@@ -305,18 +305,34 @@
         <!-- Right Section -->
             <div class="right-section flex-column h-100">
                 <div class="category-grid">
-                @php
-
-                $banner_categories = \App\Models\Category::where('level', 0)->limit(6)->get();
-                @endphp
-
-                    @foreach($banner_categories as $category)
+              
         
-                    <div class="category-card" style="background-image: url({{uploaded_asset($category->cover_image)}}); background-size:cover; aspect-ratio: 1 / 1;">
-                        <p style="font-size: 0.9rem; font-weight: 600;"> {{$category->name}}</p>
+                    <div class="category-card" style="background-image: url(https://thumbs.dreamstime.com/b/big-sale-electronics-household-appliances-banner-design-big-sale-electronics-household-appliances-square-banner-design-vector-196874899.jpg); background-size:cover; aspect-ratio: 1 / 1;">
+                        {{-- <p style="font-size: 0.9rem; font-weight: 600;"> {{$category->name}}</p> --}}
                         <!-- <img src="https://s.alicdn.com/@sc04/kf/H0c9193fb07984a3c8ee34970ef68472aP.png_300x300.png" alt="Home Improvement & Lighting"> -->
                     </div>
-                    @endforeach
+                    <div class="category-card" style="background-image: url(https://img.pikbest.com/origin/06/46/16/15wpIkbEsTYpv.jpg!w700wp); background-size:cover; aspect-ratio: 1 / 1;">
+                        {{-- <p style="font-size: 0.9rem; font-weight: 600;"> {{$category->name}}</p> --}}
+                        <!-- <img src="https://s.alicdn.com/@sc04/kf/H0c9193fb07984a3c8ee34970ef68472aP.png_300x300.png" alt="Home Improvement & Lighting"> -->
+                    </div>
+                    <div class="category-card" style="background-image: url(https://previews.123rf.com/images/vitekprchal/vitekprchal1807/vitekprchal180700088/103816751-square-promotional-banner-minimal-design-decorated-banner-put-your-text-in-there-and-start-your.jpg); background-size:cover; aspect-ratio: 1 / 1;">
+                        {{-- <p style="font-size: 0.9rem; font-weight: 600;"> {{$category->name}}</p> --}}
+                        <!-- <img src="https://s.alicdn.com/@sc04/kf/H0c9193fb07984a3c8ee34970ef68472aP.png_300x300.png" alt="Home Improvement & Lighting"> -->
+                    </div>
+                    <div class="category-card" style="background-image: url(https://assets.dochipo.com/media/companies/dochipo/templates/63352b8b8904a7cc72c3a76b/screenshot.png); background-size:cover; aspect-ratio: 1 / 1;">
+                        {{-- <p style="font-size: 0.9rem; font-weight: 600;"> {{$category->name}}</p> --}}
+                        <!-- <img src="https://s.alicdn.com/@sc04/kf/H0c9193fb07984a3c8ee34970ef68472aP.png_300x300.png" alt="Home Improvement & Lighting"> -->
+                    </div>
+                    <div class="category-card" style="background-image: url(https://previews.123rf.com/images/lightvisionftb/lightvisionftb2101/lightvisionftb210100030/163686796-moisturizing-cosmetic-products-ad-light-green-background-with-cream-jar-on-square-podium-and-palm.jpg); background-size:cover; aspect-ratio: 1 / 1;">
+                        {{-- <p style="font-size: 0.9rem; font-weight: 600;"> {{$category->name}}</p> --}}
+                        <!-- <img src="https://s.alicdn.com/@sc04/kf/H0c9193fb07984a3c8ee34970ef68472aP.png_300x300.png" alt="Home Improvement & Lighting"> -->
+                    </div>
+                    <div class="category-card" style="background-image: url(https://static.vecteezy.com/system/resources/previews/016/410/506/non_2x/beauty-skin-care-center-promotion-design-social-media-post-and-banner-minimalist-square-template-to-promote-hair-salon-medical-spa-yoga-cosmetic-sale-natural-skin-treatment-makeup-etc-vector.jpg); background-size:cover; aspect-ratio: 1 / 1;">
+                        {{-- <p style="font-size: 0.9rem; font-weight: 600;"> {{$category->name}}</p> --}}
+                        <!-- <img src="https://s.alicdn.com/@sc04/kf/H0c9193fb07984a3c8ee34970ef68472aP.png_300x300.png" alt="Home Improvement & Lighting"> -->
+                    </div>
+                    
+                 
 
                     <!-- <div class="category-card" style="background: #eefac5;">
                         <p style="font-size: 20px; font-weight: 600;">Solar Panels</p>
