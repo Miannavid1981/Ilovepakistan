@@ -2945,7 +2945,7 @@ function renderCategoryTree( $selectedCategories = [], $categories = null, $pare
     if ($selectedCategories instanceof Illuminate\Support\Collection) {
         $selectedCategories = $selectedCategories->toArray();
     }
-    $html = '<ul class="'.$ul_class.' bg-white">';
+    $html = '<ul class="'.$ul_class.'">';
    
     foreach ($categories as $category) {
         if ($category->parent_id == $parent_id) {

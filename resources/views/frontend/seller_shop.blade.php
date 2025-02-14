@@ -455,11 +455,12 @@
 
     @endif
 <style>
-label.category_tree_item:has(input:checked) {
-    background: #ffefef;
-    border-radius: 20px;
+li:has(label.category_tree_item input:checked) {
+    background: #f4f4f4;
+    border-radius: 10px;
     padding: 0 10px; 
-    transition: all .1s ease-in-out
+    transition: all .1s ease-in-out;
+   
 }
 label.category_tree_item:has(input:checked) img {
     border : unset !important;
