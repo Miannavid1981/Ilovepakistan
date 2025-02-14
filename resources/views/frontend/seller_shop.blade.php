@@ -114,6 +114,12 @@
         height: 300px;
         object-fit: cover;
     }
+
+
+    .product-five-col {
+        flex: 0 0 calc(100% / 5);
+        max-width: calc(100% / 5);
+    }
   </style>
   <img class="store_banner" src="https://www.unitedmobile.pk/wp-content/uploads/2022/11/Samsung-Brand-Banner.webp">
     <section class="mt-3 mb-3 bg-white d-none">
@@ -569,7 +575,7 @@ label.category_tree_item:has(input:checked) .checkbox_circle {
                     @if (!isset($type))
                         <!-- New Arrival Products Section -->
                         <div class="pb-3">
-                            <div id="seller_products_section" data-items="6" data-xl-items="5" data-lg-items="4"  data-md-items="3" data-sm-items="2" data-xs-items="2" data-arrows='true' data-infinite='false'> 
+                            <div class="row" id="seller_products_section" data-items="6" data-xl-items="5" data-lg-items="4"  data-md-items="3" data-sm-items="2" data-xs-items="2" data-arrows='true' data-infinite='false'> 
                                 {!! get_product_skeleton() !!}
                             </div>
                         </div>

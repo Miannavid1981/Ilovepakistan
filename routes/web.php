@@ -548,7 +548,7 @@ Route::post('/seller-products', function (Request $request) {
     foreach ($products as $key => $product) {
         $productUrl = $product->product_custom_url;
         $html .= '
-            <div class="col-6 col-md-4 col-lg product-custom-col position-relative has-transition hov-animate-outline">
+            <div class="col-6 col-md-4 col-lg product-five-col position-relative has-transition hov-animate-outline">
                 ' . view('frontend.' . get_setting('homepage_select') . '.partials.product_box_1', ['product' => $product, 'product_url' => $productUrl])->render() . '
             </div>';
     }
