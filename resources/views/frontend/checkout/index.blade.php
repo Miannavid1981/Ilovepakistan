@@ -421,7 +421,7 @@
 </style>
 @php
     $auth_user_id = auth()->user()->id;
-    
+    $logo_url = uploaded_asset(get_setting('header_logo'));
 
     $cart = \App\Models\Cart::where('user_id', $auth_user_id)->get();
     $subtotal = 0;
@@ -443,13 +443,20 @@
           
 
 
-        <div class="checkout_columns">
-            <img src="https://allaaddin.com/public/images/1j+ojFVDOMkX9Wytexe43D6kh.png" style="width: 130px" alt="Bighouz" class="img-fluid">
-            <ul class="d-flex gap-2 list-unstyled fs-15 text-muted">
-                <li>Home</li>
-                <li><i class="fa fa-chevron-right"></i></li>
-                <li>Checkout</li>
-            </ul>
+        <div class="checkout_columns mb-4">
+            <div class="">
+                <div >
+                    <img src="{{ $logo_url }}" style="width: 130px" alt="Bighouz" class="img-fluid">
+                    <ul class="d-flex gap-2 list-unstyled fs-15 text-muted">
+                        <li>Home</li>
+                        <li><i class="fa fa-chevron-right"></i></li>
+                        <li>Checkout</li>
+                    </ul>
+                </div>
+                
+              
+            </div>
+           
             <br>
            
             <div class="row g-3">
@@ -537,7 +544,7 @@
             </div>
               
             <!-- Agree Box -->
-            <div class="">
+            <div class=" mt-3">
                 <label class="aiz-checkbox">
                     <input type="checkbox" required id="agree_checkbox">
                     <span class="aiz-square-check"></span>
@@ -553,12 +560,16 @@
 
         
             <!-- Return to shop -->
-            <button type="button" onclick="submitOrder(this)"  class="w-100 btn btn-lg btn-primary fs-16 fw-300 rounded-0 p-2 ">{{ translate('Place Order') }}</button>
-
-            <a href="{{ route('home') }}" class="btn btn-link fs-14 fw-700 px-0 mt-2">
+            <button type="button" onclick="submitOrder(this)"  class="w-100 btn btn-lg btn-primary fs-16 fw-300 rounded-2 p-2 ">{{ translate('Place Order') }}</button>
+            <a href="{{ url()->previous() }}" class="w-100 btn btn-lg btn-light fs-16 fw-300 rounded-2 p-2 mt-2 ">
+                <i class="fa fa-chevron-left fs-15 me-2"></i>
+                {{ translate('Continue Shopping') }}
+            </a>
+               
+            {{-- <a href="{{ route('home') }}" class="btn btn-link fs-14 fw-700 px-0 mt-2">
                 <i class="las la-arrow-left fs-16"></i>
                 {{ translate('Return to shop') }}
-            </a>
+            </a> --}}
                
         
 
