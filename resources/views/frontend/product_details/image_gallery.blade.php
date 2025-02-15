@@ -193,14 +193,14 @@ $photos = [];
         @else
 
             <div class="col-2 ">
-                <div class="slider slider-nav">
+                <div class="slider product-detail-slider-nav">
                     @foreach ($photos as $key => $photo)
                         <img src="{{ uploaded_asset($photo) }}" class="w-100 h-100" {{ $loop->first ? 'selected' : '' }}" >
                     @endforeach
                 </div>
             </div>
             <div class="col-10 ">
-                <div class="slider slider-for">
+                <div class="slider product-detail-slider-for">
                     @foreach ($photos as $key => $photo)
                         <img src="{{ uploaded_asset($photo) }}" class="w-100 h-100" {{ $loop->first ? 'selected' : '' }}" >
                     @endforeach
@@ -248,30 +248,6 @@ $photoUrls = array_map(function($photoId) {
 
 @endphp
 
-@section('script')
-<script type="text/javascript">
-    
-    $('.slider-for').slick({
-        slidesToShow: 1,
-        slidesToScroll: 1,
-        arrows: false,
-        fade: true,
-        asNavFor: '.slider-nav'
-    });
-
-    $('.slider-nav').slick({
-        slidesToShow: 3,
-        slidesToScroll: 1,
-        asNavFor: '.slider-for',
-        dots: false,
-        arrow: true,
-        centerMode: true,
-        focusOnSelect: true,
-        vertical: true,  // Makes the navigation vertical
-        verticalSwiping: true // Enables vertical swiping
-    });
-</script>   
-@endsection
 <script>
     
     // Pass the mapped photo URLs from PHP to JavaScript
