@@ -186,7 +186,7 @@ $photos = [];
     <div class="col-2">
         <div class="slider slider-nav">
             @foreach ($photos as $key => $photo)
-                <img src="{{ uploaded_asset($photo) }}" class="thumbnail {{ $loop->first ? 'selected' : '' }}" onclick="changeImage('{{ uploaded_asset($photo) }}', this)">
+                <img src="{{ uploaded_asset($photo) }}" class=" h-100" {{ $loop->first ? 'selected' : '' }}" onclick="changeImage('{{ uploaded_asset($photo) }}', this)">
             @endforeach
         </div>
     </div>

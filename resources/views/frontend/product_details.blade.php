@@ -351,7 +351,8 @@ $('.slider-nav').slick({
     slidesToShow: 3,
     slidesToScroll: 1,
     asNavFor: '.slider-for',
-    dots: true,
+    dots: false,
+    arrow: true,
     centerMode: true,
     focusOnSelect: true,
     vertical: true,  // Makes the navigation vertical
