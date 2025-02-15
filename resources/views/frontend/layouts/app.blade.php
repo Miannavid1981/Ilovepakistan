@@ -255,6 +255,9 @@
                 --bs-modal-width: 90%;
             }
         }
+        .aiz-mobile-bottom-nav {
+            display: none !important
+        }
     </style>
 
 @if (get_setting('google_analytics') == 1)

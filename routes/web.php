@@ -553,3 +553,5 @@ Route::post('/seller-products', function (Request $request) {
     ]);
 });
 
+
+Route::post('/orders/upload-receipts', [CheckoutController::class, 'uploadReceipts'])->name('orders.uploadReceipts');
