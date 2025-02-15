@@ -192,7 +192,7 @@
                     <td class="text-right pr-0 fs-22 fw-600 text-dark">
                         <p>
                             <small class="fw-300">{{ currency_symbol() }}</small>
-                            <span>{{ $total }}</span>
+                            <span>{{ number_format($total) }}</span>
                         </p>
                     </td>
                 </tr>
