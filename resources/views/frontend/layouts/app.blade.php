@@ -960,6 +960,25 @@
                 AIZ.plugins.zoom();
                 AIZ.extra.plusMinus();
                 getVariantPrice();
+                $('.product-detail-slider-for').slick({
+                    slidesToShow: 1,
+                    slidesToScroll: 1,
+                    arrows: false,
+                    fade: true,
+                    asNavFor: '.slider-nav'
+                });
+
+                $('.product-detail-slider-nav').slick({
+                    slidesToShow: 3,
+                    slidesToScroll: 1,
+                    asNavFor: '.slider-for',
+                    dots: false,
+                    arrow: true,
+                    centerMode: true,
+                    focusOnSelect: true,
+                    vertical: true,  // Makes the navigation vertical
+                    verticalSwiping: true // Enables vertical swiping
+                });
             });
         }
 
