@@ -187,7 +187,7 @@ $photos = [];
         @if(count($photos) == 1 )
 
             <div class="col-12 ">
-                <img src="{{ uploaded_asset($photo) }}" class=" h-100" {{ $loop->first ? 'selected' : '' }}" onclick="changeImage('{{ uploaded_asset($photo) }}', this)">
+                <img src="{{ uploaded_asset($photos[0]) }}" class=" h-100" {{ $loop->first ? 'selected' : '' }}" onclick="changeImage('{{ uploaded_asset($photos[0]) }}', this)">
             </div>
             
         @else
