@@ -112,6 +112,14 @@ $order_info = $order;
                      <span class="fs-17 text-capitalize">{{ str_replace("_", " ", $order->payment_method ) }}</span>
 
                 </p>
+                @if($order->payment_method  == 'direct_bank_transfer')
+                    <p class="mb-1">
+                        <strong class="fs-16">Payment Transfer method:</strong>
+                        <br/> 
+                        <span class="fs-17 text-capitalize">{{ str_replace("_", " ", $order->payment_transfer_method ) }}</span>
+
+                    </p>
+                @endif
              
                     <h5>Uploaded Receipts:</h5>
                     @php
