@@ -8,10 +8,10 @@
     b {
         color: red;
     }
-    .slick-slide {
+    .brand-logos-slider .slick-slide {
         margin: 0px 20px;
     }
-    .slick-slide img {
+    .brand-logos-slider  .slick-slide img {
         width: 100%;
     }
     .brand-logos-slider {
