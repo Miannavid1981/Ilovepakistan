@@ -335,7 +335,30 @@
 @endsection
 
 @section('script')
+    <script type="text/javascript">
+        $(document).ready(function() {
+            getVariantPrice();
+        });
+     
+        $('.product-detail-slider-for').slick({
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        arrows: false,
+        fade: true,
+        asNavFor: '.slider-nav'
+    });
 
+    $('.product-detail-slider-nav').slick({
+        slidesToShow: 3,
+        slidesToScroll: 1,
+        asNavFor: '.slider-for',
+        dots: false,
+        arrow: true,
+        centerMode: true,
+        focusOnSelect: true,
+        vertical: true,  // Makes the navigation vertical
+        verticalSwiping: true // Enables vertical swiping
+    });
 
         function CopyToClipboard(e) {
             var url = $(e).data('url');

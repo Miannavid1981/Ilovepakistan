@@ -1256,6 +1256,26 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.js"></script>
 <script>
     $(document).ready(function(){
+            
+    $('.product-detail-slider-for').slick({
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        arrows: false,
+        fade: true,
+        asNavFor: '.slider-nav'
+    });
+
+    $('.product-detail-slider-nav').slick({
+        slidesToShow: 3,
+        slidesToScroll: 1,
+        asNavFor: '.slider-for',
+        dots: false,
+        arrow: true,
+        centerMode: true,
+        focusOnSelect: true,
+        vertical: true,  // Makes the navigation vertical
+        verticalSwiping: true // Enables vertical swiping
+    });
         $('.brand-logos-slider').slick({
             slidesToShow: 8,
             slidesToScroll: 1,
