@@ -209,7 +209,7 @@
                         <div  class="mx-auto" style="width: 50px; aspect-ratio: 1/1">
                             <img src="https://crystalpng.com/wp-content/uploads/2025/01/meezan-bank-logo.png" class="w-100 h-100 object-fit-contain">
                         </div>
-                        <input type="radio" name="direct_transfer_method" value="meezan_bank" >
+                        <input type="radio" name="payment_transfer_method" value="meezan_bank" >
                         <p class=" fs-15 fw-500">Meezan Bank
                         </p>
                         <b>Account Title.</b>
@@ -225,7 +225,7 @@
                         <div  class="mx-auto" style="width: 50px; aspect-ratio: 1/1">
                             <img src="https://crystalpng.com/wp-content/uploads/2025/01/mcb-logo.png" class="w-100 h-100 object-fit-contain">
                         </div>
-                        <input type="radio" name="direct_transfer_method" value="meezan_bank" >
+                        <input type="radio" name="payment_transfer_method" value="mcb_bank" >
                         <p class=" fs-15 fw-500">MCB Bank Ltd
                         </p>
                         <b>Account Title.</b>
@@ -241,7 +241,7 @@
                         <div  class="mx-auto" style="width: 50px; aspect-ratio: 1/1">
                             <img src="https://companieslogo.com/img/orig/BAHL.PK-dca414fa.png?t=1720244490" class="w-100 h-100 object-fit-contain">
                         </div>
-                        <input type="radio" name="direct_transfer_method" value="meezan_bank" >
+                        <input type="radio" name="payment_transfer_method" value="bank_al_habib" >
                         <p class=" fs-15 fw-500">Bank AL Habib Ltd
                         </p>
                         <b>Account Title.</b>
@@ -258,7 +258,7 @@
                         <div  class="mx-auto" style="width: 50px; aspect-ratio: 1/1">
                             <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQ2z0lPrjtW6QHUQwdNEeXkuMxsJcutkkKSQ&s" class="w-100 h-100 object-fit-contain">
                         </div>
-                        <input type="radio" name="direct_transfer_method" value="meezan_bank" >
+                        <input type="radio" name="payment_transfer_method" value="jazzcash" >
                         <p class=" fs-15 fw-500">JazzCash
                         </p>
                         <b>Account Title: </b>
@@ -274,7 +274,7 @@
                         <div  class="mx-auto" style="width: 50px; aspect-ratio: 1/1">
                             <img src="https://www.thenews.com.pk/assets/uploads/akhbar/2024-01-27/1151682_8435733_Easypaisa_akhbar.jpg" class="w-100 h-100 object-fit-contain">
                         </div>
-                        <input type="radio" name="direct_transfer_method" value="meezan_bank" >
+                        <input type="radio" name="payment_transfer_method" value="easypaisa" >
                         <p class=" fs-15 fw-500">Easypaisa
                         </p>
                         <b>IBAN: </b>
