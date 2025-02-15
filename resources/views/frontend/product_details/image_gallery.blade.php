@@ -180,6 +180,10 @@ $photos = [];
     }
 }
 
+.slick-track {
+    width: 100% !important
+}
+
 </style>
 
 <div class="row g-1">
