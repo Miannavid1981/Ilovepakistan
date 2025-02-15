@@ -248,11 +248,7 @@
             color: #000;
             transition: all .3s ease-in-out
         }
-        #addToCart-modal-body .slick-vertical .slick-slide {
-
-            width: auto !important;
-            margin: 0 !important
-        }
+   
         .pac-container { z-index: 100000; }
     </style>
 
