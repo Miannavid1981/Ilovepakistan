@@ -181,6 +181,20 @@ $photos = [];
 }
 
 </style>
+
+<div class="slider slider-for">
+    @foreach ($photos as $key => $photo)
+        <img src="{{ uploaded_asset($photo) }}" class="thumbnail {{ $loop->first ? 'selected' : '' }}" onclick="changeImage('{{ uploaded_asset($photo) }}', this)">
+    @endforeach
+</div>
+<div class="slider slider-nav">
+    @foreach ($photos as $key => $photo)
+        <img src="{{ uploaded_asset($photo) }}" class="thumbnail {{ $loop->first ? 'selected' : '' }}" onclick="changeImage('{{ uploaded_asset($photo) }}', this)">
+    @endforeach
+</div>
+
+
+
     <!-- Main image -->
     <div class="slider-container">
         <div class="w-auto h-full">
@@ -215,6 +229,7 @@ $photoUrls = array_map(function($photoId) {
 
 
 <script>
+    
     // Pass the mapped photo URLs from PHP to JavaScript
     let images = @json($photoUrls);
 
