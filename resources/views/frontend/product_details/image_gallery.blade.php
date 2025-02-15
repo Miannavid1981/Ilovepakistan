@@ -182,7 +182,7 @@ $photos = [];
 
 </style>
 
-<div class="row">
+<div class="row g-0">
     <div class="col-2">
         <div class="slider slider-nav">
             @foreach ($photos as $key => $photo)
@@ -193,7 +193,7 @@ $photos = [];
     <div class="col-10">
         <div class="slider slider-for">
             @foreach ($photos as $key => $photo)
-                <img src="{{ uploaded_asset($photo) }}" class="thumbnail {{ $loop->first ? 'selected' : '' }}" onclick="changeImage('{{ uploaded_asset($photo) }}', this)">
+                <img src="{{ uploaded_asset($photo) }}" class=" h-100" {{ $loop->first ? 'selected' : '' }}" onclick="changeImage('{{ uploaded_asset($photo) }}', this)">
             @endforeach
         </div>
     </div>
@@ -203,7 +203,7 @@ $photos = [];
 
 
 
-    <!-- Main image -->
+    {{-- <!-- Main image -->
     <div class="slider-container">
         <div class="w-auto h-full">
             <img src="{{ uploaded_asset($photos[0]) }}" class="main-image" id="mainImage" onclick="openFullscreen()">
@@ -222,7 +222,7 @@ $photos = [];
         </div>
     
         <button class="thumbnail-arrow thumbnail-top" onclick="slideThumbnails('up')">&#8595;</button> <!-- Bottom Arrow -->
-    </div>
+    </div> --}}
     
 
 
