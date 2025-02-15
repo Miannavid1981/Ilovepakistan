@@ -182,16 +182,24 @@ $photos = [];
 
 </style>
 
-<div class="slider slider-for">
-    @foreach ($photos as $key => $photo)
-        <img src="{{ uploaded_asset($photo) }}" class="thumbnail {{ $loop->first ? 'selected' : '' }}" onclick="changeImage('{{ uploaded_asset($photo) }}', this)">
-    @endforeach
+<div class="row">
+    <div class="col-2">
+        <div class="slider slider-nav">
+            @foreach ($photos as $key => $photo)
+                <img src="{{ uploaded_asset($photo) }}" class="thumbnail {{ $loop->first ? 'selected' : '' }}" onclick="changeImage('{{ uploaded_asset($photo) }}', this)">
+            @endforeach
+        </div>
+    </div>
+    <div class="col-10">
+        <div class="slider slider-for">
+            @foreach ($photos as $key => $photo)
+                <img src="{{ uploaded_asset($photo) }}" class="thumbnail {{ $loop->first ? 'selected' : '' }}" onclick="changeImage('{{ uploaded_asset($photo) }}', this)">
+            @endforeach
+        </div>
+    </div>
 </div>
-<div class="slider slider-nav">
-    @foreach ($photos as $key => $photo)
-        <img src="{{ uploaded_asset($photo) }}" class="thumbnail {{ $loop->first ? 'selected' : '' }}" onclick="changeImage('{{ uploaded_asset($photo) }}', this)">
-    @endforeach
-</div>
+
+
 
 
 
