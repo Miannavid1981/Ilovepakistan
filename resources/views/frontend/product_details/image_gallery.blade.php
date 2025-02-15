@@ -182,7 +182,7 @@ $photos = [];
 
 </style>
 
-<div class="row g-0">
+<div class="row g-1">
     <div class="col-2">
         <div class="slider slider-nav">
             @foreach ($photos as $key => $photo)
