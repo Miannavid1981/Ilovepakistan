@@ -965,13 +965,13 @@
                     slidesToScroll: 1,
                     arrows: false,
                     fade: true,
-                    asNavFor: '.slider-nav'
+                    asNavFor: '.product-detail-slider-nav'
                 });
 
                 $('.product-detail-slider-nav').slick({
                     slidesToShow: 3,
                     slidesToScroll: 1,
-                    asNavFor: '.slider-for',
+                    asNavFor: '.product-detail-slider-for',
                     dots: false,
                     arrow: true,
                     centerMode: true,
