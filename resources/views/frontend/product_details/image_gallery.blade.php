@@ -193,14 +193,14 @@ $photos = [];
         @else
 
             <div class="col-2 ">
-                <div class="slider slider-nav">
+                <div class="slider product-detail-slider-nav">
                     @foreach ($photos as $key => $photo)
                         <img src="{{ uploaded_asset($photo) }}" class="w-100 h-100" {{ $loop->first ? 'selected' : '' }}" >
                     @endforeach
                 </div>
             </div>
             <div class="col-10 ">
-                <div class="slider slider-for">
+                <div class="slider product-detail-slider-for">
                     @foreach ($photos as $key => $photo)
                         <img src="{{ uploaded_asset($photo) }}" class="w-100 h-100" {{ $loop->first ? 'selected' : '' }}" >
                     @endforeach
