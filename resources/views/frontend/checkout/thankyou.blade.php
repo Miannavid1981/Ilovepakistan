@@ -110,8 +110,40 @@ $order_info = $order;
                     <strong class="fs-16">Payment method:</strong>
                      <br/> 
                      <span class="fs-17 text-capitalize">{{ str_replace("_", " ", $order->payment_method ) }}</span>
+
                 </p>
+             
+                    <h5>Uploaded Receipts:</h5>
+                    @php
+                        
+                        // dd(json_decode($order->payment_receipts));
+                        $receipts = json_decode($order->payment_receipts) ?? null;
+
+                    @endphp
+                    @if(!empty($receipts) && count($receipts) > 0)
+                        @foreach($receipts as $receipt)
+                            <a href="{{ url('/storage/' . $receipt) }}" target="_blank">View Receipt</a><br>
+                        @endforeach
+                    @else
+                        <form action="{{ route('orders.uploadReceipts') }}" method="POST" enctype="multipart/form-data">
+                            @csrf
+                            <input type="hidden" name="order_id" value="{{ $order_id }}">
+                            <div id="file-upload-container">
+                                <div class="file-upload-row">
+                                    <input type="file" name="payment_receipts[]" class="form-control" accept="image/*,application/pdf">
+                                </div>
+                            </div>
+                        
+                            <button type="button" id="add-more" class="btn btn-secondary">Add More</button>
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </form>
+                        
+                    @endif
+                
+                
+               
             </div>
+            
         </div>
 
         <hr>
@@ -119,7 +151,7 @@ $order_info = $order;
         <h5 class="fw-bold">We’re packing your order</h5>
         <p><strong>Estimated delivery:</strong> Fri, 13/10/2023 - Mon, 16/10/2023</p>
 
-        <div class="progress mb-3" style="height: 8px;">
+        {{-- <div class="progress mb-3" style="height: 8px;">
             <div class="progress-bar progress-bar-striped progress-bar-animated" style="width: 25%;"></div>
         </div>
 
@@ -128,126 +160,21 @@ $order_info = $order;
         </div>
         
       
-        <div class="accordion mt-4" id="orderAccordion">
-          <!-- Accordion Item 1 -->
-          <div class="accordion-item">
-              <h2 class="accordion-header">
-                  <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne">
-                      <div class="row w-100 align-items-center">
-                          <div class="col-auto">
-                              <div class="img-box">
-                                  <img src="./apple-logo.png" class="img-fluid rounded" alt="Beanie Image">
-                              </div>
-                          </div>
-                          <div class="col">
-                              <h6 class="mb-0">Pier One</h6>
-                              <p class="mb-1 text-muted">Beanie - Black</p>
-                              <p class="mb-1"><strong>Colour:</strong> Black</p>
-                              <p class="mb-1"><strong>Size:</strong> One Size</p>
-                              <p class="mb-1"><strong>Article number:</strong> PI954R00F-Q11</p>
-                          </div>
-                          <div class="col-auto">
-                              <h5 class="text-end">£8.00</h5>
-                          </div>
-                      </div>
-                  </button>
-              </h2>
-              <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#orderAccordion">
-                  <div class="accordion-body">
-                      <p><strong>Delivery type:</strong> 2-hour express</p>
-                      <ul class="timeline">
-                          <li><strong>ORDERED</strong><br> 15:30, September 9, 2018</li>
-                          <li><strong>SHIPPED</strong><br> 15:45, September 9, 2018</li>
-                          <li class="pending"><strong>DELIVERED</strong><br> Estimated delivery by <strong>17:30</strong></li>
-                      </ul>
-                      <p><strong>Courier:</strong> On Fleet</p>
-                      <p><strong>Tracking Number:</strong> 123456789012345</p>
-                      <button class="btn btn-dark w-100">TRACK MY SHIPMENT</button>
-                  </div>
-              </div>
-          </div>
-
-          <!-- Accordion Item 2 -->
-          <div class="accordion-item">
-              <h2 class="accordion-header">
-                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo">
-                      <div class="row w-100 align-items-center">
-                          <div class="col-auto">
-                              <div class="img-box">
-                                  <img src="./money.png" class="img-fluid rounded" alt="Sneakers Image">
-                              </div>
-                          </div>
-                          <div class="col">
-                              <h6 class="mb-0">Nike Air Max</h6>
-                              <p class="mb-1 text-muted">Sneakers - White</p>
-                              <p class="mb-1"><strong>Size:</strong> 42</p>
-                              <p class="mb-1"><strong>Article number:</strong> NI12345678</p>
-                          </div>
-                          <div class="col-auto">
-                              <h5 class="text-end">£120.00</h5>
-                          </div>
-                      </div>
-                  </button>
-              </h2>
-              <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#orderAccordion">
-                  <div class="accordion-body">
-                      <p><strong>Delivery type:</strong> Standard</p>
-                      <ul class="timeline">
-                          <li><strong>ORDERED</strong><br> 10:00, January 5, 2024</li>
-                          <li><strong>SHIPPED</strong><br> 18:30, January 5, 2024</li>
-                          <li class="pending"><strong>DELIVERED</strong><br> Estimated delivery by <strong>January 8</strong></li>
-                      </ul>
-                      <p><strong>Courier:</strong> FedEx</p>
-                      <p><strong>Tracking Number:</strong> 987654321098765</p>
-                      <button class="btn btn-dark w-100">TRACK MY SHIPMENT</button>
-                  </div>
-              </div>
-          </div>
-
-          <!-- Accordion Item 3 -->
-          <div class="accordion-item">
-              <h2 class="accordion-header">
-                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree">
-                      <div class="row w-100 align-items-center">
-                          <div class="col-auto">
-                              <div class="img-box">
-                                  <img src="./paypal.png" class="img-fluid rounded" alt="Jacket Image">
-                              </div>
-                          </div>
-                          <div class="col">
-                              <h6 class="mb-0">Leather Jacket</h6>
-                              <p class="mb-1 text-muted">Brown Leather</p>
-                              <p class="mb-1"><strong>Size:</strong> Large</p>
-                              <p class="mb-1"><strong>Article number:</strong> LJ987654</p>
-                          </div>
-                          <div class="col-auto">
-                              <h5 class="text-end">£75.00</h5>
-                          </div>
-                      </div>
-                  </button>
-              </h2>
-              <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#orderAccordion">
-                  <div class="accordion-body">
-                      <p><strong>Delivery type:</strong> Next-Day</p>
-                      <ul class="timeline">
-                          <li><strong>ORDERED</strong><br> 14:00, February 1, 2024</li>
-                          <li><strong>SHIPPED</strong><br> 20:00, February 1, 2024</li>
-                          <li class="pending"><strong>DELIVERED</strong><br> Estimated delivery by <strong>February 2</strong></li>
-                      </ul>
-                      <p><strong>Courier:</strong> DHL</p>
-                      <p><strong>Tracking Number:</strong> 112233445566</p>
-                      <button class="btn btn-dark w-100">TRACK MY SHIPMENT</button>
-                  </div>
-              </div>
-          </div>
-
-      </div>
+         --}}
       
     </div>
 
 
 
 </div>
-
+<script>
+    document.getElementById('add-more').addEventListener('click', function() {
+        let container = document.getElementById('file-upload-container');
+        let newRow = document.createElement('div');
+        newRow.classList.add('file-upload-row');
+        newRow.innerHTML = '<input type="file" name="payment_receipts[]" class="form-control" accept="image/*,application/pdf">';
+        container.appendChild(newRow);
+    });
+</script>
 
 @endsection

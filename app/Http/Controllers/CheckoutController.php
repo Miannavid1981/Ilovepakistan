@@ -745,5 +745,27 @@ class CheckoutController extends Controller
         // dd($order);
         return view('frontend.checkout.thankyou', ['order_id'=> $id, 'order'=> $order]);
     }
+    public function uploadReceipts(Request $request)
+    {
+        $request->validate([
+            'payment_receipts.*' => 'required|mimes:jpg,jpeg,png,pdf|max:2048'
+        ]);
+
+        $uploadedFiles = [];
+
+        if ($request->hasFile('payment_receipts')) {
+            foreach ($request->file('payment_receipts') as $file) {
+                $path = $file->store('payment_receipts', 'public'); 
+                $uploadedFiles[] = $path;
+            }
+        }
+
+        // Assuming you're storing the receipts in an order
+        $order = CombinedOrder::find($request->order_id);
+        $order->payment_receipts = $uploadedFiles;
+        $order->save();
+
+        return back()->with('success', 'Receipts uploaded successfully!');
+    }
 }
 
