@@ -250,6 +250,11 @@
         }
    
         .pac-container { z-index: 100000; }
+        @media (min-width: 992px) {
+            .modal-lg, .modal-xl {
+                --bs-modal-width: 90%;
+            }
+        }
     </style>
 
 @if (get_setting('google_analytics') == 1)
