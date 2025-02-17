@@ -118,19 +118,21 @@
                             @if (addon_is_activated('refund_request'))
                                 <th>{{ translate('Refund') }}</th>
                             @endif
+                            <th data-breakpoints="md">{{ translate('Date') }}</th>
                             <th class="text-right" width="15%">{{ translate('options') }}</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($orders as $key => $order)
+                        @if ($order->orders->isNotEmpty())
                             <tr>
-                                @if (auth()->user()->can('delete_order') || auth()->user()->can('export_order'))
+                                @if (auth()->user()->can('delete_order'))
                                     <td>
                                         <div class="form-group">
                                             <div class="aiz-checkbox-inline">
                                                 <label class="aiz-checkbox">
                                                     <input type="checkbox" class="check-one" name="id[]"
-                                                        value="{{ $order->id }}">
+                                                        value="{{ $order->orders->first()->id }}">
                                                     <span class="aiz-square-check"></span>
                                                 </label>
                                             </div>
@@ -140,16 +142,16 @@
                                     <td>{{ $key + 1 + ($orders->currentPage() - 1) * $orders->perPage() }}</td>
                                 @endif
                                 <td>
-                                    {{ $order->code }}
-                                    @if ($order->viewed == 0)
+                                    {{ $order->orders->first()->code }}
+                                    @if ($order->orders->first()->viewed == 0)
                                         <span class="badge badge-inline badge-info">{{ translate('New') }}</span>
                                     @endif
-                                    @if (addon_is_activated('pos_system') && $order->order_from == 'pos')
+                                    @if (addon_is_activated('pos_system') && $order->orders->first()->order_from == 'pos')
                                         <span class="badge badge-inline badge-danger">{{ translate('POS') }}</span>
                                     @endif
                                 </td>
                                 <td>
-                                    {{ count($order->orderDetails) }}
+                                    {{ $order->orders()->whereNotNull('code')->count() }}
                                 </td>
                                 <td>
                                     @if ($order->user != null)
@@ -159,8 +161,8 @@
                                     @endif
                                 </td>
                                 <td>
-                                    @if ($order->shop)
-                                        {{ $order->shop->name }}
+                                    @if ($order->orders->first()->shop)
+                                        {{ $order->orders->first()->name }}
                                     @else
                                         {{ translate('Inhouse Order') }}
                                     @endif
@@ -169,45 +171,48 @@
                                     {{ single_price($order->grand_total) }}
                                 </td>
                                 <td>
-                                    {{ translate(ucfirst(str_replace('_', ' ', $order->delivery_status))) }}
+                                    {{ translate(ucfirst(str_replace('_', ' ', $order->orders->first()->delivery_status))) }}
                                 </td>
                                 <td>
-                                    {{ translate(ucfirst(str_replace('_', ' ', $order->payment_type))) }}
+                                    {{ translate(ucfirst(str_replace('_', ' ', $order->orders->first()->payment_type))) }}
                                 </td>
                                 <td>
-                                    @if ($order->payment_status == 'paid')
+                                    @if ($order->orders->first()->payment_status == 'paid')
                                         <span class="badge badge-inline badge-success">{{ translate('Paid') }}</span>
-                                    @else
+                                    @elseif($order->orders->first()->payment_status == 'pending')
+                                        <span class="badge badge-inline badge-danger" style="background: mediumseagreen;">{{ translate('pending') }}</span>
+                                        @elseif($order->orders->first()->payment_status == 'unpaid')
                                         <span class="badge badge-inline badge-danger">{{ translate('Unpaid') }}</span>
                                     @endif
                                 </td>
                                 @if (addon_is_activated('refund_request'))
                                     <td>
-                                        @if (count($order->refund_requests) > 0)
-                                            {{ count($order->refund_requests) }} {{ translate('Refund') }}
+                                        @if (count($order->orders->first()->refund_requests) > 0)
+                                            {{ count($order->orders->first()->refund_requests) }} {{ translate('Refund') }}
                                         @else
                                             {{ translate('No Refund') }}
                                         @endif
                                     </td>
                                 @endif
+                                <td> {{ $order->orders->first()->created_at->format('F j, Y \a\t g:iA') }}</td>
                                 <td class="text-right">
-                                    @if (addon_is_activated('pos_system') && $order->order_from == 'pos')
+                                    @if (addon_is_activated('pos_system') && $order->orders->first()->order_from == 'pos')
                                         <a class="btn btn-soft-success btn-icon btn-circle btn-sm"
-                                            href="{{ route('admin.invoice.thermal_printer', $order->id) }}" target="_blank"
+                                            href="{{ route('admin.invoice.thermal_printer', $order->orders->first()->id) }}" target="_blank"
                                             title="{{ translate('Thermal Printer') }}">
                                             <i class="las la-print"></i>
                                         </a>
                                     @endif
                                     @can('view_order_details')
                                         @php
-                                            $order_detail_route = route('orders.show', encrypt($order->id));
-                                            if (Route::currentRouteName() == 'seller_orders.index') {
-                                                $order_detail_route = route('seller_orders.show', encrypt($order->id));
+                                        $order_detail_route = route('all_orders.show', ['order_id' => encrypt($order->orders->first()->id), 'id' => encrypt($order->id)]);
+                                        if (Route::currentRouteName() == 'seller_orders.index') {
+                                                $order_detail_route = route('seller_orders.show', encrypt($order->orders->first()->id));
                                             } elseif (Route::currentRouteName() == 'pick_up_point.index') {
-                                                $order_detail_route = route('pick_up_point.order_show', encrypt($order->id));
+                                                $order_detail_route = route('pick_up_point.order_show', encrypt($order->orders->first()->id));
                                             }
                                             if (Route::currentRouteName() == 'inhouse_orders.index') {
-                                                $order_detail_route = route('inhouse_orders.show', encrypt($order->id));
+                                                $order_detail_route = route('inhouse_orders.show', encrypt($order->orders->first()->id));
                                             }
                                         @endphp
                                         <a class="btn btn-soft-primary btn-icon btn-circle btn-sm"
@@ -220,13 +225,6 @@
                                         title="{{ translate('Download Invoice') }}">
                                         <i class="las la-download"></i>
                                     </a>
-                                    @if(auth()->user()->can('unpaid_order_payment_notification_send') && $order->payment_status == 'unpaid' && $unpaid_order_payment_notification->status == 1)
-                                        <a class="btn btn-soft-warning btn-icon btn-circle btn-sm"
-                                            href="javascript:void();" onclick="unpaid_order_payment_notification('{{ $order->id }}');"
-                                            title="{{ translate('Unpaid Order Payment Notification') }}">
-                                            <i class="las la-bell"></i>
-                                        </a>
-                                    @endif
                                     @can('delete_order')
                                         <a href="#"
                                             class="btn btn-soft-danger btn-icon btn-circle btn-sm confirm-delete"
@@ -237,6 +235,7 @@
                                     @endcan
                                 </td>
                             </tr>
+                            @endif
                         @endforeach
                     </tbody>
                 </table>

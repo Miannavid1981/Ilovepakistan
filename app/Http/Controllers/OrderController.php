@@ -45,76 +45,58 @@ class OrderController extends Controller
     public function all_orders(Request $request)
     {
         CoreComponentRepository::instantiateShopRepository();
-
+    
         $date = $request->date;
         $sort_search = null;
         $delivery_status = null;
         $payment_status = '';
         $order_type = '';
-
-        $orders = Order::orderBy('id', 'desc');
-        $admin_user_id = get_admin()->id;
-
-        if (Route::currentRouteName() == 'inhouse_orders.index' && Auth::user()->can('view_inhouse_orders')) {
-            $orders = $orders->where('orders.seller_id', '=', $admin_user_id);
-        }
-        elseif (Route::currentRouteName() == 'seller_orders.index' && Auth::user()->can('view_seller_orders')) {
-            $orders = $orders->where('orders.seller_id', '!=', $admin_user_id);
-        }
-        elseif (Route::currentRouteName() == 'pick_up_point.index' && Auth::user()->can('view_pickup_point_orders')) {
-            if (get_setting('vendor_system_activation') != 1) {
-                $orders = $orders->where('orders.seller_id', '=', $admin_user_id);
-            }
-            $orders->where('shipping_type', 'pickup_point')->orderBy('code', 'desc');
-            if (
-                Auth::user()->user_type == 'staff' &&
-                Auth::user()->staff->pick_up_point != null
-            ) {
-                $orders->where('shipping_type', 'pickup_point')
-                    ->where('pickup_point_id', Auth::user()->staff->pick_up_point->id);
-            }
-        }
-        elseif (Route::currentRouteName() == 'all_orders.index' && Auth::user()->can('view_all_orders')) {
-            if (get_setting('vendor_system_activation') != 1) {
-                $orders = $orders->where('orders.seller_id', '=', $admin_user_id);
-            }
-        }
-        elseif (Route::currentRouteName() == 'offline_payment_orders.index' && Auth::user()->can('view_all_offline_payment_orders')) {
-            $orders = $orders->where('orders.manual_payment', 1);
-            if($request->order_type != null){
-                $order_type = $request->order_type;
-                $orders = $order_type =='inhouse_orders' ? 
-                            $orders->where('orders.seller_id', '=', $admin_user_id) : 
-                            $orders->where('orders.seller_id', '!=', $admin_user_id);
-            }
-        }
-        elseif (Route::currentRouteName() == 'unpaid_orders.index' && Auth::user()->can('view_all_unpaid_orders')) {
-            $orders = $orders->where('orders.payment_status', 'unpaid');
-        }
-        else {
-            abort(403);
-        }
-
+    
+        // Fetch only Combined Orders (Main Orders)
+        $combinedOrders = CombinedOrder::orderBy('id', 'desc');
+    
         if ($request->search) {
             $sort_search = $request->search;
-            $orders = $orders->where('code', 'like', '%' . $sort_search . '%');
+            $combinedOrders = $combinedOrders->whereHas('orders', function ($query) use ($sort_search) {
+                $query->where('code', 'like', '%' . $sort_search . '%');
+            });
         }
+        
         if ($request->payment_status != null) {
-            $orders = $orders->where('payment_status', $request->payment_status);
+            $combinedOrders = $combinedOrders->whereHas('orders', function ($query) use ($request) {
+                $query->where('payment_status', $request->payment_status);
+            });
             $payment_status = $request->payment_status;
         }
+    
         if ($request->delivery_status != null) {
-            $orders = $orders->where('delivery_status', $request->delivery_status);
+            $combinedOrders = $combinedOrders->whereHas('orders', function ($query) use ($request) {
+                $query->where('delivery_status', $request->delivery_status);
+            });
             $delivery_status = $request->delivery_status;
         }
+    
         if ($date != null) {
-            $orders = $orders->where('created_at', '>=', date('Y-m-d', strtotime(explode(" to ", $date)[0])) . '  00:00:00')
-                ->where('created_at', '<=', date('Y-m-d', strtotime(explode(" to ", $date)[1])) . '  23:59:59');
+            $startDate = date('Y-m-d', strtotime(explode(" to ", $date)[0])) . ' 00:00:00';
+            $endDate = date('Y-m-d', strtotime(explode(" to ", $date)[1])) . ' 23:59:59';
+            $combinedOrders = $combinedOrders->whereHas('orders', function ($query) use ($startDate, $endDate) {
+                $query->whereBetween('created_at', [$startDate, $endDate]);
+            });
         }
-        $orders = $orders->paginate(15);
+    
+        $combinedOrders = $combinedOrders->paginate(15);
+    
+        // Load sub-orders (child orders) for each Combined Order
+        foreach ($combinedOrders as $combinedOrder) {
+            $combinedOrder->sub_orders = Order::where('combined_order_id', $combinedOrder->id)->get();
+        }
+        $orders = $combinedOrders;
+    
         $unpaid_order_payment_notification = get_notification_type('complete_unpaid_order_payment', 'type');
-        return view('backend.sales.index', compact('orders', 'sort_search', 'order_type', 'payment_status', 'delivery_status', 'date', 'unpaid_order_payment_notification'));
+    
+        return view('backend.sales.index', compact('combinedOrders', 'sort_search', 'order_type', 'payment_status', 'delivery_status', 'date', 'unpaid_order_payment_notification', 'orders'));
     }
+    
 
     public function show($id)
     {
