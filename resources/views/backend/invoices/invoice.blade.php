@@ -144,7 +144,7 @@
 
 <body>
     <div class="container">
-        <table class="page-head" style=" background-color: #ffd9e8;">
+        <table class="page-head" >
             <tr>
                 <td width="75px">
                     <div class="logotype"><img src="{{ $logo_url }}" alt="Logo" style="width: 50px"></div>
@@ -163,7 +163,9 @@
                 </td>
             </tr>
         </table>
-
+        <div class="alert">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        </div>
         @php
             $shipping_address = json_decode($orders[0]->shipping_address);
         @endphp
@@ -171,7 +173,7 @@
         <table>
             <tr>
                 <td width="50%">
-                    <strong>Delivery type:</strong>  {{ str_replace("_", " ", $combined_order->order_type ) }}<br>
+                    <strong>Delivery type:</strong> <span style="text-transform:capitalize"> {{ str_replace("_", " ", $combined_order->order_type ) }} </span><br>
                     <strong>Order Date:</strong> {{ \Carbon\Carbon::parse($combined_order->created_at)->format('F j, Y') }}
                   
                 
@@ -265,9 +267,7 @@
             </tr>
         </table>
 
-        <div class="alert">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-        </div>
+        
         <div class="socialmedia">Follow us online <small>[FB] [INSTA]</small></div>
     </div>
 </body>
