@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cart;
+use App\Models\CombinedOrder;
 use DB;
 use Auth;
 use App\Models\Order;
@@ -22,8 +23,15 @@ class PurchaseHistoryController extends Controller
      */
     public function index()
     {
-        $orders = Order::with('orderDetails')->where('user_id', Auth::user()->id)->orderBy('code', 'desc')->paginate(10);
-        return view('frontend.user.purchase_history', compact('orders'));
+        $combined_orders = CombinedOrder::with('orders')->where('user_id', Auth::user()->id)->where('status','completed')->orderBy('created_at', 'desc')->paginate(10);
+        
+        return view('frontend.user.purchase_history', compact('combined_orders'));
+    }
+    public function customerorders()
+    {
+        $combined_orders = CombinedOrder::with('orders')->where('user_id', Auth::user()->id)->where('status', 'pending')->orderBy('created_at', 'desc')->paginate(10);
+        
+        return view('frontend.user.orders.index', compact('combined_orders'));
     }
 
     public function digital_index()
