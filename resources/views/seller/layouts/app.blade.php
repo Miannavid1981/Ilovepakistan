@@ -43,9 +43,7 @@
             z-index: 100000;
         }
 
-        .aiz-table {
-            display: block !important
-        }
+  
 
     </style>
 	<script>
