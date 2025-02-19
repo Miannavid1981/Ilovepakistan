@@ -29,11 +29,11 @@
                                     {{ single_price($payment->amount) }}
                                 </td>
                                 <td>
-                                   <span class="bg-primary text-white px-3 py-1 text-capitalize"> {{ $payment->type }}</span>
+                                   <span class="bg-primary text-white px-3 py-1 text-capitalize rounded-2"> {{ $payment->type }}</span>
                                 </td>
 
                                 <td>
-                                    <span class="bg-primary text-white px-3 py-1  text-capitalize"> {{ $payment->source }}</span>
+                                    <span class="bg-primary text-white px-3 py-1  text-capitalize rounded-2"> {{ $payment->source }}</span>
                                  </td>
                                 <td>
                                     {{ translate(ucfirst(str_replace('_', ' ', $payment->payment_method))) }} @if ($payment->txn_code != null) ({{  translate('TRX ID') }} : {{ $payment->txn_code }}) @endif
