@@ -154,19 +154,15 @@
                         <div class="col">
                             <p class="small text-muted mb-0">
                                 <span class="fe fe-arrow-down fe-12"></span>
-                                <span class="fs-14 text-light">{{ translate('Total Sales') }}</span>
+                                <span class="fs-14 text-light">{{ translate('Total Earning') }}</span>
                             </p>
                             <h3 class="mb-0 text-white fs-30">
                                 @php
-                                    $orderDetails = \App\Models\OrderDetail::where('seller_id', $authUser->id)->get();
-                                    $total = 0;
-                                    foreach ($orderDetails as $key => $orderDetail) {
-                                        if ($orderDetail->order != null && $orderDetail->order->payment_status == 'paid') {
-                                            $total += $orderDetail->price;
-                                        }
-                                    }
+                                   $wallet = \App\Models\Wallet::where('user_id', $authUser->id)->first();
+                                    $wallet_amount = $wallet ? $wallet->amount : 0; // Handle case when no wallet record exists
+
                                 @endphp
-                                {{ single_price($total) }}
+                                {{ single_price($wallet_amount) }}
                             </h3>
 
                         </div>
