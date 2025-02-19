@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\DB;
 class TransactionService {
     public static function handleOrderDelivery(Order $order) {
         DB::transaction(function () use ($order) {
-            $admin = User::where('role', 'admin')->first();
+            $admin = User::where('email', 'admin@bighouz.com')->first();
             if (!$admin) {
                 throw new \Exception("Admin user not found!");
             }
