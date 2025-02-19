@@ -81,8 +81,11 @@ class OrderController extends Controller
         $order->save();
 
         if($request->status == 'delivered'){
-            $order->delivered_date = date("Y-m-d H:i:s");
+            $order->delivered_date = now();
             $order->save();
+    
+            // Call transaction service to handle wallet updates
+            \App\Services\TransactionService::handleOrderDelivery($order);
         }
 
         if ($request->status == 'cancelled' && $order->payment_type == 'wallet') {

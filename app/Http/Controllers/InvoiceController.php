@@ -9,6 +9,8 @@ use App\Models\Order;
 use Session;
 use PDF;
 use Config;
+use Dompdf\Dompdf;
+use Dompdf\Options;
 
 class InvoiceController extends Controller
 {
@@ -110,6 +112,21 @@ class InvoiceController extends Controller
         ];
 
         $order = CombinedOrder::findOrFail($id);
+
+
+$options = new Options();
+$options->set('isRemoteEnabled', true);
+$options->set('isHtml5ParserEnabled', true);
+$pdf = new Dompdf($options);
+$pdf->loadHtml(view('backend.invoices.invoice', compact('order'))->render());
+
+// Add watermark
+$pdf->setPaper('A4', 'portrait');
+$pdf->render();
+
+return $pdf->stream("order-BH000" . $order->id . ".pdf");
+
+
         if (in_array(auth()->user()->user_type, ['admin','staff']) || in_array(auth()->id(), [$order->user_id, $order->seller_id])) {
             return PDF::loadView('backend.invoices.invoice', [
                 'order' => $order,

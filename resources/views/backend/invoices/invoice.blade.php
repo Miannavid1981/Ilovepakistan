@@ -34,6 +34,7 @@
         .container {
             max-width: 680px;
             margin: 0 auto;
+            padding: 10px 20px;
         }
 
         .logotype {
@@ -45,6 +46,7 @@
             text-align: center;
             font-size: 11px;
             border-radius: 5px;
+            aspec-ratio: 1/1 
         }
 
         .column-title {
@@ -76,7 +78,7 @@
 
         .alert {
             background: #ffd9e8;
-            padding: 20px;
+            padding: 10px 20px;
             margin: 20px 0;
             line-height: 22px;
             color: #333;
@@ -120,6 +122,11 @@
             text-align: left;
             vertical-align: top
         }
+
+        table.noborder > tr >  th ,  table.noborder  > tr >  td {
+            border: unset !important;
+        }
+
         table:not(.page-head) td,
         table:not(.page-head) th {
             vertical-align: middle !important
@@ -138,33 +145,67 @@
             font-weight: bold;
             background-color: {{ $payment_status == 'paid' ? '#ffd9e8' : '#ffd692' }};
             text-align: center;
+            aspect-ratio: 1 / 1;
+            vertical-align: middle !important
+        }
+        .watermark {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            opacity: 0.1;
+            font-size: 6rem;
+            transform: translate(-50%, -50%) rotate(-45deg);
+            /* Adjust the angle here */
+            z-index: -1;
+            color: rgb(167, 167, 167);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: bold;
         }
     </style>
 </head>
 
 <body>
+    <div class="watermark">{{ strtoupper($payment_status) }}</div>
     <div class="container">
         <table class="page-head" >
             <tr>
-                <td width="75px">
-                    <div class="logotype"><img src="{{ $logo_url }}" alt="Logo" style="width: 50px"></div>
-                </td>
                 <td>
-                    <div class="invoice-title">
-                        Invoice # {{ $main_order_id }}
-                    </div>
+                   <img src="{{ $logo_url }}" alt="Logo" style="width: 100px">
+                   <br>
+                   <b>Bighouz Online Store </b>
+                   <br>
+                    <span style="text-align: left">
+                        Office # 42-43  M
+                            
+                        Floor Zainab Tower
+                        <br> 
                     
-                    <br>
+                        Link Road, Model Town,
+                    
+                        Lahore, Pakistan
+                    </span>
                 </td>
-                <td class="status">
+                <td style="text-align:end; ">
+                    <h3 style="text-align: end">
+                       SALES INVOICE
+                    </h3>
+                    <br>
+                    <strong  style="text-align: end">Registration #:</strong> 12345678</span><br>
                    
-                        {{ strtoupper($payment_status) }}
-                   
+                </td>
+                <td style="width: 90px">
+                   <div style="aspec-ratio: 1 / 1">
+                    @php
+                    $removedXML = '<?xml version="1.0" encoding="UTF-8"?>';
+                    @endphp
+                    {!! str_replace($removedXML, '', QrCode::size(100)->generate($order->id)) !!}
+                   </div>
                 </td>
             </tr>
         </table>
         <div class="alert">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+            Thank you for your order. This invoice reflects the purchased products/services as per your order details, including applicable taxes and fees.
         </div>
         @php
             $shipping_address = json_decode($orders[0]->shipping_address);
@@ -173,46 +214,63 @@
         <table>
             <tr>
                 <td width="50%">
+                    <strong>Order #:</strong> {{ $main_order_id }} </span><br>
                     <strong>Delivery type:</strong> <span style="text-transform:capitalize"> {{ str_replace("_", " ", $combined_order->order_type ) }} </span><br>
                     <strong>Order Date:</strong> {{ \Carbon\Carbon::parse($combined_order->created_at)->format('F j, Y') }}
-                  
-                
                 </td>
                 <td width="50%">
-                   
-                    <strong>Payment Method:</strong>
-                    <span style="text-transform:capitalize"> {{ str_replace("_", " ",$combined_order->payment_method ) }} </span><br>
-                    @if($combined_order->payment_method == 'direct_bank_transfer')
-
-
-                     <strong>Transfer Method:</strong> {{ str_replace("_", " ",$combined_order->payment_bank ) }} <br>
                     
-
-                    @endif
                   
-                </td>
-            </tr>
-        </table>
-
-        <table>
-            <tr>
-                <td>
-                    <strong>Shipping Address:</strong><br>
-                    {{ $shipping_address->name }}<br>
-                    {{ $shipping_address->address }}, {{ $shipping_address->city }}, {{ $shipping_address->country }}<br>
-                    {{ $shipping_address->email }}<br>
-                    {{ $shipping_address->phone }}
-                </td>
-                <td>
                     <strong>Customer Name:</strong> {{ $shipping_address->name }}<br>
                     <strong>E-mail:</strong> {{ $shipping_address->email }}<br>
                     <strong>Phone:</strong> {{ $shipping_address->phone }}<br>
-                   
                 </td>
             </tr>
         </table>
 
-        <table>
+        <table class="noborder" >
+            <tr>
+                <td style="vertical-align:top">
+                    <table>
+                      <tr>
+                        <td style="vertical-align: text-top;">
+                          <div style="background: #ffd9e8 url(https://cdn0.iconfinder.com/data/icons/commerce-line-1/512/comerce_delivery_shop_business-07-128.png);width: 50px;height: 50px;margin-right: 10px;background-position: center;background-size: 42px;"></div>   
+                        </td>
+                      
+                            
+                        <td>
+                          <strong>Shipping Address</strong><br>
+                          {{ $shipping_address->name }}<br>
+                          {{ $shipping_address->address }}, {{ $shipping_address->city }}, {{ $shipping_address->country }}<br>
+                          {{ $shipping_address->email }}<br>
+                          {{ $shipping_address->phone }}
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                  <td style="vertical-align:top">
+                    <table>
+                      <tr>
+                        <td style="vertical-align: text-top;">
+                          <div style="background: #ffd9e8 url(https://cdn4.iconfinder.com/data/icons/app-custom-ui-1/48/Check_circle-128.png) no-repeat;width: 50px;height: 50px;margin-right: 10px;background-position: center;background-size: 25px;"></div>   
+                        </td>
+                        <td style="vertical-align:top">
+                          <strong>Payment Method</strong><br>
+                           <!--Your checkout made by VISA Card <br>**** **** **** 2478<br>-->
+                           <span style="text-transform:capitalize"> {{ str_replace("_", " ",$combined_order->payment_method ) }} </span><br>
+                           @if($combined_order->payment_method == 'direct_bank_transfer')
+                            <strong>Transfer Method:</strong> {{ str_replace("_", " ",$combined_order->payment_bank ) }} <br>
+                           @endif
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+               
+               
+            </tr>
+        </table>
+
+        <table style="margin-top: 20px">
             <tr>
                 <th>Item</th>
                 <th>Est. Delivery</th>
@@ -248,9 +306,9 @@
 
         <div class="page-break"></div>
 
-        <table>
+        <table style="margin-top: 20px">
             <tr>
-                <td><strong>Sub-total:</strong></td>
+                <td ><strong>Sub-total:</strong></td>
                 <td>{{ single_price($orders->sum(function($order) { return $order->orderDetails->sum('price'); })) }}</td>
             </tr>
             <tr>
@@ -262,16 +320,15 @@
                 <td>{{ single_price($orders->sum(function($order) { return $order->orderDetails->sum('tax'); })) }}</td>
             </tr>
             <tr>
-                <td><strong>Grand total:</strong></td>
-                <td>{{ single_price($orders->sum(function($order) { return $order->orderDetails->sum('price') + $order->orderDetails->sum('tax'); })) }}</td>
+                <td><h3 style="margin: 0">Grand total:</h3></td>
+                <td><h3 style="margin: 0">{{ single_price($orders->sum(function($order) { return $order->orderDetails->sum('price') + $order->orderDetails->sum('tax'); })) }}</h3></td>
             </tr>
         </table>
 
         
-        <div class="socialmedia">Follow us online <small>[FB] [INSTA]</small></div>
+        <div class="socialmedia" style="margin-top: 20px">Follow us online <small>[FB] [INSTA]</small></div>
     </div>
 </body>
 
 </html>
 
-{{-- @dd('') --}}
