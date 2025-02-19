@@ -17,6 +17,7 @@
                   <i class="las la-dollar-sign la-2x text-white"></i>
               </span>
               @php
+              $authUser = Auth::user();
                   $wallet = \App\Models\Wallet::where('user_id', $authUser->id)->first();
                   $wallet_amount = $wallet ? $wallet->amount : 0; // Handle case when no wallet record exists
               @endphp
