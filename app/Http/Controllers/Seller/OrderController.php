@@ -24,37 +24,34 @@ class OrderController extends Controller
      */
     public function index(Request $request)
     {
-        $payment_status = null;
-        $delivery_status = null;
-        $sort_search = null;
-        $orders = DB::table('orders')
-            ->orderBy('id', 'desc')
-            ->where('seller_id', Auth::user()->id)
-            ->get();
-
-        if ($request->payment_status != null) {
-            $orders = $orders->where('payment_status', $request->payment_status);
-            $payment_status = $request->payment_status;
+        $authUser = Auth::user();
+        $query = Order::where('seller_id', $authUser->id)->orderBy('id', 'desc');
+    
+        if ($request->filled('payment_status')) {
+            $query->where('payment_status', $request->payment_status);
         }
-        if ($request->delivery_status != null) {
-            $orders = $orders->where('delivery_status', $request->delivery_status);
-            $delivery_status = $request->delivery_status;
+    
+        if ($request->filled('delivery_status')) {
+            $query->where('delivery_status', $request->delivery_status);
         }
-        if ($request->has('search')) {
-            $sort_search = $request->search;
-            $orders = $orders->where('code', 'like', '%' . $sort_search . '%');
+    
+        if ($request->filled('search')) {
+            $query->where('code', 'like', '%' . $request->search . '%');
         }
-
-        $orders = $orders->paginate(15);
-
-        foreach ($orders as $key => $value) {
-            $order = Order::find($value->id);
-            $order->viewed = 1;
-            $order->save();
-        }
-
-        return view('seller.orders.index', compact('orders', 'payment_status', 'delivery_status', 'sort_search'));
+    
+        $orders = $query->paginate(15);
+    
+        // Mark all orders as viewed in one query instead of looping
+        Order::whereIn('id', $orders->pluck('id'))->update(['viewed' => 1]);
+    
+        return view('seller.orders.index', [
+            'orders' => $orders,
+            'payment_status' => $request->payment_status,
+            'delivery_status' => $request->delivery_status,
+            'sort_search' => $request->search
+        ]);
     }
+    
 
     public function show($id)
     {
