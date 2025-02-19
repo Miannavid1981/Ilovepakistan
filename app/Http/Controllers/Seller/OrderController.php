@@ -30,8 +30,7 @@ class OrderController extends Controller
         $orders = DB::table('orders')
             ->orderBy('id', 'desc')
             ->where('seller_id', Auth::user()->id)
-            ->select('orders.id')
-            ->distinct();
+            ->get();
 
         if ($request->payment_status != null) {
             $orders = $orders->where('payment_status', $request->payment_status);
@@ -53,9 +52,6 @@ class OrderController extends Controller
             $order->viewed = 1;
             $order->save();
         }
-
-        dd($orders);
-       
 
         return view('seller.orders.index', compact('orders', 'payment_status', 'delivery_status', 'sort_search'));
     }

@@ -86,19 +86,8 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($orders as $key => $order_id)
-                                @php
-                                    $order = \App\Models\Order::find($order_id->id); 
-                                @endphp
-
+                            @foreach ($orders as $key => $order)
                                 
-                            @php
-                                
-                            // dd($order);
-
-                            @endphp
-
-                                @if ($order != null)
                                     <tr>
                                         <td>
                                             <div class="form-group">
@@ -164,7 +153,7 @@
                                             </a>
                                         </td>
                                     </tr>
-                                @endif
+                              
                             @endforeach
                         </tbody>
                     </table>
