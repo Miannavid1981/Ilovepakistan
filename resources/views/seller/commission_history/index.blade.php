@@ -20,7 +20,7 @@
             </div>
         </form>
         <div class="card-body">
-            <table class="table aiz-table mb-0">
+            <table class="table mb-0">
                 <thead>
                     <tr>
                         <th>#</th>
