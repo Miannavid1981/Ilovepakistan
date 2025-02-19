@@ -16,8 +16,12 @@
               <span class="size-30px rounded-circle mx-auto bg-soft-primary d-flex align-items-center justify-content-center mt-3">
                   <i class="las la-dollar-sign la-2x text-white"></i>
               </span>
+              @php
+                  $wallet = \App\Models\Wallet::where('user_id', $authUser->id)->first();
+                  $wallet_amount = $wallet ? $wallet->amount : 0; // Handle case when no wallet record exists
+              @endphp
               <div class="px-3 pt-3 pb-3">
-                  <div class="h4 fw-700 text-center">{{ single_price(Auth::user()->shop->admin_to_pay) }}</div>
+                  <div class="h4 fw-700 text-center">{{ single_price($wallet_amount) }}</div>
                   <div class="opacity-50 text-center">{{ translate('Pending Balance') }}</div>
               </div>
             </div>
@@ -82,7 +86,7 @@
                     <h5 class="modal-title" id="exampleModalLabel">{{ translate('Send A Withdraw Request') }}</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
                 </div>
-                @if (Auth::user()->shop->admin_to_pay > 5) 
+                @if ($wallet_amount > 500) 
                     <form class="" action="{{ route('seller.money_withdraw_request.store') }}" method="post">
                         @csrf
                         <div class="modal-body gry-bg px-3 pt-3">

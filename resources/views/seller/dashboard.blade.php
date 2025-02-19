@@ -163,6 +163,8 @@
 
                                 @endphp
                                 {{ single_price($wallet_amount) }}
+
+                                <a href="" class="btn btn-white mt-2">Manage Earnings</a>
                             </h3>
 
                         </div>
