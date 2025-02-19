@@ -58,7 +58,7 @@ class TransactionService {
             }
 
             // Update order status to delivered
-            $order->update(['status' => 'delivered']);
+            $order->update(['delivery_status' => 'delivered']);
         });
     }
 }
