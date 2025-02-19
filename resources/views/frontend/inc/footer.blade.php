@@ -293,7 +293,7 @@
                 <ul class="list-unstyled">
                     <li class="mb-2">
                         <p class="fs-17 text-dark text-secondary mb-0">
-                            Become A Seller
+                            Be our Partner
                             <a href="{{ route('shops.create') }}" class="fs-17 fw-700 text-warning ml-2">Apply Now</a>
                         </p>
                     </li>
