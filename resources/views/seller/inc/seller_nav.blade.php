@@ -11,8 +11,8 @@
             <div class="d-flex justify-content-around align-items-center align-items-stretch">
                 <div class="aiz-topbar-item">
                     <div class="d-flex align-items-center">
-                        <a class="btn btn-icon btn-circle btn-light" href="{{ route('home')}}" target="_blank" title="{{ translate('Browse Website') }}">
-                            <i class="las la-globe"></i>
+                        <a class="" href="{{ route('home')}}" target="_blank" title="{{ translate('Browse Website') }}">
+                            <img src="https://static.vecteezy.com/system/resources/previews/023/797/822/non_2x/globe-icon-illustration-and-white-map-of-the-continents-of-the-world-vector.jpg" width="70">
                         </a>
                     </div>
                 </div>
