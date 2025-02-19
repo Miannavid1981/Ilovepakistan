@@ -11,8 +11,9 @@
             <div class="d-flex justify-content-around align-items-center align-items-stretch">
                 <div class="aiz-topbar-item">
                     <div class="d-flex align-items-center">
-                        <a class="" href="{{ route('home')}}" target="_blank" title="{{ translate('Browse Website') }}">
-                            <img src="https://static.vecteezy.com/system/resources/previews/023/797/822/non_2x/globe-icon-illustration-and-white-map-of-the-continents-of-the-world-vector.jpg" width="70">
+                        <a class=" d-flex gap-2 align-items-center" href="{{ route('home')}}" target="_blank" title="{{ translate('Browse Website') }}">
+                            Visit your store
+                            <img src="https://static.vecteezy.com/system/resources/previews/023/797/822/non_2x/globe-icon-illustration-and-white-map-of-the-continents-of-the-world-vector.jpg" width="30">
                         </a>
                     </div>
                 </div>
