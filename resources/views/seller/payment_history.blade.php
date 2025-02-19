@@ -13,6 +13,8 @@
                             <th>#</th>
                             <th>{{ translate('Date')}}</th>
                             <th>{{ translate('Amount')}}</th>
+                            <th>{{ translate('Transaction Type')}}</th>
+                            <th>{{ translate('Source')}}</th>
                             <th>{{ translate('Payment Method')}}</th>
                         </tr>
                     </thead>
@@ -26,6 +28,13 @@
                                 <td>
                                     {{ single_price($payment->amount) }}
                                 </td>
+                                <td>
+                                   <span class="bg-primary text-white px-3 py-1 text-capitalize"> {{ $payment->type }}</span>
+                                </td>
+
+                                <td>
+                                    <span class="bg-primary text-white px-3 py-1  text-capitalize"> {{ $payment->source }}</span>
+                                 </td>
                                 <td>
                                     {{ translate(ucfirst(str_replace('_', ' ', $payment->payment_method))) }} @if ($payment->txn_code != null) ({{  translate('TRX ID') }} : {{ $payment->txn_code }}) @endif
                                 </td>
