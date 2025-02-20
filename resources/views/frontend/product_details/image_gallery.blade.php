@@ -180,116 +180,39 @@ $photos = [];
     }
 }
 
+.slick-track {
+    width: 100% !important
+}
+
 </style>
-    <!-- Main image -->
-    <div class="slider-container">
-        <div class="w-auto h-full">
-            <img src="{{ uploaded_asset($photos[0]) }}" class="main-image" id="mainImage" onclick="openFullscreen()">
-        </div>
-        
-    </div>
 
-    <!-- Thumbnail section -->
-    <div class="thumbnail-container" id="thumbnailContainer">
-        <button class="thumbnail-arrow thumbnail-bottom" onclick="slideThumbnails('down')">&#8593;</button> <!-- Top Arrow -->
-    
-        <div class="thumbnail-wrapper" id="thumbnailWrapper">
-            @foreach ($photos as $key => $photo)
-                <img src="{{ uploaded_asset($photo) }}" class="thumbnail {{ $loop->first ? 'selected' : '' }}" onclick="changeImage('{{ uploaded_asset($photo) }}', this)">
-            @endforeach
-        </div>
-    
-        <button class="thumbnail-arrow thumbnail-top" onclick="slideThumbnails('up')">&#8595;</button> <!-- Bottom Arrow -->
-    </div>
-    
+<div class="row g-1">
+    @if(count($photos) != 0 )
+        @if(count($photos) == 1 )
 
+            <div class="col-12 ">
+                <img src="{{ uploaded_asset($photos[0]) }}" class=" h-100">
+            </div>
+            
+        @else
 
-    @php
+            <div class="col-2 ">
+                <div class="slider product-detail-slider-nav">
+                    @foreach ($photos as $key => $photo)
+                        <img src="{{ uploaded_asset($photo) }}" class="w-100 h-100" {{ $loop->first ? 'selected' : '' }}" >
+                    @endforeach
+                </div>
+            </div>
+            <div class="col-10 ">
+                <div class="slider product-detail-slider-for">
+                    @foreach ($photos as $key => $photo)
+                        <img src="{{ uploaded_asset($photo) }}" class="w-100 h-100" {{ $loop->first ? 'selected' : '' }}" >
+                    @endforeach
+                </div>
+            </div>
 
-// Map the photo IDs to URLs
-$photoUrls = array_map(function($photoId) {
-    return uploaded_asset($photoId); // Map each ID to its URL
-}, $photos);
+        @endif
+    @endif
+   
+</div>
 
-@endphp
-
-
-<script>
-    // Pass the mapped photo URLs from PHP to JavaScript
-    let images = @json($photoUrls);
-
-        let currentIndex = 0;
-
-        function changeImage(imageSrc, element) {
-            let mainImg = document.getElementById("mainImage");
-            mainImg.src = imageSrc;
-            document.querySelectorAll(".thumbnail").forEach(img => img.classList.remove("selected"));
-            element.classList.add("selected");
-            currentIndex = images.indexOf(imageSrc);
-        }
-
-        function openFullscreen() {
-            let imageSrc = document.getElementById("mainImage").src;
-            currentIndex = images.indexOf(imageSrc);
-            let fullscreenDiv = document.createElement("div");
-            fullscreenDiv.classList.add("fullscreen");
-            fullscreenDiv.innerHTML = `
-                <span class="arrow left-arrow" onclick="prevImage(event)">&#10094;</span>
-                <img src="${imageSrc}" @if(!empty($popup_check)) id="fullscreenImage" onclick="event.stopPropagation()" @endif>
-                <span class="arrow right-arrow" onclick="nextImage(event)">&#10095;</span>
-            `;
-            fullscreenDiv.addEventListener("click", closeFullscreen);
-            document.body.appendChild(fullscreenDiv);
-            document.addEventListener("keydown", closeOnEscape);
-        }
-
-        function closeFullscreen() {
-            document.querySelector(".fullscreen").remove();
-            document.removeEventListener("keydown", closeOnEscape);
-        }
-
-        function closeOnEscape(event) {
-            if (event.key === "Escape") closeFullscreen();
-        }
-
-        function prevImage(event) {
-            event.stopPropagation();
-            currentIndex = (currentIndex - 1 + images.length) % images.length;
-            updateImages();
-        }
-
-        function nextImage(event) {
-            event.stopPropagation();
-            currentIndex = (currentIndex + 1) % images.length;
-            updateImages();
-        }
-
-        function updateImages() {
-            // Update main image
-            let mainImg = document.getElementById("mainImage");
-            if (mainImg) mainImg.src = images[currentIndex];
-
-            // Update fullscreen image
-            let fullscreenImg = document.getElementById("fullscreenImage");
-            if (fullscreenImg) fullscreenImg.src = images[currentIndex];
-
-            // Update selected thumbnail
-            updateThumbnails();
-        }
-
-        function updateThumbnails() {
-            document.querySelectorAll(".thumbnail").forEach(img => img.classList.remove("selected"));
-            document.querySelectorAll(".thumbnail")[currentIndex].classList.add("selected");
-        }
-
-        function slideThumbnails(direction) {
-            let wrapper = document.getElementById("thumbnailWrapper");
-            let scrollAmount = 200; // Adjust for smooth scrolling
-            if (direction === 'left') {
-                wrapper.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
-            } else {
-                wrapper.scrollBy({ left: scrollAmount, behavior: 'smooth' });
-            }
-        }
-    </script>
-</body>

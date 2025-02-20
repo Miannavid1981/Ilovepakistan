@@ -11,12 +11,7 @@
     @endphp
 
     <style> 
-    @media (min-width: 992px) { /* Desktop view */
-        .custom-col {
-            flex: 0 0 calc(100% / 6); /* Divide the row into 5 equal parts */
-            max-width: calc(100% / 6); /* Ensure proper width */
-        }
-    }
+
     /* Desktop View: 5 Columns */
     @media (min-width: 992px) {
         .product-grid {
@@ -25,7 +20,7 @@
     }
     </style>
     <section >
-        <div class="px-3">
+        
             <!-- Top Section -->
             <div class="d-flex mb-2 mb-md-3 mt-2 align-items-baseline justify-content-between">
                 <!-- Title -->
@@ -42,7 +37,7 @@
             <!-- Products Section -->
             <div class="row gx-3">
                 @foreach ($newest_products as $key => $new_product)
-                <div class="col-6 col-md-4 col-lg custom-col position-relative has-transition hov-animate-outline">
+                <div class="col-6 col-md-4 col-lg product-custom-col position-relative has-transition hov-animate-outline">
                     @php
                         $seller_map = \App\Models\ProductSellerMap::where('product_id', $new_product->id)->where('seller_id', $new_product->user_id)->where('source_seller_id',$new_product->user_id )->first();
                         $encrypted_skin = $seller_map->encrypted_hash ?? '';
@@ -54,6 +49,6 @@
                 @endforeach
             </div>
 
-        </div>
+       
     </section>
 @endif

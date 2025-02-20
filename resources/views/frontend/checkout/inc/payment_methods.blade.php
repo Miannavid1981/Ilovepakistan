@@ -83,11 +83,55 @@
         margin: 2px 0 !important;
     }
 
+    .bank_transfer_method {
+        position: relative;
+        background: #fff;
+        height: 100%;
+       
+    }
+    .bank_transfer_method input {
+        position: absolute;
+        top: 10px;
+        left: 10px
+    }
+    .bank_transfer_method:has(input:checked) {
+        border: 1px solid #000 !important;
+        background: #daf6ff;
+    }
   </style>
+@php
 
+    $cod_method = false;
+    $banktransfer = true;  
+    $mobilewallet_method = false;
+    $card_method = false;
+
+    if($total <25000){
+
+        $cod_method = true;
+
+    }
+
+    if($total <50000){
+
+        $mobilewallet_method = true;
+
+    }
+
+
+    if($total <= 500000){
+        $card_method = true;
+    }
+    
+
+
+
+@endphp
   <div class="accordion" id="paymentAccordion">
 
-    <div class="card mb-0 shadow-none p-0" style="border: 1px solid #c1c1c1;">
+
+    
+    <div class="card mb-0 shadow-none p-0 {{  $cod_method ? 'd-block' : 'd-none' }}" style="border: 1px solid #c1c1c1;">
         <div class="card-header p-0" id="cash_on_deliveryHeading">
           
             <button class="btn btn-link text-decoration-none w-100 p-0 "  type="button" data-toggle="collapse" data-target="#cash_on_delivery">
@@ -96,51 +140,29 @@
                     <input type="radio" class=" mb-0 me-2" name="payment_method" value="cash_on_delivery" checked> Cash On Delivery
                   </div>
                   <span>
-                      <img src="https://static.vecteezy.com/system/resources/previews/014/455/904/non_2x/delivery-truck-icon-icon-on-transparent-background-free-png.png" style="width: 35px; height: auto" alt="Discover">
+                      <img src="https://cdn-icons-png.flaticon.com/512/936/936810.png" style="width: 35px; height: auto" alt="Discover">
                   </span>
               </label>
             </button>
           
         </div>
-        <div id="cash_on_delivery" class="collapse show" aria-labelledby="cash_on_deliveryHeading" data-parent="#paymentAccordion">
+        <div id="cash_on_delivery" class="collapse show {{  $cod_method ? '' : 'd-none' }}" aria-labelledby="cash_on_deliveryHeading" data-parent="#paymentAccordion">
           <div class="card-body payment-method-details p-0 m-0">
          
           </div>
         </div>
       </div>
-   
+     
 
-    <!-- PayPal Option -->
-    <div class="card mb-0 shadow-none p-0" style="border: 1px solid #c1c1c1;">
-      <div class="card-header p-0" id="direct_bank_transferHeading">
-        
-          <button class="btn btn-link text-decoration-none w-100 p-0 collapsed" type="button" data-toggle="collapse" data-target="#direct_bank_transfer">
-            <label class="payment-method-header d-flex justify-content-between w-100 mb-0 p-2 px-3">
-                <div class="  text-dark d-flex align-items-center mb-0">
-                  <input type="radio" class=" mb-0 me-2" name="payment_method" value="direct_bank_transfer"> Direct Bank Transfer
-                </div>
-                <span>
-                    <img src="https://dogmovers.com.au/app/uploads/2021/03/Bank-transfer-logo-250x160-1.png" style="width: 45px; height: auto" alt="Discover">
-                  </span>
-              </label>
-          </button>
-        
-      </div>
-      <div id="direct_bank_transfer" class="collapse" aria-labelledby="direct_bank_transferHeading" data-parent="#paymentAccordion">
-        <div class="card-body payment-method-details p-4 bg-light">
-          You will be redirected to PayPal to complete your purchase securely.
-        </div>
-      </div>
-    </div>
- <!-- Credit Card Option -->
- <div class="card mb-0 shadow-none p-0" style="border: 1px solid #c1c1c1;">
+      <!-- Credit Card Option -->
+ <div class="card mb-0 shadow-none p-0 {{  $card_method ? 'd-block' : 'd-none' }}" style="border: 1px solid #c1c1c1;">
     <div class="card-header p-0" id="creditCardHeading">
       
         <button class="btn btn-link text-decoration-none w-100 p-0 collapsed" type="button" data-toggle="collapse" data-target="#creditCard" aria-expanded="true">
           <label class="payment-method-header d-flex justify-content-between w-100 mb-0 p-2 px-3">
             <div class="  text-dark d-flex align-items-center mb-0">
             
-              <input type="radio" class=" mb-0 me-2" name="payment_method" value="credit_card"  > Credit Card
+              <input type="radio" class=" mb-0 me-2" name="payment_method" value="credit_card"  > Credit / Debit Card
             </div>
             <span>
               <img src="https://img.icons8.com/color/48/visa.png" alt="Visa">
@@ -152,13 +174,172 @@
         </button>
       
     </div>
-    <div id="creditCard" class="collapse " aria-labelledby="creditCardHeading" data-parent="#paymentAccordion">
+    <div id="creditCard" class="collapse {{  $card_method ? '' : 'd-none' }}" aria-labelledby="creditCardHeading" data-parent="#paymentAccordion">
       <div class="card-body payment-method-details p-4 bg-light">
         Enter your credit card details securely to complete the payment.
       </div>
     </div>
   </div>
-   
+    <!-- PayPal Option -->
+    <div class="card mb-0 shadow-none p-0" style="border: 1px solid #c1c1c1;">
+      <div class="card-header p-0" id="direct_bank_transferHeading">
+        
+          <button class="btn btn-link text-decoration-none w-100 p-0 collapsed" type="button" data-toggle="collapse" data-target="#direct_bank_transfer">
+            <label class="payment-method-header d-flex justify-content-between w-100 mb-0 p-2 px-3">
+                <div class="  text-dark d-flex align-items-center mb-0">
+                  <input type="radio" class=" mb-0 me-2" name="payment_method" value="direct_bank_transfer"> Direct Bank / Mobile Transfer
+                </div>
+                <span>
+                    <img src="https://dogmovers.com.au/app/uploads/2021/03/Bank-transfer-logo-250x160-1.png" style="width: 45px; height: auto" alt="Discover">
+                    <img src="https://crystalpng.com/wp-content/uploads/2024/12/new-Jazzcash-logo.png" style="width: 35px; height: auto" alt="Discover">
+                    <img src="https://crystalpng.com/wp-content/uploads/2024/10/Easypaisa-logo.png" style="width: 30px; height: auto" alt="Discover">
+                  </span>
+              </label>
+          </button>
+        
+      </div>
+      <div id="direct_bank_transfer" class="collapse" aria-labelledby="direct_bank_transferHeading" data-parent="#paymentAccordion">
+        <div class="card-body payment-method-details p-4 bg-light">
+            <p class="fs-15 fw-300"">
+                You will receive the payment details upon order confirmation. Please complete your payment via direct bank transfer or mobile transfer and provide the transaction reference for order processing.
+            </p>
+            <div class="row g-2">
+                <div class="col-md-4">
+                    <Label class="border-1 rounded-2 p-2 text-center w-100 bank_transfer_method">
+                        <div  class="mx-auto" style="width: 50px; aspect-ratio: 1/1">
+                            <img src="https://crystalpng.com/wp-content/uploads/2025/01/meezan-bank-logo.png" class="w-100 h-100 object-fit-contain">
+                        </div>
+                        <input type="radio" name="payment_transfer_method" value="meezan_bank" >
+                        <p class=" fs-15 fw-500">Meezan Bank
+                        </p>
+                        <b>Account Title.</b>
+                        <p class="mb-0">SOLARONLINE PAKISTAN</p>
+                        <b>IBAN: </b>
+                        <p class="mb-0">PK39 MEZN 0002 8101 0824 5316</p>
+                        <b>Account No.</b>
+                        <p class="mb-0">02810108245316</p>
+                    </Label>
+                </div> 
+                <div class="col-md-4">
+                    <Label class="border-1 rounded-2 p-2 text-center w-100 bank_transfer_method">
+                        <div  class="mx-auto" style="width: 50px; aspect-ratio: 1/1">
+                            <img src="https://crystalpng.com/wp-content/uploads/2025/01/mcb-logo.png" class="w-100 h-100 object-fit-contain">
+                        </div>
+                        <input type="radio" name="payment_transfer_method" value="mcb_bank" >
+                        <p class=" fs-15 fw-500">MCB Bank Ltd
+                        </p>
+                        <b>Account Title.</b>
+                        <p class="mb-0">SOLAR DYNAMICS TECHNOLOGIES PAKISTAN</p>
+                        <b>IBAN: </b>
+                        <p class="mb-0">PK56 MUCB 0585 3769 6100 1725</p>
+                        <b>Account No.</b>
+                        <p class="mb-0">0585376961001725</p>
+                    </Label>
+                </div> 
+                <div class="col-md-4">
+                    <Label class="border-1 rounded-2 p-2 text-center w-100 bank_transfer_method">
+                        <div  class="mx-auto" style="width: 50px; aspect-ratio: 1/1">
+                            <img src="https://companieslogo.com/img/orig/BAHL.PK-dca414fa.png?t=1720244490" class="w-100 h-100 object-fit-contain">
+                        </div>
+                        <input type="radio" name="payment_transfer_method" value="bank_al_habib" >
+                        <p class=" fs-15 fw-500">Bank AL Habib Ltd
+                        </p>
+                        <b>Account Title.</b>
+                        <p class="mb-0">SOLAR DYNAMICS TECHNOLOGIES PAKISTAN</p>
+                        <b>IBAN: </b>
+                        <p class="mb-0">PK41 BAHL 0254 0981 0214 4301</p>
+                        
+                    </Label>
+                </div> 
+
+                @if($mobilewallet_method )
+                <div class="col-md-4">
+                    <Label class="border-1 rounded-2 p-2 text-center w-100 bank_transfer_method">
+                        <div  class="mx-auto" style="width: 50px; aspect-ratio: 1/1">
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQ2z0lPrjtW6QHUQwdNEeXkuMxsJcutkkKSQ&s" class="w-100 h-100 object-fit-contain">
+                        </div>
+                        <input type="radio" name="payment_transfer_method" value="jazzcash" >
+                        <p class=" fs-15 fw-500">JazzCash
+                        </p>
+                        <b>Account Title: </b>
+                        <p class="mb-0"> Muhammad Naveed</p>
+                        <b>Account No.</b>
+                        <p class="mb-0">
+                            0300 0322034 
+                           </p>
+                    </Label>
+                </div> 
+                <div class="col-md-4">
+                    <Label class="border-1 rounded-2 p-2 text-center w-100 bank_transfer_method">
+                        <div  class="mx-auto" style="width: 50px; aspect-ratio: 1/1">
+                            <img src="https://www.thenews.com.pk/assets/uploads/akhbar/2024-01-27/1151682_8435733_Easypaisa_akhbar.jpg" class="w-100 h-100 object-fit-contain">
+                        </div>
+                        <input type="radio" name="payment_transfer_method" value="easypaisa" >
+                        <p class=" fs-15 fw-500">Easypaisa
+                        </p>
+                        <b>IBAN: </b>
+                        <p class="mb-0">PAK12392390239239023</p>
+                        <b>Account No.</b>
+                        <p class="mb-0">2323093232</p>
+                    </Label>
+                </div>
+                @endif
+            </div>
+        </div>
+      </div>
+    </div>
+ 
+    <div class="card mb-0 shadow-none p-0" style="border: 1px solid #c1c1c1;">
+        <div class="card-header p-0" id="bighouz_walletHeading">
+          
+            <button class="btn btn-link text-decoration-none w-100 p-0 collapsed" type="button" data-toggle="collapse" data-target="#bighouz_wallet">
+              <label class="payment-method-header d-flex justify-content-between w-100 mb-0 p-2 px-3">
+                  <div class="  text-dark d-flex align-items-center mb-0">
+                    <input type="radio" class=" mb-0 me-2" name="payment_method" value="bighouz_wallet"> Bighouz Wallet
+                  </div>
+                  <span>
+                      <img src="{{ asset('/public/assets/img/main-lamp-pic.jpeg') }}" style="width: 45px; height: auto" alt="Discover">
+                    </span>
+                </label>
+            </button>
+          
+        </div>
+        <div id="bighouz_wallet" class="collapse" aria-labelledby="mobile_walletHeading" data-parent="#paymentAccordion">
+          <div class="card-body payment-method-details p-4 bg-light">
+            You will be redirected to PayPal to complete your purchase securely.
+          </div>
+        </div>
+      </div>
+    <div class="card mb-0 shadow-none p-0" style="border: 1px solid #c1c1c1;">
+        <div class="card-header p-0" id="cash_on_counterHeading">
+          
+            <button class="btn btn-link text-decoration-none w-100 p-0 collapsed" type="button" data-toggle="collapse" data-target="#cash_on_counter">
+              <label class="payment-method-header d-flex justify-content-between w-100 mb-0 p-2 px-3">
+                  <div class="  text-dark d-flex align-items-center mb-0">
+                    <input type="radio" class=" mb-0 me-2" name="payment_method" value="cash_on_counter"> Cash On Counter
+                  </div>
+                  <span>
+                      <img src="https://www.pngkey.com/png/full/11-114087_cash-in-hand-icon.png" style="width: 40px; height: auto" alt="Discover">
+                    </span>
+                </label>
+            </button>
+          
+        </div>
+        <div id="cash_on_counter" class="collapse" aria-labelledby="cash_on_counterHeading" data-parent="#paymentAccordion">
+          <div class="card-body payment-method-details p-4 bg-light fs-15 fw-300">
+            We offer a Cash on Counter payment option for your convenience! Place your order online and pay when you pick it up at our store. No advance payment required—simply visit us, verify your order, and complete the payment at the counter.
+            <br><br>
+            <i class="fa fa-check fs-16 bg-success p-1 text-white rounded-circle me-2 mt-1"></i> Secure & Hassle-Free
+            <br>
+            <i class="fa fa-check fs-16 bg-success p-1 text-white rounded-circle me-2  mt-1"></i> No Online Payment Needed
+            <br>
+            <i class="fa fa-check fs-16 bg-success p-1 text-white rounded-circle me-2  mt-1"></i> Pay Only When You Collect
+            <br>
+            <br>
+            Visit our store and shop with confidence! 
+          </div>
+        </div>
+      </div>
   </div>
 <script>
 $("#paymentAccordion .card-header, #pau").click(function(){

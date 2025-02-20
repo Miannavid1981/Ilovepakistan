@@ -224,23 +224,19 @@
     @endif
     <div class="container text-center position-relative">
         <!-- Shop Page Title -->
-        <h2 class="text-white mb-4">Shop Page</h2>
+        <h2 class="text-white mb-2">{{ isset($category_id) ? $category->getTranslation('name') : 'All Products' }}</h2>
         <ul class="breadcrumb bg-transparent py-0 px-1 d-flex justify-content-center align-items-center">
             <li class="breadcrumb-item has-transition">
                 <a class="text-reset" href="{{ route('home') }}" style="color: white !important;">{{ translate('Home')}}</a>
             </li>
-            @if(!isset($category_id))
-                <li class="breadcrumb-item fw-700 text-white">
-                    "{{ translate('All Categories')}}"
-                </li>
-            @else
-                <li class="breadcrumb-item text-white ">
-                    <a class="text-reset" href="{{ route('search') }}" style="color: white !important;">{{ translate('All Categories')}}</a>
-                </li> 
-            @endif
+            
+            <li class="breadcrumb-item text-white ">
+                <a class="text-reset" href="{{ route('search') }}" style="color: white !important;">{{ translate('Shop')}}</a>
+            </li> 
+        
             @if(isset($category_id))
                 <li class="text-white fw-600 breadcrumb-item">
-                    "{{ $category->getTranslation('name') }}"
+                    {{ $category->getTranslation('name') }}
                 </li>
             @endif
         </ul>
@@ -251,11 +247,24 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav justify-content-center w-100">
-                   
+                <ul class="navbar-nav justify-content-center w-100 ">
+                    @if(isset($category_id)) 
+                        @if(count($category->childrenCategories) > 0 )
+                            @foreach ($category->childrenCategories as $category)
+
+                                <li class="nav-item">
+                                    <a class="nav-link text-white" href="{{ route('products.category', $category->slug) }}">
+                                        <img src="{{uploaded_asset($category->icon)}}" class="me-2 p-1 rounded-circle border-1 border bg-white" style="width: 45px;height: auto;aspect-ratio: 1 / 1;" ><br>
+                                        {{ $category->getTranslation('name') }}
+                                    </a>
+                                </li>
+                            @endforeach
+                        @endif
+                    @endif
                     @foreach ($categories as $category)
                         <li class="nav-item">
                             <a class="nav-link text-white" href="{{ route('products.category', $category->slug) }}">
+                                <img src="{{uploaded_asset($category->icon)}}" class="me-2 p-1 rounded-circle border-1 border bg-white" style="width: 45px;height: auto;aspect-ratio: 1 / 1;" ><br>
                                 {{ $category->getTranslation('name') }}
                             </a>
                         </li>
@@ -658,8 +667,8 @@
                         </div>
                         
                         <!-- Products -->
-                        <div class="px-3">
-                            <div class="row gutters-16 row-cols-xxl-4 row-cols-xl-3 row-cols-lg-4 row-cols-md-3 row-cols-2 border-top border-left">
+                        <div class="">
+                            <div class="row gutters-16 row-cols-xxl-6 row-cols-xl-5 row-cols-lg-5 row-cols-md-4 row-cols-2 ">
                                 @foreach ($products as $key => $product)
                                     <div class="col">
                                         @include('frontend.'.get_setting('homepage_select').'.partials.product_box_1',['product' => $product])

@@ -208,7 +208,7 @@
             padding: 0.3rem 1.2rem;
             font-size: 1rem;
             font-weight: inherit;
-            border-radius: 10px !important;
+            border-radius: 10px ;
         }
         .form-control:focus {
             border-width: 2px !important;
@@ -248,12 +248,16 @@
             color: #000;
             transition: all .3s ease-in-out
         }
-        #addToCart-modal-body .slick-vertical .slick-slide {
-
-            width: auto !important;
-            margin: 0 !important
-        }
+   
         .pac-container { z-index: 100000; }
+        @media (min-width: 992px) {
+            .modal-lg, .modal-xl {
+                --bs-modal-width: 90%;
+            }
+        }
+        .aiz-mobile-bottom-nav {
+            display: none !important
+        }
     </style>
 
 @if (get_setting('google_analytics') == 1)
@@ -960,6 +964,25 @@
                 AIZ.plugins.zoom();
                 AIZ.extra.plusMinus();
                 getVariantPrice();
+                $('.product-detail-slider-for').slick({
+                    slidesToShow: 1,
+                    slidesToScroll: 1,
+                    arrows: false,
+                    fade: true,
+                    asNavFor: '.product-detail-slider-nav'
+                });
+
+                $('.product-detail-slider-nav').slick({
+                    slidesToShow: 3,
+                    slidesToScroll: 1,
+                    asNavFor: '.product-detail-slider-for',
+                    dots: false,
+                    arrow: true,
+                    centerMode: true,
+                    focusOnSelect: true,
+                    vertical: true,  // Makes the navigation vertical
+                    verticalSwiping: true // Enables vertical swiping
+                });
             });
         }
 

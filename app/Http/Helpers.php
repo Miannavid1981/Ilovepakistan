@@ -2933,3 +2933,154 @@ if (!function_exists('get_percentage_amount')) {
         return (int) $result;
     }
 }
+function renderCategoryTree($selectedCategories = [], $categories = null) {
+    $ul_class = '';
+    if (!$categories) {
+        $ul_class = 'pl-0';
+        $categories = \App\Models\Category::all();
+    }
+
+    // Ensure $selectedCategories is an array
+    if ($selectedCategories instanceof Illuminate\Support\Collection) {
+        $selectedCategories = $selectedCategories->toArray();
+    }
+
+    // Filter to get only the selected parent categories
+    $selectedParents = $categories->whereIn('id', $selectedCategories)->where('parent_id', 0);
+
+    $html = '<ul class="' . $ul_class . ' h-100">';
+
+    foreach ($selectedParents as $parentCategory) {
+        $html .= renderCategoryNode($parentCategory, $categories, $selectedCategories);
+    }
+
+    $html .= '</ul>';
+    return $html;
+}
+
+function renderCategoryNode($category, $categories, $selectedCategories) {
+    $subCategories = $categories->where('parent_id', $category->id);
+    $html = '';
+    $html .= '<li style="list-style-type: none;">';
+    $html .= '<label class="category_tree_item d-flex align-items-center" >';
+    $html .= '<div class="rounded-circle p-1 border w-20px checkbox_circle" style="aspect-ratio: 1 / 1"><i  class="fa fa-check text-white m-0 fs-10 p-0" ></i></div>';
+    $html .= '<input type="checkbox" class="category-checkbox" name="categories[]" value="' . $category->id . '" style="display: none"  onchange="fetchSellerProducts()">';
+    $html .= '<img src="' . uploaded_asset($category->icon) . '" alt="' . $category->name . '" style="width: 28px; height: 28px; padding: 2px;border-radius: 50%;" class="mx-1">';
+    $html .= ' ' . htmlspecialchars($category->name);
+    $html .='</label>';
+    if ($subCategories->isNotEmpty()) {
+        $html .= '<ul>';
+        foreach ($subCategories as $subCategory) {
+            $html .= renderCategoryNode($subCategory, $categories, $selectedCategories);
+        }
+        $html .= '</ul>';
+    }
+
+    $html .= '</li>';
+    
+    return $html;
+}
+
+function get_product_skeleton(){
+    return ' <div class="skeleton_grid mx-0">
+                    <div class="">
+                        <div class="skeleton image"></div>
+                        <div class="skeleton text medium"></div>
+                        <div class="skeleton text"></div>
+                        <div class="skeleton text"></div>
+                
+                        <div class="skeleton text short"></div>
+                        
+                    </div>
+                    
+                    <div class="">
+                        <div class="skeleton image"></div>
+                        <div class="skeleton text medium"></div>
+                        <div class="skeleton text"></div>
+                        <div class="skeleton text"></div>
+                
+                        <div class="skeleton text short"></div>
+                        
+                    </div>
+                    
+                    <div class="">
+                        <div class="skeleton image"></div>
+                        <div class="skeleton text medium"></div>
+                        <div class="skeleton text"></div>
+                        <div class="skeleton text"></div>
+                
+                        <div class="skeleton text short"></div>
+                        
+                    </div>
+                    
+                    <div class="">
+                        <div class="skeleton image"></div>
+                        <div class="skeleton text medium"></div>
+                        <div class="skeleton text"></div>
+                        <div class="skeleton text"></div>
+                
+                        <div class="skeleton text short"></div>
+                        
+                    </div>
+                    
+                    <div class="">
+                        <div class="skeleton image"></div>
+                        <div class="skeleton text medium"></div>
+                        <div class="skeleton text"></div>
+                        <div class="skeleton text"></div>
+                
+                        <div class="skeleton text short"></div>
+                        
+                    </div>
+                    <div class="">
+                        <div class="skeleton image"></div>
+                        <div class="skeleton text medium"></div>
+                        <div class="skeleton text"></div>
+                        <div class="skeleton text"></div>
+                
+                        <div class="skeleton text short"></div>
+                        
+                    </div>
+                    
+                    <div class="">
+                        <div class="skeleton image"></div>
+                        <div class="skeleton text medium"></div>
+                        <div class="skeleton text"></div>
+                        <div class="skeleton text"></div>
+                
+                        <div class="skeleton text short"></div>
+                        
+                    </div>
+                    
+                    <div class="">
+                        <div class="skeleton image"></div>
+                        <div class="skeleton text medium"></div>
+                        <div class="skeleton text"></div>
+                        <div class="skeleton text"></div>
+                
+                        <div class="skeleton text short"></div>
+                        
+                    </div>
+                    
+                    <div class="">
+                        <div class="skeleton image"></div>
+                        <div class="skeleton text medium"></div>
+                        <div class="skeleton text"></div>
+                        <div class="skeleton text"></div>
+                
+                        <div class="skeleton text short"></div>
+                        
+                    </div>
+                    
+                    <div class="">
+                        <div class="skeleton image"></div>
+                        <div class="skeleton text medium"></div>
+                        <div class="skeleton text"></div>
+                        <div class="skeleton text"></div>
+                
+                        <div class="skeleton text short"></div>
+                        
+                    </div>
+                    
+                </div>';
+}

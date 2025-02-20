@@ -31,14 +31,14 @@
             background-color: red;
             color: white;
             border-radius: 50%;
-            font-size: 0.8rem;
-            width: 20px;
-            height: 20px;
+            font-size: 0.7rem;
+            width: 15px;
+            height: 15px;
             display: inline-flex;
             align-items: center;
             justify-content: center;
             position: absolute;
-            top: -8px;
+            top: -3px;
             right: -6px;
         }
         .dropdown {
@@ -90,7 +90,7 @@
         }
 
         .navbar .nav-link {
-            font-size: 16px;
+            font-size: 14px;
             font-weight: 400;
             color: #000;
         }
@@ -106,11 +106,10 @@
         
 
         #search_cat {
-            background: #ccc;
             background: #e9e9e9;
             border-radius: 30px;
             font-size: 16px;
-            padding: 2px 20px;
+            padding: 0px 20px;
             color: #000000 !important;
             margin: 4px;
             border: unset !important;
@@ -143,9 +142,13 @@
             height: 100vh;
         }
         .slide-in-right .modal-dialog {
-            min-width: 800px;
+            min-width: 30vw;
             border-radius: 20px;
             height: auto !important;
+        }
+
+        .slide-in-right .modal-content .modal-body {
+            padding: .7rem !important;
         }
         .modal.fade.slide-in-right .modal-dialog {
         transform: translateX(100%);
@@ -156,6 +159,9 @@
         transform: translateX(0);
         }
 
+        .slide-in-cart-extended {
+            min-width: 50vw !important;
+        }
         .modal.fade.slide-in-right {
         animation: slideInRight 0.3s forwards;
         }
@@ -164,10 +170,11 @@
         animation: slideOutRight 0.3s forwards;
         }
         .slide-in-right .modal-dialog {
-            right: 20px !important;
-            top: 20px !important;
-            bottom: 20px !important;
+            right: .5rem  !important;
+            top: .5rem !important;
+            bottom: .5rem !important;
             height: auto;
+            width: 30vw !important;
         }
         .slide-in-right .modal-body {
             max-height: 100%;
@@ -183,7 +190,9 @@
         }
 
         
+        @media (max-width: 1024px){
 
+        }
         @media (max-width: 991px){
             header {
                 display: none !important;
@@ -206,6 +215,9 @@
             }
             .slide-in-right .minicart-main-left-section {
                 padding-top: 15px ;
+            }
+            .slide-in-right .modal-dialog {
+                width: 80vw !important;
             }
         }
         .quantity-switcher {
@@ -256,7 +268,7 @@
         }
         .grid_sidecart {
             display: grid !important;
-            grid-template-columns: 0.4fr 1.2fr 3fr;
+            grid-template-columns: 0.1fr 1.2fr 3fr;
             gap: 5px;
         }
         .home_category:hover {
@@ -264,7 +276,7 @@
         }
     </style>
 
-<header class="container bg-white pt-2">
+<header class="container bg-white pt-1">
         <!-- Header Top -->
         <div class="row align-items-center header-top">
             <!-- Logo -->
@@ -307,7 +319,7 @@
                             <option value="{{ $category->id }}" class="search-option2">{{ $category->name }}</option>
                         @endforeach
                     </select>
-                    <input type="text" class="form-control search-input h-100 p-0 fs-17" id="search"  placeholder="Search products...">
+                    <input type="text" class="form-control search-input h-100 p-0 fs-15" id="search"  placeholder="Search products...">
                     <button class="btn btn-dark search_button_icon h-100"><i class="fa-solid fa-magnifying-glass"></i></button>
                 </div>
                 
@@ -339,8 +351,8 @@
                                 </div>
                             @else 
                                 <div class="d-flex flex-column">
-                                    <span class="d-block fs-15"> Customer Area</span>
-                                    <span class="fw-bold fs-16">My Account</span>
+                                    <span class="d-block fs-14"> Customer Area</span>
+                                    <span class="fw-bold fs-15">My Account</span>
                                 </div>
                             @endauth
                         </button>
@@ -384,7 +396,7 @@
                 
 
                     <button class="btn btn-light bg-white border-0 me-3 p-0 position-relative toggle-cart-modal">
-                        <i class="fa-solid fs-20 fa-cart-shopping"></i>
+                        <i class="fa-solid fs-18 fa-cart-shopping"></i>
                         <span class="cart-badge g-cart-items-count">0</span>
                         <p class="fw-bold mb-0">Cart</p>
                     </button>
@@ -409,7 +421,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link category-btn" href="#">Deals</a>
+                            <a class="nav-link category-btn" href="{{ url('/shop') }}">Shop</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link category-btn" href="#">Bestsellers</a>
@@ -614,8 +626,8 @@
                         <div class="col-md-7 col-12 d-flex flex-column minicart-main-left-section justify-content-between h-100">
                             <div class="d-flex justify-content-between">
                                 <div class="d-flex">
-                                    <button class="bg-primary px-2 py-1 border-0 text-white border-0 rounded-2 me-2 fs-16" style="transform: translateX(-7px);">Clear</button>
-                                    <h4>Shopping Cart</h4>
+                                    <button class="bg-primary py-0 border-0 text-white border-0 rounded-2 me-2 fs-13 h-25px" style="transform: translateX(-7px);">Clear</button>
+                                    <h5>Shopping Cart</h5>
                                 </div>
                                
                                 <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
@@ -643,17 +655,17 @@
                             <div class="pt-3 px-3 bg-white d-flex  flex-column justify-content-end" >
                                 
                                     
-                                <div class="d-flex justify-content-between mt-3">
-                                    <h5>Subtotal</h5>
-                                    <h5 class="sidecart-subtotal">$0.00</h5>
+                                <div class="d-flex justify-content-between">
+                                    <h6>Subtotal</h6>
+                                    <h6 class="sidecart-subtotal">$0.00</h6>
                                 </div>
-                                <div class="d-flex justify-content-between mt-3 g_discount_wrapper">
-                                    <h6>Discount</h6>
-                                    <h6 class="sidecart-total-discount"></h6>
+                                <div class="d-flex justify-content-between g_discount_wrapper">
+                                    <p>Discount</p>
+                                    <p class="sidecart-total-discount"></p>
                                 </div>
-                                <div class="d-flex justify-content-between mt-3 g_total">
-                                    <h4>Total</h4>
-                                    <h4 class="sidecart-total"></h4>
+                                <div class="d-flex justify-content-between g_total">
+                                    <h5>Total</h5>
+                                    <h5 class="sidecart-total"></h5>
                                 </div>
                             
                             
@@ -935,7 +947,7 @@ $(document).ready(function(){
     });
     $(document).on('click', '.g-remove-from-cart', function () {
         const id = $(this).data('id');  // Get the product ID from the data-id attribute
-
+        $(".sidecart-items").addClass("disabled")
         $.ajax({
             url: '{{ url("/cart/remove") }}',  // The route for removing items from the cart
             method: 'POST',  // Sending a POST request
@@ -945,7 +957,9 @@ $(document).ready(function(){
             },
             success: function (response) {
                 if (response.cart) {
-                    updateSidecart(response.cart);  // Update the sidecart with the new data
+                    $(".sidecart-items").removeClass("disabled")
+                    updateSidecart(response.cart); 
+                     // Update the sidecart with the new data
                 } else {
                     // alert('Failed to remove the item.');
                 }
@@ -961,22 +975,26 @@ $(document).ready(function(){
         $sidecartItems.empty();
         cart.items.forEach((item) => {
             $sidecartItems.append(`
-                <div class="sidecart-item d-flex justify-content-between align-items-center py-3 border-bottom">
+                <div class="sidecart-item d-flex justify-content-between align-items-center py-2 border-bottom">
                     <div class="grid_sidecart">
                         <div class="d-flex align-items-center">
-                            <button class="bg-primary p-2 h-auto border-0 text-white rounded-2 g-remove-from-cart" data-id="${item.id}"><i class="fa fa-trash fs-16"></i></button>
+                            <button class="bg-white h-auto border-0 text-white rounded-2 g-remove-from-cart text-primary p-0" data-id="${item.id}"><i class="fa fa-trash fs-16"></i></button>
                         </div>
                         
-                        <div class="position-relative ms-2 me-4" style="width: 100%;height: auto;aspect-ratio: 1 / 1;min-width: 35px;background: #eee;border-radius: 10px;" >
+                        <div class="position-relative ms-2 me-4" style="width: 100%;height: auto;aspect-ratio: 1 / 1;min-width: 20px;background: #eee;border-radius: 10px;" >
                             <img src="${item.image}" alt="${item.name}" class="rounded-2 w-100 h-100 " style="object-fit: contain;">
                             <span class="cart-item-count">${item.quantity}</span>
                         </div>
                         
                         <div class=" ms-4">
-                            <div class="fs-15">${item.name}</div>
-                            <div class="d-flex align-items-center gap-2">
+                            <div class="fs-13" style="display: inline-block;
+    max-width: 90px;
+    word-wrap: break-word;">${item.name}</div>
+                            <div class="d-flex align-items-center gap-2" style="display: inline-block;
+    max-width: 90px;
+    word-wrap: break-word;">
                                 <div>
-                                 <div class="font-weight-bold  ${ item.discount ? ` fs-14 text-secondary" style="text-decoration: line-through;` : 'fs-16' }" >${item.price}</div>
+                                 <div class="font-weight-bold  ${ item.discount ? ` fs-13 text-secondary" style="text-decoration: line-through;` : 'fs-16' }" >${item.price}</div>
                                 ${
                                  item.discount ? `<div class="fs-16 font-weight-bold">${item.discounted_price}</div>`
                                  : ``
@@ -985,7 +1003,7 @@ $(document).ready(function(){
                                  <div>
                                  ${
                                  item.discount ?
-                                    `<span class="bg-primary px-2 py-1 fs-16 rounded-3 text-white font-weight-bold"> - ${item.discounted_percentage}%</span>`
+                                    `<span class="bg-primary px-2 py-1 fs-15 rounded-3 text-white font-weight-bold"> - ${item.discounted_percentage}%</span>`
                                     : '' 
                                  }
                                  </div>
@@ -995,7 +1013,7 @@ $(document).ready(function(){
                         </div>
                     </div>
                     <div>
-                        <div class="fs-18 font-weight-bold text-end">${item.subtotal}</div>
+                        <div class="fs-15 font-weight-bold text-end">${item.subtotal}</div>
                         <div class="quantity-switcher">
                             <button class="quantity-switcher-buttons" data-id="${item.id}" data-operation="decrement"><i class="fa fa-minus"></i></button>
                             <input type="number" class="g-cart-qty" data-id="${item.id}" value="${item.quantity}" style="max-width: 20px;border: none;text-align: center;pointer-events: none;">
@@ -1023,12 +1041,12 @@ $(document).ready(function(){
         if(products.length == 0){
             $('.cart-offers-section').hide()
             $(".minicart-main-left-section").removeClass("col-md-7")
-            $('.slide-in-right .modal-dialog').css('min-width', '500px');
+            $('.slide-in-right .modal-dialog').removeClass('slide-in-cart-extended');
 
             return;
         }
         $('.cart-offers-section').show()
-        $('.slide-in-right .modal-dialog').css('min-width', '800px');
+        $('.slide-in-right .modal-dialog').addClass('slide-in-cart-extended');
         $(".minicart-main-left-section").addClass("col-md-7")
         const $sidecartItems = $('.sidecart_suggested-products');
         
@@ -1040,25 +1058,25 @@ $(document).ready(function(){
                 <div class="sidecart-item d-flex justify-content-between align-items-center py-3 border-bottom">
                     <div class="grid_sidecart_suggested">
                         
-                        <div class="position-relative ms-2 me-4" style="width: 100%;height: auto;aspect-ratio: 1 / 1;min-width: 35px;" >
+                        <div class="position-relative ms-2 me-4" style="width: 100%;height: auto;aspect-ratio: 1 / 1;min-width: 15px;" >
                             <img src="${item.image}" alt="${item.name}" class="rounded-2 w-100 h-100 " style="object-fit: cover;">
                            
                         </div>
                         
                         <div class="">
-                            <div class="fs-15">${item.name}</div>
+                            <div class="fs-14">${item.name}</div>
                             <div class="d-flex align-items-center gap-2">
                                 <div>
                                  <div class="font-weight-bold  ${ item.discount ? ` fs-14 text-secondary" style="text-decoration: line-through;` : 'fs-16' }" >${item.price}</div>
                                 ${
-                                 item.discount ? `<div class="fs-16 font-weight-bold">${item.discounted_price}</div>`
+                                 item.discount ? `<div class="fs-15 font-weight-bold">${item.discounted_price}</div>`
                                  : ``
                                 }
                                  </div>
                                  <div>
                                  ${
                                  item.discount ?
-                                    `<span class="bg-primary px-2 py-1 fs-16 rounded-3 text-white font-weight-bold"> - ${item.discounted_percentage}%</span>`
+                                    `<span class="bg-primary px-2 py-1 fs-15 rounded-3 text-white font-weight-bold"> - ${item.discounted_percentage}%</span>`
                                     : '' 
                                  }
                                  </div>
@@ -1068,7 +1086,7 @@ $(document).ready(function(){
                         </div>
                     </div>
                     <div>
-                        <button class=" add_to_cart_small_btn rounded-circle p-2 d-flex align-items-center justify-content-center g-add-to-cart" style="aspect-ratio:1/1"  data-id="${item.id}" data-skin_code="${item.product_skin}" ><i class="las la-cart-plus fs-24"></i>  </button>
+                        <button class=" add_to_cart_small_btn rounded-circle p-1 d-flex align-items-center justify-content-center g-add-to-cart" style="aspect-ratio:1/1"  data-id="${item.id}" data-skin_code="${item.product_skin}" ><i class="las la-cart-plus fs-20"></i>  </button>
                     </div>
                     
                    
