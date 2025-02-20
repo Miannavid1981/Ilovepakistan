@@ -61,9 +61,9 @@
             </div>
         
 
-            @if (count($orders) > 0)
+           
                 <div class="card-body p-3">
-                    <table class="table aiz-table mb-0">
+                    <table class="table mb-0">
                         <thead>
                             <tr>
                                 <th>
@@ -86,19 +86,8 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($orders as $key => $order_id)
-                                @php
-                                    $order = \App\Models\Order::find($order_id->id); 
-                                @endphp
-
+                            @foreach ($orders as $key => $order)
                                 
-                            @php
-                                
-                            // dd($order);
-
-                            @endphp
-
-                                @if ($order != null)
                                     <tr>
                                         <td>
                                             <div class="form-group">
@@ -164,7 +153,7 @@
                                             </a>
                                         </td>
                                     </tr>
-                                @endif
+                              
                             @endforeach
                         </tbody>
                     </table>
@@ -172,7 +161,7 @@
                         {{ $orders->links() }}
                     </div>
                 </div>
-            @endif
+           
         </form>
     </div>
 

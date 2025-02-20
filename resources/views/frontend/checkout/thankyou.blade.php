@@ -79,7 +79,7 @@ $order_info = $order;
 <div class="container text-center ">
 
     <h3 class="text-center mt-5">Thank you for shopping with us!</h3>
-    <p class="text-center fs-18 fw-300">Thank you for shopping with us! You can track your order status with with all its activities ongoing</p>
+    <p class="text-center fs-18 fw-300">Thank you for shopping with us! You can track your order status with all its activities ongoing</p>
    
 </div>
 
@@ -117,16 +117,12 @@ $order_info = $order;
                         <strong class="fs-16">Payment Transfer method:</strong>
                         <br/> 
                         <span class="fs-17 text-capitalize">{{ str_replace("_", " ", $order->payment_transfer_method ) }}</span>
-
                     </p>
                 @endif
-             
-                    <h5>Uploaded Receipts:</h5>
-                    @php
-                        
+                    <h5>Upload Receipts:</h5>
+                    @php                   
                         // dd(json_decode($order->payment_receipts));
                         $receipts = json_decode($order->payment_receipts) ?? null;
-
                     @endphp
                     @if(!empty($receipts) && count($receipts) > 0)
                         @foreach($receipts as $receipt)
@@ -141,7 +137,6 @@ $order_info = $order;
                                     <input type="file" name="payment_receipts[]" class="form-control" accept="image/*,application/pdf">
                                 </div>
                             </div>
-                        
                             <button type="button" id="add-more" class="btn btn-secondary">Add More</button>
                             <button type="submit" class="btn btn-primary">Submit</button>
                         </form>

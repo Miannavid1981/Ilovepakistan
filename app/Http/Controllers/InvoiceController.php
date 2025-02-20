@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\CombinedOrder;
 use App\Models\Currency;
 use App\Models\Language;
 use App\Models\Order;
 use Session;
 use PDF;
 use Config;
+use Dompdf\Dompdf;
+use Dompdf\Options;
 
 class InvoiceController extends Controller
 {
@@ -99,17 +102,36 @@ class InvoiceController extends Controller
         // }];
         // mpdf config will be used in 4th params of loadview
 
-        $config = [];
+        $config = [
+            'orientation' => 'portrait',
+            'paper' => 'A4', 
+            'margin_top' => 10, 
+            'margin_left' => 10,
+            'margin_right' => 10,
+            'margin_bottom' => 10,
+        ];
 
-        $order = Order::findOrFail($id);
+        $order = CombinedOrder::findOrFail($id);
+
+
+$options = new Options();
+$options->set('isRemoteEnabled', true);
+$options->set('isHtml5ParserEnabled', true);
+$pdf = new Dompdf($options);
+$pdf->loadHtml(view('backend.invoices.invoice', compact('order'))->render());
+
+// Add watermark
+$pdf->setPaper('A4', 'portrait');
+$pdf->render();
+
+return $pdf->stream("order-BH000" . $order->id . ".pdf");
+
+
         if (in_array(auth()->user()->user_type, ['admin','staff']) || in_array(auth()->id(), [$order->user_id, $order->seller_id])) {
             return PDF::loadView('backend.invoices.invoice', [
                 'order' => $order,
-                'font_family' => $font_family,
-                'direction' => $direction,
-                'text_align' => $text_align,
-                'not_text_align' => $not_text_align
-            ], [], $config)->download('order-' . $order->code . '.pdf');
+                
+            ], [], $config)->download('order-BH000' . $order->id . '.pdf');
         }
         flash(translate("You do not have the right permission to access this invoice."))->error();
         return redirect()->route('home');

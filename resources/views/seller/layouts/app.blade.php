@@ -43,6 +43,8 @@
             z-index: 100000;
         }
 
+  
+
     </style>
 	<script>
     	var AIZ = AIZ || {};
@@ -92,7 +94,7 @@
 
 
 	<script src="{{ static_asset('assets/js/vendors.js') }}" ></script>
-	<script src="{{ static_asset('assets/js/aiz-core.js') }}" ></script>
+	{{-- <script src="{{ static_asset('assets/js/aiz-core.js') }}" ></script> --}}
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     @yield('script')
 

@@ -20,7 +20,7 @@
             </div>
         </form>
         <div class="card-body">
-            <table class="table aiz-table mb-0">
+            <table class="table mb-0">
                 <thead>
                     <tr>
                         <th>#</th>
@@ -31,23 +31,21 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($commission_history as $key => $history)
+                    @foreach ($commission_history as $key => $transaction)
                     <tr>
-                        <td>{{ ($key+1) }}</td>
+                        <td>{{ $key + 1 }}</td>
+                        <td>{{ date('d-m-Y', strtotime($transaction->created_at)) }}</td>
+                        <td>{{ single_price($transaction->amount) }}</td>
+                        <td> -{{ single_price($transaction->admin_profit ?? 0) }}</td>
                         <td>
-                            @if(isset($history->order))
-                                {{ $history->order->code }}
+                            @if ($transaction->status == 1)
+                                <span class="badge badge-inline badge-success">{{ translate('Completed') }}</span>
                             @else
-                                <span class="badge badge-inline badge-danger">
-                                    {{ translate('Order Deleted') }}
-                                </span>
+                                <span class="badge badge-inline badge-info">{{ translate('Pending') }}</span>
                             @endif
                         </td>
-                        <td>{{ $history->admin_commission }}</td>
-                        <td>{{ $history->seller_earning }}</td>
-                        <td>{{ $history->created_at }}</td>
                     </tr>
-                    @endforeach
+                @endforeach
                 </tbody>
             </table>
             <div class="aiz-pagination mt-4">

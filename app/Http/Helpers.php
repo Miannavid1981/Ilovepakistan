@@ -3084,3 +3084,21 @@ function get_product_skeleton(){
                     
                 </div>';
 }
+
+function getMinMaxPriceFromSeller($sellerId) {
+    // Get seller's product mappings
+    $sellerMaps = \App\Models\ProductSellerMap::where('seller_id', $sellerId)->get()->keyBy('product_id');
+    $productIds = $sellerMaps->keys();
+
+    // Base query for products
+    $query = Product::whereIn('id', $productIds);
+
+    // Get updated min and max price from filtered products
+    $minPrice = $query->min('unit_price');
+    $maxPrice = $query->max('unit_price');
+
+    return [
+        'min_price' => $minPrice ?? 0,
+        'max_price' => $maxPrice ?? 0
+    ];
+}

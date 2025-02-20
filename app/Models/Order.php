@@ -8,6 +8,7 @@ use App\Traits\PreventDemoModeChanges;
 class Order extends Model
 {
     use PreventDemoModeChanges;
+    protected $fillable = ['status'];
     public function orderDetails()
     {
         return $this->hasMany(OrderDetail::class);

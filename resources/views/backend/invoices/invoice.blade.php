@@ -1,223 +1,334 @@
+@php
+    $logo = get_setting('header_logo');
+    $logo_url = uploaded_asset($logo);
+
+    $orders = $order->orders;
+
+    $main_order_id = 'BH000'.$order->id;
+    $combined_order = $order;
+
+    $payment_status = $orders[0]->payment_status;
+@endphp
+
+<!DOCTYPE html>
 <html>
+
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{{  translate('INVOICE') }}</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <meta charset="UTF-8">
-	<style media="all">
-        @page {
-			margin: 0;
-			padding:0;
-		}
-		body{
-			font-size: 0.875rem;
-            font-family: '<?php echo  $font_family ?>';
+    <title>Allaaddin Invoice</title>
+    <meta http-equiv="Content-Type" content="text/html;" charset="UTF-8">
+    <style media="all">
+        @font-face {
+            font-family: 'Roboto';
+            src: url("{{ public_path('fonts/Roboto-Regular.ttf') }}") format("truetype");
             font-weight: normal;
-            direction: <?php echo  $direction ?>;
-            text-align: <?php echo  $text_align ?>;
-			padding:0;
-			margin:0; 
-		}
-		.gry-color *,
-		.gry-color{
-			color:#000;
-		}
-		table{
-			width: 100%;
-		}
-		table th{
-			font-weight: normal;
-		}
-		table.padding th{
-			padding: .25rem .7rem;
-		}
-		table.padding td{
-			padding: .25rem .7rem;
-		}
-		table.sm-padding td{
-			padding: .1rem .7rem;
-		}
-		.border-bottom td,
-		.border-bottom th{
-			border-bottom:1px solid #eceff4;
-		}
-		.text-left{
-			text-align:<?php echo  $text_align ?>;
-		}
-		.text-right{
-			text-align:<?php echo  $not_text_align ?>;
-		}
-	</style>
+            font-style: normal;
+        }
+
+        body {
+            font-family: Helvetica, sans-serif;
+            font-size: 13px;
+            padding: 0 40px;
+        }
+
+        .container {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: 10px 20px;
+        }
+
+        .logotype {
+            background: #ededed;
+            color: #fff;
+            width: 75px;
+            height: 75px;
+            line-height: 75px;
+            text-align: center;
+            font-size: 11px;
+            border-radius: 5px;
+            aspec-ratio: 1/1 
+        }
+
+        .column-title {
+            background: #eee;
+            text-transform: uppercase;
+            padding: 15px 5px 15px 15px;
+            font-size: 11px;
+        }
+
+        .column-detail {
+            border-top: 1px solid #eee;
+            border-bottom: 1px solid #eee;
+        }
+
+        .column-header {
+            background: #eee;
+            text-transform: uppercase;
+            padding: 10px 15px;
+            font-size: 11px;
+            border-right: 1px solid #eee;
+        }
+
+        .row {
+            padding: 7px 14px;
+            border-left: 1px solid #eee;
+            border-right: 1px solid #eee;
+            border-bottom: 1px solid #eee;
+        }
+
+        .alert {
+            background: #ffd9e8;
+            padding: 10px 20px;
+            margin: 20px 0;
+            line-height: 22px;
+            color: #333;
+        }
+
+        .socialmedia {
+            background: #eee;
+            padding: 20px;
+            display: inline-block;
+        }
+
+        .logotype img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        @page {
+            margin: 0;
+        }
+
+        .page-break {
+            page-break-before: auto;
+        }
+
+        .no-break {
+            break-inside: avoid;
+            page-break-inside: avoid;
+        }
+
+        /* Adjust layout for tables and printing */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        table td,
+        table th {
+            border: 1px solid #eee;
+            padding: 8px;
+            text-align: left;
+            vertical-align: top
+        }
+
+        table.noborder > tr >  th ,  table.noborder  > tr >  td {
+            border: unset !important;
+        }
+
+        table:not(.page-head) td,
+        table:not(.page-head) th {
+            vertical-align: middle !important
+        }
+
+        .invoice-title {
+            font-size: 22px;
+            font-weight: bold;
+            /* background-color: #ffd9e8; */
+            padding: 10px;
+        }
+
+        .status {
+            padding: 10px;
+            font-size: 22px;
+            font-weight: bold;
+            background-color: {{ $payment_status == 'paid' ? '#ffd9e8' : '#ffd692' }};
+            text-align: center;
+            aspect-ratio: 1 / 1;
+            vertical-align: middle !important
+        }
+        .watermark {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            opacity: 0.1;
+            font-size: 6rem;
+            transform: translate(-50%, -50%) rotate(-45deg);
+            /* Adjust the angle here */
+            z-index: -1;
+            color: rgb(167, 167, 167);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: bold;
+        }
+    </style>
 </head>
+
 <body>
-	<div>
+    <div class="watermark">{{ strtoupper($payment_status) }}</div>
+    <div class="container">
+        <table class="page-head" >
+            <tr>
+                <td>
+                   <img src="{{ $logo_url }}" alt="Logo" style="width: 100px">
+                   <br>
+                   <b>Bighouz Online Store </b>
+                   <br>
+                    <span style="text-align: left">
+                        Office # 42-43  M
+                            
+                        Floor Zainab Tower
+                        <br> 
+                    
+                        Link Road, Model Town,
+                    
+                        Lahore, Pakistan
+                    </span>
+                </td>
+                <td style="text-align:end; ">
+                    <h3 style="text-align: end">
+                       SALES INVOICE
+                    </h3>
+                    <br>
+                    <strong  style="text-align: end">Registration #:</strong> 12345678</span><br>
+                   
+                </td>
+                <td style="width: 90px">
+                   <div style="aspec-ratio: 1 / 1">
+                    @php
+                    $removedXML = '<?xml version="1.0" encoding="UTF-8"?>';
+                    @endphp
+                    {!! str_replace($removedXML, '', QrCode::size(100)->generate($order->id)) !!}
+                   </div>
+                </td>
+            </tr>
+        </table>
+        <div class="alert">
+            Thank you for your order. This invoice reflects the purchased products/services as per your order details, including applicable taxes and fees.
+        </div>
+        @php
+            $shipping_address = json_decode($orders[0]->shipping_address);
+        @endphp
 
-		@php
-			$logo = get_setting('header_logo');
-		@endphp
+        <table>
+            <tr>
+                <td width="50%">
+                    <strong>Order #:</strong> {{ $main_order_id }} </span><br>
+                    <strong>Delivery type:</strong> <span style="text-transform:capitalize"> {{ str_replace("_", " ", $combined_order->order_type ) }} </span><br>
+                    <strong>Order Date:</strong> {{ \Carbon\Carbon::parse($combined_order->created_at)->format('F j, Y') }}
+                </td>
+                <td width="50%">
+                    
+                  
+                    <strong>Customer Name:</strong> {{ $shipping_address->name }}<br>
+                    <strong>E-mail:</strong> {{ $shipping_address->email }}<br>
+                    <strong>Phone:</strong> {{ $shipping_address->phone }}<br>
+                </td>
+            </tr>
+        </table>
 
-		<div style="background: #eceff4;padding: 1rem;">
-			<table>
-				<tr>
-					<td>
-						@if($logo != null)
-							<img src="{{ uploaded_asset($logo) }}" height="30" style="display:inline-block;">
-						@else
-							<img src="{{ static_asset('assets/img/logo.png') }}" height="30" style="display:inline-block;">
-						@endif
-					</td>
-					<td style="font-size: 1.5rem;" class="text-right strong">{{  translate('INVOICE') }}</td>
-				</tr>
-			</table>
-			<table>
-				<tr>
-					<td style="font-size: 1rem;" class="strong">{{ get_setting('site_name') }}</td>
-					<td class="text-right"></td>
-				</tr>
-				<tr>
-					<td class="gry-color small">{{ get_setting('contact_address') }}</td>
-					<td class="text-right"></td>
-				</tr>
-				<tr>
-					<td class="gry-color small">{{  translate('Email') }}: {{ get_setting('contact_email') }}</td>
-					<td class="text-right small"><span class="gry-color small">{{  translate('Order ID') }}:</span> <span class="strong">{{ $order->code }}</span></td>
-				</tr>
-				<tr>
-					<td class="gry-color small">{{  translate('Phone') }}: {{ get_setting('contact_phone') }}</td>
-					<td class="text-right small"><span class="gry-color small">{{  translate('Order Date') }}:</span> <span class=" strong">{{ date('d-m-Y', $order->date) }}</span></td>
-				</tr>
-				<tr>
-					<td class="gry-color small"></td>
-					<td class="text-right small">
-                        <span class="gry-color small">
-                            {{  translate('Payment method') }}:
-                        </span> 
-                        <span class="strong">
-                            {{ translate(ucfirst(str_replace('_', ' ', $order->payment_type))) }}
-                        </span>
-                    </td>
-				</tr>
-			</table>
+        <table class="noborder" >
+            <tr>
+                <td style="vertical-align:top">
+                    <table>
+                      <tr>
+                        <td style="vertical-align: text-top;">
+                          <div style="background: #ffd9e8 url(https://cdn0.iconfinder.com/data/icons/commerce-line-1/512/comerce_delivery_shop_business-07-128.png);width: 50px;height: 50px;margin-right: 10px;background-position: center;background-size: 42px;"></div>   
+                        </td>
+                      
+                            
+                        <td>
+                          <strong>Shipping Address</strong><br>
+                          {{ $shipping_address->name }}<br>
+                          {{ $shipping_address->address }}, {{ $shipping_address->city }}, {{ $shipping_address->country }}<br>
+                          {{ $shipping_address->email }}<br>
+                          {{ $shipping_address->phone }}
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                  <td style="vertical-align:top">
+                    <table>
+                      <tr>
+                        <td style="vertical-align: text-top;">
+                          <div style="background: #ffd9e8 url(https://cdn4.iconfinder.com/data/icons/app-custom-ui-1/48/Check_circle-128.png) no-repeat;width: 50px;height: 50px;margin-right: 10px;background-position: center;background-size: 25px;"></div>   
+                        </td>
+                        <td style="vertical-align:top">
+                          <strong>Payment Method</strong><br>
+                           <!--Your checkout made by VISA Card <br>**** **** **** 2478<br>-->
+                           <span style="text-transform:capitalize"> {{ str_replace("_", " ",$combined_order->payment_method ) }} </span><br>
+                           @if($combined_order->payment_method == 'direct_bank_transfer')
+                            <strong>Transfer Method:</strong> {{ str_replace("_", " ",$combined_order->payment_bank ) }} <br>
+                           @endif
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+               
+               
+            </tr>
+        </table>
 
-		</div>
+        <table style="margin-top: 20px">
+            <tr>
+                <th>Item</th>
+                <th>Est. Delivery</th>
+                <th>Qty</th>
+                <th>Price</th>
+                <th>Tax</th>
+                <th>Total</th>
+            </tr>
+            @foreach ($orders as $order)
+                @foreach ($order->orderDetails as $key => $orderDetail)
+                    @php
+                        $brand = $orderDetail->product->brand;
+                        $brand_name = '';
+                        if ($brand) {
+                            $brand_name = $brand->name;
+                        }
+                    @endphp
+                    <tr>
+                        <td>
+                            <small><b>{{ $brand_name }}</b></small><br>
+                            {{ $orderDetail->product->name ?? 'Product Unavailable' }}<br>
+                            <span style="font-size: 11px;">{{ $orderDetail->item_enc_skin }}</span>
+                        </td>
+                        <td>{{ $orderDetail->product->est_shipping_days }} days</td>
+                        <td>{{ $orderDetail->quantity }}</td>
+                        <td>{{ get_system_default_currency()->code." ". number_format($orderDetail->price / $orderDetail->quantity) }}</td>
+                        <td>{{ $orderDetail->tax > 0 ? get_system_default_currency()->code." ". number_format($orderDetail->tax) : 0 }}</td>
+                        <td>{{ get_system_default_currency()->code." ". number_format($orderDetail->price + $orderDetail->tax) }}</td>
+                    </tr>
+                @endforeach
+            @endforeach
+        </table>
 
-		<div style="padding: 1rem;padding-bottom: 0">
-            <table>
-				@php
-					$shipping_address = json_decode($order->shipping_address);
-				@endphp
-				<tr><td class="strong small gry-color">{{ translate('Bill to') }}:</td></tr>
-				<tr><td class="strong">{{ $shipping_address->name }}</td></tr>
-				<tr><td class="gry-color small">{{ $shipping_address->address }}, {{ $shipping_address->city }},  @if(isset(json_decode($order->shipping_address)->state)) {{ json_decode($order->shipping_address)->state }} - @endif {{ $shipping_address->postal_code }}, {{ $shipping_address->country }}</td></tr>
-				<tr><td class="gry-color small">{{ translate('Email') }}: {{ $shipping_address->email }}</td></tr>
-				<tr><td class="gry-color small">{{ translate('Phone') }}: {{ $shipping_address->phone }}</td></tr>
-			</table>
-		</div>
+        <div class="page-break"></div>
 
-	    <div style="padding: 1rem;">
-			<table class="padding text-left small border-bottom">
-				<thead>
-	                <tr class="gry-color" style="background: #eceff4;">
-	                    <th width="35%" class="text-left">{{ translate('Product Name') }}</th>
-						<th width="15%" class="text-left">{{ translate('Delivery Type') }}</th>
-	                    <th width="10%" class="text-left">{{ translate('Qty') }}</th>
-	                    <th width="15%" class="text-left">{{ translate('Unit Price') }}</th>
-	                    <th width="10%" class="text-left">{{ translate('Tax') }}</th>
-	                    <th width="15%" class="text-right">{{ translate('Total') }}</th>
-	                </tr>
-				</thead>
-				<tbody class="strong">
-	                @foreach ($order->orderDetails as $key => $orderDetail)
-		                @if ($orderDetail->product != null)
-							<tr class="">
-								<td>
-                                    {{ $orderDetail->product->name }} 
-                                    @if($orderDetail->variation != null) ({{ $orderDetail->variation }}) @endif
-                                    <br>
-                                    <small>
-                                        @php
-                                            $product_stock = json_decode($orderDetail->product->stocks->first(), true);
-                                        @endphp
-                                        {{translate('SKU')}}: {{ $product_stock['sku'] }}
-                                    </small>
-                                </td>
-								<td>
-									@if ($order->shipping_type != null && $order->shipping_type == 'home_delivery')
-										{{ translate('Home Delivery') }}
-									@elseif ($order->shipping_type == 'pickup_point')
-										@if ($order->pickup_point != null)
-											{{ $order->pickup_point->getTranslation('name') }} ({{ translate('Pickip Point') }})
-										@else
-                                            {{ translate('Pickup Point') }}
-										@endif
-									@elseif ($order->shipping_type == 'carrier')
-										@if ($order->carrier != null)
-											{{ $order->carrier->name }} ({{ translate('Carrier') }})
-											<br>
-											{{ translate('Transit Time').' - '.$order->carrier->transit_time }}
-										@else
-											{{ translate('Carrier') }}
-										@endif
-									@endif
-								</td>
-								<td class="">{{ $orderDetail->quantity }}</td>
-								<td class="currency">{{ single_price($orderDetail->price/$orderDetail->quantity) }}</td>
-								<td class="currency">{{ single_price($orderDetail->tax/$orderDetail->quantity) }}</td>
-			                    <td class="text-right currency">{{ single_price($orderDetail->price+$orderDetail->tax) }}</td>
-							</tr>
-		                @endif
-					@endforeach
-	            </tbody>
-			</table>
-		</div>
+        <table style="margin-top: 20px">
+            <tr>
+                <td ><strong>Sub-total:</strong></td>
+                <td>{{ single_price($orders->sum(function($order) { return $order->orderDetails->sum('price'); })) }}</td>
+            </tr>
+            <tr>
+                <td><strong>Shipping Charges:</strong></td>
+                <td>{{ single_price($orders->sum(function($order) { return $order->orderDetails->sum('shipping_cost'); })) }}</td>
+            </tr>
+            <tr>
+                <td><strong>Tax:</strong></td>
+                <td>{{ single_price($orders->sum(function($order) { return $order->orderDetails->sum('tax'); })) }}</td>
+            </tr>
+            <tr>
+                <td><h3 style="margin: 0">Grand total:</h3></td>
+                <td><h3 style="margin: 0">{{ single_price($orders->sum(function($order) { return $order->orderDetails->sum('price') + $order->orderDetails->sum('tax'); })) }}</h3></td>
+            </tr>
+        </table>
 
-	    <div style="padding:0 1.5rem;">
-	        <table class="text-right sm-padding small strong">
-	        	<thead>
-	        		<tr>
-	        			<th width="60%"></th>
-	        			<th width="40%"></th>
-	        		</tr>
-	        	</thead>
-		        <tbody>
-			        <tr>
-			            <td class="text-left">
-                            @php
-                                $removedXML = '<?xml version="1.0" encoding="UTF-8"?>';
-                            @endphp
-                            {!! str_replace($removedXML,"", QrCode::size(100)->generate($order->code)) !!}
-			            </td>
-			            <td>
-					        <table class="text-right sm-padding small strong">
-						        <tbody>
-							        <tr>
-							            <th class="gry-color text-left">{{ translate('Sub Total') }}</th>
-							            <td class="currency">{{ single_price($order->orderDetails->sum('price')) }}</td>
-							        </tr>
-							        <tr>
-							            <th class="gry-color text-left">{{ translate('Shipping Cost') }}</th>
-							            <td class="currency">{{ single_price($order->orderDetails->sum('shipping_cost')) }}</td>
-							        </tr>
-							        <tr class="border-bottom">
-							            <th class="gry-color text-left">{{ translate('Total Tax') }}</th>
-							            <td class="currency">{{ single_price($order->orderDetails->sum('tax')) }}</td>
-							        </tr>
-				                    <tr class="border-bottom">
-							            <th class="gry-color text-left">{{ translate('Coupon Discount') }}</th>
-							            <td class="currency">{{ single_price($order->coupon_discount) }}</td>
-							        </tr>
-							        <tr>
-							            <th class="text-left strong">{{ translate('Grand Total') }}</th>
-							            <td class="currency">{{ single_price($order->grand_total) }}</td>
-							        </tr>
-						        </tbody>
-						    </table>
-			            </td>
-			        </tr>
-		        </tbody>
-		    </table>
-	    </div>
-
-	</div>
+        
+        <div class="socialmedia" style="margin-top: 20px">Follow us online <small>[FB] [INSTA]</small></div>
+    </div>
 </body>
+
 </html>
+
