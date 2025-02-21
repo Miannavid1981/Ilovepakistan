@@ -26,9 +26,9 @@ class SellerMarketController extends Controller
         }
 
         $products = $query->paginate(12); // Paginate the products (12 per page)
-
+    
         // Get already imported product IDs for the user
-        $importedProductIds = SellerImportedProduct::where('user_id', Auth::id())->pluck('product_id')->toArray();
+        $importedProductIds = ProductSellerMap::where('seller_id', Auth::id())->pluck('product_id')->toArray();
 
         if ($request->ajax()) {
             return response()->json([
@@ -62,23 +62,28 @@ class SellerMarketController extends Controller
                 // Truncate the hash to get a 10-character length (example length)
                 $encryptedHash = Str::limit($base64, 10, '');
         
-                // Create or update the ProductSellerMap
-                ProductSellerMap::updateOrCreate(
-                    [
+                            // Check if the ProductSellerMap already exists
+                $exists = ProductSellerMap::where([
+                    'product_id' => $product->id,
+                    'seller_id' => $seller_id,
+                    'source_seller_id' => $product->user_id,
+                    'original_skin' => !empty($skin) ? $skin : ''
+                ])->exists();
+
+                if (!$exists) {
+                    ProductSellerMap::create([
                         'product_id' => $product->id,
                         'seller_id' => $seller_id,
                         'source_seller_id' => $product->user_id,
-                        'original_skin' => !empty($skin)  ? $skin :  ''
-                    ],
-                    [
-                        'encrypted_hash' => !empty($skin)  ? $encryptedHash  : null,
-                        'encrypted_value' => !empty($skin)  ?  $encrypted : null,
+                        'original_skin' => !empty($skin) ? $skin : '',
+                        'encrypted_hash' => !empty($skin) ? $encryptedHash : null,
+                        'encrypted_value' => !empty($skin) ? $encrypted : null,
                         'sku' => $product->stocks ? $product->stocks[0]->sku : null,
                         'imported' => 1,
                         'created_at' => now(),
                         'updated_at' => now(),
-                    ]
-                );
+                    ]);
+                }
             }
         }
         

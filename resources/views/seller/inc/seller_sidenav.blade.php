@@ -1,6 +1,20 @@
+@php
+    
+    $sidebar_color = '#dedede';
+    $seller_type = auth()->user()->seller_type;
+
+    if (auth()->user()->seller_type == "verified_seller"){
+        $sidebar_color = '#1898F1';
+
+    }
+
+
+
+@endphp
+
 <div class="aiz-sidebar-wrap">
-    <div class="aiz-sidebar left c-scrollbar">
-        <div class="aiz-side-nav-logo-wrap">
+    <div class="aiz-sidebar left c-scrollbar  @if (auth()->user()->official_brand == 1 && auth()->user()->seller_type == "brand_partner") bg-soft-success @elseif (auth()->user()->seller_type == "verified_seller" ) bg-soft-info @endif" >
+        <div class="aiz-side-nav-logo-wrap  " style="background: transparent">
             <div class="d-block text-center my-3">
                 @if (optional(Auth::user()->shop)->logo != null)
                     <img class="mw-100 mb-3" src="{{ uploaded_asset(optional(Auth::user()->shop)->logo) }}"
@@ -11,6 +25,23 @@
                 @endif
                 <h3 class="fs-16  m-0 text-primary">{{ optional(Auth::user()->shop)->name }}</h3>
                 <p class="text-primary">{{ Auth::user()->email }}</p>
+                @if (auth()->user()->official_brand == 1 && auth()->user()->seller_type == "brand_partner")
+                
+                
+                    <span class="bg-success text-light px-2 py-1 " style="border-radius: 20px">
+                    Brand Partner 
+                   </span>
+
+                @elseif (auth()->user()->seller_type == "store_partner")
+                    <span class="bg-dark text-light px-2 py-1 " style="border-radius: 20px">
+                    Store Partner
+                   </span>
+                @elseif (auth()->user()->seller_type == "verified_seller")
+                    <span class="bg-info text-light px-2 py-1" style="border-radius: 20px">
+                        Verified Seller
+                    </span>
+               
+                @endif
             </div>
         </div>
         <div class="aiz-side-nav-wrap">
@@ -28,9 +59,24 @@
                         <span class="aiz-side-nav-text">{{ translate('Dashboard') }}</span>
                     </a>
                 </li>
-
-                {{-- Products --}}
                 <li class="aiz-side-nav-item">
+                    <a href="{{ route('seller.market') }}"
+                        class="aiz-side-nav-link {{ areActiveRoutes(['seller.market']) }}">
+                        <i class="las la-atom aiz-side-nav-icon"></i>
+                        <span class="aiz-side-nav-text">{{ translate('Marketplace') }}</span>
+                    </a>
+                    
+                </li>
+                @if ($seller_type != 'store_partner')
+                <li class="aiz-side-nav-item">
+                    <a href="{{ route('seller.products') }}" class="aiz-side-nav-link">
+                        <i class="las la-shopping-cart aiz-side-nav-icon"></i>
+                        <span class="aiz-side-nav-text">{{ translate('Products') }}</span>
+                    </a>
+                </li>
+                @endif
+                {{-- Products --}}
+                {{-- <li class="aiz-side-nav-item">
                     <a href="#" class="aiz-side-nav-link">
                         <i class="las la-shopping-cart aiz-side-nav-icon"></i>
                         <span class="aiz-side-nav-text">{{ translate('Products') }}</span>
@@ -71,10 +117,10 @@
                             </a>
                         </li>
                     </ul>
-                </li>
+                </li> --}}
 
                 {{-- Note --}}
-                <li class="aiz-side-nav-item">
+                {{-- <li class="aiz-side-nav-item">
                     <a href="#" class="aiz-side-nav-link">
                         <div class="aiz-side-nav-icon">
                             <svg xmlns="http://www.w3.org/2000/svg" width="12" height="16.001" viewBox="0 0 16 16.001">
@@ -99,19 +145,19 @@
                             </a>
                         </li>
                     </ul>
-                </li>
+                </li> --}}
 
                 {{-- Uploaded Files --}}
-                <li class="aiz-side-nav-item">
+                {{-- <li class="aiz-side-nav-item">
                     <a href="{{ route('seller.uploaded-files.index') }}"
                         class="aiz-side-nav-link {{ areActiveRoutes(['seller.uploaded-files.index', 'seller.uploads.create']) }}">
                         <i class="las la-folder-open aiz-side-nav-icon"></i>
                         <span class="aiz-side-nav-text">{{ translate('Uploaded Files') }}</span>
                     </a>
-                </li>
+                </li> --}}
 
                 {{-- Packages --}}
-                @if (addon_is_activated('seller_subscription'))
+                {{-- @if (addon_is_activated('seller_subscription'))
                     <li class="aiz-side-nav-item">
                         <a href="#" class="aiz-side-nav-link">
                             <i class="las la-shopping-cart aiz-side-nav-icon"></i>
@@ -132,10 +178,10 @@
                             </li>
                         </ul>
                     </li>
-                @endif
+                @endif --}}
 
                 {{-- Coupon --}}
-                @if (get_setting('coupon_system') == 1)
+                {{-- @if (get_setting('coupon_system') == 1)
                     <li class="aiz-side-nav-item">
                         <a href="{{ route('seller.coupon.index') }}"
                             class="aiz-side-nav-link {{ areActiveRoutes(['seller.coupon.index', 'seller.coupon.create', 'seller.coupon.edit']) }}">
@@ -146,7 +192,7 @@
                 @endif
 
                 {{-- Wholesale Products --}}
-                @if (addon_is_activated('wholesale') && get_setting('seller_wholesale_product') == 1)
+                {{-- @if (addon_is_activated('wholesale') && get_setting('seller_wholesale_product') == 1)
                     <li class="aiz-side-nav-item">
                         <a href="{{ route('seller.wholesale_products_list') }}"
                             class="aiz-side-nav-link {{ areActiveRoutes(['wholesale_product_create.seller', 'wholesale_product_edit.seller']) }}">
@@ -154,10 +200,10 @@
                             <span class="aiz-side-nav-text">{{ translate('Wholesale Products') }}</span>
                         </a>
                     </li>
-                @endif
+                @endif --}}
 
                 {{-- Auction --}}
-                @if (addon_is_activated('auction') && get_setting('seller_auction_product') == 1)
+                {{-- @if (addon_is_activated('auction') && get_setting('seller_auction_product') == 1)
                     <li class="aiz-side-nav-item">
                         <a href="javascript:void(0);" class="aiz-side-nav-link">
                             <i class="las la-gavel aiz-side-nav-icon"></i>
@@ -179,10 +225,10 @@
                             </li>
                         </ul>
                     </li>
-                @endif
+                @endif --}}
 
                 {{-- POS --}}
-                @if (addon_is_activated('pos_system') &&
+                {{-- @if (addon_is_activated('pos_system') &&
                         get_setting('pos_activation_for_seller') != null &&
                         get_setting('pos_activation_for_seller') != 0)
                     <li class="aiz-side-nav-item">
@@ -209,9 +255,10 @@
                             </li>
                         </ul>
                     </li>
-                @endif
+                @endif --}}
 
                 {{-- Orders --}}
+                @if( $seller_type != "store_partner" )
                 <li class="aiz-side-nav-item">
                     <a href="{{ route('seller.orders.index') }}"
                         class="aiz-side-nav-link {{ areActiveRoutes(['seller.orders.index', 'seller.orders.show']) }}">
@@ -220,6 +267,7 @@
                     </a>
                 </li>
 
+                @endif
                 {{-- Refund Request --}}
                 @if (addon_is_activated('refund_request'))
                     <li class="aiz-side-nav-item">
@@ -231,14 +279,7 @@
                     </li>
                 @endif
 
-                {{-- Shop Setting --}}
-                <li class="aiz-side-nav-item">
-                    <a href="{{ route('seller.shop.index') }}"
-                        class="aiz-side-nav-link {{ areActiveRoutes(['seller.shop.index']) }}">
-                        <i class="las la-cog aiz-side-nav-icon"></i>
-                        <span class="aiz-side-nav-text">{{ translate('Shop Setting') }}</span>
-                    </a>
-                </li>
+               
 
                 {{-- Payment History --}}
                 <li class="aiz-side-nav-item">
@@ -257,7 +298,7 @@
                         <span class="aiz-side-nav-text">{{ translate('Money Withdraw') }}</span>
                     </a>
                 </li>
-
+                @if( $seller_type  != 'store_partner')
                 {{-- Commission History --}}
                 <li class="aiz-side-nav-item">
                     <a href="{{ route('seller.commission-history.index') }}" class="aiz-side-nav-link">
@@ -265,9 +306,10 @@
                         <span class="aiz-side-nav-text">{{ translate('Commission History') }}</span>
                     </a>
                 </li>
+                @endif
 
                 {{-- Conversations --}}
-                @if (get_setting('conversation_system') == 1)
+                {{-- @if (get_setting('conversation_system') == 1)
                     @php
                         $conversation = \App\Models\Conversation::where('sender_id', Auth::user()->id)
                             ->where('sender_viewed', 0)
@@ -283,10 +325,10 @@
                             @endif
                         </a>
                     </li>
-                @endif
+                @endif --}}
 
                 {{-- Product Queries --}}
-                @if (get_setting('product_query_activation') == 1)
+                {{-- @if (get_setting('product_query_activation') == 1)
                     <li class="aiz-side-nav-item">
                         <a href="{{ route('seller.product_query.index') }}"
                             class="aiz-side-nav-link {{ areActiveRoutes(['seller.product_query.index']) }}">
@@ -295,7 +337,7 @@
 
                         </a>
                     </li>
-                @endif
+                @endif --}}
 
                 @php
                     $support_ticket = DB::table('tickets')
@@ -314,13 +356,13 @@
                     </a>
                     
                 </li>
-                <li class="aiz-side-nav-item">
-                    <a href="{{ route('seller.market') }}"
-                        class="aiz-side-nav-link {{ areActiveRoutes(['seller.market']) }}">
-                        <i class="las la-atom aiz-side-nav-icon"></i>
-                        <span class="aiz-side-nav-text">{{ translate('Market') }}</span>
+                 {{-- Shop Setting --}}
+                 <li class="aiz-side-nav-item">
+                    <a href="{{ route('seller.shop.index') }}"
+                        class="aiz-side-nav-link {{ areActiveRoutes(['seller.shop.index']) }}">
+                        <i class="las la-cog aiz-side-nav-icon"></i>
+                        <span class="aiz-side-nav-text">{{ translate('Shop Setting') }}</span>
                     </a>
-                    
                 </li>
 
             </ul><!-- .aiz-side-nav -->

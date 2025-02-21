@@ -11,10 +11,17 @@
             <div class="d-flex justify-content-around align-items-center align-items-stretch">
                 <div class="aiz-topbar-item">
                     <div class="d-flex align-items-center">
-                        <a class=" d-flex gap-2 align-items-center" href="{{ route('shop.visit', auth()->user()->shop->slug) }}" target="_blank" title="{{ translate('Browse Website') }}">
-                            Visit your store
-                            <img src="https://static.vecteezy.com/system/resources/previews/023/797/822/non_2x/globe-icon-illustration-and-white-map-of-the-continents-of-the-world-vector.jpg" width="30">
+
+                      
+                        <a class="d-flex gap-2 align-items-center gap-2 bg-primary text-white px-4 py-1 fw-600 fs-15 " style="height: 40px; border-radius: 40px" href="{{ route('shop.visit', auth()->user()->shop->slug) }}" target="_blank" title="{{ translate('Browse Website') }}">
+                            Visit my store&nbsp;&nbsp;
+                            <img src="https://images.vexels.com/media/users/3/158194/isolated/preview/11507ef5615c554fe88fc22c86768501-simple-earth-icon.png" class="w-auto h-100">
                         </a>
+                        <button class="btn btn-light p-0 ml-2" style="height: 40px; width: 40px; border-radius: 10px ">
+
+                            <img src="https://static.vecteezy.com/system/resources/previews/046/930/670/non_2x/qr-code-icon-simple-qr-code-illustration-barcode-scan-abstract-design-isolated-vector.jpg" class="w-100 h-100" style="object-fit: cover; border-radius: 50%">
+                        </button>
+
                     </div>
                 </div>
             </div>
@@ -125,8 +132,17 @@
                                 >
                             </span>
                             <span class="d-none d-md-block">
-                                <span class="d-block fw-500">{{Auth::user()->name}}</span>
-                                <span class="d-block small opacity-60">{{Auth::user()->user_type}}</span>
+                                <span class="d-block fw-500 my-1">{{Auth::user()->name}}</span>
+                                @if (auth()->user()->shop->verification_status == 1)
+                                    <span class="bg-success text-white px-2 py-1" style="border-radius: 20px">
+                                        Approved
+                                    </span>
+                                @else 
+                                    <span class="bg-warning text-white px-2 py-1 " style="border-radius: 20px">
+                                        Pending
+                                    </span>
+                                @endif
+                                {{-- <span class="d-block small opacity-60 my-1 text-capitalize">{{Auth::user()->user_type}}</span> --}}
                             </span>
                         </span>
                     </a>

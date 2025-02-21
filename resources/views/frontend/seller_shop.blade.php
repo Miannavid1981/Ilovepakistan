@@ -173,7 +173,7 @@
             <div class="py-4">
                 <div class="row justify-content-md-between align-items-start">
                     <div class="col">
-                        <div class="d-flex align-items-center">
+                        <div class="d-flex align-items-start">
                             <!-- Shop Logo -->
                             <a href="{{ route('shop.visit', $shop->slug) }}" class="overflow-hidden size-64px rounded-content" style="border: 1px solid #e5e5e5;
                                 box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.06);min-width: fit-content;">
@@ -188,24 +188,14 @@
                                         
                                         <!-- Shop Name & Verification Status -->
                                         <a href="{{ route('shop.visit', $shop->slug) }}"
-                                            class="text-dark d-block fs-18 fw-700">
+                                            class="text-dark d-block fs-20 fw-700">
                                             <span>{{ $shop->name }}</span>
-                                            @if ($shop->verification_status == 1)
-                                            <span class="ml-2">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="17.5" height="17.5" viewBox="0 0 17.5 17.5">
-                                                    <g id="Group_25616" data-name="Group 25616" transform="translate(-537.249 -1042.75)">
-                                                        <path id="Union_5" data-name="Union 5" d="M0,8.75A8.75,8.75,0,1,1,8.75,17.5,8.75,8.75,0,0,1,0,8.75Zm.876,0A7.875,7.875,0,1,0,8.75.875,7.883,7.883,0,0,0,.876,8.75Zm.875,0a7,7,0,1,1,7,7A7.008,7.008,0,0,1,1.751,8.751Zm3.73-.907a.789.789,0,0,0,0,1.115l2.23,2.23a.788.788,0,0,0,1.115,0l3.717-3.717a.789.789,0,0,0,0-1.115.788.788,0,0,0-1.115,0l-3.16,3.16L6.6,7.844a.788.788,0,0,0-1.115,0Z" transform="translate(537.249 1042.75)" fill="#3490f3"/>
-                                                    </g>
-                                                </svg>
-                                            </span>
+                                            @if ($shop->user->official_brand == 1)
+                                                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Eo_circle_green_checkmark.svg/1200px-Eo_circle_green_checkmark.svg.png" width="25" class="ml-2">
                                             @else
-                                            <span class="ml-2">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="17.5" height="17.5" viewBox="0 0 17.5 17.5">
-                                                    <g id="Group_25616" data-name="Group 25616" transform="translate(-537.249 -1042.75)">
-                                                        <path id="Union_5" data-name="Union 5" d="M0,8.75A8.75,8.75,0,1,1,8.75,17.5,8.75,8.75,0,0,1,0,8.75Zm.876,0A7.875,7.875,0,1,0,8.75.875,7.883,7.883,0,0,0,.876,8.75Zm.875,0a7,7,0,1,1,7,7A7.008,7.008,0,0,1,1.751,8.751Zm3.73-.907a.789.789,0,0,0,0,1.115l2.23,2.23a.788.788,0,0,0,1.115,0l3.717-3.717a.789.789,0,0,0,0-1.115.788.788,0,0,0-1.115,0l-3.16,3.16L6.6,7.844a.788.788,0,0,0-1.115,0Z" transform="translate(537.249 1042.75)" fill="red"/>
-                                                    </g>
-                                                </svg>
-                                            </span>
+                                                @if($shop->user->seller_type != 'store_partner')
+                                                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Eo_circle_light-blue_checkmark.svg/1024px-Eo_circle_light-blue_checkmark.svg.png" width="25" class="ml-2">
+                                                @endif
                                             @endif
                                         </a>
 

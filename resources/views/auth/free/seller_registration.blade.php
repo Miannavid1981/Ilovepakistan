@@ -103,7 +103,7 @@
                     <div class="row align-items-center justify-content-center justify-content-lg-start " id="seller_form" style="display: none">
                         <div class="col-12">
                             <!-- Site Icon -->
-                            <form id="reg-form" class="form-default row justify-content-center mt-4" role="form" action="{{ route('shops.store') }}" method="POST">
+                            <form id="reg-form" class="form-default row justify-content-center mt-4" role="form" action="{{ route('shops.store') }}" enctype="multipart/form-data" method="POST">
                                 @csrf
 
                                 <div class="col-md-6" id="personal_info" style="display: none">

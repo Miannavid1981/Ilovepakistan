@@ -10,16 +10,44 @@
     font-weight: 600;
     letter-spacing: 1px;
     font-size: 15px;
+    bottom: 0;
+}
+.product_card {
+    border: 1px solid #dedede;
+    border-radius: 10px;
+    position: relative;
+    width: 100%
 }
 
+.product_card:has(input:checked){
+    background: #c5f5ff;
+    border: 1px solid #4ccee8;
+}
+
+.product_check_img {
+    position: absolute; top: 0; right: 0; width: 50px; border-radius: 50%;
+    display: none
+}
+.product_card:has(input:checked) .product_check_img {
+    display: block !important
+}
 </style>
 <div class="row">
     @foreach ($products as $product)
-        <div class="col-md-4 col-sm-6 mb-4">
-            <div class="card h-100">
-                <img src="{{ $product->thumbnail != null ? my_asset($product->thumbnail->file_name) : static_asset('assets/img/placeholder.jpg') }}" class="card-img-top" alt="{{ $product->name }}" style="height: 200px; object-fit: cover;">
-                <div class="card-body">
-                    <h5 class="card-title">{{ $product->name }}</h5>
+        <div class="col-md-2 col-sm-6 col-6 mb-4 px-1">
+            <label class="product_card h-100">
+                <input type="checkbox" 
+                    name="product_ids[]" 
+                    value="{{ $product->id }}" 
+                    class="product-checkbox"
+                    {{ in_array($product->id, $importedProductIds) ? 'checked' : '' }} style="display: none">
+                   
+                   
+                    <img src="https://t3.ftcdn.net/jpg/05/33/65/26/360_F_533652631_7QLcS0tWq9SsmcaEcolfFaLDWRfQpbjN.jpg" class="product_check_img p-2" alt="">
+                   
+                    <img src="{{ $product->thumbnail != null ? my_asset($product->thumbnail->file_name) : static_asset('assets/img/placeholder.jpg') }}" class="card-img-top rounded-2 p-2" alt="{{ $product->name }}" style="aspect-ratio: 1/1 ; object-fit: contain; border-radius: 10px">
+                <div class="card-body px-2">
+                    <h6 class="card-title">{{ $product->name }}</h6>
                    
                     <div class="d-flex ">
 
@@ -60,7 +88,7 @@
                             @endif 
         
                     <!-- Wholesale tag -->
-        
+                    
                     </div>
 
                     @php
@@ -154,14 +182,11 @@
                    
 
                     @endphp
-                @if($seller_profit > 0 )    <span class="profit_pill"> You'll earn PKR {{ number_format($seller_profit) }}</span> @endif
-                    <input type="checkbox" 
-                           name="product_ids[]" 
-                           value="{{ $product->id }}" 
-                           class="product-checkbox"
-                           {{ in_array($product->id, $importedProductIds) ? 'checked' : '' }}>
+                    <br>
+                    @if($seller_profit > 0 )    <span class="profit_pill"> Earn PKR {{ number_format($seller_profit) }}</span> @endif
+                  
                 </div>
-            </div>
+            </label>
         </div>
     @endforeach
 </div>
