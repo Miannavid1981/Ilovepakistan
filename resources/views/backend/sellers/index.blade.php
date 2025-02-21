@@ -126,6 +126,19 @@
                                 </div>
                                 <div class="col">
                                     <span class="text-truncate-2">{{ $shop->name }}</span>
+                                    @php
+                                        $pill_color = 'success';
+                                        if($shop->user->seller_type =="brand_partner") {
+                                            $pill_color = 'success';
+                                        } else if($shop->user->seller_type =="verified_seller") {
+                                            $pill_color = 'info';
+                                        } else {
+                                            $pill_color = 'dark';
+                                        }
+                                    @endphp
+                                    @if($shop->user->seller_type )
+                                    <span class="bg-{{ $pill_color }} text-light px-2 py-1 text-capitalize" style="border-radius: 20px"> {{ str_replace("_", " ", $shop->user->seller_type )}}</span>
+                                    @endif
                                 </div>
                             </div>
                         </td>
@@ -181,6 +194,9 @@
                                         <i class="las la-ellipsis-v"></i>
                                     </button>
                                     <div class="dropdown-menu dropdown-menu-right dropdown-menu-xs">
+                                        <a href="javascript:void();"  class="dropdown-item">
+                                            Make Official Brand
+                                        </a>
                                         @can('view_seller_profile')
                                             <a href="javascript:void();" onclick="show_seller_profile('{{$shop->id}}');"  class="dropdown-item">
                                                 {{translate('Profile')}}

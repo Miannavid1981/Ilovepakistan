@@ -289,19 +289,23 @@
             </div>
             <!-- Seller Zone Section -->
             <div class="col-12 col-lg-2 col-md-6 mb-4 text-center text-md-start">
-                <h5 class="fs-20 fw-bold">Seller Zone</h5>
+                <h5 class="fs-20 fw-bold">Business Partner Zone</h5>
                 <ul class="list-unstyled">
-                    <li class="mb-2">
+                    <li class="mb-1">
                         <p class="fs-17 text-dark text-secondary mb-0">
-                            Be our Partner
-                            <a href="{{ route('shops.create') }}" class="fs-17 fw-700 text-warning ml-2">Apply Now</a>
+                          
+                            <a href="{{ route('shops.create') }}" class="fs-17 text-dark">  Be our Partner</a>
                         </p>
                     </li>
-                    <li class="mb-2">
-                        <a class="fs-17 text-dark animate-underline-dark" href="#">Login to Seller Panel</a>
+                   
+                    <li class="mb-1">
+                        <a class="fs-17 text-dark animate-underline-dark" href="{{ url('/seller/login') }}">Partner Login</a>
                     </li>
-                    <li class="mb-2">
-                        <a class="fs-17 text-dark animate-underline-dark" target="_blank" href="#">Download Seller App</a>
+                   
+                    <li class="mb-1">
+                        <p class="fs-17 text-dark text-secondary mb-0">
+                            <a href="{{ route('shops.create') }}" class="fs-17 fw-700 bg-warning text-dark rounded-2 px-3 py-1 ">Apply Now</a>
+                        </p>
                     </li>
                 </ul>
             </div>

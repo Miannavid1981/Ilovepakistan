@@ -373,19 +373,22 @@ class HomeController extends Controller
 
     public function shop($slug)
     {
-        if (get_setting('vendor_system_activation') != 1) {
-            return redirect()->route('home');
-        }
+        // if (get_setting('vendor_system_activation') != 1) {
+        //     return redirect()->route('home');
+        // }
         $shop  = Shop::where('slug', $slug)->first();
+        $user = User::find($shop->user_id)->first();
+
+        // dd($user);
         if ($shop != null) {
             if ($shop->user->banned == 1) {
                 abort(404);
             }
-            if ($shop->verification_status != 0) {
+            // if ($user->seller_status == 1) {
                 return view('frontend.seller_shop', compact('shop'));
-            } else {
-                return view('frontend.seller_shop_without_verification', compact('shop'));
-            }
+            // } else {
+            //     return redirect()->route('home');
+            // }
         }
         abort(404);
     }

@@ -64,10 +64,43 @@ class ShopController extends Controller
         $user->email = $request->email;
         $user->user_type = "seller";
         $user->password = Hash::make($request->password);
-        
-        // Generate a new serial number for the seller
         $user->serial_no = generate_seller_serial_num(10, false);
-
+        $user->company_name = $request->company_name;
+        $user->authorized_person_email = $request->authorized_person_email;
+        $user->authorized_person_mobile = $request->authorized_person_mobile;
+        $user->authorized_person_cnic_no = $request->authorized_person_cnic_no;
+        $user->bank_name = $request->bank_name;
+        $user->bank_account_title = $request->bank_account_title;
+        $user->bank_iban = $request->bank_iban;
+        $user->registered_office_address = $request->registered_office_address;
+        $user->sales_tax_registration_number = $request->sales_tax_registration_number;
+        $user->partnership_ntn = $request->partnership_ntn;
+        $user->number_of_employees = $request->number_of_employees;
+        $user->annual_tenure = $request->annual_tenure;
+        $user->designation = $request->designation;
+        $user->whatsapp_number = $request->whatsapp_number;
+    
+        // Handle file uploads
+        if ($request->hasFile('authorized_person_cnic_front')) {
+            $user->authorized_person_cnic_front = $request->file('authorized_person_cnic_front')->store('uploads/cnic_fronts');
+        }
+        // Handle file back
+        if ($request->hasFile('authorized_person_cnic_back')) {
+            $user->authorized_person_cnic_back = $request->file('authorized_person_cnic_back')->store('uploads/cnic_backs');
+        }
+    
+        if ($request->hasFile('cheque_copy')) {
+            $user->cheque_copy = $request->file('cheque_copy')->store('uploads/cheque_copies');
+        }
+    
+        if ($request->hasFile('partnership_deed')) {
+            $user->partnership_deed = $request->file('partnership_deed')->store('uploads/partnership_deeds');
+        }
+    
+        if ($request->hasFile('authority_letter')) {
+            $user->authority_letter = $request->file('authority_letter')->store('uploads/authority_letters');
+        }
+                
         if ($user->save()) {
             $shop = new Shop;
             $shop->user_id = $user->id;
@@ -86,6 +119,7 @@ class ShopController extends Controller
                 } catch (\Throwable $th) {
                     $shop->delete();
                     $user->delete();
+                  
                     flash(translate('Seller registration failed. Please try again later.'))->error();
                     return back();
                 }
@@ -123,7 +157,7 @@ class ShopController extends Controller
                 //throw $th;
             }
         }
-
+        dd("errr");
         flash(translate('Sorry! Something went wrong.'))->error();
         return back();
     }
