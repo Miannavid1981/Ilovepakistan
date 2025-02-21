@@ -14,7 +14,7 @@
 
                       
                         <a class="d-flex gap-2 align-items-center gap-2 bg-primary text-white px-4 py-1 fw-600 fs-15 " style="height: 40px; border-radius: 40px" href="{{ route('shop.visit', auth()->user()->shop->slug) }}" target="_blank" title="{{ translate('Browse Website') }}">
-                            Visit my store&nbsp;&nbsp;
+                            Visit store&nbsp;&nbsp;
                             <img src="https://images.vexels.com/media/users/3/158194/isolated/preview/11507ef5615c554fe88fc22c86768501-simple-earth-icon.png" class="w-auto h-100">
                         </a>
                         <button class="btn btn-light p-0 ml-2" style="height: 40px; width: 40px; border-radius: 10px ">
