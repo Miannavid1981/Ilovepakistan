@@ -552,8 +552,8 @@
 
                     @else
 
-                        <button type="button" data-id="{{ $detailedProduct->id }}" class="btn btn-primary buy-now fw-600 add-to-cart min-w-150px rounded-0 g-import-to-seller">
-                            <i class="la la-shopping-cart"></i> {{ translate('Buy Now') }}
+                        <button type="button" data-id="{{ $detailedProduct->id }}" class="btn btn-primary buy-now fw-600 add-to-cart min-w-150px rounded-0 g-import-to-seller w-100">
+                            <i class="la la-plus"></i> {{ translate('Import Product') }}
                         </button>
 
                     @endif
