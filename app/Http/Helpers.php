@@ -3108,7 +3108,7 @@ if (!function_exists('show_global_cart')) {
     function show_global_cart()
     {
         // If user is not authenticated, return true
-        if (!Auth::check()) {
+        if (!empty(auth()->user())) {
             return true;
         }
         // If user is authenticated, return true only if user_type is 'customer'
