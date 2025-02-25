@@ -276,9 +276,9 @@ if(!empty($product->product_custom_url)){
                 @php
                      $show_add_to_cart_btn = true;
                      $show_skin_import_button = false;
-                     $seller_type = auth()->user()->seller_type;   
+                     $seller_type = null;
                     if(!empty(auth()->user())) {
-
+                        $seller_type = auth()->user()->seller_type;   
                         $user_type = auth()->user()->user_type;
 
                         if(!empty($user_type)){
