@@ -557,9 +557,15 @@
                         @endphp
 
                         @if($seller_imported_flag)
-                            <button type="button" data-id="{{ $detailedProduct->id }}" class="btn btn-light text-dark buy-now fw-600 add-to-cart min-w-150px rounded-0  w-100" disabled>
+                        <div class="d-flex">
+                            <button type="button" data-id="{{ $detailedProduct->id }}" style="background: #eee" class="btn text-dark buy-now fw-600 add-to-cart min-w-150px rounded-0  w-100" disabled>
                                 <i class="la la-check"></i> Imported
                             </button>
+                            <a href="" class="btn btn-primary text-dark buy-now fw-600 add-to-cart min-w-150px rounded-0  w-100" >
+                                <i class="la la-plus"></i> New Listing
+                            </a>
+                        </div>
+                           
                             
                         @else
                             <button type="button" data-id="{{ $detailedProduct->id }}" class="btn btn-primary buy-now fw-600 add-to-cart min-w-150px rounded-0 g-import-to-seller w-100">
