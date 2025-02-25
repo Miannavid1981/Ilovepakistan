@@ -18,67 +18,7 @@ if(!empty($product->product_custom_url)){
 }
 
 @endphp
-<style>
 
-.custom_card_tag {
-    background-color: #FDE683;
-    border: none !important;
-    border-radius: 20px;
-    width: fit-content;
-    background: #FDE683;
-    border: none;
-    padding: 1px 6px;
-    letter-spacing: 1px;
-    text-transform: capitalize;
-    font-weight: 500;
-    font-size: 0.6rem;
-}
-.add-cart-btn { 
-    transform: translateY(100%);
-    transition: all .3s ease-in-out;
-    
-}
-.aiz-card-box:hover  .add-cart-btn {
-    transform: translateY(0);
-    transition: all .3s ease-in-out;
-}
-
-.view-cart, .add-to-cart{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-        padding: 6px;
-        font-size: 10px !important;
-        background: #fff !important;
-        color: #000 !important;
-        border-radius: 20px;
-        right: 10px;
-        left: unset !important;
-        bottom: 10px;
-        border: 1px solid #ccc;
-        left: 10px !important;
-        text-decoration: none !important;
-        opacity: 1 !important;
-        text-transform: uppercase;
-        font-weight: 500 !important;
-}
-
-       .view-cart:hover ,
-       .add-to-cart:hover {
-        background: #000 !important;
-        transition: all .3s ease-in-out;
-        color: #fff !important;
-    } 
-
-
-    @media (max-width: 767px){
-        .add-cart-btn button span {
-            display: none !important
-        }
-    }
-  
-   
-</style>
 <div class="aiz-card-box h-auto pb-3 ">
     {{-- <a href="{{$product_url}}" > --}}
         
@@ -333,7 +273,42 @@ if(!empty($product->product_custom_url)){
 
                     @endif 
                 </div>
-                <button class=" add_to_cart_small_btn rounded-circle p-2 d-flex align-items-center justify-content-center g-add-to-cart" style="aspect-ratio:1/1"  data-id="{{ $product->id }}" data-skin_code="{{ $product->product_skin ?? get_product_seller_map_skin($product) }}" ><i class="las la-cart-plus fs-24"></i>  </button>
+                @php
+                     $show_add_to_cart_btn = true;
+                     $show_skin_import_button = false;
+
+                    if(!empty(auth()->user())) {
+
+                        $user_type = auth()->user()->user_type;
+
+                        if(!empty($user_type)){
+                        
+                            if($user_type == "customer"){
+                                $show_add_to_cart_btn = true;
+                                $show_skin_import_button = false;
+                            } else {
+                                $show_add_to_cart_btn = false;
+                                $show_skin_import_button = true;
+                            }
+
+                        }
+                        
+                    } 
+                   
+                @endphp
+                    @if( $show_add_to_cart_btn)
+                        <button class=" add_to_cart_small_btn rounded-circle p-2 d-flex align-items-center justify-content-center g-add-to-cart" style="aspect-ratio:1/1"  data-id="{{ $product->id }}" data-skin_code="{{ $product->product_skin ?? get_product_seller_map_skin($product) }}" ><i class="las la-cart-plus fs-24"></i>  </button>
+                    @endif
+                    @if( $show_skin_import_button)
+
+                        @php
+                            $seller_imported_flag = (int) \App\Models\ProductSellerMap::where('product_id', $product->id)->where('seller_id', auth()->user()->id)->count();
+                            // dd($seller_imported_flag);
+                        @endphp
+
+                        <button class=" add_to_cart_small_btn rounded-circle p-2 d-flex align-items-center justify-content-center g-import-to-seller" style="aspect-ratio:1/1; {{ $seller_imported_flag == 0 ? 'background:red' : 'background:#eee;color: #000; cursor: default' }} "  data-id="{{ $product->id }}" data-skin_code="{{ $product->product_skin ?? get_product_seller_map_skin($product) }}"     {{ $seller_imported_flag == 0 ?? 'disabled'  }}   ><i class="las la-{{ $seller_imported_flag  == 0 ? 'plus' : 'check'  }} fs-24"></i>  </button>
+                    @endif
+                
                 
 
             </div>

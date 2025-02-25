@@ -51,6 +51,8 @@ use App\Http\Controllers\WalletController;
 use App\Http\Controllers\WishlistController;
 use App\Http\Controllers\SizeChartController;
 use App\Http\Controllers\CustomCartController;
+use App\Http\Controllers\Seller\SellerMarketController;
+
 /*
   |--------------------------------------------------------------------------
   | Web Routes
@@ -556,3 +558,7 @@ Route::post('/seller-products', function (Request $request) {
 
 
 Route::post('/orders/upload-receipts', [CheckoutController::class, 'uploadReceipts'])->name('orders.uploadReceipts');
+
+
+
+Route::post('/product/import-to-seller', [SellerMarketController::class, 'store'])->name('home.product.import');
