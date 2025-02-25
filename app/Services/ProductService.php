@@ -172,7 +172,7 @@ class ProductService
         $collection = collect($data);
 
         // dd($collection);
-        $commission = $data['commission'] ? 1 : 0;
+        $commission = !empty($data['commission']) ? 1 : 0;
         
         $slug = Str::slug($collection['name']);
         $slug = $collection['slug'] ? Str::slug($collection['slug']) : Str::slug($collection['name']);
