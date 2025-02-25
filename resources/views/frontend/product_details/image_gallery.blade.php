@@ -191,7 +191,7 @@ $photos = [];
         @if(count($photos) == 1 )
 
             <div class="col-12 ">
-                <img src="{{ uploaded_asset($photos[0]) }}" class=" h-100">
+                <img src="{{ uploaded_asset($photos[0]) }}" class=" h-100 w-100">
             </div>
             
         @else
