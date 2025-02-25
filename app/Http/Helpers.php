@@ -3102,3 +3102,10 @@ function getMinMaxPriceFromSeller($sellerId) {
         'max_price' => $maxPrice ?? 0
     ];
 }
+
+if (!function_exists('show_global_cart')) {
+    function show_global_cart()
+    {
+        return Auth::check() && Auth::user()->user_type == 'customer';
+    }
+}

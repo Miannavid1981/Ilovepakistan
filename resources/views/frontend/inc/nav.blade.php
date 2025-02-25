@@ -117,14 +117,14 @@
                         
                         </ul>
                     </div> -->
-                
-
+                    
+                   @if(show_global_cart())
                     <button class="btn btn-light bg-white border-0 me-3 p-0 position-relative toggle-cart-modal">
                         <i class="fa-solid fs-18 fa-cart-shopping"></i>
                         <span class="cart-badge g-cart-items-count">0</span>
                         <p class="fw-bold mb-0">Cart</p>
                     </button>
-
+                    @endif
 
                 </div>
             </div>
@@ -183,10 +183,14 @@
             <img src="{{ $logo_url }}" alt="AliExpress Logo" class="img-fluid">
         </div>
         <div class="col-8 d-flex justify-content-end align-items-center">
+
+
             <i class="fa-solid fa-user fs-20 me-3"></i>
+            @if(show_global_cart())
             <button class="btn btn-light bg-white p-0 border-0 toggle-cart-modal">
                 <i class="fa-solid fa-cart-shopping fs-20"></i>
             </button>
+            @endif
             
         </div>
         <div class="col-12 mt-2">
@@ -552,6 +556,37 @@ $(document).ready(function(){
 
                 } else {
                     alert(response.message || 'Failed to add product to cart.');
+                }
+            },
+        });
+    });
+
+    // Import to Seller
+    $(document).on('click', '.g-import-to-seller', function () {
+        const productId = $(this).data('id');
+        const prev_text = $(this).html();
+
+        var elm = $(this);
+        elm.attr("disabled", "disabled");
+        $(this).html('<i class="fa fa-spinner fa-spin d-block fs-20 "></i>');
+        $.ajax({
+            url: '{{  url("/product/import-to-seller") }}',
+            method: 'POST',
+            data: {
+                _token: $('meta[name="csrf-token"]').attr('content'),
+                product_ids: [
+                    productId
+                ],
+                
+            },
+            success: function (response) {
+                if (response.success) {
+  
+                    elm.parent().append(response.new_html)
+                    elm.remove();
+
+                } else {
+                    alert(response.message || 'Failed to import product to seller.');
                 }
             },
         });

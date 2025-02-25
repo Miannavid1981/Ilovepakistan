@@ -86,8 +86,12 @@ class SellerMarketController extends Controller
                 }
             }
         }
+        $ret = ['success' => true, 'message' => 'Product(s) Imported Successfully'];
         
-        return response()->json(['success' => true, 'message' => 'Products mapped to sellers successfully.']);
+        if($request->ajax()){
+            $ret['new_html'] = '<button class=" add_to_cart_small_btn rounded-circle p-2 d-flex align-items-center justify-content-center g-import-to-seller" style="aspect-ratio:1/1; background:#eee;color: #000 " data-id="'.$productIds[0].'" data-skin_code="" disabled><i class="las la-check fs-24"></i>  </button>';
+        }
+        return response()->json($ret);
     }
 
 }
