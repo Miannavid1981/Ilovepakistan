@@ -82,23 +82,32 @@
                         @endif
                     </th>
                     <th>{{translate('Name')}}</th>
-                    <th data-breakpoints="lg">{{translate('Phone')}}</th>
-                    <th data-breakpoints="lg">{{translate('Email Address')}}</th>
+                    <th data-breakpoints="lg">{{translate('Details')}}</th>
+
+                   
+                    
                     @if($route == 'all_seller_route')
-                        <th data-breakpoints="lg">{{translate('Verification Info')}}</th>
-                        <th data-breakpoints="lg">{{translate('Approval')}}</th>
+                        <th data-breakpoints="lg">{{translate('Wallet ')}}</th>
                         <th data-breakpoints="lg">{{ translate('Num. of Products') }}</th>
-                        <th data-breakpoints="lg">{{ translate('Due to seller') }}</th>
+                        <th data-breakpoints="lg">{{ translate('SKIN Imports') }}</th>
+                        <th data-breakpoints="lg">{{ translate('Business Type') }}</th>
+                        <th data-breakpoints="lg">{{ translate('Company Type') }}</th>
+                       
+                        
+                        {{-- <th data-breakpoints="lg">{{ translate('Due to seller') }}</th> --}}
                         @if(get_setting('seller_commission_type') == 'seller_based')
                             <th data-breakpoints="lg">{{ translate('Commission') }}</th>
                         @endif
-                        <th data-breakpoints="lg">{{translate('Email Verification')}}</th>
-                        <th data-breakpoints="lg">{{ translate('Status') }}</th>
+                        {{-- <th data-breakpoints="lg">{{translate('Email Verification')}}</th>
+                        <th data-breakpoints="lg">{{ translate('Status') }}</th> --}}
+                        <th data-breakpoints="lg">{{translate('Approval')}}</th>
+                    
                     @else
                         <th data-breakpoints="lg">{{translate('Rating')}}</th>
                         <th data-breakpoints="lg">{{translate('Followers')}}</th>
                         <th data-breakpoints="lg">{{ translate('Custom Followers') }}</th>
                     @endif
+                  
                     <th width="10%">{{translate('Options')}}</th>
                 </tr>
                 </thead>
@@ -122,10 +131,6 @@
                         <td>
                             <div class="row gutters-5  mw-100 align-items-center">
                                 <div class="col-auto">
-                                    <img src="{{ uploaded_asset($shop->logo) }}" class="size-40px img-fit" alt="Image" onerror="this.onerror=null;this.src='{{ static_asset('assets/img/placeholder.jpg') }}';">
-                                </div>
-                                <div class="col">
-                                    <span class="text-truncate-2">{{ $shop->name }}</span>
                                     @php
                                         $pill_color = 'success';
                                         if($shop->user->seller_type =="brand_partner") {
@@ -137,44 +142,59 @@
                                         }
                                     @endphp
                                     @if($shop->user->seller_type )
-                                    <span class="bg-{{ $pill_color }} text-light px-2 py-1 text-capitalize" style="border-radius: 20px"> {{ str_replace("_", " ", $shop->user->seller_type )}}</span>
+                                    <span style="position: absolute; top: -15px; left: 0; right: 0; font-size: 10px" class="bg-{{ $pill_color }}   text-light px-1 py-1 text-capitalize" style="border-radius: 20px"> {{ str_replace("_", " ", $shop->user->seller_type )}}</span>
                                     @endif
+                                    <img style="object-fit:contain" src="{{ uploaded_asset($shop->logo) }}" class="size-70px border rounded-2 border-{{ $pill_color }} " alt="Image" onerror="this.onerror=null;this.src='{{ static_asset('assets/img/placeholder.jpg') }}';">
+                                </div>
+                                <div class="col">
+                                    <span class="text-truncate-2">{{ $shop->name }}</span>
+                                   
                                 </div>
                             </div>
                         </td>
-                        <td>{{$shop->user->phone}}</td>
-                        <td>{{$shop->user->email}}</td>
+                        <td>
+                            {{$shop->user->phone}} 
+                            <br>
+                            {{$shop->user->email}}
+                        </td>
                         @if($route == 'all_seller_route')
                             <td>
-                                @if ($shop->verification_status != 1 && $shop->verification_info != null)
+                                {{-- @if ($shop->verification_status != 1 && $shop->verification_info != null)
                                     <a href="{{ route('sellers.show_verification_request', $shop->id) }}">
                                         <span class="badge badge-inline badge-info">{{translate('Show')}}</span>
                                     </a>
-                                @endif
+                                @endif --}}
+                                @php
+                                    $wallet = \App\Models\Wallet::where('user_id', $shop->user->id )->first();
+                                    $wallet_amount = $wallet ? $wallet->amount : 0; 
+                                @endphp
+                                {{  $wallet_amount  }}
                             </td>
-                            <td>
-                                <label class="aiz-switch aiz-switch-success mb-0">
-                                    <input
-                                        @can('approve_seller') onchange="update_approved(this)" @endcan
-                                        value="{{ $shop->id }}" type="checkbox"
-                                        <?php if($shop->verification_status == 1) echo "checked";?>
-                                        @cannot('approve_seller') disabled @endcan
-                                    >
-                                    <span class="slider round"></span>
-                                </label>
-                            </td>
+                            
                             <td>{{ $shop->user->products->count() }}</td>
-                            <td>
+                            <td>{{ $shop->user->products->count() }}</td>
+                            {{-- <td>
                                 @if ($shop->admin_to_pay >= 0)
                                     {{ single_price($shop->admin_to_pay) }}
                                 @else
                                     {{ single_price(abs($shop->admin_to_pay)) }} ({{ translate('Due to Admin') }})
                                 @endif
-                            </td>
+                            </td> --}}
                             @if(get_setting('seller_commission_type') == 'seller_based')
                                 <td>{{ $shop->commission_percentage }}%</td>
                             @endif
                             <td>
+                                @if ( !empty( $shop->user->business_type) )
+                                <span class="bg-dark text-light px-2 py-1 text-capitalize" style="border-radius: 20px"> {{ str_replace("_", " ",  $shop->user->business_type  )}}</span>
+                                @endif
+                            </td>
+                            <td>
+                                @if ( !empty( $shop->user->company_type) )
+                                    <span class="bg-dark text-light px-2 py-1 text-capitalize" style="border-radius: 20px"> {{ str_replace("_", " ",  $shop->user->company_type  )}}</span>
+                                @endif
+                            </td>
+                            
+                            {{-- <td>
                                 @if($shop->user->email_verified_at != null)
                                     <span class="badge badge-inline badge-success">{{translate('Verified')}}</span>
                                 @else
@@ -187,6 +207,17 @@
                                 @else
                                     <span class="badge badge-inline badge-success">{{ translate('Regular') }}</span>
                                 @endif
+                            </td> --}}
+                            <td>
+                                <label class="aiz-switch aiz-switch-success mb-0">
+                                    <input
+                                        @can('approve_seller') onchange="update_approved(this)" @endcan
+                                        value="{{ $shop->id }}" type="checkbox"
+                                        <?php if($shop->verification_status == 1) echo "checked";?>
+                                        @cannot('approve_seller') disabled @endcan
+                                    >
+                                    <span class="slider round"></span>
+                                </label>
                             </td>
                             <td>
                                 <div class="dropdown">

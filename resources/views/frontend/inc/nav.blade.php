@@ -1,280 +1,4 @@
-  <!-- Preloader -->
-  <style>
 
-
-        .search-bar {
-            border: 1px solid #858585;
-            border-radius: 50px;
-            overflow: hidden;
-            max-height: 37px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        .search-bar input {
-            border: none;
-            outline: none;
-           
-        }
-        .header-top img {
-            max-height: 50px;
-        }
-        .header-bottom .nav-link {
-            font-size: 1.1rem;
-        }
-        .header-bottom .nav-link:hover {
-            background-color: #eeeeee;
-            border-radius: 50px;
-            transition: 0.3s ease;
-        }
-        .cart-badge {
-            background-color: red;
-            color: white;
-            border-radius: 50%;
-            font-size: 0.7rem;
-            width: 15px;
-            height: 15px;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            position: absolute;
-            top: -3px;
-            right: -6px;
-        }
-        .dropdown {
-            position: relative;
-            display: inline-block;
-        }
-
-        .dropdown-menu {
-            display: none;
-            position: absolute;
-            background-color: #f9f9f9;
-            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
-            z-index: 1;
-            min-width: 160px;
-        }
-
-        .dropdown-menu a {
-            color: black;
-            padding: 12px 16px;
-            text-decoration: none;
-            display: block;
-        }
-
-        .dropdown-menu a:hover {
-            background-color: #f1f1f1;
-        }
-
-        .nav-link.category-btn {
-            display: inline-block; 
-            border-radius: 20px;
-            background-color: transparent; 
-            padding: 5px 30px !important;
-            transition: background-color 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .nav-link.category-btn:hover {
-            background-color: #F5F5F5; 
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
-            text-decoration: none;
-        }
-
-
-        .nav-item {
-            margin: 0;
-        }
-
-        .nav-link.category-btn + .nav-link.category-btn {
-            margin-left: 10px; 
-        }
-
-        .navbar .nav-link {
-            font-size: 14px;
-            font-weight: 400;
-            color: #000;
-        }
-
-        .search_button_icon {
-            background: #000;
-            border-radius: 30px !important;
-            font-size: 17px;
-            padding: 0px 20px !important;
-            color: #fff !important;
-            margin: 2px;
-        }
-        
-
-        #search_cat {
-            background: #e9e9e9;
-            border-radius: 30px;
-            font-size: 16px;
-            padding: 0px 20px;
-            color: #000000 !important;
-            margin: 4px;
-            border: unset !important;
-            height: 100%;
-        }
-        /* Slide in from right */
-        @keyframes slideInRight {
-        from {
-            transform: translateX(100%);
-            opacity: 0;
-        }
-        to {
-            transform: translateX(0);
-            opacity: 1;
-        }
-        }
-
-        @keyframes slideOutRight {
-        from {
-            transform: translateX(0);
-            opacity: 1;
-        }
-        to {
-            transform: translateX(100%);
-            opacity: 0;
-        }
-        }
-        .slide-in-right {
-            border-radius: 20px;
-            height: 100vh;
-        }
-        .slide-in-right .modal-dialog {
-            min-width: 30vw;
-            border-radius: 20px;
-            height: auto !important;
-        }
-
-        .slide-in-right .modal-content .modal-body {
-            padding: .7rem !important;
-        }
-        .modal.fade.slide-in-right .modal-dialog {
-        transform: translateX(100%);
-        transition: transform 0.3s ease-out;
-        }
-
-        .modal.fade.show.slide-in-right .modal-dialog {
-        transform: translateX(0);
-        }
-
-        .slide-in-cart-extended {
-            min-width: 50vw !important;
-        }
-        .modal.fade.slide-in-right {
-        animation: slideInRight 0.3s forwards;
-        }
-
-        .modal.fade.slide-in-right .modal.fade {
-        animation: slideOutRight 0.3s forwards;
-        }
-        .slide-in-right .modal-dialog {
-            right: .5rem  !important;
-            top: .5rem !important;
-            bottom: .5rem !important;
-            height: auto;
-            width: 30vw !important;
-        }
-        .slide-in-right .modal-body {
-            max-height: 100%;
-        }
-        header .dropdown-toggle {
-            
-            align-items: flex-end !important;
-        }
-        header .dropdown-toggle::after {
-    
-            font-size: 100% !important;
-            
-        }
-
-        
-        @media (max-width: 1024px){
-
-        }
-        @media (max-width: 991px){
-            header {
-                display: none !important;
-            }
-            .cart-offers-section {
-                display: none !important;
-            }
-            .slide-in-right .modal-dialog {
-                right: 10px !important;
-                top: 10px !important;
-                bottom: 10px !important;
-                min-width: 200px;
-                max-width: 200px;
-                border-radius: 15px !important;
-                height: auto !important;
-            }
-            .slide-in-right .modal-body {
-                padding: 0px 10px !important;
-                height: 100% !important;
-            }
-            .slide-in-right .minicart-main-left-section {
-                padding-top: 15px ;
-            }
-            .slide-in-right .modal-dialog {
-                width: 80vw !important;
-            }
-        }
-        .quantity-switcher {
-            display: flex;
-            justify-content: flex-end;
-        }
-        .sidecart-items.disabled {
-            opacity: 0.5;
-            pointer-events: none;
-        }
-
-        .quantity-switcher-buttons {
-            background: #e6e6e6;
-            border: none;
-            width: 25px;
-            color: #000000;
-            font-size: 20px;
-            border-radius: 50%;
-            aspect-ratio: 1 / 1;
-            height: 25px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin: 0;
-            padding: 0;
-            line-height: 0;
-            vertical-align: middle;
-        }
-        .cart-item-count {
-            position: absolute;
-            bottom: -10px;
-            right: -10px;
-            background: red;
-            width: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            aspect-ratio: 1 / 1;
-            border-radius: 50%;
-            height: 20px;
-            color: #fff;
-            font-weight: bold;
-        }
-        .grid_sidecart_suggested {
-            display: grid !important;
-            grid-template-columns: 1.2fr 3fr;
-            gap:25px;
-        }
-        .grid_sidecart {
-            display: grid !important;
-            grid-template-columns: 0.1fr 1.2fr 3fr;
-            gap: 5px;
-        }
-        .home_category:hover {
-            transform: scale(1.1);
-        }
-    </style>
 
 <header class="container bg-white pt-1">
         <!-- Header Top -->
@@ -694,49 +418,6 @@
 
      /* Preloader container */
 
-#preloader {
-
-  position: fixed;
-
-  top: 0;
-
-  left: 0;
-
-  width: 100%;
-
-  height: 100%;
-
-  background-color: #fff;
-
-  display: none;
-
-  justify-content: center;
-
-  align-items: center;
-
-  z-index: 9999;
-
-}
-
-
-
-/* Loader animation */
-
-.loader {
-
-  border: 5px solid #ccc;
-
-  border-top: 5px solid #007bff;
-
-  border-radius: 50%;
-
-  width: 50px;
-
-  height: 50px;
-
-  animation: spin 1s linear infinite;
-
-}
 
 
 
@@ -802,39 +483,6 @@
 
 /* CSS from the previous instructions */
 
-.proceed-order-popup {
-
-    position: fixed;
-
-    right: 20px;
-
-    z-index: 100;
-
-    background-color: #ff5722;
-
-    color: white;
-
-    border: none;
-
-    padding: 10px 20px;
-
-    border-radius: 5px;
-
-    cursor: pointer;
-
-    animation: blinker 2s linear infinite;
-
-}
-
-@keyframes blinker {
-
-  50% {
-
-    opacity: 0.3;
-
-  }
-
-}
 
 </style>
 
@@ -1300,34 +948,34 @@ function resetMenu(){
             }
 
             document.addEventListener("DOMContentLoaded", function () {
-        const helplineLink = document.getElementById("helpline-link");
-        const helplineNumber = document.getElementById("helpline-number");
+                const helplineLink = document.getElementById("helpline-link");
+                const helplineNumber = document.getElementById("helpline-number");
 
-        // Show number when hovering over the helpline text
-        helplineLink.addEventListener("mouseover", function () {
-            helplineNumber.style.display = "block";
-        });
+                // Show number when hovering over the helpline text
+                helplineLink.addEventListener("mouseover", function () {
+                    helplineNumber.style.display = "block";
+                });
 
-        // Hide number when mouse leaves both the link and the number
-        helplineLink.addEventListener("mouseleave", function () {
-            setTimeout(() => {
-                helplineNumber.style.display = "none";
-            }, 300); // Slight delay to avoid flickering
-        });
+                // Hide number when mouse leaves both the link and the number
+                helplineLink.addEventListener("mouseleave", function () {
+                    setTimeout(() => {
+                        helplineNumber.style.display = "none";
+                    }, 300); // Slight delay to avoid flickering
+                });
 
-        helplineNumber.addEventListener("mouseover", function () {
-            helplineNumber.style.display = "block";
-        });
+                helplineNumber.addEventListener("mouseover", function () {
+                    helplineNumber.style.display = "block";
+                });
 
-        helplineNumber.addEventListener("mouseleave", function () {
-            helplineNumber.style.display = "none";
-        });
+                helplineNumber.addEventListener("mouseleave", function () {
+                    helplineNumber.style.display = "none";
+                });
 
-        // Click on helpline text to call the number
-        helplineLink.addEventListener("click", function () {
-            window.location.href = "tel:+923021234123";
-        });
-    });
+                // Click on helpline text to call the number
+                helplineLink.addEventListener("click", function () {
+                    window.location.href = "tel:+923021234123";
+                });
+            });
 
         </script>
 

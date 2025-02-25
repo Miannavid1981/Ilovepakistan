@@ -61,7 +61,7 @@
                       
                             <div class="col-lg-3 col-md-4 col-4">
                                                         
-                                <button id="store_partner" type="button" class="seller_type_card border-dark rounded-2 px-2 pb-3 pt-0 text-center shadow-sm border rounded cursor-pointer">
+                                <button data-value="store_partner" id="store_partner" type="button" class="seller_type_card border-dark rounded-2 px-2 pb-3 pt-0 text-center shadow-sm border rounded cursor-pointer">
                                     <img src="https://www.mindmatrix.net/images/co-selling-and-co-marketing/co-selling-and-co-marketing.png" class="w-100"  width="200">
                                     <h5 class="fw-600 mt-3">Store Partner</h5>
                                 
@@ -75,7 +75,7 @@
                             </div>
                             <div class="col-lg-3 col-md-4 col-4">
                             
-                                <button id="verified_seller" type="button" class="seller_type_card border-dark rounded-2 px-2 pb-3 pt-0 text-center shadow-sm border rounded cursor-pointer">
+                                <button data-value="verified_seller" id="verified_seller" type="button" class="seller_type_card border-dark rounded-2 px-2 pb-3 pt-0 text-center shadow-sm border rounded cursor-pointer">
                                     <img src="https://www.mindmatrix.net/images/co-selling-and-co-marketing/co-selling-and-co-marketing.png" class="w-100"  width="200">
                                     <h5 class="fw-600 mt-3">Verified Seller</h5>
                                    
@@ -84,8 +84,7 @@
                                 </button>
                             </div>
                             <div class="col-lg-3 col-md-4 col-4">
-                            
-                                <button id="brand_partner" type="button" class="seller_type_card border-dark rounded-2 px-2 pb-3 pt-0 text-center shadow-sm border rounded cursor-pointer">
+                                <button data-value="brand_partner" id="brand_partner" type="button" class="seller_type_card border-dark rounded-2 px-2 pb-3 pt-0 text-center shadow-sm border rounded cursor-pointer">
                                     <img src="https://www.mindmatrix.net/images/co-selling-and-co-marketing/co-selling-and-co-marketing.png" class="w-100"  width="200">
                                     <h5 class="fw-600 mt-3">Brand Partner</h5>
                                    
@@ -106,6 +105,8 @@
                             <form id="reg-form" class="form-default row justify-content-center mt-4" role="form" action="{{ route('shops.store') }}" enctype="multipart/form-data" method="POST">
                                 @csrf
 
+                                <input type="hidden" name="seller_type" id="seller_type" value="" >
+
                                 <div class="col-md-6" id="personal_info" style="display: none">
                                 
                                     
@@ -113,7 +114,7 @@
                                         <!-- Name -->
                                         <div class="form-group">
                                             
-                                            <input type="text" class="form-control {{ $errors->has('name') ? ' is-invalid' : '' }}" value="{{ old('name') }}" placeholder="{{  translate('Full Name') }}" name="name" required>
+                                            <input type="text" class="form-control {{ $errors->has('name') ? ' is-invalid' : '' }}" value="{{ old('name') }}" placeholder="{{  translate('Full Name') }}" name="name" >
                                             @if ($errors->has('name'))
                                                 <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $errors->first('name') }}</strong>
@@ -123,7 +124,7 @@
         
                                         <div class="form-group">
                                             
-                                            <input type="email" class="form-control {{ $errors->has('email') ? ' is-invalid' : '' }}" value="{{ old('email') }}" placeholder="{{  translate('Email') }}" name="email" required>
+                                            <input type="email" class="form-control {{ $errors->has('email') ? ' is-invalid' : '' }}" value="{{ old('email') }}" placeholder="{{  translate('Email') }}" name="email" >
                                             @if ($errors->has('email'))
                                                 <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $errors->first('email') }}</strong>
@@ -135,7 +136,7 @@
                                         <div class="form-group mb-0">
                                             
                                             <div class="position-relative">
-                                                <input type="password" class="form-control {{ $errors->has('password') ? ' is-invalid' : '' }}" placeholder="{{  translate('Password') }}" name="password" required>
+                                                <input type="password" class="form-control {{ $errors->has('password') ? ' is-invalid' : '' }}" placeholder="{{  translate('Password') }}" name="password" >
                                                 <i class="password-toggle las la-2x la-eye"></i>
                                             </div>
                                             <div class="text-right mt-1">
@@ -152,7 +153,7 @@
                                         <div class="form-group">
                                             
                                             <div class="position-relative">
-                                                <input type="password" class="form-control " placeholder="{{  translate('Confirm Password') }}" name="password_confirmation" required>
+                                                <input type="password" class="form-control " placeholder="{{  translate('Confirm Password') }}" name="password_confirmation" >
                                                 <i class="password-toggle las la-2x la-eye"></i>
                                             </div>
                                         </div>
@@ -195,16 +196,16 @@
                                     <div class="fs-15 fw-600 pb-2">{{ translate('Contact Info')}}</div>
                                     <div class="mb-3">
                                        
-                                        <input type="text" name="authorized_person_mobile" class="form-control" placeholder="Designation" required>
+                                        <input type="text" name="authorized_person_mobile" class="form-control" placeholder="Designation" >
                                     </div>
                                     <div class="mb-3">
                                        
-                                        <input type="text" name="authorized_person_mobile" class="form-control" placeholder="Authorized Person Mobile" required>
+                                        <input type="text" name="authorized_person_mobile" class="form-control" placeholder="Authorized Person Mobile" >
                                     </div>
                                     
                                     <div class="mb-3">
                                         
-                                        <input type="text" name="authorized_person_cnic_no" class="form-control" placeholder="Whatsapp Number" required>
+                                        <input type="text" name="authorized_person_cnic_no" class="form-control" placeholder="Whatsapp Number" >
                                     </div>
 
                                    
@@ -212,23 +213,23 @@
 
                                     <div class="mb-3">
                                         
-                                        <input type="text" name="authorized_person_cnic_no" class="form-control" placeholder="Authorized Person CNIC No" required>
+                                        <input type="text" name="authorized_person_cnic_no" class="form-control" placeholder="Authorized Person CNIC No" >
                                     </div>
 
                                     <div class="mb-3">
                                         <label class="form-label">CNIC Front</label>
-                                        <input type="file" name="authorized_person_cnic_front" class="form-control" required>
+                                        <input type="file" name="authorized_person_cnic_front" class="form-control" >
                                     </div>
 
                                     <div class="mb-3">
                                         <label class="form-label">CNIC Back</label>
-                                        <input type="file" name="authorized_person_cnic_back" class="form-control" required>
+                                        <input type="file" name="authorized_person_cnic_back" class="form-control" >
                                     </div>
                                    
 
                                     <div class="mb-3">
                                         <label class="form-label">Registered Office Address</label>
-                                        <textarea name="registered_office_address" class="form-control" required></textarea>
+                                        <textarea name="registered_office_address" class="form-control" ></textarea>
                                     </div>
 
 
@@ -246,7 +247,7 @@
                                     </div>
                                     <div class="mb-3">
                                         <label class="form-label">Upload Legal Documents</label>
-                                        <input type="file" name="partnership_deed" class="form-control" required>
+                                        <input type="file" name="partnership_deed" class="form-control">
                                     </div>
 
                                     <div class="mb-3">
@@ -285,22 +286,22 @@
 
                                     <div class="mb-3">
                                         
-                                        <input type="text" placeholder="Sales Tax Registration Number" name="sales_tax_registration_number" class="form-control" required>
+                                        <input type="text" placeholder="Sales Tax Registration Number" name="sales_tax_registration_number" class="form-control" >
                                     </div>
                                     <div class="mb-3">
                                         
-                                        <input type="text" name="partnership_ntn" id="partnership_ntn" placeholder="NTN of Partnership" class="form-control" required>
+                                        <input type="text" name="partnership_ntn" id="partnership_ntn" placeholder="NTN of Partnership" class="form-control" >
                                     </div>
 
                                     <div class="mb-3">
                                         <label class="form-label">Copy of Cheque</label>
-                                        <input type="file" name="cheque_copy" class="form-control" required>
+                                        <input type="file" name="cheque_copy" class="form-control" >
                                     </div>
 
                                    
                                     <div class="mb-3">
                                         <label class="form-label">Authority Letter</label>
-                                        <input type="file" name="authority_letter" class="form-control" required>
+                                        <input type="file" name="authority_letter" class="form-control" >
                                     </div>
                                  
 
@@ -369,7 +370,9 @@
         
     $(document).ready(function(){
         
-    
+        $(".seller_type_card").click(function(){
+            $("#seller_type").val($(this).data('value'))
+        })
         $("#company_type").change(function(){
             var val = $(this).val();
 
@@ -382,7 +385,7 @@
 
 
             $("#personal_info").show();
-            $("#seller_form").show();
+            $("#seller_form").show();   
 
         });
 
@@ -390,15 +393,29 @@
         $("#verified_seller").click(function(){
 
             $(this).parent().parent().hide()
-
             $("#contact_info").show();
             $("#company_details").show();
+
             $("#personal_info").show();
             $("#shop_info").show();
+            $("#seller_form").show();
+
+            $("#personal_info input").each(function(){
+                $(this).attr("required", "required")
+            })
             $("#shop_info input").each(function(){
                 $(this).attr("required", "required")
             })
-            $("#seller_form").show();
+            $("#contact_info input").each(function(){
+                $(this).attr("required", "required")
+            })
+            $("#company_details input").each(function(){
+                $(this).attr("required", "required")
+            })
+            $("#seller_form input").each(function(){
+                $(this).attr("required", "required")
+            })
+
 
         });
         
@@ -412,7 +429,24 @@
             $("#shop_info").show();
             $("#seller_form").show();
 
-            });
+            $("#personal_info input").each(function(){
+                $(this).attr("required", "required")
+            })
+
+            $("#shop_info input").each(function(){
+                $(this).attr("required", "required")
+            })
+            $("#contact_info input").each(function(){
+                $(this).attr("required", "required")
+            })
+            $("#company_details input").each(function(){
+                $(this).attr("required", "required")
+            })
+            $("#seller_form input").each(function(){
+                $(this).attr("required", "required")
+            })
+
+        });
 
     });
 
