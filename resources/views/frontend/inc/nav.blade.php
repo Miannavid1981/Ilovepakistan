@@ -187,7 +187,7 @@
 
             <i class="fa-solid fa-user fs-20 me-3"></i>
             @php
-                $show_cart_btn = false;    
+                $show_cart_btn = true;    
             @endphp
                 @auth
                     @php
