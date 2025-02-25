@@ -193,17 +193,16 @@
                     @php
                         $show_cart_btn =show_global_cart() ??  false;
                     @endphp
-                @else
-                    @if($show_cart_btn)
-                       
-                        <button class="btn btn-light bg-white p-0 border-0 toggle-cart-modal">
-                            <i class="fa-solid fa-cart-shopping fs-20"></i>
-                        </button>
-
-                    @endif
+                
                 @endauth
 
-               
+                @if($show_cart_btn)
+                    
+                    <button class="btn btn-light bg-white p-0 border-0 toggle-cart-modal">
+                        <i class="fa-solid fa-cart-shopping fs-20"></i>
+                    </button>
+
+                @endif
             
         </div>
         <div class="col-12 mt-2">
