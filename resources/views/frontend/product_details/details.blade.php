@@ -514,7 +514,19 @@
                 </div>
             </div>
                 <div class="mt-3">
-                    @if(show_global_cart())
+
+                    @php
+                    $show_cart_btn = true;    
+                    @endphp
+                    @auth
+                        @php
+                            $show_cart_btn = show_global_cart() ??  false;
+                        @endphp
+                    
+                    @endauth
+
+
+                    @if($show_cart_btn)
                         @if ($detailedProduct->digital == 0)
                             @if (((get_setting('product_external_link_for_seller') == 1) && ($detailedProduct->added_by == "seller") && ($detailedProduct->external_link != null)) ||
                                 (($detailedProduct->added_by != "seller") && ($detailedProduct->external_link != null)))
