@@ -551,10 +551,23 @@
                         @endif
 
                     @else
+                    @php
+                        $seller_imported_flag = (int) \App\Models\ProductSellerMap::where('product_id', $product->id)->where('seller_id', auth()->user()->id)->count();
+                            // dd($seller_imported_flag);
+                        @endphp
 
-                        <button type="button" data-id="{{ $detailedProduct->id }}" class="btn btn-primary buy-now fw-600 add-to-cart min-w-150px rounded-0 g-import-to-seller w-100">
-                            <i class="la la-plus"></i> {{ translate('Import Product') }}
-                        </button>
+                        @if($seller_imported_flag)
+                            <button type="button" data-id="{{ $detailedProduct->id }}" class="btn btn-light text-dark buy-now fw-600 add-to-cart min-w-150px rounded-0  w-100" disabled>
+                                <i class="la la-check"></i> Imported
+                            </button>
+                            
+                        @else
+                            <button type="button" data-id="{{ $detailedProduct->id }}" class="btn btn-primary buy-now fw-600 add-to-cart min-w-150px rounded-0 g-import-to-seller w-100">
+                                <i class="la la-plus"></i> {{ translate('Import Product') }}
+                            </button>
+
+                        @endif
+
 
                     @endif
                 </div>
