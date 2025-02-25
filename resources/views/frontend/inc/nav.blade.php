@@ -187,23 +187,22 @@
 
             <i class="fa-solid fa-user fs-20 me-3"></i>
             @php
-                $show_cart_btn = false;    
+                $show_cart_btn = true;    
             @endphp
                 @auth
                     @php
                         $show_cart_btn =show_global_cart() ??  false;
                     @endphp
-                @else
-                    @if($show_cart_btn)
-                       
-                        <button class="btn btn-light bg-white p-0 border-0 toggle-cart-modal">
-                            <i class="fa-solid fa-cart-shopping fs-20"></i>
-                        </button>
-
-                    @endif
+                
                 @endauth
 
-               
+                @if($show_cart_btn)
+                    
+                    <button class="btn btn-light bg-white p-0 border-0 toggle-cart-modal">
+                        <i class="fa-solid fa-cart-shopping fs-20"></i>
+                    </button>
+
+                @endif
             
         </div>
         <div class="col-12 mt-2">
