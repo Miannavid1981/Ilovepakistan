@@ -51,7 +51,18 @@
             </div>
             <div class="col-lg-3 col-md-6 col-12">
                 <div class="d-flex justify-content-end align-items-center gap-4">
-                    
+                        
+                    <div class="dropdown d-flex justify-content-start align-items-center">
+                        
+                            <i class="fa fa-location-dot fs-20 me-2">
+                            </i>
+                            <div class="d-flex flex-column">
+                                <span class="d-block fs-15">Deliver to</span>
+                                <span class="fw-bold fs-17">Pakistan</span>
+                            </div>
+                        
+                       
+                    </div> 
                     <!-- User Profile and Seller Area with Dropdown -->
 
                     <!-- My Account -->
@@ -101,22 +112,7 @@
                     </div>
                     
                     
-                    <!-- Seller Account -->
-                    <!-- <div class="dropdown">
-                        
-                        <button class="btn  dropdown-toggle px-0" type="button" id="dropdownSellerAccount" data-bs-toggle="dropdown" aria-expanded="false">
-                            <div class="d-flex flex-column">
-                                <span class="d-block">Seller Area</span>
-                                <span class="fw-bold">Store Login</span>
-                            </div>
-                        </button>
-                        <ul class="dropdown-menu" aria-labelledby="dropdownSellerAccount">
-                            
-                            <li><a href="{{ route('seller.login') }}" class="dropdown-item">Seller Login</a></li>
-                            <li><a href="{{ route('shops.create') }}" class="dropdown-item">Create Your Store</a></li>
-                        
-                        </ul>
-                    </div> -->
+              
                     
                    
     
