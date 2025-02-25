@@ -3103,9 +3103,15 @@ function getMinMaxPriceFromSeller($sellerId) {
     ];
 }
 
+
 if (!function_exists('show_global_cart')) {
     function show_global_cart()
     {
-        return Auth::check() && Auth::user()->user_type == 'customer';
+        // If user is not authenticated, return true
+        if (!Auth::check()) {
+            return true;
+        }
+        // If user is authenticated, return true only if user_type is 'customer'
+        return Auth::user()->user_type === 'customer';
     }
 }
