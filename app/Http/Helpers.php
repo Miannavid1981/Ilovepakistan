@@ -3112,6 +3112,6 @@ if (!function_exists('show_global_cart')) {
             return true;
         }
         // If user is authenticated, return true only if user_type is 'customer'
-        return Auth::user()->user_type === 'customer';
+        return auth()->user()->user_type === 'customer';
     }
 }
