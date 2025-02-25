@@ -552,7 +552,7 @@
 
                     @else
                     @php
-                        $seller_imported_flag = (int) \App\Models\ProductSellerMap::where('product_id', $product->id)->where('seller_id', auth()->user()->id)->count();
+                        $seller_imported_flag = (int) \App\Models\ProductSellerMap::where('product_id', $detailedProduct->id)->where('seller_id', auth()->user()->id)->count();
                             // dd($seller_imported_flag);
                         @endphp
 
