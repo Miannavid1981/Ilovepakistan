@@ -560,14 +560,15 @@
                         <div class="d-flex">
                             @if($seller_type != 'brand_partner')
                                 @if($seller_imported_flag)
-                                    <button type="button" data-id="{{ $detailedProduct->id }}" style="background: #eee" class="btn text-dark buy-now fw-600  min-w-150px rounded-0  w-100 fs-16" disabled>
-                                        <i class="la la-check"></i> Imported
-                                    </button>
+                                <button type="button" data-id="{{ $detailedProduct->id }}" style="background: #eee" class="btn text-dark  buy-now fw-600  min-w-150px rounded-0 g-import-to-seller w-100">
+                                    <i class="la la-plus"></i> {{ translate('Import') }}
+                                </button>
+                                  
                                 @else
-                                    <button type="button" data-id="{{ $detailedProduct->id }}" style="background: #eee" class="btn text-dark  buy-now fw-600  min-w-150px rounded-0 g-import-to-seller w-100">
-                                        <i class="la la-plus"></i> {{ translate('Import') }}
-                                    </button>
-
+                                    
+                                <button type="button" data-id="{{ $detailedProduct->id }}" style="background: #eee" class="btn text-dark buy-now fw-600  min-w-150px rounded-0  w-100 fs-16" disabled>
+                                    <i class="la la-check"></i> Imported
+                                </button>
                                 @endif
                             @endif
                             @if($seller_type != 'store_partner')
