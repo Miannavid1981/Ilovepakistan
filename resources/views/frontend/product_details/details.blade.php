@@ -1051,14 +1051,30 @@
     @else
         <!-- Add to cart & Buy now Buttons -->
         <div class="mt-3">
-            @if ($detailedProduct->digital == 0)
-                @if (((get_setting('product_external_link_for_seller') == 1) && ($detailedProduct->added_by == "seller") && ($detailedProduct->external_link != null)) ||
-                    (($detailedProduct->added_by != "seller") && ($detailedProduct->external_link != null)))
-                    <a type="button" class="btn btn-primary buy-now fw-600 add-to-cart px-4 rounded-0"
-                        href="{{ $detailedProduct->external_link }}">
-                        <i class="la la-share"></i> {{ translate($detailedProduct->external_link_btn) }}
-                    </a>
-                @else
+
+            @if(show_global_cart())
+                @if ($detailedProduct->digital == 0)
+                    @if (((get_setting('product_external_link_for_seller') == 1) && ($detailedProduct->added_by == "seller") && ($detailedProduct->external_link != null)) ||
+                        (($detailedProduct->added_by != "seller") && ($detailedProduct->external_link != null)))
+                        <a type="button" class="btn btn-primary buy-now fw-600 add-to-cart px-4 rounded-0"
+                            href="{{ $detailedProduct->external_link }}">
+                            <i class="la la-share"></i> {{ translate($detailedProduct->external_link_btn) }}
+                        </a>
+                    @else
+                        <button type="button"
+                            class="btn btn-secondary-base mr-2 add-to-cart fw-600 min-w-150px rounded-0 text-white"
+                            @if (Auth::check() || get_Setting('guest_checkout_activation') == 1) onclick="addToCart()" @else onclick="showLoginModal()" @endif>
+                            <i class="las la-shopping-bag"></i> {{ translate('Add to cart') }}
+                        </button>
+                        <button type="button" class="btn btn-primary buy-now fw-600 add-to-cart min-w-150px rounded-0"
+                            @if (Auth::check() || get_Setting('guest_checkout_activation') == 1) onclick="addToCart()" @else onclick="showLoginModal()" @endif>
+                            <i class="la la-shopping-cart"></i> {{ translate('Buy Now') }}
+                        </button>
+                    @endif
+                    <button type="button" class="btn btn-secondary out-of-stock fw-600 d-none" disabled>
+                        <i class="la la-cart-arrow-down"></i> {{ translate('Out of Stock') }}
+                    </button>
+                @elseif ($detailedProduct->digital == 1)
                     <button type="button"
                         class="btn btn-secondary-base mr-2 add-to-cart fw-600 min-w-150px rounded-0 text-white"
                         @if (Auth::check() || get_Setting('guest_checkout_activation') == 1) onclick="addToCart()" @else onclick="showLoginModal()" @endif>
@@ -1069,19 +1085,12 @@
                         <i class="la la-shopping-cart"></i> {{ translate('Buy Now') }}
                     </button>
                 @endif
-                <button type="button" class="btn btn-secondary out-of-stock fw-600 d-none" disabled>
-                    <i class="la la-cart-arrow-down"></i> {{ translate('Out of Stock') }}
-                </button>
-            @elseif ($detailedProduct->digital == 1)
-                <button type="button"
-                    class="btn btn-secondary-base mr-2 add-to-cart fw-600 min-w-150px rounded-0 text-white"
-                    @if (Auth::check() || get_Setting('guest_checkout_activation') == 1) onclick="addToCart()" @else onclick="showLoginModal()" @endif>
-                    <i class="las la-shopping-bag"></i> {{ translate('Add to cart') }}
-                </button>
-                <button type="button" class="btn btn-primary buy-now fw-600 add-to-cart min-w-150px rounded-0"
-                    @if (Auth::check() || get_Setting('guest_checkout_activation') == 1) onclick="addToCart()" @else onclick="showLoginModal()" @endif>
+            @else
+
+                <button type="button" data-id="{{ $detailedProduct->id }}" class="btn btn-primary buy-now fw-600 add-to-cart min-w-150px rounded-0 g-import-to-seller">
                     <i class="la la-shopping-cart"></i> {{ translate('Buy Now') }}
                 </button>
+
             @endif
         </div>
 
