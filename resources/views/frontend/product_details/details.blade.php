@@ -240,7 +240,7 @@
     margin-top: 20px;
     display: flex;
     align-items: center;
-    justify-content: center;
+   
 }
 .share-btn {
     display: flex;
@@ -551,29 +551,34 @@
                         @endif
 
                     @else
-                    @php
+                        @php
+                        $seller_type = auth()->user()->seller_type;   
                         $seller_imported_flag = (int) \App\Models\ProductSellerMap::where('product_id', $detailedProduct->id)->where('seller_id', auth()->user()->id)->count();
-                            // dd($seller_imported_flag);
                         @endphp
 
-                        @if($seller_imported_flag)
+                      
                         <div class="d-flex">
-                            <button type="button" data-id="{{ $detailedProduct->id }}" style="background: #eee" class="btn text-dark buy-now fw-600 add-to-cart min-w-150px rounded-0  w-100" disabled>
-                                <i class="la la-check"></i> Imported
-                            </button>
-                            <a href="" class="btn btn-primary text-dark buy-now fw-600 add-to-cart min-w-150px rounded-0  w-100" >
-                                <i class="la la-plus"></i> New Listing
-                            </a>
+                            @if($seller_type != 'brand_partner')
+                                @if($seller_imported_flag)
+                                    <button type="button" data-id="{{ $detailedProduct->id }}" style="background: #eee" class="btn text-dark buy-now fw-600  min-w-150px rounded-0  w-100 fs-16" disabled>
+                                        <i class="la la-check"></i> Imported
+                                    </button>
+                                @else
+                                    <button type="button" data-id="{{ $detailedProduct->id }}" style="background: #eee" class="btn text-dark  buy-now fw-600  min-w-150px rounded-0 g-import-to-seller w-100">
+                                        <i class="la la-plus"></i> {{ translate('Import') }}
+                                    </button>
+
+                                @endif
+                            @endif
+                            @if($seller_type != 'store_partner')
+                                <a href="" class="btn btn-primary text-dark buy-now fw-600 min-w-150px rounded-0  w-100" >
+                                    <i class="la la-plus"></i> New Listing
+                                </a>
+                            @endif
                         </div>
                            
                             
-                        @else
-                            <button type="button" data-id="{{ $detailedProduct->id }}" class="btn btn-primary buy-now fw-600 add-to-cart min-w-150px rounded-0 g-import-to-seller w-100">
-                                <i class="la la-plus"></i> {{ translate('Import Product') }}
-                            </button>
-
-                        @endif
-
+                       
 
                     @endif
                 </div>
@@ -581,8 +586,9 @@
                     <button class="share-btn" onclick="openSharePopup()">
                         <i class="fa-solid fa-share"> </i>Share
                     </button>
-                    
-                    <i class="fa-solid fa-heart wishlist-icon"></i> Whislist
+                    <div>
+                        <i class="fa-solid fa-heart wishlist-icon"></i> Add to Wishlist
+                    </div>
                 
                     <!-- Popup Modal -->
                     <div id="sharePopup" class="popup">
