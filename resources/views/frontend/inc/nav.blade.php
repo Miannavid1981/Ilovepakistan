@@ -118,17 +118,9 @@
                         </ul>
                     </div> -->
                     
-                    @php
-                    $show_cart_btn = true;    
-                    @endphp
-                    @auth
-                        @php
-                            $show_cart_btn = show_global_cart() ??  false;
-                        @endphp
-                    
-                    @endauth
+                   
     
-                    @if($show_cart_btn)
+                    @if(show_global_cart())
                     <button class="btn btn-light bg-white border-0 me-3 p-0 position-relative toggle-cart-modal">
                         <i class="fa-solid fs-18 fa-cart-shopping"></i>
                         <span class="cart-badge g-cart-items-count">0</span>
@@ -196,17 +188,9 @@
 
 
             <i class="fa-solid fa-user fs-20 me-3"></i>
-            @php
-                $show_cart_btn = true;    
-            @endphp
-                @auth
-                    @php
-                        $show_cart_btn = show_global_cart() ??  false;
-                    @endphp
-                
-                @endauth
+          
 
-                @if($show_cart_btn)
+                @if(show_global_cart())
                     
                     <button class="btn btn-light bg-white p-0 border-0 toggle-cart-modal">
                         <i class="fa-solid fa-cart-shopping fs-20"></i>

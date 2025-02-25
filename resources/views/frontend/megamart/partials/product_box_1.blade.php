@@ -274,32 +274,24 @@ if(!empty($product->product_custom_url)){
                     @endif 
                 </div>
                 @php
-                     $show_add_to_cart_btn = true;
+                    
                      $show_skin_import_button = false;
                      $seller_type = null;
+                     $user_type  = null;
                     if(!empty(auth()->user())) {
+                       
                         $seller_type = auth()->user()->seller_type;   
                         $user_type = auth()->user()->user_type;
 
-                        if(!empty($user_type)){
-                        
-                            if($user_type == "customer"){
-                                $show_add_to_cart_btn = true;
-                                $show_skin_import_button = false;
-                            } else {
-                                $show_add_to_cart_btn = false;
-                                $show_skin_import_button = true;
-                            }
-
-                        }
-                        
+                        if($user_type == "seller"){
+                            $show_skin_import_button = true;
+                        }  
                     } 
-                   
                 @endphp
-                    @if( $show_add_to_cart_btn)
-                        <button class=" add_to_cart_small_btn rounded-circle p-2 d-flex align-items-center justify-content-center g-add-to-cart" style="aspect-ratio:1/1"  data-id="{{ $product->id }}" data-skin_code="{{ $product->product_skin ?? get_product_seller_map_skin($product) }}" ><i class="las la-cart-plus fs-24"></i>  </button>
-                    @endif
-
+                @if(show_global_cart() )
+                    <button class=" add_to_cart_small_btn rounded-circle p-2 d-flex align-items-center justify-content-center g-add-to-cart" style="aspect-ratio:1/1"  data-id="{{ $product->id }}" data-skin_code="{{ $product->product_skin ?? get_product_seller_map_skin($product) }}" ><i class="las la-cart-plus fs-24"></i>  </button>
+                @endif
+                @if($user_type == 'seller')
                     @if($seller_type != 'brand_partner' )
                         @if( $show_skin_import_button)
 
@@ -311,7 +303,8 @@ if(!empty($product->product_custom_url)){
                             <button class=" add_to_cart_small_btn rounded-circle p-2 d-flex align-items-center justify-content-center g-import-to-seller" style="aspect-ratio:1/1; {{ $seller_imported_flag == 0 ? 'background:red' : 'background:#eee;color: #000; cursor: default' }} "  data-id="{{ $product->id }}" data-skin_code="{{ $product->product_skin ?? get_product_seller_map_skin($product) }}"     {{ $seller_imported_flag == 0 ?? 'disabled'  }}   ><i class="las la-{{ $seller_imported_flag  == 0 ? 'plus' : 'check'  }} fs-24"></i>  </button>
                         @endif
                     @endif
-                
+                @endif
+            
                 
 
             </div>
