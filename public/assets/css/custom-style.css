@@ -269,6 +269,33 @@ a {
   outline: none;
  
 }
+
+header {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  background: #fff; /* Ensure background color */
+  z-index: 1000;
+  transition: box-shadow 0.3s ease-in-out;
+}
+
+/* Apply shadow when the body is scrolled */
+body:has(header + section) header {
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+
+/* Default icon color */
+.fa-location-dot {
+  color: black;
+}
+
+/* Change color when the user is logged in */
+body.logged-in .fa-location-dot {
+  color: blue;
+}
+
+
 .header-top img {
   max-height: 50px;
 }

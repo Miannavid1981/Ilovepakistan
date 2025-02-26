@@ -329,7 +329,7 @@
                                         {{ translate('Dont have an account?')}}
                                         
                                     </p>
-                                    <a href="{{ route('user.registration') }}" class="btn btn-light w-100">{{ translate('Create an Account')}}</a>
+                                    <a href="{{ route('user.registration') }}" class="btn btn-light w-100">{{ translate('Createadsd an Account')}}</a>
                                     <!-- Go Back -->
                                     <a href="{{ url()->previous() }}" class="mt-5 fs-14 fw-700 text-center w-100 " >
                                         <i class="las la-arrow-left fs-20 mr-1"></i>
