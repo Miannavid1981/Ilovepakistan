@@ -273,7 +273,6 @@ a {
 header {
   position: sticky;
   top: 0;
-  width: 100%;
   background: #fff; /* Ensure background color */
   z-index: 1000;
   transition: box-shadow 0.3s ease-in-out;
