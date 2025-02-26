@@ -402,12 +402,12 @@
                                 </div>
                                 <!-- Coupon System -->
                                 @if (get_setting('coupon_system') == 1)
-                                @if ($coupon_discount && $coupon_code)
+                                @if (123 > 2 )
                                     <div class="mt-3">
                                         <form class="" id="remove-coupon-form" enctype="multipart/form-data">
                                             @csrf
                                             <div class="input-group">
-                                                <div class="form-control">{{ $coupon_code }}</div>
+                                                <div class="form-control">{{ 'dsdsds' }}</div>
                                                 <div class="input-group-append">
                                                     <button type="button" id="coupon-remove"
                                                         class="btn btn-primary">{{ translate('Change Coupon') }}</button>
