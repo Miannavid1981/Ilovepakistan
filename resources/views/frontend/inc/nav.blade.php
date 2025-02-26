@@ -51,7 +51,7 @@
             </div>
             <div class="col-lg-3 col-md-5 col-12">
                 <div class="d-flex justify-content-end align-items-center gap-4">
-                        
+                    @if(show_global_cart())
                     <div class="dropdown d-flex justify-content-start align-items-center">
                         
                             <i class="fa fa-location-dot fs-20 me-2" style="color: @auth #3d5c86 @else #000 @endif">
@@ -63,6 +63,7 @@
                         
                        
                     </div> 
+                    @endif
                     <!-- User Profile and Seller Area with Dropdown -->
 
                     <!-- My Account -->
