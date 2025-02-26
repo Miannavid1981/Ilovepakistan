@@ -447,14 +447,14 @@
 
         <div class="checkout_columns mb-4">
             <div class="">
-                <div >
+                <a href="{{  url('/') }}">
                     <img src="{{ $logo_url }}" style="width: 130px" alt="Bighouz" class="img-fluid">
                     <ul class="d-flex gap-2 list-unstyled fs-15 text-muted">
                         <li>Home</li>
                         <li><i class="fa fa-chevron-right"></i></li>
                         <li>Checkout</li>
                     </ul>
-                </div>
+                </a>
                 
               
             </div>
@@ -582,7 +582,13 @@
             <div style="position: sticky; top: 20px;">
            
             <br>
-            <h4>Your Purchase</h4>
+            <div class="d-flex  align-items-center">
+                <a class="px-3 py-2 bg-primary mb-0 text-white rounded-2" onclick="window.history.go(-1)" style="cursor: pointer">
+                    <i class="fa fa-chevron-left fs-17 mb-0">
+                    </i>
+                </a>
+                <h4 class="mb-0 ms-3">Your Purchase</h4>
+            </div>
             <div class="summary-cart">
                 @if ($cart && $cart->count() > 0)
                     @foreach ($cart as $key => $item  )

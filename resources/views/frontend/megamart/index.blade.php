@@ -680,8 +680,8 @@
 
 
     </style>
-<div class="services-icons mx-5">
-    <div class="container py-5"> 
+<div class="services-icons mb-5 " style="background: #eee;">
+    <div class="container py-2"> 
         <div class="row text-center d-flex align-items-end">
             <!-- First Feature (Updated layout) -->
             <div class="services-promises col-md-3">
