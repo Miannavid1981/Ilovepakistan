@@ -118,15 +118,25 @@ class AddressController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id, Request $request)
     {
         $address = Address::findOrFail($id);
         if (!$address->set_default) {
             $address->delete();
-            return back();
+
+            $address_type = $request->address_type ?? '';
+            $data['address_type'] = $address_type;
+            $user_id = auth()->user()->id;
+            $addresses = Address::where('user_id', $user_id)->where('address_type', $address_type)->get();
+            $data['addresses'] = $addresses;
+            $returnHTML = view('frontend.checkout.inc.shipping_form', $data)->render();
+            return response()->json(array('success' => true, 'html' => $returnHTML));
         }
         flash(translate('Default address cannot be deleted'))->warning();
-        return back();
+
+       
+
+        
     }
 
     public function getStates(Request $request)
@@ -176,4 +186,5 @@ class AddressController extends Controller
 
         return response()->json(array('data' => $data, 'html' => $returnHTML));
     }
+
 }

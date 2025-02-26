@@ -124,11 +124,11 @@
                         
                     </div>
                     <div class="address_action_buttons d-flex justify-content-end">
-                        <button class="p-2 text-danger bg-white border-0 fs-16">
+                        <button data-id="{{ $address->id }}" type="button" class="delete-address p-2 text-danger bg-white border-0 fs-16">
                             <i class="fa fa-trash"></i>
                             
                         </button>
-                        <button class="p-2 text-dark bg-white border-0 fs-16">
+                        <button type="button" class="p-2 text-dark bg-white border-0 fs-16">
                             <i class="fa fa-pen"></i>
                             
                         </button>
@@ -263,7 +263,7 @@
     window.initMap = initMap;
     
 </script>
-@include('frontend.partials.google_map')
+
 
 
 
