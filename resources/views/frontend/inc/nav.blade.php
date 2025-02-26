@@ -1,4 +1,10 @@
 
+<style>
+    .dropdown-item:hover {
+    color: black !important;
+}
+
+</style>
 <header >
     <div class="container bg-white pt-1">
 
@@ -103,17 +109,17 @@
                         
                         <ul class="dropdown-menu" aria-labelledby="dropdownMyAccount">
                             @auth 
-                                <li><a href="{{ $my_account_url }}" class="dropdown-item"   @if(Auth::user()->user_type == "staff" )  target="_blank"  @endif  > My Account</a></li>
-                                <li><a  href="{{ $my_account_url }}" class="dropdown-item" >Orders</a></li>
+                                <li><a href="{{ $my_account_url }}" class="dropdown-item Text-dark fs-14"   @if(Auth::user()->user_type == "staff" )  target="_blank"  @endif  > My Account</a></li>
+                                <li><a  href="{{ $my_account_url }}" class="dropdown-item fs-14" >Orders</a></li>
                             
                             @else 
-                                <li><a href="{{ route('user.login') }}" class="dropdown-item">Login</a></li>
-                                <li><a href="{{ route('user.registration') }}" class="dropdown-item">Register</a></li>
+                                <li><a href="{{ route('user.login') }}" class="dropdown-item fs-14">Login</a></li>
+                                <li><a href="{{ route('user.registration') }}" class="dropdown-item fs-14">Register</a></li>
                             @endif
                             @auth 
                                 <li class="divider"></li>
                                 <li>
-                                <a class="dropdown-item"  href="{{ route('logout') }}">Log Out</a>
+                                <a class="dropdown-item fs-14"  href="{{ route('logout') }}">Log Out</a>
                                 </li>
                             @endauth
                         
