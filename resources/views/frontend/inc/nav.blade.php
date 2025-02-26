@@ -1,6 +1,6 @@
 
 
-<header class="container bg-white pt-1">
+<header class="container bg-white py-1">
         <!-- Header Top -->
         <div class="row align-items-center header-top">
             <!-- Logo -->
@@ -78,7 +78,12 @@
                                         </span>
                                     @endif
                                     <div class="d-flex flex-column">
-                                        <span class="d-block fs-15" style="text-wrap: auto"> Hello, {{$user->name}} </span>
+                                        @php
+                                            $user_name = explode(' ', $user->name);
+                                            $first_name = $user_name[0];
+
+                                        @endphp
+                                        <span class="d-block fs-15" style="text-wrap: auto"> Hello, {{$first_name}} </span>
                                         <span class="fw-bold fs-16">My Account</span>
                                         
                                     </div>
