@@ -20,6 +20,18 @@ class CustomCartController extends Controller
     {
         return response()->json(['cart' => $this->getCartData()]);
     }
+    public function clearCart(Request $request){
+    
+        $userId = Auth::id();
+       
+        Cart::where('user_id', $userId)->delete();
+
+        return response()->json([
+            'success' => true,
+            'cart' => $this->getCartData(),
+        ]);
+    
+    }
     public function addToCart(Request $request)
     {
         $productId = $request->product_id;

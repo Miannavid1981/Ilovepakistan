@@ -367,7 +367,7 @@
                         <div class="col-md-7 col-12 d-flex flex-column minicart-main-left-section justify-content-between h-100">
                             <div class="d-flex justify-content-between">
                                 <div class="d-flex">
-                                    <button class="bg-primary py-0 border-0 text-white border-0 rounded-2 me-2 fs-13 h-25px" style="transform: translateX(-7px);">Clear</button>
+                                    <button  class="g-clear-cart bg-primary py-0 border-0 text-white border-0 rounded-2 me-2 fs-13 h-25px" style="transform: translateX(-7px);">Clear</button>
                                     <h5>Shopping Cart</h5>
                                 </div>
                                
@@ -695,6 +695,30 @@ $(document).ready(function(){
             },
             error: function () {
                 alert('An error occurred while removing the item.');
+            }
+        });
+    });
+    $(document).on('click', '.g-clear-cart', function () {
+        
+        $(".sidecart-items").addClass("disabled")
+        $.ajax({
+            url: '{{ url("/cart/clear") }}',  // The route for removing items from the cart
+            method: 'GET',  // Sending a POST request
+            data: {
+                
+                _token: $('meta[name="csrf-token"]').attr('content')  // CSRF token for security
+            },
+            success: function (response) {
+                if (response.cart) {
+                    $(".sidecart-items").removeClass("disabled")
+                    updateSidecart(response.cart); 
+                     // Update the sidecart with the new data
+                } else {
+                    // alert('Failed to remove the item.');
+                }
+            },
+            error: function () {
+                alert('An error occurred while removing the items.');
             }
         });
     });
