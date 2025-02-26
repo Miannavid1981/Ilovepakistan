@@ -54,7 +54,7 @@
                         
                     <div class="dropdown d-flex justify-content-start align-items-center">
                         
-                            <i class="fa fa-location-dot fs-20 me-2">
+                            <i class="fa fa-location-dot fs-20 me-2" style="color: @auth indigo @else #000 @endif">
                             </i>
                             <div class="d-flex flex-column">
                                 <span class="d-block fs-15">Deliver to</span>

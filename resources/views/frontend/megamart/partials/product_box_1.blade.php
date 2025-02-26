@@ -300,7 +300,7 @@ if(!empty($product->product_custom_url)){
                                 // dd($seller_imported_flag);
                             @endphp
 
-                            <button class=" add_to_cart_small_btn rounded-circle p-2 d-flex align-items-center justify-content-center g-import-to-seller" style="aspect-ratio:1/1; {{ $seller_imported_flag == 0 ? 'background:red' : 'background:#eee;color: #000; cursor: default' }} "  data-id="{{ $product->id }}" data-skin_code="{{ $product->product_skin ?? get_product_seller_map_skin($product) }}"     {{ $seller_imported_flag == 0 ?? 'disabled'  }}   ><i class="las la-{{ $seller_imported_flag  == 0 ? 'plus' : 'check'  }} fs-24"></i>  </button>
+                            <button class=" add_to_cart_small_btn rounded-circle p-2 d-flex align-items-center justify-content-center g-import-to-seller" style="aspect-ratio:1/1; {{ $seller_imported_flag == 0 ? 'background:red' : 'background:#eee;color: #000; cursor: default' }} "  data-id="{{ $product->id }}" data-skin_code="{{ $product->product_skin ?? get_product_seller_map_skin($product) }}"     {{ $seller_imported_flag == 0 ?? 'disabled'  }}   ><i class="las la-{{ $seller_imported_flag  == 0 ? 'shopping-bag' : 'check'  }} fs-24"></i>  </button>
                         @endif
                     @endif
                 @endif
