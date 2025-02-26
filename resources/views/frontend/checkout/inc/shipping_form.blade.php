@@ -128,10 +128,10 @@
                             <i class="fa fa-trash"></i>
                             
                         </button>
-                        <button type="button" class="p-2 text-dark bg-white border-0 fs-16">
+                        {{-- <button type="button" class="p-2 text-dark bg-white border-0 fs-16">
                             <i class="fa fa-pen"></i>
                             
-                        </button>
+                        </button> --}}
                     </div>
                 </label>
             @endforeach

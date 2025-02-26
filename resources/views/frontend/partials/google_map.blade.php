@@ -1,12 +1,11 @@
 <script>
-   
     let default_longtitude = '';
     let default_latitude = '';
     @if (get_setting('google_map_longtitude') != '' && get_setting('google_map_longtitude') != '')
-        default_longtitude = {{ get_setting('google_map_longtitude') }};
-        default_latitude = {{ get_setting('google_map_latitude') }};
+        default_longtitude = {{ 69.3451 ?? get_setting('google_map_longtitude') }};
+        default_latitude = {{ 30.3753 ?? get_setting('google_map_latitude') }};
     @endif
-   // var map = null;
+    // var map = null;
     function initialize(lat = 30.3753, lang =69.3451, id_format = '') {
         var long = lang;
         var lat = lat;
@@ -154,36 +153,41 @@
         return addressParts.join(', ');
         
     }
-        document.getElementById("country").addEventListener("change", function () { 
-            const fullAddress = get_full_address();
-           
-            if (country) searchLocation(fullAddress);
-        });
 
-        document.getElementById("state").addEventListener("change", function () {
-            const fullAddress = get_full_address();
-            
-            if (state) searchLocation(fullAddress, 9);
-        });
-        document.getElementById("city").addEventListener("change", function () {
-            const fullAddress = get_full_address();
-            if (area) searchLocation(fullAddress, 11);
-        });
-        document.getElementById("area").addEventListener("change", function () {
-            const fullAddress = get_full_address();
-            if (area) searchLocation(fullAddress, 14);
-        });
-        document.getElementById("land_mark").addEventListener("keyup", function () {
-            const fullAddress = get_full_address();
-            if (address) searchLocation(fullAddress, 16);
-        });
-        document.getElementById("address").addEventListener("keyup", function () {
-            const fullAddress = get_full_address();
-            if (address) searchLocation(fullAddress, 18);
-        });
+
+    document.getElementById("country").addEventListener("change", function () { 
+        const fullAddress = get_full_address();
+        
+        if (country) searchLocation(fullAddress);
+    });
+
+    document.getElementById("state").addEventListener("change", function () {
+        const fullAddress = get_full_address();
+        
+        if (state) searchLocation(fullAddress, 9);
+    });
+    document.getElementById("city").addEventListener("change", function () {
+        const fullAddress = get_full_address();
+        if (area) searchLocation(fullAddress, 11);
+    });
+    document.getElementById("area").addEventListener("change", function () {
+        const fullAddress = get_full_address();
+        if (area) searchLocation(fullAddress, 14);
+    });
+    document.getElementById("land_mark").addEventListener("keyup", function () {
+        const fullAddress = get_full_address();
+        if (address) searchLocation(fullAddress, 16);
+    });
+    document.getElementById("address").addEventListener("keyup", function () {
+        const fullAddress = get_full_address();
+        if (address) searchLocation(fullAddress, 18);
+    });
 
     
    
 
    
 </script>
+<script
+    src="https://maps.googleapis.com/maps/api/js?key={{ env('MAP_API_KEY') }}&libraries=places&language=en&callback=initialize"
+    async defer></script>

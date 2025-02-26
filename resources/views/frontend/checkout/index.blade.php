@@ -678,9 +678,6 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.12/js/intlTelInput-jquery.min.js" integrity="sha512-QK4ymL3xaaWUlgFpAuxY+6xax7QuxPB3Ii/99nykNP/PlK3NTQa/f/UbQQnWsM4h5yjQoMjWUhCJbYgWamtL6g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-<script
-    src="https://maps.googleapis.com/maps/api/js?key={{ env('MAP_API_KEY') }}&libraries=places&language=en&callback=initialize"
-    async defer></script>
 
     <script type="text/javascript">
    
@@ -758,12 +755,7 @@
                         const rootCode = response[0].idd.root; // e.g., "+92"
                         const suffixCode = (response[0].idd.suffixes && response[0].idd.suffixes[0]) || "";
                         const fullCode = rootCode + suffixCode;
-        
-                        // Set the placeholder with the calling code
-                        $('[name="phone"]').attr('value', fullCode);
-
-                        // debugger
-                        searchLocation("Pakistan")
+    
                     }
                 },
                 error: function() {
@@ -999,11 +991,7 @@ function delete_address(addressId) {
                 },
                 success: function(response) {
                     if (response.success) {
-                        Swal.fire(
-                            'Deleted!',
-                            response.message || 'Your address has been deleted.',
-                            'success'
-                        ).then(() => {
+                       
                             var obj = response;
                             if (obj != '') {
                                 $("#shipping_preloader").hide();
@@ -1011,7 +999,7 @@ function delete_address(addressId) {
                                 $('#shipping_info').html(obj.html);
                     
                             }
-                        });
+                       
                     } else {
                         Swal.fire(
                             'Error!',
