@@ -3111,6 +3111,7 @@ if (!function_exists('show_global_cart')) {
         if (empty(auth()->user())) {
             return true;
         }
+        
         // If user is authenticated, return true only if user_type is 'customer'
         return auth()->user()->user_type === 'customer';
     }

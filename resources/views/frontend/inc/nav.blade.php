@@ -1,7 +1,9 @@
 
-
 <header >
     <div class="container bg-white pt-1">
+
+<header class="container bg-white py-1">
+
         <!-- Header Top -->
         <div class="row align-items-center header-top">
             <!-- Logo -->
@@ -50,12 +52,12 @@
                 
                    
             </div>
-            <div class="col-lg-3 col-md-6 col-12">
+            <div class="col-lg-3 col-md-5 col-12">
                 <div class="d-flex justify-content-end align-items-center gap-4">
-                        
+                    @if(show_global_cart())
                     <div class="dropdown d-flex justify-content-start align-items-center">
                         
-                            <i class="fa fa-location-dot fs-20 me-2">
+                            <i class="fa fa-location-dot fs-20 me-2" style="color: @auth #3d5c86 @else #000 @endif">
                             </i>
                             <div class="d-flex flex-column">
                                 <span class="d-block fs-15">Deliver to</span>
@@ -64,6 +66,7 @@
                         
                        
                     </div> 
+                    @endif
                     <!-- User Profile and Seller Area with Dropdown -->
 
                     <!-- My Account -->
@@ -79,7 +82,12 @@
                                         </span>
                                     @endif
                                     <div class="d-flex flex-column">
-                                        <span class="d-block fs-15" style="text-wrap: auto"> Hello, {{$user->name}} </span>
+                                        @php
+                                            $user_name = explode(' ', $user->name);
+                                            $first_name = $user_name[0];
+
+                                        @endphp
+                                        <span class="d-block fs-15" style="text-wrap: auto"> Hello, {{$first_name}} </span>
                                         <span class="fw-bold fs-16">My Account</span>
                                         
                                     </div>
