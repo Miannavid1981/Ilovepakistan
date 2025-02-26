@@ -248,8 +248,8 @@
     <div class="bighouz-business">
 
         <div class="main_banner_slider" >
-            <div class="left-section d-flex flex-column h-100" style="background-image: url(https://static.vecteezy.com/system/resources/previews/008/174/591/non_2x/beauty-skincare-product-square-banner-for-social-media-illustration-vector.jpg); background-size: cover; background-position: center; background-color: #d3e7ff ; border-radius: 20px">
-                <!-- banner-home-page  -->
+            <div class="left-section d-flex flex-column h-100" style="background-image: url({{ static_asset('assets/img/beauty-skincare-product-square-banner-for-social-media-illustration-vector.webp') }}); background-size: cover; background-position: center; background-color: #d3e7ff ; border-radius: 20px">
+               
                 <div class="banner " >
                         
                     {{-- <h1>Electronics On Sale</h1>
@@ -264,35 +264,21 @@
                 </div>
         
             </div>
-            <div class="left-section d-flex flex-column h-100" style="background-image: url(https://d1csarkz8obe9u.cloudfront.net/posterpreviews/headphone-earphones-electronics-gadgets-flyer-design-template-f2a41ff7a4f5e05ae8bb552d8903f906_screen.jpg?ts=1660304194); background-size: cover; background-position: center; background-color: #d3e7ff ; border-radius: 20px">
-                <!-- banner-home-page  -->
+            <div class="left-section d-flex flex-column h-100" style="background-image: url({{ static_asset('assets/img/samsung-s25-ultra-STORY-BANNER-850x500.webp') }}); background-size: cover; background-position: center; background-color: #d3e7ff ; border-radius: 20px">
                 <div class="banner " >
                         
-                    {{-- <h1>Electronics On Sale</h1>
-                    <div class="d-flex gap-3">
-                        <p><i class="fas fa-check-circle"></i> Tax exemptions</p>
-                        <p><i class="fas fa-credit-card"></i> Express Payments</p>
-                        <p><i class="fas fa-dollar-sign"></i> Financial Support</p>
-                    </div>
-                    
-                    <button class="btn btn-lg btn-dark">Shop now</button> --}}
-            
                 </div>
         
             </div>
-            <div class="left-section d-flex flex-column h-100" style="background-image: url({{ static_asset('assets/img/solarbg.png') }}); background-size: cover; background-position: center; background-color: #d3e7ff ; border-radius: 20px">
-                <!-- banner-home-page  -->
+            <div class="left-section d-flex flex-column h-100" style="background-image: url({{ static_asset('assets/img/headphone-earphones-electronics-gadgets-flyer-design-template-f2a41ff7a4f5e05ae8bb552d8903f906_screen.webp') }}); background-size: cover; background-position: center; background-color: #d3e7ff ; border-radius: 20px">
                 <div class="banner " >
                         
-                    <h1>BigHouz Business</h1>
-                    <div class="d-flex gap-3">
-                        <p><i class="fas fa-check-circle"></i>Renewable Energy</p>
-                        <p><i class="fas fa-credit-card"></i> Electronics</p>
-                        <p><i class="fas fa-dollar-sign"></i> Consumer Electronics</p>
-                    </div>
-                    
-                    <button class="btn btn-lg btn-dark">Shop now</button>
-            
+                </div>
+        
+            </div>
+            <div class="left-section d-flex flex-column h-100" style="background-image: url({{ static_asset('assets/img/1_8Fx_5pUpS4wda42aGnuuuQ.webp') }}); background-size: cover; background-position: center; background-color: #d3e7ff ; border-radius: 20px;">
+                <div class="banner " >
+                        
                 </div>
         
             </div>
@@ -307,27 +293,27 @@
                 <div class="category-grid">
               
         
-                    <div class="category-card" style="background-image: url(https://thumbs.dreamstime.com/b/big-sale-electronics-household-appliances-banner-design-big-sale-electronics-household-appliances-square-banner-design-vector-196874899.jpg); background-size:cover; aspect-ratio: 1 / 1;">
+                    <div class="category-card" style="background-image: url({{ static_asset('assets/img/big-sale-electronics-household-appliances-banner-design-big-sale-electronics-household-appliances-square-banner-design-vector-196874899.webp') }}); background-size:cover; aspect-ratio: 1 / 1;">
                         {{-- <p style="font-size: 0.9rem; font-weight: 600;"> {{$category->name}}</p> --}}
                         <!-- <img src="https://s.alicdn.com/@sc04/kf/H0c9193fb07984a3c8ee34970ef68472aP.png_300x300.png" alt="Home Improvement & Lighting"> -->
                     </div>
-                    <div class="category-card" style="background-image: url(https://img.pikbest.com/origin/06/46/16/15wpIkbEsTYpv.jpg!w700wp); background-size:cover; aspect-ratio: 1 / 1;">
+                    <div class="category-card" style="background-image: url({{ static_asset('assets/img/screenshot.webp') }}); background-size:cover; aspect-ratio: 1 / 1;">
                         {{-- <p style="font-size: 0.9rem; font-weight: 600;"> {{$category->name}}</p> --}}
                         <!-- <img src="https://s.alicdn.com/@sc04/kf/H0c9193fb07984a3c8ee34970ef68472aP.png_300x300.png" alt="Home Improvement & Lighting"> -->
                     </div>
-                    <div class="category-card" style="background-image: url(https://previews.123rf.com/images/vitekprchal/vitekprchal1807/vitekprchal180700088/103816751-square-promotional-banner-minimal-design-decorated-banner-put-your-text-in-there-and-start-your.jpg); background-size:cover; aspect-ratio: 1 / 1;">
+                    <div class="category-card" style="background-image: url({{ static_asset('assets/img/163686796-moisturizing-cosmetic-products-ad-light-green-background-with-cream-jar-on-square-podium-and-palm.webp') }}); background-size:cover; aspect-ratio: 1 / 1;">
                         {{-- <p style="font-size: 0.9rem; font-weight: 600;"> {{$category->name}}</p> --}}
                         <!-- <img src="https://s.alicdn.com/@sc04/kf/H0c9193fb07984a3c8ee34970ef68472aP.png_300x300.png" alt="Home Improvement & Lighting"> -->
                     </div>
-                    <div class="category-card" style="background-image: url(https://assets.dochipo.com/media/companies/dochipo/templates/63352b8b8904a7cc72c3a76b/screenshot.png); background-size:cover; aspect-ratio: 1 / 1;">
+                    <div class="category-card" style="background-image: url({{ static_asset('assets/img/beauty-skin-care-center-promotion-design-social-media-post-and-banner-minimalist-square-template-to-promote-hair-salon-medical-spa-yoga-cosmetic-sale-natural-skin-treatment-makeup-etc-vector.webp') }}); background-size:cover; aspect-ratio: 1 / 1;">
                         {{-- <p style="font-size: 0.9rem; font-weight: 600;"> {{$category->name}}</p> --}}
                         <!-- <img src="https://s.alicdn.com/@sc04/kf/H0c9193fb07984a3c8ee34970ef68472aP.png_300x300.png" alt="Home Improvement & Lighting"> -->
                     </div>
-                    <div class="category-card" style="background-image: url(https://previews.123rf.com/images/lightvisionftb/lightvisionftb2101/lightvisionftb210100030/163686796-moisturizing-cosmetic-products-ad-light-green-background-with-cream-jar-on-square-podium-and-palm.jpg); background-size:cover; aspect-ratio: 1 / 1;">
+                    <div class="category-card" style="background-image: url({{ static_asset('assets/img/103816751-square-promotional-banner-minimal-design-decorated-banner-put-your-text-in-there-and-start-your.webp') }}); background-size:cover; aspect-ratio: 1 / 1;">
                         {{-- <p style="font-size: 0.9rem; font-weight: 600;"> {{$category->name}}</p> --}}
                         <!-- <img src="https://s.alicdn.com/@sc04/kf/H0c9193fb07984a3c8ee34970ef68472aP.png_300x300.png" alt="Home Improvement & Lighting"> -->
                     </div>
-                    <div class="category-card" style="background-image: url(https://static.vecteezy.com/system/resources/previews/016/410/506/non_2x/beauty-skin-care-center-promotion-design-social-media-post-and-banner-minimalist-square-template-to-promote-hair-salon-medical-spa-yoga-cosmetic-sale-natural-skin-treatment-makeup-etc-vector.jpg); background-size:cover; aspect-ratio: 1 / 1;">
+                    <div class="category-card" style="background-image: url({{ static_asset('assets/img/15wpIkbEsTYpv.webp') }}); background-size:cover; aspect-ratio: 1 / 1;">
                         {{-- <p style="font-size: 0.9rem; font-weight: 600;"> {{$category->name}}</p> --}}
                         <!-- <img src="https://s.alicdn.com/@sc04/kf/H0c9193fb07984a3c8ee34970ef68472aP.png_300x300.png" alt="Home Improvement & Lighting"> -->
                     </div>
@@ -713,7 +699,7 @@
 
 
     </div>
-    <img src="https://media.licdn.com/dms/image/v2/D4E12AQHHPK-wrGnwOg/article-cover_image-shrink_720_1280/article-cover_image-shrink_720_1280/0/1693333464172?e=2147483647&amp;v=beta&amp;t=wlIU1NtUMOVAEgDvUSD_q5s6I7ExuF-_ZmTr22YUOXo" class="w-100 mt-2 mb-4">
+    <img src="{{ static_asset('assets/img/banners.webp') }}" class="w-100 mt-2 mb-4">
 
     @include('frontend/megamart/partials/toggle_tabs');
    
