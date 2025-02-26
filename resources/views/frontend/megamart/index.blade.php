@@ -679,7 +679,7 @@
     }
     </style>
     <div class="mx-5">
-        <div class="container py-5">
+        <div class="container py-5"> 
          <div class="row text-center d-flex align-items-end">
            <!-- First Feature -->
            <div class="col-md-3">
