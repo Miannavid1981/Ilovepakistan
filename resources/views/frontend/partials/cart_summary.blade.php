@@ -137,7 +137,7 @@
                     <th class="pl-0 fs-16 pt-0 pb-2 text-dark fw-300  border-top-0">{{ translate('Subtotal') }}</th>
                     <td class="text-right pr-0 fs-16 pt-0 pb-2 fw-300  text-dark border-top-0">
                         <small class="fw-300">{{ currency_symbol() }}</small>
-                        <span class="fw-300 ">{{ $subtotal }}</span>
+                        <span class="fw-300 ">{{ number_format($subtotal) }}</span>
                     </td>
                 </tr>
                 <!-- Tax -->
@@ -153,7 +153,7 @@
                     <th class="pl-0 fs-16 pt-0 pb-2 text-dark fw-300  border-top-0">{{ translate('Delivery Charges') }}</th>
                     <td class="text-right pr-0 fs-16 pt-0 pb-2 fw-300  text-dark border-top-0">
                         <small class="fw-300">{{ currency_symbol() }}</small>
-                        <span class="fw-300 ">{{ $shipping}}</span>
+                        <span class="fw-300 ">{{ number_format($shipping)}}</span>
                     </td>
                 </tr>
                 <!-- Redeem point -->
@@ -172,7 +172,7 @@
                         <th class="pl-0 fs-16 pt-0 pb-2 text-dark fw-300  border-top-0">{{ translate('Coupon Discount') }}</th>
                         <td class="text-right pr-0 fs-16 pt-0 pb-2 fw-300  text-dark border-top-0">
                             <small>{{ currency_symbol() }}</small>
-                            <span class="fw-300 ">{{ $coupon_discount }}</span>
+                            <span class="fw-300 ">{{ number_format($coupon_discount) }}</span>
                         </td>
                     </tr>
                 @endif
@@ -199,38 +199,7 @@
             </tfoot>
         </table>
 
-        <!-- Coupon System -->
-        @if (get_setting('coupon_system') == 1)
-            @if ($coupon_discount > 0 && $coupon_code)
-                <div class="mt-3">
-                    <form class="" id="remove-coupon-form" enctype="multipart/form-data">
-                        @csrf
-                        <div class="input-group">
-                            <div class="form-control">{{ $coupon_code }}</div>
-                            <div class="input-group-append">
-                                <button type="button" id="coupon-remove"
-                                    class="btn btn-primary">{{ translate('Change Coupon') }}</button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            @else
-                <div class="mt-3">
-                    <form class="" id="apply-coupon-form" enctype="multipart/form-data">
-                        @csrf
-                        <input type="hidden" name="owner_id" value="{{ $carts[0]['owner_id'] }}">
-                        <div class="input-group">
-                            <input type="text" class="form-control rounded-0" name="code"
-                                onkeydown="return event.key != 'Enter';"
-                                placeholder="{{ translate('Have coupon code? Apply here') }}" required>
-                            <div class="input-group-append">
-                                <button type="button" id="coupon-apply"
-                                    class="btn btn-primary rounded-0">{{ translate('Apply') }}</button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            @endif
+        
         @endif
 
     </div>

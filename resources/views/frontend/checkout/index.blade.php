@@ -1,6 +1,8 @@
 @extends('frontend.layouts.app')
 
 @section('content')
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.12/css/intlTelInput.css" integrity="sha512-gxWow8Mo6q6pLa1XH/CcH8JyiSDEtiwJV78E+D+QP0EVasFs8wKXq16G8CLD4CJ2SnonHr4Lm/yY2fSI2+cbmw==" crossorigin="anonymous" referrerpolicy="no-referrer"
+/>
 <style>
     header, footer {
         display: none !important;
@@ -12,8 +14,8 @@
         display: none !important
     }
     .container {
-    max-width: 1350px !important;
-}
+        max-width: 1350px !important;
+    }
     .checkout-container {
          background-color: white;
          border-radius: 8px;
@@ -50,15 +52,15 @@
      }
 
      .payment-section {
- padding: 20px;
- position: sticky;
- top: 15px;  /* Stick 15px from the top */
- z-index: 1000;
- background-color: white;
- /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); */
- /* Only position: sticky is required */
- height: 100%;
-}
+        padding: 20px;
+        position: sticky;
+        top: 15px;  /* Stick 15px from the top */
+        z-index: 1000;
+        background-color: white;
+        /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); */
+        /* Only position: sticky is required */
+        height: 100%;
+    }
 
      .payment-section h3 {
          margin-bottom: 20px;
@@ -590,7 +592,8 @@
                         $product = \App\Models\Product::find($item->product_id);
 
                         $original_skin_code = $item->skin_code ;
-
+                        $seller = false;
+                        $product_seller_map = false;
                         if($original_skin_code){
                             
                             $product_seller_map = \App\Models\ProductSellerMap::where('original_skin', $original_skin_code )->first();
@@ -656,117 +659,161 @@
 </form>
 
 @endsection
+@php
+    
+    $session_country  = 'Pakistan';
 
+    $session_country_obj = \App\Models\Country::where('name', $session_country)->first();
+
+
+@endphp
 @section('script')
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.12/js/intlTelInput-jquery.min.js" integrity="sha512-QK4ymL3xaaWUlgFpAuxY+6xax7QuxPB3Ii/99nykNP/PlK3NTQa/f/UbQQnWsM4h5yjQoMjWUhCJbYgWamtL6g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script
+    src="https://maps.googleapis.com/maps/api/js?key={{ env('MAP_API_KEY') }}&libraries=places&language=en&callback=initialize"
+    async defer></script>
+
     <script type="text/javascript">
-$(document).ready(function() {
-
    
-    // Attach a change event handler to the radio buttons
-    $('.delivery_type input').click(function() {
-        // alert("t"+$('input[name="delivery_type"]:checked').val())
-        // Get the value of the selected radio button
-        $('#shipping_info').hide();
-        $("#shipping_preloader").attr("style", 'display: flex')
-        var delivery_type = $('input[name="delivery_type"]:checked').val();
-
-        $.ajax({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            },
-            url: "{{route('change-address-type')}}",
-            type: 'POST',
-            data: {
-                address_type: delivery_type
-            },
-            success: function(response) {
-                var obj = response;
-                if (obj != '') {
-                    $("#shipping_preloader").hide();
-                    $('#shipping_info').show();
-                    $('#shipping_info').html(obj.html);
-           
-                }
-            }
+    $(document).ready(function() {
+        var country_code = '{{  $session_country_obj ? $session_country_obj->code : 'PK' }}';
+        var country_id = {{ $session_country_obj ? $session_country_obj->id : "" }};
+        var instance = $("[name=phone]").intlTelInput({
+            initialCountry: country_code, // Set Pakistan as the default country
+            separateDialCode: true,
         });
-    });
-    if($('[name="selected_address_id"]').length > 0){
-        $('[name="selected_address_id"]')[0].click();
-    }
-    
-    $(document).on('change', '[name=country_id]', function() {
-        var country_id = $(this).val();
-        get_states(country_id);
+
+        $("[name=phone]").on("blur", function() {
+            console.log($(this).val());
+            console.log(instance.intlTelInput("getSelectedCountryData").dialCode); // Get country code
+        });
+
+        var $countrySelect = $("#country");
+
+
+        // Populate country dropdown with options from intlTelInput
+        // var countryData = window.intlTelInputGlobals.getCountryData();
+        // $.each(countryData, function(index, country) {
+        //     $countrySelect.append($("<option>", {
+        //         value: country.iso2,
+        //         text: country.name 
+        //     }));
+        // });
         
-        var countryCode = $(this).find(':selected').data('code');
+      
+   
+        // Attach a change event handler to the radio buttons
+        $('.delivery_type input').click(function() {
+            // alert("t"+$('input[name="delivery_type"]:checked').val())
+            // Get the value of the selected radio button
+            $('#shipping_info').hide();
+            $("#shipping_preloader").attr("style", 'display: flex')
+            var delivery_type = $('input[name="delivery_type"]:checked').val();
 
-        $.ajax({
-            url: `https://restcountries.com/v3.1/alpha/${countryCode}`,
-            method: 'GET',
-            success: function(response) {
-                if (response && response[0] && response[0].idd && response[0].idd.root) {
-                    // Extract the calling code, which may have root and suffixes
-                    const rootCode = response[0].idd.root; // e.g., "+92"
-                    const suffixCode = (response[0].idd.suffixes && response[0].idd.suffixes[0]) || "";
-                    const fullCode = rootCode + suffixCode;
-    
-                    // Set the placeholder with the calling code
-                    $('[name="phone"]').attr('value', fullCode);
+            $.ajax({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                url: "{{route('change-address-type')}}",
+                type: 'POST',
+                data: {
+                    address_type: delivery_type
+                },
+                success: function(response) {
+                    var obj = response;
+                    if (obj != '') {
+                        $("#shipping_preloader").hide();
+                        $('#shipping_info').show();
+                        $('#shipping_info').html(obj.html);
+            
+                    }
                 }
-            },
-            error: function() {
-                console.error('Could not retrieve country calling code');
-                $('[name="phone"]').attr('placeholder', ''); // Reset if API fails
-            }
+            });
         });
-    });
-    
-    $(document).on('change', '[name=state_id]', function() {
-        var state_id = $(this).val();
-        get_city(state_id);
-    });
+        if($('[name="selected_address_id"]').length > 0){
+            $('[name="selected_address_id"]')[0].click();
+        }
+        
+        $(document).on('change', '[name=country_id]', function() {
+            var country_id = $(this).val();
+            get_states(country_id);
+            
+            var countryCode = country_code ?? $(this).data('code');
 
-    function get_states(country_id) {
-        $('[name="state"]').html("");
-        $.ajax({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            },
-            url: "{{route('get-state')}}",
-            type: 'POST',
-            data: {
-                country_id: country_id
-            },
-            success: function(response) {
-                var obj = JSON.parse(response);
-                if (obj != '') {
-                    $('[name="state_id"]').html(obj);
-                    AIZ.plugins.bootstrapSelect('refresh');
-                }
-            }
-        });
-    }
+            $.ajax({
+                url: `https://restcountries.com/v3.1/alpha/${countryCode}`,
+                method: 'GET',
+                success: function(response) {
+                    if (response && response[0] && response[0].idd && response[0].idd.root) {
+                        // Extract the calling code, which may have root and suffixes
+                        const rootCode = response[0].idd.root; // e.g., "+92"
+                        const suffixCode = (response[0].idd.suffixes && response[0].idd.suffixes[0]) || "";
+                        const fullCode = rootCode + suffixCode;
+        
+                        // Set the placeholder with the calling code
+                        $('[name="phone"]').attr('value', fullCode);
 
-    function get_city(state_id) {
-        $('[name="city"]').html("");
-        $.ajax({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            },
-            url: "{{route('get-city')}}",
-            type: 'POST',
-            data: {
-                state_id: state_id
-            },
-            success: function(response) {
-                var obj = JSON.parse(response);
-                if (obj != '') {
-                    $('[name="city_id"]').html(obj);
-                    AIZ.plugins.bootstrapSelect('refresh');
+                        // debugger
+                        searchLocation("Pakistan")
+                    }
+                },
+                error: function() {
+                    console.error('Could not retrieve country calling code');
+                    $('[name="phone"]').attr('placeholder', ''); // Reset if API fails
                 }
-            }
+            });
         });
-    }
+        
+        $("#country").val(country_id).trigger('change');
+        $(document).on('change', '[name=state_id]', function() {
+            var state_id = $(this).val();
+            get_city(state_id);
+        });
+
+        function get_states(country_id) {
+            $('[name="state"]').html("");
+            $.ajax({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                url: "{{route('get-state')}}",
+                type: 'POST',
+                data: {
+                    country_id: country_id
+                },
+                success: function(response) {
+                    var obj = JSON.parse(response);
+                    if (obj != '') {
+                        $('[name="state_id"]').html(obj);
+                        AIZ.plugins.bootstrapSelect('refresh');
+                    }
+                }
+            });
+        }
+
+        function get_city(state_id) {
+            $('[name="city"]').html("");
+            $.ajax({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                url: "{{route('get-city')}}",
+                type: 'POST',
+                data: {
+                    state_id: state_id
+                },
+                success: function(response) {
+                    var obj = JSON.parse(response);
+                    if (obj != '') {
+                        $('[name="city_id"]').html(obj);
+                        AIZ.plugins.bootstrapSelect('refresh');
+                    }
+                }
+            });
+        }
 
 
             $("#new_address_modal").click(function(){
@@ -866,8 +913,7 @@ $(document).ready(function() {
             })
         })
 
-
-        
+       
        
     </script>
 
@@ -917,10 +963,13 @@ $(document).ready(function() {
     }
 </script>
 
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
   
 function delete_address(addressId) {
+
+    var delivery_type = $('input[name="delivery_type"]:checked').val();
+    $("#shipping_preloader").show();
+    $('#shipping_info').hide();
     Swal.fire({
         title: 'Are you sure?',
         text: "You won't be able to revert this!",
@@ -931,14 +980,17 @@ function delete_address(addressId) {
         confirmButtonText: 'Yes, delete it!'
     }).then((result) => {
         if (result.isConfirmed) {
-            var url = `/addresses/${addressId}`; 
+            var url = `{{ url('/addresses/destroy') }}/${addressId}`; 
             
             $.ajax({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
                 url: url,
-                type: 'DELETE', 
+                type: 'POST', 
+                data: {
+                    address_type: delivery_type
+                },
                 success: function(response) {
                     if (response.success) {
                         Swal.fire(
@@ -946,7 +998,13 @@ function delete_address(addressId) {
                             response.message || 'Your address has been deleted.',
                             'success'
                         ).then(() => {
-                            location.reload(); 
+                            var obj = response;
+                            if (obj != '') {
+                                $("#shipping_preloader").hide();
+                                $('#shipping_info').show();
+                                $('#shipping_info').html(obj.html);
+                    
+                            }
                         });
                     } else {
                         Swal.fire(
@@ -967,5 +1025,14 @@ function delete_address(addressId) {
         }
     });
 }
+$(document).on('click', '.delete-address', function(){
+            var id = $(this).data('id');
+
+            delete_address(id)
+            console.log("t")
+        });
+
+
+        
 </script>
 @endsection

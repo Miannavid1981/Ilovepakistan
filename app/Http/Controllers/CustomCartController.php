@@ -25,7 +25,7 @@ class CustomCartController extends Controller
         $productId = $request->product_id;
         $skinCode = $request->skin_code;  // Skin code to uniquely identify variations
         $userId = Auth::id() ?? null;
-        $tempUserId = session('guest_cart_id', str()->uuid());
+        $tempUserId = session('temp_user_id');
         session(['guest_cart_id' => $tempUserId]);
     
         // Check if the same product with the same skin code exists
@@ -85,7 +85,7 @@ class CustomCartController extends Controller
     {
         $id = $request->id;
         $userId = Auth::id();
-        $tempUserId = session('guest_cart_id');
+        $tempUserId = session('temp_user_id');
 
         Cart::where('id', $id)
             ->where(function ($query) use ($userId, $tempUserId) {
@@ -107,7 +107,7 @@ class CustomCartController extends Controller
         $quantity = $request->quantity;
         // dd($quantity);
         $userId = Auth::id();
-        $tempUserId = session('guest_cart_id');
+        $tempUserId = session('temp_user_id');
     
         $cartItem = Cart::where('id', $id)
             ->where(function ($query) use ($userId, $tempUserId) {
@@ -143,7 +143,7 @@ class CustomCartController extends Controller
     private function getCartData()
     {
         $userId = Auth::id();
-        $tempUserId = session('guest_cart_id');
+        $tempUserId = session('temp_user_id');
     
         $cartItems = Cart::where(function ($query) use ($userId, $tempUserId) {
             if ($userId) {

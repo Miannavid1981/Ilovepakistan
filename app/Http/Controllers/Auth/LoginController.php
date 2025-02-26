@@ -51,6 +51,7 @@ class LoginController extends Controller
      
     public function login(Request $request)
     {
+
         // Validate the incoming request
         $validated = $request->validate([
             'email' => 'required|email',
@@ -68,7 +69,19 @@ class LoginController extends Controller
         if ($user && Hash::check($request->password, $user->password)) {
             // Log the user in
             Auth::login($user);
-    
+
+            // dd(session('temp_user_id'));
+            if (session()->has('temp_user_id')) {
+                Cart::where('temp_user_id', session('temp_user_id'))
+                    ->update([
+                        'user_id' => $user->id,
+                        'temp_user_id' => null
+                    ]);
+        
+                Session::forget('temp_user_id');
+            }
+            
+            // dd(session('temp_user_id'));
             // Redirect based on user type
             if ($user_type == 'admin' || $user_type == 'staff') {
                 CoreComponentRepository::instantiateShopRepository();
@@ -76,9 +89,12 @@ class LoginController extends Controller
             } elseif ($user_type == 'seller') {
                 return redirect()->route('seller.dashboard');
             } elseif ($user_type == 'customer') {
-                return redirect()->route('home'); // Adjust this route as needed
+                return redirect()->route('checkout.shipping_info'); // Adjust this route as needed
             }
         } 
+        
+
+
         $error = 'Invalid login credentials';
         if(!$user) {
             $error = 'No Seller with this Email';
@@ -304,18 +320,7 @@ class LoginController extends Controller
      */
     public function authenticated()
     {
-        if (session('temp_user_id') != null) {
-        
-            Cart::where('temp_user_id', session('temp_user_id'))
-            ->update(
-                [
-                    'user_id' => auth()->user()->id,
-                    'temp_user_id' => null
-                ]
-            );
-            
-            Session::forget('temp_user_id');
-        }
+       
 
         if (auth()->user()->user_type == 'admin' || auth()->user()->user_type == 'staff') {
             CoreComponentRepository::instantiateShopRepository();
@@ -327,7 +332,7 @@ class LoginController extends Controller
             if (session('link') != null) {
                 return redirect(session('link'));
             } else {
-                return redirect()->route('dashboard');
+                return redirect()->route('checkout.shipping_info');
             }
         }
     }
@@ -359,13 +364,9 @@ class LoginController extends Controller
         } else {
             $redirect_route = 'home';
         }
-
-        //User's Cart Delete
-        // if (auth()->user()) {
-        //     Cart::where('user_id', auth()->user()->id)->delete();
-        // }
-
+        Session::forget('temp_user_id');
         $this->guard()->logout();
+       
 
         $request->session()->invalidate();
 

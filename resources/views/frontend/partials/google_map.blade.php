@@ -1,4 +1,5 @@
 <script>
+   
     let default_longtitude = '';
     let default_latitude = '';
     @if (get_setting('google_map_longtitude') != '' && get_setting('google_map_longtitude') != '')
@@ -6,7 +7,7 @@
         default_latitude = {{ get_setting('google_map_latitude') }};
     @endif
    // var map = null;
-    function initialize(lat = -33.8688, lang = 151.2195, id_format = '') {
+    function initialize(lat = 30.3753, lang =69.3451, id_format = '') {
         var long = lang;
         var lat = lat;
         if (default_longtitude != '' && default_latitude != '') {
@@ -19,7 +20,7 @@
                 lat: lat,
                 lng: long
             },
-            zoom: 13
+            zoom: 5
         });
 
         var myLatlng = new google.maps.LatLng(lat, long);
@@ -114,31 +115,31 @@
     
     
     
-     function placeMarker(location) {
-      if (marker) { 
-        marker.setMap(null);
-      }
-      marker = new google.maps.Marker({
-        position: location,
-        map: map,
-      });
+    function placeMarker(location) {
+        if (marker) { 
+            marker.setMap(null);
+        }
+        marker = new google.maps.Marker({
+            position: location,
+            map: map,
+        });
 
-      document.getElementById("latitude").value = location.lat().toFixed(6);
-      document.getElementById("longitude").value = location.lng().toFixed(6);
+        document.getElementById("latitude").value = location.lat().toFixed(6);
+        document.getElementById("longitude").value = location.lng().toFixed(6);
     }
 
     function searchLocation(query, zoom=8) {
        geocoder = new google.maps.Geocoder();
-      geocoder.geocode({ address: query }, function (results, status) {
-          console.log(results);
-        if (status === "OK") {
-          map.setCenter(results[0].geometry.location);
-          map.setZoom(zoom);
-          placeMarker(results[0].geometry.location);
-        } else {
-         //  alert("Geocode was not successful for the following reason: " + status);
-        }
-      });
+        geocoder.geocode({ address: query }, function (results, status) {
+            console.log(results);
+            if (status === "OK") {
+                map.setCenter(results[0].geometry.location);
+                map.setZoom(zoom);
+                placeMarker(results[0].geometry.location);
+            } else {
+                //  alert("Geocode was not successful for the following reason: " + status);
+            }
+        });
     }
     function get_full_address() {
         const state = $("#state").val() != "" ? $("#state option:selected").text() : ''; // Default to empty string if null/undefined
@@ -146,24 +147,22 @@
         const city = $("#city").val() != "" ? $("#city option:selected").text() : '';
         const area = $("#area option:selected").text() || '';
         const address = $("#address").val() || '';
-        const land_mark = $("#land_mark").val() || '';
+        const land_mark = $("#land_mark").val() ?  'Near '+ $("#land_mark").val() : '';
 
-        // Construct the full address, filtering out empty values
         const addressParts = [ address,land_mark, area, city, state, country].filter(part => part.trim() !== '');
-        console.log(addressParts.join(', '))
-        // Join the parts with a comma and return the result
+       
         return addressParts.join(', ');
         
     }
-    if($(document).find('input[name="selected_address_id"]').length == 0  ) {
-
         document.getElementById("country").addEventListener("change", function () { 
             const fullAddress = get_full_address();
+           
             if (country) searchLocation(fullAddress);
         });
 
         document.getElementById("state").addEventListener("change", function () {
             const fullAddress = get_full_address();
+            
             if (state) searchLocation(fullAddress, 9);
         });
         document.getElementById("city").addEventListener("change", function () {
@@ -183,12 +182,8 @@
             if (address) searchLocation(fullAddress, 18);
         });
 
-    }
+    
    
 
    
 </script>
-
-<script
-    src="https://maps.googleapis.com/maps/api/js?key={{ env('MAP_API_KEY') }}&libraries=places&language=en&callback=initialize"
-    async defer></script>

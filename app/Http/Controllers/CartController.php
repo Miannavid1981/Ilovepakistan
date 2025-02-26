@@ -67,17 +67,13 @@ class CartController extends Controller
     public function addToCart(Request $request)
     {
         $authUser = auth()->user();
+        $temp_user_id = session('temp_user_id');
         if($authUser != null) {
             $user_id = $authUser->id;
             $data['user_id'] = $user_id;
             $carts = Cart::where('user_id', $user_id)->get();
         } else {
-            if($request->session()->get('temp_user_id')) {
-                $temp_user_id = $request->session()->get('temp_user_id');
-            } else {
-                $temp_user_id = bin2hex(random_bytes(10));
-                $request->session()->put('temp_user_id', $temp_user_id);
-            }
+            
             $data['temp_user_id'] = $temp_user_id;
             $carts = Cart::where('temp_user_id', $temp_user_id)->get();
         }
@@ -118,7 +114,7 @@ class CartController extends Controller
                 'product_id' => $request['id']
             ]);
         } else {
-            $temp_user_id = $request->session()->get('temp_user_id');
+          
             $cart = Cart::firstOrNew([
                 'variation' => $str,
                 'temp_user_id' => $temp_user_id,
@@ -155,7 +151,7 @@ class CartController extends Controller
             $user_id = $authUser->id;
             $carts = Cart::where('user_id', $user_id)->get();
         } else {
-            $temp_user_id = $request->session()->get('temp_user_id');
+         
             $carts = Cart::where('temp_user_id', $temp_user_id)->get();
         }
 

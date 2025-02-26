@@ -150,14 +150,10 @@ class CartController extends Controller
     public function add(Request $request)
     {
         $user_id =  $request->user_id != null ? $request->user_id : null;
-        $temp_user_id =   $request->temp_user_id != null ? $request->temp_user_id : null;
+        $temp_user_id = session('temp_user_id');
         if($user_id != null) {
             $carts = Cart::where('user_id', $user_id)->active()->get();
-        }
-        else {
-            if($temp_user_id == null){
-                $temp_user_id = bin2hex(random_bytes(10));
-            }
+        } else {
             $carts = Cart::where('temp_user_id', $temp_user_id)->active()->get();
         }
 

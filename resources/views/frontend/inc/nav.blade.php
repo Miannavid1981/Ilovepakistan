@@ -3,12 +3,9 @@
     .dropdown-item:hover {
     color: black !important;
 }
-
 </style>
 <header >
     <div class="container bg-white pt-1">
-
-<header class="container bg-white py-1">
 
         <!-- Header Top -->
         <div class="row align-items-center header-top">
@@ -23,6 +20,7 @@
                     $my_account_url = Auth::user()->user_type == "staff" ? '/admin/profile/' : route('profile');
                 }
                 
+              
                 
             @endphp
                 <a href="{{ url('/') }}">
@@ -59,19 +57,16 @@
                    
             </div>
             <div class="col-lg-3 col-md-5 col-12">
-                <div class="d-flex justify-content-end align-items-center gap-4">
+                <div class="d-flex justify-content-end align-items-center gap-3">
                     @if(show_global_cart())
-                    <div class="dropdown d-flex justify-content-start align-items-center">
-                        
-                            <i class="fa fa-location-dot fs-20 me-2" style="color: @auth #3d5c86 @else #000 @endif">
-                            </i>
-                            <div class="d-flex flex-column">
-                                <span class="d-block fs-15">Deliver to</span>
-                                <span class="fw-bold fs-17">Pakistan</span>
-                            </div>
-                        
-                       
-                    </div> 
+                        <div class="dropdown d-flex justify-content-start align-items-center">
+                                <i class="fa fa-location-dot fs-20 me-2" style="color: @auth #3072cb @else #000 @endif">
+                                </i>
+                                <div class="d-flex flex-column">
+                                    <span class="d-block fs-15">Deliver to</span>
+                                    <span class="fw-bold fs-17">Pakistan</span>
+                                </div>
+                        </div> 
                     @endif
                     <!-- User Profile and Seller Area with Dropdown -->
 
@@ -132,7 +127,7 @@
                    
     
                     @if(show_global_cart())
-                    <button class="btn btn-light bg-white border-0 me-3 p-0 position-relative toggle-cart-modal">
+                    <button class="btn btn-light bg-white border-0 me-2 p-0 position-relative toggle-cart-modal">
                         <i class="fa-solid fs-18 fa-cart-shopping"></i>
                         <span class="cart-badge g-cart-items-count">0</span>
                         <p class="fw-bold mb-0">Cart</p>
@@ -187,7 +182,7 @@
             </div>
         </nav>
     </div>
-    </header>
+</header>
 
     <div class="row align-items-center py-2 px-3 header-top d-lg-none">
         <div class="col-4 d-flex align-items-center text-left">
@@ -405,10 +400,43 @@
                                     <h6>Subtotal</h6>
                                     <h6 class="sidecart-subtotal">$0.00</h6>
                                 </div>
-                                <div class="d-flex justify-content-between g_discount_wrapper">
+                                <!-- Coupon System -->
+                                @if (get_setting('coupon_system') == 1)
+                                @if ($coupon_discount && $coupon_code)
+                                    <div class="mt-3">
+                                        <form class="" id="remove-coupon-form" enctype="multipart/form-data">
+                                            @csrf
+                                            <div class="input-group">
+                                                <div class="form-control">{{ $coupon_code }}</div>
+                                                <div class="input-group-append">
+                                                    <button type="button" id="coupon-remove"
+                                                        class="btn btn-primary">{{ translate('Change Coupon') }}</button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                @else
+                                    <div class="mt-3">
+                                        <form class="" id="apply-coupon-form" enctype="multipart/form-data">
+                                            @csrf
+                                            <input type="hidden" name="owner_id" value="{{ $carts[0]['owner_id'] }}">
+                                            <div class="input-group">
+                                                <input type="text" class="form-control rounded-0" name="code"
+                                                    onkeydown="return event.key != 'Enter';"
+                                                    placeholder="{{ translate('Have coupon code? Apply here') }}" required>
+                                                <div class="input-group-append">
+                                                    <button type="button" id="coupon-apply"
+                                                        class="btn btn-primary rounded-0">{{ translate('Apply') }}</button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                @endif
+                                @endif
+                                {{-- <div class="d-flex justify-content-between g_discount_wrapper">
                                     <p>Discount</p>
                                     <p class="sidecart-total-discount"></p>
-                                </div>
+                                </div> --}}
                                 <div class="d-flex justify-content-between g_total">
                                     <h5>Total</h5>
                                     <h5 class="sidecart-total"></h5>

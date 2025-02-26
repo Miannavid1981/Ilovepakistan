@@ -27,7 +27,7 @@
       margin-right: 10px;
     }
 
-    input[type="radio"] {
+    input[type="radio"]:not(.delivery_type input) {
 
         appearance: none;
 
@@ -43,7 +43,7 @@
 
     }
 
-    input[type="radio"]:checked::after {
+    input[type="radio"]:not(.delivery_type input):checked::after {
 
         content: '';
 
