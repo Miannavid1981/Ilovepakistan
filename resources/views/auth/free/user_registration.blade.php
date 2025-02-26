@@ -1,28 +1,61 @@
 @extends('auth.layouts.authentication')
+<style>
+    .form-control {
+    border-radius: 25px !important; /* Border radius for rounded corners */
+    border: 1px solid #ececec !important; /* Border color */
+    background-color: #f9f9f9 !important; /* Input background color */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1) !important; /* Border shadow */
+    padding: 20px !important; /* Padding inside the input */
+    font-size: 14px !important; /* Font size */
+    width: 100% !important; /* Full width */
+    transition: all 0.3s ease !important; /* Smooth transition on focus */
+    height: 50px !important; 
+    outline: none !important; 
+}
+
+/* Focused state styling */
+.form-control:focus {
+    border-color: #cacaca !important; /* Change border color on focus */
+    background-color: #fff !important; /* Change background color on focus */
+    box-shadow: 0 0 8px rgba(153, 155, 158, 0.4) !important; /* Change shadow color on focus */
+    outline: none !important; /* Remove default outline */
+}
+
+/* Styling for invalid inputs */
+.form-control.is-invalid {
+    border-color: #e3342f !important; /* Red border for invalid input */
+    background-color: #ffe5e5 !important; /* Light red background for invalid input */
+}
+
+.login-btn{
+    border-radius: 25px !important;
+}
+
+.password-toggle{
+    right: 20px !important;
+}
+
+.form-group label{
+    padding-left: 18px !important;
+}
+</style>
 
 @section('content')
    <!-- aiz-main-wrapper -->
    <div class="aiz-main-wrapper d-flex flex-column justify-content-center bg-white">
-        <section class="bg-white overflow-hidden" style="min-height:100vh;">
-            <div class="row" style="min-height: 100vh;">
-                <!-- Left Side Image-->
-                <div class="col-xxl-6 col-lg-7">
-                    <div class="h-100">
-                        <img src="{{ uploaded_asset(get_setting('customer_register_page_image')) }}" alt="" class="img-fit h-100">
-                    </div>
-                </div>
-                
+    <section class="bg-white overflow-hidden" style="min-height:100vh;">
+        <div class="row" style="min-height: 100vh;">
                 <!-- Right Side -->
-                <div class="col-xxl-6 col-lg-5">
+                <div class="col-xxl-12 col-lg-5">
                     <div class="right-content">
-                        <div class="row align-items-center justify-content-center justify-content-lg-start h-100">
-                            <div class="col-xxl-6 p-4 p-lg-5">
+                        <div class="row align-items-center justify-content-center justify-content-lg-center h-100">
+                            <div class="col-xxl-3 p-4 p-lg-5">
                                 <!-- Site Icon -->
-                                <div class="size-48px mb-3 mx-auto mx-lg-0">
-                                    <img src="{{ uploaded_asset(get_setting('site_icon')) }}" alt="{{ translate('Site Icon')}}" class="img-fit h-100">
+                                <div class=" text-lg-center">
+                                    <img src="{{ uploaded_asset(get_setting('site_icon')) }}" alt="{{ translate('Site Icon')}}" class="">
                                 </div>
                                 <!-- Titles -->
-                                <div class="text-center text-lg-left">
+                                <div class="text-center text-lg-center">
                                     <h1 class="fs-20 fs-md-24 fw-700 text-primary" style="text-transform: uppercase;">{{ translate('Create an account')}}</h1>
                                 </div>
                                 <!-- Register form -->
@@ -33,7 +66,7 @@
                                             <!-- Name -->
                                             <div class="form-group">
                                                 <label for="name" class="fs-12 fw-700 text-soft-dark">{{  translate('Full Name') }}</label>
-                                                <input type="text" class="form-control rounded-0{{ $errors->has('name') ? ' is-invalid' : '' }}" value="{{ old('name') }}" placeholder="{{  translate('Full Name') }}" name="name">
+                                                <input type="text" class="form-control {{ $errors->has('name') ? ' is-invalid' : '' }}" value="{{ old('name') }}" placeholder="{{  translate('Full Name') }}" name="name">
                                                 @if ($errors->has('name'))
                                                     <span class="invalid-feedback" role="alert">
                                                         <strong>{{ $errors->first('name') }}</strong>
@@ -44,15 +77,15 @@
                                             <!-- Email or Phone -->
                                             @if (addon_is_activated('otp_system'))
                                                 <div class="form-group phone-form-group mb-1">
-                                                    <label for="phone" class="fs-12 fw-700 text-soft-dark">{{  translate('Phone') }}</label>
-                                                    <input type="tel" id="phone-code" class="form-control rounded-0{{ $errors->has('phone') ? ' is-invalid' : '' }}" value="{{ old('phone') }}" placeholder="" name="phone" autocomplete="off">
+                                                    <label for="phone" class="fs-12 fw-700 text-soft-dark ">{{  translate('Phone') }}</label>
+                                                    <input type="tel" id="phone-code" class="form-control {{ $errors->has('phone') ? ' is-invalid' : '' }}" value="{{ old('phone') }}" placeholder="" name="phone" autocomplete="off">
                                                 </div>
     
                                                 <input type="hidden" name="country_code" value="">
     
                                                 <div class="form-group email-form-group mb-1 d-none">
                                                     <label for="email" class="fs-12 fw-700 text-soft-dark">{{  translate('Email') }}</label>
-                                                    <input type="email" class="form-control rounded-0 {{ $errors->has('email') ? ' is-invalid' : '' }}" value="{{ old('email') }}" placeholder="{{  translate('Email') }}" name="email"  autocomplete="off">
+                                                    <input type="email" class="form-control  {{ $errors->has('email') ? ' is-invalid' : '' }}" value="{{ old('email') }}" placeholder="{{  translate('Email') }}" name="email"  autocomplete="off">
                                                     @if ($errors->has('email'))
                                                         <span class="invalid-feedback" role="alert">
                                                             <strong>{{ $errors->first('email') }}</strong>
@@ -66,7 +99,7 @@
                                             @else
                                                 <div class="form-group">
                                                     <label for="email" class="fs-12 fw-700 text-soft-dark">{{  translate('Email') }}</label>
-                                                    <input type="email" class="form-control rounded-0{{ $errors->has('email') ? ' is-invalid' : '' }}" value="{{ old('email') }}" placeholder="{{  translate('Email') }}" name="email">
+                                                    <input type="email" class="form-control {{ $errors->has('email') ? ' is-invalid' : '' }}" value="{{ old('email') }}" placeholder="{{  translate('Email') }}" name="email">
                                                     @if ($errors->has('email'))
                                                         <span class="invalid-feedback" role="alert">
                                                             <strong>{{ $errors->first('email') }}</strong>
@@ -76,10 +109,10 @@
                                             @endif
     
                                             <!-- password -->
-                                            <div class="form-group mb-0">
+                                            <div class="form-group mb-2">
                                                 <label for="password" class="fs-12 fw-700 text-soft-dark">{{  translate('Password') }}</label>
                                                 <div class="position-relative">
-                                                    <input type="password" class="form-control rounded-0{{ $errors->has('password') ? ' is-invalid' : '' }}" placeholder="{{  translate('Password') }}" name="password">
+                                                    <input type="password" class="form-control {{ $errors->has('password') ? ' is-invalid' : '' }}" placeholder="{{  translate('Password') }}" name="password">
                                                     <i class="password-toggle las la-2x la-eye"></i>
                                                 </div>
                                                 <div class="text-right mt-1">
@@ -96,7 +129,7 @@
                                             <div class="form-group">
                                                 <label for="password_confirmation" class="fs-12 fw-700 text-soft-dark">{{  translate('Confirm Password') }}</label>
                                                 <div class="position-relative">
-                                                    <input type="password" class="form-control rounded-0" placeholder="{{  translate('Confirm Password') }}" name="password_confirmation">
+                                                    <input type="password" class="form-control " placeholder="{{  translate('Confirm Password') }}" name="password_confirmation">
                                                     <i class="password-toggle las la-2x la-eye"></i>
                                                 </div>
                                             </div>
@@ -124,7 +157,7 @@
     
                                             <!-- Submit Button -->
                                             <div class="mb-4 mt-4">
-                                                <button type="submit" class="btn btn-primary btn-block fw-600 rounded-0">{{  translate('Create Account') }}</button>
+                                                <button type="submit" class="btn btn-primary btn-block fw-600 ">{{  translate('Create Account') }}</button>
                                             </div>
                                         </form>
                                         
