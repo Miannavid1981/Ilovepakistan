@@ -289,7 +289,7 @@ if(!empty($product->product_custom_url)){
                     } 
                 @endphp
                 @if(show_global_cart() )
-                    <button class=" add_to_cart_small_btn rounded-circle p-2 d-flex align-items-center justify-content-center g-add-to-cart" style="aspect-ratio:1/1"  data-id="{{ $product->id }}" data-skin_code="{{ $product->product_skin ?? get_product_seller_map_skin($product) }}" ><i class="las la-shopping-bag fs-24"></i>  </button>
+                    <button class=" add_to_cart_small_btn rounded-circle p-2 d-flex align-items-center justify-content-center g-add-to-cart" style="aspect-ratio:1/1"  data-id="{{ $product->id }}" data-skin_code="{{ $product->product_skin ?? get_product_seller_map_skin($product) }}" ><i class="las la-cart-plus fs-24"></i>  </button>
                 @endif
                 @if($user_type == 'seller')
                     @if($seller_type != 'brand_partner' )
