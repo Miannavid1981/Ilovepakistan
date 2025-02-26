@@ -49,7 +49,7 @@
                 
                    
             </div>
-            <div class="col-lg-3 col-md-6 col-12">
+            <div class="col-lg-3 col-md-5 col-12">
                 <div class="d-flex justify-content-end align-items-center gap-4">
                         
                     <div class="dropdown d-flex justify-content-start align-items-center">
