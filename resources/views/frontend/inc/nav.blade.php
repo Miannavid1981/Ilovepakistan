@@ -1,9 +1,12 @@
 
-@php
-    //   dd(session('temp_user_id'));
+<style>
+    .dropdown-item:hover {
+    color: black !important;
+}
+</style>
+<header >
+    <div class="container bg-white pt-1">
 
-@endphp
-<header class="container bg-white py-1">
         <!-- Header Top -->
         <div class="row align-items-center header-top">
             <!-- Logo -->
@@ -101,17 +104,17 @@
                         
                         <ul class="dropdown-menu" aria-labelledby="dropdownMyAccount">
                             @auth 
-                                <li><a href="{{ $my_account_url }}" class="dropdown-item"   @if(Auth::user()->user_type == "staff" )  target="_blank"  @endif  > My Account</a></li>
-                                <li><a  href="{{ $my_account_url }}" class="dropdown-item" >Orders</a></li>
+                                <li><a href="{{ $my_account_url }}" class="dropdown-item Text-dark fs-14"   @if(Auth::user()->user_type == "staff" )  target="_blank"  @endif  > My Account</a></li>
+                                <li><a  href="{{ $my_account_url }}" class="dropdown-item fs-14" >Orders</a></li>
                             
                             @else 
-                                <li><a href="{{ route('user.login') }}" class="dropdown-item">Login</a></li>
-                                <li><a href="{{ route('user.registration') }}" class="dropdown-item">Register</a></li>
+                                <li><a href="{{ route('user.login') }}" class="dropdown-item fs-14">Login</a></li>
+                                <li><a href="{{ route('user.registration') }}" class="dropdown-item fs-14">Register</a></li>
                             @endif
                             @auth 
                                 <li class="divider"></li>
                                 <li>
-                                <a class="dropdown-item"  href="{{ route('logout') }}">Log Out</a>
+                                <a class="dropdown-item fs-14"  href="{{ route('logout') }}">Log Out</a>
                                 </li>
                             @endauth
                         
@@ -178,7 +181,7 @@
                 
             </div>
         </nav>
-
+    </div>
     </header>
 
     <div class="row align-items-center py-2 px-3 header-top d-lg-none">
@@ -337,6 +340,7 @@
 
     </div>
 <!-- Offcanvas Sidebar -->
+
  
     <div class="modal fade slide-in-right" id="cartOffcanvas">
         <div class="modal-dialog modal-lg modal-dialog-right modal-dialog-zoom product-modal" id="modal-size" role="document">
