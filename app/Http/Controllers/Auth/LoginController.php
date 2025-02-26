@@ -264,7 +264,7 @@ class LoginController extends Controller
             if (auth()->user()->user_type == 'seller') {
                 return redirect()->route('seller.dashboard');
             }
-            return redirect()->route('dashboard');
+            return redirect()->route('checkout.shipping_info'); // Adjust this route as needed
         }
     }
 
