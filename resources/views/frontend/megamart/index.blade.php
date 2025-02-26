@@ -696,7 +696,7 @@
                         <p class="text-muted">We're here to help you with any questions or concerns you have, 24/7.</p>
                     </div>
                 </div>
-            </div>
+            </div> 
     
             <!-- Second Feature -->
             <div class="services-promises col-md-3">
