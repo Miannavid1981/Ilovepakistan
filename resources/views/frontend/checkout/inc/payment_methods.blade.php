@@ -191,8 +191,10 @@
                 </div>
                 <span>
                     <img src="https://dogmovers.com.au/app/uploads/2021/03/Bank-transfer-logo-250x160-1.png" style="width: 45px; height: auto" alt="Discover">
-                    <img src="https://crystalpng.com/wp-content/uploads/2024/12/new-Jazzcash-logo.png" style="width: 35px; height: auto" alt="Discover">
-                    <img src="https://crystalpng.com/wp-content/uploads/2024/10/Easypaisa-logo.png" style="width: 30px; height: auto" alt="Discover">
+                    @if($mobilewallet_method)
+                        <img src="https://crystalpng.com/wp-content/uploads/2024/12/new-Jazzcash-logo.png" style="width: 35px; height: auto" alt="Discover">
+                        <img src="https://crystalpng.com/wp-content/uploads/2024/10/Easypaisa-logo.png" style="width: 30px; height: auto" alt="Discover">
+                    @endif
                   </span>
               </label>
           </button>

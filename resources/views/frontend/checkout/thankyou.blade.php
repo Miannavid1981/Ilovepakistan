@@ -164,6 +164,10 @@ $order_info = $order;
         
       
          --}}
+
+         <a href="{{ url('invoice/'. $order_id) }}"  class="btn btn-primary">
+                Download Invoice
+         </a>
       
     </div>
 
