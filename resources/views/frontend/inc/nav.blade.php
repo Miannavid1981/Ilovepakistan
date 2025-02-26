@@ -182,7 +182,7 @@
             </div>
         </nav>
     </div>
-    </header>
+</header>
 
     <div class="row align-items-center py-2 px-3 header-top d-lg-none">
         <div class="col-4 d-flex align-items-center text-left">
