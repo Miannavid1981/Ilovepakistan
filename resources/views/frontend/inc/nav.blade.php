@@ -1,6 +1,9 @@
 
+<header >
+    <div class="container bg-white pt-1">
 
 <header class="container bg-white py-1">
+
         <!-- Header Top -->
         <div class="row align-items-center header-top">
             <!-- Logo -->
@@ -177,7 +180,7 @@
                 
             </div>
         </nav>
-
+    </div>
     </header>
 
     <div class="row align-items-center py-2 px-3 header-top d-lg-none">
@@ -336,6 +339,7 @@
 
     </div>
 <!-- Offcanvas Sidebar -->
+
  
     <div class="modal fade slide-in-right" id="cartOffcanvas">
         <div class="modal-dialog modal-lg modal-dialog-right modal-dialog-zoom product-modal" id="modal-size" role="document">
