@@ -151,7 +151,7 @@
                 </li>
 
                 <!-- Compare -->
-                <li class="aiz-side-nav-item">
+                {{-- <li class="aiz-side-nav-item">
                     <a href="{{ route('compare') }}" class="aiz-side-nav-link {{ areActiveRoutes(['compare']) }}">
                         <svg id="Group_22071" data-name="Group 22071" xmlns="http://www.w3.org/2000/svg" width="14.6" height="16" viewBox="0 0 14.6 16">
                             <g id="LWPOLYLINE" transform="translate(0.158)">
@@ -163,7 +163,7 @@
                         </svg>
                         <span class="aiz-side-nav-text ml-3">{{ translate('Compare') }}</span>
                     </a>
-                </li>
+                </li> --}}
 
                 @if (get_setting('vendor_system_activation') == 1)
                 <!-- Followed Sellers -->
@@ -181,7 +181,7 @@
 
                 <!-- Classified Products -->
                 @if (get_setting('classified_product') == 1)
-                    <li class="aiz-side-nav-item">
+                    {{-- <li class="aiz-side-nav-item">
                         <a href="{{ route('customer_products.index') }}"
                             class="aiz-side-nav-link {{ areActiveRoutes(['customer_products.index', 'customer_products.create', 'customer_products.edit']) }}">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16.002" height="16.001" viewBox="0 0 16.002 16.001">
@@ -200,12 +200,12 @@
                             </svg>
                             <span class="aiz-side-nav-text ml-3">{{ translate('Classified Products') }}</span>
                         </a>
-                    </li>
+                    </li> --}}
                 @endif
 
                 <!-- Auction -->
                 @if (addon_is_activated('auction'))
-                    <li class="aiz-side-nav-item">
+                    {{-- <li class="aiz-side-nav-item">
                         <a href="javascript:void(0);" class="aiz-side-nav-link">
                             <svg id="Group_8142" data-name="Group 8142" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="16" height="16" viewBox="0 0 16 16">
                                 <defs>
@@ -237,7 +237,7 @@
                                 </a>
                             </li>
                         </ul>
-                    </li>
+                    </li> --}}
                 @endif
 
                 <!-- Conversations -->
@@ -245,7 +245,7 @@
                     @php
                         $conversation = get_non_viewed_conversations();
                     @endphp
-                    <li class="aiz-side-nav-item">
+                    {{-- <li class="aiz-side-nav-item">
                         <a href="{{ route('conversations.index') }}"
                             class="aiz-side-nav-link {{ areActiveRoutes(['conversations.index', 'conversations.show']) }}">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
@@ -261,7 +261,7 @@
                                 <span class="badge badge-success">({{ count($conversation) }})</span>
                             @endif
                         </a>
-                    </li>
+                    </li> --}}
                 @endif
 
                 <!-- My Wallet -->
@@ -286,7 +286,7 @@
 
                 <!-- Earning Points -->
                 @if (addon_is_activated('club_point'))
-                    <li class="aiz-side-nav-item">
+                    {{-- <li class="aiz-side-nav-item">
                         <a href="{{ route('earnng_point_for_user') }}"
                             class="aiz-side-nav-link {{ areActiveRoutes(['earnng_point_for_user']) }}">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
@@ -297,14 +297,14 @@
                             </svg>
                             <span class="aiz-side-nav-text ml-3">{{ translate('Earning Points') }}</span>
                         </a>
-                    </li>
+                    </li> --}}
                 @endif
 
                 <!-- Affiliate -->
                 @if (addon_is_activated('affiliate_system') &&
                     Auth::user()->affiliate_user != null &&
                     Auth::user()->affiliate_user->status)
-                    <li class="aiz-side-nav-item">
+                    {{-- <li class="aiz-side-nav-item">
                         <a href="javascript:void(0);"
                             class="aiz-side-nav-link">
                             <svg xmlns="http://www.w3.org/2000/svg" width="19.998" height="19.998" viewBox="0 0 19.998 19.998">
@@ -338,7 +338,7 @@
                             </li>
 
                         </ul>
-                    </li>
+                    </li> --}}
                 @endif
 
                 @php
