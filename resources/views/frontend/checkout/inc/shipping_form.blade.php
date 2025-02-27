@@ -131,7 +131,6 @@
                     </div>
                 </label>
             @endforeach
-
         
         </div>
         <div class="d-flex justify-content-end mt-2">
@@ -271,7 +270,6 @@
         default_longtitude = {{ 69.3451 ?? get_setting('google_map_longtitude') }};
         default_latitude = {{ 30.3753 ?? get_setting('google_map_latitude') }};
     @endif
-    // var map = null;
     function initialize(lat = 30.3753, lang =69.3451, id_format = '') {
         var long = lang;
         var lat = lat;
@@ -412,11 +410,8 @@
         const area = $("#area").val() || '';
         const address = $("#address").val() || '';
         const land_mark = $("#land_mark").val() ?  'Near '+ $("#land_mark").val() : '';
-
         const addressParts = [ address,land_mark, area, city, state, country].filter(part => part.trim() !== '');
-        alert(addressParts.join(', '))
         return addressParts.join(', ');
-        
     }
 
 

@@ -625,7 +625,7 @@
                                     <div class="cart-item-info">
                                         <small class="mb-0 fs-13 text-dark fw-500">{{  $seller ? $seller->name : "-" }}</small>
                                         <p class="m-0 fs-17 fw-300 text-dark">{{  $product->name }}</p>
-                                        <small class="mb-0 fs-13 text-muted">{{  $product_seller_map ? $product_seller_map->encrypted_hash : "-" }}</small>
+                                        <small class="mb-0 fs-13 text-muted">SKIN: {{  $product_seller_map ? $product_seller_map->encrypted_hash : "-" }}</small>
                                         
                                         
                                         

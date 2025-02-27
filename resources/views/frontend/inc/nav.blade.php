@@ -399,10 +399,10 @@
                                 <div class="d-flex justify-content-between">
                                     <h6>Subtotal</h6>
                                     <h6 class="sidecart-subtotal">$0.00</h6>
-                                </div>
+                            </div>
                                 <!-- Coupon System -->
                                 @if (get_setting('coupon_system') == 1)
-                                @if (123 > 2 )
+                                {{-- @if (123 > 2 )
                                     <div class="mt-3">
                                         <form class="" id="remove-coupon-form" enctype="multipart/form-data">
                                             @csrf
@@ -431,7 +431,7 @@
                                             </div>
                                         </form>
                                     </div>
-                                @endif
+                                @endif --}}
                                 @endif
                                 {{-- <div class="d-flex justify-content-between g_discount_wrapper">
                                     <p>Discount</p>
