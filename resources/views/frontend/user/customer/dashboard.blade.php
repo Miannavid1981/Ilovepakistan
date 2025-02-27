@@ -168,7 +168,7 @@
 
         <!-- Purchased Package -->
         @if (get_setting('classified_product'))
-        <div class="col-xl-4 col-md-6 mb-4">
+        {{-- <div class="col-xl-4 col-md-6 mb-4">
             <div class="p-4 border h-100">
                 <h6 class="fw-700 mb-3 text-dark">{{ translate('Purchased Package') }}</h6>
                 @php
@@ -191,11 +191,11 @@
                 @endif
                 <a href="{{ route('customer_packages_list_show') }}" class="btn btn-primary btn-block fs-14 fw-500" style="border-radius: 25px;">{{ translate('Upgrade Package') }}</a>
             </div>
-        </div>
+        </div> --}}
         @endif
 
         <!-- Default Shipping Address -->
-        <div class="col-xl-4 col-md-6 mb-4">
+        {{-- <div class="col-xl-4 col-md-6 mb-4">
             <div class="p-4 border h-100">
                 <h6 class="fw-700 mb-3 text-dark">{{ translate('Default Shipping Address') }}</h6>
                 @if(Auth::user()->addresses != null)
@@ -217,11 +217,11 @@
                     {{ translate('Add New Address') }}
                 </button>
             </div>
-        </div>
+        </div> --}}
 
     </div>
 
-    <div class="row align-items-center mb-2 mt-1">
+    {{-- <div class="row align-items-center mb-2 mt-1">
         <div class="col-6">
             <h3 class=" mb-0 fs-14 fs-md-16 fw-700 text-dark">{{ translate('My Wishlist')}}</h3>
         </div>
@@ -278,7 +278,7 @@
                 </div>
             </div>
         </div>
-    @endif
+    @endif --}}
 @endsection
 
 @section('modal')
