@@ -11,7 +11,7 @@
     @endphp
 
     <style> 
-
+    
     /* Desktop View: 5 Columns */
     @media (min-width: 992px) {
         .product-grid {
@@ -19,7 +19,7 @@
         }
     }
     </style>
-    <section >
+    <section>
         
             <!-- Top Section -->
             <div class="d-flex mb-2 mb-md-3 mt-2 align-items-baseline justify-content-between">

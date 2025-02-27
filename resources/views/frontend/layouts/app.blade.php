@@ -100,7 +100,7 @@
         }
         *:not(i){
             font-family: "Outfit", sans-serif !important;
-            letter-spacing: -0.4px;
+            letter-spacing: 0px !important;
         }
     
         .container {
