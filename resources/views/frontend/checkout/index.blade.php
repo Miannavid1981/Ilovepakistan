@@ -3,7 +3,15 @@
 @section('content')
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.12/css/intlTelInput.css" integrity="sha512-gxWow8Mo6q6pLa1XH/CcH8JyiSDEtiwJV78E+D+QP0EVasFs8wKXq16G8CLD4CJ2SnonHr4Lm/yY2fSI2+cbmw==" crossorigin="anonymous" referrerpolicy="no-referrer"
 />
+<script>
+     let map, geocoder, marker;
+     let default_longtitude = '';
+     let default_latitude = '';
+</script>
 <style>
+
+
+
     header, footer {
         display: none !important;
     }
@@ -442,222 +450,216 @@
     <div class="container p-0 h-100" id="checkout_container" style=" height: 100vh">
         <!-- Header -->
         <div class="h-100" style="display: grid; grid-template-columns: minmax( min-content, calc(50% + calc( calc( 66rem - 52rem ) / 2 )) ) 1fr;">
-          
-
-
-        <div class="checkout_columns mb-4">
-            <div class="">
-                <a href="{{  url('/') }}">
-                    <img src="{{ $logo_url }}" style="width: 130px" alt="Bighouz" class="img-fluid">
-                    <ul class="d-flex gap-2 list-unstyled fs-15 text-muted">
-                        <li>Home</li>
-                        <li><i class="fa fa-chevron-right"></i></li>
-                        <li>Checkout</li>
-                    </ul>
-                </a>
+            <div class="checkout_columns mb-4">
+                <div class="">
+                    <a href="{{  url('/') }}">
+                        <img src="{{ $logo_url }}" style="width: 130px" alt="Bighouz" class="img-fluid">
+                        <ul class="d-flex gap-2 list-unstyled fs-15 text-muted">
+                            <li>Home</li>
+                            <li><i class="fa fa-chevron-right"></i></li>
+                            <li>Checkout</li>
+                        </ul>
+                    </a>
+                    
                 
-              
-            </div>
-           
-            <br>
-           
-            <div class="row g-3">
-                <div class="col-4 m-0">
-                    <div class=" py-2 w-100 delivery_type fs-16 btn-success">
-                        <input type="radio" class="form-check "  name="delivery_type" value="personal" checked>
-                            <i class="fa fa-home"></i>
-                            Personal
-                    </div>
-                </div>
-                <div class="col-4 m-0">
-                    <div class=" py-2 w-100 delivery_type fs-16 btn-warning">
-                        <input type="radio" class="form-check " name="delivery_type" value="family_friends" >
-                            <i class="fa fa-users"></i>
-                            Family & Friends
-                    </div>
-                </div>
-                <div class="col-4 m-0">
-                    <div class=" py-2 w-100 delivery_type fs-16 btn-info">
-                        <input type="radio" class="form-check " name="delivery_type" value="others" >
-                            <i class="fa fa-box"></i>
-                            Others
-                    </div>
-                </div>
-            </div>
-            
-            {{-- <div class="horizontal_line" style="">
-                <div class="line_bar"> 
-                </div>
-                <div class="line_text">
-                    OR
-                </div>
-            </div> --}}
-
-            @php
-                $fullname = auth()->user()->name;
-                $fullname = explode(" ", $fullname);
-
-                $firstname = $fullname[0] ?? "";
-                $lastname = $fullname[1] ?? "";
-            @endphp
-            
-            <h5 class=" mt-4">Delivery Contact</h5>
-            <p class="text-muted">This information will be used for contacting you while delivery as a courier.
-            </p>
-            <div class="row g-3" >
-                <div class="col-6">
-                    
-                    <input class="form-control " type="text" placeholder="First Name" name="first_name"  value="{{ $firstname }}" required>
-
-                </div>
-                <div class="col-6">
-                    
-                    <input class="form-control " type="text" placeholder="Last Name" name="last_name" value="{{ $lastname }}" required>
                 </div>
             
-                <div class="col-12">
-                    
-                    <input class="form-control " type="text" name="company_name" placeholder="Company Name (Optional)">
-
-                </div>
-                <div class="col-12">
-                    
-                    <input class="form-control " type="text" placeholder="Phone" name="phone" value="{{  auth()->user()->phone }}" required>
-                </div>
-            </div>
-            <h5 class=" mt-4">Shipping Information</h5>
-            <p class="text-muted">Please make sure your address is correct so as to reach you exactly the place.
-            </p>
-            <div id="shipping_preloader" class="align-items-center justify-content-center" style="display: none">
-                <img src="https://uploads.toptal.io/blog/image/122385/toptal-blog-image-1489082610696-459e0ba886e0ae4841753d626ff6ae0f.gif" style="width: 50px;height: auto;">
-            </div>
+                <br>
             
-            <div class="row g-3" id="shipping_info">
-                @include('frontend.checkout.inc.shipping_form')
-            </div>
-            <h5 class="mt-4">Payment Method</h5>
-            <div class="row g-3">
-                <div class="col-12">
-                    @include('frontend.checkout.inc.payment_methods')
-                </div>
-                <div class="col-12">
-                    <textarea class="form-control" name="order_note" rows="3" placeholder="Order Note"></textarea>
-                </div>
-            </div>
-              
-            <!-- Agree Box -->
-            <div class=" mt-3">
-                <label class="aiz-checkbox">
-                    <input type="checkbox" required id="agree_checkbox">
-                    <span class="aiz-square-check"></span>
-                    <span>{{ translate('I agree to the') }}</span>
-                </label>
-                <a href="{{ route('terms') }}"
-                    class="fw-700">{{ translate('terms and conditions') }}</a>,
-                <a href="{{ route('returnpolicy') }}"
-                    class="fw-700">{{ translate('return policy') }}</a> &
-                <a href="{{ route('privacypolicy') }}"
-                    class="fw-700">{{ translate('privacy policy') }}</a>
-            </div>
-
-        
-            <!-- Return to shop -->
-            <button type="button" onclick="submitOrder(this)"  class="w-100 btn btn-lg btn-primary fs-16 fw-300 rounded-2 p-2 ">{{ translate('Place Order') }}</button>
-            <a href="{{ url()->previous() }}" class="w-100 btn btn-lg btn-light fs-16 fw-300 rounded-2 p-2 mt-2 ">
-                <i class="fa fa-chevron-left fs-15 me-2"></i>
-                {{ translate('Continue Shopping') }}
-            </a>
-               
-            {{-- <a href="{{ route('home') }}" class="btn btn-link fs-14 fw-700 px-0 mt-2">
-                <i class="las la-arrow-left fs-16"></i>
-                {{ translate('Return to shop') }}
-            </a> --}}
-               
-        
-
-        </div>
-
-        <!-- Summary Section -->
-        <div class="checkout_columns" style="background: #f5f5f5; border-left: 1px solid #DEDEDE;">
-            <div style="position: sticky; top: 20px;">
-           
-            <br>
-            <div class="d-flex  align-items-center">
-                <a class="px-3 py-2 bg-primary mb-0 text-white rounded-2" onclick="window.history.go(-1)" style="cursor: pointer">
-                    <i class="fa fa-chevron-left fs-17 mb-0">
-                    </i>
-                </a>
-                <h4 class="mb-0 ms-3">Your Purchase</h4>
-            </div>
-            <div class="summary-cart">
-                @if ($cart && $cart->count() > 0)
-                    @foreach ($cart as $key => $item  )
-
-                    @php
-                        $qty = $item->quantity;
-                        $product = \App\Models\Product::find($item->product_id);
-
-                        $original_skin_code = $item->skin_code ;
-                        $seller = false;
-                        $product_seller_map = false;
-                        if($original_skin_code){
-                            
-                            $product_seller_map = \App\Models\ProductSellerMap::where('original_skin', $original_skin_code )->first();
-                            //dd($product_seller_map->getAttributes());
-                            $seller = \App\Models\User::where("id", $product_seller_map->seller_id)->first();
-
-
-                        }
-                       
-                    @endphp
-
-                        <div class="cart-item">
-                            <div class="position-relative"> 
-                                <img src="{{ $product->thumbnail != null ? my_asset($product->thumbnail->file_name) : static_asset('assets/img/placeholder.jpg') }}" alt="Levis Men Jeans" style="">
-                                <div class="quantity-circle">{{ $qty }}</div>
-
-                            </div>
-                           
-                            
-                            <div class="cart-item-info">
-                                <small class="mb-0 fs-13 text-dark fw-500">{{  $seller ? $seller->name : "-" }}</small>
-                                <p class="m-0 fs-17 fw-300 text-dark">{{  $product->name }}</p>
-                                <small class="mb-0 fs-13 text-muted">{{  $product_seller_map ? $product_seller_map->encrypted_hash : "-" }}</small>
-                                
-                                
-                                
-                            </div>
-                            @if (discount_in_percentage($product) > 0)
-
-                                <div class="price text-muted" style="text-decoration: line-through">{{ home_base_price($product) }}</div>
-                                <div class="price">{{ home_discounted_base_price($product) }}</div>
-                                
-                            @else 
-                                <div class="price">{{ home_base_price($product) }}</div>
-                            @endif
-                            
+                <div class="row g-3">
+                    <div class="col-4 m-0">
+                        <div class=" py-2 w-100 delivery_type fs-16 btn-success">
+                            <input type="radio" class="form-check "  name="delivery_type" value="personal" checked>
+                                <i class="fa fa-home"></i>
+                                Personal
                         </div>
-                        
-                        
-                    @endforeach
-                @endif
-
-
+                    </div>
+                    <div class="col-4 m-0">
+                        <div class=" py-2 w-100 delivery_type fs-16 btn-warning">
+                            <input type="radio" class="form-check " name="delivery_type" value="family_friends" >
+                                <i class="fa fa-users"></i>
+                                Family & Friends
+                        </div>
+                    </div>
+                    <div class="col-4 m-0">
+                        <div class=" py-2 w-100 delivery_type fs-16 btn-info">
+                            <input type="radio" class="form-check " name="delivery_type" value="others" >
+                                <i class="fa fa-box"></i>
+                                Others
+                        </div>
+                    </div>
+                </div>
                 
-            </div>
-            <hr>
-            <div id="cart_summary">
+                {{-- <div class="horizontal_line" style="">
+                    <div class="line_bar"> 
+                    </div>
+                    <div class="line_text">
+                        OR
+                    </div>
+                </div> --}}
+
+                @php
+                    $fullname = auth()->user()->name;
+                    $fullname = explode(" ", $fullname);
+
+                    $firstname = $fullname[0] ?? "";
+                    $lastname = $fullname[1] ?? "";
+                @endphp
+                
+                <h5 class=" mt-4">Delivery Contact</h5>
+                <p class="text-muted">This information will be used for contacting you while delivery as a courier.
+                </p>
+                <div class="row g-3" >
+                    <div class="col-6">
+                        
+                        <input class="form-control " type="text" placeholder="First Name" name="first_name"  value="{{ $firstname }}" required>
+
+                    </div>
+                    <div class="col-6">
+                        
+                        <input class="form-control " type="text" placeholder="Last Name" name="last_name" value="{{ $lastname }}" required>
+                    </div>
+                
+                    <div class="col-12">
+                        
+                        <input class="form-control " type="text" name="company_name" placeholder="Company Name (Optional)">
+
+                    </div>
+                    <div class="col-12">
+                        
+                        <input class="form-control " type="text" placeholder="Phone" name="phone" value="{{  auth()->user()->phone }}" required>
+                    </div>
+                </div>
+                <h5 class=" mt-4">Shipping Information</h5>
+                <p class="text-muted">Please make sure your address is correct so as to reach you exactly the place.
+                </p>
+                <div id="shipping_preloader" class="align-items-center justify-content-center" style="display: none">
+                    <img src="https://uploads.toptal.io/blog/image/122385/toptal-blog-image-1489082610696-459e0ba886e0ae4841753d626ff6ae0f.gif" style="width: 50px;height: auto;">
+                </div>
+                
+                <div class="row g-3" id="shipping_info">
+                    @include('frontend.checkout.inc.shipping_form')
+                </div>
+                <h5 class="mt-4">Payment Method</h5>
+                <div class="row g-3">
+                    <div class="col-12">
+                        @include('frontend.checkout.inc.payment_methods')
+                    </div>
+                    <div class="col-12">
+                        <textarea class="form-control" name="order_note" rows="3" placeholder="Order Note"></textarea>
+                    </div>
+                </div>
+                
+                <!-- Agree Box -->
+                <div class=" mt-3">
+                    <label class="aiz-checkbox">
+                        <input type="checkbox" required id="agree_checkbox">
+                        <span class="aiz-square-check"></span>
+                        <span>{{ translate('I agree to the') }}</span>
+                    </label>
+                    <a href="{{ route('terms') }}"
+                        class="fw-700">{{ translate('terms and conditions') }}</a>,
+                    <a href="{{ route('returnpolicy') }}"
+                        class="fw-700">{{ translate('return policy') }}</a> &
+                    <a href="{{ route('privacypolicy') }}"
+                        class="fw-700">{{ translate('privacy policy') }}</a>
+                </div>
 
             
-                @include('frontend.partials.cart_summary')
+                <!-- Return to shop -->
+                <button type="button" onclick="submitOrder(this)"  class="w-100 btn btn-lg btn-primary fs-16 fw-300 rounded-2 p-2 ">{{ translate('Place Order') }}</button>
+                <a href="{{ url()->previous() }}" class="w-100 btn btn-lg btn-light fs-16 fw-300 rounded-2 p-2 mt-2 ">
+                    <i class="fa fa-chevron-left fs-15 me-2"></i>
+                    {{ translate('Continue Shopping') }}
+                </a>
+                
+                {{-- <a href="{{ route('home') }}" class="btn btn-link fs-14 fw-700 px-0 mt-2">
+                    <i class="las la-arrow-left fs-16"></i>
+                    {{ translate('Return to shop') }}
+                </a> --}}
+                
+            
+
             </div>
+
+            <!-- Summary Section -->
+            <div class="checkout_columns" style="background: #f5f5f5; border-left: 1px solid #DEDEDE;">
+                <div style="position: sticky; top: 20px;">
+                    <br>
+                    <div class="d-flex  align-items-center">
+                        <a class="px-3 py-2 bg-primary mb-0 text-white rounded-2" onclick="window.history.go(-1)" style="cursor: pointer">
+                            <i class="fa fa-chevron-left fs-17 mb-0">
+                            </i>
+                        </a>
+                        <h4 class="mb-0 ms-3">Your Purchase</h4>
+                    </div>
+                    <div class="summary-cart">
+                        @if ($cart && $cart->count() > 0)
+                            @foreach ($cart as $key => $item  )
+
+                            @php
+                                $qty = $item->quantity;
+                                $product = \App\Models\Product::find($item->product_id);
+
+                                $original_skin_code = $item->skin_code ;
+                                $seller = false;
+                                $product_seller_map = false;
+                                if($original_skin_code){
+                                    
+                                    $product_seller_map = \App\Models\ProductSellerMap::where('original_skin', $original_skin_code )->first();
+                                    //dd($product_seller_map->getAttributes());
+                                    $seller = \App\Models\User::where("id", $product_seller_map->seller_id)->first();
+
+                                }
+                            
+                            @endphp
+
+                                <div class="cart-item">
+                                    <div class="position-relative"> 
+                                        <img src="{{ $product->thumbnail != null ? my_asset($product->thumbnail->file_name) : static_asset('assets/img/placeholder.jpg') }}" alt="Levis Men Jeans" style="">
+                                        <div class="quantity-circle">{{ $qty }}</div>
+
+                                    </div>
+                                
+                                    
+                                    <div class="cart-item-info">
+                                        <small class="mb-0 fs-13 text-dark fw-500">{{  $seller ? $seller->name : "-" }}</small>
+                                        <p class="m-0 fs-17 fw-300 text-dark">{{  $product->name }}</p>
+                                        <small class="mb-0 fs-13 text-muted">{{  $product_seller_map ? $product_seller_map->encrypted_hash : "-" }}</small>
+                                        
+                                        
+                                        
+                                    </div>
+                                    @if (discount_in_percentage($product) > 0)
+
+                                        <div class="price text-muted" style="text-decoration: line-through">{{ home_base_price($product) }}</div>
+                                        <div class="price">{{ home_discounted_base_price($product) }}</div>
+                                        
+                                    @else 
+                                        <div class="price">{{ home_base_price($product) }}</div>
+                                    @endif
+                                    
+                                </div>
+                                
+                            @endforeach
+                        @endif
+
+
+                        
+                    </div>
+                    <hr>
+                    <div id="cart_summary">
+
+                    
+                        @include('frontend.partials.cart_summary')
+                    </div>
+                </div>
             </div>
+
+
+
+
         </div>
-
-
-
-
-    </div>
 
 
 
@@ -696,18 +698,6 @@
 
         var $countrySelect = $("#country");
 
-
-        // Populate country dropdown with options from intlTelInput
-        // var countryData = window.intlTelInputGlobals.getCountryData();
-        // $.each(countryData, function(index, country) {
-        //     $countrySelect.append($("<option>", {
-        //         value: country.iso2,
-        //         text: country.name 
-        //     }));
-        // });
-        
-      
-   
         // Attach a change event handler to the radio buttons
         $('.delivery_type input').click(function() {
             // alert("t"+$('input[name="delivery_type"]:checked').val())
@@ -736,6 +726,7 @@
                 }
             });
         });
+
         if($('[name="selected_address_id"]').length > 0){
             $('[name="selected_address_id"]')[0].click();
         }
@@ -813,16 +804,16 @@
             });
         }
 
-
-            $("#new_address_modal").click(function(){
-                $('#new-address-modal').modal('show')
-            });
-
-            $(".online_payment").click(function() {
-                $('#manual_payment_description').parent().addClass('d-none');
-            });
-            toggleManualPaymentData($('input[name=payment_option]:checked').data('id'));
+        $("#new_address_modal").click(function(){
+            $('#new-address-modal').modal('show')
         });
+
+        $(".online_payment").click(function() {
+            $('#manual_payment_description').parent().addClass('d-none');
+        });
+
+        toggleManualPaymentData($('input[name=payment_option]:checked').data('id'));
+    });
 
         var minimum_order_amount_check = {{ get_setting('minimum_order_amount_check') == 1 ? 1 : 0 }};
         var minimum_order_amount =
