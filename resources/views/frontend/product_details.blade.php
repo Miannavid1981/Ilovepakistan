@@ -349,15 +349,17 @@
         });
 
         $('.product-detail-slider-nav').slick({
-            slidesToShow: 3,
-            slidesToScroll: 1,
-            asNavFor: '.product-detail-slider-for',
-            dots: false,
-            arrow: true,
-            centerMode: true,
-            focusOnSelect: true,
-            vertical: true,  // Makes the navigation vertical
-            verticalSwiping: true // Enables vertical swiping
+            slidesToShow: 5,
+    slidesToScroll: 1,
+    asNavFor: '.product-detail-slider-for',
+    dots: false,
+    arrows: true,
+    // centerMode: true,
+    focusOnSelect: true,
+    vertical: true,
+    verticalSwiping: true,
+    prevArrow: $('.arrow-prev'), // Custom up arrow
+    nextArrow: $('.arrow-next')  // Custom down arrow
         });
         function CopyToClipboard(e) {
             var url = $(e).data('url');

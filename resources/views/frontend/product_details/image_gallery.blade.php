@@ -66,10 +66,6 @@ $photos = [];
     width: 70px;  /* You can adjust this to your preferred size */
     height: 70px; /* Ensure height matches width for a square aspect ratio */
     cursor: pointer;
-    border-radius: 10px;
-    border: 1px solid rgb(53, 53, 53);
-    transition: opacity 0.3s;
-    opacity: 0.5;
     object-fit: cover;
     aspect-ratio: 1 / 1; /* Ensures square aspect ratio */
 }
@@ -153,6 +149,12 @@ $photos = [];
     visibility: visible;
 }
 
+.fullscreen .close-btn{
+    color: #ffffff ;
+    padding-right: 30px;
+    font-size: 30px;
+}
+
 /* Responsive adjustments */
 @media (max-width: 768px) {
     .thumbnail {
@@ -180,9 +182,8 @@ $photos = [];
     }
 }
 
-.slick-track {
-    width: 100% !important
-}
+
+
 
 </style>
 
@@ -191,28 +192,104 @@ $photos = [];
         @if(count($photos) == 1 )
 
             <div class="col-12 ">
-                <img src="{{ uploaded_asset($photos[0]) }}" class=" h-100 w-100">
+                <img src="{{ uploaded_asset($photos[0]) }}" class="h-100 w-100 fullscreen-trigger">
             </div>
             
         @else
-
+       
+           
             <div class="col-2 ">
-                <div class="slider product-detail-slider-nav">
+                <button class="arrow-prev border-0 custom-arrow w-100 d-flex justify-content-center py-2 bg-white ">
+                    <i class="fa fa-chevron-up fs-20"></i>
+                </button>
+               
+                <div class="slider slick-slider-c product-detail-slider-nav">
                     @foreach ($photos as $key => $photo)
-                        <img src="{{ uploaded_asset($photo) }}" class="w-100 h-100" {{ $loop->first ? 'selected' : '' }}" >
+                        <img src="{{ uploaded_asset($photo) }}" class="w-100 h-100 thumbnail" data-index="{{ $key }}">
                     @endforeach
                 </div>
+
+                <button class="arrow-next border-0 custom-arrow w-100 d-flex justify-content-center py-2 bg-white">
+                    <i class="fas fa-chevron-down fs-20"></i>
+                </button>
             </div>
             <div class="col-10 ">
                 <div class="slider product-detail-slider-for">
                     @foreach ($photos as $key => $photo)
-                        <img src="{{ uploaded_asset($photo) }}" class="w-100 h-100" {{ $loop->first ? 'selected' : '' }}" >
+                        <img src="{{ uploaded_asset($photo) }}" class="w-100 h-100 fullscreen-trigger" data-index="{{ $key }}">
                     @endforeach
                 </div>
             </div>
 
         @endif
     @endif
-   
 </div>
 
+
+<div id="fullscreen-modal" class="fullscreen" style="display: none;">
+    <span class="close-btn" onclick="closeFullscreen()">×</span>
+    <img id="fullscreen-image" src="" alt="Fullscreen Image">
+    <div class="arrow left-arrow" onclick="prevImage()">&#10094;</div>
+    <div class="arrow right-arrow" onclick="nextImage()">&#10095;</div>
+</div>
+
+
+<script>
+    let images = [];
+    let currentIndex = 0;
+
+    document.addEventListener("DOMContentLoaded", function () {
+        images = Array.from(document.querySelectorAll('.fullscreen-trigger'));
+
+        images.forEach((img, index) => {
+            img.addEventListener("click", function () {
+                openFullscreen(index);
+            });
+        });
+
+        // Add event listener to thumbnails
+        let thumbnails = document.querySelectorAll('.thumbnail');
+        let mainImage = document.querySelector('.fullscreen-trigger'); 
+
+        thumbnails.forEach((thumb, index) => {
+            thumb.addEventListener("click", function () {
+                updateMainImage(index);
+            });
+        });
+    });
+
+    function openFullscreen(index) {
+        currentIndex = index;
+        const modal = document.getElementById("fullscreen-modal");
+        const fullscreenImage = document.getElementById("fullscreen-image");
+
+        fullscreenImage.src = images[currentIndex].src;
+        modal.style.display = "flex";
+    }
+
+    function closeFullscreen() {
+        document.getElementById("fullscreen-modal").style.display = "none";
+    }
+
+    function prevImage() {
+        currentIndex = (currentIndex - 1 + images.length) % images.length;
+        document.getElementById("fullscreen-image").src = images[currentIndex].src;
+    }
+
+    function nextImage() {
+        currentIndex = (currentIndex + 1) % images.length;
+        document.getElementById("fullscreen-image").src = images[currentIndex].src;
+    }
+
+    function updateMainImage(index) {
+        currentIndex = index;
+        
+        // Update main image on the right
+        let mainImage = document.querySelector('.fullscreen-trigger'); 
+        mainImage.src = images[currentIndex].src;
+
+        // Remove selected class from previous and add to the new one
+        document.querySelectorAll('.thumbnail').forEach(thumb => thumb.classList.remove('selected'));
+        document.querySelectorAll('.thumbnail')[currentIndex].classList.add('selected');
+    }
+</script>
