@@ -344,8 +344,12 @@
                 </div>
                 <div class="card-body">
                     <div class="form-group row">
+                        <label class="col-lg-3 col-from-label">{{translate('Short Description')}} <i class="las la-language text-danger" title="{{translate('Translatable')}}"></i></label>
+                        <div class="col-lg-8">
+                            <textarea class="aiz-text-editor" name="short_description">{{$product->short_description }}</textarea>
+                        </div>
                         <label class="col-lg-3 col-from-label">{{translate('Description')}} <i class="las la-language text-danger" title="{{translate('Translatable')}}"></i></label>
-                        <div class="col-lg-9">
+                        <div class="col-lg-8">
                             <textarea class="aiz-text-editor"
                                 name="description">{{$product->getTranslation('description',$lang)}}</textarea>
                         </div>

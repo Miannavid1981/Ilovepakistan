@@ -238,7 +238,12 @@
 }
 
 
-
+.main_banner_slider {
+   visibility: hidden
+}
+.main_banner_slider.slick-initialized {
+    visibility: visible !important
+}
 
 
 </style>
@@ -249,38 +254,12 @@
 
         <div class="main_banner_slider" >
             <div class="left-section d-flex flex-column h-100" style="background-image: url({{ static_asset('assets/img/beauty-skincare-product-square-banner-for-social-media-illustration-vector.webp') }}); background-size: cover; background-position: center; background-color: #d3e7ff ; border-radius: 20px">
-               
-                <div class="banner " >
-                        
-                    {{-- <h1>Electronics On Sale</h1>
-                    <div class="d-flex gap-3">
-                        <p><i class="fas fa-check-circle"></i> Tax exemptions</p>
-                        <p><i class="fas fa-credit-card"></i> Express Payments</p>
-                        <p><i class="fas fa-dollar-sign"></i> Financial Support</p>
-                    </div>
-                    
-                    <button class="btn btn-lg btn-dark">Shop now</button> --}}
-            
-                </div>
-        
             </div>
             <div class="left-section d-flex flex-column h-100" style="background-image: url({{ static_asset('assets/img/samsung-s25-ultra-STORY-BANNER-850x500.webp') }}); background-size: cover; background-position: center; background-color: #d3e7ff ; border-radius: 20px">
-                <div class="banner " >
-                        
-                </div>
-        
             </div>
             <div class="left-section d-flex flex-column h-100" style="background-image: url({{ static_asset('assets/img/headphone-earphones-electronics-gadgets-flyer-design-template-f2a41ff7a4f5e05ae8bb552d8903f906_screen.webp') }}); background-size: cover; background-position: center; background-color: #d3e7ff ; border-radius: 20px">
-                <div class="banner " >
-                        
-                </div>
-        
             </div>
             <div class="left-section d-flex flex-column h-100" style="background-image: url({{ static_asset('assets/img/1_8Fx_5pUpS4wda42aGnuuuQ.webp') }}); background-size: cover; background-position: center; background-color: #d3e7ff ; border-radius: 20px;">
-                <div class="banner " >
-                        
-                </div>
-        
             </div>
         </div>
 
@@ -473,12 +452,6 @@
             </div>
 
         </div>    
-        <div class="">
-
-          
-        
-
-        </div>
     </div>
     
         
