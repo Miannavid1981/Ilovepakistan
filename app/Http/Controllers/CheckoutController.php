@@ -290,30 +290,30 @@ class CheckoutController extends Controller
         $payment_data = $request->session()->get('payment_data');
         $user_id = Auth::id();
 
-        if (empty($selected_address_id)){
+        // if (empty($selected_address_id)){
 
-            if(empty($request->country_id)){
-                flash(translate('Please choose a Country'))->warning();
-                return redirect()->back();
-            }
-            if(empty($request->state_id)){
-                flash(translate('Please choose a state'))->warning();
-                return redirect()->back();
-            }
-            if(empty($request->city_id)){
-                flash(translate('Please choose a City'))->warning();
-                return redirect()->back();
-            }
-            if(empty($request->city_id)){
-                flash(translate('Please choose a City'))->warning();
-                return redirect()->back();
-            }
+        //     // if(empty($request->country_id)){
+        //     //     flash(translate('Please choose a Country'))->warning();
+        //     //     return redirect()->back();
+        //     // }
+        //     // if(empty($request->state_id)){
+        //     //     flash(translate('Please choose a state'))->warning();
+        //     //     return redirect()->back();
+        //     // }
+        //     // if(empty($request->city_id)){
+        //     //     flash(translate('Please choose a City'))->warning();
+        //     //     return redirect()->back();
+        //     // }
+        //     // if(empty($request->city_id)){
+        //     //     flash(translate('Please choose a City'))->warning();
+        //     //     return redirect()->back();
+        //     // }
 
-            if(empty($request->area)){
-                flash(translate('Please choose a Area'))->warning();
-                return redirect()->back();
-            }            
-        }
+        //     // if(empty($request->area)){
+        //     //     flash(translate('Please choose a Area'))->warning();
+        //     //     return redirect()->back();
+        //     // }            
+        // }
         // Retrieve the user's cart items
         $carts = Cart::where('user_id', $user_id)->get();
         // dd($user_id, $carts);

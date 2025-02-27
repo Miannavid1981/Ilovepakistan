@@ -12,38 +12,40 @@
                 @csrf
                 <div class="modal-body c-scrollbar-light">
                     <div class="row">
-                         
-                        @if(!empty($address_type))
+                        
+                        {{-- @if(!empty($address_type))
 
-                            @if($address_type == "personal")
+                            @if($address_type == "personal") --}}
+
+                            <div class="row" id="address_type_personal" style="display: none">
+
                                 <div class="col-6 mt-2">
                                     <label class="btn btn-light w-100">
-                                        <input type="radio" class="  rounded-0" name="address_label" id="home_address_label" value="Home" {{   $address_label == "Home" ? 'checked' : '' }} required>
+                                        <input type="radio" class="  rounded-0" name="address_label" id="home_address_label" value="Home" checked required>
                                         Home
                                     </label>
                                 </div>
                             
                                 <div class="col-6 mt-2">
                                     <label class="btn btn-light w-100">
-                                        <input type="radio" class="  rounded-0" name="address_label" id="office_address_label" value="Office" {{   $address_label == "Office" ? 'checked' : '' }} required>
+                                        <input type="radio" class="  rounded-0" name="address_label" id="office_address_label" value="Office"  required>
                                         Office
                                     </label>
                                 </div>
-                            @endif
+                            </div>
+                            {{-- @endif
 
-                            @if($address_type == "family_friends")
-                                {{-- 
-                                    <div class="col-12">
-                                    
-                                        <input type="text" class="form-control  rounded-0 bg-light"  placeholder="{{ translate('Label your Address')}}" name="address_label" id="address_label" placeholder="Label Your Address" >
-                                            
-                                        
-                                    </div>
-                                --}}    
-                            @endif
+                            @if($address_type == "family_friends") --}}
+                            <div class="row " id="address_type_others" style="display: none">
+                                <div class="col-12">
+                                    <input type="text" class="form-control  rounded-0"  placeholder="{{ translate('Label your Address')}}" name="address_label" id="address_label" placeholder="Label Your Address" >
+                                </div>
+                            </div>
+                            
+                            {{-- @endif --}}
 
 
-                        @endif
+                        {{-- @endif --}}
 
                         <div class="col-6 mt-2">
                             <select class="form-control   rounded-0" data-live-search="true" data-placeholder="{{ translate('Select your country') }}" name="country_id" data-code="92" id="country" required>
@@ -78,6 +80,9 @@
                         <div class="col-12 mt-2">
                             <input type="text" class="form-control  rounded-0" placeholder="{{ translate('Street / Building Address')}}" id="address" name="address" value="" required>
                         </div>
+                        <div class="col-12 mt-2">
+                            <input type="text" class="form-control  rounded-0" placeholder="{{ translate('Full Address')}}" id="full_address" name="full_address" value="" required>
+                        </div>
                         @if (get_setting('google_map') == 1)
 
             
@@ -91,7 +96,7 @@
                             </div>
                         
                             <!-- Google Map -->
-                            <div class="col-12">
+                            <div class="col-12 mt-2">
                                 <input id="searchInput" class="controls" type="text" placeholder="{{translate('Enter a location')}}" style="display: none">
                                 <div id="map"></div>
                                 
@@ -99,7 +104,7 @@
                         @endif
                         <!-- Save button -->
                         <div class="form-group text-right mt-2">
-                            <button type="submit" class="btn btn-primary rounded-2 w-100">{{translate('Save')}}</button>
+                            <button type="button" id="add_address" class="btn btn-primary rounded-2 w-100">{{translate('Save')}}</button>
                         </div>
                     </div>
                 </div>

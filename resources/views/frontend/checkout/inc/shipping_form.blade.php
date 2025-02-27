@@ -49,17 +49,6 @@
 
 @endif
 
-<div class="col-12">
-    <div class="d-flex justify-content-end mt-2">
-        <button type="button" class="btn btn-primary" id="new_address_modal">
-            Add New Address
-        </button>
-    </div>
-</div>
-@section('modal')
-    <!-- Address Modal -->
-    @include('frontend.partials.address.address_modal')
-@endsection
 <script>
    
    
