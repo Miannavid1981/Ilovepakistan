@@ -816,7 +816,7 @@
                 });
 
                 $('.product-detail-slider-nav').slick({
-                    slidesToShow: 3,
+                    slidesToShow: 1 ,
                     slidesToScroll: 1,
                     asNavFor: '.product-detail-slider-for',
                     dots: false,
