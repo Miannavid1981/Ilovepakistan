@@ -60,10 +60,11 @@
             <div class="col-12 col-lg-2 col-md-6 mb-4 text-center text-md-start">
                 <h5 class="fs-20 fw-bold">Customer Services</h5>
                 <ul class="list-unstyled">
-                    <li><a href="#" class="text-dark fs-17 text-decoration-none">Orders FAQs</a></li>
-                    <li><a href="#" class="text-dark fs-17 text-decoration-none">Shipping</a></li>
-                    <li><a href="#" class="text-dark fs-17 text-decoration-none">Privacy Policy</a></li>
-                    <li><a href="#" class="text-dark fs-17 text-decoration-none">Return & Refund</a></li>
+                    <li><a href="{{ route('accept-poliy-page') }}" class="text-dark fs-17 text-decoration-none">Acceptable Use Policy</a></li>
+                    <li><a href="{{ route('cookie_policy') }}" class="text-dark fs-17 text-decoration-none">Cookie Policy</a></li>
+                    <li><a href="{{ route('user_license') }}" class="text-dark fs-17 text-decoration-none">User License</a></li>
+                    <li><a href="{{ route('disclaimer') }}" class="text-dark fs-17 text-decoration-none">Disclaimer</a></li>
+                    <li><a href="{{ route('privacy_policy') }}" class="text-dark fs-17 text-decoration-none">Privacy Policy</a></li>
                 </ul>
             </div>
             <!-- Seller Zone Section -->
