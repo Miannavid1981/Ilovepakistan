@@ -66,7 +66,7 @@
                                     <span class="d-block fs-15">Deliver to</span>
                                     <span class="fw-bold fs-17">Pakistan</span>
                                 </div>
-                        <div> 
+                        </div> 
                     @endif
                     @auth
                         @if(auth()->user()->user_type == 'seller' &&  auth()->user()->seller_type != 'brand_partner')
