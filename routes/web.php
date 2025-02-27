@@ -64,6 +64,32 @@ use App\Http\Controllers\Seller\SellerMarketController;
   |
  */
 
+
+
+ 
+Route::get('/acceptance-policy', function (Request $request) {
+    
+    return view('frontend/inc/Customer_services/acceptable-use-policy');
+})->name('accept-poliy-page');
+
+Route::get('/cookie_policy', function (Request $request){
+    return view('frontend/inc/Customer_services/cookie_policy');
+})->name('cookie_policy');
+
+Route::get('/user_license', function (Request $request){
+    return view('frontend/inc/Customer_services/user_license');
+})->name('user_license');
+
+Route::get('/disclaimer', function (Request $request){
+    return view('frontend/inc/Customer_services/disclaimer');
+})->name('disclaimer');
+Route::get('/privacy_policy', function (Request $request){
+    return view('frontend/inc/Customer_services/privacy_policy');
+})->name('privacy_policy');
+
+
+
+
 Route::controller(DemoController::class)->group(function () {
     Route::get('/demo/cron_1', 'cron_1');
     Route::get('/demo/cron_2', 'cron_2');
@@ -557,7 +583,6 @@ Route::post('/seller-products', function (Request $request) {
         'html' => $html,
     ]);
 });
-
 
 Route::post('/orders/upload-receipts', [CheckoutController::class, 'uploadReceipts'])->name('orders.uploadReceipts');
 
