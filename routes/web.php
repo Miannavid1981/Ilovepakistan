@@ -351,7 +351,7 @@ Route::controller(AddressController::class)->group(function () {
     Route::post('/get-states', 'getStates')->name('get-state');
     Route::post('/get-cities', 'getCities')->name('get-city');
     Route::post('/change-address-type', 'changeAddressType')->name('change-address-type');
-   
+    
 });
 
 Route::group(['middleware' => ['auth']], function () {
@@ -564,3 +564,8 @@ Route::post('/orders/upload-receipts', [CheckoutController::class, 'uploadReceip
 
 
 Route::post('/product/import-to-seller', [SellerMarketController::class, 'store'])->name('home.product.import');
+
+
+Route::get('/checkout/refresh/payment_actions', [CheckoutController::class, 'payment_actions'])->name('checkout.refresh_payment_actions');
+
+

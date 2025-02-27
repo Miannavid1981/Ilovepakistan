@@ -541,7 +541,7 @@
                     @include('frontend.checkout.inc.shipping_form')
                 </div>
                 <h5 class="mt-4">Payment Method</h5>
-                <div class="row g-3">
+                <div class="row g-3 mb-4">
                     <div class="col-12">
                         @include('frontend.checkout.inc.payment_methods')
                     </div>
@@ -550,33 +550,14 @@
                     </div>
                 </div>
                 
-                <!-- Agree Box -->
-                <div class=" mt-3">
-                    <label class="aiz-checkbox">
-                        <input type="checkbox" required id="agree_checkbox">
-                        <span class="aiz-square-check"></span>
-                        <span>{{ translate('I agree to the') }}</span>
-                    </label>
-                    <a href="{{ route('terms') }}"
-                        class="fw-700">{{ translate('terms and conditions') }}</a>,
-                    <a href="{{ route('returnpolicy') }}"
-                        class="fw-700">{{ translate('return policy') }}</a> &
-                    <a href="{{ route('privacypolicy') }}"
-                        class="fw-700">{{ translate('privacy policy') }}</a>
-                </div>
+               
 
             
                 <!-- Return to shop -->
-                <button type="button" onclick="submitOrder(this)"  class="w-100 btn btn-lg btn-primary fs-16 fw-300 rounded-2 p-2 ">{{ translate('Place Order') }}</button>
-                <a href="{{ url()->previous() }}" class="w-100 btn btn-lg btn-light fs-16 fw-300 rounded-2 p-2 mt-2 ">
-                    <i class="fa fa-chevron-left fs-15 me-2"></i>
-                    {{ translate('Continue Shopping') }}
-                </a>
-                
-                {{-- <a href="{{ route('home') }}" class="btn btn-link fs-14 fw-700 px-0 mt-2">
-                    <i class="las la-arrow-left fs-16"></i>
-                    {{ translate('Return to shop') }}
-                </a> --}}
+               
+                <div id="place_order_buttons">
+                    @include('frontend.checkout.inc.place_order')
+                </div>
                 
             
 
@@ -697,7 +678,26 @@
         });
 
         var $countrySelect = $("#country");
-
+        
+        function fetch_payment_actions() {
+            
+            $.ajax({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                url: "{{ route('checkout.refresh_payment_actions') }}",
+                type: 'POST',
+                data: {
+                    state_id: state_id
+                },
+                success: function(response) {
+                    var obj = JSON.parse(response);
+                    if (obj != '') {
+                        $('#place_order_buttons').html(obj.html);
+                    }
+                }
+            });
+        }
         // Attach a change event handler to the radio buttons
         $('.delivery_type input').click(function() {
             // alert("t"+$('input[name="delivery_type"]:checked').val())
@@ -752,6 +752,33 @@
                 error: function() {
                     console.error('Could not retrieve country calling code');
                     $('[name="phone"]').attr('placeholder', ''); // Reset if API fails
+                }
+            });
+        });
+        $(document).on('change', '#add_address', function() {
+            var country_id = $("#country_id").val();
+            var city_id = $("#city_id").val();
+            var state_id = $("state_id").val();
+            var address = $("#address").val();
+            $.ajax({
+                url: `{{ url('/addresses') }}`,
+                method: 'POST',
+                data: {
+                    country_id, 
+                    city_id ,
+                    state_id,
+                    address,
+                    latitude, 
+                    longitude,  
+                },
+                success: function(response) {
+
+
+                    fetch_payment_actions()
+                },
+                error: function() {
+                    console.error('Could not retrieve ');
+                    
                 }
             });
         });
