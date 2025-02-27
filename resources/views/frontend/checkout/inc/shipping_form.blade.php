@@ -1,101 +1,10 @@
 @if(count($addresses) ==0)
-    @php
-        $address_type = !empty($address_type) ?  $address_type : 'personal'; 
-        $address_label = !empty($address_type) ?  $address_type : 'Home';   
-    @endphp
-
-    @if(!empty($address_type))
-
-        @if($address_type == "personal")
-
-            <div class="col-6">
-                <label class="btn btn-light w-100">
-                    <input type="radio" class="  rounded-0" name="address_label" id="home_address_label" value="Home" {{   $address_label == "Home" ? 'checked' : '' }} required>
-                    Home
-                </label>
-            </div>
-        
-            <div class="col-6">
-                <label class="btn btn-light w-100">
-                    <input type="radio" class="  rounded-0" name="address_label" id="office_address_label" value="Office" {{   $address_label == "Office" ? 'checked' : '' }} required>
-                    Office
-                </label>
-            </div>
-        @endif
-
-        @if($address_type == "family_friends")
-            {{-- 
-                <div class="col-12">
-                
-                    <input type="text" class="form-control  rounded-0 bg-light"  placeholder="{{ translate('Label your Address')}}" name="address_label" id="address_label" placeholder="Label Your Address" >
-                        
-                    
-                </div>
-            --}}    
-        @endif
-
-
-    @endif
-
-    <div class="col-6">
-        <select class="form-control   rounded-0" data-live-search="true" data-placeholder="{{ translate('Select your country') }}" name="country_id" data-code="92" id="country" required>
-            <option value="">{{ translate('Select your country') }}</option>
-            @foreach (get_active_countries() as $key => $country)
-                <option value="{{ $country->id }}" data-code="{{ $country->code }}">{{ $country->name }}</option>
-            @endforeach
-        </select>
-
-    </div>
-    <div class="col-6">
-        <select class="form-control   rounded-0" data-live-search="true" name="state_id" id="state" required>
-            <option value="">{{ translate('Select Country First') }}</option>
-        </select>
-    </div>
-
-    <!-- City -->
-    <div class="col-6">
-        <select class="form-control  rounded-0" data-live-search="true" name="city_id" id="city" required>
-            <option value="">{{ translate('Select State First') }}</option>
-        </select>
-    </div>
-    <!-- City -->
-    <div class="col-6">
-        <input type="text" class="form-control  rounded-0" placeholder="{{ translate('Area')}}" name="area" id="area" value="" required>
-    </div>
-    <!-- City -->
-    <div class="col-12">
-        <input type="text" class="form-control  rounded-0" placeholder="{{ translate('Nearest Landmark')}}" name="landmark" id="land_mark" value="" required>
-    </div>
 
     <div class="col-12">
-        <input type="text" class="form-control  rounded-0" placeholder="{{ translate('Street / Building Address')}}" id="address" name="address" value="" required>
+        <div class="bg-soft-primary p-2 fs-16 text-primary rounded-2 d-flex align-items-center gap-2">
+            <i class="fa fa-warning"></i> Please add a delivery address to continue placing order
+        </div>
     </div>
-    @if (get_setting('google_map') == 1)
-
-            
-        <div class="col-6 d-none" id="">
-            <input type="text" class="form-control rounded-0" id="longitude" name="longitude" readonly="" placeholder="Latitude">
-        </div>
-    
-        
-        <div class="col-6 d-none" id="">
-            <input type="text" class="form-control rounded-0" id="latitude" name="latitude" readonly="" placeholder="Longitude">
-        </div>
-    
-        <!-- Google Map -->
-        <div class="col-12">
-            <input id="searchInput" class="controls" type="text" placeholder="{{translate('Enter a location')}}" style="display: none">
-            <div id="map"></div>
-            {{-- <ul id="geoData">
-                <li style="display: none;">Full Address: <span id="location"></span></li>
-                <li style="display: none;">Postal Code: <span id="postal_code"></span></li>
-                <li style="display: none;">Country: <span id="country"></span></li>
-                <li style="display: none;">Latitude: <span id="lat"></span></li>
-                <li style="display: none;">Longitude: <span id="lon"></span></li>
-            </ul> --}}
-        </div>
-    @endif
-    
 
 @else
 
@@ -133,21 +42,24 @@
             @endforeach
         
         </div>
-        <div class="d-flex justify-content-end mt-2">
-            <button type="button" class="btn btn-primary" id="new_address_modal">
-                Add New Address
-            </button>
-        </div>
+        
     </div>
     
-    @section('modal')
-        <!-- Address Modal -->
-        @include('frontend.partials.address.address_modal')
-    @endsection
+    
 
 @endif
 
-
+<div class="col-12">
+    <div class="d-flex justify-content-end mt-2">
+        <button type="button" class="btn btn-primary" id="new_address_modal">
+            Add New Address
+        </button>
+    </div>
+</div>
+@section('modal')
+    <!-- Address Modal -->
+    @include('frontend.partials.address.address_modal')
+@endsection
 <script>
    
    
@@ -415,30 +327,32 @@
     }
 
 
-    document.getElementById("country").addEventListener("change", function () { 
+    $(document).on("change", "#country", function () { 
         const fullAddress = get_full_address();
-        
         if (country) searchLocation(fullAddress);
     });
 
-    document.getElementById("state").addEventListener("change", function () {
+    $(document).on("change", "#state", function () {
         const fullAddress = get_full_address();
-        
         if (state) searchLocation(fullAddress, 9);
     });
-    document.getElementById("city").addEventListener("change", function () {
+
+    $(document).on("change", "#city", function () {
         const fullAddress = get_full_address();
         if (area) searchLocation(fullAddress, 11);
     });
-    document.getElementById("area").addEventListener("change", function () {
+
+    $(document).on("change", "#area", function () {
         const fullAddress = get_full_address();
         if (area) searchLocation(fullAddress, 14);
     });
-    document.getElementById("land_mark").addEventListener("change", function () {
+
+    $(document).on("change", "#land_mark", function () {
         const fullAddress = get_full_address();
         if (address) searchLocation(fullAddress, 16);
     });
-    document.getElementById("address").addEventListener("change", function () {
+
+    $(document).on("change", "#address", function () {
         const fullAddress = get_full_address();
         if (address) searchLocation(fullAddress, 18);
     });
