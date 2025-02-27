@@ -292,7 +292,7 @@
                         <td>
                             <small><b>{{ $brand_name }}</b></small><br>
                             {{ $orderDetail->product->name ?? 'Product Unavailable' }}<br>
-                            <span style="font-size: 11px;">{{ $orderDetail->item_enc_skin }}</span>
+                            <span style="font-size: 11px;">SKIN: {{ $orderDetail->item_enc_skin }}</span>
                         </td>
                         <td>{{ $orderDetail->product->est_shipping_days }} days</td>
                         <td>{{ $orderDetail->quantity }}</td>

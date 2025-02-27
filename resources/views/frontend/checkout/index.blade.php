@@ -444,6 +444,7 @@
 <form action="{{ route('payment.checkout') }}" class="form-default m-0" role="form" method="POST" id="checkout-form" style="background: linear-gradient(to right, #fff 70%, #f5f5f5 0%);">
     @csrf
     <input type="hidden" name="owner_id" value="{{ $carts[0]['owner_id'] }}">
+    
     {{-- <input type="hidden" name="address_type" value="" id="address_type"> --}}
     
 
@@ -540,6 +541,18 @@
                 <div class="row g-3" id="shipping_info">
                     @include('frontend.checkout.inc.shipping_form')
                 </div>
+
+                <div class="col-12">
+                    <div class="d-flex justify-content-end mt-2">
+                        <button type="button" class="btn btn-primary" id="new_address_modal">
+                            Add New Address
+                        </button>
+                    </div>
+                </div>
+                @section('modal')
+                    <!-- Address Modal -->
+                    @include('frontend.partials.address.address_modal')
+                @endsection
                 <h5 class="mt-4">Payment Method</h5>
                 <div class="row g-3 mb-4">
                     <div class="col-12">
@@ -686,12 +699,12 @@
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
                 url: "{{ route('checkout.refresh_payment_actions') }}",
-                type: 'POST',
+                type: 'GET',
                 data: {
-                    state_id: state_id
+                    
                 },
                 success: function(response) {
-                    var obj = JSON.parse(response);
+                    var obj = response;
                     if (obj != '') {
                         $('#place_order_buttons').html(obj.html);
                     }
@@ -755,34 +768,57 @@
                 }
             });
         });
-        $(document).on('change', '#add_address', function() {
-            var country_id = $("#country_id").val();
-            var city_id = $("#city_id").val();
-            var state_id = $("state_id").val();
-            var address = $("#address").val();
+        $(document).on('click', '#add_address', function() {
+            var country_id = $('[name="country_id"]').val();
+            var city_id = $('[name="city_id"]').val();
+            var state_id = $('[name="state_id"]').val();
+            var latitude = $('[name="latitude"]').val();
+            var longitude = $('[name="longitude"]').val();
+            var landmark = $('[name="landmark"]').val();
+            var address = $('[name="address"]').val();
+            var area = $('[name="area"]').val();
+           
+            var delivery_type = $('input[name="delivery_type"]:checked').val();
+            var address_label = $("#address_label").val()
             $.ajax({
                 url: `{{ url('/addresses') }}`,
                 method: 'POST',
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
                 data: {
                     country_id, 
-                    city_id ,
+                    city_id,
                     state_id,
                     address,
                     latitude, 
-                    longitude,  
+                    longitude, 
+                    address_type: delivery_type,
+                    address_label
                 },
+                dataType: 'json', // Ensure response is treated as JSON
                 success: function(response) {
-
-
-                    fetch_payment_actions()
+                    if (response) {
+                        $('#shipping_info').html(response.html);
+                        $('#new-address-modal').modal('hide');
+                        fetch_payment_actions();
+                    } else {
+                        console.error('Invalid response format', response);
+                    }
                 },
-                error: function() {
-                    console.error('Could not retrieve ');
-                    
+                error: function(xhr, status, error) {
+                    console.error('AJAX error:', status, error, xhr.responseText);
                 }
             });
+
         });
-        
+        $(document).on('click', '.delete-address', function(){
+            var id = $(this).data('id');
+
+            delete_address(id)
+            fetch_payment_actions()
+            
+        });
         $("#country").val(country_id).trigger('change');
         $(document).on('change', '[name=state_id]', function() {
             var state_id = $(this).val();
@@ -833,6 +869,15 @@
 
         $("#new_address_modal").click(function(){
             $('#new-address-modal').modal('show')
+            var delivery_type = $('input[name="delivery_type"]:checked').val();
+            if(delivery_type == 'personal'){
+                $("#address_type_personal").show()
+                $("#address_type_others").hide()
+            } else {
+                $("#address_type_personal").hide()
+                $("#address_type_others").show()
+            }
+            
         });
 
         $(".online_payment").click(function() {
@@ -1037,12 +1082,7 @@ function delete_address(addressId) {
         }
     });
 }
-$(document).on('click', '.delete-address', function(){
-            var id = $(this).data('id');
 
-            delete_address(id)
-            console.log("t")
-        });
 
 
         

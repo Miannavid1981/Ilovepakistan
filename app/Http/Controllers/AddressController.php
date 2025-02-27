@@ -44,6 +44,7 @@ class AddressController extends Controller
         } else {
             $address->user_id   = Auth::user()->id;
         }
+        $address_type = $request->address_type ?? '';
         $address->address       = $request->address;
         $address->country_id    = $request->country_id;
         $address->state_id      = $request->state_id;
@@ -52,7 +53,19 @@ class AddressController extends Controller
         $address->latitude      = $request->latitude;
         $address->postal_code   = $request->postal_code;
         $address->phone         = '+'.$request->country_code.$request->phone;
+        $address->address_type = $address_type;
         $address->save();
+
+        if(request()->ajax()){
+           
+            $data['address_type'] = $address_type;
+            $user_id = auth()->user()->id;
+            $addresses = Address::where('user_id', $user_id)->where('address_type', $address_type)->get();
+            $data['addresses'] = $addresses;
+            $returnHTML = view('frontend.checkout.inc.shipping_form', $data)->render();
+    
+            return response()->json(array('data' => $data, 'html' => $returnHTML));
+        }
 
         flash(translate('Address info Stored successfully'))->success();
         return back();
