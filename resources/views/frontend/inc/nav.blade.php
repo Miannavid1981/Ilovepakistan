@@ -66,12 +66,27 @@
                                     <span class="d-block fs-15">Deliver to</span>
                                     <span class="fw-bold fs-17">Pakistan</span>
                                 </div>
-                        </div> 
+                        <div> 
                     @endif
                     <!-- User Profile and Seller Area with Dropdown -->
-
+                    @if(auth()->user()->user_type == 'seller' &&  auth()->user()->seller_type != 'brand_partner')
+                    
+                    
+                   
+                    <a href="{{ route('seller.market') }}">
+                        <div class="dropdown d-flex justify-content-start align-items-center">
+                            <i class="fa fa-shop fs-20 me-2" style="color: @auth #3072cb @else #000 @endif">
+                            </i>
+                            <div class="d-flex flex-column">
+                                <span class="d-block fs-15 text-dark">Explore</span>
+                                <span class="fw-bold fs-17 text-dark">Market Place</span>
+                            </div>
+                         </div> 
+                    </a>
+                    @endif
                     <!-- My Account -->
                     <div class="dropdown">
+                       
                         <button class="btn  dropdown-toggle p-0 " type="button" id="dropdownMyAccount" data-bs-toggle="dropdown" aria-expanded="false">
                         @auth
                         
