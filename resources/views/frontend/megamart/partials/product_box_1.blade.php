@@ -56,6 +56,10 @@ if(!empty($product->product_custom_url)){
                 <!--<div class="absolute-top-right bg-danger ml-1 mt-1 fs-11 fw-700 text-white w-35px text-center" style="padding-top:2px;padding-bottom:2px;margin-right: 0px;width: 70px;">sold out</div>-->
 
             <div class="d-block h-100 position-relative"> 
+                <a href="{{ $product_url }}">
+
+
+              
 
                 <img class="lazyload mx-auto img-fit has-transition " style="aspect-ratio: 1.5 /1.8; border: 1px solid #dbdbdb; border-radius: 15px; !important;"
 
@@ -65,7 +69,7 @@ if(!empty($product->product_custom_url)){
 
                     onerror="this.onerror=null;this.src='{{ static_asset('assets/img/placeholder.jpg') }}';">
 
-
+                </a>
                     <div class="absolute-bottom-left absolute-bottom-right d-flex justify-content-between align-items-center p-3 add-cart-btn gap-2">
                         <button class="view-cart w-100"  href="javascript:void(0)"
                             onclick="showAddToCartModal({{ $product->id }})">
@@ -213,11 +217,11 @@ if(!empty($product->product_custom_url)){
             <!-- Product name -->
 
             <!-- Product Categories -->
-    @if($product->categories)
-    @foreach ($product->categories as $category)
-        <button class="custom_card_tag mb-1">{{ $category->getTranslation('name') }}</button>
-    @endforeach
-@endif
+            @if($product->categories)
+            @foreach ($product->categories as $category)
+                <button class="custom_card_tag mb-1">{{ $category->getTranslation('name') }}</button>
+            @endforeach
+            @endif
             <h3 class="fw-400 fs-16 lh-1-4 mb-0 mt-1">
 
                 
