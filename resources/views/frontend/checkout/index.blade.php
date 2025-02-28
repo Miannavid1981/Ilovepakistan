@@ -439,7 +439,7 @@
     $subtotal = 0;
 
     $user = auth()->user();
-    $addresses = $user->addresses;  
+    $addresses = \App\Models\Address::where('user_id', $user->id)->where('address_type', 'personal')->get();  
 
     // dd($cart);
 @endphp
