@@ -165,6 +165,9 @@ $photos = [];
     .main-image {
         min-height: 400px;
     }
+    .slick-slider-c{
+        padding: 0px;
+    }
 }
 
 @media (max-width: 480px) {

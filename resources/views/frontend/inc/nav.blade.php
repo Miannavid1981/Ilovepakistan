@@ -625,36 +625,73 @@ $(document).ready(function(){
         });
     });
 
-    // Import to Seller
-    $(document).on('click', '.g-import-to-seller', function () {
+    $(document).on('click', '.g-buy-now', function () {
         const productId = $(this).data('id');
+        const skin_code = $(this).data('skin_code') ?? null;
         const prev_text = $(this).html();
 
         var elm = $(this);
         elm.attr("disabled", "disabled");
         $(this).html('<i class="fa fa-spinner fa-spin d-block fs-20 "></i>');
         $.ajax({
-            url: '{{  url("/product/import-to-seller") }}',
+            url: '{{  url("/cart/add") }}',
             method: 'POST',
             data: {
                 _token: $('meta[name="csrf-token"]').attr('content'),
-                product_ids: [
-                    productId
-                ],
-                
+                product_id: productId,
+                skin_code: skin_code
             },
             success: function (response) {
                 if (response.success) {
-  
-                    elm.parent().append(response.new_html)
-                    elm.remove();
+                    updateSidecart(response.cart);
+                    elm.html(prev_text)
+                    elm.removeAttr("disabled")
+                    $('#cartOffcanvas').modal("show");
+                    window.location.href = '{{ url("/checkout") }}';
 
                 } else {
-                    alert(response.message || 'Failed to import product to seller.');
+                    alert(response.message || 'Failed to add product to cart.');
                 }
             },
         });
     });
+    // Import to Seller
+    $(document).on('click', '.g-import-to-seller', function () {
+    const productId = $(this).data('id');
+    const prev_text = $(this).html();
+
+    var elm = $(this);
+    elm.attr("disabled", "disabled");
+    $(this).html('<i class="fa fa-spinner fa-spin d-block fs-20 "></i>');
+
+    $.ajax({
+        url: '{{ url("/product/import-to-seller") }}',
+        method: 'POST',
+        data: {
+            _token: $('meta[name="csrf-token"]').attr('content'),
+            product_ids: [productId],
+        },
+        success: function (response) {
+            if (response.success) {
+                elm.parent().append(response.new_html);
+                elm.remove();
+
+                // Redirect to checkout page after successful import
+                window.location.href = '{{ url("/checkout") }}';
+            } else {
+                alert(response.message || 'Failed to import product to seller.');
+                elm.html(prev_text);
+                elm.removeAttr("disabled");
+            }
+        },
+        error: function () {
+            alert('Something went wrong. Please try again.');
+            elm.html(prev_text);
+            elm.removeAttr("disabled");
+        }
+    });
+});
+
 
     // Quantity Change with Switcher
     $(document).on('click', '.quantity-switcher button', function () {
