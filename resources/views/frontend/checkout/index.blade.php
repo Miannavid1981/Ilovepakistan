@@ -1,6 +1,7 @@
 @extends('frontend.layouts.app')
 
 @section('content')
+
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.12/css/intlTelInput.css" integrity="sha512-gxWow8Mo6q6pLa1XH/CcH8JyiSDEtiwJV78E+D+QP0EVasFs8wKXq16G8CLD4CJ2SnonHr4Lm/yY2fSI2+cbmw==" crossorigin="anonymous" referrerpolicy="no-referrer"
 />
 <script>
@@ -9,9 +10,6 @@
      let default_latitude = '';
 </script>
 <style>
-
-
-
     header, footer {
         display: none !important;
     }
@@ -428,6 +426,10 @@
     border: 1px solid #000
 }
 
+.delivery_type_radio:has(input:checked){
+    background: var(--primary);
+    color: #fff
+}
 </style>
 @php
     $auth_user_id = auth()->user()->id;
@@ -673,11 +675,12 @@
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.12/js/intlTelInput-jquery.min.js" integrity="sha512-QK4ymL3xaaWUlgFpAuxY+6xax7QuxPB3Ii/99nykNP/PlK3NTQa/f/UbQQnWsM4h5yjQoMjWUhCJbYgWamtL6g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
     <script type="text/javascript">
    
     $(document).ready(function() {
+        $("select").select2()
         var country_code = '{{  $session_country_obj ? $session_country_obj->code : 'PK' }}';
         var country_id = {{ $session_country_obj ? $session_country_obj->id : "" }};
         var instance = $("[name=phone]").intlTelInput({
@@ -693,7 +696,7 @@
         var $countrySelect = $("#country");
         
         function fetch_payment_actions() {
-            
+            var delivery_type = $('input[name="delivery_type"]:checked').val();
             $.ajax({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -701,7 +704,7 @@
                 url: "{{ route('checkout.refresh_payment_actions') }}",
                 type: 'GET',
                 data: {
-                    
+                    address_type : delivery_type
                 },
                 success: function(response) {
                     var obj = response;
@@ -780,6 +783,7 @@
            
             var delivery_type = $('input[name="delivery_type"]:checked').val();
             var address_label = $("#address_label").val()
+            var personal_address_label = $('input[name="personal_address_label"]:checked').val();
             $.ajax({
                 url: `{{ url('/addresses') }}`,
                 method: 'POST',
@@ -794,7 +798,8 @@
                     latitude, 
                     longitude, 
                     address_type: delivery_type,
-                    address_label
+                    address_label,
+                    personal_address_label
                 },
                 dataType: 'json', // Ensure response is treated as JSON
                 success: function(response) {
@@ -812,11 +817,68 @@
             });
 
         });
+                
+        function delete_address(addressId) {
+
+            var delivery_type = $('input[name="delivery_type"]:checked').val();
+            $("#shipping_preloader").show();
+            $('#shipping_info').hide();
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    var url = `{{ url('/addresses/destroy') }}/${addressId}`; 
+                    
+                    $.ajax({
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        },
+                        url: url,
+                        type: 'POST', 
+                        data: {
+                            address_type: delivery_type
+                        },
+                        success: function(response) {
+                            if (response.success) {
+                            
+                                    var obj = response;
+                                    if (obj != '') {
+                                        $("#shipping_preloader").hide();
+                                        $('#shipping_info').show();
+                                        $('#shipping_info').html(obj.html);
+                                        fetch_payment_actions()
+                                    }
+                            
+                            } else {
+                                Swal.fire(
+                                    'Error!',
+                                    response.message || 'Failed to delete the address. Please try again.',
+                                    'error'
+                                );
+                            }
+                        },
+                        error: function(xhr, ajaxOptions, thrownError) {
+                            Swal.fire(
+                                'Error!',
+                                `Failed to delete the address. Please try again. (Status: ${xhr.status})`,
+                                'error'
+                            );
+                        }
+                    });
+                }
+            });
+        }
         $(document).on('click', '.delete-address', function(){
             var id = $(this).data('id');
 
             delete_address(id)
-            fetch_payment_actions()
+            
             
         });
         $("#country").val(country_id).trigger('change');
@@ -1026,62 +1088,6 @@
 
 <script>
   
-function delete_address(addressId) {
-
-    var delivery_type = $('input[name="delivery_type"]:checked').val();
-    $("#shipping_preloader").show();
-    $('#shipping_info').hide();
-    Swal.fire({
-        title: 'Are you sure?',
-        text: "You won't be able to revert this!",
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Yes, delete it!'
-    }).then((result) => {
-        if (result.isConfirmed) {
-            var url = `{{ url('/addresses/destroy') }}/${addressId}`; 
-            
-            $.ajax({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                },
-                url: url,
-                type: 'POST', 
-                data: {
-                    address_type: delivery_type
-                },
-                success: function(response) {
-                    if (response.success) {
-                       
-                            var obj = response;
-                            if (obj != '') {
-                                $("#shipping_preloader").hide();
-                                $('#shipping_info').show();
-                                $('#shipping_info').html(obj.html);
-                    
-                            }
-                       
-                    } else {
-                        Swal.fire(
-                            'Error!',
-                            response.message || 'Failed to delete the address. Please try again.',
-                            'error'
-                        );
-                    }
-                },
-                error: function(xhr, ajaxOptions, thrownError) {
-                    Swal.fire(
-                        'Error!',
-                        `Failed to delete the address. Please try again. (Status: ${xhr.status})`,
-                        'error'
-                    );
-                }
-            });
-        }
-    });
-}
 
 
 
