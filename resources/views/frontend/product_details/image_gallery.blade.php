@@ -186,8 +186,6 @@ $photos = [];
 
 
 
-
-
 </style>
 
 <div class="row g-1">
@@ -238,61 +236,89 @@ $photos = [];
 
 
 <script>
-    let images = [];
-    let currentIndex = 0;
+   let images = [];
+let currentIndex = 0;
+let touchStartX = 0;
+let touchEndX = 0;
 
-    document.addEventListener("DOMContentLoaded", function () {
-        images = Array.from(document.querySelectorAll('.fullscreen-trigger'));
+document.addEventListener("DOMContentLoaded", function () {
+    images = Array.from(document.querySelectorAll('.fullscreen-trigger'));
 
-        images.forEach((img, index) => {
-            img.addEventListener("click", function () {
-                openFullscreen(index);
-            });
-        });
-
-        // Add event listener to thumbnails
-        let thumbnails = document.querySelectorAll('.thumbnail');
-        let mainImage = document.querySelector('.fullscreen-trigger'); 
-
-        thumbnails.forEach((thumb, index) => {
-            thumb.addEventListener("click", function () {
-                updateMainImage(index);
-            });
+    images.forEach((img, index) => {
+        img.addEventListener("click", function () {
+            openFullscreen(index);
         });
     });
 
-    function openFullscreen(index) {
-        currentIndex = index;
-        const modal = document.getElementById("fullscreen-modal");
-        const fullscreenImage = document.getElementById("fullscreen-image");
+    // Add event listener to thumbnails
+    let thumbnails = document.querySelectorAll('.thumbnail');
+    let mainImage = document.querySelector('.fullscreen-trigger'); 
 
-        fullscreenImage.src = images[currentIndex].src;
-        modal.style.display = "flex";
+    thumbnails.forEach((thumb, index) => {
+        thumb.addEventListener("click", function () {
+            updateMainImage(index);
+        });
+    });
+
+    // Enable swipe gestures for fullscreen mode
+    const fullscreenModal = document.getElementById("fullscreen-modal");
+    fullscreenModal.addEventListener("touchstart", handleTouchStart, false);
+    fullscreenModal.addEventListener("touchmove", handleTouchMove, false);
+    fullscreenModal.addEventListener("touchend", handleTouchEnd, false);
+});
+
+function openFullscreen(index) {
+    currentIndex = index;
+    const modal = document.getElementById("fullscreen-modal");
+    const fullscreenImage = document.getElementById("fullscreen-image");
+
+    fullscreenImage.src = images[currentIndex].src;
+    modal.style.display = "flex";
+}
+
+function closeFullscreen() {
+    document.getElementById("fullscreen-modal").style.display = "none";
+}
+
+function prevImage() {
+    currentIndex = (currentIndex - 1 + images.length) % images.length;
+    document.getElementById("fullscreen-image").src = images[currentIndex].src;
+}
+
+function nextImage() {
+    currentIndex = (currentIndex + 1) % images.length;
+    document.getElementById("fullscreen-image").src = images[currentIndex].src;
+}
+
+function updateMainImage(index) {
+    currentIndex = index;
+    
+    // Update main image on the right
+    let mainImage = document.querySelector('.fullscreen-trigger'); 
+    mainImage.src = images[currentIndex].src;
+
+    // Remove selected class from previous and add to the new one
+    document.querySelectorAll('.thumbnail').forEach(thumb => thumb.classList.remove('selected'));
+    document.querySelectorAll('.thumbnail')[currentIndex].classList.add('selected');
+}
+
+// Handle swipe gestures
+function handleTouchStart(event) {
+    touchStartX = event.touches[0].clientX;
+}
+
+function handleTouchMove(event) {
+    touchEndX = event.touches[0].clientX;
+}
+
+function handleTouchEnd() {
+    if (touchStartX - touchEndX > 50) {
+        // Swiped left (next image)
+        nextImage();
+    } else if (touchEndX - touchStartX > 50) {
+        // Swiped right (previous image)
+        prevImage();
     }
+}
 
-    function closeFullscreen() {
-        document.getElementById("fullscreen-modal").style.display = "none";
-    }
-
-    function prevImage() {
-        currentIndex = (currentIndex - 1 + images.length) % images.length;
-        document.getElementById("fullscreen-image").src = images[currentIndex].src;
-    }
-
-    function nextImage() {
-        currentIndex = (currentIndex + 1) % images.length;
-        document.getElementById("fullscreen-image").src = images[currentIndex].src;
-    }
-
-    function updateMainImage(index) {
-        currentIndex = index;
-        
-        // Update main image on the right
-        let mainImage = document.querySelector('.fullscreen-trigger'); 
-        mainImage.src = images[currentIndex].src;
-
-        // Remove selected class from previous and add to the new one
-        document.querySelectorAll('.thumbnail').forEach(thumb => thumb.classList.remove('selected'));
-        document.querySelectorAll('.thumbnail')[currentIndex].classList.add('selected');
-    }
 </script>
