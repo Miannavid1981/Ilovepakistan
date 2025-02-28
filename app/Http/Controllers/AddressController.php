@@ -54,6 +54,10 @@ class AddressController extends Controller
         $address->postal_code   = $request->postal_code;
         $address->phone         = '+'.$request->country_code.$request->phone;
         $address->address_type = $address_type;
+        $personal_address_label = $request->personal_address_label ?? '';
+        $other_address_label = $request->address_label ?? '';
+        $address_label = $address_type == 'personal' ? $personal_address_label : $other_address_label;
+        $address->address_label = $address_label;
         $address->save();
 
         if(request()->ajax()){
