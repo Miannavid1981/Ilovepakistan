@@ -371,8 +371,9 @@
             <span class="rating rating-mr-2">
                 {{ renderStarRating($detailedProduct->rating) }}
             </span>
-            <span class="ml-1 opacity-50 fs-15">({{ $total }}
-                {{ translate('reviews') }})</span>
+            <span class="ml-1 opacity-50 fs-15" onclick="change_tab('reviews')">
+                ({{ $total }} {{ translate('reviews') }})
+            </span>
         
         @endif
         
@@ -536,13 +537,15 @@
                                 </a>
                             @else
                             
-                                <button type="button" class="btn py-2 w-100 btn-primary buy-now fw-600 add-to-cart min-w-150px rounded-0"
-                                    @if (Auth::check() || get_Setting('guest_checkout_activation') == 1) onclick="addToCart()" @else onclick="showLoginModal()" @endif>
+                                <button type="button" class="btn py-2 w-100 btn-primary buy-now fw-600 add-to-cart min-w-150px rounded-0 g-buy-now"
+                                data-id="{{ $detailedProduct->id }}"
+                                   >
                                     <i class="la la-shopping-cart"></i> {{ translate('Buy Now') }}
                                 </button>
                                 <button type="button"
-                                    class="btn py-2 btn-light w-100 mt-2 add-to-cart fw-600  rounded-0 text-dark border border-dark"
-                                    @if (Auth::check() || get_Setting('guest_checkout_activation') == 1) onclick="addToCart()" @else onclick="showLoginModal()" @endif>
+                                data-id="{{ $detailedProduct->id }}"
+                                    class="btn py-2 btn-light w-100 mt-2 add-to-cart fw-600  rounded-0 text-dark border border-dark g-add-to-cart"
+                                >
                                     <i class="las la-shopping-bag"></i> {{ translate('Add to cart') }}
                                 </button>
                             @endif
@@ -585,7 +588,7 @@
                                         @endif
                                     @endif
                                     @if($seller_type != 'store_partner')
-                                        <a href="" class="btn btn-primary buy-now fw-600 min-w-150px rounded-0  w-100" >
+                                        <a href="" class="btn btn-primary buy-now fw-600 min-w-150px rounded-0  w-100 g-add-to-cart" >
                                             <i class="la la-plus"></i> New Listing
                                         </a>
                                     @endif
@@ -1262,5 +1265,6 @@ document.addEventListener("DOMContentLoaded", function () {
         this.classList.toggle("active"); // Toggle the active class
     });
 });
+
 
 </script>

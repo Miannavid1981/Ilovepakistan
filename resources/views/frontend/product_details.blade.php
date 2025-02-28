@@ -124,27 +124,60 @@
             <!-- Tabs section below the thumbnail slider -->
             <div class="tabs-container ">
                 <ul class="tabs">
-                    <li class="tab active" data-tab="description">Description</li>
-                    <li class="tab" data-tab="specifications">Specifications</li>
-                    <li class="tab" data-tab="video">Video</li>
-                    <li class="tab" data-tab="downloads">Downloads</li>
-                    <li class="tab" data-tab="reviews">Customer reviews</li>
-                    <li class="tab" data-tab="shipping">Shipping info</li>
+                @php
+                //    dd($detailedProduct); 
+                @endphp
+                    @if(!empty($detailedProduct->description))
+                         <li class="tab active" data-tab="description">Description</li>
+                    @endif
+
+                   
+                    @if(!empty($detailedProduct->specifications))
+                          <li class="tab" data-tab="specifications">Specifications</li>
+                    @endif
+                    
+                    @if(!empty($detailedProduct->video_link))
+                         <li class="tab" data-tab="video">Video</li>
+                    @endif
+                    @if(!empty($detailedProduct->downloads))
+                         <li class="tab" data-tab="downloads">Downloads</li>
+  
+                    @endif
+                   
+                    @if(!empty($detailedProduct->reviews))
+                         <li class="tab" data-tab="reviews" id="reviews-tab">Customer reviews</li>
+                    @endif
+                  
+                    @if(!empty($detailedProduct->shipping))
+                         <li class="tab" data-tab="shipping">Shipping info</li>
+                    @endif
                 </ul>
             </div>
     
             <!-- Tab Content -->
             <div class="tab-content">
-                <div class="tab-pane active" id="description">
-                    @include('frontend.product_details.description')
-                </div>
-                <div class="tab-pane" id="specifications">Specifications Content</div>
-                <div class="tab-pane" id="downloads">Downloads Content</div>
-                <div class="tab-pane" id="video">Video Content</div>
-                <div class="tab-pane" id="reviews">
-                    @include('frontend.product_details.review_section')
-                </div>
-                <div class="tab-pane" id="shipping">Shipping Info Content</div>
+                @if(!empty($detailedProduct->description))
+                      <div class="tab-pane active" data-tab="description">
+                        @include('frontend.product_details.description')
+                      </div>
+                @endif
+                @if(!empty($detailedProduct->description))
+                       <div class="tab-pane" data-tab="specifications">Specifications Content</div>
+                @endif
+                @if(!empty($detailedProduct->description))
+                       <div class="tab-pane" data-tab="downloads">Downloads Content</div>
+                @endif
+                @if(!empty($detailedProduct->description))
+                        <div class="tab-pane" data-tab="video">Video Content</div>
+                @endif
+                @if(!empty($detailedProduct->description))
+                        <div class="tab-pane" data-tab="reviews-tab">
+                        @include('frontend.product_details.review_section')
+                         </div>
+                @endif
+                @if(!empty($detailedProduct->description))
+                        <div class="tab-pane" data-tab="shipping">Shipping Info Content</div>
+                @endif
             </div>
         </div>
     </section>
@@ -164,18 +197,10 @@
 
                 <div class="row gutters-16">
                     <!-- Left side -->
-                    <div class="col-lg-3">
-                        <!-- Seller Info -->
-                        @include('frontend.product_details.seller_info')
-
-                        <!-- Top Selling Products -->
-                       {{-- <div class="d-none d-lg-block">
-                            @include('frontend.product_details.top_selling_products')
-                       </div> --}}
-                    </div>
+                    
 
                     <!-- Right side -->
-                    <div class="col-lg-9">
+                    <div class="col-lg-12 mb-5">
                         
                         <!-- Reviews & Ratings -->
                         {{-- @include('frontend.product_details.review_section') --}}
@@ -552,5 +577,19 @@
     tabPanes[0].classList.add("active");
 });
 
+   
+function change_tab(tab){
+
+    $(".tab").each(function(){
+        $(this).removeClass("active")
+    });  
+    $(".tab-pane").each(function(){
+        $(this).removeClass("active")
+    });  
+
+
+    $(`[data-tab="${tab}"]`).addClass("active")
+}
+    
     </script>
 @endsection
