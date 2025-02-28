@@ -16,7 +16,7 @@
                         {{-- @if(!empty($address_type))
 
                             @if($address_type == "personal") --}}
-                            <div class="d-flex" id="address_type_personal" style="display: none">
+                            <div class="" id="address_type_personal" style="display: flex">
                                 <div class="col-6 mt-2">
                                     <label class="delivery_type_radio btn btn-light w-100">
                                         <i class="fa fa-home"></i>

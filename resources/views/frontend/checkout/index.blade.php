@@ -694,7 +694,17 @@
         });
 
         var $countrySelect = $("#country");
-        
+        function switch_address_type_things(){
+            var delivery_type = $('input[name="delivery_type"]:checked').val();
+           
+            if(delivery_type == 'personal'){
+                $("#address_type_personal").css("display: flex")
+                $("#address_type_others").hide()
+            } else {
+                $("#address_type_personal").hide()
+                $("#address_type_others").show()
+            }
+        }
         function fetch_payment_actions() {
             var delivery_type = $('input[name="delivery_type"]:checked').val();
             $.ajax({
@@ -738,6 +748,11 @@
                         $('#shipping_info').show();
                         $('#shipping_info').html(obj.html);
             
+                    }
+                    switch_address_type_things()
+                    if($('[name="selected_address_id"]').length > 0) {
+
+                        $('[name="selected_address_id"]')[0].click();
                     }
                 }
             });
@@ -928,17 +943,12 @@
                 }
             });
         }
+        
 
         $("#new_address_modal").click(function(){
             $('#new-address-modal').modal('show')
             var delivery_type = $('input[name="delivery_type"]:checked').val();
-            if(delivery_type == 'personal'){
-                $("#address_type_personal").show()
-                $("#address_type_others").hide()
-            } else {
-                $("#address_type_personal").hide()
-                $("#address_type_others").show()
-            }
+            switch_address_type_things()
             
         });
 

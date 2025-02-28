@@ -808,13 +808,7 @@ $(document).ready(function(){
                                  : ``
                                 }
                                  </div>
-                                 <div>
-                                 ${
-                                 item.discount ?
-                                    `<span class="bg-primary px-2 py-1 fs-15 rounded-3 text-white font-weight-bold"> - ${item.discounted_percentage}%</span>`
-                                    : '' 
-                                 }
-                                 </div>
+                                 
                             </div>
 
                            
@@ -827,7 +821,15 @@ $(document).ready(function(){
                             <input type="number" class="g-cart-qty" data-id="${item.id}" value="${item.quantity}" style="max-width: 20px;border: none;text-align: center;pointer-events: none;">
                             <button class="quantity-switcher-buttons" data-id="${item.id}" data-operation="increment"><i class="fa fa-plus"></i></button>
                         </div>
+                        <div>
+                        ${
+                        item.discount ?
+                        `<span class="bg-primary px-2 py-1 fs-15 rounded-3 text-white font-weight-bold"> - ${item.discounted_percentage}%</span>`
+                        : '' 
+                        }
+                        </div>
                     </div>
+
                     
                    
                 </div>
