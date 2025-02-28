@@ -435,11 +435,11 @@ transition: transform 0.3s ease-out;
 }
 
 .modal.fade.show.slide-in-right .modal-dialog {
-transform: translateX(0);
+  transform: translateX(0);
 }
 
 .slide-in-cart-extended {
-  min-width: 50vw !important;
+  min-width: 60vw !important;
 }
 .modal.fade.slide-in-right {
 animation: slideInRight 0.3s forwards;
