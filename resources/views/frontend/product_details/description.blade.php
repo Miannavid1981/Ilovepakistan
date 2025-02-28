@@ -24,7 +24,7 @@
             </div>
         </div>
 
-        <!-- Video -->
+        {{-- <!-- Video -->
         <div class="tab-pane fade" id="tab_default_2">
             <div class="py-5">
                 <div class="embed-responsive embed-responsive-16by9">
@@ -50,6 +50,6 @@
                 <a href="{{ uploaded_asset($detailedProduct->pdf) }}"
                     class="btn btn-primary">{{ translate('Download') }}</a>
             </div>
-        </div>
+        </div> --}}
     </div>
 </div>
