@@ -537,16 +537,16 @@
                                 </a>
                             @else
                             
-                                <button type="button" class="btn py-2 w-100 btn-primary buy-now fw-600 add-to-cart min-w-150px rounded-0 g-buy-now"
+                                <button type="button" class="btn py-2 w-100 btn-primary buy-now fw-600 add-to-cart min-w-150px rounded-0 g-buy-now" 
                                 data-id="{{ $detailedProduct->id }}" data-skin_code="{{ $detailedProduct->product_skin ?? get_product_seller_map_skin($detailedProduct) }}"
                                    >
-                                    <i class="la la-shopping-cart"></i> {{ translate('Buy Now') }}
+                                    {{ translate('Buy Now') }}
                                 </button>
                                 <button type="button"
                                 data-id="{{ $detailedProduct->id }}" data-skin_code="{{ $detailedProduct->product_skin ?? get_product_seller_map_skin($detailedProduct) }}"
                                     class="btn py-2 btn-light w-100 mt-2 add-to-cart fw-600  rounded-0 text-dark border border-dark g-add-to-cart"
                                 >
-                                    <i class="las la-shopping-bag"></i> {{ translate('Add to cart') }}
+                                    <i class="las las la-shopping-cart"></i> {{ translate('Add to cart') }}
                                 </button>
                             @endif
                             <button type="button" class="btn btn-secondary out-of-stock fw-600 d-none" disabled>
