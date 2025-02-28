@@ -369,7 +369,7 @@
                 </div>
         
                 <div class="modal-body" style="overflow: hidden;">
-                    <div class="row gx-5 h-100 justify-content-end">
+                    <div class="row h-100 justify-content-end">
                         <!-- Left Section: You May Also Like -->
                         <div class="col-md-6 border-right cart-offers-section h-100 pe-0">
                         
