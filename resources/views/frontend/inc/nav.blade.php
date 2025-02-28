@@ -368,10 +368,10 @@
                     <button type="button" class="btn-close d-flex justify-content-end" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                 </div>
         
-                <div class="modal-body" style="overflow-y: hidden;">
+                <div class="modal-body" style="overflow: hidden;">
                     <div class="row gx-5 h-100 justify-content-end">
                         <!-- Left Section: You May Also Like -->
-                        <div class="col-md-5 border-right cart-offers-section h-100 pe-0">
+                        <div class="col-md-6 border-right cart-offers-section h-100 pe-0">
                         
                             
                             <h4>You May Also Like</h4>
@@ -382,7 +382,7 @@
                         </div>
 
                     <!-- Right Section: Shopping Cart -->
-                        <div class="col-md-7 col-12 d-flex flex-column minicart-main-left-section justify-content-between h-100">
+                        <div class="col-md-6 col-12 d-flex flex-column minicart-main-left-section justify-content-between h-100">
                             <div class="d-flex justify-content-between">
                                 <div class="d-flex">
                                     <button  class="g-clear-cart bg-primary py-0 border-0 text-white border-0 rounded-2 me-2 fs-13 h-25px" style="transform: translateX(-7px);">Clear</button>
