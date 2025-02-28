@@ -850,14 +850,14 @@ $(document).ready(function(){
     function getSuggestedProducts(products) {
         if(products.length == 0){
             $('.cart-offers-section').hide()
-            $(".minicart-main-left-section").removeClass("col-md-7")
+            $(".minicart-main-left-section").removeClass("col-md-6")
             $('.slide-in-right .modal-dialog').removeClass('slide-in-cart-extended');
 
             return;
         }
         $('.cart-offers-section').show()
         $('.slide-in-right .modal-dialog').addClass('slide-in-cart-extended');
-        $(".minicart-main-left-section").addClass("col-md-7")
+        $(".minicart-main-left-section").addClass("col-md-6")
         const $sidecartItems = $('.sidecart_suggested-products');
         
         $sidecartItems.empty();
