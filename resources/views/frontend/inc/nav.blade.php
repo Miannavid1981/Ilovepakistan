@@ -126,8 +126,8 @@
                                 <li><a  href="{{ $my_account_url }}" class="dropdown-item fs-14" >Orders</a></li>
                             
                             @else 
-                                <li><a href="{{ route('user.login') }}" class="dropdown-item fs-14">Login</a></li>
-                                <li><a href="{{ route('user.registration') }}" class="dropdown-item fs-14">Register</a></li>
+                                <li><a href="{{ route('user.login') }}" class="dropdown-item fs-18">Login</a></li>
+                                <li><a href="{{ route('user.registration') }}" class="dropdown-item fs-18">Register</a></li>
                             @endif
                             @auth 
                                 <li class="divider"></li>

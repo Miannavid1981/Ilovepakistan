@@ -185,6 +185,9 @@ $photos = [];
 
 
 
+
+
+
 </style>
 
 <div class="row g-1">

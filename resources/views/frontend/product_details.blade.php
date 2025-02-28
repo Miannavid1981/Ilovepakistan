@@ -87,6 +87,35 @@
     justify-content: start;
     align-items: center;
 }
+@media (max-width: 768px) {
+    .tabs-container {
+        flex-direction: column; /* Stack tabs vertically */
+        align-items: flex-start; /* Align tabs to the left */
+        padding: 10px 0; /* Add some padding for better spacing */
+    }
+
+    .tabs {
+        flex-direction: column; /* Stack the tabs vertically */
+        gap: 5px; /* Reduce gap between tabs */
+    }
+
+    .tab {
+        padding: 12px 20px; /* Adjust padding for better mobile experience */
+        width: 100%; /* Make each tab fill the available width */
+        text-align: left; /* Align text to the left */
+        border-bottom: none; /* Remove the border between tabs */
+        border-right: 3px solid transparent; /* Keep a small right border */
+    }
+
+    .tab.active {
+        color: #000;
+        font-size: 16px; /* Slightly smaller font size for mobile */
+        transform: none; /* Remove the scale effect */
+        font-weight: bold;
+        border-bottom: 3px solid #000; /* Active tab border */
+    }
+}
+
 
 </style>
 @include('frontend.partials.cart.addToCart')
