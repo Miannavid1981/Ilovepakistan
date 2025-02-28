@@ -16,19 +16,18 @@
                         {{-- @if(!empty($address_type))
 
                             @if($address_type == "personal") --}}
-
-                            <div class="row" id="address_type_personal" style="display: none">
-
+                            <div class="d-flex" id="address_type_personal" style="display: none">
                                 <div class="col-6 mt-2">
-                                    <label class="btn btn-light w-100">
-                                        <input type="radio" class="  rounded-0" name="address_label" id="home_address_label" value="Home" checked required>
+                                    <label class="delivery_type_radio btn btn-light w-100">
+                                        <i class="fa fa-home"></i>
+                                        <input type="radio" class="  rounded-0" name="personal_address_label" id="home_address_label" value="Home" style="display: none" checked required>
                                         Home
                                     </label>
                                 </div>
-                            
                                 <div class="col-6 mt-2">
-                                    <label class="btn btn-light w-100">
-                                        <input type="radio" class="  rounded-0" name="address_label" id="office_address_label" value="Office"  required>
+                                    <label class="delivery_type_radio btn btn-light w-100">
+                                        <i class="fa fa-building"></i>
+                                        <input type="radio" class="  rounded-0" name="personal_address_label" id="office_address_label" value="Office" style="display: none"  required>
                                         Office
                                     </label>
                                 </div>

@@ -791,8 +791,8 @@ class CheckoutController extends Controller
         return back()->with('success', 'Receipts uploaded successfully!');
     }
     public function payment_actions(Request $request){
-
-        $addresses = Address::where( 'user_id', auth()->user()->id )->get();
+        $address_type = $request->address_type ?? '';
+        $addresses = Address::where( 'user_id', auth()->user()->id )->where('address_type', $address_type)->get();
         $data = [
             'addresses' => $addresses
         ];
