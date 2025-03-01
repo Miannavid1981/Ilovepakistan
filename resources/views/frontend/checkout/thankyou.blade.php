@@ -93,19 +93,23 @@ $order_info = $order;
                 <li class="breadcrumb-item active" aria-current="page">10501020676969</li>
             </ol>
         </nav> --}}
-        <p class="mb-0 fs-18 ">Order number:</p>
-        <h1 class="text-dark ">BH000{{ $order_id }}</h1>
+       
 
-        <div class="row mt-3">
-            <div class="col-lg-3 col-md-4 col-6">
+        <div class="row my-5">
+            <div class="col-md-3">
+
+            </div>
+            <div class="col-lg-3 col-md-3 col-6" style="border-right: 1px solid black;">
                 <p class="mb-1">
+                    <p class="mb-0 fs-18 ">Order number:</p>
+                    <h1 class="text-dark ">BH000{{ $order_id }}</h1>
                     <strong class="fs-16">Date Created:</strong>
                      <br/> 
                      <span class="fs-17 text-capitalize">{{  $order->created_at }}</span>
                 </p>
             </div>
            
-            <div class="col-lg-3 col-md-4 col-6 ">
+            <div class="col-lg-3 col-md-3 col-6 px-5 ">
                 <p class="mb-1">
                     <strong class="fs-16">Payment method:</strong>
                      <br/> 
@@ -133,7 +137,7 @@ $order_info = $order;
                             @csrf
                             <input type="hidden" name="order_id" value="{{ $order_id }}">
                             <div id="file-upload-container">
-                                <div class="file-upload-row">
+                                <div class="file-upload-row my-2">
                                     <input type="file" name="payment_receipts[]" class="form-control" accept="image/*,application/pdf">
                                 </div>
                             </div>
@@ -146,12 +150,15 @@ $order_info = $order;
                 
                
             </div>
+            <div class="col-md-3"></div>
             
         </div>
 
         <hr>
 
-        <h5 class="fw-bold">We’re packing your order</h5>
+        <div class="row">
+            <div class="col-md text-center my-5">
+                <h5 class="fw-bold">We’re packing your order</h5>
         <p><strong>Estimated delivery:</strong> Fri, 13/10/2023 - Mon, 16/10/2023</p>
 
         {{-- <div class="progress mb-3" style="height: 8px;">
@@ -168,6 +175,8 @@ $order_info = $order;
          <a href="{{ url('invoice/'. $order_id) }}"  class="btn btn-primary">
                 Download Invoice
          </a>
+            </div>
+        </div>
       
     </div>
 
