@@ -47,7 +47,7 @@
                         {{-- @endif --}}
 
                         <div class="col-6 mt-2">
-                            <select class="form-control   rounded-0" data-live-search="true" data-placeholder="{{ translate('Select your country') }}" name="country_id" data-code="92" id="country" required>
+                            <select class="form-control select2 rounded-0" data-live-search="true" data-placeholder="{{ translate('Select your country') }}" name="country_id" data-code="92" id="country" required>
                                 <option value="">{{ translate('Select your country') }}</option>
                                 @foreach (get_active_countries() as $key => $country)
                                     <option value="{{ $country->id }}" data-code="{{ $country->code }}">{{ $country->name }}</option>
@@ -56,14 +56,14 @@
 
                         </div>
                         <div class="col-6 mt-2">
-                            <select class="form-control   rounded-0" data-live-search="true" name="state_id" id="state" required>
+                            <select class="form-control rounded-0" data-live-search="true" name="state_id" id="state" required>
                                 <option value="">{{ translate('Select Country First') }}</option>
                             </select>
                         </div>
 
                         <!-- City -->
                         <div class="col-6 mt-2">
-                            <select class="form-control  rounded-0" data-live-search="true" name="city_id" id="city" required>
+                            <select class="form-control rounded-0" data-live-search="true" name="city_id" id="city" required>
                                 <option value="">{{ translate('Select State First') }}</option>
                             </select>
                         </div>
