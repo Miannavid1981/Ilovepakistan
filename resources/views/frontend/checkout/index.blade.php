@@ -680,7 +680,9 @@
     <script type="text/javascript">
    
     $(document).ready(function() {
-        $("select").select2()
+        $('.select2').select2({
+            minimumResultsForSearch: 0 // Always enable search
+        });
         var country_code = '{{  $session_country_obj ? $session_country_obj->code : 'PK' }}';
         var country_id = {{ $session_country_obj ? $session_country_obj->id : "" }};
         var instance = $("[name=phone]").intlTelInput({
@@ -747,6 +749,8 @@
                         $("#shipping_preloader").hide();
                         $('#shipping_info').show();
                         $('#shipping_info').html(obj.html);
+                        switch_address_type_things()
+                        fetch_payment_actions()
             
                     }
                     switch_address_type_things()
