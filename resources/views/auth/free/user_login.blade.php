@@ -362,8 +362,9 @@
             $('#password').val('123456');
         }
         $("form").submit(function(e) {
-            e.preventDefault(); // Prevent normal form submission
             
+            e.preventDefault(); // Prevent normal form submission
+            $("#recaptcha_message").html("")
             var recaptchaResponse = grecaptcha.getResponse();
             
             if (recaptchaResponse === "") {
