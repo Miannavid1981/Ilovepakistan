@@ -36,7 +36,7 @@
         <link rel="stylesheet" href="{{ static_asset('assets/css/bootstrap-rtl.min.css') }}">
     @endif
     <link rel="stylesheet" href="{{ static_asset('assets/css/aiz-core.css?v=') }}{{ rand(1000, 9999) }}">
-   
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     <style>
         :root{
             --blue: #3490f3;
