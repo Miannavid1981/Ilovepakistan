@@ -309,7 +309,7 @@
                                                 </div>
                                             </div>
                                             <!-- Google reCAPTCHA -->
-                                            <div class="g-recaptcha" data-sitekey="6LcBm-YqAAAAAIR_g-mKqncZ83b9yr0MS3c5JF3O"></div>
+                                            <div class="g-recaptcha" data-sitekey="6LcBm-YqAAAAAIR_g-mKqncZ83b9yr0MS3c5JF3O" data-callback="recaptchaVerified"></div>
                                             <div id="recaptcha_message"></div>
                                             <!-- Submit Button -->
                                             <div class="mb-2 mt-2">
