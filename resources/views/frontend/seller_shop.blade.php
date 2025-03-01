@@ -113,7 +113,7 @@
 .store_banner {
     /* padding-top: 150px; */
     height: 220px;
-    background: url('https://www.unitedmobile.pk/wp-content/uploads/2022/11/Samsung-Brand-Banner.webp');
+    background: url('{{ uploaded_asset($shop->top_banner_image) }}');
     background-attachment: fixed;
     background-size: contain;
     background-repeat: no-repeat;
@@ -127,8 +127,12 @@
         max-width: calc(100% / 5);
     }
   </style>
-  <div class="store_banner">
-  </div>
+   @if (!isset($type) || $type == 'top-selling' || $type == 'cupons')
+        @if ($shop->top_banner_image)
+            <div class="store_banner">
+            </div>
+        @endif
+  @endif
     <section class="mt-3 mb-3 bg-white d-none">
         <div class="container">
             <!--  Top Menu -->
@@ -154,7 +158,7 @@
         }
     @endphp
 
-    @if (!isset($type) || $type == 'top-selling' || $type == 'cupons')
+    {{-- @if (!isset($type) || $type == 'top-selling' || $type == 'cupons')
         @if ($shop->top_banner_image)
             <!-- Top Banner -->
             <section class="h-160px h-md-200px h-lg-300px h-xl-100 w-100">
@@ -165,7 +169,7 @@
                 </a>
             </section>
         @endif
-    @endif
+    @endif --}}
 
     <section class="@if (!isset($type) || $type == 'top-selling' || $type == 'cupons') mb-3 @endif border-top border-bottom" >
         <div class="container">
