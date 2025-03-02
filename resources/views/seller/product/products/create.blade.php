@@ -780,6 +780,13 @@
             }
         });
     });
+    $(document).on("click", ".hummingbird-end-node", function(){
+        $("#treeview input").prop('checked', false);
+        $(this).prop('checked', true)
+        var parent_div = $(this).parent().parent().parent().parent();
+        parent_div.children("input").prop('checked', true);
+        parent_div.children("label").children("input").prop('checked', true);
+    });
 
     $("[name=shipping_type]").on("change", function() {
         $(".product_wise_shipping_div").hide();
