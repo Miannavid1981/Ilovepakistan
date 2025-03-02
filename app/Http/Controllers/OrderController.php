@@ -143,7 +143,7 @@ class OrderController extends Controller
 
         $shippingAddress = [];
         if ($address != null) {
-            $shippingAddress['name']        = $address->name;
+            $shippingAddress['name']        = $request->first_name." ".$request->last_name;
             $shippingAddress['email']       = Auth::user()->email;
             $shippingAddress['address']     = $address->address;
             $shippingAddress['country']     = $address->country->name;
