@@ -302,7 +302,7 @@ class CheckoutController extends Controller
             $address_label = $request->address_label ?? '(No Label)';
         }
         $selected_address_id = !empty($request->selected_address_id) ? $request->selected_address_id : null;
-        dd($request);
+        // dd($request);
         $shipping_address = [];
         
         if (!empty($selected_address_id)){
