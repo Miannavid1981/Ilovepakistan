@@ -221,7 +221,7 @@
                 <td width="50%">
                     
                   
-                    <strong>Customer Name:</strong> {{ $shipping_address->name }}<br>
+                    <strong>Customer Name:</strong> {{ $order->user->name }}<br>
                     <strong>E-mail:</strong> {{ $shipping_address->email }}<br>
                     <strong>Phone:</strong> {{ $shipping_address->phone }}<br>
                 </td>
