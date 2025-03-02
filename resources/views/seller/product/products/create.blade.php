@@ -1,6 +1,11 @@
 @extends('seller.layouts.app')
 
 @section('panel_content')
+<style>
+    #treeview input[type="radio"]{
+        opacity: 0;
+    }
+    </style>
     <div class="page-content mx-0">
         <div class="aiz-titlebar mt-2 mb-4">
             <div class="row align-items-center">
@@ -779,6 +784,13 @@
                 $('#treeview input:radio[value='+val+']').prop('checked',true);
             }
         });
+    });
+    $(document).on("click", ".hummingbird-end-node", function(){
+        $("#treeview input").prop('checked', false);
+        $(this).prop('checked', true)
+        var parent_div = $(this).parent().parent().parent().parent();
+        parent_div.children("input").prop('checked', true);
+        parent_div.children("label").children("input").prop('checked', true);
     });
 
     $("[name=shipping_type]").on("change", function() {
