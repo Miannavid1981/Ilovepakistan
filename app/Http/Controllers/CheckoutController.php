@@ -317,9 +317,14 @@ class CheckoutController extends Controller
         // Retrieve the user's cart items
         $carts = Cart::where('user_id', $user_id)->get();
         // dd($user_id, $carts);
+        $address_label = '';
 
         $address_type = $request->delivery_type ?? '';
-        $address_label = $request->address_label ?? '(No Label)';
+        if($address_type == 'personal'){
+            $address_label = $request->personal_address_label ?? '(No Label)';
+        } else {
+            $address_label = $request->address_label ?? '(No Label)';
+        }
         $selected_address_id = !empty($request->selected_address_id) ? $request->selected_address_id : null;
         // dd($selected_address_id);
         $shipping_address = [];
@@ -331,9 +336,9 @@ class CheckoutController extends Controller
             $city = \App\Models\City::where('id', $address->city_id)->first();
 
             $shipping_address = [
-                'name' => Auth::user()->name,
+                'name' => $request->first_name." ".$request->last_name,
                 'email' => Auth::user()->email,
-                'phone' => $address->phone,
+                'phone' => $request->phone,
                 'address' => $address->address,
                 'city' => $city ? $city->name : '',
                 'state' => $state ? $state->name : '',
@@ -357,6 +362,7 @@ class CheckoutController extends Controller
             $address->set_default = false;
             $address->address_type = $address_type;
             $address->address_label = $address_label;
+            $address->address_label = $address_label;
             $address->save();
 
             $state = \App\Models\State::where("id", $request->state_id)->first();
@@ -364,7 +370,7 @@ class CheckoutController extends Controller
             $city = \App\Models\City::where('id', $request->city_id)->first();
             // dd($request, $city);
             $shipping_address = [
-                'name' => Auth::user()->name,
+                'name' => $request->first_name." ".$request->last_name,
                 'email' => Auth::user()->email,
                 'phone' => $request->phone,
                 'address' => $request->address,
