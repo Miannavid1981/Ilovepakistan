@@ -422,8 +422,8 @@
         $("#brand_partner").click(function(){
 
             $(this).parent().parent().hide()
-            $("#contact_info").show();
-            $("#company_details").show();
+            // $("#contact_info").show();
+            // $("#company_details").show();
 
             $("#personal_info").show();
             $("#shop_info").show();
@@ -433,16 +433,8 @@
                 $(this).attr("required", "required")
             })
 
+       
             $("#shop_info input").each(function(){
-                $(this).attr("required", "required")
-            })
-            $("#contact_info input").each(function(){
-                $(this).attr("required", "required")
-            })
-            $("#company_details input").each(function(){
-                $(this).attr("required", "required")
-            })
-            $("#seller_form input").each(function(){
                 $(this).attr("required", "required")
             })
 
