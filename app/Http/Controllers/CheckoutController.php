@@ -289,7 +289,7 @@ class CheckoutController extends Controller
         $payment_option = $request->payment_method ?? 'cash_on_delivery';
         $payment_data = $request->session()->get('payment_data');
         $user_id = Auth::id();
-        
+
         // Retrieve the user's cart items
         $carts = Cart::where('user_id', $user_id)->get();
         // dd($user_id, $carts);
@@ -310,9 +310,9 @@ class CheckoutController extends Controller
             $state = \App\Models\State::where("id", $address->state_id)->first();
             $country = \App\Models\Country::where("id",$address->country_id)->first();
             $city = \App\Models\City::where('id', $address->city_id)->first();
-
+            $delivery_contact_name = $request->first_name." ".$request->last_name ?? '-' ;
             $shipping_address = [
-                'name' => $request->first_name." ".$request->last_name,
+                'name' => $delivery_contact_name ,
                 'email' => Auth::user()->email,
                 'phone' => $request->phone,
                 'address' => $address->address,
