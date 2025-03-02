@@ -160,6 +160,8 @@ class OrderController extends Controller
         $combined_order->user_id = Auth::user()->id;
         $combined_order->shipping_address = json_encode($shippingAddress);
         $combined_order->payment_method = $request->payment_method;
+        $combined_order->payment_transfer_method = $request->payment_transfer_method ?? null; 
+        
         $combined_order->order_type = $request->address_type;
         $combined_order->save();
 
