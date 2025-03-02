@@ -222,8 +222,8 @@
                     
                   
                     <strong>Customer Name:</strong> {{ $order->user->name }}<br>
-                    <strong>E-mail:</strong> {{ $shipping_address->email }}<br>
-                    <strong>Phone:</strong> {{ $shipping_address->phone }}<br>
+                    <strong>E-mail:</strong> {{ $order->user->email }}<br>
+                    <strong>Phone:</strong> {{ $order->user->phone }}<br>
                 </td>
             </tr>
         </table>
