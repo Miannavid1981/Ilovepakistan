@@ -384,7 +384,7 @@
 
 
         $(".seller_type_card").click(function(){
-            $("#seller_type").val($(this).data('value'))
+            $('[name="seller_type"]').val($(this).data('value'))
         })
         $("#company_type").change(function(){
             var val = $(this).val();
