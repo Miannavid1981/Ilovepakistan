@@ -309,8 +309,8 @@
                                                 </div>
                                             </div>
                                             <!-- Google reCAPTCHA -->
-                                            <div class="g-recaptcha" data-sitekey="6LcBm-YqAAAAAIR_g-mKqncZ83b9yr0MS3c5JF3O" data-callback="recaptchaVerified"></div>
-                                            <div id="recaptcha_message"></div>
+                                            {{-- <div class="g-recaptcha" data-sitekey="6LcBm-YqAAAAAIR_g-mKqncZ83b9yr0MS3c5JF3O" data-callback="recaptchaVerified"></div>
+                                            <div id="recaptcha_message"></div> --}}
                                             <!-- Submit Button -->
                                             <div class="mb-2 mt-2">
                                                 <button type="submit" class="btn btn-primary btn-block fw-700 fs-14 rounded-2 submit-button">{{  translate('Login') }}</button>
@@ -361,17 +361,17 @@
             $('#email').val('customer@example.com');
             $('#password').val('123456');
         }
-        $("form").submit(function(e) {
+        // $("form").submit(function(e) {
             
-            e.preventDefault(); // Prevent normal form submission
-            $("#recaptcha_message").html("")
-            var recaptchaResponse = grecaptcha.getResponse();
+        //     e.preventDefault(); // Prevent normal form submission
+        //     $("#recaptcha_message").html("")
+        //     var recaptchaResponse = grecaptcha.getResponse();
             
-            if (recaptchaResponse === "") {
-                $("#recaptcha_message").html("<p style='color: red;'>❌ Please complete the reCAPTCHA.</p>");
-                return false;
-            }
-        })
+        //     if (recaptchaResponse === "") {
+        //         $("#recaptcha_message").html("<p style='color: red;'>❌ Please complete the reCAPTCHA.</p>");
+        //         return false;
+        //     }
+        // })
     </script>
 
 @endsection
