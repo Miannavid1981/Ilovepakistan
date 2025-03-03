@@ -116,6 +116,7 @@ $order_info = $order;
        
         <div class="row my-5">
 
+
             <div class="col-md-3"></div>
             
             <!-- Middle Columns -->
@@ -150,11 +151,13 @@ $order_info = $order;
                 
                
             </div>
-            <div class="col-md-3 ">
+            <div class="col-md-3  text-end">
                 <strong class="fs-16">Order Actions</strong>
+                <br>
                 <a href="{{ url('invoice/'. $order_id) }}"  class="btn btn-primary">
                         Download Invoice
                 </a>
+                <br>
                 @if($order->payment_method  == 'direct_bank_transfer')
 
                     <h5 class="mt-2">Upload Receipts:</h5>
@@ -172,6 +175,7 @@ $order_info = $order;
                             <input type="hidden" name="order_id" value="{{ $order_id }}">
                             <div id="file-upload-container">
                                 <div class="file-upload-row my-2">
+                                    <button type="button" class="btn btn-primary delete-file-upload"><i class="fa fa-trash"></i></button>
                                     <input type="file" name="payment_receipts[]" class="form-control" accept="image/*,application/pdf">
                                 </div>
                             </div>
@@ -184,7 +188,7 @@ $order_info = $order;
                 @endif
 
             </div>
-            
+
 
         </div>
         
@@ -212,54 +216,9 @@ $order_info = $order;
         newRow.innerHTML = '<input type="file" name="payment_receipts[]" class="form-control" accept="image/*,application/pdf">';
         container.appendChild(newRow);
     });
-
-    document.getElementById('add-more').addEventListener('click', function () {
-    let container = document.getElementById('file-upload-container');
-
-    // ✅ Create a single new row
-    let newRow = document.createElement('div');
-    newRow.classList.add('file-upload-row', 'my-2');
-
-    newRow.innerHTML = `
-        <input type="file" name="payment_receipts[]" class="form-control file-input" accept="image/*,application/pdf" onchange="previewFile(this)">
-        <div class="preview-container mt-2"></div>
-        <button type="button" class="btn btn-danger mt-2 delete-btn delete-receipt" onclick="removeField(this)" style="display: none;">X</button>
-    `;
-
-    container.appendChild(newRow);
-});
-
-// Function to show preview and toggle delete button
-function previewFile(input) {
-    let file = input.files[0];
-    let previewContainer = input.nextElementSibling; // Get the preview container
-    let deleteButton = input.parentElement.querySelector(".delete-receipt"); // Get delete button
-
-    previewContainer.innerHTML = ""; // Clear previous content
-
-    if (file && file.type.startsWith("image/")) {  // Only show preview for images
-        let reader = new FileReader();
-        reader.onload = function (e) {
-            let img = document.createElement('img');
-            img.src = e.target.result;
-            img.classList.add('img-thumbnail', 'mt-2');
-            img.width = 150;
-            previewContainer.appendChild(img);
-        };
-        reader.readAsDataURL(file);
-    }
-
-    // ✅ Show delete button when a file is selected
-    if (file) {
-        deleteButton.style.display = "inline-block";
-    }
-}
-
-// Function to remove the input field
-function removeField(button) {
-    button.parentElement.remove();
-}
-
+    $(document).on("click", ".delete-file-upload", function(){
+        $(this).parent().remove()
+    });
 </script>
 
 @endsection
