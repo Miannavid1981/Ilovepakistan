@@ -328,6 +328,12 @@
                                                 </span>
                                             @endif
                                         @endif
+
+
+                                        <div id="recaptcha" class="g-recaptcha" data-sitekey="6LcBm-YqAAAAAIR_g-mKqncZ83b9yr0MS3c5JF3O" data-callback="recaptchaVerified"></div>
+                                        <div id="recaptcha_message"></div>
+
+                                        
                                         <!-- Submit Button -->
                                         <div class="mb-4 mt-4">
                                             <button type="submit" class="btn btn-primary btn-block fw-600 fs-20">{{  translate('Register Now') }}</button>
@@ -369,7 +375,18 @@
 <script type="text/javascript">
         
     $(document).ready(function(){
-        
+        function recaptchaVerified(){
+            $("#reg-form").submit();
+        }
+        function form_submit(){
+            if ($('#quick_newslatter_recaptcha').valid()) {
+                grecaptcha.execute();
+            }
+        }
+
+        $(document).on('click', '#registration_button', form_submit );
+
+
         $(".seller_type_card").click(function(){
             $("#seller_type").val($(this).data('value'))
         })

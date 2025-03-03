@@ -136,9 +136,9 @@
     
                                             <!-- Recaptcha -->
                                             @if(get_setting('google_recaptcha') == 1)
-                                                <div class="form-group">
-                                                    <div class="g-recaptcha" data-sitekey="{{ env('CAPTCHA_KEY') }}"></div>
-                                                </div>
+                                               
+                                                <div id="recaptcha" class="g-recaptcha" data-sitekey="{{ env('CAPTCHA_KEY') }}" data-callback="recaptchaVerified"></div>
+                                                <div id="recaptcha_message"></div>
                                                 @if ($errors->has('g-recaptcha-response'))
                                                     <span class="invalid-feedback" role="alert" style="display: block;">
                                                         <strong>{{ $errors->first('g-recaptcha-response') }}</strong>
@@ -155,8 +155,6 @@
                                                 </label>
                                             </div>
 
-                                            <div id="recaptcha" class="g-recaptcha" data-sitekey="6LcBm-YqAAAAAIR_g-mKqncZ83b9yr0MS3c5JF3O" data-callback="recaptchaVerified"></div>
-                                            <div id="recaptcha_message"></div>
 
                                             <!-- Submit Button -->
                                             <div class="mb-4 mt-4">
@@ -237,7 +235,7 @@
             }
         }
 
-        $(document).on('click', '#registration_button', form_submit );
+        $(document).on('click', '#registration_button',    @if(get_setting('google_recaptcha') == 1) form_submit @else recaptchaVerified @endif);
         
         @if(get_setting('google_recaptcha') == 1)
         // making the CAPTCHA  a required field for form submission
