@@ -107,9 +107,9 @@
                         <th data-breakpoints="md">{{translate('Total Stock')}}</th>
                         <th data-breakpoints="lg">{{translate('Todays Deal')}}</th>
                         <th data-breakpoints="lg">{{translate('Published')}}</th>
-                        @if(get_setting('product_approve_by_admin') == 1 && $type == 'Seller')
+                        {{-- @if(get_setting('product_approve_by_admin') == 1 && $type == 'Seller') --}}
                             <th data-breakpoints="lg">{{translate('Approved')}}</th>
-                        @endif
+                        {{-- @endif --}}
                         <th data-breakpoints="lg">{{translate('Featured')}}</th>
                         <th data-breakpoints="sm" class="text-right">{{translate('Options')}}</th>
                     </tr>
@@ -183,14 +183,14 @@
                                 <span class="slider round"></span>
                             </label>
                         </td>
-                        @if(get_setting('product_approve_by_admin') == 1 && $type == 'Seller')
+                        {{-- @if(get_setting('product_approve_by_admin') == 1 && $type == 'Seller') --}}
                             <td>
                                 <label class="aiz-switch aiz-switch-success mb-0">
                                     <input onchange="update_approved(this)" value="{{ $product->id }}" type="checkbox" <?php if ($product->approved == 1) echo "checked"; ?> >
                                     <span class="slider round"></span>
                                 </label>
                             </td>
-                        @endif
+                        {{-- @endif --}}
                         <td>
                             <label class="aiz-switch aiz-switch-success mb-0">
                                 <input onchange="update_featured(this)" value="{{ $product->id }}" type="checkbox" <?php if ($product->featured == 1) echo "checked"; ?> >

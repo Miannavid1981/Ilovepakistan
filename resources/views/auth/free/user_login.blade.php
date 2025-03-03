@@ -222,19 +222,27 @@
                                                 
                                                 <div class="login-buttons">
        
-                                                   
-                                                    <a href="{{ route('social.login', ['provider' => 'google']) }}" class="btn btn-google">
-                                                      <img src="https://cdn4.iconfinder.com/data/icons/logos-brands-7/512/google_logo-google_icongoogle-512.png" alt="Google Logo">
-                                                      Continue with Google
-                                                    </a>
-                                                    <a href="{{ route('social.login', ['provider' => 'facebook']) }}" class="btn btn-facebook">
-                                                      <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="Facebook Logo">
-                                                      Continue with Facebook
-                                                    </a>
+                                                    
+
+                                                    @if(get_setting('google_login') == 1)
+
+                                                        <a href="{{ route('social.login', ['provider' => 'google']) }}" class="btn btn-google">
+                                                        <img src="https://cdn4.iconfinder.com/data/icons/logos-brands-7/512/google_logo-google_icongoogle-512.png" alt="Google Logo">
+                                                        Continue with Google
+                                                        </a>
+                                                    @endif
+                                                    @if(get_setting('facebook_login') == 1 )
+                                                        <a href="{{ route('social.login', ['provider' => 'facebook']) }}" class="btn btn-facebook">
+                                                        <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="Facebook Logo">
+                                                        Continue with Facebook
+                                                        </a>
+                                                    @endif
+                                                    @if(get_setting('apple_login') == 1)
                                                     <a href="{{ route('social.login', ['provider' => 'apple']) }}" class="btn btn-apple">
                                                       <img src="https://cdn1.iconfinder.com/data/icons/smallicons-logotypes/32/apple-512.png" alt="Apple Logo">
                                                       Continue with Apple
                                                     </a>
+                                                    @endif
                                                     <br>
                                                     
                                                   </div>
@@ -264,7 +272,7 @@
                                             @else
                                                 <div class="form-group">
                                                     {{-- <label for="email" class="fs-12 fw-700 text-soft-dark">{{  translate('Email') }}</label> --}}
-                                                    <input type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }} rounded-2" value="{{ old('email') }}" placeholder="{{  translate('Email') }}" name="email" id="email" autocomplete="off">
+                                                    <input type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }} rounded-2" value="{{ old('email') }}" placeholder="{{  translate('Email') }}" name="email" id="email" autocomplete="off" required>
                                                     @if ($errors->has('email'))
                                                         <span class="invalid-feedback" role="alert">
                                                             <strong>{{ $errors->first('email') }}</strong>
@@ -277,7 +285,7 @@
                                                 <div class="form-group">
                                                     {{-- <label for="password" class="fs-12 fw-700 text-soft-dark">{{  translate('Password') }}</label> --}}
                                                     <div class="position-relative">
-                                                        <input type="password" class="form-control rounded-2 {{ $errors->has('password') ? ' is-invalid' : '' }}" placeholder="{{ translate('Password')}}" name="password" id="password">
+                                                        <input type="password" class="form-control rounded-2 {{ $errors->has('password') ? ' is-invalid' : '' }}" placeholder="{{ translate('Password')}}" name="password" id="password" required>
                                                         <i class="password-toggle las la-2x la-eye"></i>
                                                     </div>
                                                 </div>
@@ -300,7 +308,9 @@
                                                     </div>
                                                 </div>
                                             </div>
-
+                                            <!-- Google reCAPTCHA -->
+                                            <div class="g-recaptcha" data-sitekey="6LcBm-YqAAAAAIR_g-mKqncZ83b9yr0MS3c5JF3O" data-callback="recaptchaVerified"></div>
+                                            <div id="recaptcha_message"></div>
                                             <!-- Submit Button -->
                                             <div class="mb-2 mt-2">
                                                 <button type="submit" class="btn btn-primary btn-block fw-700 fs-14 rounded-2 submit-button">{{  translate('Login') }}</button>
@@ -351,5 +361,17 @@
             $('#email').val('customer@example.com');
             $('#password').val('123456');
         }
+        $("form").submit(function(e) {
+            
+            e.preventDefault(); // Prevent normal form submission
+            $("#recaptcha_message").html("")
+            var recaptchaResponse = grecaptcha.getResponse();
+            
+            if (recaptchaResponse === "") {
+                $("#recaptcha_message").html("<p style='color: red;'>❌ Please complete the reCAPTCHA.</p>");
+                return false;
+            }
+        })
     </script>
+
 @endsection

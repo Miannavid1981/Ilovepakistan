@@ -143,14 +143,14 @@ class OrderController extends Controller
 
         $shippingAddress = [];
         if ($address != null) {
-            $shippingAddress['name']        = Auth::user()->name;
+            $shippingAddress['name']        = $request->first_name." ".$request->last_name;
             $shippingAddress['email']       = Auth::user()->email;
             $shippingAddress['address']     = $address->address;
             $shippingAddress['country']     = $address->country->name;
             $shippingAddress['state']       = $address->state->name;
             $shippingAddress['city']        = $address->city->name;
             $shippingAddress['postal_code'] = $address->postal_code;
-            $shippingAddress['phone']       = $address->phone;
+            $shippingAddress['phone']       = $request->phone;
             if ($address->latitude || $address->longitude) {
                 $shippingAddress['lat_lang'] = $address->latitude . ',' . $address->longitude;
             }
@@ -160,6 +160,8 @@ class OrderController extends Controller
         $combined_order->user_id = Auth::user()->id;
         $combined_order->shipping_address = json_encode($shippingAddress);
         $combined_order->payment_method = $request->payment_method;
+        $combined_order->payment_transfer_method = $request->payment_transfer_method ?? null; 
+        
         $combined_order->order_type = $request->address_type;
         $combined_order->save();
 

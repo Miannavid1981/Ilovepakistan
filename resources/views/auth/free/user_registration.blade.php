@@ -61,7 +61,7 @@
                                 <!-- Register form -->
                                 <div class="pt-3 pt-lg-4 bg-white">
                                     <div class="">
-                                        <form id="reg-form" class="form-default" role="form" action="{{ route('register') }}" method="POST">
+                                        <form id="reg-form" class="form-default" role="form" action="{{ route('register') }}" method="POST"  novalidate="novalidate">
                                             @csrf
                                             <!-- Name -->
                                             <div class="form-group">
@@ -136,9 +136,9 @@
     
                                             <!-- Recaptcha -->
                                             @if(get_setting('google_recaptcha') == 1)
-                                                <div class="form-group">
-                                                    <div class="g-recaptcha" data-sitekey="{{ env('CAPTCHA_KEY') }}"></div>
-                                                </div>
+                                               
+                                                <div id="recaptcha" class="g-recaptcha" data-sitekey="{{ env('CAPTCHA_KEY') }}" data-callback="recaptchaVerified"></div>
+                                                <div id="recaptcha_message" class="text-danger mt-1 mb-2"></div>
                                                 @if ($errors->has('g-recaptcha-response'))
                                                     <span class="invalid-feedback" role="alert" style="display: block;">
                                                         <strong>{{ $errors->first('g-recaptcha-response') }}</strong>
@@ -154,15 +154,16 @@
                                                     <span class="aiz-square-check"></span>
                                                 </label>
                                             </div>
-    
+
+
                                             <!-- Submit Button -->
                                             <div class="mb-4 mt-4">
-                                                <button type="submit" class="btn btn-primary btn-block fw-600 ">{{  translate('Create Account') }}</button>
+                                                <button type="submit" id="registration_button" class="btn btn-primary btn-block fw-600 ">{{  translate('Create Account') }}</button>
                                             </div>
                                         </form>
                                         
                                         <!-- Social Login -->
-                                        @if(get_setting('google_login') == 1 || get_setting('facebook_login') == 1 || get_setting('twitter_login') == 1 || get_setting('apple_login') == 1)
+                                        {{-- @if(get_setting('google_login') == 1 || get_setting('facebook_login') == 1 || get_setting('twitter_login') == 1 || get_setting('apple_login') == 1)
                                             <div class="text-center mb-3">
                                                 <span class="bg-white fs-12 text-gray">{{ translate('Or Join With')}}</span>
                                             </div>
@@ -196,7 +197,7 @@
                                                     </li>
                                                 @endif
                                             </ul>
-                                        @endif
+                                        @endif --}}
                                     </div>
     
                                     <!-- Log In -->
@@ -225,16 +226,28 @@
     @endif
 
     <script type="text/javascript">
+        // function recaptchaVerified(){
+        //     $("#reg-form").submit();
+        // }
+        // function form_submit(){
+        //     if ($('#reg-form').valid()) {
+        //         grecaptcha.execute();
+        //     }
+        // }
+
+        // $(document).on('click', '#registration_button',    @if(get_setting('google_recaptcha') == 1) form_submit @else recaptchaVerified @endif);
+        
         @if(get_setting('google_recaptcha') == 1)
         // making the CAPTCHA  a required field for form submission
         $(document).ready(function(){
             $("#reg-form").on("submit", function(evt)
             {
+                $("#recaptcha_message").html("");
                 var response = grecaptcha.getResponse();
                 if(response.length == 0)
                 {
                 //reCaptcha not verified
-                    alert("please verify you are human!");
+                    $("#recaptcha_message").html("Please verify you are human!");
                     evt.preventDefault();
                     return false;
                 }
