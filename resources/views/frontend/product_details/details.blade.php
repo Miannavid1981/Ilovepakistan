@@ -486,7 +486,7 @@
                                 data-type="minus" data-field="quantity" disabled="">
                                 <i class="las la-minus"></i>
                             </button>
-                            <input type="number" name="quantity"
+                            <input id="g-detail-quantity" type="number" name="quantity"
                                 class="col border-0 text-center flex-grow-1 fs-16 input-number" placeholder="1"
                                 value="{{ $detailedProduct->min_qty }}" min="{{ $detailedProduct->min_qty }}"
                                 max="10" lang="en">
