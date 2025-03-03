@@ -95,6 +95,12 @@ $order_info = $order;
     text-align: center;
 }
 }
+
+#map {
+    width: 100%;
+    height: 400px; /* Adjust as needed */
+}
+
  </style>
 <div class="container text-center ">
 
@@ -124,28 +130,98 @@ $order_info = $order;
                 <p class="mb-1">
                     <p class="mb-0 fs-18">Order number:</p>
                     <h1 class="text-dark">BH000{{ $order_id }}</h1>
+                    
                     <strong class="fs-16">Date Created:</strong> <br/> 
                     <span class="fs-17 text-capitalize">{{ $order->created_at }}</span>
+
+                    
                 </p>
+                <p class="mb-1">
+                    <strong class="fs-16">Customer</strong> <br/>
+                    <span class="fs-17 ">{{ $order->user->name }}</span> <br/>
+                    <span class="fs-17 ">{{ $order->user->email }}</span><br/>
+                    <span class="fs-17 ">{{ $order->user->phone }}</span><br/>
+                </p>
+               
+        
+               
             </div>
         
             <div class="col-lg-3 col-md-6 col-12 px-md-5 middle-sd-column">
                 <p class="mb-1">
+                    <strong class="fs-16">Delivery Type</strong> <br/>
+                    <span class="fs-17 text-capitalize">{{ str_replace("_", " ", $order->order_type) }}</span>
+                </p>
+                <p class="mb-1">
                     <strong class="fs-16">Payment method:</strong> <br/>
                     <span class="fs-17 text-capitalize">{{ str_replace("_", " ", $order->payment_method) }}</span>
                 </p>
-        
+                
                 @if($order->payment_method == 'direct_bank_transfer')
                     <p class="mb-1">
                         <strong class="fs-16">Payment Transfer method:</strong> <br/>
-                        <span class="fs-17 text-capitalize">{{ str_replace("_", " ", $order->payment_transfer_method) }}</span>
+                        {{-- <span class="fs-17 text-capitalize">{{ str_replace("_", " ", $order->payment_transfer_method) }}</span> --}}
                     </p>
+                   
+                    @if($order->payment_transfer_method == 'meezan_bank')
 
+                        <p class=" fs-15 fw-500">Meezan Bank
+                        </p>
+                        <b>Account Title.</b>
+                        <p class="mb-0">SOLARONLINE PAKISTAN</p>
+                        <b>IBAN: </b>
+                        <p class="mb-0">PK39 MEZN 0002 8101 0824 5316</p>
+                        <b>Account No.</b>
+                        <p class="mb-0">02810108245316</p>
+
+                    @endif
+
+                    @if($order->payment_transfer_method == 'mcb_bank')
+
+                        <p class=" fs-15 fw-500">MCB Bank Ltd
+                        </p>
+                        <b>Account Title.</b>
+                        <p class="mb-0">SOLAR DYNAMICS TECHNOLOGIES PAKISTAN</p>
+                        <b>IBAN: </b>
+                        <p class="mb-0">PK56 MUCB 0585 3769 6100 1725</p>
+                        <b>Account No.</b>
+                        <p class="mb-0">0585376961001725</p>
+
+                    @endif
+
+                    @if($order->payment_transfer_method == 'bank_al_habib')
+
+                        <p class=" fs-15 fw-500">Bank AL Habib Ltd
+                        </p>
+                        <b>Account Title.</b>
+                        <p class="mb-0">SOLAR DYNAMICS TECHNOLOGIES PAKISTAN</p>
+                        <b>IBAN: </b>
+                        <p class="mb-0">PK41 BAHL 0254 0981 0214 4301</p>
+
+                    @endif
+                    @if($order->payment_transfer_method == 'jazzcash')
+                        <p class=" fs-15 fw-500">JazzCash
+                        </p>
+                        <b>Account Title: </b>
+                        <p class="mb-0"> Muhammad Naveed</p>
+                        <b>Account No.</b>
+                        <p class="mb-0">
+                            0300 0322034 
+                       </p>
+                    @endif
+
+                    @if($order->payment_transfer_method == 'easypaisa')
+                        <p class=" fs-15 fw-500">Easypaisa
+                        </p>
+                        <b>IBAN: </b>
+                        <p class="mb-0">PAK12392390239239023</p>
+                        <b>Account No.</b>
+                        <p class="mb-0">2323093232</p>
+                    @endif
                     
                 
 
-                @endif frontend-new
-        
+                @endif 
                 @php                   
                     $receipts = json_decode($order->payment_receipts) ?? [];
                 @endphp
@@ -166,59 +242,26 @@ $order_info = $order;
                     @endforeach
                 @endif
         
-               <!-- Modal -->
-               <div class="modal fade" id="uploadReceiptsModal" tabindex="-1" aria-labelledby="uploadReceiptsModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="uploadReceiptsModalLabel">Upload Payment Receipts</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <form action="{{ route('orders.uploadReceipts') }}" method="POST" enctype="multipart/form-data">
-            @csrf
-            <input type="hidden" name="order_id" value="{{ $order_id }}">
-            
-            <div id="file-upload-container">
-              <div class="file-upload-row my-2">
-                <input type="file" name="payment_receipts[]" class="form-control file-input" accept="image/*,application/pdf" onchange="previewFile(this)">
-                <div class="preview-container mt-2"></div>
-                <button type="button" class="btn btn-danger mt-2 delete-btn delete-receipt" onclick="removeField(this)" style="display: none;">X</button>
-              </div>
-            </div>
-  
-            <button type="button" id="add-more" class="btn btn-secondary mt-2">Add More</button>
-            <button type="submit" class="btn btn-primary mt-2">Submit</button>
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
-  
-  <!-- Trigger button to open the modal -->
-  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#uploadReceiptsModal">
-    Upload Receipts
-</button>
 
-  
-
-                    
-                
-                main
             </div>
 
             <div class="col-md-3">
-                <p class="mb-1">
-                    <strong class="fs-16">Customer</strong> <br/>
-                    <span class="fs-17 ">{{ $order->user->name }}</span> <br/>
-                    <span class="fs-17 ">{{ $order->user->email }}</span><br/>
-                    <span class="fs-17 ">{{ $order->user->phone }}</span><br/>
-                </p>
-        
+              
+               
             
                 <p class="mb-1">
+                    <strong class="fs-16">Delivery Contact </strong> <br/>
+                    @php
+                        $shipping_address = json_decode($order->shipping_address, true);
+                    @endphp
+                    <span class="fs-17 text-capitalize">{{ $shipping_address['name'] }}</span><br/>
+                    <span class="fs-17 text-capitalize">{{ $shipping_address['phone'] }}</span><br/>
+                    
                     <strong class="fs-16">Shipping Information</strong> <br/>
-                    <span class="fs-17 text-capitalize">{{ str_replace("_", " ", $order->payment_transfer_method) }}</span>
+                    <span class="fs-17 text-capitalize">{{ $shipping_address['address'] }}</span><br/>
+                    <span class="fs-17 text-capitalize">{{ $shipping_address['city'] }}</span><br/>
+                    <span class="fs-17 text-capitalize">{{ $shipping_address['state'] }}</span><br/>
+                    <span class="fs-17 text-capitalize">{{ $shipping_address['country'] }}</span><br/>
                 </p>
 
             
@@ -229,9 +272,12 @@ $order_info = $order;
             <div class="col-md-3  text-end">
                 <strong class="fs-16">Order Actions</strong>
                 <br>
-                <a href="{{ url('invoice/'. $order_id) }}"  class="btn btn-primary">
-                        Download Invoice
+                <a href="{{ url('invoice/'. $order_id) }}"  class="btn btn-soft-primary">
+                     <i class="fa fa-file"></i>   Download Invoice
                 </a>
+
+
+                <br>
                 <br>
                 @if($order->payment_method  == 'direct_bank_transfer')
 
@@ -245,22 +291,46 @@ $order_info = $order;
                             <a href="{{ url('/storage/' . $receipt) }}" target="_blank">View Receipt</a><br>
                         @endforeach
                     @else
-                        <form action="{{ route('orders.uploadReceipts') }}" method="POST" enctype="multipart/form-data">
-                            @csrf
-                            <input type="hidden" name="order_id" value="{{ $order_id }}">
-                            <div id="file-upload-container">
-                                <div class="file-upload-row my-2">
-                                    <button type="button" class="btn btn-primary delete-file-upload"><i class="fa fa-trash"></i></button>
-                                    <input type="file" name="payment_receipts[]" class="form-control" accept="image/*,application/pdf">
+                        <!-- Modal -->
+                        <div class="modal fade" id="uploadReceiptsModal" tabindex="-1" aria-labelledby="uploadReceiptsModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                <h5 class="modal-title" id="uploadReceiptsModalLabel">Upload Payment Receipts</h5>
+                                <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                <form action="{{ route('orders.uploadReceipts') }}" method="POST" enctype="multipart/form-data">
+                                    @csrf
+                                    <input type="hidden" name="order_id" value="{{ $order_id }}">
+                                    
+                                    <div id="file-upload-container">
+                                        <div class="file-upload-row my-2 d-flex gap-2">
+                                            <button type="button" class="btn px-2 py-0 btn-primary delete-file-upload"><i class="fa fa-trash"></i></button>
+                                            <input type="file" name="payment_receipts[]" class="form-control" accept="image/*,application/pdf">
+                                        </div>
+                                    </div>
+                        
+                                    <button type="button" id="add-more" class="btn btn-secondary mt-2">Add More</button>
+                                    <button type="submit" class="btn btn-primary mt-2">Submit</button>
+                                </form>
                                 </div>
                             </div>
-                            <button type="button" id="add-more" class="btn btn-secondary">Add More</button>
-                            <button type="submit" class="btn btn-primary">Submit</button>
-                        </form>
+                            </div>
+                        </div>
+                        
+                        <!-- Trigger button to open the modal -->
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#uploadReceiptsModal">
+                            <i class="fa fa-upload" ></i>  Upload Payment Receipts
+                        </button>
                             
                     @endif
     
                 @endif
+
+
+
+              
 
             </div>
 
@@ -271,6 +341,9 @@ $order_info = $order;
         <hr>
 
         <div class="row">
+            <div class="col-12">
+                <div id="map"></div>
+            </div>
             <div class="col-md text-center my-5">
                 {{-- <h5 class="fw-bold">We’re packing your order</h5> --}}
                 {{-- <p><strong>Estimated delivery:</strong> Fri, 13/10/2023 - Mon, 16/10/2023</p> --}}
@@ -284,11 +357,49 @@ $order_info = $order;
 
 </div>
 <script>
+       $(document).on("click", ".delete-file-upload", function(){
+        
+        $(this).parent().remove()
+    });
+    function initialize() {
+
+        @php
+        $latlng = explode(',', $shipping_address['lat_lang']); 
+        @endphp
+        // Replace with your latitude and longitude
+
+        @if( count($latlng) > 1)
+        var lat = {{  $latlng[0] }};  // Example: Karachi, Pakistan
+        var lng = {{  $latlng[1] }};
+        
+        var location = { lat: lat, lng: lng };
+
+        // Initialize the map
+        var map = new google.maps.Map(document.getElementById("map"), {
+            zoom: 17, // Adjust zoom level
+            center: location,
+        });
+
+        // Add a marker
+        var marker = new google.maps.Marker({
+            position: location,
+            map: map,
+            title: "Your Location",
+        });
+        @else
+            $("#map").hide()
+        @endif
+    }
+
     document.getElementById('add-more').addEventListener('click', function() {
         let container = document.getElementById('file-upload-container');
         let newRow = document.createElement('div');
         newRow.classList.add('file-upload-row');
-        newRow.innerHTML = '<input type="file" name="payment_receipts[]" class="form-control" accept="image/*,application/pdf">';
+        newRow.classList.add('d-flex');
+        newRow.classList.add('my-2');
+
+        newRow.classList.add('gap-2');
+        newRow.innerHTML = '<button type="button" class="btn px-2 py-0 btn-primary delete-file-upload"><i class="fa fa-trash"></i></button><input type="file" name="payment_receipts[]" class="form-control" accept="image/*,application/pdf">';
         container.appendChild(newRow);
     });
     frontend-new
@@ -342,6 +453,8 @@ function removeField(button) {
 
 
 $(document).ready(function () {
+ 
+
     // Ensure Bootstrap JS is loaded
     if (typeof bootstrap === 'undefined') {
       console.error('Bootstrap JS is not loaded. Make sure to include Bootstrap’s JavaScript.');
@@ -366,10 +479,7 @@ $(document).ready(function () {
     });
   });
 
-    $(document).on("click", ".delete-file-upload", function(){
-        $(this).parent().remove()
-    });
-main
+    
 </script>
 
 @endsection
