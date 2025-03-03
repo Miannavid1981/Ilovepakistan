@@ -230,7 +230,7 @@
             $("#reg-form").submit();
         }
         function form_submit(){
-            if ($('#quick_newslatter_recaptcha').valid()) {
+            if ($('#recaptcha').valid()) {
                 grecaptcha.execute();
             }
         }
