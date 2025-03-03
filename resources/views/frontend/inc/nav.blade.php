@@ -164,7 +164,7 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav w-100">
+                    <ul class="navbar-nav w-100" style="gap: 10px">
                         <li class="nav-item">
                             <a class="nav-link btn btn-primary text-dark px-3 py-1 category-btn toggle-btn category-drawer-toggle-btn" href="#" style="border-radius: 20px; background-color: #F5F5F5;">
                                 <i class="fa-solid fa-bars"></i> All Categories
@@ -185,10 +185,10 @@
                         
                         <!-- Last three items aligned to the right -->
                         <li class="nav-item me-3">
-                            <a class="nav-link" href="#">About Us</a>
+                            <a class="nav-link category-btn" href="#">About Us</a>
                         </li>
                         <li class="nav-item me-3">
-                            <a class="nav-link" href="#">Contact</a>
+                            <a class="nav-link category-btn" href="#">Contact</a>
                         </li>
                         <li class="nav-item d-flex align-items-center ">
                             <i class="fa-solid fa-phone fs-17 me-2"></i> 
@@ -206,7 +206,10 @@
         <div class="col-4 d-flex align-items-center text-left">
             
             <i class="fa-solid fa-bars menu-icon fs-20 me-2 category-drawer-toggle-btn" ></i>
-            <img src="{{ $logo_url }}" alt="AliExpress Logo" class="img-fluid">
+            <a href="{{ url('/') }}" style="display: block; text-align: center;">
+                <img src="{{ $logo_url }}" alt="AliExpress Logo" class="img-fluid" style="max-width: 100%; height: auto;">
+            </a>
+            
         </div>
         <div class="col-8 d-flex justify-content-end align-items-center">
 

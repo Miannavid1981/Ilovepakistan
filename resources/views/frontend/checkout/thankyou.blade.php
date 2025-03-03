@@ -160,21 +160,41 @@ $order_info = $order;
                     @endforeach
                 @endif
         
-                <form action="{{ route('orders.uploadReceipts') }}" method="POST" enctype="multipart/form-data">
-                    @csrf
-                    <input type="hidden" name="order_id" value="{{ $order_id }}">
-                    
-                    <div id="file-upload-container">
-                        <div class="file-upload-row my-2">
-                            <input type="file" name="payment_receipts[]" class="form-control file-input" accept="image/*,application/pdf" onchange="previewFile(this)">
-                            <div class="preview-container mt-2"></div>
-                            <button type="button" class="btn btn-danger mt-2 delete-btn delete-receipt" onclick="removeField(this)" style="display: none;">X</button>
-                        </div>
-                    </div>
-        
-                    <button type="button" id="add-more" class="btn btn-secondary mt-2">Add More</button>
-                    <button type="submit" class="btn btn-primary mt-2">Submit</button>
-                </form>
+               <!-- Modal -->
+               <div class="modal fade" id="uploadReceiptsModal" tabindex="-1" aria-labelledby="uploadReceiptsModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="uploadReceiptsModalLabel">Upload Payment Receipts</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form action="{{ route('orders.uploadReceipts') }}" method="POST" enctype="multipart/form-data">
+            @csrf
+            <input type="hidden" name="order_id" value="{{ $order_id }}">
+            
+            <div id="file-upload-container">
+              <div class="file-upload-row my-2">
+                <input type="file" name="payment_receipts[]" class="form-control file-input" accept="image/*,application/pdf" onchange="previewFile(this)">
+                <div class="preview-container mt-2"></div>
+                <button type="button" class="btn btn-danger mt-2 delete-btn delete-receipt" onclick="removeField(this)" style="display: none;">X</button>
+              </div>
+            </div>
+  
+            <button type="button" id="add-more" class="btn btn-secondary mt-2">Add More</button>
+            <button type="submit" class="btn btn-primary mt-2">Submit</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Trigger button to open the modal -->
+  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#uploadReceiptsModal">
+    Upload Receipts
+</button>
+
+  
             </div>
         
             <div class="col-md-3"></div>
@@ -266,6 +286,31 @@ function removeField(button) {
     button.parentElement.remove();
 }
 
+
+$(document).ready(function () {
+    // Ensure Bootstrap JS is loaded
+    if (typeof bootstrap === 'undefined') {
+      console.error('Bootstrap JS is not loaded. Make sure to include Bootstrap’s JavaScript.');
+    }
+
+    // Open modal when button is clicked
+    $('[data-bs-toggle="modal"]').click(function () {
+      var targetModal = $(this).data('bs-target');
+      $(targetModal).modal('show');
+    });
+
+    // Close modal when clicking the close button
+    $('.btn-close').click(function () {
+      $('#uploadReceiptsModal').modal('hide');
+    });
+
+    // Close modal when clicking outside (backdrop)
+    $('#uploadReceiptsModal').on('click', function (e) {
+      if ($(e.target).hasClass('modal')) {
+        $(this).modal('hide');
+      }
+    });
+  });
 </script>
 
 @endsection

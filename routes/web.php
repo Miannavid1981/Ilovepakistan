@@ -382,7 +382,7 @@ Route::controller(AddressController::class)->group(function () {
 
 Route::group(['middleware' => ['auth']], function () {
 
-    Route::get('invoice/{order_id}', [InvoiceController::class, 'invoice_download'])->name('invoice.download');
+
 
     // Reviews
     Route::resource('/reviews', ReviewController::class);
@@ -593,4 +593,5 @@ Route::post('/product/import-to-seller', [SellerMarketController::class, 'store'
 
 Route::get('/checkout/refresh/payment_actions', [CheckoutController::class, 'payment_actions'])->name('checkout.refresh_payment_actions');
 
-
+                            
+Route::get('invoice/{order_id}', [InvoiceController::class, 'invoice_download'])->name('invoice.download');

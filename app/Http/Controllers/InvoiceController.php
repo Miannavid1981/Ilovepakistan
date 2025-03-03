@@ -123,7 +123,7 @@ $pdf->loadHtml(view('backend.invoices.invoice', compact('order'))->render());
 // Add watermark
 $pdf->setPaper('A4', 'portrait');
 $pdf->render();
-
+ dd('nothign');
 return $pdf->stream("order-BH000" . $order->id . ".pdf");
 
 
