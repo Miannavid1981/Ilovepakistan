@@ -117,7 +117,6 @@ $order_info = $order;
         <div class="row my-5">
 
 
-            <div class="col-md-3"></div>
             
             <!-- Middle Columns -->
             <div class="col-lg-3 col-md-6 col-12 mb-3 middle-column" >
@@ -151,6 +150,8 @@ $order_info = $order;
                 
                
             </div>
+
+            <div class="col-md-3"></div>
             <div class="col-md-3  text-end">
                 <strong class="fs-16">Order Actions</strong>
                 <br>
