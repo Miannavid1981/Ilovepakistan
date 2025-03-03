@@ -122,7 +122,7 @@ $order_info = $order;
                         <br/> 
                         <span class="fs-17 text-capitalize">{{ str_replace("_", " ", $order->payment_transfer_method ) }}</span>
                     </p>
-                @endif
+
                     <h5>Upload Receipts:</h5>
                     @php                   
                         // dd(json_decode($order->payment_receipts));
@@ -147,6 +147,9 @@ $order_info = $order;
                         
                     @endif
                 
+                    
+                @endif
+                    
                 
                
             </div>
