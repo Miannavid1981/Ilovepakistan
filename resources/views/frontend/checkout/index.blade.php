@@ -688,8 +688,23 @@
         var instance = $("[name=phone]").intlTelInput({
             initialCountry: country_code, // Set Pakistan as the default country
             separateDialCode: true,
+            nationalMode: false, // Set to false to get the full number
         });
 
+        // Enforce digit limit based on selected country
+        $("[name=phone]").on("input", function () {
+            var countryData = instance.intlTelInput("getSelectedCountryData");
+            var maxLength = instance.intlTelInput("getNumberType") === 0 ? countryData.dialCode.length + countryData.format.length : countryData.dialCode.length + 10;
+            
+            if ($(this).val().length > maxLength) {
+                $(this).val($(this).val().slice(0, maxLength));
+            }
+        });
+
+        // Append country code before form submission
+        $("form").on("submit", function () {
+            $("#full_phone").val(instance.intlTelInput("getNumber")); // Stores full phone number in hidden input
+        });
         $("[name=phone]").on("blur", function() {
             console.log($(this).val());
             console.log(instance.intlTelInput("getSelectedCountryData").dialCode); // Get country code
