@@ -230,7 +230,7 @@
             $("#reg-form").submit();
         }
         function form_submit(){
-            if ($('#recaptcha').valid()) {
+            if ($('#reg-form').valid()) {
                 grecaptcha.execute();
             }
         }
