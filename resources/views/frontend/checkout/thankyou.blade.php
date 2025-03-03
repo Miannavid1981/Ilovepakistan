@@ -151,7 +151,25 @@ $order_info = $order;
                
             </div>
 
-            <div class="col-md-3"></div>
+            <div class="col-md-3">
+                <p class="mb-1">
+                    <strong class="fs-16">Customer</strong> <br/>
+                    <span class="fs-17 ">{{ $order->user->name }}</span> <br/>
+                    <span class="fs-17 ">{{ $order->user->email }}</span><br/>
+                    <span class="fs-17 ">{{ $order->user->phone }}</span><br/>
+                </p>
+        
+            
+                <p class="mb-1">
+                    <strong class="fs-16">Shipping Information</strong> <br/>
+                    <span class="fs-17 text-capitalize">{{ str_replace("_", " ", $order->payment_transfer_method) }}</span>
+                </p>
+
+            
+                
+
+               
+            </div>
             <div class="col-md-3  text-end">
                 <strong class="fs-16">Order Actions</strong>
                 <br>
