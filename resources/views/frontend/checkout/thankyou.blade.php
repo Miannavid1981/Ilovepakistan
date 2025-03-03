@@ -115,10 +115,12 @@ $order_info = $order;
         </nav> --}}
        
         <div class="row my-5">
-            <div class="col-md-3"></div>
+
+
             
             <!-- Middle Columns -->
             <div class="col-lg-3 col-md-6 col-12 mb-3 middle-column" >
+
                 <p class="mb-1">
                     <p class="mb-0 fs-18">Order number:</p>
                     <h1 class="text-dark">BH000{{ $order_id }}</h1>
@@ -138,7 +140,11 @@ $order_info = $order;
                         <strong class="fs-16">Payment Transfer method:</strong> <br/>
                         <span class="fs-17 text-capitalize">{{ str_replace("_", " ", $order->payment_transfer_method) }}</span>
                     </p>
-                @endif
+
+                    
+                
+
+                @endif frontend-new
         
                 @php                   
                     $receipts = json_decode($order->payment_receipts) ?? [];
@@ -195,9 +201,52 @@ $order_info = $order;
 </button>
 
   
+
+                    
+                
+                main
             </div>
-        
+
             <div class="col-md-3"></div>
+            <div class="col-md-3  text-end">
+                <strong class="fs-16">Order Actions</strong>
+                <br>
+                <a href="{{ url('invoice/'. $order_id) }}"  class="btn btn-primary">
+                        Download Invoice
+                </a>
+                <br>
+                @if($order->payment_method  == 'direct_bank_transfer')
+
+                    <h5 class="mt-2">Upload Receipts:</h5>
+                    @php                   
+                        // dd(json_decode($order->payment_receipts));
+                        $receipts = json_decode($order->payment_receipts) ?? null;
+                    @endphp
+                    @if(!empty($receipts) && count($receipts) > 0)
+                        @foreach($receipts as $receipt)
+                            <a href="{{ url('/storage/' . $receipt) }}" target="_blank">View Receipt</a><br>
+                        @endforeach
+                    @else
+                        <form action="{{ route('orders.uploadReceipts') }}" method="POST" enctype="multipart/form-data">
+                            @csrf
+                            <input type="hidden" name="order_id" value="{{ $order_id }}">
+                            <div id="file-upload-container">
+                                <div class="file-upload-row my-2">
+                                    <button type="button" class="btn btn-primary delete-file-upload"><i class="fa fa-trash"></i></button>
+                                    <input type="file" name="payment_receipts[]" class="form-control" accept="image/*,application/pdf">
+                                </div>
+                            </div>
+                            <button type="button" id="add-more" class="btn btn-secondary">Add More</button>
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </form>
+                            
+                    @endif
+    
+                @endif
+
+            </div>
+
+
         </div>
         
 
@@ -205,23 +254,9 @@ $order_info = $order;
 
         <div class="row">
             <div class="col-md text-center my-5">
-                <h5 class="fw-bold">We’re packing your order</h5>
-        <p><strong>Estimated delivery:</strong> Fri, 13/10/2023 - Mon, 16/10/2023</p>
-
-        {{-- <div class="progress mb-3" style="height: 8px;">
-            <div class="progress-bar progress-bar-striped progress-bar-animated" style="width: 25%;"></div>
-        </div>
-
-        <div class="alert alert-secondary" role="alert">
-            Packing your items. Tracking details to come.
-        </div>
-        
-      
-         --}}
-
-         <a href="{{ url('invoice/'. $order_id) }}"  class="btn btn-primary">
-                Download Invoice
-         </a>
+                {{-- <h5 class="fw-bold">We’re packing your order</h5> --}}
+                {{-- <p><strong>Estimated delivery:</strong> Fri, 13/10/2023 - Mon, 16/10/2023</p> --}}
+                
             </div>
         </div>
       
@@ -238,6 +273,7 @@ $order_info = $order;
         newRow.innerHTML = '<input type="file" name="payment_receipts[]" class="form-control" accept="image/*,application/pdf">';
         container.appendChild(newRow);
     });
+    frontend-new
 
     document.getElementById('add-more').addEventListener('click', function () {
     let container = document.getElementById('file-upload-container');
@@ -311,6 +347,11 @@ $(document).ready(function () {
       }
     });
   });
+
+    $(document).on("click", ".delete-file-upload", function(){
+        $(this).parent().remove()
+    });
+main
 </script>
 
 @endsection
