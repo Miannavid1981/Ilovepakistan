@@ -317,11 +317,11 @@
                                     <div class="row justify-content-center">
                                         <div class="col-md-6">
 
-                                             <!-- Recaptcha -->
-                                            @if(get_setting('google_recaptcha') == 1)
-                                            <div class="form-group">
-                                                <div class="g-recaptcha" data-sitekey="{{ env('CAPTCHA_KEY') }}"></div>
-                                            </div>
+                                        <!-- Recaptcha -->
+                                        @if(get_setting('google_recaptcha') == 1)
+                                               
+                                            <div id="recaptcha" class="g-recaptcha" data-sitekey="{{ env('CAPTCHA_KEY') }}" data-callback="recaptchaVerified"></div>
+                                            <div id="recaptcha_message" class="text-danger mt-1 mb-2"></div>
                                             @if ($errors->has('g-recaptcha-response'))
                                                 <span class="invalid-feedback" role="alert" style="display: block;">
                                                     <strong>{{ $errors->first('g-recaptcha-response') }}</strong>
@@ -330,10 +330,6 @@
                                         @endif
 
 
-                                        <div id="recaptcha" class="g-recaptcha" data-sitekey="6LcBm-YqAAAAAIR_g-mKqncZ83b9yr0MS3c5JF3O" data-callback="recaptchaVerified"></div>
-                                        <div id="recaptcha_message"></div>
-
-                                        
                                         <!-- Submit Button -->
                                         <div class="mb-4 mt-4">
                                             <button type="submit" class="btn btn-primary btn-block fw-600 fs-20">{{  translate('Register Now') }}</button>
@@ -375,16 +371,16 @@
 <script type="text/javascript">
         
     $(document).ready(function(){
-        function recaptchaVerified(){
-            $("#reg-form").submit();
-        }
-        function form_submit(){
-            if ($('#quick_newslatter_recaptcha').valid()) {
-                grecaptcha.execute();
-            }
-        }
+        // function recaptchaVerified(){
+        //     $("#reg-form").submit();
+        // }
+        // function form_submit(){
+        //     if ($('#quick_newslatter_recaptcha').valid()) {
+        //         grecaptcha.execute();
+        //     }
+        // }
 
-        $(document).on('click', '#registration_button', form_submit );
+        // $(document).on('click', '#registration_button', form_submit );
 
 
         $(".seller_type_card").click(function(){
@@ -481,11 +477,12 @@
         $(document).ready(function(){
             $("#reg-form").on("submit", function(evt)
             {
+                $("#recaptcha_message").html("");
                 var response = grecaptcha.getResponse();
                 if(response.length == 0)
                 {
                 //reCaptcha not verified
-                    alert("please verify you are human!");
+                    $("#recaptcha_message").html("Please verify you are human!");
                     evt.preventDefault();
                     return false;
                 }
