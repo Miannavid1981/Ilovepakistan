@@ -75,6 +75,26 @@ $order_info = $order;
          background-color: white !important;
          color: black !important;
      }
+
+     .delete-reciept {
+        position: absolute !important;
+    top: 140px !important;
+    right: 44px !important;
+}
+
+.middle-column{
+    border-right: 1px solid black;
+}
+@media (max-width: 768px) {
+    .middle-column{
+    border-bottom: 1px solid black;
+    border-right: none !important;
+    text-align: center;
+}
+.middle-sd-column{
+    text-align: center;
+}
+}
  </style>
 <div class="container text-center ">
 
@@ -94,39 +114,38 @@ $order_info = $order;
             </ol>
         </nav> --}}
        
-
         <div class="row my-5">
-            <div class="col-md-3">
 
-            </div>
-            <div class="col-lg-3 col-md-3 col-6" >
+            <div class="col-md-3"></div>
+            
+            <!-- Middle Columns -->
+            <div class="col-lg-3 col-md-6 col-12 mb-3 middle-column" >
+
                 <p class="mb-1">
-                    <p class="mb-0 fs-18 ">Order number:</p>
-                    <h1 class="text-dark ">BH000{{ $order_id }}</h1>
-                    <strong class="fs-16">Date Created:</strong>
-                     <br/> 
-                     <span class="fs-17 text-capitalize">{{  $order->created_at }}</span>
+                    <p class="mb-0 fs-18">Order number:</p>
+                    <h1 class="text-dark">BH000{{ $order_id }}</h1>
+                    <strong class="fs-16">Date Created:</strong> <br/> 
+                    <span class="fs-17 text-capitalize">{{ $order->created_at }}</span>
                 </p>
             </div>
-           
-            <div class="col-lg-3 col-md-3 col-6 px-5 ">
+        
+            <div class="col-lg-3 col-md-6 col-12 px-md-5 middle-sd-column">
                 <p class="mb-1">
-                    <strong class="fs-16">Payment method:</strong>
-                     <br/> 
-                     <span class="fs-17 text-capitalize">{{ str_replace("_", " ", $order->payment_method ) }}</span>
-
+                    <strong class="fs-16">Payment method:</strong> <br/>
+                    <span class="fs-17 text-capitalize">{{ str_replace("_", " ", $order->payment_method) }}</span>
                 </p>
-                @if($order->payment_method  == 'direct_bank_transfer')
+        
+                @if($order->payment_method == 'direct_bank_transfer')
                     <p class="mb-1">
-                        <strong class="fs-16">Payment Transfer method:</strong>
-                        <br/> 
-                        <span class="fs-17 text-capitalize">{{ str_replace("_", " ", $order->payment_transfer_method ) }}</span>
+                        <strong class="fs-16">Payment Transfer method:</strong> <br/>
+                        <span class="fs-17 text-capitalize">{{ str_replace("_", " ", $order->payment_transfer_method) }}</span>
                     </p>
 
                     
                 
 
                 @endif
+
                     
                 
                
@@ -166,7 +185,9 @@ $order_info = $order;
 
             </div>
             
+
         </div>
+        
 
         <hr>
 
@@ -191,6 +212,54 @@ $order_info = $order;
         newRow.innerHTML = '<input type="file" name="payment_receipts[]" class="form-control" accept="image/*,application/pdf">';
         container.appendChild(newRow);
     });
+
+    document.getElementById('add-more').addEventListener('click', function () {
+    let container = document.getElementById('file-upload-container');
+
+    // ✅ Create a single new row
+    let newRow = document.createElement('div');
+    newRow.classList.add('file-upload-row', 'my-2');
+
+    newRow.innerHTML = `
+        <input type="file" name="payment_receipts[]" class="form-control file-input" accept="image/*,application/pdf" onchange="previewFile(this)">
+        <div class="preview-container mt-2"></div>
+        <button type="button" class="btn btn-danger mt-2 delete-btn delete-receipt" onclick="removeField(this)" style="display: none;">X</button>
+    `;
+
+    container.appendChild(newRow);
+});
+
+// Function to show preview and toggle delete button
+function previewFile(input) {
+    let file = input.files[0];
+    let previewContainer = input.nextElementSibling; // Get the preview container
+    let deleteButton = input.parentElement.querySelector(".delete-receipt"); // Get delete button
+
+    previewContainer.innerHTML = ""; // Clear previous content
+
+    if (file && file.type.startsWith("image/")) {  // Only show preview for images
+        let reader = new FileReader();
+        reader.onload = function (e) {
+            let img = document.createElement('img');
+            img.src = e.target.result;
+            img.classList.add('img-thumbnail', 'mt-2');
+            img.width = 150;
+            previewContainer.appendChild(img);
+        };
+        reader.readAsDataURL(file);
+    }
+
+    // ✅ Show delete button when a file is selected
+    if (file) {
+        deleteButton.style.display = "inline-block";
+    }
+}
+
+// Function to remove the input field
+function removeField(button) {
+    button.parentElement.remove();
+}
+
 </script>
 
 @endsection
