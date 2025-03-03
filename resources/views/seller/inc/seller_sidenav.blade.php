@@ -59,7 +59,7 @@
                         <span class="aiz-side-nav-text">{{ translate('Dashboard') }}</span>
                     </a>
                 </li>
-                @if (auth()->user()->official_brand !=1 && auth()->user()->seller_type != "brand_partner")
+                @if (auth()->user()->seller_type != "brand_partner")
                 <li class="aiz-side-nav-item">
                     <a href="{{ route('seller.market') }}"
                         class="aiz-side-nav-link {{ areActiveRoutes(['seller.market']) }}">
