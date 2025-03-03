@@ -158,12 +158,12 @@
 
                                             <!-- Submit Button -->
                                             <div class="mb-4 mt-4">
-                                                <button type="button" id="registration_button" class="btn btn-primary btn-block fw-600 ">{{  translate('Create Account') }}</button>
+                                                <button type="submit" id="registration_button" class="btn btn-primary btn-block fw-600 ">{{  translate('Create Account') }}</button>
                                             </div>
                                         </form>
                                         
                                         <!-- Social Login -->
-                                        @if(get_setting('google_login') == 1 || get_setting('facebook_login') == 1 || get_setting('twitter_login') == 1 || get_setting('apple_login') == 1)
+                                        {{-- @if(get_setting('google_login') == 1 || get_setting('facebook_login') == 1 || get_setting('twitter_login') == 1 || get_setting('apple_login') == 1)
                                             <div class="text-center mb-3">
                                                 <span class="bg-white fs-12 text-gray">{{ translate('Or Join With')}}</span>
                                             </div>
@@ -197,7 +197,7 @@
                                                     </li>
                                                 @endif
                                             </ul>
-                                        @endif
+                                        @endif --}}
                                     </div>
     
                                     <!-- Log In -->
@@ -226,16 +226,16 @@
     @endif
 
     <script type="text/javascript">
-        function recaptchaVerified(){
-            $("#reg-form").submit();
-        }
-        function form_submit(){
-            if ($('#reg-form').valid()) {
-                grecaptcha.execute();
-            }
-        }
+        // function recaptchaVerified(){
+        //     $("#reg-form").submit();
+        // }
+        // function form_submit(){
+        //     if ($('#reg-form').valid()) {
+        //         grecaptcha.execute();
+        //     }
+        // }
 
-        $(document).on('click', '#registration_button',    @if(get_setting('google_recaptcha') == 1) form_submit @else recaptchaVerified @endif);
+        // $(document).on('click', '#registration_button',    @if(get_setting('google_recaptcha') == 1) form_submit @else recaptchaVerified @endif);
         
         @if(get_setting('google_recaptcha') == 1)
         // making the CAPTCHA  a required field for form submission
