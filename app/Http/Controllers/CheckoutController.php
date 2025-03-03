@@ -314,7 +314,7 @@ class CheckoutController extends Controller
             $shipping_address = [
                 'name' => $delivery_contact_name ,
                 'email' => Auth::user()->email,
-                'phone' => $request->phone,
+                'phone' => $request->full_phone,
                 'address' => $address->address,
                 'city' => $city ? $city->name : '',
                 'state' => $state ? $state->name : '',
@@ -348,7 +348,7 @@ class CheckoutController extends Controller
             $shipping_address = [
                 'name' => $request->first_name." ".$request->last_name,
                 'email' => Auth::user()->email,
-                'phone' => $request->phone,
+                'phone' => $request->full_phone,
                 'address' => $request->address,
                 'city' => $city ? $city->name : '',
                 'state' => $state ? $state->name : '',

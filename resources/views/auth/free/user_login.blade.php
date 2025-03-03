@@ -217,7 +217,7 @@
                                     <div class="">
                                         <form class="form-default loginForm" role="form" action="{{ route('login') }}" method="POST">
                                             @csrf
-                                            
+                                            <input type="hidden" name="full_phone" id="full_phone"> <!-- Hidden field to store full number -->
                                                <input type="hidden" name="user_type" value="customer">
                                                 
                                                 <div class="login-buttons">
