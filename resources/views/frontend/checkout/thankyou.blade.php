@@ -99,7 +99,7 @@ $order_info = $order;
             <div class="col-md-3">
 
             </div>
-            <div class="col-lg-3 col-md-3 col-6" style="border-right: 1px solid black;">
+            <div class="col-lg-3 col-md-3 col-6" >
                 <p class="mb-1">
                     <p class="mb-0 fs-18 ">Order number:</p>
                     <h1 class="text-dark ">BH000{{ $order_id }}</h1>
@@ -123,7 +123,22 @@ $order_info = $order;
                         <span class="fs-17 text-capitalize">{{ str_replace("_", " ", $order->payment_transfer_method ) }}</span>
                     </p>
 
-                    <h5>Upload Receipts:</h5>
+                    
+                
+
+                @endif
+                    
+                
+               
+            </div>
+            <div class="col-md-3 ">
+                <strong class="fs-16">Order Actions</strong>
+                <a href="{{ url('invoice/'. $order_id) }}"  class="btn btn-primary">
+                        Download Invoice
+                </a>
+                @if($order->payment_method  == 'direct_bank_transfer')
+
+                    <h5 class="mt-2">Upload Receipts:</h5>
                     @php                   
                         // dd(json_decode($order->payment_receipts));
                         $receipts = json_decode($order->payment_receipts) ?? null;
@@ -144,16 +159,12 @@ $order_info = $order;
                             <button type="button" id="add-more" class="btn btn-secondary">Add More</button>
                             <button type="submit" class="btn btn-primary">Submit</button>
                         </form>
-                        
+                            
                     @endif
-                
-                    
+    
                 @endif
-                    
-                
-               
+
             </div>
-            <div class="col-md-3"></div>
             
         </div>
 
@@ -161,23 +172,9 @@ $order_info = $order;
 
         <div class="row">
             <div class="col-md text-center my-5">
-                <h5 class="fw-bold">We’re packing your order</h5>
-        <p><strong>Estimated delivery:</strong> Fri, 13/10/2023 - Mon, 16/10/2023</p>
-
-        {{-- <div class="progress mb-3" style="height: 8px;">
-            <div class="progress-bar progress-bar-striped progress-bar-animated" style="width: 25%;"></div>
-        </div>
-
-        <div class="alert alert-secondary" role="alert">
-            Packing your items. Tracking details to come.
-        </div>
-        
-      
-         --}}
-
-         <a href="{{ url('invoice/'. $order_id) }}"  class="btn btn-primary">
-                Download Invoice
-         </a>
+                {{-- <h5 class="fw-bold">We’re packing your order</h5> --}}
+                {{-- <p><strong>Estimated delivery:</strong> Fri, 13/10/2023 - Mon, 16/10/2023</p> --}}
+                
             </div>
         </div>
       
