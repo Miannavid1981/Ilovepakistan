@@ -131,11 +131,13 @@ $order_info = $order;
                 
                
             </div>
-            <div class="col-md-3 ">
+            <div class="col-md-3 text-end">
                 <strong class="fs-16">Order Actions</strong>
+                <br>
                 <a href="{{ url('invoice/'. $order_id) }}"  class="btn btn-primary">
                         Download Invoice
                 </a>
+                <br>
                 @if($order->payment_method  == 'direct_bank_transfer')
 
                     <h5 class="mt-2">Upload Receipts:</h5>
@@ -153,6 +155,7 @@ $order_info = $order;
                             <input type="hidden" name="order_id" value="{{ $order_id }}">
                             <div id="file-upload-container">
                                 <div class="file-upload-row my-2">
+                                    <button type="button"  class="btn btn-secondary delete-file-upload"><i class="fa fa-trash"></i></button>
                                     <input type="file" name="payment_receipts[]" class="form-control" accept="image/*,application/pdf">
                                 </div>
                             </div>
@@ -190,6 +193,9 @@ $order_info = $order;
         newRow.classList.add('file-upload-row');
         newRow.innerHTML = '<input type="file" name="payment_receipts[]" class="form-control" accept="image/*,application/pdf">';
         container.appendChild(newRow);
+    });
+    $(document).on("click", ".delete-file-upload", function(){
+        $(this).parent().remove()
     });
 </script>
 
