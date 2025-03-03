@@ -96,19 +96,22 @@ class RegisterController extends Controller
         }
         
         if(session('temp_user_id') != null){
-            if(auth()->user()->user_type == 'customer'){
-                Cart::where('temp_user_id', session('temp_user_id'))
-                ->update(
-                    [
-                        'user_id' => auth()->user()->id,
-                        'temp_user_id' => null
-                    ]
-                );
+            if(!empty(auth()) ){
+                
+                if(auth()->user()->user_type == 'customer'){
+                    Cart::where('temp_user_id', session('temp_user_id'))
+                    ->update(
+                        [
+                            'user_id' => auth()->user()->id,
+                            'temp_user_id' => null
+                        ]
+                    );
+                }
+                else {
+                    Cart::where('temp_user_id', session('temp_user_id'))->delete();
+                }
+                Session::forget('temp_user_id');
             }
-            else {
-                Cart::where('temp_user_id', session('temp_user_id'))->delete();
-            }
-            Session::forget('temp_user_id');
         }
 
         if(Cookie::has('referral_code')){
