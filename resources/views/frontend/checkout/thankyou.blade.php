@@ -144,11 +144,67 @@ $order_info = $order;
                     
                 
 
+                @endif frontend-new
+        
+                @php                   
+                    $receipts = json_decode($order->payment_receipts) ?? [];
+                @endphp
+        
+                @if(count($receipts) > 0)
+                    @foreach($receipts as $receipt)
+                        @php
+                            $fileUrl = url('/storage/' . $receipt);
+                            $fileExtension = pathinfo($receipt, PATHINFO_EXTENSION);
+                        @endphp
+                        <div class="uploaded-file d-flex align-items-center mb-2">
+                            @if(in_array($fileExtension, ['jpg', 'jpeg', 'png', 'gif', 'webp']))
+                                <img src="{{ $fileUrl }}" alt="Receipt Image" class="img-thumbnail me-2" width="150">
+                            @else
+                                <a href="{{ $fileUrl }}" target="_blank" class="d-block">View Receipt</a>
+                            @endif
+                        </div>
+                    @endforeach
                 @endif
+        
+               <!-- Modal -->
+               <div class="modal fade" id="uploadReceiptsModal" tabindex="-1" aria-labelledby="uploadReceiptsModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="uploadReceiptsModalLabel">Upload Payment Receipts</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form action="{{ route('orders.uploadReceipts') }}" method="POST" enctype="multipart/form-data">
+            @csrf
+            <input type="hidden" name="order_id" value="{{ $order_id }}">
+            
+            <div id="file-upload-container">
+              <div class="file-upload-row my-2">
+                <input type="file" name="payment_receipts[]" class="form-control file-input" accept="image/*,application/pdf" onchange="previewFile(this)">
+                <div class="preview-container mt-2"></div>
+                <button type="button" class="btn btn-danger mt-2 delete-btn delete-receipt" onclick="removeField(this)" style="display: none;">X</button>
+              </div>
+            </div>
+  
+            <button type="button" id="add-more" class="btn btn-secondary mt-2">Add More</button>
+            <button type="submit" class="btn btn-primary mt-2">Submit</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Trigger button to open the modal -->
+  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#uploadReceiptsModal">
+    Upload Receipts
+</button>
+
+  
 
                     
                 
-               
+                main
             </div>
 
             <div class="col-md-3">
@@ -235,9 +291,85 @@ $order_info = $order;
         newRow.innerHTML = '<input type="file" name="payment_receipts[]" class="form-control" accept="image/*,application/pdf">';
         container.appendChild(newRow);
     });
+    frontend-new
+
+    document.getElementById('add-more').addEventListener('click', function () {
+    let container = document.getElementById('file-upload-container');
+
+    // ✅ Create a single new row
+    let newRow = document.createElement('div');
+    newRow.classList.add('file-upload-row', 'my-2');
+
+    newRow.innerHTML = `
+        <input type="file" name="payment_receipts[]" class="form-control file-input" accept="image/*,application/pdf" onchange="previewFile(this)">
+        <div class="preview-container mt-2"></div>
+        <button type="button" class="btn btn-danger mt-2 delete-btn delete-receipt" onclick="removeField(this)" style="display: none;">X</button>
+    `;
+
+    container.appendChild(newRow);
+});
+
+// Function to show preview and toggle delete button
+function previewFile(input) {
+    let file = input.files[0];
+    let previewContainer = input.nextElementSibling; // Get the preview container
+    let deleteButton = input.parentElement.querySelector(".delete-receipt"); // Get delete button
+
+    previewContainer.innerHTML = ""; // Clear previous content
+
+    if (file && file.type.startsWith("image/")) {  // Only show preview for images
+        let reader = new FileReader();
+        reader.onload = function (e) {
+            let img = document.createElement('img');
+            img.src = e.target.result;
+            img.classList.add('img-thumbnail', 'mt-2');
+            img.width = 150;
+            previewContainer.appendChild(img);
+        };
+        reader.readAsDataURL(file);
+    }
+
+    // ✅ Show delete button when a file is selected
+    if (file) {
+        deleteButton.style.display = "inline-block";
+    }
+}
+
+// Function to remove the input field
+function removeField(button) {
+    button.parentElement.remove();
+}
+
+
+$(document).ready(function () {
+    // Ensure Bootstrap JS is loaded
+    if (typeof bootstrap === 'undefined') {
+      console.error('Bootstrap JS is not loaded. Make sure to include Bootstrap’s JavaScript.');
+    }
+
+    // Open modal when button is clicked
+    $('[data-bs-toggle="modal"]').click(function () {
+      var targetModal = $(this).data('bs-target');
+      $(targetModal).modal('show');
+    });
+
+    // Close modal when clicking the close button
+    $('.btn-close').click(function () {
+      $('#uploadReceiptsModal').modal('hide');
+    });
+
+    // Close modal when clicking outside (backdrop)
+    $('#uploadReceiptsModal').on('click', function (e) {
+      if ($(e.target).hasClass('modal')) {
+        $(this).modal('hide');
+      }
+    });
+  });
+
     $(document).on("click", ".delete-file-upload", function(){
         $(this).parent().remove()
     });
+main
 </script>
 
 @endsection

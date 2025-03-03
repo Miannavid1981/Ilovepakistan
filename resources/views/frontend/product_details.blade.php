@@ -117,71 +117,157 @@
 }
 
 
+.tabs-to-dropdown .nav-wrapper {
+  padding: 15px;
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.12);
+}
+
+.tabs-to-dropdown .nav-wrapper a {
+  color: var(--darkgreen);
+}
+
+.tabs-to-dropdown .nav-pills .nav-link.active {
+  background-color: var(--darkgreen);
+}
+
+.tabs-to-dropdown .nav-pills li:not(:last-child) {
+  margin-right: 30px;
+}
+
+.tabs-to-dropdown .tab-content .container-fluid {
+  max-width: 1250px;
+  padding-top: 70px;
+  padding-bottom: 70px;
+}
+
+.tabs-to-dropdown .dropdown-menu {
+  border: none;
+  box-shadow: 0px 5px 14px rgba(0, 0, 0, 0.08);
+}
+
+.tabs-to-dropdown .dropdown-item {
+  padding: 14px 28px;
+}
+
+.tabs-to-dropdown .dropdown-item:active {
+  color: var(--white);
+}
+
+@media (min-width: 1280px) {
+  .tabs-to-dropdown .nav-wrapper {
+    padding: 15px 30px;
+  }
+}
+
+
+.tabs-container {
+    position: relative;
+    padding-top: 40px; /* Adjust based on how much space you want above the box */
+}
+
+.tabs {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    background-color: #f0f0f0; /* Background for the tabs */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    justify-content: flex-start;
+}
+
+.tab {
+    padding: 10px 20px;
+    cursor: pointer;
+    background-color: #ddd;
+    margin-right: 5px;
+    border-radius: 5px 5px 0 0;
+}
+
+.tab.active {
+    background-color: #007bff;
+    color: white;
+}
+
+.tab-content {
+    margin-top: 60px; /* Ensure content is below the tabs */
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.tab-pane {
+    display: none;
+}
+
+.tab-pane.active {
+    display: block;
+}
+
 </style>
 @include('frontend.partials.cart.addToCart')
+
+
     <section>
         <div class="container">
             <!-- Tabs section below the thumbnail slider -->
-            <div class="tabs-container ">
+            <div class="tabs-container">
                 <ul class="tabs">
-                @php
-                //    dd($detailedProduct); 
-                @endphp
+                    @php
+                        //    dd($detailedProduct); 
+                    @endphp
                     @if(!empty($detailedProduct->description))
-                         <li class="tab active" data-tab="description">Description</li>
+                        <li class="tab active" data-tab="description">Description</li>
                     @endif
-
-                   
+            
                     @if(!empty($detailedProduct->specifications))
-                          <li class="tab" data-tab="specifications">Specifications</li>
+                        <li class="tab" data-tab="specifications">Specifications</li>
                     @endif
-                    
-                    @if(!empty($detailedProduct->video_link))
-                         <li class="tab" data-tab="video">Video</li>
-                    @endif
-                    @if(!empty($detailedProduct->downloads))
-                         <li class="tab" data-tab="downloads">Downloads</li>
-  
-                    @endif
-                   
+            
                     @if(!empty($detailedProduct->reviews))
-                         <li class="tab" data-tab="reviews" id="reviews-tab">Customer reviews</li>
-                    @endif
-                  
-                    @if(!empty($detailedProduct->shipping))
-                         <li class="tab" data-tab="shipping">Shipping info</li>
+                        <li class="tab" data-tab="reviews">Reviews</li>
                     @endif
                 </ul>
+            
+                <div class="tab-content">
+                    <!-- Description Tab -->
+                    @if(!empty($detailedProduct->description))
+                        <div class="tab-pane active" id="description">
+                            <p>{{ $detailedProduct->description }}</p>
+                        </div>
+                    @endif
+            
+                    <!-- Specifications Tab -->
+                    @if(!empty($detailedProduct->specifications))
+                        <div class="tab-pane" id="specifications">
+                            <ul>
+                                @foreach($detailedProduct->specifications as $spec)
+                                    <li>{{ $spec }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+            
+                    <!-- Reviews Tab -->
+                    @if(!empty($detailedProduct->reviews))
+                        <div class="tab-pane" id="reviews">
+                            <ul>
+                                @foreach($detailedProduct->reviews as $review)
+                                    <li>{{ $review->user }}: {{ $review->comment }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+                </div>
             </div>
-    
-            <!-- Tab Content -->
-            <div class="tab-content">
-                @if(!empty($detailedProduct->description))
-                      <div class="tab-pane active" data-tab="description">
-                        @include('frontend.product_details.description')
-                      </div>
-                @endif
-                @if(!empty($detailedProduct->description))
-                       <div class="tab-pane" data-tab="specifications">Specifications Content</div>
-                @endif
-                @if(!empty($detailedProduct->description))
-                       <div class="tab-pane" data-tab="downloads">Downloads Content</div>
-                @endif
-                @if(!empty($detailedProduct->description))
-                        <div class="tab-pane" data-tab="video">Video Content</div>
-                @endif
-                @if(!empty($detailedProduct->description))
-                        <div class="tab-pane" data-tab="reviews-tab">
-                        @include('frontend.product_details.review_section')
-                         </div>
-                @endif
-                @if(!empty($detailedProduct->description))
-                        <div class="tab-pane" data-tab="shipping">Shipping Info Content</div>
-                @endif
-            </div>
+            
         </div>
+    
+      
     </section>
-
     <section class="">
         <div class="container">
             @if ($detailedProduct->auction_product)
@@ -590,6 +676,92 @@ function change_tab(tab){
 
     $(`[data-tab="${tab}"]`).addClass("active")
 }
-    
+const $tabsToDropdown = $(".tabs-to-dropdown");
+
+function generateDropdownMarkup(container) {
+  const $navWrapper = container.find(".nav-wrapper");
+  const $navPills = container.find(".nav-pills");
+  const firstTextLink = $navPills.find("li:first-child a").text();
+  const $items = $navPills.find("li");
+  const markup = `
+    <div class="dropdown d-md-none">
+      <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        ${firstTextLink}
+      </button>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton"> 
+        ${generateDropdownLinksMarkup($items)}
+      </div>
+    </div>
+  `;
+  $navWrapper.prepend(markup);
+}
+
+function generateDropdownLinksMarkup(items) {
+  let markup = "";
+  items.each(function () {
+    const textLink = $(this).find("a").text();
+    markup += `<a class="dropdown-item" href="#">${textLink}</a>`;
+  });
+
+  return markup;
+}
+
+function showDropdownHandler(e) {
+  // works also
+  //const $this = $(this);
+  const $this = $(e.target);
+  const $dropdownToggle = $this.find(".dropdown-toggle");
+  const dropdownToggleText = $dropdownToggle.text().trim();
+  const $dropdownMenuLinks = $this.find(".dropdown-menu a");
+  const dNoneClass = "d-none";
+  $dropdownMenuLinks.each(function () {
+    const $this = $(this);
+    if ($this.text() == dropdownToggleText) {
+      $this.addClass(dNoneClass);
+    } else {
+      $this.removeClass(dNoneClass);
+    }
+  });
+}
+
+function clickHandler(e) {
+  e.preventDefault();
+  const $this = $(this);
+  const index = $this.index();
+  const text = $this.text();
+  $this.closest(".dropdown").find(".dropdown-toggle").text(`${text}`);
+  $this
+    .closest($tabsToDropdown)
+    .find(`.nav-pills li:eq(${index}) a`)
+    .tab("show");
+}
+
+function shownTabsHandler(e) {
+  // works also
+  //const $this = $(this);
+  const $this = $(e.target);
+  const index = $this.parent().index();
+  const $parent = $this.closest($tabsToDropdown);
+  const $targetDropdownLink = $parent.find(".dropdown-menu a").eq(index);
+  const targetDropdownLinkText = $targetDropdownLink.text();
+  $parent.find(".dropdown-toggle").text(targetDropdownLinkText);
+}
+
+$tabsToDropdown.each(function () {
+  const $this = $(this);
+  const $pills = $this.find('a[data-toggle="pill"]');
+
+  generateDropdownMarkup($this);
+
+  const $dropdown = $this.find(".dropdown");
+  const $dropdownLinks = $this.find(".dropdown-menu a");
+
+  $dropdown.on("show.bs.dropdown", showDropdownHandler);
+  $dropdownLinks.on("click", clickHandler);
+  $pills.on("shown.bs.tab", shownTabsHandler);
+});
+
+
+
     </script>
 @endsection
