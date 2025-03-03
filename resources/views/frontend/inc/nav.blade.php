@@ -599,6 +599,13 @@ $(document).ready(function(){
         const productId = $(this).data('id');
         const skin_code = $(this).data('skin_code') ?? null;
         const prev_text = $(this).html();
+        let quantity = 1;
+        if( $('#g-detail-quantity').length != 0 ){
+            quantity = $('#g-detail-quantity').val();
+        }
+        // alert(quantity)
+
+        // console.warn($(this).closest('[name="quantity"]'))
 
         var elm = $(this);
         elm.attr("disabled", "disabled");
@@ -609,7 +616,8 @@ $(document).ready(function(){
             data: {
                 _token: $('meta[name="csrf-token"]').attr('content'),
                 product_id: productId,
-                skin_code: skin_code
+                skin_code: skin_code,
+                quantity
             },
             success: function (response) {
                 if (response.success) {
