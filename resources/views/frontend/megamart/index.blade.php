@@ -100,25 +100,51 @@
 }
 
 
+/* Main banner slider */
 .main_banner_slider .slick-list , .main_banner_slider .slick-track {
     height: 100%;
 }
 
-.main_banner_slider .slick-next:before, .slick-prev:before {
+.main_banner_slider .slick-next:before, .main_banner_slider .slick-prev:before {
     font-size: 40px;
 }
+
 .main_banner_slider .slick-next {
     right: 30px
 }
+
 .main_banner_slider .slick-prev {
-   left: 10px;
+    left: 10px;
     z-index: 999;
 }
-@media (max-width: 768px){
-    .left-section {
-        display: none !important
+
+.main_banner_slider .left-section {
+    background-size: cover;
+    background-position: center;
+    background-color: #d3e7ff;
+    border-radius: 20px;
+    height: 100%;
+}
+
+/* Responsive design adjustments */
+@media (max-width: 768px) {
+    .main_banner_slider {
+        display: block; /* Stack the sections on smaller screens */
+    }
+
+    .main_banner_slider .left-section {
+        width: 100%;
+        height: 300px; /* Adjust the height for mobile */
+        margin-bottom: 10px; /* Add some spacing between items */
     }
 }
+
+@media (max-width: 576px) {
+    .main_banner_slider .left-section {
+        height: 250px; /* Adjust height even further on very small screens */
+    }
+}
+
 .left-section {
    margin: 0  !important;
 }
@@ -126,6 +152,7 @@
 .bighouz-business {
     display: flex;
     gap: 15px;
+    width: 100%;
 }
 
 .bighouz-business .main_banner_slider{
@@ -195,6 +222,13 @@
         padding: 2px 8px !important;
         font-size: 15px !important;
     }
+    .left-section {
+        min-height: 200px !important;
+}
+.bighouz-business {
+        display: flex;
+        flex-direction: column; /* Switch to top-bottom stack on mobile */
+    }
 }
 
 /* For larger screens (1200px and up) */
@@ -227,6 +261,9 @@
         max-height: 120px;
         object-fit: contain;
     }
+    .left-section {
+        min-height: 200px !important;
+}
 }
 
 /* For screens 575px and below */
@@ -646,9 +683,7 @@
         .home_categories_grid {
             grid-template-columns: 1fr 1fr !important;
         }
-        .main_banner_slider {
-            display: none !important
-        }
+        
     }
     @media (max-width: 768px) {
     .services-promises {
@@ -1296,11 +1331,11 @@
             responsive: [
                 {
                     breakpoint: 768,
-                    settings: { slidesToShow: 5}
+                    settings: { slidesToShow: 1}
                 },
                 {
                     breakpoint: 520,
-                    settings: { slidesToShow: 3 }
+                    settings: { slidesToShow: 1 }
                 }
             ]
         });
