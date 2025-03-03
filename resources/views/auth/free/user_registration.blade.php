@@ -242,6 +242,7 @@
         $(document).ready(function(){
             $("#reg-form").on("submit", function(evt)
             {
+                $("#recaptcha_message").html("");
                 var response = grecaptcha.getResponse();
                 if(response.length == 0)
                 {
