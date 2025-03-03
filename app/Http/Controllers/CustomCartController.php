@@ -39,6 +39,8 @@ class CustomCartController extends Controller
         $userId = Auth::id() ?? null;
         $tempUserId = session('temp_user_id');
         session(['guest_cart_id' => $tempUserId]);
+
+        $quantity = $request->quantity ?? 1;
     
         // Check if the same product with the same skin code exists
         $cartItem = Cart::where('product_id', $productId)
@@ -53,7 +55,7 @@ class CustomCartController extends Controller
     
         if ($cartItem) {
             // If found, increase the quantity
-            $cartItem->quantity += 1;
+            $cartItem->quantity += $quantity;
             $cartItem->save();
         } else {
             $product = Product::find($productId);
