@@ -61,7 +61,7 @@
                                 <!-- Register form -->
                                 <div class="pt-3 pt-lg-4 bg-white">
                                     <div class="">
-                                        <form id="reg-form" class="form-default" role="form" action="{{ route('register') }}" method="POST">
+                                        <form id="reg-form" class="form-default" role="form" action="{{ route('register') }}" method="POST"  novalidate="novalidate">
                                             @csrf
                                             <!-- Name -->
                                             <div class="form-group">
@@ -154,10 +154,13 @@
                                                     <span class="aiz-square-check"></span>
                                                 </label>
                                             </div>
-    
+
+                                            <div id="recaptcha" class="g-recaptcha" data-sitekey="6LcBm-YqAAAAAIR_g-mKqncZ83b9yr0MS3c5JF3O" data-callback="recaptchaVerified"></div>
+                                            <div id="recaptcha_message"></div>
+
                                             <!-- Submit Button -->
                                             <div class="mb-4 mt-4">
-                                                <button type="submit" class="btn btn-primary btn-block fw-600 ">{{  translate('Create Account') }}</button>
+                                                <button type="button" id="registration_button" class="btn btn-primary btn-block fw-600 ">{{  translate('Create Account') }}</button>
                                             </div>
                                         </form>
                                         
@@ -225,6 +228,17 @@
     @endif
 
     <script type="text/javascript">
+        function recaptchaVerified(){
+            $("#reg-form").submit();
+        }
+        function form_submit(){
+            if ($('#quick_newslatter_recaptcha').valid()) {
+                grecaptcha.execute();
+            }
+        }
+
+        $(document).on('click', '#registration_button', form_submit );
+        
         @if(get_setting('google_recaptcha') == 1)
         // making the CAPTCHA  a required field for form submission
         $(document).ready(function(){
