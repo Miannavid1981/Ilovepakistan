@@ -187,7 +187,7 @@
 }
 
 .tab.active {
-    background-color: #007bff;
+   background-color: var(--primary);
     color: white;
 }
 
@@ -236,7 +236,7 @@
                     <!-- Description Tab -->
                     @if(!empty($detailedProduct->description))
                         <div class="tab-pane active" id="description">
-                            <p>{{ $detailedProduct->description }}</p>
+                            <p>{!! $detailedProduct->description !!}</p>
                         </div>
                     @endif
             

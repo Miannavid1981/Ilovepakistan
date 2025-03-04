@@ -26,7 +26,15 @@
         max-width: 100px;
     }
 </style>
+
+<div class="container d-flex justify-content-end text-decoration-underline">
+    <a href="" class="text-dark fs-18">
+        View All
+    </a>
+</div>
  <section class="brand-logos-slider slider">
+
+  
 
     @php
         $brands_slides = \App\Models\User::where('user_type', 'seller')->where('seller_type', 'brand_partner' )->where('official_brand', 1 )->get();
