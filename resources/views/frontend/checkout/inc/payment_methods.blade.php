@@ -300,7 +300,7 @@
                     <input type="radio" class=" mb-0 me-2" name="payment_method" value="bighouz_wallet"> Bighouz Wallet
                   </div>
                   <span>
-                      <img src="{{ asset('/public/assets/img/main-lamp-pic.jpeg') }}" style="width: 45px; height: auto" alt="Discover">
+                    <img src="https://w7.pngwing.com/pngs/825/435/png-transparent-aladdin-s-magic-lamp-genie-the-magic-lamp-jinn-oil-lamp-thumbnail.png" style="width: 45px; height: auto" alt="Discover">
                     </span>
                 </label>
             </button>
