@@ -283,6 +283,49 @@
 }
 
 
+
+.home_categories_grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+        gap: 10px;
+        margin-bottom: 50px;
+        margin-top: 30px
+    }
+
+    @media (max-width: 768px){
+        .home_categories_grid {
+            grid-template-columns: 1fr 1fr !important;
+        }
+        
+    }
+    @media (max-width: 768px) {
+    .services-promises {
+        text-align: center; /* Center align text and icons */
+    }
+
+    .services-promises .d-flex {
+        flex-direction: column; /* Stack icon and text vertically */
+        align-items: center;
+ 
+    }
+
+    .services-promises .me-3 {
+        margin-right: 0 !important; /* Remove right margin for center alignment */
+        margin-bottom: 10px; /* Add spacing below the icon */
+    }
+
+    .services-promises h5 {
+        font-size: 1.1rem; /* Adjust heading size for readability */
+        text-align: center;
+    }
+
+    .services-promises p {
+        font-size: 0.9rem; /* Adjust paragraph size */
+        text-align: center;
+    }
+}
+
+
 </style>
 
 <div class="container  pt-2 pb-4">
@@ -303,63 +346,24 @@
                 <!-- Left Section -->
             
 
-                <!-- Right Section -->
+                
         <!-- Right Section -->
             <div class="right-section flex-column h-100">
                 <div class="category-grid">
               
         
                     <div class="category-card" style="background-image: url({{ static_asset('assets/img/big-sale-electronics-household-appliances-banner-design-big-sale-electronics-household-appliances-square-banner-design-vector-196874899.webp') }}); background-size:cover; aspect-ratio: 1 / 1;">
-                        {{-- <p style="font-size: 0.9rem; font-weight: 600;"> {{$category->name}}</p> --}}
-                        <!-- <img src="https://s.alicdn.com/@sc04/kf/H0c9193fb07984a3c8ee34970ef68472aP.png_300x300.png" alt="Home Improvement & Lighting"> -->
                     </div>
                     <div class="category-card" style="background-image: url({{ static_asset('assets/img/screenshot.webp') }}); background-size:cover; aspect-ratio: 1 / 1;">
-                        {{-- <p style="font-size: 0.9rem; font-weight: 600;"> {{$category->name}}</p> --}}
-                        <!-- <img src="https://s.alicdn.com/@sc04/kf/H0c9193fb07984a3c8ee34970ef68472aP.png_300x300.png" alt="Home Improvement & Lighting"> -->
                     </div>
                     <div class="category-card" style="background-image: url({{ static_asset('assets/img/163686796-moisturizing-cosmetic-products-ad-light-green-background-with-cream-jar-on-square-podium-and-palm.webp') }}); background-size:cover; aspect-ratio: 1 / 1;">
-                        {{-- <p style="font-size: 0.9rem; font-weight: 600;"> {{$category->name}}</p> --}}
-                        <!-- <img src="https://s.alicdn.com/@sc04/kf/H0c9193fb07984a3c8ee34970ef68472aP.png_300x300.png" alt="Home Improvement & Lighting"> -->
                     </div>
                     <div class="category-card" style="background-image: url({{ static_asset('assets/img/beauty-skin-care-center-promotion-design-social-media-post-and-banner-minimalist-square-template-to-promote-hair-salon-medical-spa-yoga-cosmetic-sale-natural-skin-treatment-makeup-etc-vector.webp') }}); background-size:cover; aspect-ratio: 1 / 1;">
-                        {{-- <p style="font-size: 0.9rem; font-weight: 600;"> {{$category->name}}</p> --}}
-                        <!-- <img src="https://s.alicdn.com/@sc04/kf/H0c9193fb07984a3c8ee34970ef68472aP.png_300x300.png" alt="Home Improvement & Lighting"> -->
                     </div>
                     <div class="category-card" style="background-image: url({{ static_asset('assets/img/103816751-square-promotional-banner-minimal-design-decorated-banner-put-your-text-in-there-and-start-your.webp') }}); background-size:cover; aspect-ratio: 1 / 1;">
-                        {{-- <p style="font-size: 0.9rem; font-weight: 600;"> {{$category->name}}</p> --}}
-                        <!-- <img src="https://s.alicdn.com/@sc04/kf/H0c9193fb07984a3c8ee34970ef68472aP.png_300x300.png" alt="Home Improvement & Lighting"> -->
                     </div>
                     <div class="category-card" style="background-image: url({{ static_asset('assets/img/15wpIkbEsTYpv.webp') }}); background-size:cover; aspect-ratio: 1 / 1;">
-                        {{-- <p style="font-size: 0.9rem; font-weight: 600;"> {{$category->name}}</p> --}}
-                        <!-- <img src="https://s.alicdn.com/@sc04/kf/H0c9193fb07984a3c8ee34970ef68472aP.png_300x300.png" alt="Home Improvement & Lighting"> -->
-                    </div>
-                    
-                 
-
-                    <!-- <div class="category-card" style="background: #eefac5;">
-                        <p style="font-size: 20px; font-weight: 600;">Solar Panels</p>
-                        <img src="https://file.aiquickdraw.com/imgcompressed/img/compressed_588b1d72a9a6e9550d13cd00c7de6fd5.webp" alt="Home Improvement & Lighting">
-                    </div>
-
-                    <div class="category-card" style="background: #ffd0d0;">
-                        <p style="font-size: 20px; font-weight: 600;">Electric Tools</p>
-                        <img src="https://png.pngtree.com/png-vector/20240626/ourmid/pngtree-electrician-tools-on-wooden-surface-instrument-manufacture-ohmmeter-png-image_12868398.png" alt="Home Improvement & Lighting">
-                    </div>
-
-                    <div class="category-card" style="background: #ffe39d;">
-                        <p style="font-size: 20px; font-weight: 600;">Hardware & Tools</p>
-                        <img src="https://www.solelyverified.in/wp-content/uploads/2024/11/Electrical-Supplies.png" alt="Home Improvement & Lighting">
-                    </div>
-
-                    <div class="category-card" style="background: #eae4ff;">
-                        <p style="font-size: 20px; font-weight: 600;">Solar Batteries</p>
-                        <img src="https://rameensolarenergy.com/wp-content/uploads/2023/10/veyron-1.2.png" alt="Home Improvement & Lighting">
-                    </div>
-
-                    <div class="category-card" style="background: #c1f2f9;">
-                        <p style="font-size: 20px; font-weight: 600;">Renewable Energy</p>
-                        <img src="https://cdn-icons-png.flaticon.com/512/1996/1996742.png" alt="Home Improvement & Lighting">
-                    </div> -->
+                    </div>    
                 </div>
             </div>
 
@@ -670,52 +674,7 @@
         </section>
     @endif
 
-<style>
-    .home_categories_grid {
-        display: grid;
-        grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-        gap: 10px;
-        margin-bottom: 50px;
-        margin-top: 30px
-    }
 
-    @media (max-width: 768px){
-        .home_categories_grid {
-            grid-template-columns: 1fr 1fr !important;
-        }
-        
-    }
-    @media (max-width: 768px) {
-    .services-promises {
-        text-align: center; /* Center align text and icons */
-    }
-
-    .services-promises .d-flex {
-        flex-direction: column; /* Stack icon and text vertically */
-        align-items: center;
- 
-    }
-
-    .services-promises .me-3 {
-        margin-right: 0 !important; /* Remove right margin for center alignment */
-        margin-bottom: 10px; /* Add spacing below the icon */
-    }
-
-    .services-promises h5 {
-        font-size: 1.1rem; /* Adjust heading size for readability */
-        text-align: center;
-    }
-
-    .services-promises p {
-        font-size: 0.9rem; /* Adjust paragraph size */
-        text-align: center;
-    }
-}
-
-
-
-
-    </style>
 <div class="services-icons mb-5 " style="background: #eee;">
     <div class="container py-4"> 
         <div class="row text-center d-flex align-items-end">
@@ -785,7 +744,10 @@
  </div>
 
     <div class="container">
-        <h4 class="text-center">Explore Categories</h4>
+        <div class="d-flex justify-content-between">
+            <h4>Explore Categories</h4>
+            <a href="" class="fs-18 text-dark text-decoration-underline">View All</a>
+        </div>   
         <div class="home_categories_grid">
             @php
                 // Fetch categories with level = 0 and status = 1 directly in the view
