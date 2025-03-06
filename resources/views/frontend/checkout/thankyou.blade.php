@@ -101,6 +101,10 @@ $order_info = $order;
     height: 400px; /* Adjust as needed */
 }
 
+tr.border-bottom td {
+    padding-bottom: 10px;
+}
+
  </style>
 <div class="container text-center ">
 
@@ -130,7 +134,9 @@ $order_info = $order;
                 <p class="mb-1">
                     <p class="mb-0 fs-18">Order number:</p>
                     <h1 class="text-dark">BH000{{ $order_id }}</h1>
-                    
+                    <span class="badge badge-primary w-auto fs-16 py-1 h-auto text-capitalize"> {{  $order->status  }} </span>
+                    <br>
+                    <br>
                     <strong class="fs-16">Date Created:</strong> <br/> 
                     <span class="fs-17 text-capitalize">{{ $order->created_at }}</span>
 
@@ -344,9 +350,65 @@ $order_info = $order;
             <div class="col-12">
                 <div id="map"></div>
             </div>
-            <div class="col-md text-center my-5">
-                {{-- <h5 class="fw-bold">We’re packing your order</h5> --}}
-                {{-- <p><strong>Estimated delivery:</strong> Fri, 13/10/2023 - Mon, 16/10/2023</p> --}}
+            <div class="col-12  my-5">
+
+                <h4>Items</h4>
+                <br>
+
+                <table class="w-100">
+
+                    @foreach ($order->orders as $order)
+                        @foreach ($order->orderDetails as $key => $orderDetail)
+                            @php
+                            
+                                $category = $orderDetail->product->main_category;
+                                $category_name = '';
+                                if ($category) {
+                                    $category_name = $category->name;
+                                }
+                                $brand = $orderDetail->product->brand;
+                                $brand_name = '';
+                                if ($brand) {
+                                    $brand_name = $brand->name;
+                                }
+                                $product = \App\Models\Product::find($orderDetail->product_id);
+                                // dd($product);
+                                $seller = \App\Models\User::find($product->user_id);
+                            @endphp
+                            <tr class="border-bottom border-secondary">
+                                <td width="40%">
+                                    <div class="d-flex gap-2 align-items-center">
+                                        <div class="w-80px h-80px">
+                                            <img src="{{ uploaded_asset($product->featured_image) }}" class="w-100 h-100 rounded-2">
+                                        </div>
+                                        <div>
+                                            <small class="fs-15"><b>{{ $category_name }}</b></small><br>
+                                            <p class="fs-16 mb-0">{{ $orderDetail->product->name ?? 'Product Unavailable' }}  </p>
+                                            <span style="font-size: 13px;">SKIN: {{ $orderDetail->item_enc_skin }}</span>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td width="10%">
+                                   x {{ $orderDetail->quantity }}
+                                </td>
+                                <td width="20%">  
+                                    <button type="button" onclick="window.location.href='{{ route('shop.visit', $seller->shop->slug) }}'" class="bg-white border-0" data-toggle="tooltip" data-html="true" title=" {{ $seller->name }}">
+                                        <div class="w-50px h-50px"><img src="{{ uploaded_asset($seller->avatar) }}" class="h-100 object-fit rounded-2"> </div>
+                                    </button>
+                                </td>
+                                <td width="20%">  
+                                    <div class="h-30px d-flex align-items-center gap-2 fs-15"><img src="{{ uploaded_asset($brand->logo) }}" class="h-100 object-fit rounded-2"> {{ $brand_name }} </div>
+                                </td>
+                                
+                                
+                                <td width="20%">
+                                    
+                                    <span class="badge badge-primary w-auto fs-16 py-1 h-auto text-capitalize"> {{  $order->delivery_status  }} </span>
+                                </td>
+                            </tr>
+                        @endforeach
+                    @endforeach
+                </table>
                 
             </div>
         </div>
