@@ -161,7 +161,7 @@ class OrderController extends Controller
         $combined_order->shipping_address = json_encode($shippingAddress);
         $combined_order->payment_method = $request->payment_method;
         $combined_order->payment_transfer_method = $request->payment_transfer_method ?? null; 
-        
+        $combined_order->status = 'pending';
         $combined_order->order_type = $request->address_type;
         $combined_order->save();
 
