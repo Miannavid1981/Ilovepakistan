@@ -481,19 +481,6 @@
     </div>
 
 
-
-
-
- <style>
-
-
-     /* Preloader container */
-
-
-
-
- </style>
-
  
 
   <div id="preloader">
@@ -503,7 +490,18 @@
   </div>
 
 
+<div class="position-fixed bottom-0 end-0 p-3" style="z-index: 99999">
+    <div id="errorToast" class="toast bg-white " role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-header bg-primary text-white">
+            <strong class="me-auto">Error</strong>
 
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+        <div class="toast-body bg-soft-primary ">
+            <!-- Error message will be injected here -->
+        </div>
+    </div>
+</div>
   <!-- Content -->
 
   <div id="content" style="display: none;">
@@ -597,6 +595,16 @@
 
 $(document).ready(function(){
 
+    function showErrorToast(message) {
+            $("#errorToast .toast-body").text(message); // Set the error message
+            // Configure toast options
+            var toastEl = new bootstrap.Toast(document.getElementById('errorToast'), {
+                autohide: true, // If false, stays visible until manually closed
+                delay: 5000 // 5 seconds duration
+            });
+            toastEl.show(); // Show the toast
+        }
+   
     // Add to Cart
     $(document).on('click', '.g-add-to-cart', function () {
         const productId = $(this).data('id');
@@ -623,14 +631,17 @@ $(document).ready(function(){
                 quantity
             },
             success: function (response) {
+                updateSidecart(response.cart);
+                elm.html(prev_text)
+                elm.removeAttr("disabled")
                 if (response.success) {
-                    updateSidecart(response.cart);
-                    elm.html(prev_text)
-                    elm.removeAttr("disabled")
+                   
                     $('#cartOffcanvas').modal("show");
 
                 } else {
-                    alert(response.message || 'Failed to add product to cart.');
+                    showErrorToast(response.message); 
+                    // showToast(response.message)
+                    // alert(response.message || 'Failed to add product to cart.');
                 }
             },
         });
@@ -657,7 +668,7 @@ $(document).ready(function(){
                     updateSidecart(response.cart);
                     elm.html(prev_text)
                     elm.removeAttr("disabled")
-                    $('#cartOffcanvas').modal("show");
+                    // $('#cartOffcanvas').modal("show");
                     window.location.href = '{{ url("/checkout") }}';
 
                 } else {
@@ -668,40 +679,40 @@ $(document).ready(function(){
     });
     // Import to Seller
     $(document).on('click', '.g-import-to-seller', function () {
-    const productId = $(this).data('id');
-    const prev_text = $(this).html();
+        const productId = $(this).data('id');
+        const prev_text = $(this).html();
 
-    var elm = $(this);
-    elm.attr("disabled", "disabled");
-    $(this).html('<i class="fa fa-spinner fa-spin d-block fs-20 "></i>');
+        var elm = $(this);
+        elm.attr("disabled", "disabled");
+        $(this).html('<i class="fa fa-spinner fa-spin d-block fs-20 "></i>');
 
-    $.ajax({
-        url: '{{ url("/product/import-to-seller") }}',
-        method: 'POST',
-        data: {
-            _token: $('meta[name="csrf-token"]').attr('content'),
-            product_ids: [productId],
-        },
-        success: function (response) {
-            if (response.success) {
-                elm.parent().append(response.new_html);
-                elm.remove();
+        $.ajax({
+            url: '{{ url("/product/import-to-seller") }}',
+            method: 'POST',
+            data: {
+                _token: $('meta[name="csrf-token"]').attr('content'),
+                product_ids: [productId],
+            },
+            success: function (response) {
+                if (response.success) {
+                    elm.parent().append(response.new_html);
+                    elm.remove();
 
-                // Redirect to checkout page after successful import
-                window.location.href = '{{ url("/checkout") }}';
-            } else {
-                alert(response.message || 'Failed to import product to seller.');
+                    // Redirect to checkout page after successful import
+                    window.location.href = '{{ url("/checkout") }}';
+                } else {
+                    alert(response.message || 'Failed to import product to seller.');
+                    elm.html(prev_text);
+                    elm.removeAttr("disabled");
+                }
+            },
+            error: function () {
+                alert('Something went wrong. Please try again.');
                 elm.html(prev_text);
                 elm.removeAttr("disabled");
             }
-        },
-        error: function () {
-            alert('Something went wrong. Please try again.');
-            elm.html(prev_text);
-            elm.removeAttr("disabled");
-        }
+        });
     });
-});
 
 
     // Quantity Change with Switcher
@@ -731,12 +742,15 @@ $(document).ready(function(){
                 quantity: quantity,
             },
             success: function (response) {
-                if (response.success) {
-                    $(".sidecart-items").removeClass("disabled")
-                    updateSidecart(response.cart);
-                } else {
-                    alert(response.message || 'Failed to update quantity.');
+                  
+                if (response.error) {
+
+                    // $('#cartOffcanvas').modal("hide");
+
+                    showErrorToast(response.message); 
                 }
+                updateSidecart(response.cart);
+                $(".sidecart-items").removeClass("disabled")
             },
         });
     });
