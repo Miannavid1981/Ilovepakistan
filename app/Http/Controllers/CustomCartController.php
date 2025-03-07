@@ -41,7 +41,8 @@ class CustomCartController extends Controller
         session(['guest_cart_id' => $tempUserId]);
 
         $quantity = $request->quantity ?? 1;
-    
+       
+        $product = Product::find($productId);
         // Check if the same product with the same skin code exists
         $cartItem = Cart::where('product_id', $productId)
             ->where('skin_code', $skinCode)
@@ -53,12 +54,30 @@ class CustomCartController extends Controller
                 }
             })->first();
     
+        $new_qty = $cartItem ?  $cartItem->quantity + $quantity : $quantity ;
+        $product_stock = null;
+        if(count($product->stocks) > 0){
+            $product_stock = $product->stocks[0]->qty ?? null;
+            
+            if( $new_qty >= $product_stock ){
+                return response()->json([
+                    'error' => true,
+                    'cart' => $this->getCartData(),
+                    'message' => 'Out of stock',
+                ]);
+            }
+            // dd($cartItem->quantity, $product_stock);
+        }
         if ($cartItem) {
+            
+           
+
             // If found, increase the quantity
             $cartItem->quantity += $quantity;
             $cartItem->save();
+        
         } else {
-            $product = Product::find($productId);
+            
     
             // Calculate the subtotal considering discounts
             $subtotal = discount_in_percentage($product) > 0 
@@ -72,7 +91,7 @@ class CustomCartController extends Controller
                 'user_id' => $userId,
                 'temp_user_id' => $tempUserId,
                 'price' => home_base_price($product),
-                'quantity' => 1,
+                'quantity' => $quantity,
                 'status' => 'active',
                 'owner_id' => $userId ?? null,
                 'address_id' => null,
@@ -133,9 +152,23 @@ class CustomCartController extends Controller
             })->first();
     
         if ($cartItem) {
+            $product = Product::find($cartItem->product_id);
             if ($quantity == 0) {
                 $cartItem->delete();
             } else {
+                $product_stock = null;
+                if(count($product->stocks) > 0){
+                    $product_stock = $product->stocks[0]->qty ?? null;
+                
+                    if($quantity > $product_stock ){
+                        return response()->json([
+                            'error' => true,
+                            'cart' => $this->getCartData(),
+                            'message' => 'Out of stock',
+                        ]);
+                    }
+                    // dd($cartItem->quantity, $product_stock);
+                }
                 // Update the quantity if it's greater than 0
                 $cartItem->quantity = $quantity;
                 $cartItem->save();
