@@ -371,10 +371,10 @@
             <span class="rating rating-mr-2">
                 {{ renderStarRating($detailedProduct->rating) }}
             </span>
-            <span class="ml-1 opacity-50 fs-15" onclick="change_tab('reviews')">
-                ({{ $total }} {{ translate('reviews') }})
-            </span>
-        
+           <span class="ml-1 opacity-50 fs-15" onclick="change_tab('reviews')" style="cursor: pointer;">
+    ({{ $total }} {{ translate('reviews') }})
+</span>
+
         @endif
         
         <br>

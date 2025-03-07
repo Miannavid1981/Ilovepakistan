@@ -3,6 +3,12 @@
     .dropdown-item:hover {
     color: black !important;
 }
+/* Box Shadow for Bottom Only */
+header{
+    padding-bottom: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1) !important; /* Adjust values as needed */
+}
+
 </style>
 <header >
     <div class="container bg-white pt-1">
@@ -120,14 +126,14 @@
                             @endauth
                         </button>
                         
-                        <ul class="dropdown-menu" aria-labelledby="dropdownMyAccount">
+                        <ul class="dropdown-menu bg-white" aria-labelledby="dropdownMyAccount">
                             @auth 
                                 <li><a href="{{ $my_account_url }}" class="dropdown-item Text-dark fs-14"   @if(Auth::user()->user_type == "staff" )  target="_blank"  @endif  > My Account</a></li>
                                 <li><a  href="{{ $my_account_url }}" class="dropdown-item fs-14" >Orders</a></li>
                             
                             @else 
-                                <li><a href="{{ route('user.login') }}" class="dropdown-item fs-18">Login</a></li>
-                                <li><a href="{{ route('user.registration') }}" class="dropdown-item fs-18">Register</a></li>
+                                <li><a href="{{ route('user.login') }}" class="dropdown-item fs-16">Login</a></li>
+                                <li><a href="{{ route('user.registration') }}" class="dropdown-item fs-16">Register</a></li>
                             @endif
                             @auth 
                                 <li class="divider"></li>

@@ -797,45 +797,88 @@
             @endif
         }
 
-        function showAddToCartModal(id){
-            if(!$('#modal-size').hasClass('modal-lg')){
-                $('#modal-size').addClass('modal-lg');
+        function showAddToCartModal(id) {
+    if (!$('#modal-size').hasClass('modal-lg')) {
+        $('#modal-size').addClass('modal-lg');
+    }
+
+    $('#addToCart-modal-body').html(null);
+    $('#addToCart').modal('show');  // Ensure modal is shown explicitly
+    $('.c-preloader').show();
+
+    $.post('{{ route('cart.showCartModal') }}', {_token: AIZ.data.csrf, id: id}, function (data) {
+        $('.c-preloader').hide();
+        $('#addToCart-modal-body').html(data);
+        AIZ.plugins.slickCarousel();
+        AIZ.plugins.zoom();
+        AIZ.extra.plusMinus();
+        getVariantPrice();
+
+        // Initialize Slick sliders after modal has fully shown
+        $(document).on('shown.bs.modal', '#addToCart', function () {
+
+            // Check if the sliders are initialized before unslicking
+            if ($('.product-detail-slider-for').hasClass('slick-initialized')) {
+                $('.product-detail-slider-for').slick('unslick');
             }
-            $('#addToCart-modal-body').html(null);
-            $('#addToCart').modal();
-            $('.c-preloader').show();
-            $.post('{{ route('cart.showCartModal') }}', {_token: AIZ.data.csrf, id:id}, function(data){
-                $('.c-preloader').hide();
-                $('#addToCart-modal-body').html(data);
-                AIZ.plugins.slickCarousel();
-                AIZ.plugins.zoom();
-                AIZ.extra.plusMinus();
-                getVariantPrice();
-                $('.product-detail-slider-for').slick({
-                    slidesToShow: 1,
-                    slidesToScroll: 1,
-                    arrows: false,
-                    fade: true,
-                    asNavFor: '.product-detail-slider-nav'
-                });
 
-                $('.product-detail-slider-nav').slick({
-                    slidesToShow: 1 ,
-                    slidesToScroll: 1,
-                    asNavFor: '.product-detail-slider-for',
-                    dots: false,
-                    arrow: true,
-                    centerMode: true,
-                    focusOnSelect: true,
-                    vertical: true,  // Makes the navigation vertical
-                    verticalSwiping: true // Enables vertical swiping
-                });
+            if ($('.product-detail-slider-nav').hasClass('slick-initialized')) {
+                $('.product-detail-slider-nav').slick('unslick');
+            }
+
+            // Initialize the main product detail slider (using similar logic to your provided example)
+            $('.product-detail-slider-for').slick({
+                slidesToShow: 1,
+                slidesToScroll: 1,
+                autoplay: true, // Add autoplay here
+                autoplaySpeed: 1500, // Speed of autoplay
+                arrows: false,
+                fade: true,
+                asNavFor: '.product-detail-slider-nav',
+                pauseOnHover: false,
+                responsive: [
+                    {
+                        breakpoint: 768,
+                        settings: { slidesToShow: 1 }
+                    },
+                    {
+                        breakpoint: 520,
+                        settings: { slidesToShow: 1 }
+                    }
+                ]
             });
-        }
 
-        $('#option-choice-form input').on('change', function(){
-            getVariantPrice();
+            // Initialize the thumbnail slider (using similar logic to your provided example)
+            $('.product-detail-slider-nav').slick({
+                slidesToShow: 3, // Adjust this number as needed for your thumbnail display
+                slidesToScroll: 1,
+                asNavFor: '.product-detail-slider-for',
+                dots: false,
+                arrows: true,
+                centerMode: true,
+                focusOnSelect: true,
+                vertical: true, // Makes the navigation vertical
+                verticalSwiping: true, // Enables vertical swiping
+                pauseOnHover: false,
+                responsive: [
+                    {
+                        breakpoint: 768,
+                        settings: { slidesToShow: 3 }
+                    },
+                    {
+                        breakpoint: 576,
+                        settings: { slidesToShow: 2, vertical: false, verticalSwiping: false }
+                    }
+                ]
+            });
         });
+    });
+}
+
+$('#option-choice-form input').on('change', function () {
+    getVariantPrice();
+});
+
 
         function getVariantPrice(){
             if($('#option-choice-form input[name=quantity]').val() > 0 && checkAddToCartValidity()){
