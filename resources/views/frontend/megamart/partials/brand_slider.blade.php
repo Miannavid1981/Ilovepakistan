@@ -28,9 +28,9 @@
     }
 </style>
 
-<div class="container d-flex justify-content-between text-decoration-underline">
+<div class="container d-flex justify-content-between ">
     <h4>Brands</h4>
-    <a href="" class="text-dark fs-18">
+    <a href="" class="text-dark fs-18 text-decoration-underline">
         View All
     </a>
 </div>
