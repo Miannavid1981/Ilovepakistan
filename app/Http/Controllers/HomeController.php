@@ -259,6 +259,10 @@ class HomeController extends Controller
     {
         // echo "Slug: " . $slug . "<br>";
         // Decrypt the skin value
+
+        if(empty($skin)){
+            return redirect()->back();
+        }
         // $decrypted_skin = decrypt_full_product_skin($skin);
         $seller_map = ProductSellerMap::where('encrypted_hash',  $skin)->first();
         
