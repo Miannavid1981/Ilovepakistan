@@ -776,6 +776,9 @@
 <script type="text/javascript">
     $(document).ready(function() {
         $("#treeview").hummingbird();
+        $('input[name="sku"]').on('input', function() {
+            $(this).val($(this).val().replace(/\s/g, ''));
+        });
 
         $('#treeview input:checkbox').on("click", function (){
             let $this = $(this);
