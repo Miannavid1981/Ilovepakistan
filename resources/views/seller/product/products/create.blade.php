@@ -272,7 +272,7 @@
                                 </div>
                                 <div class="form-group row">
                                     <label class="col-md-3 col-from-label">
-                                        {{ translate('SKU') }}
+                                        {{ translate('SKU') }}<span class="text-danger">*</span>
                                     </label>
                                     <div class="col-md-6">
                                         <input type="text" placeholder="{{ translate('SKU') }}" name="sku" class="form-control" required>
