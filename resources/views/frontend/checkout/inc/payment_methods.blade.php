@@ -165,10 +165,10 @@
               <input type="radio" class=" mb-0 me-2" name="payment_method" value="credit_card"  > Credit / Debit Card
             </div>
             <span>
-              <img src="{{ asset('public/assets/img/visa.png') }}"  alt="Visa">
-              <img src="{{ asset('public/assets/img/mastercard.png') }}"  alt="MasterCard">
-              <img src="{{ asset('public/assets/img/amex.png') }}"  alt="Amex">
-              <img src="{{ asset('public/assets/img/discover.png') }}"  alt="Discover">
+              <img src="{{ static_asset('assets/img/visa.png') }}"  alt="Visa">
+              <img src="{{ static_asset('assets/img/mastercard.png') }}"  alt="MasterCard">
+              <img src="{{ static_asset('assets/img/amex.png') }}"  alt="Amex">
+              <img src="{{ static_asset('assets/img/discover.png') }}"  alt="Discover">
             </span>
           </label>
         </button>
@@ -190,10 +190,10 @@
                   <input type="radio" class=" mb-0 me-2" name="payment_method" value="direct_bank_transfer"> Direct Bank / Mobile Transfer
                 </div>
                 <span>
-                    <img src="{{ asset('public/assets/img/banktransfer.png') }}" style="width: 45px; height: auto" alt="Discover">
+                    <img src="{{ static_asset('assets/img/banktransfer.png') }}" style="width: 45px; height: auto" alt="Discover">
                     @if($mobilewallet_method)
-                        <img  src="{{ asset('public/assets/img/jazzcash.png') }}"  style="width: 35px; height: auto" alt="Discover">
-                        <img  src="{{ asset('public/assets/img/Easypaisa.png') }}" style="width: 30px; height: auto" alt="Discover">
+                        <img  src="{{ static_asset('assets/img/jazzcash.png') }}"  style="width: 35px; height: auto" alt="Discover">
+                        <img  src="{{ static_asset('assets/img/Easypaisa.png') }}" style="width: 30px; height: auto" alt="Discover">
                     @endif
                   </span>
               </label>
@@ -300,7 +300,7 @@
                     <input type="radio" class=" mb-0 me-2" name="payment_method" value="bighouz_wallet"> Bighouz Wallet
                   </div>
                   <span>
-                    <img src="{{ asset('public/assets/img/pngwing.com.png') }}" style="width: 45px; height: auto" alt="Discover">
+                    <img src="{{ static_asset('assets/img/pngwing.com.png') }}" style="width: 45px; height: auto" alt="Discover">
                     </span>
                 </label>
             </button>
@@ -321,7 +321,7 @@
                     <input type="radio" class=" mb-0 me-2" name="payment_method" value="cash_on_counter"> Cash On Counter
                   </div>
                   <span>
-                      <img src="{{ asset('public/assets/img/11-11408.png') }}" style="width: 40px; height: auto" alt="Discover">
+                      <img src="{{ static_asset('assets/img/11-11408.png') }}" style="width: 40px; height: auto" alt="Discover">
                     </span>
                 </label>
             </button>
