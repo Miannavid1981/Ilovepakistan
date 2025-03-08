@@ -1075,9 +1075,9 @@
         show_hide_shipping_div();
 
 
-        $("#commission").click(function(){
-            $(this).
-        });
+        // $("#commission").click(function(){
+        //     $(this).
+        // });
 
         $("#treeview").hummingbird();
         $('#treeview input:checkbox').on("click", function (){
