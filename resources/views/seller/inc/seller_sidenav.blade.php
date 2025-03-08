@@ -38,7 +38,7 @@
                    </span>
                 @elseif (auth()->user()->seller_type == "seller_partner")
                     <span class="bg-info text-light px-2 py-1" style="border-radius: 20px">
-                        Verified Seller
+                        Seller Partner
                     </span>
                
                 @endif
