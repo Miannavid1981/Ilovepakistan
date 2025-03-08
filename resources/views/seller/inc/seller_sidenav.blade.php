@@ -3,7 +3,7 @@
     $sidebar_color = '#dedede';
     $seller_type = auth()->user()->seller_type;
 
-    if (auth()->user()->seller_type == "verified_seller"){
+    if (auth()->user()->seller_type == "seller_partner"){
         $sidebar_color = '#1898F1';
 
     }
@@ -13,7 +13,7 @@
 @endphp
 
 <div class="aiz-sidebar-wrap">
-    <div class="aiz-sidebar left c-scrollbar  @if (auth()->user()->official_brand == 1 && auth()->user()->seller_type == "brand_partner") bg-soft-success @elseif (auth()->user()->seller_type == "verified_seller" ) bg-soft-info @endif" >
+    <div class="aiz-sidebar left c-scrollbar  @if (auth()->user()->official_brand == 1 && auth()->user()->seller_type == "brand_partner") bg-soft-success @elseif (auth()->user()->seller_type == "seller_partner" ) bg-soft-info @endif" >
         <div class="aiz-side-nav-logo-wrap  " style="background: transparent">
             <div class="d-block text-center my-3">
                 @if (optional(Auth::user()->shop)->logo != null)
@@ -36,7 +36,7 @@
                     <span class="bg-dark text-light px-2 py-1 " style="border-radius: 20px">
                     Store Partner
                    </span>
-                @elseif (auth()->user()->seller_type == "verified_seller")
+                @elseif (auth()->user()->seller_type == "seller_partner")
                     <span class="bg-info text-light px-2 py-1" style="border-radius: 20px">
                         Verified Seller
                     </span>
