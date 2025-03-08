@@ -28,12 +28,13 @@
     }
 </style>
 
-<div class="container d-flex justify-content-end text-decoration-underline">
+<div class="container d-flex justify-content-between text-decoration-underline">
+    <h4>Brands</h4>
     <a href="" class="text-dark fs-18">
         View All
     </a>
 </div>
-<section class="brand-logos-slider slider">
+<section class="brand-logos-slider slider mt-3">
 
     @php
         $brands_slides = \App\Models\Brand::all();
