@@ -216,9 +216,6 @@
             <!-- Tabs section below the thumbnail slider -->
             <div class="tabs-container">
                 <ul class="tabs">
-                    @php
-                        //    dd($detailedProduct); 
-                    @endphp
                     @if(!empty($detailedProduct->description))
                         <li class="tab active" data-tab="description">Description</li>
                     @endif
@@ -295,12 +292,16 @@
                         {{-- @include('frontend.product_details.description') --}}
                         
                         <!-- Frequently Bought products -->
-                        @include('frontend.product_details.frequently_bought_products')
+                        {{-- @include('frontend.product_details.frequently_bought_products') --}}
 
                         <!-- Product Query -->
-                        @include('frontend.product_details.product_queries')
+                        {{-- @include('frontend.product_details.product_queries') --}}
                         
+                        <div class="">
+                            @include('frontend.product_details.related_products')
+                       </div>
                         <!-- Top Selling Products -->
+
                         <div class="d-lg-none">
                              @include('frontend.product_details.top_selling_products')
                         </div>
@@ -490,16 +491,16 @@
 
         $('.product-detail-slider-nav').slick({
             slidesToShow: 5,
-    slidesToScroll: 1,
-    asNavFor: '.product-detail-slider-for',
-    dots: false,
-    arrows: true,
-    // centerMode: true,
-    focusOnSelect: true,
-    vertical: true,
-    verticalSwiping: true,
-    prevArrow: $('.arrow-prev'), // Custom up arrow
-    nextArrow: $('.arrow-next')  // Custom down arrow
+            slidesToScroll: 1,
+            asNavFor: '.product-detail-slider-for',
+            dots: false,
+            arrows: true,
+            // centerMode: true,
+            focusOnSelect: true,
+            vertical: true,
+            verticalSwiping: true,
+            prevArrow: $('.arrow-prev'), // Custom up arrow
+            nextArrow: $('.arrow-next')  // Custom down arrow
         });
         function CopyToClipboard(e) {
             var url = $(e).data('url');

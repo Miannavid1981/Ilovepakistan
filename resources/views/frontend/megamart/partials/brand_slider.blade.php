@@ -32,18 +32,16 @@
         View All
     </a>
 </div>
- <section class="brand-logos-slider slider">
-
-  
+<section class="brand-logos-slider slider">
 
     @php
-        $brands_slides = \App\Models\User::where('user_type', 'seller')->where('seller_type', 'brand_partner' )->where('official_brand', 1 )->get();
+        $brands_slides = \App\Models\Brand::all();
     @endphp
 
 
 
-    @foreach ( $brands_slides as $brand )
-        <a href="{{ route('shop.visit', $brand->shop->slug) }}" class="slide d-flex align-items-center justify-content-center"><img src="{{ uploaded_asset($brand->shop->logo) }}" alt="{{translate('Brand')}}"></a>
+    @foreach ( $brands_slides as $slide )
+        <div class="slide d-flex align-items-center justify-content-center"><img src="{{ uploaded_asset($slide->logo) }}" alt="{{translate('Brand')}}"></div>
     @endforeach
     
  
