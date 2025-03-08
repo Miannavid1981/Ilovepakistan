@@ -499,7 +499,7 @@ header{
 <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 99999">
     <div id="errorToast" class="toast bg-white " role="alert" aria-live="assertive" aria-atomic="true">
         <div class="toast-header bg-primary text-white">
-            <strong class="me-auto">Error</strong>
+            <strong class="me-auto">Information</strong>
 
             <button type="button" class="btn-close btn-close-white" data-bs-dismiss="toast" aria-label="Close"></button>
         </div>
