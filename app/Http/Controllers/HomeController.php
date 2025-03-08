@@ -255,7 +255,7 @@ class HomeController extends Controller
         return view('frontend.track_order');
     }
 
-    public function product(Request $request, $slug, $skin)
+    public function product(Request $request, $slug = false, $skin = false)
     {
         // echo "Slug: " . $slug . "<br>";
         // Decrypt the skin value
