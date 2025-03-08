@@ -1,6 +1,11 @@
 @extends('backend.layouts.app')
 
 @section('content')
+<style>
+    #treeview input[type="radio"]{
+        opacity: 0;
+    }
+    </style>
 <div class="page-content">
     <div class="aiz-titlebar text-left mt-2 pb-2 px-3 px-md-2rem border-bottom border-gray">
         <div class="row align-items-center">
@@ -1075,6 +1080,20 @@
         });
 
         $("#treeview").hummingbird();
+        $('#treeview input:checkbox').on("click", function (){
+            let $this = $(this);
+            if ($this.prop('checked') && ($('#treeview input:radio:checked').length == 0)) {
+                let val = $this.val();
+                $('#treeview input:radio[value='+val+']').prop('checked',true);
+            }
+        });
+        $(document).on("click", ".hummingbird-end-node", function(){
+            $("#treeview input").prop('checked', false);
+            $(this).prop('checked', true)
+            var parent_div = $(this).parent().parent().parent().parent();
+            parent_div.children("input").prop('checked', true);
+            parent_div.children("label").children("input").prop('checked', true);
+        });
         var main_id = '{{ $product->category_id != null ? $product->category_id : 0 }}';
         var selected_ids = '{{ implode(",",$old_categories) }}';
         if (selected_ids != '') {
