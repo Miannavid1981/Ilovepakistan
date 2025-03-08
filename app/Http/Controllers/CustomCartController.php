@@ -63,7 +63,7 @@ class CustomCartController extends Controller
                 return response()->json([
                     'error' => true,
                     'cart' => $this->getCartData(),
-                    'message' => 'Out of stock',
+                    'message' => 'The requested quantity is greater than the available quantity',
                 ]);
             }
             // dd($cartItem->quantity, $product_stock);
@@ -164,7 +164,7 @@ class CustomCartController extends Controller
                         return response()->json([
                             'error' => true,
                             'cart' => $this->getCartData(),
-                            'message' => 'Out of stock',
+                            'message' => 'The requested quantity is greater than the available quantity',
                         ]);
                     }
                     // dd($cartItem->quantity, $product_stock);
