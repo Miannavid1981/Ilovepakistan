@@ -43,7 +43,7 @@
                         $encrypted_skin = $seller_map->encrypted_hash ?? '';
                         $product_url = url('/product/' . $new_product->slug . '/' . $encrypted_skin);
                         $new_product->product_custom_url = $product_url;
-                        dd($seller_map);
+                        dd($new_product, $seller_map);
                     @endphp
                     @include('frontend.'.get_setting('homepage_select').'.partials.product_box_1',['product' => $new_product])
                 </div>
