@@ -776,9 +776,7 @@
 <script type="text/javascript">
     $(document).ready(function() {
         $("#treeview").hummingbird();
-        $('input[name="sku"]').on('input', function() {
-            $(this).val($(this).val().replace(/\s/g, ''));
-        });
+       
 
         $('#treeview input:checkbox').on("click", function (){
             let $this = $(this);
@@ -795,7 +793,9 @@
         parent_div.children("input").prop('checked', true);
         parent_div.children("label").children("input").prop('checked', true);
     });
-
+    $('input[name="sku"]').on('input', function() {
+        $(this).val($(this).val().replace(/\s/g, ''));
+    });
     $("[name=shipping_type]").on("change", function() {
         $(".product_wise_shipping_div").hide();
         $(".flat_rate_shipping_div").hide();
