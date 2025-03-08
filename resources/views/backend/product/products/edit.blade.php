@@ -900,7 +900,7 @@
                                     </div>
                                 </div>
                                 <br>
-                                <label class="fs-15">Local Seller</label>
+                                <label class="fs-15"> Store / Seller Partner </label>
                                 <div class="row">
                                     <div class="col-md-3 col-4">
                                         
