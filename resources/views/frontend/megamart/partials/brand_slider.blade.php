@@ -10,7 +10,7 @@
     }
     .brand-logos-slider .slick-slide {
         margin: 0px 20px;
-        height: 120px;
+        height: 80px;
     }
     .brand-logos-slider  .slick-slide img {
         width: 100%;
