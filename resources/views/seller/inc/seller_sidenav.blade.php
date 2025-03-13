@@ -61,28 +61,63 @@
                 </li>
                 @if (auth()->user()->seller_type != "brand_partner")
                 <li class="aiz-side-nav-item">
+                    @if (auth()->user()->shop->verification_status == 1)
                     <a href="{{ route('seller.market') }}"
                         class="aiz-side-nav-link {{ areActiveRoutes(['seller.market']) }}">
                         <i class="las la-atom aiz-side-nav-icon"></i>
                         <span class="aiz-side-nav-text">{{ translate('Marketplace') }}</span>
                     </a>
-                    
+                    @else 
+                    <a href="javascript:void(0)" type="button" data-toggle="tooltip" data-placement="top" title="Verification Required" class="aiz-side-nav-link text-secondary" >
+                        <i class="las la-atom aiz-side-nav-icon"></i>
+                        <span class="aiz-side-nav-text">{{ translate('Marketplace') }}
+                            <i class="las la-exclamation-circle fs-20"></i>
+                        </span>
+                       
+                        {{-- <i class="las la-exclamation-circle"></i> --}}
+
+                    </a>
+                    @endif
                 </li>
                 @endif
                 @if ($seller_type != 'store_partner')
                     <li class="aiz-side-nav-item">
+                        @if (auth()->user()->shop->verification_status == 1)
                         <a href="{{ route('seller.products') }}" class="aiz-side-nav-link">
                             <i class="las la-shopping-cart aiz-side-nav-icon"></i>
                             <span class="aiz-side-nav-text">{{ translate('Products') }}</span>
                         </a>
+                        @else 
+                        <a href="javascript:void(0)" type="button" data-toggle="tooltip" data-placement="top" title="Verification Required" class="aiz-side-nav-link text-secondary" >
+                            <i class="las la-shopping-cart aiz-side-nav-icon"></i>
+                            <span class="aiz-side-nav-text">{{ translate('Products') }}
+                                <i class="las la-exclamation-circle fs-20"></i>
+                            </span>
+                           
+                            {{-- <i class="las la-exclamation-circle"></i> --}}
+    
+                        </a>
+                        @endif
                     </li>
                 @endif
-                @if ($seller_type != 'store_partner')
+                @if ($seller_type != 'brand_partner')
                 <li class="aiz-side-nav-item">
-                    <a href="{{ route('seller.imported_products') }}" class="aiz-side-nav-link" disabled>
+                    @if (auth()->user()->shop->verification_status == 1)
+                    <a href="{{ route('seller.imported_products') }}" class="aiz-side-nav-link"  disabled>
                         <i class="las la-shopping-cart aiz-side-nav-icon"></i>
                         <span class="aiz-side-nav-text">{{ translate('Imports') }}</span>
                     </a>
+                    @else 
+                    <a href="javascript:void(0)" type="button" data-toggle="tooltip" data-placement="top" title="Verification Required" class="aiz-side-nav-link text-secondary" >
+                        <i class="las la-shopping-cart aiz-side-nav-icon"></i>
+                        <span class="aiz-side-nav-text">{{ translate('Imports') }}
+                            <i class="las la-exclamation-circle fs-20"></i>
+                        </span>
+                       
+                        {{-- <i class="las la-exclamation-circle"></i> --}}
+
+                    </a>
+                    @endif
                 </li>
             @endif
                 {{-- Products --}}
