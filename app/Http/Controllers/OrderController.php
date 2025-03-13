@@ -200,8 +200,8 @@ class OrderController extends Controller
 
                
 
-
-                $subtotal += cart_product_price($cartItem, $product, false, false) * $cartItem['quantity'];
+                $item_price =discount_in_percentage($product) > 0 ? home_discounted_base_price($product, false)  * $cartItem['quantity'] : home_base_price($product, false) * $cartItem['quantity'] ;
+                $subtotal += $item_price;
                 $tax +=  cart_product_tax($cartItem, $product, false) * $cartItem['quantity'];
                 $coupon_discount += $cartItem['discount'];
 
@@ -217,7 +217,7 @@ class OrderController extends Controller
                     $product_stock->qty -= $cartItem['quantity'];
                     $product_stock->save();
                 }
-                $item_price = cart_product_price($cartItem, $product, false, false) * $cartItem['quantity'];
+                
                 $order_detail = new OrderDetail;
                 $order_detail->order_id = $order->id;
                 $order_detail->seller_id = $product->user_id;
@@ -257,6 +257,8 @@ class OrderController extends Controller
                     
                     $admin_commission_rate = null;
                     $seller_commission_rate = null;
+                    $seller_profit_per_amount = null;
+
                     $brand_profit_amount = null;
                     $seller_profit = null;
                     $admin_profit_per_amount = null;
@@ -285,7 +287,8 @@ class OrderController extends Controller
 
                     }
                     
-                    
+                    $order_detail->source_seller_id = $source_seller_id;
+                    $order_detail->seller_id = $seller_id;
             
 
                     if($commission ) {
@@ -301,11 +304,13 @@ class OrderController extends Controller
                             }
                             
                             $brand_profit_amount = $item_price - $admin_profit_per_amount;
+                          
+                            // if( $source_seller_id != $seller_id   ){
+                                $order_detail->source_seller_profit_per = null ;
+                            // }
                             
-                            $order_detail->source_seller_profit_per = $seller_commission_rate;
                             $order_detail->source_seller_profit_amount = $brand_profit_amount;
-                            $order_detail->source_seller_id = $source_seller_id;
-                            $order_detail->seller_id = $seller_id;
+                            
                             
                             $seller_profit = 0;
                             if ($source_seller_id != $seller_id) {
@@ -345,7 +350,7 @@ class OrderController extends Controller
                     }
                 }
 
-
+                // dd($product_seller_map, $order_detail);
              
                 $order_detail->save();
 

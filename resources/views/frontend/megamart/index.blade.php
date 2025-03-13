@@ -373,6 +373,9 @@
 </div>
 
 
+@include('frontend/megamart/partials/brand_slider');
+    
+    
 
 <!-- Category-start -->
 
@@ -579,7 +582,6 @@
         $flash_deal_bg = get_setting('flash_deal_bg_color');
         $flash_deal_bg_full_width = (get_setting('flash_deal_bg_full_width') == 1) ? true : false;
         $flash_deal_banner_menu_text = ((get_setting('flash_deal_banner_menu_text') == 'dark') ||  (get_setting('flash_deal_banner_menu_text') == null)) ? 'text-dark' : 'text-white';
-
     @endphp
     @if ($flash_deal != null)
         <section class="mb-2 mb-md-3 mt-2 mt-md-3" style="background: {{ ($flash_deal_bg_full_width && $flash_deal_bg != null) ? $flash_deal_bg : '' }};" id="flash_deal">
@@ -1241,9 +1243,6 @@
     @endif
 
 
-    @include('frontend/megamart/partials/brand_slider');
-    
-    
 
 
 

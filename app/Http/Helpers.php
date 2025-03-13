@@ -1762,6 +1762,22 @@ if (!function_exists('get_best_selling_products')) {
     }
 }
 
+if (!function_exists('get_seller_category_preferences')) {
+    function get_seller_category_preferences()
+    {
+        $userId = $user_id ?? auth()->user()->id; // Use passed user ID or default to auth user
+
+        // Get the category IDs from SellerCategoryPreference
+        $categoryIds = \App\Models\SellerCategoryPreference::where('user_id', $userId)
+            ->pluck('category_id'); // Assuming there's a `category_id` column
+
+        // Retrieve category details based on these IDs
+        return \App\Models\Category::whereIn('id', $categoryIds)
+            ->get() ?? []; // Fetch only the required number of categories
+    }
+}
+
+
 // Get Seller Products
 if (!function_exists('get_seller_products')) {
     function get_seller_products($user_id)

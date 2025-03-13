@@ -25,8 +25,27 @@ class OrderController extends Controller
     public function index(Request $request)
     {
         $authUser = Auth::user();
-        $query = Order::where('seller_id', $authUser->id)->orderBy('id', 'desc');
-    
+        $query = Order::with('orderdetails.product.main_category')->orderBy('id', 'desc');
+
+        if ($authUser->seller_type == 'brand_partner') {
+            $query->whereHas('orderdetails', function ($q) use ($authUser) {
+                $q->where('source_seller_id', $authUser->id);
+            });
+        }
+
+        if ($authUser->seller_type == 'seller_partner') {
+            $query->whereHas('orderdetails', function ($q) use ($authUser) {
+                $q->where('seller_id', $authUser->id)
+                ->orWhere('source_seller_id', $authUser->id);
+            });
+        }
+
+        if ($authUser->seller_type == 'store_partner') {
+            $query->whereHas('orderdetails', function ($q) use ($authUser) {
+                $q->where('seller_id', $authUser->id);
+            });
+        }
+
         if ($request->filled('payment_status')) {
             $query->where('payment_status', $request->payment_status);
         }
@@ -38,6 +57,15 @@ class OrderController extends Controller
         if ($request->filled('search')) {
             $query->where('code', 'like', '%' . $request->search . '%');
         }
+        
+        // Filtering by Product's Main Category (Using Relationship)
+        if ($request->filled('category_id')) {
+            if(!empty($request->category_id) ) {
+                $query->whereHas('orderdetails.product.main_category', function ($q) use ($request) {
+                    $q->where('id', $request->category_id); // Filter by category ID
+                });
+            }
+        }
     
         $orders = $query->paginate(15);
     
@@ -48,7 +76,8 @@ class OrderController extends Controller
             'orders' => $orders,
             'payment_status' => $request->payment_status,
             'delivery_status' => $request->delivery_status,
-            'sort_search' => $request->search
+            'sort_search' => $request->search,
+            'category' => $request->category_id
         ]);
     }
     
