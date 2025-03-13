@@ -1,4 +1,4 @@
-@extends('auth.layouts.authentication')
+@extends('frontend.layouts.app')
 
 @section('content')
     <style>
@@ -16,34 +16,193 @@
             border: 1px solid #888 !important;
             border-radius: 8px !important
         }
+
+                
+        .pricing-container {
+            display: flex;
+            justify-content: center;
+        }
+
+        .pricing-card {
+            background: white;
+            padding: 20px;
+            width: 280px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            position: relative;
+            border-bottom: 4px solid blue;
+            transition: transform 0.3s ease-in-out;
+        }
+        .pricing-card-popular{
+            background: white;
+        
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            position: relative;
+            border-bottom: 4px solid blue;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .pricingcard-p{
+            padding: 20px;
+            width: 280px;
+        }
+        .popular {
+            border-bottom: 4px solid green;
+            transform: scale(1.05);
+            z-index: 10; /* Ensure it stays above other cards */
+            position: relative; /* Required for z-index to work */
+        }
+
+
+        .popular-badge {
+            background: green;
+            color: white;
+            padding: 11px 11px;
+            font-size: 14px;
+        }
+
+        h3 {
+            color: #333;
+            font-size: 20px;
+        }
+
+        h2 {
+            color: #333;
+            font-size: 24px;
+            margin: 10px 0;
+        }
+
+        p {
+            color: #666;
+            font-size: 14px;
+        }
+
+        .signup-btn {
+            background: rgb(12, 12, 247);
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            cursor: pointer;
+            margin: 10px 0;
+        }
+
+        .signup-btn-1 {
+            background: rgb(47, 167, 47);
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            cursor: pointer;
+            margin: 10px 0;
+        }
+        .signup-btn-2 {
+            background: rgb(139, 36, 139);
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            cursor: pointer;
+            margin: 10px 0;
+        }
+        .signup-btn:hover {
+            background: darkblue;
+        }
+
+
+        .note {
+            font-size: 12px;
+            color: #888;
+        }
+
+        ul {
+            text-align: left;
+            list-style: none;
+            padding: 0;
+        }
+
+        ul li {
+            margin: 5px 0;
+            font-size: 14px;
+        }
+
+        .list-icons li i{
+            color: blue;
+        }
+
+        .list-icons-1 li i {
+            color: rgb(47, 167, 47);
+        }
+        .list-icons-2 li i {
+            color: rgb(139, 36, 139);
+        }
     </style>
    <!-- aiz-main-wrapper -->
    <div class="aiz-main-wrapper  d-flex flex-column justify-content-center bg-white">
-        
-        <section class="bg-white  overflow-hidden" style="min-height:100vh;">
-            <div class="row gap-2  align-items-center justify-content-start ">
-                <div class="bg-dark w-100">
-                    <div class="container ">
-                        <div class="row align-items-center gap-0">
-                            <div class="col-2"> 
-                      
-                                <img style="width: 100%; max-width: 120px" src="{{ uploaded_asset(get_setting('site_icon')) }}" alt="{{ translate('Site Icon')}}" class="">
-                                
-                            </div>
-                            <div class="col-7"> 
-                              
-                                
-                                <p class="fs-17 mb-0 fw-600 text-white"> Register as Partner</p>
-                            </div>
-                            <div class="col-3"> 
-                              
-                                
-                                <a href="{{ route('seller.login') }}" class="btn btn-primary btn-sm"> <i class="fa fa-user"></i> Partner login</a>
-                            </div>
-                        </div>
-                    </div>
+
+            
+        <div class="pricing-container">
+            <!-- 2SELL Card -->
+            <div class="pricing-card">
+                <h3>Store Partner</h3>
+                <p>Easy and simple way to sell globally</p>
+                <p>per successful sale</p>
+                <button class="signup-btn">Apply Now</button>
+                <p class="note">No credit card required.<br>You’ll only pay when you start selling.</p>
+                <h4>WHAT YOU GET</h4>
+                <ul class="list-icons">
+                    <li><i class="fa fa-check"></i> Sell Instantly in 200 countries</li>
+                    <li><i class="fa fa-check"></i> Integrate quickly with 120+ carts</li>
+                    <li><i class="fa fa-check"></i> Scale up for international growth</li>
+                    <li><i class="fa fa-check"></i> Sell any type of product</li>
+                    <li><i class="fa fa-check"></i> Access to recurring billing</li>
+                </ul>
+            </div>
+
+            <!-- 2SUBSCRIBE Card (Most Popular) -->
+            <div class="pricing-card-popular popular">
+            
+                    <div class="popular-badge">Most Popular</div>
+                    <div class="pricingcard-p">
+                    <h3>Verified Seller</h3>
+                    <p>Develop & Boost your subscription business</p>
+                    <p>per successful sale</p>
+                    <button class="signup-btn-1">Apply Now</button>
+                    <p class="note">No credit card required.<br>You’ll only pay when you start selling.</p>
+                    <h4>WHAT YOU GET</h4>
+                    <ul class="list-icons-1">
+                        <li><i class="fa fa-check"></i> Includes all Store Partner benefits</li>
+                        <li><i class="fa fa-check"></i> Retain more customers & reduce churn</li>
+                        <li><i class="fa fa-check"></i> Smart subscription management tools</li>
+                        <li><i class="fa fa-check"></i> Manage renewals and upgrades</li>
+                        <li><i class="fa fa-check"></i> Cover entire subscription lifecycle</li>
+                        <li><i class="fa fa-check"></i> Insights through subscription analytics</li>
+                    </ul>
                 </div>
                 
+            </div>
+
+            <!-- 2MONETIZE Card -->
+            <div class="pricing-card">
+                <h3>Brand Partner</h3>
+                <p>All-in-one solution to sell DIGITAL GOODS globally</p>
+                <p>for fast-growing businesses</p>
+                <button class="signup-btn-2">Apply Now</button>
+                <p class="note">No credit card required.<br>You’ll only pay when you start selling.</p>
+                <h4>WHAT YOU GET</h4>
+                <ul class="list-icons-2">
+                    <li><i class="fa fa-check"></i> Includes all Verified Seller benefits</li>
+                    <li><i class="fa fa-check"></i> Global tax & regulatory compliance</li>
+                    <li><i class="fa fa-check"></i> Invoice management</li>
+                    <li><i class="fa fa-check"></i> Reduce backend internal work</li>
+                    <li><i class="fa fa-check"></i> Access to 45+ payment methods</li>
+                    <li><i class="fa fa-check"></i> Optimize conversion rates</li>
+                    <li><i class="fa fa-check"></i> Help for shopping carts customization</li>
+                </ul>
+            </div>
+        </div>
+        
+        {{-- <section class="bg-white  overflow-hidden" style="min-height:100vh;">
+            <div class="row gap-2  align-items-center justify-content-start ">
+         
                 <div class="container mt-3">
                     <p class="fs-17 mb-0 fw-600"> Terms & Conditions</p>
                     <div class="d-flex justify-content-center align-items-center flex-column mx-auto mx-lg-0">
@@ -343,7 +502,7 @@
                                 </div>
                             </form>
                           
-                            {{-- <!-- Register form -->
+                            <!-- Register form -->
                             <div class="pt-3 pt-lg-4 bg-white">
                                 <div class="">
                                    
@@ -358,12 +517,12 @@
                                     <i class="las la-arrow-left fs-20 mr-1"></i>
                                     {{ translate('Back to Previous Page')}}
                                 </a>
-                            </div> --}}
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </section>
+        </section> --}}
     </div>
 
 

@@ -1,5 +1,5 @@
 @php
-    
+    // dd(auth()->user());
     $sidebar_color = '#dedede';
     $seller_type = auth()->user()->seller_type;
 
@@ -13,7 +13,7 @@
 @endphp
 
 <div class="aiz-sidebar-wrap">
-    <div class="aiz-sidebar left c-scrollbar  @if (auth()->user()->official_brand == 1 && auth()->user()->seller_type == "brand_partner") bg-soft-success @elseif (auth()->user()->seller_type == "seller_partner" ) bg-soft-info @endif" >
+    <div class="aiz-sidebar left c-scrollbar  @if (auth()->user()->seller_type == "brand_partner") bg-soft-success @elseif (auth()->user()->seller_type == "seller_partner" ) bg-soft-info @endif" >
         <div class="aiz-side-nav-logo-wrap  " style="background: transparent">
             <div class="d-block text-center my-3">
                 @if (optional(Auth::user()->shop)->logo != null)
@@ -25,7 +25,7 @@
                 @endif
                 <h3 class="fs-16  m-0 text-primary">{{ optional(Auth::user()->shop)->name }}</h3>
                 <p class="text-primary">{{ Auth::user()->email }}</p>
-                @if (auth()->user()->official_brand == 1 && auth()->user()->seller_type == "brand_partner")
+                @if ( auth()->user()->seller_type == "brand_partner")
                 
                 
                     <span class="bg-success text-light px-2 py-1 " style="border-radius: 20px">
@@ -70,13 +70,21 @@
                 </li>
                 @endif
                 @if ($seller_type != 'store_partner')
+                    <li class="aiz-side-nav-item">
+                        <a href="{{ route('seller.products') }}" class="aiz-side-nav-link">
+                            <i class="las la-shopping-cart aiz-side-nav-icon"></i>
+                            <span class="aiz-side-nav-text">{{ translate('Products') }}</span>
+                        </a>
+                    </li>
+                @endif
+                @if ($seller_type != 'store_partner')
                 <li class="aiz-side-nav-item">
-                    <a href="{{ route('seller.products') }}" class="aiz-side-nav-link">
+                    <a href="{{ route('seller.imported_products') }}" class="aiz-side-nav-link" disabled>
                         <i class="las la-shopping-cart aiz-side-nav-icon"></i>
-                        <span class="aiz-side-nav-text">{{ translate('Products') }}</span>
+                        <span class="aiz-side-nav-text">{{ translate('Imports') }}</span>
                     </a>
                 </li>
-                @endif
+            @endif
                 {{-- Products --}}
                 {{-- <li class="aiz-side-nav-item">
                     <a href="#" class="aiz-side-nav-link">

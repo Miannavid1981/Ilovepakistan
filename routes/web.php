@@ -548,7 +548,7 @@ Route::post('/seller-products', function (Request $request) {
     $productIds = $sellerMaps->keys();
 
     // Base query for products
-    $query = Product::whereIn('id', $productIds);
+    $query = Product::whereIn('id', $productIds)->isApprovedPublished();
 
     // Apply category filter if selected
     if (!empty($categoryIds)) {

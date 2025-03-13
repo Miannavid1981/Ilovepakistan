@@ -18,11 +18,23 @@
                         <a class="dropdown-item" href="javascript:void(0)" onclick="order_bulk_export()">{{ translate('Export') }}</a>
                     </div>
                 </div>
-                <div class="col-md-3 ml-auto">
+                <div class="col-md-2 ml-auto">
                     <select class="form-control aiz-selectpicker"
-                        data-placeholder="{{ translate('Filter by Payment Status') }}" name="payment_status"
+                        data-placeholder="{{ translate('Category') }}" name="category_id"
                         onchange="sort_orders()">
-                        <option value="">{{ translate('Filter by Payment Status') }}</option>
+                        <option value="">{{ translate('Category') }}</option>
+                        @foreach (get_seller_category_preferences() as $seller_category )
+                            
+                                <option value="{{ $seller_category->id }}"      @isset($category) @if ($category == $seller_category->id) selected @endif @endisset  >
+                                    {{ $seller_category->name }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="col-md-2 ml-auto">
+                    <select class="form-control aiz-selectpicker"
+                        data-placeholder="{{ translate('Payment Status') }}" name="payment_status"
+                        onchange="sort_orders()">
+                        <option value="">{{ translate('Payment Status') }}</option>
                         <option value="paid"
                             @isset($payment_status) @if ($payment_status == 'paid') selected @endif @endisset>
                             {{ translate('Paid') }}</option>
@@ -32,11 +44,11 @@
                     </select>
                 </div>
 
-                <div class="col-md-3 ml-auto">
+                <div class="col-md-2 ml-auto">
                     <select class="form-control aiz-selectpicker"
-                        data-placeholder="{{ translate('Filter by Payment Status') }}" name="delivery_status"
+                        data-placeholder="{{ translate('Payment Status') }}" name="delivery_status"
                         onchange="sort_orders()">
-                        <option value="">{{ translate('Filter by Deliver Status') }}</option>
+                        <option value="">{{ translate('Deliver Status') }}</option>
                         <option value="pending"
                             @isset($delivery_status) @if ($delivery_status == 'pending') selected @endif @endisset>
                             {{ translate('Pending') }}</option>
@@ -55,7 +67,7 @@
                     <div class="from-group mb-0">
                         <input type="text" class="form-control" id="search" name="search"
                             @isset($sort_search) value="{{ $sort_search }}" @endisset
-                            placeholder="{{ translate('Type Order code & hit Enter') }}">
+                            placeholder="{{ translate('Type Order No. & hit Enter') }}">
                     </div>
                 </div>
             </div>
@@ -76,18 +88,32 @@
                                         </div>
                                     </div>
                                 </th>
-                                <th>{{ translate('Order Code') }}</th>
-                                <th data-breakpoints="lg">{{ translate('Num. of Products') }}</th>
+                                <th>{{ translate('Order #') }}</th>
+                                <th >{{ translate('Product') }}</th>
+                                
+                                <th data-breakpoints="lg">{{ translate('Quantity') }}</th>
                                 <th data-breakpoints="lg">{{ translate('Customer') }}</th>
-                                <th data-breakpoints="md">{{ translate('Amount') }}</th>
+                                <th data-breakpoints="md">{{ translate('Price') }}</th>
+                                <th data-breakpoints="md">{{ translate('Earning') }}</th>
+                                <th data-breakpoints="md">{{ translate('Profit') }}</th>
+
+                                @if(auth()->user()->seller_type != 'store_partner' )
+                                    <th data-breakpoints="md">{{ translate('Platform Fee') }}</th>
+                                @endif
                                 <th data-breakpoints="lg">{{ translate('Delivery Status') }}</th>
-                                <th>{{ translate('Payment Status') }}</th>
+                                {{-- <th>{{ translate('Payment Status') }}</th> --}}
                                 <th class="text-right">{{ translate('Options') }}</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($orders as $key => $order)
                                 
+                            @php
+
+                                
+                                $this_order_detail = $order->orderDetails->first();
+                                // dd($this_order_detail->product);
+                            @endphp
                                     <tr>
                                         <td>
                                             <div class="form-group">
@@ -101,14 +127,29 @@
                                             </div>
                                         </td>
                                         <td>
-                                            <a href="#{{ $order->code }}"
-                                                onclick="show_order_details({{ $order->id }})">{{ $order->code }}</a>
+                                            <a href="{{ route('seller.orders.show', encrypt($order->id)) }}"
+                                                onclick="show_order_details({{ $order->id }})">{{ 'BHP0000'.$order->id }}</a>
                                             @if (addon_is_activated('pos_system') && $order->order_from == 'pos')
                                                 <span class="badge badge-inline badge-danger">{{ translate('POS') }}</span>
                                             @endif
                                         </td>
                                         <td>
-                                            {{ count($order->orderDetails->where('seller_id', Auth::user()->id)) }}
+                                            <div class="d-flex align-items-center ">
+                                                <div class="w-40px h-40px ">
+                                                    <img src="{{ uploaded_asset($this_order_detail->product->thumbnail) }}" class="w-100 h-100 object-cover rounded-3 ">
+                                                </div>
+                                                <div class="ml-2">
+                                                    <span class="badge badge-primary w-auto">{{ $this_order_detail->product->main_category->name }} </span>
+                                                    <p class="mb-0 ">{{ $this_order_detail->product->name }}</p>
+                                                </div>
+                                               
+                                                
+                                            </div>
+                                            
+                                        </td>
+                                     
+                                        <td>
+                                            {{ $this_order_detail->quantity }}
                                         </td>
                                         <td>
                                             @if ($order->user_id != null)
@@ -118,21 +159,75 @@
                                             @endif
                                         </td>
                                         <td>
-                                            {{ single_price($order->grand_total) }}
+                                            {{ 
+                                            
+                                             home_base_price($this_order_detail->product) }}
+                                        </td>
+                                        <td>
+                                            @if(auth()->user()->seller_type == 'brand_partner' )
+
+                                                {{  single_price($this_order_detail->source_seller_profit_amount)  }}
+
+                                            @elseif ( auth()->user()->seller_type == 'seller_partner' )  
+                                                @if(empty($this_order_detail->seller_profit_amount) )
+                                                    {{  single_price($this_order_detail->source_seller_profit_amount)  }}
+                                                @else 
+                                                    -
+                                                @endif
+                                                
+                                            @else
+                                                -
+                                            @endif
+                                            
+                                        </td>
+                                        <td>
+                                            @if ( auth()->user()->seller_type == 'seller_partner' || auth()->user()->seller_type == 'store_partner' )  
+                                                {{  single_price($this_order_detail->seller_profit_amount)  }}
+                                                <br>
+                                                @if (!empty($this_order_detail->seller_profit_per)) {{  '('.$this_order_detail->seller_profit_per.'% )' }} @endif
+                                            @else 
+                                            -
+                                            @endif
+                                        </td>
+                                        <td>
+                                        @if(auth()->user()->id == $this_order_detail->source_seller_id)
+                                            - {{ single_price($this_order_detail->admin_profit_amount) }}
+                                            <br>
+                                            @if (!empty($this_order_detail->admin_profit_per)) 
+                                            
+                                                {{  '('.$this_order_detail->admin_profit_per.'% )' }}   
+                                            
+                                            @endif
+                                        @elseif( auth()->user()->seller_type != 'store_partner'  )
+                                            
+                                                @if(empty($this_order_detail->seller_profit_amount))
+                                                    - {{ single_price($this_order_detail->admin_profit_amount) }}
+                                                    <br>
+                                                    @if (!empty($this_order_detail->admin_profit_per)) 
+                                                    
+                                                        {{  '('.$this_order_detail->admin_profit_per.'% )' }}   
+                                                    
+                                                    @endif
+
+                                                @else 
+                                                    -
+                                                @endif
+                                           
+                                        @endif
                                         </td>
                                         <td>
                                             @php
                                                 $status = $order->delivery_status;
                                             @endphp
-                                            {{ translate(ucfirst(str_replace('_', ' ', $status))) }}
+                                             <span class="badge badge-inline badge-warning"> {{ translate(ucfirst(str_replace('_', ' ', $status))) }}</span>
                                         </td>
-                                        <td>
+                                        {{-- <td>
                                             @if ($order->payment_status == 'paid')
                                                 <span class="badge badge-inline badge-success">{{ translate('Paid') }}</span>
                                             @else
                                                 <span class="badge badge-inline badge-danger">{{ translate('Unpaid') }}</span>
                                             @endif
-                                        </td>
+                                        </td> --}}
                                         <td class="text-right">
                                             @if (addon_is_activated('pos_system') && $order->order_from == 'pos')
                                                 <a class="btn btn-soft-success btn-icon btn-circle btn-sm"

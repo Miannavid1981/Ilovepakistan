@@ -90,7 +90,7 @@ class CustomCartController extends Controller
                 'skin_code' => $skinCode,  // Store unique skin code
                 'user_id' => $userId,
                 'temp_user_id' => $tempUserId,
-                'price' => home_base_price($product),
+                'price' => home_base_price($product, false),
                 'quantity' => $quantity,
                 'status' => 'active',
                 'owner_id' => $userId ?? null,

@@ -155,31 +155,31 @@
      
 
       <!-- Credit Card Option -->
- <div class="card mb-0 shadow-none p-0 {{  $card_method ? 'd-block' : 'd-none' }}" style="border: 1px solid #c1c1c1;">
-    <div class="card-header p-0" id="creditCardHeading">
-      
-        <button class="btn btn-link text-decoration-none w-100 p-0 collapsed" type="button" data-toggle="collapse" data-target="#creditCard" aria-expanded="true">
-          <label class="payment-method-header d-flex justify-content-between w-100 mb-0 p-2 px-3">
-            <div class="  text-dark d-flex align-items-center mb-0">
-            
-              <input type="radio" class=" mb-0 me-2" name="payment_method" value="credit_card"  > Credit / Debit Card
-            </div>
-            <span>
-              <img src="{{ static_asset('assets/img/visa.png') }}"  alt="Visa">
-              <img src="{{ static_asset('assets/img/mastercard.png') }}"  alt="MasterCard">
-              <img src="{{ static_asset('assets/img/amex.png') }}"  alt="Amex">
-              <img src="{{ static_asset('assets/img/discover.png') }}"  alt="Discover">
-            </span>
-          </label>
-        </button>
-      
+    <div class="card mb-0 shadow-none p-0 {{  $card_method ? 'd-block' : 'd-none' }}" style="border: 1px solid #c1c1c1;">
+        <div class="card-header p-0" id="creditCardHeading">
+        
+            <button class="btn btn-link text-decoration-none w-100 p-0 collapsed" type="button" data-toggle="collapse" data-target="#creditCard" aria-expanded="true">
+            <label class="payment-method-header d-flex justify-content-between w-100 mb-0 p-2 px-3">
+                <div class="  text-dark d-flex align-items-center mb-0">
+                
+                <input type="radio" class=" mb-0 me-2" name="payment_method" value="credit_card"  > Credit / Debit Card
+                </div>
+                <span>
+                <img src="{{ static_asset('assets/img/visa.png') }}"  alt="Visa">
+                <img src="{{ static_asset('assets/img/mastercard.png') }}"  alt="MasterCard">
+                <img src="{{ static_asset('assets/img/amex.png') }}"  alt="Amex">
+                <img src="{{ static_asset('assets/img/discover.png') }}"  alt="Discover">
+                </span>
+            </label>
+            </button>
+        
+        </div>
+        <div id="creditCard" class="collapse {{  $card_method ? '' : 'd-none' }}" aria-labelledby="creditCardHeading" data-parent="#paymentAccordion">
+        <div class="card-body payment-method-details p-4 bg-light">
+            Enter your credit card details securely to complete the payment.
+        </div>
+        </div>
     </div>
-    <div id="creditCard" class="collapse {{  $card_method ? '' : 'd-none' }}" aria-labelledby="creditCardHeading" data-parent="#paymentAccordion">
-      <div class="card-body payment-method-details p-4 bg-light">
-        Enter your credit card details securely to complete the payment.
-      </div>
-    </div>
-  </div>
     <!-- PayPal Option -->
     <div class="card mb-0 shadow-none p-0" style="border: 1px solid #c1c1c1;">
       <div class="card-header p-0" id="direct_bank_transferHeading">

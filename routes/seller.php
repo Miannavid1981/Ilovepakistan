@@ -21,6 +21,8 @@ Route::controller(DashboardController::class)->group(function () {
     // Product
     Route::controller(ProductController::class)->group(function () {
         Route::get('/products', 'index')->name('products');
+        Route::get('/imported-products', 'imported_products')->name('imported_products');
+        
         Route::get('/product/create', 'create')->name('products.create');
         Route::post('/products/store/', 'store')->name('products.store');
         Route::get('/product/{id}/edit', 'edit')->name('products.edit');
@@ -32,6 +34,7 @@ Route::controller(DashboardController::class)->group(function () {
         Route::post('/products/seller/featured', 'updateFeatured')->name('products.featured');
         Route::post('/products/published', 'updatePublished')->name('products.published');
         Route::get('/products/destroy/{id}', 'destroy')->name('products.destroy');
+        Route::get('/imported-products/destroy/{id}', 'imported_product_destroy')->name('imported_products.destroy');
         Route::post('/products/bulk-delete', 'bulk_product_delete')->name('products.bulk-delete');
         Route::post('/product-search', 'product_search')->name('product.search');
         Route::post('/get-selected-products', 'get_selected_products')->name('get-selected-products');

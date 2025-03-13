@@ -27,6 +27,7 @@ use App\Services\ProductFlashDealService;
 use App\Services\ProductStockService;
 use App\Services\FrequentlyBoughtProductService;
 use Illuminate\Support\Facades\Notification;
+use Illuminate\Support\Facades\DB;
 
 class ProductController extends Controller
 {
@@ -62,6 +63,37 @@ class ProductController extends Controller
         $products = $products->paginate(10);
         return view('seller.product.products.index', compact('products', 'search'));
     }
+    public function imported_products(Request $request)
+    {
+        $search = null;
+
+        // Get product IDs that are imported and belong to the logged-in seller
+        $product_ids = ProductSellerMap::where('seller_id', auth()->user()->id)
+            ->where('imported', 1)
+            ->orderBy('created_at', 'desc');
+             // Retrieve only product IDs
+       
+        // Get products that match the IDs
+        // $products = Product::whereIn('id', $product_ids)
+        //     ->where('digital', 0)
+        //     ->where('auction_product', 0)
+        //     ->where('wholesale_product', 0)
+        //     ->orderBy('created_at', 'desc');
+
+        
+            // dd($products);
+        // Apply search filter if provided
+        // if ($request->has('search')) {
+        //     $search = $request->search;
+        //     $products = $products->where('name', 'like', '%' . $search . '%');
+        // }
+
+        // Paginate results
+        $product_ids = $product_ids->paginate(10);
+
+        return view('seller.product.products.imported_products', compact('product_ids', 'search'));
+    }
+
 
     public function create(Request $request)
     {
@@ -394,6 +426,27 @@ class ProductController extends Controller
             Wishlist::where('product_id', $id)->delete();
 
             flash(translate('Product has been deleted successfully'))->success();
+
+            Artisan::call('view:clear');
+            Artisan::call('cache:clear');
+
+            return back();
+        } else {
+            flash(translate('Something went wrong'))->error();
+            return back();
+        }
+    }
+    public function imported_product_destroy($id)
+    {
+        $product = ProductSellerMap::findOrFail($id);
+
+        $item_skin = $product->original_skin;
+        
+        if ($product->destroy($id)) {
+            Cart::where('skin_code', $item_skin)->delete();
+            // Wishlist::where('product_id', $id)->delete();
+
+            flash(translate('Product has been removed successfully'))->success();
 
             Artisan::call('view:clear');
             Artisan::call('cache:clear');

@@ -609,7 +609,7 @@ label.category_tree_item:has(input:checked) .checkbox_circle {
                             ->toArray();
         
                         // Get all products in one query to avoid multiple queries inside the loop
-                        $importedProducts = \App\Models\Product::whereIn('id', $importedProductIds)->get();
+                        $importedProducts = \App\Models\Product::whereIn('id', $importedProductIds)->isApprovedPublished()->get();
                     @endphp
         
                     <div class="px-sm-3 pb-3">

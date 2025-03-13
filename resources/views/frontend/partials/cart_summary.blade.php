@@ -101,7 +101,8 @@
                 @foreach ($carts as $key => $cartItem)
                     @php
                         $product = get_single_product($cartItem['product_id']);
-                        $subtotal += cart_product_price($cartItem, $product, false, false) * $cartItem['quantity'];
+                        $item_price =discount_in_percentage($product) > 0 ? home_discounted_base_price($product, false)  * $cartItem['quantity'] : home_base_price($product, false) * $cartItem['quantity'] ;
+                        $subtotal += $item_price;
                         $tax += cart_product_tax($cartItem, $product, false) * $cartItem['quantity'];
                         $product_shipping_cost = $cartItem['shipping_cost'];
 

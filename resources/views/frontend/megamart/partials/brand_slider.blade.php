@@ -34,7 +34,7 @@
         View All
     </a>
 </div>
-<section class="brand-logos-slider slider mt-3">
+<section class="container brand-logos-slider slider mt-3">
 
     @php
         $brands_slides = \App\Models\Brand::all();
