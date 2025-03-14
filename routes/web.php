@@ -3,6 +3,7 @@
 use App\Http\Controllers\AddressController;
 use App\Http\Controllers\AizUploadController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\VerificationController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\CartController;
@@ -592,6 +593,7 @@ Route::post('/product/import-to-seller', [SellerMarketController::class, 'store'
 
 
 Route::get('/checkout/refresh/payment_actions', [CheckoutController::class, 'payment_actions'])->name('checkout.refresh_payment_actions');
+Route::get('/register/store/brand-partner', [RegisterController::class, 'register_brand_partner'])->name('register.brand_partner');
 
                             
 Route::get('invoice/{order_id}', [InvoiceController::class, 'invoice_download'])->name('invoice.download');

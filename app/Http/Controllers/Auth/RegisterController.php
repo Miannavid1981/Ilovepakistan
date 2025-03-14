@@ -192,4 +192,9 @@ class RegisterController extends Controller
             return redirect()->route('home');
         }
     }
+    public function register_brand_partner(Request $request){
+
+
+        return  view('auth.seller_register.brand_partner');
+    }
 }
