@@ -183,6 +183,9 @@ Route::controller(HomeController::class)->group(function () {
     Route::get('/coupons', 'all_coupons')->name('coupons.all');
     Route::get('/inhouse', 'inhouse_products')->name('inhouse.all');
 
+    Route::get('/send-a-test-email', 'send_test_email')->name('inhouse.send_test_email');
+        
+    
 
     // Policies
     Route::get('/seller-policy', 'sellerpolicy')->name('sellerpolicy');
@@ -597,3 +600,4 @@ Route::get('/register/store/brand-partner', [RegisterController::class, 'registe
 
                             
 Route::get('invoice/{order_id}', [InvoiceController::class, 'invoice_download'])->name('invoice.download');
+
