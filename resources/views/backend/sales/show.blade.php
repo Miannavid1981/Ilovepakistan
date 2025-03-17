@@ -40,7 +40,7 @@
                         </div>
                     @endif
 
-                    <div class="col-md-3 ml-auto">
+                    <div class="col-md-2 ml-auto">
                         <label for="update_payment_status">{{ translate('Payment Status') }}</label>
                         @if (auth()->user()->can('update_order_payment_status') && $payment_status == 'unpaid')
                             {{-- <select class="form-control aiz-selectpicker" data-minimum-results-for-search="Infinity" id="update_payment_status"> --}}
@@ -56,7 +56,7 @@
                             <input type="text" class="form-control" value="{{ ucfirst($payment_status) }}" disabled>
                         @endif
                     </div>
-                    <div class="col-md-3 ml-auto">
+                    <div class="col-md-2 ml-auto">
                         <label for="update_delivery_status">{{ translate('Delivery Status') }}</label>
                         @if (auth()->user()->can('update_order_delivery_status') && $delivery_status != 'delivered' && $delivery_status != 'cancelled')
                             <select class="form-control aiz-selectpicker" data-minimum-results-for-search="Infinity"
@@ -84,21 +84,16 @@
                             <input type="text" class="form-control" value="{{ $delivery_status }}" disabled>
                         @endif
                     </div>
-                    <div class="col-md-3 ml-auto">
+                    {{-- <div class="col-md-3 ml-auto">
                         <label for="update_tracking_code">
                             {{ translate('Tracking Code (optional)') }}
                         </label>
                         <input type="text" class="form-control" id="update_tracking_code"
                             value="{{ $order->tracking_code }}">
-                    </div>
+                    </div> --}}
                 @endif
             </div>
-            <div class="mb-3">
-                @php
-                    $removedXML = '<?xml version="1.0" encoding="UTF-8"?>';
-                @endphp
-                {!! str_replace($removedXML, '', QrCode::size(100)->generate($order->code)) !!}
-            </div>
+            
             <div class="row gutters-5">
                 <div class="col text-md-left text-center">
                     @if(json_decode($order->shipping_address))
@@ -135,11 +130,21 @@
                     @endif
                 </div>
                 <div class="col-md-4">
+                    
                     <table class="ml-auto">
                         <tbody>
                             <tr>
+                                <td class="text-main text-bold"></td>
+                                <td class="text-info text-bold text-right"> <div class="my-3 ml-auto">
+                                    @php
+                                        $removedXML = '<?xml version="1.0" encoding="UTF-8"?>';
+                                    @endphp
+                                    {!! str_replace($removedXML, '', QrCode::size(100)->generate($order->code)) !!}
+                                </div></td>
+                            </tr>
+                            <tr>
                                 <td class="text-main text-bold">{{ translate('Order #') }}</td>
-                                <td class="text-info text-bold text-right"> {{ $order->code }}</td>
+                                <td class="text-info text-bold text-right"> BH000{{ $order->id }}</td>
                             </tr>
                             <tr>
                                 <td class="text-main text-bold">{{ translate('Order Status') }}</td>
@@ -187,11 +192,13 @@
                         <thead>
                             <tr class="bg-trans-dark">
                                 <th data-breakpoints="lg" class="min-col">#</th>
-                                <th width="10%">{{ translate('Photo') }}</th>
-                                <th class="text-uppercase">{{ translate('Description') }}</th>
-                                <th class="text-uppercase">{{ translate('Status') }}</th>
+                                
+                                <th class="text-uppercase">{{ translate('Product') }}</th>
+                                
+                                <th class="text-uppercase">{{ translate('Seller') }}</th>
+                                <th class="text-uppercase">{{ translate('Importer') }}</th>
                                 <th data-breakpoints="lg" class="text-uppercase">{{ translate(' Commission') }}</th>
-                                <th data-breakpoints="lg" class="text-uppercase">{{ translate(' Seller') }}</th>
+                          
                                 
                                 <th  data-breakpoints="lg" class="text-uppercase d-none">{{ translate('Delivery Type') }}</th>
                                 <th data-breakpoints="lg" class="min-col text-uppercase text-center">
@@ -201,86 +208,129 @@
                                     {{ translate('Price') }}</th>
                                 <th data-breakpoints="lg" class="min-col text-uppercase text-right">
                                     {{ translate('Total') }}</th>
+                                <th class="text-uppercase">{{ translate('Status') }}</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($order->orderDetails as $key => $orderDetail)
+
+                            @php
+                                $sold_by_seller_id = $orderDetail->source_seller_id != $orderDetail->seller_id ? $orderDetail->seller_id : $orderDetail->source_seller_id;
+                                $brand_sold_seller = \App\Models\User::where('id', $orderDetail->source_seller_id)->first();
+                            @endphp
+                            
                                 <tr>
                                     <td>{{ $key + 1 }}</td>
-                                    <td>
-                                        @if ($orderDetail->product != null && $orderDetail->product->auction_product == 0)
-                                            <a href="{{ route('product', $orderDetail->product->slug) }}" target="_blank">
-                                                <img height="50" src="{{ uploaded_asset($orderDetail->product->thumbnail_img) }}">
-                                            </a>
-                                        @elseif ($orderDetail->product != null && $orderDetail->product->auction_product == 1)
-                                            <a href="{{ route('auction-product', $orderDetail->product->slug) }}" target="_blank">
-                                                <img height="50" src="{{ uploaded_asset($orderDetail->product->thumbnail_img) }}">
-                                            </a>
-                                        @else
-                                            <strong>{{ translate('N/A') }}</strong>
-                                        @endif
-                                    </td>
-                                    <td>
-                                        @if ($orderDetail->product != null && $orderDetail->product->auction_product == 0)
-                                            <strong>
-                                                <a href="{{ route('product', $orderDetail->product->slug) }}" target="_blank"
-                                                    class="text-muted">
-                                                    {{ $orderDetail->product->getTranslation('name') }}
+                                    <td style="width: 400px">
+                                        <div style="display: grid; grid-template-columns: 1fr 3fr">
+                                            <div>
+                                            @if ($orderDetail->product != null && $orderDetail->product->auction_product == 0)
+                                                <a href="{{ route('product', $orderDetail->product->slug) }}" target="_blank">
+                                                    <img height="50" src="{{ uploaded_asset($orderDetail->product->thumbnail_img) }}">
                                                 </a>
-                                            </strong>
-                                            <small>
-                                                {{ $orderDetail->variation }}
-                                            </small>
-                                            <br>
-                                            <small class="fs-13 font-weight-bold">
-                                                @php
-                                                    $product_stock = $orderDetail->product->stocks->where('variant', $orderDetail->variation)->first();
-                                                @endphp
-                                               {{ $orderDetail->item_skin ?? '' }}
+                                            @elseif ($orderDetail->product != null && $orderDetail->product->auction_product == 1)
+                                                <a href="{{ route('auction-product', $orderDetail->product->slug) }}" target="_blank">
+                                                    <img height="50" src="{{ uploaded_asset($orderDetail->product->thumbnail_img) }}">
+                                                </a>
+                                            @else
+                                                <strong>{{ translate('N/A') }}</strong>
+                                            @endif
+                                            </div>
+                                            <div> 
+                                            @if ($orderDetail->product != null && $orderDetail->product->auction_product == 0)
+                                                <strong>
+                                                    <a href="{{ route('product', $orderDetail->product->slug) }}" target="_blank"
+                                                        class="text-muted">
+                                                        {{ $orderDetail->product->getTranslation('name') }}
+                                                    </a>
+                                                </strong>
+                                                <small>
+                                                    {{ $orderDetail->variation }}
+                                                </small>
+                                                <br>
+                                                <small class="fs-13 font-weight-bold">
+                                                    @php
+                                                        $product_stock = $orderDetail->product->stocks->where('variant', $orderDetail->variation)->first();
+                                                    @endphp
+                                                {{ $orderDetail->item_skin ?? '' }}
 
-                                            </small>
-                                        @elseif ($orderDetail->product != null && $orderDetail->product->auction_product == 1)
-                                            <strong>
-                                                <a href="{{ route('auction-product', $orderDetail->product->slug) }}" target="_blank"
-                                                    class="text-muted">
-                                                    {{ $orderDetail->product->getTranslation('name') }}
-                                                </a>
-                                            </strong>
-                                        @else
-                                            <strong>{{ translate('Product Unavailable') }}</strong>
-                                        @endif
-                                    </td>
-                                    <td>
-                                       <span class="badge badge-primary w-auto text-uppercase"> {{ $order->delivery_status }}</span>
+                                                </small>
+                                            @elseif ($orderDetail->product != null && $orderDetail->product->auction_product == 1)
+                                                <strong>
+                                                    <a href="{{ route('auction-product', $orderDetail->product->slug) }}" target="_blank"
+                                                        class="text-muted">
+                                                        {{ $orderDetail->product->getTranslation('name') }}
+                                                    </a>
+                                                </strong>
+                                            @else
+                                                <strong>{{ translate('Product Unavailable') }}</strong>
+                                            @endif
+                                            </div>
+                                        </div>
                                     </td>
                                     <td>
                                         
-                                        @php
-                                            $sold_by_seller_id = $orderDetail->source_seller_id != $orderDetail->seller_id ? $orderDetail->seller_id : $orderDetail->source_seller_id;
-                                            $brand_sold_seller = \App\Models\User::where('id', $orderDetail->source_seller_id)->first();
-                                        @endphp
+                                        
+
+                                        <div class="d-flex flex-column align-items-center ">
+                                            <div class="w-40px h-40px ">
+                                                <img src="{{ uploaded_asset($brand_sold_seller->avatar_original) }}" class="w-100 h-100 object-cover rounded-3 ">
+                                            </div>
+                                           
+                                                <p class="mb-0 ">{{ $brand_sold_seller->name }}</p>
+                                            
+                                           
+                                            
+                                        </div>
+
+                                    </td>
+
+                                    <td>
+                                        @if($orderDetail->source_seller_id != $orderDetail->seller_id) 
+
+                                            @php
+                                                $import_seller = \App\Models\User::where('id', $orderDetail->seller_id)->first();
+                                            @endphp
+
+                                           
+                                            <div class="d-flex flex-column align-items-center ">
+                                                <div class="w-40px h-40px ">
+                                                    <img src="{{ uploaded_asset($import_seller->avatar_original) }}" class="w-100 h-100 object-cover rounded-3 ">
+                                                </div>
+                                                
+                                                <p class="mb-0 ">{{ $import_seller->name }}</p>
+                                                
+                                            
+                                                
+                                            </div>
+                                           
+                                            
+                                        @else
+
+                                            -
+                                            
+                                        @endif
+                                    </td>
+                                   
+                                    <td>
+                                        
+                                    
                                     
                                         @if($brand_sold_seller)
-                                        Product listed by <b>{{ $brand_sold_seller->name }}</b> (Earnings: <span class="text-success">+ PKR {{ number_format($orderDetail->source_seller_profit_amount) }}</span>) 
+                                       <b>{{ $brand_sold_seller->name }}</b>: <span class="text-success">+ PKR {{ number_format($orderDetail->source_seller_profit_amount) }}</span>
                                         @else
                                             Seller not found.
                                         @endif
                                         <br>
-                                        {{ $orderDetail->source_seller_id == $orderDetail->seller_id ? '' : 'Imported by' }}
-                                    
                                         @if($orderDetail->source_seller_id != $orderDetail->seller_id) 
-                                            @php
-                                                $sold_by_seller = \App\Models\User::where('id', $sold_by_seller_id)->first();
-                                            @endphp
-                                    
                                             @if($sold_by_seller)
-                                            <b>{{ $sold_by_seller->name }}</b> (Earnings: <span class="text-success">+ PKR {{ number_format($orderDetail->seller_profit_amount) }}</span>)  @if ($orderDetail->seller_profit_per) Profit Margin: <span class="text-success">{{ $orderDetail->seller_profit_per }}%</span> @endif
+                                                <b> {{ $sold_by_seller->name }} </b> <span class="text-success">+ PKR {{ number_format($orderDetail->seller_profit_amount) }}</span> @if ($orderDetail->seller_profit_per) Profit Margin: <span class="text-success">{{ $orderDetail->seller_profit_per }}%</span> @endif
                                             @else
                                                 Seller not found.
                                             @endif
                                         @endif
                                         <br>
-                                        Company earned total  <span class="text-success">+ PKR {{ number_format($orderDetail->admin_profit_amount) }} </span>  @if ($orderDetail->admin_profit_per)  — Profit Margin: <span class="text-success">{{ $orderDetail->admin_profit_per }}%</span> @endif
+                                       Platform Fee <span class="text-success">+ PKR {{ number_format($orderDetail->admin_profit_amount) }} </span>  @if ($orderDetail->admin_profit_per)  — Profit Margin: <span class="text-success">{{ $orderDetail->admin_profit_per }}%</span> @endif
                                     </td>
                                     <td>
                                         {{  $orderDetail->source_seller_id == $orderDetail->seller_id ? $brand_sold_seller->name :  $sold_by_seller->name }}
@@ -314,6 +364,9 @@
                                     <td class="text-center">
                                         {{ single_price($orderDetail->price) }}
                                     </td>
+                                    <td>
+                                        <span class="badge badge-primary w-auto text-uppercase"> {{ $order->delivery_status }}</span>
+                                     </td>
                                 </tr>
                             @endforeach
                         </tbody>

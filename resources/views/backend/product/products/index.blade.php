@@ -103,7 +103,13 @@
                         @if($type == 'Seller' || $type == 'All')
                             <th data-breakpoints="lg">{{translate('Added By')}}</th>
                         @endif
-                        <th data-breakpoints="sm">{{translate('Info')}}</th>
+                        <th data-breakpoints="lg">{{translate('Original Price')}}</th>
+                        <th data-breakpoints="lg">{{translate('Platform Fee')}}</th>
+                        <th data-breakpoints="lg">{{translate('Brand Sale')}}</th>
+                        <th data-breakpoints="lg">{{translate('Partner Profit')}}</th>
+                        <th data-breakpoints="sm">{{translate('Rating')}}</th>
+                        <th data-breakpoints="sm">{{translate('Num Of Sale')}}</th>
+                        
                         <th data-breakpoints="md">{{translate('Total Stock')}}</th>
                         <th data-breakpoints="lg">{{translate('Todays Deal')}}</th>
                         <th data-breakpoints="lg">{{translate('Published')}}</th>
@@ -116,7 +122,42 @@
                 </thead>
                 <tbody>
                     @foreach($products as $key => $product)
-                    <tr>
+                    @php
+                        $price = home_base_price($product, false);
+                        $platform_fee = 0;
+                        $brand_amount = $price;
+                        $seller_profit = 0;
+                        if(!empty($product->admin_commission_type)) {
+                                
+                            if ($product->admin_commission_type == 'percentage') {
+                                $platform_fee = ($price * $product->admin_commission_rate) / 100;
+                                
+                            }
+                            $brand_amount = $price - $platform_fee;
+                        }
+                        if(!empty($product->seller_commission_type)) {
+                                
+                            if ($product->seller_commission_type == 'percentage') {
+                                $platform_fee = ($price * $product->seller_commission_rate) / 100;
+                                
+                            }
+                        }
+                        $qty = 0;
+                        if($product->variant_product) {
+                            foreach ($product->stocks as $key => $stock) {
+                                $qty += $stock->qty;
+                                // echo $stock->variant.' - '.$stock->qty.'<br>';
+                            }
+                        }
+                        else {
+                            //$qty = $product->current_stock;
+                            $qty = optional($product->stocks->first())->qty;
+                            // echo $qty;
+                        }
+                        
+                    
+                    @endphp
+                    <tr @if($qty <= $product->low_stock_quantity) class="bg-soft-danger" @endif>
                         @if(auth()->user()->can('product_delete'))
                             <td>
                                 <div class="form-group d-inline-block">
@@ -135,21 +176,73 @@
                                     <img src="{{ uploaded_asset($product->thumbnail_img)}}" alt="Image" class="size-50px img-fit">
                                 </div>
                                 <div class="col">
+                                    <span class="badge badge-primary w-auto">{{ $product->main_category->name }} </span>
                                     <span class="text-muted text-truncate-2">{{ $product->getTranslation('name') }}</span>
                                 </div>
                             </div>
                         </td>
                         @if($type == 'Seller' || $type == 'All')
-                            <td>{{ optional($product->user)->name }}</td>
+                            <td>
+
+                                <div class="d-flex flex-column align-items-center justify-content-center ">
+                                    <div class="w-40px h-40px ">
+                                        <img src="{{ uploaded_asset($product->user->avatar_original) }}" class="w-100 h-100 object-cover rounded-3 ">
+                                    </div>
+                                   
+                                    <p class="mb-0 ml-2">
+                                        @if ($product->user != null)
+                                            {{ $product->user->name }}
+                                        @else
+                                            Guest ({{ $product->guest_id }})
+                                        @endif
+
+                                    </p>
+                                </div>
+
+                            </td>
                         @endif
                         <td>
-                            <strong>{{translate('Num of Sale')}}:</strong> {{ $product->num_of_sale }} {{translate('times')}} </br>
-                            <strong>{{translate('Base Price')}}:</strong> {{ single_price($product->unit_price) }} </br>
-                            <strong>{{translate('Rating')}}:</strong> {{ $product->rating }} </br>
+                            {{ single_price($price) }}
                         </td>
                         <td>
+                            @if( $platform_fee > 0 )
+                            <span class="text-success text-truncate-2">+{{ single_price($platform_fee) }}</span>
+                            @else 
+                                -
+                            @endif
+
+                        </td>
+                        <td>
+                           
+                            {{ $brand_amount > 0 ? single_price($brand_amount) : "-"}}
+                      
+
+                        </td>
+                        <td>
+                           
+                                {{ $seller_profit > 0 ? single_price($seller_profit) : "-";}}
+                          
+
+                        </td>
+                        <td>
+                            @if($product->rating > 0)
+                                @for ( $i = 1; $i<= $product->rating; $i++ )
+                                    <i class="la la-star text-warning fs-16"></i>
+                                @endfor
+
+                            @else
+                                -
+                            @endif
+                            
+                           
+                        </td>
+                        <td>
+                            {{ $product->num_of_sale }} {{translate('Orders')}}
+                        </td>
+                        
+                        <td>
                             @if($product->digital == 1)
-                            <span class="badge badge-inline badge-info">{{ translate('Digital Product') }}</span>
+                                <span class="badge badge-inline badge-info">{{ translate('Digital Product') }}</span>
                             @else
                                 @php
                                     $qty = 0;

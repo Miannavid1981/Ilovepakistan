@@ -41,20 +41,29 @@
                         @endcan
                     </div>
                 </div>
+                <div class="col-md-2 ml-auto">
+                    <select class="form-control aiz-selectpicker" name="seller_type" id="seller_type" onchange="sort_sellers()">
+                        <option value="">{{translate('Seller Type')}}</option>
+                        <option value="brand_partner"  @isset($seller_type) @if($seller_type == 'brand_partner') selected @endif @endisset>{{translate('Brand Partner')}}</option>
+                        <option value="seller_partner"  @isset($seller_type) @if($seller_type == 'seller_partner') selected @endif @endisset>{{translate('Seller Partner')}}</option>
+                        <option value="store_partner"  @isset($seller_type) @if($seller_type == 'store_partner') selected @endif @endisset>{{translate('Store Partner')}}</option>
+                    </select>
+                </div>
                 <div class="col-lg-2 ml-auto">
                     <select class="form-control aiz-selectpicker" name="verification_status" onchange="sort_sellers()" data-selected="{{ $verification_status }}">
-                        <option value="">{{ translate('Filter by Verification Status') }}</option>
+                        <option value="">{{ translate('Verification Status') }}</option>
                         <option value="verified">{{ translate('Verified') }}</option>
                         <option value="un_verified">{{ translate('Unverified') }}</option>
                     </select>
                 </div>
                 <div class="col-md-2 ml-auto">
                     <select class="form-control aiz-selectpicker" name="approved_status" id="approved_status" onchange="sort_sellers()">
-                        <option value="">{{translate('Filter by Approval')}}</option>
+                        <option value="">{{translate('Approval')}}</option>
                         <option value="1"  @isset($approved) @if($approved == '1') selected @endif @endisset>{{translate('Approved')}}</option>
                         <option value="0"  @isset($approved) @if($approved == '0') selected @endif @endisset>{{translate('Non-Approved')}}</option>
                     </select>
                 </div>
+
             @endif
             <div class="col-md-3">
                 <div class="form-group mb-0">
@@ -82,8 +91,8 @@
                         @endif
                     </th>
                     <th>{{translate('Name')}}</th>
-                    <th data-breakpoints="lg">{{translate('Details')}}</th>
-
+                    <th data-breakpoints="lg">{{translate('Seller Type')}}</th>
+                    <th data-breakpoints="lg">{{translate('Seller Details')}}</th>
                    
                     
                     @if($route == 'all_seller_route')
@@ -131,26 +140,30 @@
                         <td>
                             <div class="row gutters-5  mw-100 align-items-center">
                                 <div class="col-auto">
-                                    @php
-                                        $pill_color = 'success';
-                                        if($shop->user->seller_type =="brand_partner") {
-                                            $pill_color = 'success';
-                                        } else if($shop->user->seller_type =="verified_seller") {
-                                            $pill_color = 'info';
-                                        } else {
-                                            $pill_color = 'dark';
-                                        }
-                                    @endphp
-                                    @if($shop->user->seller_type )
-                                    <span style="position: absolute; top: -15px; left: 0; right: 0; font-size: 10px" class="bg-{{ $pill_color }}   text-light px-1 py-1 text-capitalize" style="border-radius: 20px"> {{ str_replace("_", " ", $shop->user->seller_type )}}</span>
-                                    @endif
-                                    <img style="object-fit:contain" src="{{ uploaded_asset($shop->logo) }}" class="size-70px border rounded-2 border-{{ $pill_color }} " alt="Image" onerror="this.onerror=null;this.src='{{ static_asset('assets/img/placeholder.jpg') }}';">
+                                    
+                                    <img style="object-fit:contain" src="{{ uploaded_asset($shop->logo) }}" class="size-40px border rounded-2 " alt="Image" onerror="this.onerror=null;this.src='{{ static_asset('assets/img/placeholder.jpg') }}';">
                                 </div>
                                 <div class="col">
                                     <span class="text-truncate-2">{{ $shop->name }}</span>
                                    
                                 </div>
                             </div>
+                        </td>
+                        <td>
+                            @if($shop->user->seller_type )
+                                @php
+                                    $pill_color = 'success';
+                                    if($shop->user->seller_type =="brand_partner") {
+                                        $pill_color = 'success';
+                                    } else if($shop->user->seller_type =="verified_seller") {
+                                        $pill_color = 'info';
+                                    } else {
+                                        $pill_color = 'dark';
+                                    }
+                                @endphp
+                                
+                                <span style="font-size: 10px" class="bg-{{ $pill_color }} rounded-2 text-light px-1 py-1 text-capitalize" style="border-radius: 20px"> {{ str_replace("_", " ", $shop->user->seller_type )}}</span>
+                            @endif
                         </td>
                         <td>
                             {{$shop->user->phone}} 

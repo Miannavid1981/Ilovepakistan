@@ -79,7 +79,7 @@ class ShopController extends Controller
         $user->annual_tenure = $request->annual_tenure;
         $user->designation = $request->designation;
         $user->whatsapp_number = $request->whatsapp_number;
-    
+        
         // Handle file uploads
         if ($request->hasFile('authorized_person_cnic_front')) {
             $user->authorized_person_cnic_front = $request->file('authorized_person_cnic_front')->store('uploads/cnic_fronts');
@@ -157,7 +157,7 @@ class ShopController extends Controller
                 //throw $th;
             }
         }
-        dd("errr");
+       
         flash(translate('Sorry! Something went wrong.'))->error();
         return back();
     }

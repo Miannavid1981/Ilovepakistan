@@ -159,9 +159,7 @@
                                             @endif
                                         </td>
                                         <td>
-                                            {{ 
-                                            
-                                             home_base_price($this_order_detail->product) }}
+                                            {{ home_base_price($this_order_detail->product) }}
                                         </td>
                                         <td>
                                             @if(auth()->user()->seller_type == 'brand_partner' )
