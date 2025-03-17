@@ -107,11 +107,12 @@
                                 <th data-breakpoints="lg">#</th>
                             @endif
 
-                            <th>{{ translate('Order Code') }}</th>
-                            <th data-breakpoints="md">{{ translate('Num. of Products') }}</th>
+                            <th>{{ translate('Order #') }}</th>
+                            {{-- <th data-breakpoints="md">{{ translate('Num. of Products') }}</th> --}}
                             <th data-breakpoints="md">{{ translate('Customer') }}</th>
-                            <th data-breakpoints="md">{{ translate('Seller') }}</th>
+                            {{-- <th data-breakpoints="md">{{ translate('Brand / Seller Partner') }}</th> --}}
                             <th data-breakpoints="md">{{ translate('Amount') }}</th>
+                          
                             <th data-breakpoints="md">{{ translate('Delivery Status') }}</th>
                             <th data-breakpoints="md">{{ translate('Payment method') }}</th>
                             <th data-breakpoints="md">{{ translate('Payment Status') }}</th>
@@ -142,7 +143,7 @@
                                     <td>{{ $key + 1 + ($orders->currentPage() - 1) * $orders->perPage() }}</td>
                                 @endif
                                 <td>
-                                    {{ $order->orders->first()->code }}
+                                    BH000{{ $order->id }}
                                     @if ($order->orders->first()->viewed == 0)
                                         <span class="badge badge-inline badge-info">{{ translate('New') }}</span>
                                     @endif
@@ -150,31 +151,62 @@
                                         <span class="badge badge-inline badge-danger">{{ translate('POS') }}</span>
                                     @endif
                                 </td>
-                                <td>
+                                {{-- <td>
                                     {{ $order->orders()->whereNotNull('code')->count() }}
-                                </td>
+                                </td> --}}
                                 <td>
-                                    @if ($order->user != null)
-                                        {{ $order->user->name }}
-                                    @else
-                                        Guest ({{ $order->guest_id }})
-                                    @endif
+                                    <div class="d-flex  align-items-center ">
+                                        <div class="w-40px h-40px ">
+                                            <img src="{{ uploaded_asset($order->user->avatar_original) }}" class="w-100 h-100 object-cover rounded-3 ">
+                                        </div>
+                                       
+                                        <p class="mb-0 ml-2">
+                                            @if ($order->user != null)
+                                                {{ $order->user->name }}
+                                            @else
+                                                Guest ({{ $order->guest_id }})
+                                            @endif
+
+                                        </p>
+                                    </div>
                                 </td>
-                                <td>
+                                {{-- <td>
+                                    <div class="d-flex flex-column align-items-center ">
+                                        <div class="w-40px h-40px ">
+                                            <img src="{{ uploaded_asset($brand_sold_seller->avatar_original) }}" class="w-100 h-100 object-cover rounded-3 ">
+                                        </div>
+                                       
+                                            <p class="mb-0 ">{{ $brand_sold_seller->name }}</p>
+                                        
+                                       
+                                        
+                                    </div>
+
                                     @if ($order->orders->first()->shop)
                                         {{ $order->orders->first()->name }}
                                     @else
                                         {{ translate('Inhouse Order') }}
-                                    @endif
-                                </td>
+                                    @endif 
+                                </td> --}}
                                 <td>
                                     {{ single_price($order->grand_total) }}
                                 </td>
+                              
+                                @if (addon_is_activated('refund_request'))
+                                    <td>
+                                        @if (count($order->orders->first()->refund_requests) > 0)
+                                            {{ count($order->orders->first()->refund_requests) }} {{ translate('Refund') }}
+                                        @else
+                                            {{ translate('No Refund') }}
+                                        @endif
+                                    </td>
+                                @endif
+                                
                                 <td>
-                                    {{ translate(ucfirst(str_replace('_', ' ', $order->orders->first()->delivery_status))) }}
+                                    <span class="badge badge-inline badge-warning"> {{ translate(ucfirst(str_replace('_', ' ', $order->orders->first()->delivery_status))) }}</span>
                                 </td>
                                 <td>
-                                    {{ translate(ucfirst(str_replace('_', ' ', $order->orders->first()->payment_type))) }}
+                                    <span class="badge badge-inline badge-dark"> {{ translate(ucfirst(str_replace('_', ' ', $order->payment_method))) }}</span>
                                 </td>
                                 <td>
                                     @if ($order->orders->first()->payment_status == 'paid')
@@ -185,15 +217,6 @@
                                         <span class="badge badge-inline badge-danger">{{ translate('Unpaid') }}</span>
                                     @endif
                                 </td>
-                                @if (addon_is_activated('refund_request'))
-                                    <td>
-                                        @if (count($order->orders->first()->refund_requests) > 0)
-                                            {{ count($order->orders->first()->refund_requests) }} {{ translate('Refund') }}
-                                        @else
-                                            {{ translate('No Refund') }}
-                                        @endif
-                                    </td>
-                                @endif
                                 <td> {{ $order->orders->first()->created_at->format('F j, Y \a\t g:iA') }}</td>
                                 <td class="text-right">
                                     @if (addon_is_activated('pos_system') && $order->orders->first()->order_from == 'pos')
@@ -241,7 +264,7 @@
                 </table>
 
                 <div class="aiz-pagination">
-                    {{ $orders->appends(request()->input())->links() }}
+                    {{ $combinedOrders->appends(request()->input())->links() }}
                 </div>
 
             </div>

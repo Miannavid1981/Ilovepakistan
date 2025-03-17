@@ -41,14 +41,15 @@ class SellerController extends Controller
         $sort_search = $request->search ?? null;
         $approved = $request->approved_status ?? null;
         $verification_status =  $request->verification_status ?? null;
-
+        $seller_type = $request->seller_type ?? null;
+    
         $shops = Shop::whereIn('user_id', function ($query) {
                     $query->select('id')
                     ->from(with(new User)->getTable())
                     ->where('user_type', 'seller');
                 })->latest();
-
-        if ($sort_search != null || $verification_status != null) {
+    
+        if ($sort_search != null || $verification_status != null || $seller_type != null) {
             $user_ids = User::where('user_type', 'seller');
             if($sort_search != null){
                 $user_ids = $user_ids->where(function ($user) use ($sort_search) {
@@ -57,6 +58,9 @@ class SellerController extends Controller
             }
             if($verification_status != null){
                 $user_ids = $verification_status == 'verified' ? $user_ids->where('email_verified_at', '!=', null) : $user_ids->where('email_verified_at', null);
+            }
+            if($seller_type != null){
+                $user_ids = $user_ids->where('seller_type', $seller_type);
             }
             $user_ids = $user_ids->pluck('id')->toArray();
             $shops = $shops->where(function ($shops) use ($user_ids) {
@@ -67,9 +71,8 @@ class SellerController extends Controller
             $shops = $shops->where('verification_status', $approved);
         }
         $shops = $shops->paginate(15);
-        return view('backend.sellers.index', compact('shops', 'sort_search', 'approved', 'verification_status'));
+        return view('backend.sellers.index', compact('shops', 'sort_search', 'approved', 'verification_status', 'seller_type'));
     }
-
     /**
      * Show the form for creating a new resource.
      *

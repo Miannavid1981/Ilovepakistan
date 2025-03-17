@@ -81,7 +81,7 @@
                                 </div>
                                 <div>
                                     <!-- In-house Products -->
-                                    <div class="d-flex justify-content-between mb-2">
+                                    {{-- <div class="d-flex justify-content-between mb-2">
                                         <h3 class="fs-13 fw-600 mb-0 text-truncate mr-2">
                                             <span class="badge badge-md badge-dot badge-circle badge-success mr-2"></span>
                                             {{ translate('In-house Products') }}
@@ -89,7 +89,7 @@
                                         <h3 class="fs-13 fw-600 mb-0">
                                             {{ $total_inhouse_products }}
                                         </h3>
-                                    </div>
+                                    </div> --}}
                                     <!-- Sellers Products -->
                                     <div class="d-flex justify-content-between">
                                         <h3 class="fs-13 fw-600 text-truncate mr-2">
@@ -98,6 +98,19 @@
                                         </h3>
                                         <h3 class="fs-13 fw-600 mb-0">
                                             {{ $total_sellers_products }}
+                                        </h3>
+                                    </div>
+
+                                    <div class="d-flex justify-content-between mb-2">
+                                        @php
+                                            $imports_count = \App\Models\ProductSellerMap::where('imported', 1)->count(); 
+                                        @endphp
+                                        <h3 class="fs-13 fw-600 mb-0 text-truncate mr-2">
+                                            <span class="badge badge-md badge-dot badge-circle badge-success mr-2"></span>
+                                            {{ translate('Marketplace') }}
+                                        </h3>
+                                        <h3 class="fs-13 fw-600 mb-0">
+                                            {{ $imports_count }}
                                         </h3>
                                     </div>
                                 </div>
@@ -210,141 +223,7 @@
                 </div>
             </div>
 
-            <!-- Sales & sellers -->
-            <div class="col-lg-6">
-                <div class="row gutters-16">
-                    <!-- Total Sales -->
-                    <div class="col-sm-6">
-                        <div class="dashboard-box bg-soft-primary mb-2rem overflow-hidden" style="height: 470px;">
-                            <div class="d-flex flex-column justify-content-between h-100">
-                                <!-- Total Sales -->
-                                <div>
-                                    <h1 class="fs-30 fw-600 text-primary mb-1">
-                                        {{ number_format_short($total_sale) }}
-                                    </h1>
-                                    <h3 class="fs-13 fw-600 text-primary mb-0">{{ translate('Total Sales') }}</h3>
-                                </div>
-                                <!-- Sales this month -->
-                                <div
-                                    class="d-flex align-items-center justify-content-between p-3 rounded-2 bg-primary text-white mr-2">
-                                    <h3 class="fs-13 fw-600 mb-0">
-                                        {{ translate('Sales this month') }}
-                                    </h3>
-                                    <h3 class="fs-13 fw-600 mb-0">
-                                        {{ single_price($sale_this_month) }}
-                                    </h3>
-                                </div>
-                                <!-- Sales Stat -->
-                                <div>
-                                    <h3 class="fs-13 fw-600 text-primary mb-0">{{ translate('Sales Stat') }}</h3>
-                                </div>
-                                <canvas id="graph-3" class="w-100" height="140"></canvas>
-                                <!-- Sales -->
-                                <div>
-                                    <!-- In-house Sales -->
-                                    <div class="d-flex justify-content-between mb-1">
-                                        <h3 class="fs-13 fw-600 mb-0">
-                                            <span
-                                                class="badge badge-md badge-dot badge-circle badge-info text-truncate mr-2"></span>
-                                            {{ translate('In-house Sales') }}
-                                        </h3>
-                                        <h3 class="fs-13 fw-600 mb-0">
-                                            {{ single_price($admin_sale_this_month->total_sale) }}
-                                        </h3>
-                                    </div>
-                                    <!-- Sellers Sales -->
-                                    <div class="d-flex justify-content-between">
-                                        <h3 class="fs-13 fw-600 mb-0">
-                                            <span
-                                                class="badge badge-md badge-dot badge-circle badge-success text-truncate mr-2"></span>
-                                            {{ translate('Sellers Sales') }}
-                                        </h3>
-                                        <h3 class="fs-13 fw-600 mb-0">
-                                            {{ single_price($seller_sale_this_month->total_sale) }}
-                                        </h3>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Total Sellers -->
-                    <div class="col-sm-6">
-                        <div class="dashboard-box bg-white mb-2rem overflow-hidden" style="height: 470px;">
-                            @if (get_setting('vendor_system_activation') == 1)
-                                <div class="d-flex flex-column justify-content-between h-100">
-                                    <!-- Total Sellers -->
-                                    <div>
-                                        <h1 class="fs-30 fw-600 text-dark mb-1">
-                                            {{ $total_sellers }}
-                                        </h1>
-                                        <h3 class="fs-13 fw-600 text-secondary mb-0">{{ translate('Total Sellers') }}</h3>
-                                    </div>
-                                    <!-- Sales -->
-                                    <div>
-                                        @foreach ($status_wise_sellers as $key => $status_wise_seller)
-                                            <div
-                                                class="d-flex justify-content-between @if ($key == 0) mb-1 @endif">
-                                                <h3 class="fs-13 fw-600 mb-0">
-                                                    @if ($status_wise_seller->verification_status == 1)
-                                                        <span
-                                                            class="badge badge-md badge-dot badge-circle badge-success text-truncate mr-2"></span>
-                                                        {{ translate('Approved Sellers') }}
-                                                    @else
-                                                        <span
-                                                            class="badge badge-md badge-dot badge-circle badge-danger text-truncate mr-2"></span>
-                                                        {{ translate('Pending Seller') }}
-                                                    @endif
-                                                </h3>
-                                                <h3 class="fs-13 fw-600 mb-0">
-                                                    {{ $status_wise_seller->total }}
-                                                </h3>
-                                            </div>
-                                        @endforeach
-                                    </div>
-                                    <!-- Top Sellers -->
-                                    <div>
-                                        <h3 class="fs-13 fw-600 mb-1">
-                                            <span class="badge badge-md badge-dot badge-circle badge-warning mr-2"></span>
-                                            {{ translate('Top Sellers') }}
-                                        </h3>
-                                        <div class="symbol-group">
-                                            @foreach ($top_sellers as $top_seller)
-                                                <div class="symbol size-40px rounded-content overflow-hidden"
-                                                    title="{{ $top_seller->name }}">
-                                                    <img src="{{ uploaded_asset($top_seller->avatar_original) }}"
-                                                        alt="{{ translate('seller') }}" class="h-100 img-fit lazyload"
-                                                        onerror="this.onerror=null;this.src='{{ static_asset('assets/img/placeholder.jpg') }}';">
-                                                </div>
-                                            @endforeach
-                                        </div>
-                                        <hr style="border: 1px dashed #dbdfe9;">
-                                    </div>
-                                    <!-- Sales this month -->
-                                    <div class="">
-                                        <a href="{{ route('sellers.index') }}"
-                                            class="btn btn-md btn-soft-success btn-block rounded-2 mb-3">{{ translate('All Sellers') }}</a>
-                                        <a href="{{ route('sellers.index') }}?approved_status=0"
-                                            class="btn btn-md btn-soft-danger btn-block rounded-2">{{ translate('Pending Sellers') }}</a>
-                                    </div>
-                                </div>
-                            @else
-                                <div class="d-flex flex-column align-items-center justify-content-center h-100">
-                                    <div class="h-200px">
-                                        <img src="{{ static_asset('assets/img/multivendor.jpg') }}"
-                                            alt="{{ translate('multivendor') }}" class="h-100 img-fit">
-                                    </div>
-                                    <a href="{{ route('activation.index') }}"
-                                        class="mt-4 fs-13 fw-600 text-info hov-text-primary animate-underline-primary">
-                                        {{ translate('Activate Vendor System') }}
-                                    </a>
-                                </div>
-                            @endif
-                        </div>
-                    </div>
-                </div>
-            </div>
-
+           
             <!-- Orders -->
             <div class="col-lg-6">
                 <div class="dashboard-box bg-white mb-2rem overflow-hidden">
@@ -471,6 +350,148 @@
                     </div>
                 </div>
             </div>
+
+             <!-- Sales & sellers -->
+             <div class="col-lg-6">
+                <div class="row gutters-16">
+                   
+                    <!-- Total Sellers -->
+                    <div class="col-sm-6">
+                        <div class="dashboard-box bg-white mb-2rem overflow-hidden" style="height: 470px;">
+                            @if (get_setting('vendor_system_activation') == 1)
+                                <div class="d-flex flex-column justify-content-between h-100">
+                                    <!-- Total Sellers -->
+                                    <div>
+                                        <h1 class="fs-30 fw-600 text-dark mb-1">
+                                            {{ $total_sellers }}
+                                        </h1>
+                                        <h3 class="fs-13 fw-600 text-secondary mb-0">{{ translate('Total Stores') }}</h3>
+                                    </div>
+                                    <!-- Sales -->
+                                    <div>
+                                        @foreach ($status_wise_sellers as $key => $status_wise_seller)
+                                            <div
+                                                class="d-flex justify-content-between @if ($key == 0) mb-1 @endif">
+                                                <h3 class="fs-13 fw-600 mb-0">
+                                                    @if ($status_wise_seller->verification_status == 1)
+                                                        <span
+                                                            class="badge badge-md badge-dot badge-circle badge-success text-truncate mr-2"></span>
+                                                        {{ translate('Approved Stores') }}
+                                                    @else
+                                                        <span
+                                                            class="badge badge-md badge-dot badge-circle badge-danger text-truncate mr-2"></span>
+                                                        {{ translate('Pending Stores') }}
+                                                    @endif
+                                                </h3>
+                                                <h3 class="fs-13 fw-600 mb-0">
+                                                    {{ $status_wise_seller->total }}
+                                                </h3>
+                                            </div>
+                                        @endforeach
+                                    </div>
+                                    <!-- Top Sellers -->
+                                    <div>
+                                        <h3 class="fs-13 fw-600 mb-1">
+                                            <span class="badge badge-md badge-dot badge-circle badge-warning mr-2"></span>
+                                            {{ translate('Top Sellers') }}
+                                        </h3>
+                                        <div class="symbol-group">
+                                            @foreach ($top_sellers as $top_seller)
+                                                <div class="symbol size-40px rounded-content overflow-hidden"
+                                                    title="{{ $top_seller->name }}">
+                                                    <img src="{{ uploaded_asset($top_seller->avatar_original) }}"
+                                                        alt="{{ translate('seller') }}" class="h-100 img-fit lazyload"
+                                                        onerror="this.onerror=null;this.src='{{ static_asset('assets/img/placeholder.jpg') }}';">
+                                                </div>
+                                            @endforeach
+                                        </div>
+                                        <hr style="border: 1px dashed #dbdfe9;">
+                                    </div>
+                                    <!-- Sales this month -->
+                                    <div class="">
+                                        <a href="{{ route('sellers.index') }}"
+                                            class="btn btn-md btn-soft-secondary btn-block rounded-2 mb-3">{{ translate('All Sellers') }}</a>
+                                        <a href="{{ route('sellers.index') }}?seller_type=brand_partner"
+                                            class="btn btn-md btn-success btn-block rounded-2">{{ translate('Brand Partners') }}</a>
+                                            <a href="{{ route('sellers.index') }}?seller_type=seller_partner"
+                                            class="btn btn-md btn-primary btn-block rounded-2">{{ translate('Seller Partners') }}</a>
+                                            <a href="{{ route('sellers.index') }}?seller_type=store_partner"
+                                            class="btn btn-md btn-dark btn-block rounded-2">{{ translate('Store Partners') }}</a>
+                                    </div>
+                                </div>
+                            @else
+                                <div class="d-flex flex-column align-items-center justify-content-center h-100">
+                                    <div class="h-200px">
+                                        <img src="{{ static_asset('assets/img/multivendor.jpg') }}"
+                                            alt="{{ translate('multivendor') }}" class="h-100 img-fit">
+                                    </div>
+                                    <a href="{{ route('activation.index') }}"
+                                        class="mt-4 fs-13 fw-600 text-info hov-text-primary animate-underline-primary">
+                                        {{ translate('Activate Vendor System') }}
+                                    </a>
+                                </div>
+                            @endif
+                        </div>
+                    </div>
+
+                     <!-- Total Sales -->
+                     <div class="col-sm-6">
+                        <div class="dashboard-box bg-soft-primary mb-2rem overflow-hidden" style="height: 470px;">
+                            <div class="d-flex flex-column justify-content-between h-100">
+                                <!-- Total Sales -->
+                                <div>
+                                    <h1 class="fs-30 fw-600 text-primary mb-1">
+                                        {{ number_format_short($total_sale) }}
+                                    </h1>
+                                    <h3 class="fs-13 fw-600 text-primary mb-0">{{ translate('Total Sales') }}</h3>
+                                </div>
+                                <!-- Sales this month -->
+                                <div
+                                    class="d-flex align-items-center justify-content-between p-3 rounded-2 bg-primary text-white mr-2">
+                                    <h3 class="fs-13 fw-600 mb-0">
+                                        {{ translate('Sales this month') }}
+                                    </h3>
+                                    <h3 class="fs-13 fw-600 mb-0">
+                                        {{ single_price($sale_this_month) }}
+                                    </h3>
+                                </div>
+                                <!-- Sales Stat -->
+                                <div>
+                                    <h3 class="fs-13 fw-600 text-primary mb-0">{{ translate('Sales Stat') }}</h3>
+                                </div>
+                                <canvas id="graph-3" class="w-100" height="140"></canvas>
+                                <!-- Sales -->
+                                <div>
+                                    <!-- In-house Sales -->
+                                    <div class="d-flex justify-content-between mb-1">
+                                        <h3 class="fs-13 fw-600 mb-0">
+                                            <span
+                                                class="badge badge-md badge-dot badge-circle badge-info text-truncate mr-2"></span>
+                                            {{ translate('In-house Sales') }}
+                                        </h3>
+                                        <h3 class="fs-13 fw-600 mb-0">
+                                            {{ single_price($admin_sale_this_month->total_sale) }}
+                                        </h3>
+                                    </div>
+                                    <!-- Sellers Sales -->
+                                    <div class="d-flex justify-content-between">
+                                        <h3 class="fs-13 fw-600 mb-0">
+                                            <span
+                                                class="badge badge-md badge-dot badge-circle badge-success text-truncate mr-2"></span>
+                                            {{ translate('Sellers Sales') }}
+                                        </h3>
+                                        <h3 class="fs-13 fw-600 mb-0">
+                                            {{ single_price($seller_sale_this_month->total_sale) }}
+                                        </h3>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
 
             <!-- Top Category & Top Brands -->
             <div class="col-lg-6">

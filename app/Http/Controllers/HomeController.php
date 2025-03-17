@@ -860,4 +860,15 @@ class HomeController extends Controller
  
         die;
     }
+    public function send_test_email(Request $request){
+
+        // dd("d");
+        $to = 'zohaibzafar463@gmail.com'; // Change this to your email
+        
+        Mail::raw('This is a test email from Laravel.', function ($message) use ($to) {
+            $message->to($to)
+                    ->subject('Test Email');
+        });
+        echo 'Test email sent successfully!';
+    }
 }
