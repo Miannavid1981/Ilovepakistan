@@ -97,16 +97,16 @@
                                 </div>
                             </th>
                         @else
-                            <th data-breakpoints="lg">#</th>
+                            <th >#</th>
                         @endif
                         <th>{{translate('Name')}}</th>
                         @if($type == 'Seller' || $type == 'All')
-                            <th data-breakpoints="lg">{{translate('Added By')}}</th>
+                            <th >{{translate('Added By')}}</th>
                         @endif
-                        <th data-breakpoints="lg">{{translate('Original Price')}}</th>
-                        <th data-breakpoints="lg">{{translate('Platform Fee')}}</th>
-                        <th data-breakpoints="lg">{{translate('Brand Sale')}}</th>
-                        <th data-breakpoints="lg">{{translate('Partner Profit')}}</th>
+                        <th >{{translate('Original Price')}}</th>
+                        <th >{{translate('Platform Fee')}}</th>
+                        <th >{{translate('Brand Sale')}}</th>
+                        <th >{{translate('Partner Profit')}}</th>
                         <th data-breakpoints="sm">{{translate('Rating')}}</th>
                         <th data-breakpoints="sm">{{translate('Num Of Sale')}}</th>
                         
