@@ -100,18 +100,18 @@ class OrderController extends Controller
 
     public function show($id)
     {
-        $order = Order::findOrFail(decrypt($id));
+        $combined_order = CombinedOrder::findOrFail(decrypt($id));
         
-        $order_shipping_address = json_decode($order->shipping_address);
+        $order_shipping_address = json_decode($combined_order->shipping_address);
         $delivery_boys = User::where('user_type', 'delivery_boy')
                 ->get();
                 
         if(env('DEMO_MODE') != 'On') {
-            $order->viewed = 1;
-            $order->save();
+            // $order->viewed = 1;
+            $combined_order->save();
         }
 
-        return view('backend.sales.show', compact('order', 'delivery_boys'));
+        return view('backend.sales.show', compact('combined_order', 'delivery_boys'));
     }
 
     /**
