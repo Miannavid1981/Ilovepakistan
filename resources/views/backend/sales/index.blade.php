@@ -27,6 +27,14 @@
                         </div>
                     </div>
                 @endcan
+                <div class="col-md-2 ml-auto">
+                    <select class="form-control form-control-sm aiz-selectpicker mb-2 mb-md-0" id="seller_id" name="seller_id" onchange="sort_orders()">
+                            <option value="">{{ translate('All Sellers') }}</option>
+                            @foreach (App\Models\User::where('user_type', '=', 'admin')->orWhere('user_type', '=', 'seller')->get() as $key => $seller)
+                                <option value="{{ $seller->id }}" @if ($seller->id == $seller_id) selected @endif>{{ $seller->name }}</option>
+                            @endforeach
+                    </select>
+                </div>
                 @if(Route::currentRouteName() == 'offline_payment_orders.index')
                     <div class="col-lg-2 ml-auto">
                         <select class="form-control aiz-selectpicker" name="order_type" id="order_type">
@@ -315,7 +323,9 @@
             }
 
         });
-        
+        function sort_orders(el){
+            $("#sort_orders").submit()
+        }
         function bulk_delete() {
             var data = new FormData($('#sort_orders')[0]);
             $.ajax({
