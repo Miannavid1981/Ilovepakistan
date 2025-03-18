@@ -59,6 +59,14 @@
                         <span class="aiz-side-nav-text">{{ translate('Dashboard') }}</span>
                     </a>
                 </li>
+                @if (auth()->user()->business_directory_flag == 1) 
+                    <li class="aiz-side-nav-item">
+                        <a href="{{ route('seller.business-directory.index') }}" class="aiz-side-nav-link">
+                            <i class="las la-file-alt aiz-side-nav-icon"></i>
+                            <span class="aiz-side-nav-text">{{ translate('Business Directory') }}</span>
+                        </a>
+                    </li>
+                @endif
                 @if (auth()->user()->seller_type != "brand_partner")
                 <li class="aiz-side-nav-item">
                     @if (auth()->user()->shop->verification_status == 1)
@@ -352,7 +360,7 @@
                     </a>
                 </li>
                 @endif
-
+                
                 {{-- Conversations --}}
                 {{-- @if (get_setting('conversation_system') == 1)
                     @php
