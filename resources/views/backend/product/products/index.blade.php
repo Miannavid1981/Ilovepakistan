@@ -138,8 +138,10 @@
                         if(!empty($product->seller_commission_type)) {
                                 
                             if ($product->seller_commission_type == 'percentage') {
-                                $platform_fee = ($price * $product->seller_commission_rate) / 100;
+                                $seller_profit = ($price * $product->seller_commission_rate) / 100;
                                 
+                            } else {
+                                $seller_profit = $product->seller_commission_rate;
                             }
                         }
                         $qty = 0;
