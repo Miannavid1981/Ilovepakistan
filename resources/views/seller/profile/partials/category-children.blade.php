@@ -8,7 +8,7 @@
         </label>
         @if ($child->childrenCategories->count() > 0)
             <div class="children">
-                @include('seller.profile.partials.category-children', ['children' => $child->children, 'selectedCategories' => $selectedCategories])
+                @include('seller.profile.partials.category-children', ['children' => $child->childrenCategories, 'selectedCategories' => $selectedCategories])
             </div>
         @endif
     </div>
