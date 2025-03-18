@@ -251,9 +251,25 @@
                                         <i class="las la-ellipsis-v"></i>
                                     </button>
                                     <div class="dropdown-menu dropdown-menu-right dropdown-menu-xs">
-                                        <a href="javascript:void();"  class="dropdown-item">
-                                            Make Official Brand
+                                        <a href="{{ url('/admin/all_orders?seller_id='.$shop->user->id) }}"  class="dropdown-item">
+                                            Pending Orders
                                         </a>
+                                        <a href="javascript:void();"  class="dropdown-item">
+                                            Profit History
+                                        </a>
+                                        <a href="javascript:void();"  class="dropdown-item">
+                                            Transaction History
+                                        </a>
+                                        <a href="{{ url('/admin/products/all?user_id='.$shop->user->id) }}"  class="dropdown-item">
+                                            Products
+                                        </a>
+                                        <a href="javascript:void();"  class="dropdown-item">
+                                            Imports
+                                        </a>
+                                        <a href="javascript:void();"  class="dropdown-item">
+                                            Business Directory
+                                        </a>
+                                        
                                         @can('view_seller_profile')
                                             <a href="javascript:void();" onclick="show_seller_profile('{{$shop->id}}');"  class="dropdown-item">
                                                 {{translate('Profile')}}

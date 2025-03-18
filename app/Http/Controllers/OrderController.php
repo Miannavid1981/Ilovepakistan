@@ -51,10 +51,32 @@ class OrderController extends Controller
         $delivery_status = null;
         $payment_status = '';
         $order_type = '';
-    
+        $authUser = Auth::user();
+        $seller_id = !empty($request->seller_id) ? $request->seller_id : null;
         // Fetch only Combined Orders (Main Orders)
-        $combinedOrders = CombinedOrder::orderBy('id', 'desc');
-    
+        if($seller_id){
+            $combinedOrders = CombinedOrder::whereHas('orders.orderdetails', function ($q) use ($authUser, $seller_id) {
+                $seller = User::find($seller_id);
+                if ($seller->seller_type == 'brand_partner') {
+                    $q->where('source_seller_id', $seller_id);
+                }
+            
+                if ($seller->seller_type == 'seller_partner') {
+                    $q->where(function ($q) use ($seller_id) {
+                        $q->where('seller_id', $seller_id)
+                        ->orWhere('source_seller_id', $seller_id);
+                    });
+                }
+            
+                if ($seller->seller_type == 'store_partner') {
+                    $q->where('seller_id', $seller_id);
+                }
+            })->orderBy('id', 'desc');
+        } else {
+            $combinedOrders = CombinedOrder::orderBy('id', 'desc');
+        }
+
+
         if ($request->search) {
             $sort_search = $request->search;
             $combinedOrders = $combinedOrders->whereHas('orders', function ($query) use ($sort_search) {
@@ -94,7 +116,7 @@ class OrderController extends Controller
     
         $unpaid_order_payment_notification = get_notification_type('complete_unpaid_order_payment', 'type');
     
-        return view('backend.sales.index', compact('combinedOrders', 'sort_search', 'order_type', 'payment_status', 'delivery_status', 'date', 'unpaid_order_payment_notification', 'orders'));
+        return view('backend.sales.index', compact('combinedOrders', 'sort_search', 'order_type', 'payment_status', 'delivery_status', 'date', 'unpaid_order_payment_notification', 'orders', 'seller_id'));
     }
     
 
