@@ -132,8 +132,11 @@
                             if ($product->admin_commission_type == 'percentage') {
                                 $platform_fee = ($price * $product->admin_commission_rate) / 100;
                                 
+                            } else {
+                                $platform_fee =  $product->admin_commission_rate;
                             }
                             $brand_amount = $price - $platform_fee;
+                            
                         }
                         if(!empty($product->seller_commission_type)) {
                                 
