@@ -6,7 +6,7 @@
                    class="category-checkbox">
             {{ $child->name }}
         </label>
-        @if ($child->children->count())
+        @if ($child->childrenCategories->count())
             <div class="children">
                 @include('seller.profile.partials.category-children', ['children' => $child->children, 'selectedCategories' => $selectedCategories])
             </div>
