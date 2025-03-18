@@ -21,12 +21,12 @@
     </div>
 
     <!-- Product Cards -->
-    <div class="container" id="product-cards-container">
+    <div id="product-cards-container">
         @include('seller.market.partials.product_cards', ['products' => $products, 'importedProductIds' => $importedProductIds])
     </div>
 
     <!-- Pagination -->
-    <div class="container" id="pagination-container">
+    <div id="pagination-container">
         @include('seller.market.partials.pagination', ['products' => $products])
     </div>
 
