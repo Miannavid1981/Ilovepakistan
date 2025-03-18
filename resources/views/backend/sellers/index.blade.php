@@ -110,6 +110,7 @@
                         {{-- <th data-breakpoints="lg">{{translate('Email Verification')}}</th>
                         <th data-breakpoints="lg">{{ translate('Status') }}</th> --}}
                         <th data-breakpoints="lg">{{translate('Approval')}}</th>
+                        <th data-breakpoints="lg">{{translate('Business Directory')}}</th>
                     
                     @else
                         <th data-breakpoints="lg">{{translate('Rating')}}</th>
@@ -232,6 +233,18 @@
                                     <span class="slider round"></span>
                                 </label>
                             </td>
+                            <td>
+                                <label class="aiz-switch aiz-switch-success mb-0">
+                                    <input
+                                       onchange="update_business_directory_flag(this)" 
+                                        value="{{ $shop->user->id }}" type="checkbox"
+                                        <?php if($shop->user->business_directory_flag == 1) echo "checked";?>
+                                        
+                                    >
+                                    <span class="slider round"></span>
+                                </label>
+                            </td>
+                            
                             <td>
                                 <div class="dropdown">
                                     <button type="button" class="btn btn-sm btn-circle btn-soft-primary btn-icon dropdown-toggle no-arrow" data-toggle="dropdown" href="javascript:void(0);" role="button" aria-haspopup="false" aria-expanded="false">
@@ -502,6 +515,24 @@
             $.post('{{ route('sellers.approved') }}', {_token:'{{ csrf_token() }}', id:el.value, status:status}, function(data){
                 if(data == 1){
                     AIZ.plugins.notify('success', '{{ translate('Approved sellers updated successfully') }}');
+                }
+                else{
+                    AIZ.plugins.notify('danger', '{{ translate('Something went wrong') }}');
+                }
+            });
+        }
+        function update_business_directory_flag(el){
+          
+
+            if(el.checked){
+                var status = 1;
+            }
+            else{
+                var status = 0;
+            }
+            $.post('{{ route('sellers.updatebusinessDirectoryFlag') }}', {_token:'{{ csrf_token() }}', id:el.value, status:status}, function(data){
+                if(data == 1){
+                    AIZ.plugins.notify('success', '{{ translate('Business Directory Updated successfully') }}');
                 }
                 else{
                     AIZ.plugins.notify('danger', '{{ translate('Something went wrong') }}');

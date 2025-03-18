@@ -341,6 +341,26 @@ class SellerController extends Controller
         Notification::send($users, new ShopVerificationNotification($data));
         return 1;
     }
+    public function updatebusinessDirectoryFlag(Request $request)
+    {
+        $shop = User::findOrFail($request->id);
+        $shop->business_directory_flag = $request->status;
+        $shop->save();
+        Cache::forget('verified_sellers_id');
+
+        $status = $request->status == 1 ? 'approved' : 'rejected';
+        // $users = User::findMany([$shop->user->id]);
+        // $data = array();
+        // $data['shop'] = $shop;
+        // $data['status'] = $status;
+        // $data['notification_type_id'] = $status == 'approved' ? 
+        //                                 get_notification_type('shop_verify_request_approved', 'type')->id : 
+        //                                 get_notification_type('shop_verify_request_rejected', 'type')->id;
+
+        // Notification::send($users, new ShopVerificationNotification($data));
+        return 1;
+    }
+    
 
     public function login($id)
     {

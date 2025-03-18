@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AizUploadController;
 use App\Http\Controllers\Seller\SellerMarketController;
+use App\Http\Controllers\Seller\BusinessDirectoryController as SellerBusinessDirectoryController;
 //Upload
 Route::group(['prefix' => 'seller', 'middleware' => ['seller', 'verified', 'user', 'prevent-back-history'], 'as' => 'seller.'], function () {
     Route::controller(AizUploadController::class)->group(function () {
@@ -11,6 +12,11 @@ Route::group(['prefix' => 'seller', 'middleware' => ['seller', 'verified', 'user
         Route::get('/uploads/destroy/{id}', 'destroy')->name('my_uploads.destroy');
         Route::post('/bulk-uploaded-files-delete', 'bulk_uploaded_files_delete')->name('bulk-uploaded-files-delete');
     });
+    Route::get('/business-directory', [SellerBusinessDirectoryController::class, 'index'])->name('business-directory.index');
+    Route::get('/business-directory/create', [SellerBusinessDirectoryController::class, 'create'])->name('business-directory.create');
+    Route::post('/business-directory/store', [SellerBusinessDirectoryController::class, 'store'])->name('business-directory.store');
+    Route::delete('/business-directory/{business_directory}', [SellerBusinessDirectoryController::class, 'destroy'])
+    ->name('business-directory.destroy');
 });
 
 Route::group(['namespace' => 'App\Http\Controllers\Seller', 'prefix' => 'seller', 'middleware' => ['seller', 'verified', 'user', 'prevent-back-history'], 'as' => 'seller.'], function () {
@@ -178,7 +184,8 @@ Route::controller(DashboardController::class)->group(function () {
         Route::get('/market', 'index')->name('market');
         Route::post('/store/imported/products', 'store')->name('imported.products.store');
     });
-    
+  
+
     
 });
 

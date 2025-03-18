@@ -22,7 +22,9 @@
 }
 
  </style>
+  @if($seller_type != 'brand_partner')
     <div class="row">
+       
         <div class="col-12">
             <h4>Marketplace Stats</h4>
         </div>
@@ -38,7 +40,7 @@
                     </h3>
                     @if($wallet_amount)
                     <p class="mt-4">
-                      <a href="" class="btn btn-primary "> 
+                    <a href="" class="btn btn-primary "> 
                         
                             <svg id="Group_22725" data-name="Group 22725" xmlns="http://www.w3.org/2000/svg" class="mr-2" width="18" height="18"
                             viewBox="0 0 48 48">
@@ -59,7 +61,6 @@
                 </div>
             </div>
         </div>
-        
         <div class="col-sm-6 col-md-3 col-xxl-3 mt-3">
             <div class="card shadow-none bg-soft-warning mb-0">
                 <div class="card-body">
@@ -103,6 +104,7 @@
             </div>
         </div>
     </div>
+   
     <div class="row ">
         
         <div class="col-sm-6 col-md-3 col-xxl-3 mt-3">
@@ -186,6 +188,7 @@
             </div>
         </div>
     </div>
+    @endif
     @if( $seller_type != "store_partner" )
     <div class="row mt-3">
         <div class="col-12">

@@ -56,7 +56,7 @@ use App\Http\Controllers\UpdateController;
 use App\Http\Controllers\WarrantyController;
 use App\Http\Controllers\WebsiteController;
 use App\Http\Controllers\ZoneController;
-
+use App\Http\Controllers\BusinessDirectoryController;
 /*
   |--------------------------------------------------------------------------
   | Admin Routes
@@ -78,7 +78,11 @@ Route::controller(UpdateController::class)->group(function () {
 
 Route::get('/admin', [AdminController::class, 'admin_dashboard'])->name('admin.dashboard')->middleware(['auth', 'admin', 'prevent-back-history']);
 Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin', 'prevent-back-history']], function () {
-
+    Route::get('/business-directory', [BusinessDirectoryController::class, 'index'])->name('admin_business_directory.index');
+    Route::get('/business-directory/create', [BusinessDirectoryController::class, 'create'])->name('admin_business_directory.create');
+    Route::post('/admin_business_directory/store', [BusinessDirectoryController::class, 'store'])->name('admin_business_directory.store');
+    Route::delete('/business-directory/{business_directory}', [BusinessDirectoryController::class, 'destroy'])
+    ->name('business-directory.destroy');
     // category
     Route::resource('categories', CategoryController::class);
     Route::controller(CategoryController::class)->group(function () {
@@ -192,6 +196,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin', 'prevent-ba
         Route::post('/sellers/payment_modal', 'payment_modal')->name('sellers.payment_modal');
         Route::post('/sellers/profile_modal', 'profile_modal')->name('sellers.profile_modal');
         Route::post('/sellers/approved', 'updateApproved')->name('sellers.approved');
+        Route::post('/sellers/updatebusinessDirectoryFlag', 'updatebusinessDirectoryFlag')->name('sellers.updatebusinessDirectoryFlag');
         Route::post('/sellers/set-commission', 'setSellerBasedCommission')->name('set_seller_based_commission');
         Route::post('/sellers/edit-custom-followers', 'editSellerCustomFollowers')->name('edit_Seller_custom_followers');
     });
