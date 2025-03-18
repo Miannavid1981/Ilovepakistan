@@ -293,7 +293,7 @@
                                                     </label>
                                                     @if ($child->childrenCategories->count())
                                                         <div class="children">
-                                                            @include('partials.category-children', ['children' => $category->childrenCategories, 'selectedCategories' => $selectedCategories])
+                                                            @include('seller.profile.partials.category-children', ['children' => $category->childrenCategories, 'selectedCategories' => $selectedCategories])
                                                         </div>
                                                     @endif
                                                 </div>
