@@ -10,31 +10,31 @@
 
     }
     </style>
-<div class="container">
-        <h1>Marketplace</h1>
 
-        <!-- Search Bar -->
-        <div class="row mb-4">
-            <div class="col-12">
-                <input type="text" id="product-search" class="form-control " style="border-radius: 30px; background: #eee" placeholder="Search products by name">
-            </div>
+    <h1>Marketplace</h1>
+
+    <!-- Search Bar -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <input type="text" id="product-search" class="form-control " style="border-radius: 30px; background: #eee" placeholder="Search products by name">
         </div>
-
-        <!-- Product Cards -->
-        <div class="container" id="product-cards-container">
-            @include('seller.market.partials.product_cards', ['products' => $products, 'importedProductIds' => $importedProductIds])
-        </div>
-
-        <!-- Pagination -->
-        <div class="container" id="pagination-container">
-            @include('seller.market.partials.pagination', ['products' => $products])
-        </div>
-
-        <!-- Fixed Import Button -->
-        <button id="import-products-btn" class="m-4 rounded-circle p-0 border-0" style="width: 80px; height:80px; ">
-            <img src="https://static.vecteezy.com/system/resources/previews/017/460/179/non_2x/add-media-button-icon-isolated-on-a-square-background-vector.jpg"  class="w-100 h-100 object-cover rounded-circle">
-        </button>
     </div>
+
+    <!-- Product Cards -->
+    <div class="container" id="product-cards-container">
+        @include('seller.market.partials.product_cards', ['products' => $products, 'importedProductIds' => $importedProductIds])
+    </div>
+
+    <!-- Pagination -->
+    <div class="container" id="pagination-container">
+        @include('seller.market.partials.pagination', ['products' => $products])
+    </div>
+
+    <!-- Fixed Import Button -->
+    <button id="import-products-btn" class="m-4 rounded-circle p-0 border-0" style="width: 80px; height:80px; ">
+        <img src="https://static.vecteezy.com/system/resources/previews/017/460/179/non_2x/add-media-button-icon-isolated-on-a-square-background-vector.jpg"  class="w-100 h-100 object-cover rounded-circle">
+    </button>
+
 
 @endsection
 
