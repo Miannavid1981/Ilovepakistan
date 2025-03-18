@@ -211,7 +211,7 @@
                         </td>
                         <td>
                             @if( $platform_fee > 0 )
-                            <span class="text-success text-truncate-2">+{{ single_price($platform_fee) }}</span>
+                            <span class="text-success text-truncate-2">+{{ single_price($platform_fee - $seller_profit) }}</span>
                             @else 
                                 -
                             @endif
