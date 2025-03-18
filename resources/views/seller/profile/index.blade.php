@@ -305,7 +305,7 @@
                             @endforeach
                         </div>
 
-                        <button type="submit">Save Preferences</button>
+                        <button class="btn btn-primary" type="submit">Save Preferences</button>
                     </form>
                 </div>
             </div>
