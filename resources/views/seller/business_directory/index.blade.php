@@ -71,15 +71,17 @@
                                     <td>
                                         {{-- <a href="" class="btn btn-info btn-sm">View</a>
                                         <a href="" class="btn btn-warning btn-sm">Edit</a> --}}
-                                        <a href="{{ route('seller.business-directory.edit', $item->id) }}" class="btn btn-success">
-                                            Edit
-                                        </a>
-                                        <form action="{{ route('seller.business-directory.destroy', ['business_directory' => $item->id]) }}" method="POST" style="display:inline;">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this?');">Delete</button>
-                                        </form>
-                                        
+                                        <div class="d-flex ">
+                                            <a href="{{ route('seller.business-directory.edit', $item->id) }}" class="btn btn-success btn-sm me-2">
+                                                <i class="la la-edit fs-15"></i>
+                                            </a>
+                                            <form action="{{ route('seller.business-directory.destroy', ['business_directory' => $item->id]) }}" method="POST" style="display:inline;">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this?');"><i class="la la-trash fs-15"></i></button>
+                                            </form>
+                                            
+                                        </div>
                                     </td>
                                 </tr>
                             @endforeach
