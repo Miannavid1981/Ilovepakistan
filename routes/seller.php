@@ -14,6 +14,8 @@ Route::group(['prefix' => 'seller', 'middleware' => ['seller', 'verified', 'user
     });
     Route::get('/business-directory', [SellerBusinessDirectoryController::class, 'index'])->name('business-directory.index');
     Route::get('/business-directory/create', [SellerBusinessDirectoryController::class, 'create'])->name('business-directory.create');
+    Route::get('/business-directory/edit/{id}', [SellerBusinessDirectoryController::class, 'edit'])->name('business-directory.edit');
+    Route::put('/business-directory/update/{id}', [SellerBusinessDirectoryController::class, 'update'])->name('business-directory.update');
     Route::post('/business-directory/store', [SellerBusinessDirectoryController::class, 'store'])->name('business-directory.store');
     Route::delete('/business-directory/{business_directory}', [SellerBusinessDirectoryController::class, 'destroy'])
     ->name('business-directory.destroy');

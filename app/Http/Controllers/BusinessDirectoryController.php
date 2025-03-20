@@ -44,27 +44,39 @@ class BusinessDirectoryController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'phone' => 'required|string|max:255',
-            'company' => 'nullable|string|max:255', // Allow null values
-            'city_id' => 'required|exists:cities,id', // Ensure city_id is required
-            'area' => 'nullable|string|max:255', // Validate area_id if provided
-            'category_id' => 'required|exists:categories,id', // Ensure category_id is required
-            'business_type' => 'nullable|string|max:255', // Validate if provided
+            'whatsapp_no' => 'nullable|string|max:255',
+            'designation' => 'nullable|string|max:255',
+            'company' => 'nullable|string|max:255',
+            'city_id' => 'required|exists:cities,id',
+            'area' => 'nullable|string|max:255',
+            'category_id' => 'required|exists:categories,id',
+            'product_category_id' => 'required|exists:categories,id',
+            'business_type' => 'required|string|max:255',
+            'ownership_type' => 'required|string|max:255',
+            'google_sheet_url' => 'nullable|url',
+            'trust_level' => 'required|integer|min:1|max:5',
         ]);
-        
-
+    
         BusinessDirectory::create([
             'user_id' => Auth::id(),
             'name' => $request->name,
             'phone' => $request->phone,
+            'whatsapp_no' => $request->whatsapp_no,
+            'designation' => $request->designation,
             'company' => $request->company,
             'city_id' => $request->city_id,
             'area' => $request->area,
             'category_id' => $request->category_id,
+            'product_category_id' => $request->product_category_id,
             'business_type' => $request->business_type,
+            'ownership_type' => $request->ownership_type,
+            'google_sheet_url' => $request->google_sheet_url,
+            'trust_level' => $request->trust_level,
         ]);
-
+    
         return redirect()->route('seller.business-directory.index')->with('success', 'Business added successfully.');
     }
+    
     public function destroy(BusinessDirectory $business_directory)
     {
         if ($business_directory->user_id !== Auth::id()) {
