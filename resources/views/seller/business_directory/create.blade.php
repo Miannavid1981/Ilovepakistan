@@ -14,7 +14,7 @@
         </div>
     @endif
 
-    <form action="{{ route('seller.business-directory.store') }}" method="POST">
+    <form action="{{ route('seller.business-directory.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
         
         <!-- Business Name -->
@@ -54,7 +54,7 @@
 
         <!-- Category -->
         <div class="mb-4">
-            <label class="block text-gray-700 font-bold mb-2">Category</label>
+            <label class="block text-gray-700 font-bold mb-2">Product Category</label>
             <select name="category_id" class="w-full p-2 border rounded" required>
                 <option value="">Select Category</option>
                 @foreach ($categories as $category)
@@ -68,8 +68,64 @@
             <label class="block text-gray-700 font-bold mb-2">Business Type</label>
             <select name="business_type" class="w-full p-2 border rounded" >
                 <option value="">Select Business Type</option>
-                <option value="distributor">Distributor</option>
+                <option value="Manufacturer">Manufacturer</option>
+                <option value="Exporter">Exporter</option>
+                <option value="Importer">Importer</option>
+                <option value="Distributor">Distributor</option>
+                <option value="Wholeseller">Wholeseller</option>
+                <option value="Dealer">Dealer</option>
+                <option value="Agent">Agent</option>
+                <option value="Shopkeeper">Shopkeeper</option>
+                <option value="Trader">Trader</option>
+                <option value="Service Provider">Service Provider</option>
             </select>
+        </div>
+        <!-- Whatsapp Number -->
+        <div class="mb-4">
+            <label class="block text-gray-700 font-bold mb-2">WhatsApp No</label>
+            <input type="text" name="whatsapp_no" class="w-full p-2 border rounded">
+        </div>
+
+        <!-- Designation -->
+        <div class="mb-4">
+            <label class="block text-gray-700 font-bold mb-2">Designation</label>
+            <input type="text" name="designation" class="w-full p-2 border rounded">
+        </div>
+
+        <!-- Google Sheet URL -->
+        <div class="mb-4">
+            <label class="block text-gray-700 font-bold mb-2">Google Sheet URL</label>
+            <input type="url" name="google_sheet_url" class="w-full p-2 border rounded">
+        </div>
+
+       
+        <!-- Ownership Type -->
+        <div class="mb-4">
+            <label class="block text-gray-700 font-bold mb-2">Ownership Type</label>
+            <select name="ownership_type" class="w-full p-2 border rounded" required>
+                <option value="">Select Ownership Type</option>
+                <option value="Sole Proprietor">Sole Proprietor</option>
+                <option value="Partnership">Partnership</option>
+                <option value="SMC Pvt Ltd">SMC Pvt Ltd</option>
+                <option value="Pvt Ltd">Pvt Ltd</option>
+                <option value="Public Ltd">Public Ltd</option>
+            </select>
+        </div>
+
+        <!-- Trust Level -->
+        <div class="mb-4">
+            <label class="block text-gray-700 font-bold mb-2">Trust Level</label>
+            <select name="trust_level" class="w-full p-2 border rounded" required>
+                <option value="1">⭐</option>
+                <option value="2">⭐⭐</option>
+                <option value="3">⭐⭐⭐</option>
+                <option value="4">⭐⭐⭐⭐</option>
+                <option value="5">⭐⭐⭐⭐⭐</option>
+            </select>
+        </div>
+        <div class="mb-4">
+            <label class="block text-gray-700 font-bold mb-2">Upload Notes</label>
+            <input type="file" name="notes" class="w-full p-2 border rounded">
         </div>
 
         <!-- Submit Button -->

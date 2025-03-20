@@ -23,14 +23,18 @@
                             <tr>
                                 <th>ID</th>
                                 <th>Name</th>
-                                <th>Company</th>
+                                <th>Contact No</th>
+                                <th>WhatsApp No</th>
+                                <th>Designation</th>
+                                <th>Business Name</th>
+                                <th>Product Category</th>
                                 <th>Business Type</th>
-                               
-                                <th>Category</th>
+                                <th>Ownership Type</th>
                                 <th>City</th>
                                 <th>Area</th>
-                                {{-- <th>Address</th> --}}
-                                <th>Phone</th>
+                                <th>Trust Level</th>
+                                <th>Document Notes</th>
+                                <th>Google Sheet</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
@@ -39,23 +43,45 @@
                                 <tr>
                                     <td>{{ $item->id }}</td>
                                     <td>{{ $item->name }}</td>
+                                    <td>{{ $item->phone }}</td>
+                                    <td>{{ $item->whatsapp_no }}</td>
+                                    <td>{{ $item->designation }}</td>
                                     <td>{{ $item->company }}</td>
-                                    <td>{{ $item->business_type }}</td>
                                     <td>{{ $item->category->name }}</td>
+                                    <td>{{ $item->business_type }}</td>
+                                    <td>{{ $item->ownership_type }}</td>
                                     <td>{{ $item->city->name }}</td>
                                     <td>{{ $item->area }}</td>
-                                    
-                                    {{-- <td>{{ $item->address }}</td> --}}
-                                    <td>{{ $item->phone }}</td>
+                                    <td>{!! str_repeat('⭐', $item->trust_level) !!}
+                                    </td>
+                                    <td>
+                                        @if ($item->notes)
+                                            <a href="{{ asset('storage/' . $item->notes) }}" target="_blank" class="btn btn-dark">View File</a>
+                                        @else
+                                            N/A
+                                        @endif
+                                    </td>
+                                    <td>
+                                        @if ($item->google_sheet_url)
+                                            <a href="{{ $item->google_sheet_url }}" target="_blank" class="btn btn-light p-0"><img class="w-40px h-auto" src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Google_Sheets_logo_%282014-2020%29.svg/1200px-Google_Sheets_logo_%282014-2020%29.svg.png"></a>
+                                        @else
+                                            N/A
+                                        @endif
+                                    </td>
                                     <td>
                                         {{-- <a href="" class="btn btn-info btn-sm">View</a>
                                         <a href="" class="btn btn-warning btn-sm">Edit</a> --}}
-                                        <form action="{{ route('seller.business-directory.destroy', ['business_directory' => $item->id]) }}" method="POST" style="display:inline;">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this?');">Delete</button>
-                                        </form>
-                                        
+                                        <div class="d-flex ">
+                                            <a href="{{ route('seller.business-directory.edit', $item->id) }}" class="btn btn-success btn-sm me-2">
+                                                <i class="la la-edit fs-15"></i>
+                                            </a>
+                                            <form action="{{ route('seller.business-directory.destroy', ['business_directory' => $item->id]) }}" method="POST" style="display:inline;">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this?');"><i class="la la-trash fs-15"></i></button>
+                                            </form>
+                                            
+                                        </div>
                                     </td>
                                 </tr>
                             @endforeach

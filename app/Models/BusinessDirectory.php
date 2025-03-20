@@ -13,15 +13,10 @@ class BusinessDirectory extends Model
     protected $table = 'business_directory';
 
     protected $fillable = [
-        'user_id',
-        'name',
-        'phone',
-        'company',
-        'city_id',
-        'area',
-        'category_id',
-        'business_type_id',
+        'user_id', 'name', 'phone', 'whatsapp_no', 'designation', 'company', 'city_id', 'area', 
+        'category_id',  'business_type', 'ownership_type', 'google_sheet_url', 'trust_level', 'notes'
     ];
+    
 
     /**
      * Get the user who owns this business entry.
