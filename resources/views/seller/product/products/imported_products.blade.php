@@ -161,7 +161,7 @@
 
                                     <div class="d-flex align-items-center ">
                                         <div class="w-40px h-40px ">
-                                            <img src="{{ uploaded_asset($product->thumbnail) }}" class="w-100 h-100 object-cover rounded-3 ">
+                                            <img src="{{ !empty($product->thumbnail) ? uploaded_asset($product->thumbnail) : static_asset('assets/img/avatar-place.png') }}" class="w-100 h-100 object-cover rounded-3 ">
                                         </div>
                                         <div class="ml-2">
                                             
