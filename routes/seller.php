@@ -47,6 +47,9 @@ Route::controller(DashboardController::class)->group(function () {
         Route::post('/product-search', 'product_search')->name('product.search');
         Route::post('/get-selected-products', 'get_selected_products')->name('get-selected-products');
 
+        Route::get('/product/check-sku',  'checkSku')->name('product.checkSku');
+
+
         // category-wise discount set
         Route::get('/categories-wise-product-discount', 'categoriesWiseProductDiscount')->name('categories_wise_product_discount');
         Route::post('/set-product-discount', 'setProductDiscount')->name('set_product_discount');

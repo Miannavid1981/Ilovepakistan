@@ -93,6 +93,12 @@ class ProductController extends Controller
 
         return view('seller.product.products.imported_products', compact('product_ids', 'search'));
     }
+    public function checkSku(Request $request)
+    {
+        $exists = DB::table('product_stocks')->where('sku', $request->sku)->exists();
+        return response()->json(['exists' => $exists]);
+    }
+
     public function import_history(Request $request)
     {
         $search = null;
@@ -149,6 +155,13 @@ class ProductController extends Controller
                 flash(translate('Please upgrade your package.'))->warning();
                 return redirect()->route('seller.products');
             }
+        }
+
+        $exists = DB::table('product_stocks')->where('sku', $request->sku)->exists();
+
+        if($exists){
+            flash(translate('SKU  '.$request->sku.' already exists. Please choose another'))->warning();
+            return back();
         }
 
         $product = $this->productService->store($request->except([
