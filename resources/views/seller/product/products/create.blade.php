@@ -276,6 +276,7 @@
                                     </label>
                                     <div class="col-md-6">
                                         <input type="text" placeholder="{{ translate('SKU') }}" name="sku" class="form-control" required>
+                                        <span class="text-danger" id="sku_error"></span>
                                     </div>
                                 </div>
                                 
@@ -901,6 +902,33 @@
         });
         update_sku();
     });
+    
+    $('[name="sku"]').on('keyup', function () {
+        let sku = $(this).val();
+        let errorField = $("#sku_error");
+
+        if (sku.length > 2) { // Only check if SKU has at least 3 characters
+            $.ajax({
+                url: "{{ route('seller.product.checkSku') }}",
+                type: "GET",
+                data: { sku: sku },
+                success: function (response) {
+                    if (response.exists) {
+                        errorField.text("SKU already exists. Please choose another.").css("color", "red");
+                    } else {
+                        errorField.text("");
+                    }
+                },
+                error: function () {
+                    errorField.text("Error checking SKU. Please try again.").css("color", "red");
+                }
+            });
+        } else {
+            errorField.text(""); // Clear error if SKU length is too short
+        }
+    });
+
+
 
     function fq_bought_product_selection_type(){
         var productSelectionType = $("input[name='frequently_bought_selection_type']:checked").val();

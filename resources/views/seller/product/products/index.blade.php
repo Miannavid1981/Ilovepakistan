@@ -124,6 +124,8 @@
                                 <td>
                                     <a href="{{ $product_url }}" target="_blank" class="text-reset">
                                         {{ $product->getTranslation('name') }}
+                                        <br>
+                                        <b>SKIN: </b>{{ $encrypted_skin }}
                                     </a>
                                 </td>
                                 {{-- <td>
