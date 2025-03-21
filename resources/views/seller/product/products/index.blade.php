@@ -106,6 +106,12 @@
 
                     <tbody>
                         @foreach ($products as $key => $product)
+                                @php
+                                    $seller_id =  $product->user_id ?? null;
+                                    $seller_map = \App\Models\ProductSellerMap::where('source_seller_id', $seller_id  )->first();
+                                    $encrypted_skin = $seller_map->encrypted_hash ?? '';
+                                    $product_url = url('/product/' . $product->slug . '/' . $encrypted_skin);
+                                @endphp
                             <tr>
                                 <td>
                                     <div class="form-group d-inline-block">
@@ -116,7 +122,7 @@
                                     </div>
                                 </td>
                                 <td>
-                                    <a href="{{ route('product', $product->slug) }}" target="_blank" class="text-reset">
+                                    <a href="{{ $product_url }}" target="_blank" class="text-reset">
                                         {{ $product->getTranslation('name') }}
                                     </a>
                                 </td>
@@ -157,6 +163,14 @@
                                     </label>
                                 </td>
                                 <td class="text-right">
+                                
+                                <a class="btn btn-dark fs-12 py-1 px-2  btn-sm"  href="{{route('seller.import_history', ['id'=> $product->id])}}" title="{{ translate('View') }}">
+                                    Track Imports
+                                </a>
+                                <a class="btn btn-soft-success btn-icon btn-circle btn-sm"  href="{{ $product_url }}" target="_blank" title="{{ translate('View') }}">
+                                    <i class="las la-eye"></i>
+                                </a>
+                                
                                 <a class="btn btn-soft-info btn-icon btn-circle btn-sm" href="{{route('seller.products.edit', ['id'=>$product->id, 'lang'=>env('DEFAULT_LANGUAGE')])}}" title="{{ translate('Edit') }}">
                                     <i class="las la-edit"></i>
                                 </a>

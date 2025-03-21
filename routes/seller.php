@@ -30,7 +30,7 @@ Route::controller(DashboardController::class)->group(function () {
     Route::controller(ProductController::class)->group(function () {
         Route::get('/products', 'index')->name('products');
         Route::get('/imported-products', 'imported_products')->name('imported_products');
-        
+        Route::get('/import-history', 'import_history')->name('import_history');
         Route::get('/product/create', 'create')->name('products.create');
         Route::post('/products/store/', 'store')->name('products.store');
         Route::get('/product/{id}/edit', 'edit')->name('products.edit');
