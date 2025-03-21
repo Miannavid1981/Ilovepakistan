@@ -135,7 +135,13 @@
                                 <span class="d-block fw-500 my-1">{{Auth::user()->name}}</span>
                                 @if (auth()->user()->shop->verification_status == 1)
                                     <span class="bg-success text-white px-2 py-1" style="border-radius: 20px">
+                                        @if(auth()->user()->seller_type == 'brand_partner')
                                         Approved
+                                        @elseif (auth()->user()->seller_type == 'seller_partner')
+                                        Verified
+                                        @elseif (auth()->user()->seller_type == 'store_partner')
+                                        Authorized
+                                        @endif
                                     </span>
                                 @else 
                                     <span class="bg-warning text-white px-2 py-1 " style="border-radius: 20px">
