@@ -252,7 +252,37 @@ class ProductController extends Controller
 
         return redirect()->route('products.admin');
     }
+    public function import_history(Request $request)
+    {
+        $search = null;
 
+        $product = Product::find($request->id);
+        // Get product IDs that are imported and belong to the logged-in seller
+        $product_ids = \App\Models\ProductSellerMap::where('imported', 1)
+            ->where('product_id', $request->id)
+            ->orderBy('created_at', 'desc');
+             // Retrieve only product IDs
+       
+        // Get products that match the IDs
+        // $products = Product::whereIn('id', $product_ids)
+        //     ->where('digital', 0)
+        //     ->where('auction_product', 0)
+        //     ->where('wholesale_product', 0)
+        //     ->orderBy('created_at', 'desc');
+
+        
+            // dd($products);
+        // Apply search filter if provided
+        // if ($request->has('search')) {
+        //     $search = $request->search;
+        //     $products = $products->where('name', 'like', '%' . $search . '%');
+        // }
+
+        // Paginate results
+        $product_ids = $product_ids->paginate(10);
+
+        return view('backend.product.products.import_history', compact('product_ids', 'search', 'product'));
+    }
     /**
      * Display the specified resource.
      *

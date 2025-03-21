@@ -81,7 +81,7 @@
             </div>
         </div>
 
-        <div class="card-body">
+        <div class="card-body table-responsive">
             <table class="table aiz-table mb-0">
                 <thead>
                     <tr>
@@ -162,6 +162,12 @@
                         
                     
                     @endphp
+                    @php
+                        $seller_id =  $product->user_id ?? null;
+                        $seller_map = \App\Models\ProductSellerMap::where('source_seller_id', $seller_id  )->first();
+                        $encrypted_skin = $seller_map->encrypted_hash ?? '';
+                        $product_url = url('/product/' . $product->slug . '/' . $encrypted_skin);
+                    @endphp
                     <tr @if($qty <= $product->low_stock_quantity) class="bg-soft-danger" @endif>
                         @if(auth()->user()->can('product_delete'))
                             <td>
@@ -183,6 +189,7 @@
                                 <div class="col">
                                     <span class="badge badge-primary w-auto">{{ $product->main_category->name }} </span>
                                     <span class="text-muted text-truncate-2">{{ $product->getTranslation('name') }}</span>
+                                    <b>SKIN: </b>{{ $encrypted_skin }}
                                 </div>
                             </div>
                         </td>
@@ -230,6 +237,8 @@
 
                         </td>
                         <td>
+                            <div class="d-flex">
+
                             @if($product->rating > 0)
                                 @for ( $i = 1; $i<= $product->rating; $i++ )
                                     <i class="la la-star text-warning fs-16"></i>
@@ -238,7 +247,7 @@
                             @else
                                 -
                             @endif
-                            
+                            </div>
                            
                         </td>
                         <td>
@@ -306,30 +315,37 @@
                             </label>
                         </td>
                         <td class="text-right">
-                            <a class="btn btn-soft-success btn-icon btn-circle btn-sm"  href="{{ route('product', $product->slug) }}" target="_blank" title="{{ translate('View') }}">
-                                <i class="las la-eye"></i>
-                            </a>
-                            @can('product_edit')
-                                @if ($type == 'Seller')
-                                    <a class="btn btn-soft-primary btn-icon btn-circle btn-sm" href="{{route('products.seller.edit', ['id'=>$product->id, 'lang'=>env('DEFAULT_LANGUAGE')] )}}" title="{{ translate('Edit') }}">
-                                        <i class="las la-edit"></i>
-                                    </a>
-                                @else
-                                    <a class="btn btn-soft-primary btn-icon btn-circle btn-sm" href="{{route('products.admin.edit', ['id'=>$product->id, 'lang'=>env('DEFAULT_LANGUAGE')] )}}" title="{{ translate('Edit') }}">
-                                        <i class="las la-edit"></i>
-                                    </a>
-                                @endif
-                            @endcan
-                            @can('product_duplicate')
-                                <a class="btn btn-soft-warning btn-icon btn-circle btn-sm" href="{{route('products.duplicate', ['id'=>$product->id, 'type'=>$type]  )}}" title="{{ translate('Duplicate') }}">
-                                    <i class="las la-copy"></i>
+                            <div class="d-flex">
+                                <a class="btn btn-dark fs-12 py-1 px-2  btn-sm"  href="{{route('import_history', ['id'=> $product->id])}}" title="{{ translate('View') }}">
+                                    Track Imports
                                 </a>
-                            @endcan
-                            @can('product_delete')
-                                <a href="#" class="btn btn-soft-danger btn-icon btn-circle btn-sm confirm-delete" data-href="{{route('products.destroy', $product->id)}}" title="{{ translate('Delete') }}">
-                                    <i class="las la-trash"></i>
+                                <a class="btn btn-soft-success btn-icon btn-circle btn-sm"  href="{{ $product_url }}" target="_blank" title="{{ translate('View') }}">
+                                    <i class="las la-eye"></i>
                                 </a>
-                            @endcan
+                                @can('product_edit')
+                                    @if ($type == 'Seller')
+                                        <a class="btn btn-soft-primary btn-icon btn-circle btn-sm" href="{{route('products.seller.edit', ['id'=>$product->id, 'lang'=>env('DEFAULT_LANGUAGE')] )}}" title="{{ translate('Edit') }}">
+                                            <i class="las la-edit"></i>
+                                        </a>
+                                    @else
+                                        <a class="btn btn-soft-primary btn-icon btn-circle btn-sm" href="{{route('products.admin.edit', ['id'=>$product->id, 'lang'=>env('DEFAULT_LANGUAGE')] )}}" title="{{ translate('Edit') }}">
+                                            <i class="las la-edit"></i>
+                                        </a>
+                                    @endif
+                                @endcan
+                                @can('product_duplicate')
+                                    <a class="btn btn-soft-warning btn-icon btn-circle btn-sm" href="{{route('products.duplicate', ['id'=>$product->id, 'type'=>$type]  )}}" title="{{ translate('Duplicate') }}">
+                                        <i class="las la-copy"></i>
+                                    </a>
+                                @endcan
+                                @can('product_delete')
+                                    <a href="#" class="btn btn-soft-danger btn-icon btn-circle btn-sm confirm-delete" data-href="{{route('products.destroy', $product->id)}}" title="{{ translate('Delete') }}">
+                                        <i class="las la-trash"></i>
+                                    </a>
+                                @endcan
+
+                            </div>
+                           
                         </td>
                     </tr>
                     @endforeach
