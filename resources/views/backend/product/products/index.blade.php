@@ -275,20 +275,30 @@
                                 <span class="slider round"></span>
                             </label>
                         </td>
-                        <td>
-                            <label class="aiz-switch aiz-switch-success mb-0">
-                                <input onchange="update_published(this)" value="{{ $product->id }}" type="checkbox" <?php if ($product->published == 1) echo "checked"; ?> >
-                                <span class="slider round"></span>
-                            </label>
-                        </td>
-                        {{-- @if(get_setting('product_approve_by_admin') == 1 && $type == 'Seller') --}}
+                        @if(!empty($product->admin_commission_rate))
                             <td>
                                 <label class="aiz-switch aiz-switch-success mb-0">
-                                    <input onchange="update_approved(this)" value="{{ $product->id }}" type="checkbox" <?php if ($product->approved == 1) echo "checked"; ?> >
+                                    <input onchange="update_published(this)" value="{{ $product->id }}" type="checkbox" <?php if ($product->published == 1) echo "checked"; ?> >
                                     <span class="slider round"></span>
                                 </label>
                             </td>
-                        {{-- @endif --}}
+                            {{-- @if(get_setting('product_approve_by_admin') == 1 && $type == 'Seller') --}}
+                                <td>
+                                    <label class="aiz-switch aiz-switch-success mb-0">
+                                        <input onchange="update_approved(this)" value="{{ $product->id }}" type="checkbox" <?php if ($product->approved == 1) echo "checked"; ?> >
+                                        <span class="slider round"></span>
+                                    </label>
+                                </td>
+                            {{-- @endif --}}
+
+                        @else 
+                                <td colspan="2">
+                                    <span class="badge badge-danger w-auto mb-2"> Commission Required</span>
+                                    <br>
+                                    
+                                    <a href="{{ url('/admin/products/admin/'.$product->id.'/edit?lang=en#product-commissions') }}"> <i class="la la-gear fs-16"></i> Configure</a>
+                                </td>
+                        @endif
                         <td>
                             <label class="aiz-switch aiz-switch-success mb-0">
                                 <input onchange="update_featured(this)" value="{{ $product->id }}" type="checkbox" <?php if ($product->featured == 1) echo "checked"; ?> >
