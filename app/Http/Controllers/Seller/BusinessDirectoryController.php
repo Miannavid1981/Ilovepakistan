@@ -8,22 +8,68 @@ use App\Models\BusinessDirectory;
 use Illuminate\Support\Facades\Auth;
 use App\Models\City;
 use App\Models\Category;
+use App\Models\Brand;
+use App\Models\SellerCategoryPreference;
+
 // use App\Models\BusinessDirectory;
 class BusinessDirectoryController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        // Seller can only see their own business directory entries
-        $business_directory = BusinessDirectory::where('user_id', Auth::id())->paginate(10);
-        return view('seller.business_directory.index', compact('business_directory'));
+        $query = BusinessDirectory::where('user_id', Auth::id())->orderBy('created_at', 'DESC');
+
+        if ($request->filled('name')) {
+            $query->where('name', 'like', '%' . $request->name . '%');
+        }
+
+        if ($request->filled('phone')) {
+            $query->where('phone', 'like', '%' . $request->phone . '%');
+        }
+
+        if ($request->filled('category_id')) {
+            $query->where('category_id', $request->category_id);
+        }
+
+        if ($request->filled('brand_id')) {
+            $query->where('brand_id', $request->brand_id);
+        }
+
+        if ($request->filled('ownership_type')) {
+            $query->where('ownership_type', $request->ownership_type);
+        }
+
+        if ($request->filled('business_type')) {
+            $query->where('business_type', $request->business_type);
+        }
+
+        if ($request->filled('city_id')) {
+            $query->where('city_id', $request->city_id);
+        }
+
+        if ($request->filled('trust_level')) {
+            $query->where('trust_level', $request->trust_level);
+        }
+        $category_ids =  SellerCategoryPreference::where('user_id', Auth::id())->pluck('id');
+        $categories = Category::whereIn('id', $category_ids)->get();
+        $brands = Brand::all();
+        $cities = City::where('state_id', 2728)->get();
+
+        $business_directory = $query->paginate(10);
+
+        return view('seller.business_directory.index', compact('business_directory', 'categories', 'brands', 'cities'));
     }
+
 
     public function create()
     {
+
+       $category_ids =  SellerCategoryPreference::where('user_id', Auth::id())->pluck('id');
+
         return view('seller.business_directory.create', [
             'cities' => City::where('state_id', 2728)->get(),
             'areas' => [], // You might want to fetch areas based on the selected city dynamically via AJAX
-            'categories' => Category::all(),
+            'categories' => Category::whereIn('id', $category_ids)->get(),
+            'brands' => Brand::all(),
             'businessTypes' => [],
         ]);
     }
@@ -45,6 +91,7 @@ class BusinessDirectoryController extends Controller
             'google_sheet_url' => 'nullable|url',
             'trust_level' => 'required|integer|min:1|max:5',
             'notes' => 'nullable|file|mimes:pdf,doc,docx,txt|max:2048', 
+            'brand_id' => 'required|exists:brands,id',
             
         ]);
         $notesPath = null;
@@ -62,6 +109,7 @@ class BusinessDirectoryController extends Controller
             'city_id' => $request->city_id,
             'area' => $request->area,
             'category_id' => $request->category_id,
+            'brand_id' => $request->brand_id,
             'business_type' => $request->business_type,
             'ownership_type' => $request->ownership_type,
             'google_sheet_url' => $request->google_sheet_url,
@@ -102,6 +150,7 @@ class BusinessDirectoryController extends Controller
             'city_id' => 'required|exists:cities,id',
             'area' => 'nullable|string|max:255',
             'category_id' => 'required|exists:categories,id',
+            'brand_id' => 'required|exists:brands,id',
             'business_type' => 'nullable|string|max:255',
             'trust_level' => 'required|integer|min:1|max:5',
             'notes' => 'nullable|file|max:2048',

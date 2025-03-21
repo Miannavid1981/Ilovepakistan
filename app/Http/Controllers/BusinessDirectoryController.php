@@ -12,6 +12,9 @@ use App\Models\BusinessDirectory;
 use App\Models\City;
 use Illuminate\Support\Facades\Auth;
 
+use App\Models\Brand;
+use App\Models\SellerCategoryPreference;
+
 
 class BusinessDirectoryController extends Controller
 {
@@ -19,12 +22,50 @@ class BusinessDirectoryController extends Controller
     public function __construct() {
 
     }
-    public function index()
+    public function index(Request $request)
     {
-        // Seller can only see their own business directory entries with pagination
-        $business_directory = BusinessDirectory::paginate(10); // Show 10 items per page
+     
+        $query = BusinessDirectory::orderBy('created_at', 'DESC');
 
-        return view('backend.business_directory.index', compact('business_directory'));
+        if ($request->filled('name')) {
+            $query->where('name', 'like', '%' . $request->name . '%');
+        }
+
+        if ($request->filled('phone')) {
+            $query->where('phone', 'like', '%' . $request->phone . '%');
+        }
+
+        if ($request->filled('category_id')) {
+            $query->where('category_id', $request->category_id);
+        }
+
+        if ($request->filled('brand_id')) {
+            $query->where('brand_id', $request->brand_id);
+        }
+
+        if ($request->filled('ownership_type')) {
+            $query->where('ownership_type', $request->ownership_type);
+        }
+
+        if ($request->filled('business_type')) {
+            $query->where('business_type', $request->business_type);
+        }
+
+        if ($request->filled('city_id')) {
+            $query->where('city_id', $request->city_id);
+        }
+
+        if ($request->filled('trust_level')) {
+            $query->where('trust_level', $request->trust_level);
+        }
+        
+        $categories = Category::all();
+        $brands = Brand::all();
+        $cities = City::where('state_id', 2728)->get();
+
+        $business_directory = $query->paginate(20);
+
+        return view('backend.business_directory.index', compact('business_directory', 'categories', 'brands', 'cities'));
     }
 
 
