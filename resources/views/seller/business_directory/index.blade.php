@@ -174,8 +174,8 @@
                                         <td>{{ $item->company }}</td>
                                         <td>@if(!empty($item->brand))<span class="badge badge-dark w-auto">{{ $item->brand->name }}</span>@endif</td>
                                         <td>@if(!empty($item->category))<span class="badge badge-dark w-auto">{{ $item->category->name }}</span>@endif</td>
-                                        <td>{{ $item->business_type }}</td>
-                                        <td>{{ $item->ownership_type }}</td>
+                                        <td>@if(!empty($item->business_type))<span class="badge badge-success w-auto text-capitalize">{{ $item->business_type }}@endif</td>
+                                        <td>@if(!empty($item->ownership_type))<span class="badge badge-info w-auto text-capitalize">{{ $item->ownership_type }}@endif</td>
                                         <td>{{ $item->city->name }}</td>
                                         <td>{{ $item->area }}</td>
                                         <td>{!! str_repeat('⭐', $item->trust_level) !!}
