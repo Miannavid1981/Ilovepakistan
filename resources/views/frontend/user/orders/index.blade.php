@@ -10,11 +10,12 @@
                 <thead class="text-gray fs-12">
                     <tr>
                         <th class="pl-0">{{ translate('Code')}}</th>
-                        <th data-breakpoints="md">{{ translate('Date')}}</th>
+                        <th >{{ translate('Date')}}</th>
                         <th>{{ translate('Order Type')}}</th>
                         <th>{{ translate('Amount')}}</th>
-                        <th data-breakpoints="md">{{ translate('Delivery Status')}}</th>
-                        <th data-breakpoints="md">{{ translate('Payment Status')}}</th>
+                        <th >{{ translate('Payment Method')}}</th>
+                        <th >{{ translate('Delivery Status')}}</th>
+                        <th >{{ translate('Payment Status')}}</th>
                         <th class="text-right pr-0">{{ translate('Options')}}</th>
                     </tr>
                 </thead>
@@ -24,7 +25,7 @@
                         @php
                             $order = $combined_order->orders->first();
                         @endphp
-                        @if (count($order->orderDetails) > 0)
+                        @if (!empty($order) && count($order->orderDetails) > 0)
                             <tr>
                                 <!-- Code -->
                                 <td class="pl-0">
@@ -38,6 +39,12 @@
                                 </td>
                                 <td class="fw-700">
                                     {{ single_price($combined_order->grand_total) }}
+                                </td>
+                                <td class="fw-700">
+                                    <span class="badge badge-inline badge-dark p-3 fs-12" style="border-radius: 25px; min-width: 80px !important;"> {{ translate(ucfirst(str_replace('_', ' ', $combined_order->payment_method))) }} </span>
+                                    {{-- @if($order->delivery_viewed == 0)
+                                        <span class="ml-2" style="color:green"><strong>*</strong></span>
+                                    @endif --}}
                                 </td>
                                 <!-- Delivery Status -->
                                 <td class="fw-700">
