@@ -14,7 +14,8 @@ class BusinessDirectory extends Model
 
     protected $fillable = [
         'user_id', 'name', 'phone', 'whatsapp_no', 'designation', 'company', 'city_id', 'area', 
-        'category_id',  'business_type', 'ownership_type', 'google_sheet_url', 'trust_level', 'notes'
+        'category_id',  'business_type', 'ownership_type', 'google_sheet_url', 'trust_level', 'notes',
+        'brand_id'
     ];
     
 
@@ -48,6 +49,11 @@ class BusinessDirectory extends Model
     public function category(): BelongsTo
     {
         return $this->belongsTo(Category::class);
+    }
+
+    public function brand(): BelongsTo
+    {
+        return $this->belongsTo(Brand::class);
     }
 
     /**
