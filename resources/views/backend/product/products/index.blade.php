@@ -164,7 +164,7 @@
                     @endphp
                     @php
                         $seller_id =  $product->user_id ?? null;
-                        $seller_map = \App\Models\ProductSellerMap::where('source_seller_id', $seller_id  )->first();
+                        $seller_map = \App\Models\ProductSellerMap::where('source_seller_id', $seller_id  )->where('product_id', $product->id)->first();
                         $encrypted_skin = $seller_map->encrypted_hash ?? '';
                         $product_url = url('/product/' . $product->slug . '/' . $encrypted_skin);
                     @endphp
