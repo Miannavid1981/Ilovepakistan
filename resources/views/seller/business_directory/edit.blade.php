@@ -34,7 +34,7 @@
         <!-- WhatsApp Number -->
         <div class="mb-4">
             <label class="block text-gray-700 font-bold mb-2">WhatsApp Number</label>
-            <input type="text" name="whatsapp" class="w-full p-2 border rounded" value="{{ $business_directory->whatsapp }}">
+            <input type="text" name="whatsapp_no" class="w-full p-2 border rounded" value="{{ $business_directory->whatsapp_no }}">
         </div>
 
         <!-- Company Name -->
