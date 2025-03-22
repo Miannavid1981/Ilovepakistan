@@ -183,8 +183,9 @@ class BusinessDirectoryController extends Controller
         $business_directory = BusinessDirectory::findOrFail($id);
         $cities = City::where('state_id', 2728)->get();
         $categories = Category::all();
+        $brands = Brand::all();
 
-        return view('seller.business_directory.edit', compact('business_directory', 'cities', 'categories'));
+        return view('seller.business_directory.edit', compact('business_directory', 'cities', 'categories', 'brands'));
     }
 
     public function update(Request $request, $id)
