@@ -74,6 +74,53 @@ class BusinessDirectoryController extends Controller
         ]);
     }
     
+    public function export()
+    {
+        $business_directory = BusinessDirectory::where('user_id', auth()->id())->get();
+
+        $csvFileName = 'Business Directory ' . now()->format('Y-m-d h:i:s') . '.csv';
+
+        $headers = [
+            "Content-Type" => "text/csv",
+            "Content-Disposition" => "attachment; filename=$csvFileName",
+        ];
+
+        $callback = function () use ($business_directory) {
+            $file = fopen('php://output', 'w');
+
+            // Add CSV Header
+            fputcsv($file, [
+                'ID', 'Name', 'Phone', 'WhatsApp No', 'Designation', 
+                'Business Name', 'Product Brand', 'Product Category', 
+                'Business Type', 'Ownership Type', 'City', 'Area', 
+                'Trust Level', 'Google Sheet'
+            ]);
+
+            // Add Data Rows
+            foreach ($business_directory as $item) {
+                fputcsv($file, [
+                    $item->id,
+                    $item->name,
+                    $item->phone,
+                    $item->whatsapp_no,
+                    $item->designation,
+                    $item->company,
+                    optional($item->brand)->name,
+                    optional($item->category)->name,
+                    $item->business_type,
+                    $item->ownership_type,
+                    optional($item->city)->name,
+                    $item->area,
+                    str_repeat('⭐️', $item->trust_level),
+                    $item->google_sheet_url ?: 'N/A'
+                ]);
+            }
+
+            fclose($file);
+        };
+
+        return response()->stream($callback, 200, $headers);
+    }
 
     public function store(Request $request)
     {

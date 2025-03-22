@@ -115,8 +115,12 @@
             <input type="text" name="phone" class="form-control" placeholder="Search by Phone" value="{{ request('phone') }}">
         </div>
         
-            <button type="submit" class="btn btn-primary mr-2">Filter</button>
-            <a href="{{ route('seller.business-directory.index') }}" class="btn btn-secondary ">Reset</a>
+        <button type="submit" class="btn btn-primary mr-2">Filter</button>
+        <a href="{{ route('seller.business-directory.index') }}" class="btn btn-secondary ">Reset</a>
+        <a href="{{ route('seller.business-directory.export') }}" class="btn btn-success">
+            Export CSV
+        </a>
+            
        
         
     </div>
