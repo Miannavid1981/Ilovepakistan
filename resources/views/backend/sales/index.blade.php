@@ -256,14 +256,14 @@
                                         title="{{ translate('Download Invoice') }}">
                                         <i class="las la-download"></i>
                                     </a>
-                                   
-                                    <a href="#"
-                                        class="btn btn-soft-danger btn-icon btn-circle btn-sm confirm-delete"
-                                        data-href="{{ route('orders.destroy', $order->id) }}"
-                                        title="{{ translate('Delete') }}">
-                                        <i class="las la-trash"></i>
-                                    </a>
-                                
+                                    @can('delete_order')
+                                        <a href="#"
+                                            class="btn btn-soft-danger btn-icon btn-circle btn-sm confirm-delete"
+                                            data-href="{{ route('admin.order.destroy', $order->id) }}"
+                                            title="{{ translate('Delete') }}">
+                                            <i class="las la-trash"></i>
+                                        </a>
+                                    @endcan
                                 </td>
                             </tr>
                             @endif

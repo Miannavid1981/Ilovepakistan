@@ -55,7 +55,7 @@ class OrderController extends Controller
         $seller_id = !empty($request->seller_id) ? $request->seller_id : null;
         // Fetch only Combined Orders (Main Orders)
         if($seller_id){
-            $combinedOrders = CombinedOrder::whereHas('orders.orderdetails', function ($q) use ($authUser, $seller_id) {
+            $combinedOrders = CombinedOrder::whereHas(['orders', 'orders.orderdetails'], function ($q) use ($authUser, $seller_id) {
                 $seller = User::find($seller_id);
                 if ($seller->seller_type == 'brand_partner') {
                     $q->where('source_seller_id', $seller_id);
@@ -73,7 +73,7 @@ class OrderController extends Controller
                 }
             })->orderBy('id', 'desc');
         } else {
-            $combinedOrders = CombinedOrder::orderBy('id', 'desc');
+            $combinedOrders = CombinedOrder::whereHas('orders')->orderBy('id', 'desc');
         }
 
 
@@ -106,14 +106,14 @@ class OrderController extends Controller
             });
         }
     
-        $combinedOrders = $combinedOrders->paginate(15);
+        $combinedOrders = $combinedOrders->paginate(10);
     
         // Load sub-orders (child orders) for each Combined Order
         foreach ($combinedOrders as $combinedOrder) {
             $combinedOrder->sub_orders = Order::where('combined_order_id', $combinedOrder->id)->get();
         }
         $orders = $combinedOrders;
-    
+        // dd($orders);
         $unpaid_order_payment_notification = get_notification_type('complete_unpaid_order_payment', 'type');
     
         return view('backend.sales.index', compact('combinedOrders', 'sort_search', 'order_type', 'payment_status', 'delivery_status', 'date', 'unpaid_order_payment_notification', 'orders', 'seller_id'));
@@ -469,17 +469,26 @@ class OrderController extends Controller
      */
     public function destroy($id)
     {
-        $order = Order::findOrFail($id);
+        // dd($id);
+        $order = CombinedOrder::findOrFail($id);
+
         if ($order != null) {
-            $order->commissionHistory()->delete();
-            foreach ($order->orderDetails as $key => $orderDetail) {
-                try {
-                    product_restock($orderDetail);
-                } catch (\Exception $e) {
+            
+            foreach($order->orders as $c_order){
+                $c_order->commissionHistory()->delete();
+                foreach ($c_order->orderDetails as $key => $orderDetail) {
+                    try {
+                        product_restock($orderDetail);
+                    } catch (\Exception $e) {
+                    }
+    
+                    $orderDetail->delete();
                 }
 
-                $orderDetail->delete();
+                $c_order->delete();
+
             }
+           
             $order->delete();
             flash(translate('Order has been deleted successfully'))->success();
         } else {
