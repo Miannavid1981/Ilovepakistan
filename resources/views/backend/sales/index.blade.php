@@ -96,7 +96,7 @@
                 </div>
             </div>
 
-            <div class="card-body">
+            <div class="card-body table-responsive">
                 <table class="table aiz-table mb-0">
                     <thead>
                         <tr>
@@ -112,22 +112,22 @@
                                     </div>
                                 </th>
                             @else
-                                <th data-breakpoints="lg">#</th>
+                                <th >#</th>
                             @endif
 
                             <th>{{ translate('Order #') }}</th>
                             {{-- <th data-breakpoints="md">{{ translate('Num. of Products') }}</th> --}}
-                            <th data-breakpoints="md">{{ translate('Customer') }}</th>
-                            {{-- <th data-breakpoints="md">{{ translate('Brand / Seller Partner') }}</th> --}}
-                            <th data-breakpoints="md">{{ translate('Amount') }}</th>
+                            <th>{{ translate('Customer') }}</th>
+                            {{-- <th>{{ translate('Brand / Seller Partner') }}</th> --}}
+                            <th>{{ translate('Amount') }}</th>
                           
-                            <th data-breakpoints="md">{{ translate('Delivery Status') }}</th>
-                            <th data-breakpoints="md">{{ translate('Payment method') }}</th>
-                            <th data-breakpoints="md">{{ translate('Payment Status') }}</th>
+                            <th>{{ translate('Delivery Status') }}</th>
+                            <th>{{ translate('Payment method') }}</th>
+                            <th>{{ translate('Payment Status') }}</th>
                             @if (addon_is_activated('refund_request'))
                                 <th>{{ translate('Refund') }}</th>
                             @endif
-                            <th data-breakpoints="md">{{ translate('Date') }}</th>
+                            <th>{{ translate('Date') }}</th>
                             <th class="text-right" width="15%">{{ translate('options') }}</th>
                         </tr>
                     </thead>
