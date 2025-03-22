@@ -272,7 +272,7 @@
                 </table>
 
                 <div class="aiz-pagination">
-                    {{ $combinedOrders->appends(request()->input())->links() }}
+                    {{ $orders->links() }}
                 </div>
 
             </div>
