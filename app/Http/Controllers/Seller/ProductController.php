@@ -164,6 +164,8 @@ class ProductController extends Controller
             return back();
         }
 
+        
+
         $product = $this->productService->store($request->except([
             '_token', 'sku', 'choice', 'tax_id', 'tax', 'tax_type', 'flash_deal_id', 'flash_discount', 'flash_discount_type'
         ]));

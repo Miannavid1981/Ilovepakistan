@@ -319,7 +319,7 @@
                             <div class="form-group row">
                                 <label class="col-md-3 col-from-label fs-13">{{translate('Short Description')}}</label>
                                 <div class="col-md-8">
-                                    <textarea class="aiz-text-editor" name="short_description">{{ old('short_description') }}</textarea>
+                                    <textarea class="form-control" name="short_description">{{ old('short_description') }}</textarea>
                                 </div>
                                 <label class="col-md-3 col-from-label">{{ translate('Description') }}</label>
                                 <div class="col-md-8">
@@ -796,6 +796,9 @@
     });
     $('input[name="sku"]').on('input', function() {
         $(this).val($(this).val().replace(/\s/g, ''));
+    });
+    $('[name="short_description"]').on('input', function() {
+        $('[name="meta_description"]').val($(this).val())
     });
     $("[name=shipping_type]").on("change", function() {
         $(".product_wise_shipping_div").hide();
