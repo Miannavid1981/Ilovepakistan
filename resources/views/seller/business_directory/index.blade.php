@@ -6,7 +6,7 @@
     <div class="row mb-3">
         
         <div class="col-md-2">
-            <select name="category_id" class="form-control">
+            <select name="category_id" class="form-control aiz-selectpicker" data-live-search="true">
                 <option value=""> Category</option>
                 @foreach ($categories as $category)
                     <!-- Main category as a selectable option -->
@@ -39,7 +39,7 @@
         
         <!-- Brand Dropdown -->
         <div class="col-md-2">
-            <select name="brand_id" class="form-control">
+            <select name="brand_id" class="form-control aiz-selectpicker" data-live-search="true">
                 <option value=""> Brand</option>
                 @foreach ($brands as $brand)
                     <option value="{{ $brand->id }}" {{ request('brand_id') == $brand->id ? 'selected' : '' }}>
@@ -50,7 +50,7 @@
         </div>
         <!-- Ownership Type Filter -->
         <div class="col-md-2">
-            <select name="ownership_type" class="form-control">
+            <select name="ownership_type" class="form-control aiz-selectpicker" data-live-search="true">
                 <option value=""> Ownership Type</option>
                 <option value="Sole Proprietorship" {{ request('ownership_type') == 'Sole Proprietorship' ? 'selected' : '' }}>Sole Proprietorship</option>
                 <option value="Partnership" {{ request('ownership_type') == 'Partnership' ? 'selected' : '' }}>Partnership</option>
@@ -61,7 +61,7 @@
 
         <!-- Business Type Filter -->
         <div class="col-md-2">
-            <select name="business_type" class="form-control">
+            <select name="business_type" class="form-control aiz-selectpicker" data-live-search="true">
                 <option value=""> Business Type</option>
                 <option value="Manufacturer" {{ request('business_type') == 'Manufacturer' ? 'selected' : '' }}>Manufacturer</option>
                 <option value="Exporter" {{ request('business_type') == 'Exporter' ? 'selected' : '' }}>Exporter</option>
@@ -79,7 +79,7 @@
 
         <!-- City Dropdown -->
         <div class="col-md-2">
-            <select name="city_id" class="form-control">
+            <select name="city_id" class="form-control aiz-selectpicker" data-live-search="true">
                 <option value=""> City</option>
                 @foreach ($cities as $city)
                     <option value="{{ $city->id }}" {{ request('city_id') == $city->id ? 'selected' : '' }}>
@@ -91,7 +91,7 @@
 
         <!-- Trust Level -->
         <div class="col-md-2">
-            <select name="trust_level" class="form-control">
+            <select name="trust_level" class="form-control aiz-selectpicker" data-live-search="true">
                 <option value=""> Trust Level</option>
                 @for ($i = 1; $i <= 5; $i++)
                     <option value="{{ $i }}" {{ request('trust_level') == $i ? 'selected' : '' }}>
