@@ -139,7 +139,7 @@
                                                     <img src="{{ !empty($this_order_detail->product->thumbnail) ? uploaded_asset($this_order_detail->product->thumbnail) : '' }}" class="w-100 h-100 object-cover rounded-3 ">
                                                 </div>
                                                 <div class="ml-2">
-                                                    <span class="badge badge-primary w-auto">{{ $this_order_detail->product->main_category->name }} </span>
+                                                    <span class="badge badge-primary w-auto">{{ !empty($this_order_detail->product->main_category) ? $this_order_detail->product->main_category->name : ''}} </span>
                                                     <p class="mb-0 ">{{ $this_order_detail->product->name }}</p>
                                                 </div>
                                                
