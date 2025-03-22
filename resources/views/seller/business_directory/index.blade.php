@@ -7,7 +7,7 @@
         
         <div class="col-md-2">
             <select name="category_id" class="form-control">
-                <option value="">Select Category</option>
+                <option value=""> Category</option>
                 @foreach ($categories as $category)
                     <!-- Main category as a selectable option -->
                     <option value="{{ $category->id }}" {{ request('category_id') == $category->id ? 'selected' : '' }}>
@@ -40,7 +40,7 @@
         <!-- Brand Dropdown -->
         <div class="col-md-2">
             <select name="brand_id" class="form-control">
-                <option value="">Select Brand</option>
+                <option value=""> Brand</option>
                 @foreach ($brands as $brand)
                     <option value="{{ $brand->id }}" {{ request('brand_id') == $brand->id ? 'selected' : '' }}>
                         {{ $brand->name }}
@@ -51,7 +51,7 @@
         <!-- Ownership Type Filter -->
         <div class="col-md-2">
             <select name="ownership_type" class="form-control">
-                <option value="">Select Ownership Type</option>
+                <option value=""> Ownership Type</option>
                 <option value="Sole Proprietorship" {{ request('ownership_type') == 'Sole Proprietorship' ? 'selected' : '' }}>Sole Proprietorship</option>
                 <option value="Partnership" {{ request('ownership_type') == 'Partnership' ? 'selected' : '' }}>Partnership</option>
                 <option value="LLC" {{ request('ownership_type') == 'LLC' ? 'selected' : '' }}>LLC</option>
@@ -62,7 +62,7 @@
         <!-- Business Type Filter -->
         <div class="col-md-2">
             <select name="business_type" class="form-control">
-                <option value="">Select Business Type</option>
+                <option value=""> Business Type</option>
                 <option value="Manufacturer" {{ request('business_type') == 'Manufacturer' ? 'selected' : '' }}>Manufacturer</option>
                 <option value="Exporter" {{ request('business_type') == 'Exporter' ? 'selected' : '' }}>Exporter</option>
                 <option value="Importer" {{ request('business_type') == 'Importer' ? 'selected' : '' }}>Importer</option>
@@ -80,7 +80,7 @@
         <!-- City Dropdown -->
         <div class="col-md-2">
             <select name="city_id" class="form-control">
-                <option value="">Select City</option>
+                <option value=""> City</option>
                 @foreach ($cities as $city)
                     <option value="{{ $city->id }}" {{ request('city_id') == $city->id ? 'selected' : '' }}>
                         {{ $city->name }}
@@ -92,7 +92,7 @@
         <!-- Trust Level -->
         <div class="col-md-2">
             <select name="trust_level" class="form-control">
-                <option value="">Select Trust Level</option>
+                <option value=""> Trust Level</option>
                 @for ($i = 1; $i <= 5; $i++)
                     <option value="{{ $i }}" {{ request('trust_level') == $i ? 'selected' : '' }}>
                         {{ str_repeat('⭐', $i) }}
@@ -111,7 +111,7 @@
         </div>
 
         <!-- Phone Search -->
-        <div class="col-md-2">
+        <div class="col-md-3">
             <input type="text" name="phone" class="form-control" placeholder="Search by Phone" value="{{ request('phone') }}">
         </div>
         
