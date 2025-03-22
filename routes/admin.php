@@ -409,8 +409,8 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin', 'prevent-ba
         Route::get('/orders_by_pickup_point/{id}/show', 'show')->name('pick_up_point.order_show');
 
         Route::post('/bulk-order-status', 'bulk_order_status')->name('bulk-order-status');
-
-        Route::get('/orders/destroy/{id}', 'destroy')->name('orders.destroy');
+        Route::get('/orders/{id}', 'destroy')->name('admin.order.destroy');
+        
         Route::post('/bulk-order-delete', 'bulk_order_delete')->name('bulk-order-delete');
 
     
