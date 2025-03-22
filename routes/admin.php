@@ -86,6 +86,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin', 'prevent-ba
 
     Route::get('/business-directory/edit/{id}', [BusinessDirectoryController::class, 'edit'])->name('admin_business_directory.edit');
     Route::put('/business-directory/update/{id}', [BusinessDirectoryController::class, 'update'])->name('admin_business_directory.update');
+    Route::get('/business-directory/export', [BusinessDirectoryController::class, 'export'])->name('admin_business_directory.export');
     
     
     // category

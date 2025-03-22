@@ -19,6 +19,9 @@ Route::group(['prefix' => 'seller', 'middleware' => ['seller', 'verified', 'user
     Route::post('/business-directory/store', [SellerBusinessDirectoryController::class, 'store'])->name('business-directory.store');
     Route::delete('/business-directory/{business_directory}', [SellerBusinessDirectoryController::class, 'destroy'])
     ->name('business-directory.destroy');
+    Route::get('/seller/business-directory/export', [SellerBusinessDirectoryController::class, 'export'])->name('business-directory.export');
+    
+    
 });
 
 Route::group(['namespace' => 'App\Http\Controllers\Seller', 'prefix' => 'seller', 'middleware' => ['seller', 'verified', 'user', 'prevent-back-history'], 'as' => 'seller.'], function () {
