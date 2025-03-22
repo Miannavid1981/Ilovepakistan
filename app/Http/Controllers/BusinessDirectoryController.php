@@ -170,9 +170,9 @@ class BusinessDirectoryController extends Controller
     
     public function destroy(BusinessDirectory $business_directory)
     {
-        if ($business_directory->user_id !== Auth::id()) {
-            return redirect()->route('admin_business_directory.index')->with('error', 'Unauthorized.');
-        }
+        // if ($business_directory->user_id !== Auth::id()) {
+        //     return redirect()->route('admin_business_directory.index')->with('error', 'Unauthorized.');
+        // }
 
         $business_directory->delete();
         return redirect()->route('admin_business_directory.index')->with('success', 'Business deleted successfully.');
