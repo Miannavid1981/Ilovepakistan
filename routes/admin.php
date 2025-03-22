@@ -82,7 +82,12 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin', 'prevent-ba
     Route::get('/business-directory/create', [BusinessDirectoryController::class, 'create'])->name('admin_business_directory.create');
     Route::post('/admin_business_directory/store', [BusinessDirectoryController::class, 'store'])->name('admin_business_directory.store');
     Route::delete('/business-directory/{business_directory}', [BusinessDirectoryController::class, 'destroy'])
-    ->name('business-directory.destroy');
+    ->name('admin_business_directory.destroy');
+
+    Route::get('/business-directory/edit/{id}', [BusinessDirectoryController::class, 'edit'])->name('admin_business_directory.edit');
+    Route::put('/business-directory/update/{id}', [BusinessDirectoryController::class, 'update'])->name('admin_business_directory.update');
+    
+    
     // category
     Route::resource('categories', CategoryController::class);
     Route::controller(CategoryController::class)->group(function () {
