@@ -66,10 +66,32 @@
         <!-- Category -->
         <div class="mb-4">
             <label class="block text-gray-700 font-bold mb-2">Product Category</label>
-            <select name="category_id" class="w-full p-2 border rounded select2" required>
-                <option value="">Select Category</option>
+            <select name="category_id" class="w-full p-2 border border">
+                <option value=""> Category</option>
                 @foreach ($categories as $category)
-                    <option value="{{ $category->id }}">{{ $category->name }}</option>
+                    <!-- Main category as a selectable option -->
+                    <option value="{{ $category->id }}" {{ request('category_id') == $category->id ? 'selected' : '' }}>
+                        {{ $category->name }}
+                    </option>
+        
+                    <!-- If category has children, group them -->
+                    @if ($category->childrenCategories->count())
+                        <optgroup label="Categories">
+                            @foreach ($category->childrenCategories as $child)
+                                <option value="{{ $child->id }}" {{ request('category_id') == $child->id ? 'selected' : '' }}>
+                                    ── {{ $child->name }}
+                                </option>
+        
+                                @if ($child->childrenCategories->count())
+                                    @foreach ($child->childrenCategories as $subChild)
+                                        <option value="{{ $subChild->id }}" {{ request('category_id') == $subChild->id ? 'selected' : '' }}>
+                                            &nbsp;&nbsp;&nbsp;└── {{ $subChild->name }}
+                                        </option>
+                                    @endforeach
+                                @endif
+                            @endforeach
+                        </optgroup>
+                    @endif
                 @endforeach
             </select>
         </div>
