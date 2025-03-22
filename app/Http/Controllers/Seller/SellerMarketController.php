@@ -10,6 +10,7 @@ use App\Models\User;
 use App\Models\ProductSellerMap;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Crypt;
+use App\Models\Category;
 class SellerMarketController extends Controller
 {
 
@@ -18,8 +19,18 @@ class SellerMarketController extends Controller
         // Get the user's selected categories
         $selectedCategories = auth()->user()->categoryPreferences->pluck('category_id')->toArray();
 
+        // Fetch all child categories recursively
+        $allCategories = Category::whereIn('id', $selectedCategories)
+            ->with('childrenCategories') // Load child categories
+            ->get()
+            ->flatMap(function ($category) {
+                return collect([$category->id])->merge($category->childrenCategories->pluck('id'));
+            })
+            ->unique()
+            ->toArray();
+
         // Filter products by name and category, and paginate them
-        $query = Product::whereIn('category_id', $selectedCategories);
+        $query = Product::whereIn('category_id', $allCategories);
 
         if ($request->has('search') && $request->search != '') {
             $query->where('name', 'like', '%' . $request->search . '%');
