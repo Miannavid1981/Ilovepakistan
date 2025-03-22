@@ -55,7 +55,7 @@
         <!-- Category -->
         <div class="mb-4">
             <label class="block text-gray-700 font-bold mb-2">Product Category</label>
-            <select name="category_id" class="w-full p-2 border rounded" required>
+            <select name="category_id" class="w-full p-2 border rounded select2" required>
                 <option value="">Select Category</option>
                 @foreach ($categories as $category)
                     <option value="{{ $category->id }}">{{ $category->name }}</option>
@@ -143,4 +143,5 @@
         </div>
     </form>
 </div>
+
 @endsection
