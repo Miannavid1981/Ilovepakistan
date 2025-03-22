@@ -38,7 +38,7 @@
         <!-- City -->
         <div class="mb-4">
             <label class="block text-gray-700 font-bold mb-2">City</label>
-            <select name="city_id" class="w-full p-2 border rounded" required>
+            <select name="city_id" class="w-full aiz-selectpicker" data-live-search="true" required>
                 <option value="">Select City</option>
                 @foreach ($cities as $city)
                     <option value="{{ $city->id }}">{{ $city->name }}</option>
@@ -55,7 +55,7 @@
         <!-- Category -->
         <div class="mb-4">
             <label class="block text-gray-700 font-bold mb-2">Product Category</label>
-            <select name="category_id" class="w-full p-2 border border">
+            <select name="category_id" class="w-full aiz-selectpicker" data-live-search="true" required>
                 <option value=""> Category</option>
                 @foreach ($categories as $category)
                     <!-- Main category as a selectable option -->
@@ -86,7 +86,7 @@
         </div>
         <div class="mb-4">
             <label class="block text-gray-700 font-bold mb-2"> Brand</label>
-            <select name="brand_id" class="w-full p-2 border rounded" required>
+            <select name="brand_id" class="w-full aiz-selectpicker" data-live-search="true" required>
                 <option value="">Select Brand</option>
                 @foreach ($brands as $brand)
                     <option value="{{ $brand->id }}">{{ $brand->name }}</option>
@@ -97,7 +97,7 @@
         <!-- Business Type -->
         <div class="mb-4">
             <label class="block text-gray-700 font-bold mb-2">Business Type</label>
-            <select name="business_type" class="w-full p-2 border rounded" >
+            <select name="business_type" class="w-full aiz-selectpicker" data-live-search="true" required>
                 <option value="">Select Business Type</option>
                 <option value="Manufacturer">Manufacturer</option>
                 <option value="Exporter">Exporter</option>
@@ -133,7 +133,7 @@
         <!-- Ownership Type -->
         <div class="mb-4">
             <label class="block text-gray-700 font-bold mb-2">Ownership Type</label>
-            <select name="ownership_type" class="w-full p-2 border rounded" required>
+            <select name="ownership_type" class="w-full aiz-selectpicker" data-live-search="true" required>
                 <option value="">Select Ownership Type</option>
                 <option value="Sole Proprietor">Sole Proprietor</option>
                 <option value="Partnership">Partnership</option>
@@ -146,7 +146,7 @@
         <!-- Trust Level -->
         <div class="mb-4">
             <label class="block text-gray-700 font-bold mb-2">Trust Level</label>
-            <select name="trust_level" class="w-full p-2 border rounded" required>
+            <select name="trust_level" class="w-full aiz-selectpicker" data-live-search="true" required>
                 <option value="1">⭐</option>
                 <option value="2">⭐⭐</option>
                 <option value="3">⭐⭐⭐</option>
