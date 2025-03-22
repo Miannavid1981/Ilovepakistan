@@ -72,7 +72,7 @@ class BusinessDirectoryController extends Controller
     public function create()
     {
         $brands = Brand::all();
-        return view('seller.business_directory.create', [
+        return view('backend.business_directory.create', [
             'cities' => City::where('state_id', 2728)->get(),
             'areas' => [], // You might want to fetch areas based on the selected city dynamically via AJAX
             'categories' => Category::where('parent_id', 0)->get(),
