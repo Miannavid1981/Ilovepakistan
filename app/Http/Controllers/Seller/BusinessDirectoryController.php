@@ -49,7 +49,7 @@ class BusinessDirectoryController extends Controller
         if ($request->filled('trust_level')) {
             $query->where('trust_level', $request->trust_level);
         }
-        $category_ids =  SellerCategoryPreference::where('user_id', Auth::id())->pluck('id');
+        $category_ids =  SellerCategoryPreference::where('user_id', auth()->user()->id)->pluck('category_id');
         $categories = Category::whereIn('id', $category_ids)->get();
         $brands = Brand::all();
         $cities = City::where('state_id', 2728)->get();
@@ -63,7 +63,7 @@ class BusinessDirectoryController extends Controller
     public function create()
     {
 
-       $category_ids =  SellerCategoryPreference::where('user_id', Auth::id())->pluck('id');
+       $category_ids =  SellerCategoryPreference::where('user_id', auth()->user()->id)->pluck('category_id');
 
         return view('seller.business_directory.create', [
             'cities' => City::where('state_id', 2728)->get(),
@@ -118,7 +118,7 @@ class BusinessDirectoryController extends Controller
         ]);
 
 
-        return redirect()->route('seller.business-directory.index')->with('success', 'Business added successfully.');
+        return redirect()->route('seller.business-directory.index')->with('success', 'Added successfully.');
     }
 
     public function destroy(BusinessDirectory $business_directory)
@@ -128,7 +128,7 @@ class BusinessDirectoryController extends Controller
         }
 
         $business_directory->delete();
-        return redirect()->route('seller.business-directory.index')->with('success', 'Business deleted successfully.');
+        return redirect()->route('seller.business-directory.index')->with('success', 'Deleted successfully.');
     }
 
     public function edit($id)

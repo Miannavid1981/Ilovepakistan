@@ -1,6 +1,6 @@
-@extends('seller.layouts.app')
+@extends('backend.layouts.app')
 
-@section('panel_content')
+@section('content')
 <div class="container mx-auto p-6 bg-white shadow-lg rounded-lg">
     
 
@@ -14,12 +14,23 @@
         </div>
     @endif
 
-    <form action="{{ route('seller.business-directory.store') }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('admin_business_directory.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
         
+         <!-- Category -->
+         <div class="mb-4">
+            <label class="block text-gray-700 font-bold mb-2">Seller</label>
+            <select name="seller_id" class="w-full p-2 border rounded select2" required>
+                <option value="">Select Seller</option>
+                @foreach ($sellers as $seller)
+                    <option value="{{ $seller->id }}">{{ $seller->name }}</option>
+                @endforeach
+            </select>
+        </div>
+
         <!-- Business Name -->
         <div class="mb-4">
-            <label class="block text-gray-700 font-bold mb-2"> Name</label>
+            <label class="block text-gray-700 font-bold mb-2">Name</label>
             <input type="text" name="name" class="w-full p-2 border rounded" required>
         </div>
 

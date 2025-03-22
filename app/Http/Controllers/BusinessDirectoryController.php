@@ -11,7 +11,7 @@ use App\Models\Category;
 use App\Models\BusinessDirectory;
 use App\Models\City;
 use Illuminate\Support\Facades\Auth;
-
+use App\Models\User;
 use App\Models\Brand;
 use App\Models\SellerCategoryPreference;
 
@@ -74,15 +74,53 @@ class BusinessDirectoryController extends Controller
         return view('seller.business_directory.create', [
             'cities' => City::where('state_id', 2728)->get(),
             'areas' => [], // You might want to fetch areas based on the selected city dynamically via AJAX
-            'categories' => Category::all(),
+            'categories' => Category::where('parent_id', 0)->get(),
             'businessTypes' => [],
         ]);
     }
-    
+    public function edit($id)
+    {
+        $business_directory = BusinessDirectory::findOrFail($id);
+        $cities = City::where('state_id', 2728)->get();
+        $brands = Brand::all();
+        $categories = Category::where('parent_id', 0)->get();
+        $sellers = User::where('user_type', 'seller')->get();
+        return view('backend.business_directory.edit', compact('business_directory', 'cities', 'categories', 'sellers', 'brands'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'phone' => 'required|string|max:255',
+            'whatsapp' => 'nullable|string|max:255',
+            'company' => 'nullable|string|max:255',
+            'city_id' => 'required|exists:cities,id',
+            'area' => 'nullable|string|max:255',
+            'category_id' => 'required|exists:categories,id',
+            'brand_id' => 'required|exists:brands,id',
+            'business_type' => 'nullable|string|max:255',
+            'trust_level' => 'required|integer|min:1|max:5',
+            'notes' => 'nullable|file|max:2048',
+        ]);
+
+        $business_directory = BusinessDirectory::findOrFail($id);
+        
+        // Handle File Upload
+        if ($request->hasFile('notes')) {
+            $notesPath = $request->file('notes')->store('business_notes', 'public');
+            $business_directory->notes = $notesPath;
+        }
+
+        // Update Business Info
+        $business_directory->update($request->except('notes'));
+
+        return redirect()->route('admin_business_directory.index')->with('success', 'Business updated successfully.');
+    }
 
     public function store(Request $request)
     {
-        $request->validate([
+       $request->validate([
             'name' => 'required|string|max:255',
             'phone' => 'required|string|max:255',
             'whatsapp_no' => 'nullable|string|max:255',
@@ -91,15 +129,23 @@ class BusinessDirectoryController extends Controller
             'city_id' => 'required|exists:cities,id',
             'area' => 'nullable|string|max:255',
             'category_id' => 'required|exists:categories,id',
-            'product_category_id' => 'required|exists:categories,id',
             'business_type' => 'required|string|max:255',
             'ownership_type' => 'required|string|max:255',
             'google_sheet_url' => 'nullable|url',
             'trust_level' => 'required|integer|min:1|max:5',
+            'notes' => 'nullable|file|mimes:pdf,doc,docx,txt|max:2048', 
+            'brand_id' => 'required|exists:brands,id',
+            'seller_id' => 'required|exists:users,id',
+            
         ]);
-    
+
+        $notesPath = null;
+        if ($request->hasFile('notes')) {
+            $notesPath = $request->file('notes')->store('business_notes', 'public');
+        }
+
         BusinessDirectory::create([
-            'user_id' => Auth::id(),
+            'user_id' => $request->seller_id,
             'name' => $request->name,
             'phone' => $request->phone,
             'whatsapp_no' => $request->whatsapp_no,
@@ -108,24 +154,26 @@ class BusinessDirectoryController extends Controller
             'city_id' => $request->city_id,
             'area' => $request->area,
             'category_id' => $request->category_id,
-            'product_category_id' => $request->product_category_id,
+            'brand_id' => $request->brand_id,
             'business_type' => $request->business_type,
             'ownership_type' => $request->ownership_type,
             'google_sheet_url' => $request->google_sheet_url,
             'trust_level' => $request->trust_level,
+            'notes' => $notesPath, // Store the file path
         ]);
+
     
-        return redirect()->route('seller.business-directory.index')->with('success', 'Business added successfully.');
+        return redirect()->route('admin_business_directory.index')->with('success', 'Business added successfully.');
     }
     
     public function destroy(BusinessDirectory $business_directory)
     {
         if ($business_directory->user_id !== Auth::id()) {
-            return redirect()->route('seller.business-directory.index')->with('error', 'Unauthorized.');
+            return redirect()->route('admin_business_directory.index')->with('error', 'Unauthorized.');
         }
 
         $business_directory->delete();
-        return redirect()->route('seller.business-directory.index')->with('success', 'Business deleted successfully.');
+        return redirect()->route('admin_business_directory.index')->with('success', 'Business deleted successfully.');
     }
 
     

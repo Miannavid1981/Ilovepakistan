@@ -130,7 +130,9 @@
         <div class="col-md-12">
           
             <div class="card">
-                <div class="card-header"> <h5 class="mb-md-0 h6">{{ translate('Business Directory') }}</h5></div>
+                <div class="card-header"> <h5 class="mb-md-0 h6">{{ translate('Business Directory') }}</h5>  <a href="{{ route('admin_business_directory.create') }}" class="btn btn-primary">
+                    Add Item
+                </a></div>
 
                 <div class="card-body">
                     @if (session('status'))
@@ -206,14 +208,17 @@
                                                 @endif
                                             </td>
                                             <td>
-                                                {{-- <a href="" class="btn btn-info btn-sm">View</a>
-                                                <a href="" class="btn btn-warning btn-sm">Edit</a> --}}
-                                                {{-- <form action="{{ route('seller.business-directory.destroy', ['business_directory' => $item->id]) }}" method="POST" style="display:inline;">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this?');">Delete</button>
-                                                </form> --}}
-                                                
+                                                <div class="d-flex ">
+                                                    <a href="{{ route('admin_business_directory.edit', $item->id) }}" class="btn btn-success btn-sm me-2">
+                                                        <i class="la la-edit fs-15"></i>
+                                                    </a>
+                                                    <form action="{{ route('admin_business_directory.destroy', ['business_directory' => $item->id]) }}" method="POST" style="display:inline;">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this?');"><i class="la la-trash fs-15"></i></button>
+                                                    </form>
+                                                    
+                                                </div>
                                             </td>
                                         </tr>
                                     @endforeach
