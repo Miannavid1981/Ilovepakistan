@@ -140,7 +140,7 @@
                                                 </div>
                                                 <div class="ml-2">
                                                     <span class="badge badge-primary w-auto">{{ !empty($this_order_detail->product->main_category) ? $this_order_detail->product->main_category->name : ''}} </span>
-                                                    <p class="mb-0 ">{{ $this_order_detail->product->name }}</p>
+                                                    <p class="mb-0 ">{{ !empty($this_order_detail->product) ? $this_order_detail->product->name : '' }}</p>
                                                 </div>
                                                
                                                 
