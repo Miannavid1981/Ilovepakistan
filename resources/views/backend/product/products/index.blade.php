@@ -107,16 +107,16 @@
                         <th >{{translate('Platform Fee')}}</th>
                         <th >{{translate('Brand Sale')}}</th>
                         <th >{{translate('Partner Profit')}}</th>
-                        <th data-breakpoints="sm">{{translate('Rating')}}</th>
-                        <th data-breakpoints="sm">{{translate('Num Of Sale')}}</th>
+                        <th>{{translate('Rating')}}</th>
+                        <th>{{translate('Num Of Sale')}}</th>
                         
-                        <th data-breakpoints="md">{{translate('Total Stock')}}</th>
-                        <th data-breakpoints="lg">{{translate('Todays Deal')}}</th>
-                        <th data-breakpoints="lg">{{translate('Published')}}</th>
+                        <th>{{translate('Total Stock')}}</th>
+                        <th>{{translate('Todays Deal')}}</th>
+                        <th>{{translate('Published')}}</th>
                         {{-- @if(get_setting('product_approve_by_admin') == 1 && $type == 'Seller') --}}
-                            <th data-breakpoints="lg">{{translate('Approved')}}</th>
+                            <th>{{translate('Approved')}}</th>
                         {{-- @endif --}}
-                        <th data-breakpoints="lg">{{translate('Featured')}}</th>
+                        <th>{{translate('Featured')}}</th>
                         <th data-breakpoints="sm" class="text-right">{{translate('Options')}}</th>
                     </tr>
                 </thead>
