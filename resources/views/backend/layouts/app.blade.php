@@ -92,12 +92,12 @@
             border-top-right-radius: 4px !important;
             border-bottom-right-radius: 4px !important;
         }
-        table th {
-    white-space: nowrap; /* Prevent text from wrapping */
-    overflow: hidden; /* Hide overflow content */
-    text-overflow: ellipsis; /* Show '...' if the text is too long */
-    max-width: 200px; /* Adjust width as needed */
-}
+        table th, table td {
+            white-space: nowrap; /* Prevent text from wrapping */
+            overflow: hidden; /* Hide overflow content */
+            text-overflow: ellipsis; /* Show '...' if the text is too long */
+            max-width: 200px; /* Adjust width as needed */
+        }
     </style>
     <script>
         var AIZ = AIZ || {};
