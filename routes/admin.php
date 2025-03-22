@@ -394,7 +394,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin', 'prevent-ba
     });
 
     // Order
-    Route::resource('orders', OrderController::class);
+    // Route::resource('orders', OrderController::class);
     Route::controller(OrderController::class)->group(function () {
         // All Orders
         Route::get('/all_orders', 'all_orders')->name('all_orders.index');
@@ -410,7 +410,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin', 'prevent-ba
 
         Route::post('/bulk-order-status', 'bulk_order_status')->name('bulk-order-status');
 
-        // Route::get('/orders/destroy/{id}', 'destroy')->name('orders.destroy');
+        Route::get('/orders/destroy/{id}', 'destroy')->name('orders.destroy');
         Route::post('/bulk-order-delete', 'bulk_order_delete')->name('bulk-order-delete');
 
     
