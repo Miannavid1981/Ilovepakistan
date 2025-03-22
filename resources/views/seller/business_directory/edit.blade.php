@@ -72,6 +72,17 @@
                 @endforeach
             </select>
         </div>
+        <!-- Category -->
+        <div class="mb-4">
+            <label class="block text-gray-700 font-bold mb-2">Brand</label>
+            <select name="brand_id" class="w-full p-2 border rounded">
+                @foreach ($brands as $brand)
+                    <option value="{{ $brand->id }}" {{ $business_directory->brand_id == $brand->id ? 'selected' : '' }}>
+                        {{ $brand->name }}
+                    </option>
+                @endforeach
+            </select>
+        </div>
 
         <!-- Business Type -->
         <div class="mb-4">
