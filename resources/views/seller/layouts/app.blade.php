@@ -45,7 +45,6 @@
 
         table th, table td {
             white-space: nowrap; /* Prevent text from wrapping */
-          
            
         }
 
