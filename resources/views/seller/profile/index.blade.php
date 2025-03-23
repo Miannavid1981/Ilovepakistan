@@ -279,7 +279,7 @@
                                             class="category-checkbox">
                                         {{ $category->name }}
                                     </label>
-                                    @if ($category->childrenCategories->count())
+                                    {{-- @if ($category->childrenCategories->count())
 
                                        
                                         <div class="children">
@@ -300,7 +300,7 @@
                                             @endforeach
 
                                         </div>
-                                    @endif
+                                    @endif --}}
                                 </div>
                             @endforeach
                         </div>
