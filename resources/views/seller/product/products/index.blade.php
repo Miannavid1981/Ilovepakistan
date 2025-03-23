@@ -77,7 +77,7 @@
                     </div>
                 </div>
             </div>
-            <div class="card-body">
+            <div class="card-body table-responsive">
                 <table class="table aiz-table mb-0">
                     <thead>
                         <tr>
