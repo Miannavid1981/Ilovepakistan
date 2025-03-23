@@ -166,11 +166,13 @@
                                         <td>
                                             @if(auth()->user()->seller_type == 'brand_partner' )
 
-                                                {{  single_price($this_order_detail->source_seller_profit_amount)  }}
+                                                {{  $this_order_detail->source_seller_profit_amount  > 0 ? single_price($this_order_detail->source_seller_profit_amount) : '-' }}
 
                                             @elseif ( auth()->user()->seller_type == 'seller_partner' )  
+
                                                 @if(empty($this_order_detail->seller_profit_amount) )
-                                                    {{  single_price($this_order_detail->source_seller_profit_amount)  }}
+
+                                                    {{ $this_order_detail->source_seller_profit_amount > 0 ?  single_price($this_order_detail->source_seller_profit_amount) : '-' }}
                                                 @else 
                                                     -
                                                 @endif
