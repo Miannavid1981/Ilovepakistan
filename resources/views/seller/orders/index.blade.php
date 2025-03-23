@@ -74,7 +74,7 @@
         
 
            
-                <div class="card-body p-3">
+                <div class="card-body p-3 table-responsive">
                     <table class="table mb-0">
                         <thead>
                             <tr>
