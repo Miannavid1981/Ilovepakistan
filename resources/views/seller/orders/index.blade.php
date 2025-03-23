@@ -113,7 +113,9 @@
                                 
                                 $this_order_detail = $order->orderDetails->first();
                                 // dd($this_order_detail->product);
+                                
                             @endphp
+                            @if(!empty($this_order_detail->product))
                                     <tr>
                                         <td>
                                             <div class="form-group">
@@ -246,7 +248,7 @@
                                             </a>
                                         </td>
                                     </tr>
-                              
+                              @endif
                             @endforeach
                         </tbody>
                     </table>
