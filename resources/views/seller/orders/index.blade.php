@@ -138,7 +138,7 @@
                                         <td>
                                             <div class="d-flex align-items-center ">
                                                 <div class="w-40px h-40px ">
-                                                    <img src="{{ !empty($this_order_detail->product->thumbnail) ? uploaded_asset($this_order_detail->product->thumbnail) : '' }}" class="w-100 h-100 object-cover rounded-3 ">
+                                                    <img src="{{ !empty($this_order_detail->product->thumbnail_img) ? uploaded_asset($this_order_detail->product->thumbnail_img) : '' }}" class="w-100 h-100 object-cover rounded-3 ">
                                                 </div>
                                                 <div class="ml-2">
                                                     <span class="badge badge-primary w-auto">{{ !empty($this_order_detail->product->main_category) ? $this_order_detail->product->main_category->name : ''}} </span>
