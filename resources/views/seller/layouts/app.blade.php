@@ -43,6 +43,13 @@
             z-index: 100000;
         }
 
+        table th, table td {
+            white-space: nowrap; /* Prevent text from wrapping */
+            overflow: hidden; /* Hide overflow content */
+            text-overflow: ellipsis; /* Show '...' if the text is too long */
+            max-width: 200px; /* Adjust width as needed */
+        }
+
   
 
     </style>
