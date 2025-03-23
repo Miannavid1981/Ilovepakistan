@@ -182,7 +182,7 @@
                                         </td>
                                         <td>
                                             @if ( auth()->user()->seller_type == 'seller_partner' || auth()->user()->seller_type == 'store_partner' )  
-                                                {{  single_price($this_order_detail->seller_profit_amount)  }}
+                                                {{  $this_order_detail->seller_profit_amount > 0 ? single_price($this_order_detail->seller_profit_amount) : '-'  }}
                                                 <br>
                                                 @if (!empty($this_order_detail->seller_profit_per)) {{  '('.$this_order_detail->seller_profit_per.'% )' }} @endif
                                             @else 
