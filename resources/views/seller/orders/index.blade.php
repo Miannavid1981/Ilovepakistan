@@ -170,7 +170,7 @@
 
                                             @elseif ( auth()->user()->seller_type == 'seller_partner' )  
                                                 @if(empty($this_order_detail->seller_profit_amount) )
-                                                    {{  single_price($this_order_detail->seller_profit_amount)  }}
+                                                    {{  single_price($this_order_detail->source_seller_profit_amount)  }}
                                                 @else 
                                                     -
                                                 @endif
