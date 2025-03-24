@@ -134,6 +134,11 @@
         .floating-buttons-section {
             display: none  !important;
         }
+        table th, table td {
+            white-space: nowrap; /* Prevent text from wrapping */
+           
+        }
+
     </style>
 
     <script>

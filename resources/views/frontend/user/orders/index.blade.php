@@ -5,7 +5,7 @@
         <div class="card-header border-bottom-0">
             <h5 class="mb-0 fs-20 fw-700 text-dark">{{ translate('Orders') }}</h5>
         </div>
-        <div class="card-body">
+    <div class="card-body table-responsive">
             <table class="table aiz-table mb-0">
                 <thead class="text-gray fs-12">
                     <tr>
