@@ -237,12 +237,12 @@
                                                     <i class="las la-print"></i>
                                                 </a>
                                             @endif
-                                            <a href="{{ url('order-received/'.$order->id) }}"
+                                            <a href="{{ route('seller.orders.show', encrypt($order->id)) }}"
                                                 class="btn btn-soft-info btn-icon btn-circle btn-sm"
                                                 title="{{ translate('Order Details') }}">
                                                 <i class="las la-eye"></i>
                                             </a>
-                                            <a href="{{ url('invoice/'. $order->id) }}"
+                                            <a href="{{ route('seller.invoice.download', $order->id) }}"
                                                 class="btn btn-soft-warning btn-icon btn-circle btn-sm"
                                                 title="{{ translate('Download Invoice') }}">
                                                 <i class="las la-download"></i>

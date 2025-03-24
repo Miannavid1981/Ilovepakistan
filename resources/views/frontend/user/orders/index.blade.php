@@ -133,7 +133,7 @@
                                         @endif
                                 
                                         <!-- Details -->
-                                        <a href="{{ route('purchase_history.details', ['order_id' => encrypt($combined_order->orders->first()->id), 'id' => encrypt($combined_order->id)]) }}"
+                                        <a href="{{ url('order-received/BH000'.$combined_order->id) }}"
                                             class="mb-2 mb-sm-0 mt-sm-0 mr-sm-1"
                                             title="{{ translate('Order Details') }}">
                                             <!--<svg xmlns="http://www.w3.org/2000/svg" width="12" height="10"-->
@@ -153,9 +153,10 @@
                                             <img src="https://icon-library.com/images/icon-menu/icon-menu-28.jpg" alt="Payment Image" style="    height: 26px;"/>
                                         </a>
                                 
+                                      
                                         <!-- Invoice -->
                                         <a class="mt-sm-0"
-                                            href="{{ route('download_order_receipt', $combined_order->id) }}"
+                                            href="{{ url('invoice/'. $combined_order->id) }}"
                                             title="{{ translate('Download Invoice') }}">
                                             <!--<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12.001"-->
                                             <!--    viewBox="0 0 12 12.001">-->
