@@ -146,16 +146,25 @@
                     <table class="table-bordered aiz-table invoice-summary table">
                         <thead>
                             <tr class="bg-trans-dark">
-                                <th data-breakpoints="lg" class="min-col">#</th>
+                                <th class="min-col">#</th>
                                 <th width="10%">{{ translate('Photo') }}</th>
                                 <th class="text-uppercase">{{ translate('Description') }}</th>
-                                <th data-breakpoints="lg" class="text-uppercase">{{ translate('Delivery Type') }}</th>
-                                <th data-breakpoints="lg" class="min-col text-uppercase text-center">
+                                {{-- <th class="text-uppercase">{{ translate('Delivery Type') }}</th> --}}
+                              
+                                <th class="min-col text-uppercase text-center">
+                                    {{ translate('Original Price') }}</th>
+                                <th class="min-col text-uppercase text-center">
+                                    {{ translate('Your Sale') }}</th>
+                                <th class="min-col text-uppercase text-center">
+                                    {{ translate('Platform Fee') }}</th>
+                                <th  class="min-col text-uppercase text-center">
                                     {{ translate('Qty') }}
                                 </th>
-                                <th data-breakpoints="lg" class="min-col text-uppercase text-center">
-                                    {{ translate('Price') }}</th>
-                                <th data-breakpoints="lg" class="min-col text-uppercase text-right">
+                                <th class="min-col text-uppercase text-center">
+                                    {{ translate('Total Sale') }}</th>
+                                <th class="min-col text-uppercase text-center">
+                                    {{ translate('Profit') }}</th>
+                                <th class="min-col text-uppercase text-right">
                                     {{ translate('Total') }}</th>
                             </tr>
                         </thead>
@@ -190,7 +199,7 @@
                                             <strong>{{ translate('Product Unavailable') }}</strong>
                                         @endif
                                     </td>
-                                    <td>
+                                    {{-- <td>
                                         @if ($order->shipping_type != null && $order->shipping_type == 'home_delivery')
                                             {{ translate('Home Delivery') }}
                                         @elseif ($order->shipping_type == 'pickup_point')
@@ -209,10 +218,51 @@
                                                 {{ translate('Carrier') }}
                                             @endif
                                         @endif
-                                    </td>
-                                    <td class="text-center">{{ $orderDetail->quantity }}</td>
+                                    </td> --}}
                                     <td class="text-center">
                                         {{ single_price($orderDetail->price / $orderDetail->quantity) }}</td>
+                                    <td class="text-center">
+                                    
+                                        @if(auth()->user()->id == $orderDetail->source_seller_id)
+                                            - {{ single_price($orderDetail->admin_profit_amount) }}
+                                            <br>
+                                            @if (!empty($orderDetail->admin_profit_per)) 
+                                            
+                                                {{  '('.$orderDetail->admin_profit_per.'% )' }}   
+                                            
+                                            @endif
+                                        @elseif( auth()->user()->seller_type != 'store_partner'  )
+                                            
+                                                @if(empty($orderDetail->seller_profit_amount))
+                                                    - {{ single_price($orderDetail->admin_profit_amount) }}
+                                                    <br>
+                                                    @if (!empty($orderDetail->admin_profit_per)) 
+                                                    
+                                                        {{  '('.$orderDetail->admin_profit_per.'% )' }}   
+                                                    
+                                                    @endif
+
+                                                @else 
+                                                    -
+                                                @endif
+                                        
+                                        @endif
+                                    
+                                    </td>
+                                    <td class="text-center">
+
+                                        @if ( auth()->user()->seller_type == 'seller_partner' || auth()->user()->seller_type == 'store_partner' )  
+                                            {{  $this_order_detail->seller_profit_amount > 0 ? single_price($this_order_detail->seller_profit_amount) : '-'  }}
+                                            <br>
+                                            @if (!empty($this_order_detail->seller_profit_per)) {{  '('.$this_order_detail->seller_profit_per.'% )' }} @endif
+                                        @else 
+                                        -
+                                        @endif
+                                        
+                                    </td>
+                                        
+                                    <td class="text-center">{{ $orderDetail->quantity }}</td>
+                                    
                                     <td class="text-center">{{ single_price($orderDetail->price) }}</td>
                                 </tr>
                             @endforeach
