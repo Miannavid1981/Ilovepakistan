@@ -202,7 +202,9 @@
                                         </td>
                                         <td>
                                         @if(auth()->user()->id == $this_order_detail->source_seller_id)
-                                            - {{ single_price($this_order_detail->admin_profit_amount) }}
+                                            - {{ single_price($this_order_detail->admin_profit_amount) }} x {{  $this_order_detail->quantity }}
+                                            <br>
+                                            {{ single_price($this_order_detail->admin_profit_amount * $this_order_detail->quantity) }} 
                                             <br>
                                             @if (!empty($this_order_detail->admin_profit_per)) 
                                             
