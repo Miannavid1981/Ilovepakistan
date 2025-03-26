@@ -251,12 +251,19 @@
                                     </td>
                                     <td class="text-center">
 
-                                        @if ( auth()->user()->seller_type == 'seller_partner' || auth()->user()->seller_type == 'store_partner' )  
-                                            {{  $orderDetail->seller_profit_amount > 0 ? single_price($orderDetail->seller_profit_amount) : '-'  }}
-                                            <br>
-                                            @if (!empty($orderDetail->seller_profit_per)) {{  '('.$orderDetail->seller_profit_per.'% )' }} @endif
-                                        @else 
-                                        -
+                                        @if(auth()->user()->seller_type == 'brand_partner' )
+
+                                            {{  single_price($this_order_detail->source_seller_profit_amount)  }}
+
+                                        @elseif ( auth()->user()->seller_type == 'seller_partner' )  
+                                            @if(empty($this_order_detail->seller_profit_amount) )
+                                                {{  single_price($this_order_detail->source_seller_profit_amount)  }}
+                                            @else 
+                                                -
+                                            @endif
+                                            
+                                        @else
+                                            -
                                         @endif
                                         
                                     </td>
