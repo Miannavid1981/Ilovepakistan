@@ -101,7 +101,7 @@
                         <tbody>
                             <tr>
                                 <td class="text-main text-bold">{{ translate('Order #') }}</td>
-                                <td class="text-info text-bold text-right">{{ $order->code }}</td>
+                                <td class="text-info text-bold text-right">BHP000{{ $order->id }}</td>
                             </tr>
                             <tr>
                                 <td class="text-main text-bold">{{ translate('Order Status') }}</td>
