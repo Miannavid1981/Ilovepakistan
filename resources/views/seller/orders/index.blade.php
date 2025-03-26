@@ -170,9 +170,9 @@
                                                 {{  single_price($this_order_detail->source_seller_profit_amount)  }}
 
                                             @elseif ( auth()->user()->seller_type == 'seller_partner' )  
-                                                @if(auth()->user()->id == $this_order_detail->source_seller_id )
-
-                                                    {{  single_price($this_order_detail->source_seller_profit_amount)  }}
+                                                @if(auth()->user()->id == $this_order_detail->source_seller_id ) 
+                                                    {{  single_price($this_order_detail->source_seller_profit_amount / $this_order_detail->quantity )  }}
+                                                    <span class="text-success"> + {{ single_price($this_order_detail->source_seller_profit_amount) }} </span>
 
                                                 @else 
                                                     @if(empty($this_order_detail->seller_profit_amount) )
