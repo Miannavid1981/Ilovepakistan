@@ -171,7 +171,8 @@
 
                                             @elseif ( auth()->user()->seller_type == 'seller_partner' )  
                                                 @if(auth()->user()->id == $this_order_detail->source_seller_id ) 
-                                                    {{  single_price($this_order_detail->source_seller_profit_amount / $this_order_detail->quantity )  }}
+                                                    {{  single_price($this_order_detail->source_seller_profit_amount / $this_order_detail->quantity )  }} x {{  $this_order_detail->quantity }}
+                                                    <br>
                                                     <span class="text-success"> + {{ single_price($this_order_detail->source_seller_profit_amount) }} </span>
 
                                                 @else 
