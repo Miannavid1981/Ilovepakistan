@@ -94,7 +94,7 @@
                                 <th data-breakpoints="lg">{{ translate('Quantity') }}</th>
                                 <th data-breakpoints="lg">{{ translate('Customer') }}</th>
                                 <th data-breakpoints="md">{{ translate('Price') }}</th>
-                                <th data-breakpoints="md">{{ translate('Earning') }}</th>
+                                <th data-breakpoints="md">{{ translate('Your Sale') }}</th>
                                 <th data-breakpoints="md">{{ translate('Profit') }}</th>
 
                                 @if(auth()->user()->seller_type != 'store_partner' )
