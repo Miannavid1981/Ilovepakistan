@@ -12,7 +12,7 @@
                 <div class="col text-md-left text-center">
                 </div>
                 @php
-                    $orderDetail = $order->orderDetail;
+                    $orderDetail = $order->orderDetails;
                     $delivery_status = $order->delivery_status;
                     $payment_status = $order->payment_status;
                 @endphp
