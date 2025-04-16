@@ -12,7 +12,7 @@
                 <div class="col text-md-left text-center">
                 </div>
                 @php
-                    $orderDetail = $order->orderDetails;
+                    $orderDetail = $order->orderDetails[0];
                     $delivery_status = $order->delivery_status;
                     $payment_status = $order->payment_status;
                     $this_order_detail = $orderDetail;
@@ -156,7 +156,7 @@
                                 <th class="min-col text-uppercase text-center">
                                     {{ translate('Original Price') }}</th>
                                 <th class="min-col text-uppercase text-center">
-                                @if(auth()->user()->id == $orderDetail[0]->source_seller_id ) 
+                                @if(auth()->user()->id == $orderDetail->source_seller_id ) 
                                     {{ translate('Sale') }}</th>
                                 @endif
                                 <th class="min-col text-uppercase text-center">
