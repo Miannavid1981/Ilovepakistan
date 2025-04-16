@@ -155,7 +155,7 @@
                                 <th class="min-col text-uppercase text-center">
                                     {{ translate('Original Price') }}</th>
                                 <th class="min-col text-uppercase text-center">
-                                @if(auth()->user()->id == $orderDetail->source_seller_id ) 
+                                @if(auth()->user()->id == $orderDetail[0]->source_seller_id ) 
                                     {{ translate('Sale') }}</th>
                                 @endif
                                 <th class="min-col text-uppercase text-center">
