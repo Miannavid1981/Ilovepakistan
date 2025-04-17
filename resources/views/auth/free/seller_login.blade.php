@@ -41,6 +41,11 @@
     box-shadow: unset !important;
     border: 1px solid #761adf !important;
 }
+.form-control:focus, .form-control:hover {
+    background: #771be017 !important;
+    border: 1px solid #cf517e !important;
+    color: #d45577 !important;
+}
 </style>
 
 @section('content')
