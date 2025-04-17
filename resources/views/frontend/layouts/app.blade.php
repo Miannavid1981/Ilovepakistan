@@ -138,7 +138,10 @@
             white-space: nowrap; /* Prevent text from wrapping */
            
         }
-
+        .btn-primary:hover {
+            background: #95240a !important;
+            border-color: #95240a !important
+        }
     </style>
 
     <script>
