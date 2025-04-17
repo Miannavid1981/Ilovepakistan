@@ -47,6 +47,17 @@
             white-space: nowrap; /* Prevent text from wrapping */
            
         }
+        .btn-primary {
+            background: hsla(268, 79%, 49%, 1);
+
+            background: linear-gradient(135deg, hsla(268, 79%, 49%, 1) 30%, hsla(351, 66%, 61%, 1) 100%);
+
+            background: -moz-linear-gradient(135deg, hsla(268, 79%, 49%, 1) 30%, hsla(351, 66%, 61%, 1) 100%);
+
+            background: -webkit-linear-gradient(135deg, hsla(268, 79%, 49%, 1) 30%, hsla(351, 66%, 61%, 1) 100%);
+
+            filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#781AE2", endColorstr="#DD5A6E", GradientType=1 );
+        }
 
   
 
