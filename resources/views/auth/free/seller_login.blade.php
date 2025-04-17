@@ -49,8 +49,8 @@
                         <div class="row align-items-center justify-content-center justify-content-lg-center h-100">
                             <div class="col-xxl-3 p-4 p-lg-5">
                                 <!-- Site Icon -->
-                                <div class=" text-lg-center">
-                                    <img src="{{ uploaded_asset(get_setting('site_icon')) }}" alt="{{ translate('Site Icon')}}" class="">
+                                <div class=" text-lg-center" style="max-width: 200px">
+                                    <img src="{{ uploaded_asset(get_setting('site_icon')) }}" alt="{{ translate('Site Icon')}}" class="w-100 h-100 object-cover">
                                 </div>
                                 <!-- Titles -->
                                 <div class="text-lg-center">
