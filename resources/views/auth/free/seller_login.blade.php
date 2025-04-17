@@ -36,7 +36,7 @@
 .password-toggle{
     right: 20px !important;
 }
-input {
+.form-control {
     background: #fff !important;
     box-shadow: unset !important;
     border: 1px solid #999 !important;
