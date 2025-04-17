@@ -116,6 +116,17 @@
            
             transition: all .3s ease-in-out
         }
+        .btn-secondary {
+            background: hsla(351, 66%, 61%, 1) !important;
+            border: unset !important;
+            transition: all .3s ease-in-out
+        }
+        .btn-secondary:hover {
+            background:rgb(144, 51, 65) !important;
+            transform: scale(0.98);
+           
+            transition: all .3s ease-in-out
+        }
         .text-primary {
             color: #791ddd !important
         }
