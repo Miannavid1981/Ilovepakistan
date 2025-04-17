@@ -126,7 +126,7 @@
                                             </div>
 
                                             <!-- Submit Button -->
-                                            <div class="mb-2 mt-4">
+                                            <div class="mb-2 mt-2">
                                                 <button type="submit" class="btn btn-primary btn-block fw-700 fs-16 Login-btn">{{  translate('Login') }}</button>
                                             </div>
                                         </form>
@@ -155,7 +155,7 @@
                                     <a href="{{ route('shops.create') }}" class="btn btn-secondary rounded-4 fw-700 w-100 mb-2  ">{{ translate('Register Now')}}</a>
                                     <!-- Go Back -->
                                     <a href="{{ url('/')}}" class="btn btn-light rounded-4 w-100" >
-                                        <i class="las la-arrow-left fs-17 mr-2"></i>
+                                        <i class="las la-home fs-17 mr-1"></i>
                                         {{ translate('Back to Home')}}
                                     </a>
                                 </div>
