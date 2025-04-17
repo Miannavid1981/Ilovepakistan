@@ -152,7 +152,7 @@
                                     <p class="fs-12 text-gray mb-0">
                                         {{ translate('Dont have an account?')}}
                                     </p>
-                                    <a href="{{ route('shops.create') }}" class="btn btn-secondary rounded-4 w-100 mb-2 ">{{ translate('Register Now')}}</a>
+                                    <a href="{{ route('shops.create') }}" class="btn btn-secondary rounded-4 fw-700 w-100 mb-2  ">{{ translate('Register Now')}}</a>
                                     <!-- Go Back -->
                                     <a href="{{ url('/')}}" class="btn btn-light rounded-4 w-100" >
                                         <i class="las la-arrow-left fs-17 mr-2"></i>
