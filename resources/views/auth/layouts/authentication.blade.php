@@ -94,7 +94,7 @@
             background: -webkit-linear-gradient(45deg, hsla(268, 79%, 49%, 1) 30%, hsla(351, 66%, 61%, 1) 100%);
 
             filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#781ae2", endColorstr="#dd5a6e", GradientType=1 );
-
+            color: #fff !important;
             border: unset !important;
             transition: all .3s ease-in-out
 
@@ -112,6 +112,17 @@
             filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#781ae2", endColorstr="#dd5a6e", GradientType=1 );
 
             border: unset !important;
+            transform: scale(0.98);
+           
+            transition: all .3s ease-in-out
+        }
+        .btn-secondary {
+            background: hsla(351, 66%, 61%, 1) !important;
+            border: unset !important;
+            transition: all .3s ease-in-out
+        }
+        .btn-secondary:hover {
+            background:rgb(144, 51, 65) !important;
             transform: scale(0.98);
            
             transition: all .3s ease-in-out
