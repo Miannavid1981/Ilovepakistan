@@ -36,6 +36,11 @@
 .password-toggle{
     right: 20px !important;
 }
+input {
+    background: #fff !important;
+    box-shadow: unset !important;
+    border: 1px solid #999 !important;
+}
 </style>
 
 @section('content')
