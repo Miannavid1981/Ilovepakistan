@@ -59,7 +59,7 @@
                         <div class="row align-items-center justify-content-center justify-content-lg-center h-100">
                             <div class="col-sm-7 col-md-6 col-lg-5 col-xl-4 p-4 p-lg-5">
                                 <!-- Site Icon -->
-                                <div class="text-center d-flex mb-4">
+                                <div class="text-center d-flex mb-5">
                                     <div class=" " style="max-width: 100px;
                                     width: 100%;
                                     height: 100%;
