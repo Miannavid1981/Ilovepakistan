@@ -39,7 +39,7 @@
 .form-control {
     background: #fff !important;
     box-shadow: unset !important;
-    border: 1px solid #999 !important;
+    border: 1px solid #761adf !important;
 }
 </style>
 
