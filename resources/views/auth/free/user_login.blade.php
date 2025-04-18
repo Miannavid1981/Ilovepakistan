@@ -154,24 +154,6 @@
         }
     }
 
-
-    .custom-input {
-        border-radius: 25px !important; /* Border radius for rounded corners */
-      
-        padding: 20px !important; /* Padding inside the input */
-        font-size: 14px !important; /* Font size */
-        width: 100% !important; /* Full width */
-        transition: all 0.3s ease !important; /* Smooth transition on focus */
-        height: 50px !important; 
-        outline: none !important; 
-    }
-
-/* Focused state styling */
-.custom-input:focus {
-   
-    outline: none !important; /* Remove default outline */
-}
-
 /* Styling for invalid inputs */
 .custom-input.is-invalid {
     border-color: #e3342f !important; /* Red border for invalid input */

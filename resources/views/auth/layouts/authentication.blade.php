@@ -84,6 +84,50 @@
                 height: 100%;
             }
         }
+            
+  
+
+        .custom-input {
+                border-radius: 25px !important; /* Border radius for rounded corners */
+            
+                padding: 20px !important; /* Padding inside the input */
+                font-size: 14px !important; /* Font size */
+                width: 100% !important; /* Full width */
+                transition: all 0.3s ease !important; /* Smooth transition on focus */
+                height: 50px !important; 
+                outline: none !important; 
+            }
+
+        /* Focused state styling */
+        .custom-input:focus {
+        
+            outline: none !important; /* Remove default outline */
+        }
+
+
+        /* Styling for invalid inputs */
+        .custom-input.is-invalid {
+            border-color: #e3342f !important; /* Red border for invalid input */
+            background-color: #ffe5e5 !important; /* Light red background for invalid input */
+        }
+
+        .login-btn{
+            border-radius: 25px !important;
+        }
+
+        .password-toggle{
+            right: 20px !important;
+        }
+        .form-control {
+            background: #fff !important;
+            box-shadow: unset !important;
+            border: 1px solid #761adf !important;
+        }
+        .form-control:focus, .form-control:hover {
+            background: #771be017 !important;
+            border: 1px solid #cf517e !important;
+            color: #d45577 !important;
+        }
         .btn-primary {
             background: hsla(268, 79%, 49%, 1);
 
