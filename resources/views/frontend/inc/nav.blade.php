@@ -927,7 +927,7 @@ $(document).ready(function(){
                         </div>
                     </div>
                     <div>
-                        <button class=" add_to_cart_small_btn rounded-circle p-1 d-flex align-items-center justify-content-center g-add-to-cart" style="aspect-ratio:1/1"  data-id="${item.id}" data-skin_code="${item.product_skin}" ><i class="las la-cart-plus fs-20"></i>  </button>
+                        <button class="btn-primary add_to_cart_small_btn rounded-circle p-1 d-flex align-items-center justify-content-center g-add-to-cart" style="aspect-ratio:1/1"  data-id="${item.id}" data-skin_code="${item.product_skin}" ><i class="las la-cart-plus fs-20"></i>  </button>
                     </div>
                     
                    
