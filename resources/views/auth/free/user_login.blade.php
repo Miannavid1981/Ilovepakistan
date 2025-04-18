@@ -251,14 +251,14 @@
                                             @if (addon_is_activated('otp_system'))
                                                 <div class="form-group phone-form-group mb-1">
                                                     <label for="phone" class="fs-12 fw-700 text-soft-dark">{{  translate('Phone') }}</label>
-                                                    <input type="tel" id="phone-code" class="form-control{{ $errors->has('phone') ? ' is-invalid' : '' }} rounded-0" value="{{ old('phone') }}" placeholder="" name="phone" autocomplete="off">
+                                                    <input type="tel" id="phone-code" class="form-control custom-input {{ $errors->has('phone') ? ' is-invalid' : '' }} rounded-0" value="{{ old('phone') }}" placeholder="" name="phone" autocomplete="off">
                                                 </div>
 
                                                 <input type="hidden" name="country_code" value="">
                                                 
                                                  <div class="form-group">
                                             <label for="email" class="fs-12 fw-700 text-soft-dark">{{  translate('Email') }}</label>
-                                            <input type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }} rounded-2" value="{{ old('email') }}" placeholder="{{  translate('johndoe@example.com') }}" name="email" id="email" autocomplete="off">
+                                            <input type="email" class="form-control custom-input {{ $errors->has('email') ? ' is-invalid' : '' }} rounded-2" value="{{ old('email') }}" placeholder="{{  translate('johndoe@example.com') }}" name="email" id="email" autocomplete="off">
                                             @if ($errors->has('email'))
                                                 <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $errors->first('email') }}</strong>
@@ -272,7 +272,7 @@
                                             @else
                                                 <div class="form-group">
                                                     {{-- <label for="email" class="fs-12 fw-700 text-soft-dark">{{  translate('Email') }}</label> --}}
-                                                    <input type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }} rounded-2" value="{{ old('email') }}" placeholder="{{  translate('Email') }}" name="email" id="email" autocomplete="off" required>
+                                                    <input type="email" class="form-control custom-input {{ $errors->has('email') ? ' is-invalid' : '' }} rounded-2" value="{{ old('email') }}" placeholder="{{  translate('Email') }}" name="email" id="email" autocomplete="off" required>
                                                     @if ($errors->has('email'))
                                                         <span class="invalid-feedback" role="alert">
                                                             <strong>{{ $errors->first('email') }}</strong>
@@ -285,7 +285,7 @@
                                                 <div class="form-group">
                                                     {{-- <label for="password" class="fs-12 fw-700 text-soft-dark">{{  translate('Password') }}</label> --}}
                                                     <div class="position-relative">
-                                                        <input type="password" class="form-control rounded-2 {{ $errors->has('password') ? ' is-invalid' : '' }}" placeholder="{{ translate('Password')}}" name="password" id="password" required>
+                                                        <input type="password" class="form-control custom-input  rounded-2 {{ $errors->has('password') ? ' is-invalid' : '' }}" placeholder="{{ translate('Password')}}" name="password" id="password" required>
                                                         <i class="password-toggle las la-2x la-eye"></i>
                                                     </div>
                                                 </div>
