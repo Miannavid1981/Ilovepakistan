@@ -156,23 +156,19 @@
 
 
     .custom-input {
-    border-radius: 25px !important; /* Border radius for rounded corners */
-    border: 1px solid #ececec !important; /* Border color */
-    background-color: #f9f9f9 !important; /* Input background color */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1) !important; /* Border shadow */
-    padding: 20px !important; /* Padding inside the input */
-    font-size: 14px !important; /* Font size */
-    width: 100% !important; /* Full width */
-    transition: all 0.3s ease !important; /* Smooth transition on focus */
-    height: 50px !important; 
-    outline: none !important; 
-}
+        border-radius: 25px !important; /* Border radius for rounded corners */
+      
+        padding: 20px !important; /* Padding inside the input */
+        font-size: 14px !important; /* Font size */
+        width: 100% !important; /* Full width */
+        transition: all 0.3s ease !important; /* Smooth transition on focus */
+        height: 50px !important; 
+        outline: none !important; 
+    }
 
 /* Focused state styling */
 .custom-input:focus {
-    border-color: #cacaca !important; /* Change border color on focus */
-    background-color: #fff !important; /* Change background color on focus */
-    box-shadow: 0 0 8px rgba(153, 155, 158, 0.4) !important; /* Change shadow color on focus */
+   
     outline: none !important; /* Remove default outline */
 }
 
@@ -313,7 +309,7 @@
                                             <div id="recaptcha_message"></div> --}}
                                             <!-- Submit Button -->
                                             <div class="mb-2 mt-2">
-                                                <button type="submit" class="btn btn-primary btn-block fw-700 fs-14 rounded-2 submit-button">{{  translate('Login') }}</button>
+                                                <button type="submit" class="btn btn-primary btn-block fw-700 fs-14 rounded-4 submit-button">{{  translate('Login') }}</button>
                                             </div>
                                         </form>
 
