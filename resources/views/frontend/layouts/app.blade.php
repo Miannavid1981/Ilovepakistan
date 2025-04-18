@@ -141,18 +141,47 @@
         .btn-primary {
             background: hsla(268, 79%, 49%, 1);
 
-background: linear-gradient(135deg, hsla(268, 79%, 49%, 1) 30%, hsla(351, 66%, 61%, 1) 100%);
+            background: linear-gradient(45deg, hsla(268, 79%, 49%, 1) 30%, hsla(351, 66%, 61%, 1) 100%);
 
-background: -moz-linear-gradient(135deg, hsla(268, 79%, 49%, 1) 30%, hsla(351, 66%, 61%, 1) 100%);
+            background: -moz-linear-gradient(45deg, hsla(268, 79%, 49%, 1) 30%, hsla(351, 66%, 61%, 1) 100%);
 
-background: -webkit-linear-gradient(135deg, hsla(268, 79%, 49%, 1) 30%, hsla(351, 66%, 61%, 1) 100%);
+            background: -webkit-linear-gradient(45deg, hsla(268, 79%, 49%, 1) 30%, hsla(351, 66%, 61%, 1) 100%);
 
-filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#781AE2", endColorstr="#DD5A6E", GradientType=1 );
+            filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#781ae2", endColorstr="#dd5a6e", GradientType=1 );
+            color: #fff !important;
+            border: unset !important;
+            transition: all .3s ease-in-out
+
         }
         .btn-primary:hover {
-            background: #95240a !important;
-            border-color: #95240a !important
+            
+            background: hsla(268, 79%, 49%, 1);
+
+            background: linear-gradient(45deg, hsla(268, 79%, 49%, 1) 30%, hsla(351, 66%, 61%, 1) 100%);
+
+            background: -moz-linear-gradient(45deg, hsla(268, 79%, 49%, 1) 30%, hsla(351, 66%, 61%, 1) 100%);
+
+            background: -webkit-linear-gradient(45deg, #5a1e9f 30%, hsl(351deg 45.85% 35.12%) 100%);
+
+            filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#781ae2", endColorstr="#dd5a6e", GradientType=1 );
+
+            border: unset !important;
+            transform: scale(0.98);
+           
+            transition: all .3s ease-in-out
         }
+        .btn-secondary {
+            background: hsla(351, 66%, 61%, 1) !important;
+            border: unset !important;
+            transition: all .3s ease-in-out
+        }
+        .btn-secondary:hover {
+            background:rgb(144, 51, 65) !important;
+            transform: scale(0.98);
+           
+            transition: all .3s ease-in-out
+        }
+    
     </style>
 
     <script>
@@ -260,15 +289,15 @@ filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#781AE2", en
 
         .add_to_cart_small_btn {
             border-radius: 50%;
-            background: #000;
+            /* background: #000; */
             color: #fff;
             border: 1px solid #dedede !important; 
             transition: all .3s ease-in-out
         }
         .add_to_cart_small_btn:hover, .add_to_cart_small_btn:disabled, .add_to_cart_small_btn[disabled]{
             border-radius: 50%;
-            background: #f1f1f1;
-            color: #000;
+            /* background: #f1f1f1; */
+            /* color: #000; */
             transition: all .3s ease-in-out
         }
    
