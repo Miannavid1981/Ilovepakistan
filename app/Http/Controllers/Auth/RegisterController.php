@@ -225,6 +225,23 @@ class RegisterController extends Controller
             $user->verification_code = $request->otp;
             $user->save();
 
+
+            // Account Opening Email to Seller
+            if ((get_email_template_data('registration_email_to_seller', 'status') == 1)) {
+                try {
+                    EmailUtility::selelr_registration_email('registration_email_to_seller', $user, null);
+                } catch (\Exception $e) {}
+            }
+
+            // Seller Account Opening Email to Admin
+            if ((get_email_template_data('seller_reg_email_to_admin', 'status') == 1)) {
+                try {
+                    EmailUtility::selelr_registration_email('seller_reg_email_to_admin', $user, null);
+                } catch (\Exception $e) {}
+            }
+
+
+
             session()->forget('pending_user');
             Cache::forget('otp_'.$data['email']);
 
