@@ -601,3 +601,6 @@ Route::get('/register/store/brand-partner', [RegisterController::class, 'registe
                             
 Route::get('invoice/{order_id}', [InvoiceController::class, 'invoice_download'])->name('invoice.download');
 
+
+Route::get('/seller/verify-otp', [RegisterController::class, 'showOtpForm'])->name('verify.otp.form');
+Route::post('/seller/verify-otp', [RegisterController::class, 'verifyOtp'])->name('verify.otp.submit');

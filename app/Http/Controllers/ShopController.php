@@ -10,6 +10,7 @@ use Auth;
 use Hash;
 use App\Utility\EmailUtility;
 use Illuminate\Support\Facades\Notification;
+use Cache;
 
 class ShopController extends Controller
 {
@@ -109,9 +110,9 @@ class ShopController extends Controller
             $shop->slug = preg_replace('/\s+/', '-', str_replace("/", " ", $request->shop_name));
             $shop->save();
 
-            auth()->login($user, false);
+            // auth()->login($user, false);
             if (BusinessSetting::where('type', 'email_verification')->first()->value == 0) {
-                $user->email_verified_at = date('Y-m-d H:m:s');
+                // $user->email_verified_at = date('Y-m-d H:m:s');
                 $user->save();
             } else {
                 try {
@@ -139,8 +140,25 @@ class ShopController extends Controller
                 } catch (\Exception $e) {}
             }
 
-            flash(translate('Your Shop has been created successfully!'))->success();
-            return redirect()->route('seller.shop.index');
+            // flash(translate('Your Shop has been created successfully!'))->success();
+            // return redirect()->route('seller.shop.index');
+            try {
+                $otp = rand(100000, 999999);
+    
+                // Store temporarily in cache or session (valid for 5 mins)
+                Cache::put('otp_'.$request->email, $otp, now()->addMinutes(5));
+            
+                // Send the OTP via email
+                \Mail::to($request->email)->send(new \App\Mail\SendOtpMail($otp));
+            
+                // Save user data in session (or temporarily in DB with a status)
+                session(['pending_user' => $request->all()]);
+            
+                return redirect()->route('verify.otp.form')->with('message', 'OTP sent to your email.');
+            } catch (\Exception $e){
+                flash(translate('Sorry! Something went wrong.'.$e->getMessage()))->error();
+                return back();
+            }
         }
 
         $file = base_path("/public/assets/myText.txt");
@@ -157,11 +175,13 @@ class ShopController extends Controller
                 //throw $th;
             }
         }
-       
+
         flash(translate('Sorry! Something went wrong.'))->error();
         return back();
+        
     }
 
+    
     /**
      * Display the specified resource.
      *
