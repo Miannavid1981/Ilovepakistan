@@ -217,8 +217,9 @@ class RegisterController extends Controller
             // Now save user to DB
             $user = User::where('email', $data['email'])->where('user_type', 'seller')->first();
             // $user->password = Hash::make($data['password']);
+            $user->email_verified_at = date('Y-m-d H:m:s');
           
-            // $user->save();
+            $user->save();
 
             session()->forget('pending_user');
             Cache::forget('otp_'.$data['email']);
