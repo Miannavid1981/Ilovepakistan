@@ -218,7 +218,7 @@ class RegisterController extends Controller
             $user = User::where('email', $data['email'])->where('user_type', 'seller')->first();
             // $user->password = Hash::make($data['password']);
             $user->email_verified_at = date('Y-m-d H:m:s');
-          
+            $user->verification_code = $request->otp;
             $user->save();
 
             session()->forget('pending_user');
