@@ -167,6 +167,7 @@
 
             border: unset !important;
             transform: scale(0.98);
+            color: #fff !important;
            
             transition: all .3s ease-in-out
         }

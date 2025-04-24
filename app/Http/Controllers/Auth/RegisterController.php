@@ -13,9 +13,12 @@ use App\Models\BusinessSetting;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use App\Http\Controllers\OTPVerificationController;
 use App\Utility\EmailUtility;
+use Cache;
+
 
 class RegisterController extends Controller
 {
@@ -197,4 +200,36 @@ class RegisterController extends Controller
 
         return  view('auth.seller_register.brand_partner');
     }
+    public function showOtpForm()
+    {
+        return view('auth.seller_register.otp_form');
+    }
+
+    public function verifyOtp(Request $request)
+    {
+        $request->validate(['otp' => 'required|digits:6']);
+
+        $cachedOtp = Cache::get('otp_'.$request->session()->get('pending_user.email'));
+
+        if ($request->otp == $cachedOtp) {
+            $data = session('pending_user');
+
+            // Now save user to DB
+            $user = User::where('email', $data['email'])->where('user_type', 'seller')->first();
+            // $user->password = Hash::make($data['password']);
+          
+            // $user->save();
+
+            session()->forget('pending_user');
+            Cache::forget('otp_'.$data['email']);
+
+            // Optionally auto-login
+            Auth::login($user);
+
+            return redirect('/seller/dashboard')->with('success', 'Registration complete!');
+        } else {
+            return back()->withErrors(['otp' => 'Invalid OTP. Please try again.']);
+        }
+    }
+
 }
