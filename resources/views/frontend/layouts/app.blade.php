@@ -91,11 +91,17 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <style>
     
-        * {
-    
-        --hov-primary: #e56f0e;
-    
-        }
+       :root {
+        --primary : hsla(268, 79%, 49%, 1);
+        --hov-primary: #761adf;
+        --light-primary: #eedfff;
+        --secondary: hsla(351, 66%, 61%, 1);
+       }
+       * {
+        --primary : hsla(268, 79%, 49%, 1);
+        --hov-primary: #761adf;
+        --secondary: hsla(351, 66%, 61%, 1);
+       }
         @font-face {
             font-family: 'TTNormsPro'; /* The name you want to use for the font */
             src: url('/public/assets/fonts/TT\ Norms\ Pro\ Regular.otf') format('opentype'); /* Path to your .otf file */
@@ -208,16 +214,34 @@
     border-color: #e3342f !important; /* Red border for invalid input */
     background-color: #ffe5e5 !important; /* Light red background for invalid input */
 }
+#search {
+    border: unset !important;
+}
 
-.form-control {
+.form-control:not(#search) {
     background: #fff !important;
     box-shadow: unset !important;
-    border: 1px solid #761adf ;
+    border: 1px solid #761adf !important;
 }
-.form-control:focus, .form-control:hover {
+.form-control:not(#search):focus, .form-control:not(#search):hover {
     background: #771be017 !important;
-    border: 1px solid #cf517e ;
+    border: 1px solid #cf517e !important;
     color: #d45577 !important;
+}
+
+.btn-outline-primary:hover {
+    background: hsla(268, 79%, 49%, 1);
+
+background: linear-gradient(45deg, hsla(268, 79%, 49%, 1) 30%, hsla(351, 66%, 61%, 1) 100%);
+
+background: -moz-linear-gradient(45deg, hsla(268, 79%, 49%, 1) 30%, hsla(351, 66%, 61%, 1) 100%);
+
+background: -webkit-linear-gradient(45deg, hsla(268, 79%, 49%, 1) 30%, hsla(351, 66%, 61%, 1) 100%);
+
+filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#781ae2", endColorstr="#dd5a6e", GradientType=1 );
+color: #fff !important;
+border: unset !important;
+transition: all .3s ease-in-out
 }
     
     </style>
