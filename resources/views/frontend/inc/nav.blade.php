@@ -172,7 +172,7 @@ header{
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav w-100" style="gap: 10px">
                         <li class="nav-item">
-                            <a class="nav-link btn btn-primary text-dark px-3 py-1 category-btn toggle-btn category-drawer-toggle-btn" href="#" style="border-radius: 20px; background-color: #F5F5F5;">
+                            <a class="nav-link btn btn-primary  px-3 py-1 category-btn toggle-btn category-drawer-toggle-btn cursor-pointer" href="#" style="border-radius: 20px; background-color: #F5F5F5;">
                                 <i class="fa-solid fa-bars"></i> All Categories
                             </a>
                         </li>

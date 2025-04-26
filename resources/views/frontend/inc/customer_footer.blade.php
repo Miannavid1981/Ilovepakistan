@@ -1,5 +1,5 @@
 
-<footer class="footer text-dark pt-5 pb-3" style="background-color: #E8E8E8; line-height: 40px;">
+<footer class="footer text-dark pt-5 pb-3" style="background-color: var(--light-primary); line-height: 40px;">
     <div class="container">
         <div class="row">
             <!-- About Section -->
