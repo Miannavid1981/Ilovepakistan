@@ -676,6 +676,76 @@
         </section>
     @endif
 
+    <section style="background: #DDDDDD" class="mb-5 mt-2">
+        <div class="container py-5">
+            <div class="row g-4">
+                {{-- Box 1 --}}
+                <div class="col-12 col-sm-6 col-md-3">
+                    <div class="p-3 bg-white h-100">
+                        <h5>Fantastic Finds for Home</h5>
+                        <div class="row g-2">
+                            @for ($i = 0; $i < 4; $i++)
+                                <div class="col-6">
+                                    <img style="width: 100%;" src="{{ static_asset('assets/img/pexels-pixabay-271696.jpg') }}" alt="Item" class="img-fluid">
+                                    <p class="mb-1">Category {{ $i+1 }}</p>
+                                </div>
+                            @endfor
+                        </div>
+                        <a href="#" class="text-primary mt-2 d-block">See more</a>
+                    </div>
+                </div>
+    
+                {{-- Box 2 --}}
+                <div class="col-12 col-sm-6 col-md-3">
+                    <div class="p-3 bg-white h-100">
+                        <h5>Score the top PCs & Accessories</h5>
+                        <div class="row g-2">
+                            @for ($i = 0; $i < 4; $i++)
+                                <div class="col-6">
+                                    <img style="width: 100%;" src="{{ static_asset('assets/img/pexels-pixabay-271696.jpg') }}" alt="Item" class="img-fluid">
+                                    <p class="mb-1">Category {{ $i+1 }}</p>
+                                </div>
+                            @endfor
+                        </div>
+                        <a href="#" class="text-primary mt-2 d-block">See more</a>
+                    </div>
+                </div>
+    
+                {{-- Box 3 --}}
+                <div class="col-12 col-sm-6 col-md-3">
+                    <div class="p-3 bg-white h-100">
+                        <h5>Level up your gaming</h5>
+                        <div class="row g-2">
+                            @for ($i = 0; $i < 4; $i++)
+                                <div class="col-6">
+                                    <img style="width: 100%;" src="{{ static_asset('assets/img/pexels-pixabay-271696.jpg') }}" alt="Item" class="img-fluid">
+                                    <p class="mb-1">Category {{ $i+1 }}</p>
+                                </div>
+                            @endfor
+                        </div>
+                        <a href="#" class="text-primary mt-2 d-block">Shop now</a>
+                    </div>
+                </div>
+    
+                {{-- Box 4 --}}
+                <div class="col-12 col-sm-6 col-md-3">
+                    <div class="p-3 bg-white h-100">
+                        <h5>Best Picks for You</h5>
+                        <div class="row g-2">
+                            @for ($i = 0; $i < 4; $i++)
+                                <div class="col-6">
+                                    <img style="width: 100%;" src="{{ static_asset('assets/img/pexels-pixabay-271696.jpg') }}" alt="Item" class="img-fluid">
+                                    <p class="mb-1">Category {{ $i+1 }}</p>
+                                </div>
+                            @endfor
+                        </div>
+                        <a href="#" class="text-primary mt-2 d-block">Explore more</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
 <div class="services-icons mb-5 " style="background: var(--light-primary);">
     <div class="container py-4"> 
         <div class="row text-center d-flex align-items-end">
@@ -770,9 +840,113 @@
     </div>
     <img src="{{ static_asset('assets/img/banners.webp') }}" class="w-100 mt-2 mb-4">
 
+
+
+    <section style="background: #DDDDDD" class="mb-5 mt-2">
+        <div class="container py-5">
+            <div class="row g-4">
+                {{-- Box 1 --}}
+                <div class="col-12 col-sm-6 col-md-3">
+                    <div class="p-3 bg-white h-100">
+                        <h5>Fantastic Finds for Home</h5>
+                        <div class="row g-2">
+                            @for ($i = 0; $i < 4; $i++)
+                                <div class="col-6">
+                                    <img style="width: 100%;" src="{{ static_asset('assets/img/pexels-pixabay-271696.jpg') }}" alt="Item" class="img-fluid">
+                                    <p class="mb-1">Category {{ $i+1 }}</p>
+                                </div>
+                            @endfor
+                        </div>
+                        <a href="#" class="text-primary mt-2 d-block">See more</a>
+                    </div>
+                </div>
+    
+                {{-- Box 2 --}}
+                <div class="col-12 col-sm-6 col-md-3">
+                    <div class="p-3 bg-white h-100">
+                        <h5>Score the top PCs & Accessories</h5>
+                        <div class="row g-2">
+                            @for ($i = 0; $i < 4; $i++)
+                                <div class="col-6">
+                                    <img style="width: 100%;" src="{{ static_asset('assets/img/pexels-pixabay-271696.jpg') }}" alt="Item" class="img-fluid">
+                                    <p class="mb-1">Category {{ $i+1 }}</p>
+                                </div>
+                            @endfor
+                        </div>
+                        <a href="#" class="text-primary mt-2 d-block">See more</a>
+                    </div>
+                </div>
+    
+                {{-- Box 3 --}}
+                <div class="col-12 col-sm-6 col-md-3">
+                    <div class="p-3 bg-white h-100">
+                        <h5>Level up your gaming</h5>
+                        <div class="row g-2">
+                            @for ($i = 0; $i < 4; $i++)
+                                <div class="col-6">
+                                    <img style="width: 100%;" src="{{ static_asset('assets/img/pexels-pixabay-271696.jpg') }}" alt="Item" class="img-fluid">
+                                    <p class="mb-1">Category {{ $i+1 }}</p>
+                                </div>
+                            @endfor
+                        </div>
+                        <a href="#" class="text-primary mt-2 d-block">Shop now</a>
+                    </div>
+                </div>
+    
+                {{-- Box 4 --}}
+                <div class="col-12 col-sm-6 col-md-3">
+                    <div class="p-3 bg-white h-100">
+                        <h5>Best Picks for You</h5>
+                        <div class="row g-2">
+                            @for ($i = 0; $i < 4; $i++)
+                                <div class="col-6">
+                                    <img style="width: 100%;" src="{{ static_asset('assets/img/pexels-pixabay-271696.jpg') }}" alt="Item" class="img-fluid">
+                                    <p class="mb-1">Category {{ $i+1 }}</p>
+                                </div>
+                            @endfor
+                        </div>
+                        <a href="#" class="text-primary mt-2 d-block">Explore more</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+
     @include('frontend/megamart/partials/toggle_tabs');
    
     <!-- Today's deal -->
+
+
+    <section style="background: #EFEFEF;" class="mb-5">
+        <div class="container py-5">
+            <div class="row g-4">
+                {{-- Column 1 --}}
+                <div class="col-12 col-sm-6 col-md-3">
+                    <img src="{{ static_asset('assets/img/pexels-pixabay-271696.jpg') }}" class="img-fluid w-100">
+                </div>
+    
+                {{-- Column 2 --}}
+                <div class="col-12 col-sm-6 col-md-3">
+                    <img src="{{ static_asset('assets/img/pexels-pixabay-271696.jpg') }}" class="img-fluid w-100">
+                </div>
+    
+                {{-- Column 3 --}}
+                <div class="col-12 col-sm-6 col-md-3">
+                    <img src="{{ static_asset('assets/img/pexels-pixabay-271696.jpg') }}" class="img-fluid w-100">
+                </div>
+    
+                {{-- Column 4 --}}
+                <div class="col-12 col-sm-6 col-md-3">
+                    <img src="{{ static_asset('assets/img/pexels-pixabay-271696.jpg') }}" class="img-fluid w-100">
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    
+
+
     @php
         $todays_deal_section_bg = get_setting('todays_deal_section_bg_color');
 
