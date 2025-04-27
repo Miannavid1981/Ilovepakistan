@@ -676,8 +676,7 @@
         </section>
     @endif
 
-
-<div class="services-icons mb-5 " style="background: #eee;">
+<div class="services-icons mb-5 " style="background: var(--light-primary);">
     <div class="container py-4"> 
         <div class="row text-center d-flex align-items-end">
             <!-- First Feature (Updated layout) -->
