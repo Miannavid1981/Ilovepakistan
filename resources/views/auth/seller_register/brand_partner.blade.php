@@ -266,7 +266,7 @@
                                 </div>
                             </div>
                                 <!-- Recaptcha -->
-                            {{-- @if(get_setting('google_recaptcha') == 1)
+                            @if(get_setting('google_recaptcha') == 1)
                                                
                                 <div id="recaptcha" class="g-recaptcha" data-sitekey="{{ env('CAPTCHA_KEY') }}" data-callback="recaptchaVerified"></div>
                                 <div id="recaptcha_message" class="text-danger mt-1 mb-2"></div>
@@ -275,7 +275,7 @@
                                         <strong>{{ $errors->first('g-recaptcha-response') }}</strong>
                                     </span>
                                 @endif
-                            @endif --}}
+                            @endif
 
 
                             <!-- Submit Button -->

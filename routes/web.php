@@ -596,8 +596,9 @@ Route::post('/product/import-to-seller', [SellerMarketController::class, 'store'
 
 
 Route::get('/checkout/refresh/payment_actions', [CheckoutController::class, 'payment_actions'])->name('checkout.refresh_payment_actions');
-Route::get('/register/store/brand-partner', [RegisterController::class, 'register_brand_partner'])->name('register.brand_partner');
-Route::get('/register/store/store-partner', [RegisterController::class, 'register_store_partner'])->name('register.store_partner');
+Route::get('/register/partner/brand', [RegisterController::class, 'register_brand_partner'])->name('register.brand_partner');
+Route::get('/register/partner/store', [RegisterController::class, 'register_store_partner'])->name('register.store_partner');
+Route::get('/register/partner/seller', [RegisterController::class, 'register_seller_partner'])->name('register.seller_partner');
 
                             
 Route::get('invoice/{order_id}', [InvoiceController::class, 'invoice_download'])->name('invoice.download');
