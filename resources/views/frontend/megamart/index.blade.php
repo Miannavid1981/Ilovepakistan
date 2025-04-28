@@ -676,77 +676,8 @@
         </section>
     @endif
 
-    <section style="background: #DDDDDD" class="mb-5 mt-2">
-        <div class="container py-5">
-            <div class="row g-4">
-                {{-- Box 1 --}}
-                <div class="col-12 col-sm-6 col-md-3">
-                    <div class="p-3 bg-white h-100">
-                        <h5>Fantastic Finds for Home</h5>
-                        <div class="row g-2">
-                            @for ($i = 0; $i < 4; $i++)
-                                <div class="col-6">
-                                    <img style="width: 100%;" src="{{ static_asset('assets/img/pexels-pixabay-271696.jpg') }}" alt="Item" class="img-fluid">
-                                    <p class="mb-1">Category {{ $i+1 }}</p>
-                                </div>
-                            @endfor
-                        </div>
-                        <a href="#" class="text-primary mt-2 d-block">See more</a>
-                    </div>
-                </div>
-    
-                {{-- Box 2 --}}
-                <div class="col-12 col-sm-6 col-md-3">
-                    <div class="p-3 bg-white h-100">
-                        <h5>Score the top PCs & Accessories</h5>
-                        <div class="row g-2">
-                            @for ($i = 0; $i < 4; $i++)
-                                <div class="col-6">
-                                    <img style="width: 100%;" src="{{ static_asset('assets/img/pexels-pixabay-271696.jpg') }}" alt="Item" class="img-fluid">
-                                    <p class="mb-1">Category {{ $i+1 }}</p>
-                                </div>
-                            @endfor
-                        </div>
-                        <a href="#" class="text-primary mt-2 d-block">See more</a>
-                    </div>
-                </div>
-    
-                {{-- Box 3 --}}
-                <div class="col-12 col-sm-6 col-md-3">
-                    <div class="p-3 bg-white h-100">
-                        <h5>Level up your gaming</h5>
-                        <div class="row g-2">
-                            @for ($i = 0; $i < 4; $i++)
-                                <div class="col-6">
-                                    <img style="width: 100%;" src="{{ static_asset('assets/img/pexels-pixabay-271696.jpg') }}" alt="Item" class="img-fluid">
-                                    <p class="mb-1">Category {{ $i+1 }}</p>
-                                </div>
-                            @endfor
-                        </div>
-                        <a href="#" class="text-primary mt-2 d-block">Shop now</a>
-                    </div>
-                </div>
-    
-                {{-- Box 4 --}}
-                <div class="col-12 col-sm-6 col-md-3">
-                    <div class="p-3 bg-white h-100">
-                        <h5>Best Picks for You</h5>
-                        <div class="row g-2">
-                            @for ($i = 0; $i < 4; $i++)
-                                <div class="col-6">
-                                    <img style="width: 100%;" src="{{ static_asset('assets/img/pexels-pixabay-271696.jpg') }}" alt="Item" class="img-fluid">
-                                    <p class="mb-1">Category {{ $i+1 }}</p>
-                                </div>
-                            @endfor
-                        </div>
-                        <a href="#" class="text-primary mt-2 d-block">Explore more</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    
-<div class="services-icons mb-5 " style="background: var(--light-primary);">
+
+<div class="services-icons mb-5 " style="background: #eee;">
     <div class="container py-4"> 
         <div class="row text-center d-flex align-items-end">
             <!-- First Feature (Updated layout) -->
@@ -842,7 +773,7 @@
 
 
 
-    <section style="background: #DDDDDD" class="mb-5 mt-2">
+    <section style="background: var(--light-primary);" class="mb-5 mt-2">
         <div class="container py-5">
             <div class="row g-4">
                 {{-- Box 1 --}}
@@ -918,7 +849,7 @@
     <!-- Today's deal -->
 
 
-    <section style="background: #EFEFEF;" class="mb-5">
+    <section style="background: var(--light-primary);" class="mb-5">
         <div class="container py-5">
             <div class="row g-4">
                 {{-- Column 1 --}}
