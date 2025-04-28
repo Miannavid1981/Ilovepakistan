@@ -146,7 +146,7 @@
                 <h3>Store Partner</h3>
                 <p>Easy and simple way to sell globally</p>
                 <p>per successful sale</p>
-                <button class="signup-btn">Apply Now</button>
+                <a class="signup-btn" href="{{ route('register.store_partner') }}">Apply Now</a>
                 <p class="note">No credit card required.<br>You’ll only pay when you start selling.</p>
                 <h4>WHAT YOU GET</h4>
                 <ul class="list-icons">
@@ -166,7 +166,7 @@
                     <h3>Verified Seller</h3>
                     <p>Develop & Boost your subscription business</p>
                     <p>per successful sale</p>
-                    <button class="signup-btn-1">Apply Now</button>
+                    <a class="signup-btn-1" href="{{ route('register.seller_partner') }}">Apply Now</a>
                     <p class="note">No credit card required.<br>You’ll only pay when you start selling.</p>
                     <h4>WHAT YOU GET</h4>
                     <ul class="list-icons-1">
