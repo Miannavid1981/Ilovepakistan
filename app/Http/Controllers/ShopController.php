@@ -81,6 +81,29 @@ class ShopController extends Controller
         $user->annual_tenure = $request->annual_tenure;
         $user->designation = $request->designation;
         $user->whatsapp_number = $request->whatsapp_number;
+
+        // Google reCAPTCHA verification
+        $recaptchaResponse = $request->input('g-recaptcha-response');
+        $recaptchaSecret = env('CAPTCHA_SECRET');
+
+        $response = Http::asForm()->post('https://www.google.com/recaptcha/api/siteverify', [
+            'secret' => $recaptchaSecret,
+            'response' => $recaptchaResponse,
+        ]);
+
+        $body = $response->json();
+
+        if (!$body['success']) {
+            // Log the failed reCAPTCHA attempt
+            Log::error('reCAPTCHA verification failed', [
+                'ip' => $request->ip(),
+                'user_agent' => $request->header('User-Agent'),
+                'recaptcha_response' => $recaptchaResponse,
+                'time' => now(),
+                'title' => 'Seller Registration Log'
+            ]);
+            return redirect()->back()->withErrors(['g-recaptcha-response' => 'reCAPTCHA verification failed.']);
+        }
         
         // Handle file uploads
         if ($request->hasFile('authorized_person_cnic_front')) {
