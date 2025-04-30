@@ -11,6 +11,7 @@ use Hash;
 use App\Utility\EmailUtility;
 use Illuminate\Support\Facades\Notification;
 use Cache;
+use Illuminate\Support\Facades\Http;
 
 class ShopController extends Controller
 {
