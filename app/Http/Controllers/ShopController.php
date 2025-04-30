@@ -104,7 +104,9 @@ class ShopController extends Controller
                 'time' => now(),
                 'title' => 'Seller Registration Log'
             ]);
-            return redirect()->back()->withErrors(['g-recaptcha-response' => 'reCAPTCHA verification failed.']);
+           
+            flash(translate('reCAPTCHA verification failed.'))->error();
+            return back();
         }
         
         // Handle file uploads
