@@ -25,7 +25,7 @@
     <form id="reg-form" class="form-default row justify-content-center my-4" role="form" action="{{ route('shops.store') }}" enctype="multipart/form-data" method="POST">
         @csrf
 
-        <input type="hidden" name="seller_type" id="seller_type" value="brand_partner" >
+        <input type="hidden" name="seller_type" id="seller_type" value="store_partner" >
             
         <div class="container ">
             <div class="row my-5">
