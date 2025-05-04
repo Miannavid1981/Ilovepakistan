@@ -86,7 +86,7 @@ class ShopController extends Controller
 
         // Google reCAPTCHA verification
         $recaptchaResponse = $request->input('g-recaptcha-response');
-        $recaptchaSecret = env('CAPTCHA_SECRET');
+        $recaptchaSecret = env('RECAPTCHA_SECRET_KEY');
 
         $response = Http::asForm()->post('https://www.google.com/recaptcha/api/siteverify', [
             'secret' => $recaptchaSecret,
