@@ -26,7 +26,7 @@ class SendOtpMail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Store Registration OTP',
+            subject: 'Store Verification',
         );
     }
 
