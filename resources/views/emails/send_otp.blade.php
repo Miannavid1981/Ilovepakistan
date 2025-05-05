@@ -1,8 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Seller Registration OTP</title>
+
   <style>
     body {
       font-family: sans-serif;
@@ -31,8 +27,7 @@
       color: #888888;
     }
   </style>
-</head>
-<body>
+
   <div class="email-wrapper">
     
 
@@ -50,5 +45,4 @@
       <a href="https://www.bighouz.com" style="color:#1a73e8;">www.bighouz.com</a>
     </p>
   </div>
-</body>
-</html>
+
