@@ -2,7 +2,7 @@ APP_NAME="Bighouz"
 APP_ENV=local
 APP_KEY=base64:fR/Paf+tqq5s/5xTff9iZ5NjZVLeDp67qfzJGmsD8DQ=
 APP_DEBUG=true
-APP_URL=http://localhost:8888/bighouz/
+APP_URL=http://localhost/bighouz/
 APP_TIMEZONE="Asia/Karachi"
 SYSTEM_KEY="42BAA1D7CD15EC468EC444EB972DE"
 
