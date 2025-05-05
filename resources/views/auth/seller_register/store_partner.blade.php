@@ -65,18 +65,8 @@
                             <br>
                             <div class="form-group">
                                 
-                                <input type="text" class="form-control {{ $errors->has('shop_name') ? ' is-invalid' : '' }}" value="{{ old('shop_name') }}" placeholder="{{  translate('Store Name') }}" name="shop_name">
-                                @if ($errors->has('shop_name'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('shop_name') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-
-                            <div class="form-group">
-                                
                                 <select class="form-control" id="business_type">
-                                    <option value=""> - Select - </option>
+                                    <option value="">Select City </option>
                                     @php
                                         $cities = \App\Models\City::where('state_id', 2728)->get();
                                     @endphp
@@ -85,6 +75,16 @@
                                     @endforeach
                                   
                                 </select>
+                            </div>
+
+                            <div class="form-group">
+                                
+                                <input type="text" class="form-control {{ $errors->has('shop_name') ? ' is-invalid' : '' }}" value="{{ old('shop_name') }}" placeholder="{{  translate('Store Name') }}" name="shop_name">
+                                @if ($errors->has('shop_name'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('shop_name') }}</strong>
+                                    </span>
+                                @endif
                             </div>
 
                             <div class="form-group">
