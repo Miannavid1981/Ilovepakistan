@@ -75,6 +75,20 @@
 
                             <div class="form-group">
                                 
+                                <select class="form-control" id="business_type">
+                                    <option value=""> - Select - </option>
+                                    @php
+                                        $cities = \App\Models\City::where('state_id', 2728)->get();
+                                    @endphp
+                                    @foreach( $cities as $city)
+                                        <option value="{{ $city->id }}">{{ $city->name }}</option>
+                                    @endforeach
+                                  
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                
                                 <input type="text" class="form-control {{ $errors->has('address') ? ' is-invalid' : '' }}" value="{{ old('address') }}" placeholder="{{  translate('Store Address') }}" name="address">
                                 @if ($errors->has('address'))
                                     <span class="invalid-feedback" role="alert">
