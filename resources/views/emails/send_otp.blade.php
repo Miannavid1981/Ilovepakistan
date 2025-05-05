@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Seller Registration OTP</title>
+  <title>Store Verification</title>
   <style>
     body {
       font-family: sans-serif;
