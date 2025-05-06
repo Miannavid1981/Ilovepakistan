@@ -83,7 +83,9 @@ class ShopController extends Controller
         $user->annual_tenure = $request->annual_tenure;
         $user->designation = $request->designation;
         $user->whatsapp_number = $request->whatsapp_number;
-
+        $user->city = $request->city;
+        $user->gender_prefix = $request->gender_prefix;
+        
         // Google reCAPTCHA verification
         $recaptchaResponse = $request->input('g-recaptcha-response');
         $recaptchaSecret = env('RECAPTCHA_SECRET_KEY');

@@ -43,11 +43,15 @@
                     <br>
                     <ul class="nav nav-tabs d-none" id="myTabs">
                         <li class="nav-item">
-                            <a class="nav-link active" data-bs-toggle="tab" href="#tab1"><h6>Store Info</h6></a>
+                            <a class="nav-link active" data-bs-toggle="tab" href="#tab1"><h6>Store Information</h6></a>
                         </li>
-                        {{-- <li class="nav-item">
-                            <a class="nav-link" data-bs-toggle="tab" href="#tab2"><h6>Contact Info</h6></a>
+                        <li class="nav-item">
+                            <a class="nav-link active" data-bs-toggle="tab" href="#tab2"><h6>Business Details</h6></a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-bs-toggle="tab" href="#tab3"><h6>Contact Info</h6></a>
+                        </li>
+                        {{-- 
                         <li class="nav-item">
                             <a class="nav-link" data-bs-toggle="tab" href="#tab3"><h6>Company Info</h6></a>
                         </li> --}}
@@ -65,13 +69,13 @@
                             <br>
                             <div class="form-group">
                                 
-                                <select class="form-control" id="business_type">
+                                <select class="form-control" id="city" name="city">
                                     <option value="">Select City </option>
                                     @php
                                         $cities = \App\Models\City::where('state_id', 2728)->get();
                                     @endphp
                                     @foreach( $cities as $city)
-                                        <option value="{{ $city->id }}">{{ $city->name }}</option>
+                                        <option value="{{ strtolower(str_replace(' ', '-', $city->name )) }}"> {{ $city->name }} </option>
                                     @endforeach
                                   
                                 </select>
@@ -104,15 +108,18 @@
                             </div>
                             
                         </div>
-                        {{-- <div id="tab2" class="tab-pane fade">
+                          <div id="tab2" class="tab-pane fade">
+
+                         </div>
+                         <div id="tab3" class="tab-pane fade">
                             <h4 align="center">
                                 Contact Information
                             </h4>
                             <br>
-                            <div class="mb-3">
+                            {{-- <div class="mb-3">
                                         
                                 <input type="text" name="authorized_person_mobile" class="form-control" placeholder="Designation" >
-                            </div>
+                            </div> --}}
                             <div class="mb-3">
                             
                                 <input type="text" name="authorized_person_mobile" class="form-control" placeholder="Authorized Person Mobile" >
@@ -120,14 +127,10 @@
                             
                             <div class="mb-3">
                                 
-                                <input type="text" name="authorized_person_cnic_no" class="form-control" placeholder="Whatsapp Number" >
+                                <input type="text" name="whatsapp_number" class="form-control" placeholder="Whatsapp Number" >
                             </div>
 
-                        
-                            
-
-                            <div class="mb-3">
-                                
+                            {{-- <div class="mb-3">
                                 <input type="text" name="authorized_person_cnic_no" class="form-control" placeholder="Authorized Person CNIC No" >
                             </div>
 
@@ -139,11 +142,10 @@
                             <div class="mb-3">
                                 <label class="form-label">CNIC Back</label>
                                 <input type="file" name="authorized_person_cnic_back" class="form-control" >
-                            </div>
+                            </div> --}}
                         
-
                             <div class="mb-3">
-                                <label class="form-label">Registered Office Address</label>
+                                <label class="form-label">Registered Office/Home Address</label>
                                 <textarea name="registered_office_address" class="form-control" ></textarea>
                             </div>
                             <div class="d-flex justify-content-between">
@@ -151,6 +153,8 @@
                                 <button class="btn btn-primary next-tab" type="button">Next</button>
                             </div>
                         </div>
+
+                        {{--
                         <div id="tab3" class="tab-pane fade">
                             <h4 align="center">{{ translate('Company Details')}}</h4>
                             <br>
@@ -233,16 +237,36 @@
 
                             <h4 align="center">{{ translate('Personal Info')}}</h4>
                             <br>
-                            <!-- Name -->
-                            <div class="form-group">
+                            <div class="row">
+                                <div class="col-3">
+                                    <div class="form-group">
+                                        <select class="form-control" name="gender_prefix">
+                                        
+                                            <option value="Mr">Mr</option>
+                                            <option value="Mrs">Mrs</option>
+                                            <option value="Miss">Miss</option>
                                             
-                                <input type="text" class="form-control {{ $errors->has('name') ? ' is-invalid' : '' }}" value="{{ old('name') }}" placeholder="{{  translate('Full Name') }}" name="name" >
-                                @if ($errors->has('name'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('name') }}</strong>
-                                    </span>
-                                @endif
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-9">
+                                    <!-- Name -->
+                                    <div class="form-group">
+                                                    
+                                        <input type="text" class="form-control {{ $errors->has('name') ? ' is-invalid' : '' }}" value="{{ old('name') }}" placeholder="{{  translate('Full Name') }}" name="name" >
+                                        @if ($errors->has('name'))
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $errors->first('name') }}</strong>
+                                            </span>
+                                        @endif
+                                    </div>
+                                </div>
                             </div>
+                            <div class="form-group">
+                                <label class="form-label">Profile Image</label>
+                                <input type="file" name="authority_letter" class="form-control" >
+                            </div>
+                           
 
                             <div class="form-group">
                                 
