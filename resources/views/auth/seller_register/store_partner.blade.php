@@ -704,6 +704,9 @@
 <script type="text/javascript">
         
     $(document).ready(function(){
+        $(".category_pref_box").click(function(){
+            $(this).children('input').click()
+        })
         // function recaptchaVerified(){
         //     $("#reg-form").submit();
         // }
