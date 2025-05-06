@@ -31,7 +31,9 @@
 
         .category_pref_box:has(input:checked) {
             border: 1px solid var(--primary) !important;
-            background: var(--secondary)
+            background: var(--primary);
+            color: #fff
+
         }
        
     </style>
@@ -134,8 +136,8 @@
                             <div class="row">
                                 @foreach(\App\Models\Category::where('level', 0)->get() as $category)
                                     <div class="col-md-3 col-sm-6">
-                                        <div class="category_pref_box border rounded-2 p-2 d-flex flex-column align-items-center justify-content-center">
-                                            <img src="{{uploaded_asset($category->icon)}}" class="me-2 p-1 rounded-circle border-1 border" style="width: 35px;height: auto;aspect-ratio: 1 / 1;" >
+                                        <div class="category_pref_box w-100 border rounded-2 p-2 d-flex flex-column align-items-center justify-content-center">
+                                            <img src="{{uploaded_asset($category->icon)}}" class="bg-white p-1 rounded-circle border-1 border" style="width: 35px;height: auto;aspect-ratio: 1 / 1;" >
                                             <label class="form-label text-center">{{ $category->name }}</label>
                                             <input type="checkbox" class="form-check" name="">
                                             
