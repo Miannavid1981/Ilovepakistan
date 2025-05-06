@@ -17,7 +17,22 @@
             border: 1px solid #888 !important;
             border-radius: 8px !important
         }
+        .category_pref_box{
+            position: relative
+        }
+        .category_pref_box input {
+            position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 0;
+        }
 
+        .category_pref_box:has(input:checked) {
+            border: 1px solid var(--primary) !important;
+            background: var(--secondary)
+        }
        
     </style>
    <!-- aiz-main-wrapper -->
@@ -115,12 +130,13 @@
                             </h4>
                             <br>
                             
+                            <label class="form-label">Category Preferences</label>
                             <div class="row">
                                 @foreach(\App\Models\Category::where('level', 0)->get() as $category)
                                     <div class="col-md-3 col-sm-6">
                                         <div class="category_pref_box border rounded-2 p-2 d-flex flex-column align-items-center justify-content-center">
                                             <img src="{{uploaded_asset($category->icon)}}" class="me-2 p-1 rounded-circle border-1 border" style="width: 35px;height: auto;aspect-ratio: 1 / 1;" >
-                                            <label class="form-label">{{ $category->name }}</label>
+                                            <label class="form-label text-center">{{ $category->name }}</label>
                                             <input type="checkbox" class="form-check" name="">
                                             
                                         </div>
