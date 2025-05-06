@@ -114,6 +114,20 @@
                                 Business Information
                             </h4>
                             <br>
+                            
+                            <div class="row">
+                                @foreach(\App\Models\Category::where('level', 0)->get() as $category)
+                                    <div class="col-md-3 col-sm-6">
+                                        <div class="category_pref_box">
+                                        
+                                            <label class="form-label">{{ $category->name }}</label>
+                                            <input type="checkbox" class="form-check">
+                                            <img src="{{uploaded_asset($category->icon)}}" class="me-2 p-1 rounded-circle border-1 border" style="width: 35px;height: auto;aspect-ratio: 1 / 1;" >
+                                        </div>
+                                    </div>
+                                @endforeach
+                            </div>
+
 
                             <div class="d-flex justify-content-between">
                                 <button class="btn btn-secondary prev-tab" type="button">Previous</button>
