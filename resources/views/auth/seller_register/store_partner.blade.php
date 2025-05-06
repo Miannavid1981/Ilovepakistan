@@ -118,10 +118,10 @@
                             <div class="row">
                                 @foreach(\App\Models\Category::where('level', 0)->get() as $category)
                                     <div class="col-md-3 col-sm-6">
-                                        <div class="category_pref_box border rounded-2">
+                                        <div class="category_pref_box border rounded-2 p-2 d-flex flex-column align-items-center justify-content-center">
                                             <img src="{{uploaded_asset($category->icon)}}" class="me-2 p-1 rounded-circle border-1 border" style="width: 35px;height: auto;aspect-ratio: 1 / 1;" >
                                             <label class="form-label">{{ $category->name }}</label>
-                                            <input type="checkbox" class="form-check">
+                                            <input type="checkbox" class="form-check" name="">
                                             
                                         </div>
                                     </div>
