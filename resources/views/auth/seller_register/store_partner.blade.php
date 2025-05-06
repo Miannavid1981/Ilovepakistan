@@ -130,16 +130,16 @@
                             <h4 align="center">
                                 Business Information
                             </h4>
-                            <br>
+                            <br> 
                             
-                            <label class="form-label">Category Preferences</label>
+                            <label class="form-label">Choose Category Preferences (Upto 3)</label>
                             <div class="row">
                                 @foreach(\App\Models\Category::where('level', 0)->get() as $category)
                                     <div class="col-md-3 col-sm-6 mt-2">
                                         <div class="category_pref_box h-100 w-100 border rounded-2 p-2 d-flex flex-column align-items-center justify-content-center">
                                             <img src="{{uploaded_asset($category->icon)}}" class="bg-white p-1 rounded-circle border-1 border" style="width: 35px;height: auto;aspect-ratio: 1 / 1;" >
                                             <label class="form-label text-center">{{ $category->name }}</label>
-                                            <input type="checkbox" class="form-check" name="">
+                                            <input type="checkbox" class="form-check" name="category_pref_ids[]" value="{{ $category->id }}">
                                             
                                         </div>
                                     </div>
