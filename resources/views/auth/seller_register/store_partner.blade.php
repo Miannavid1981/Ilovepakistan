@@ -46,7 +46,7 @@
                             <a class="nav-link active" data-bs-toggle="tab" href="#tab1"><h6>Store Information</h6></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" data-bs-toggle="tab" href="#tab2"><h6>Business Details</h6></a>
+                            <a class="nav-link" data-bs-toggle="tab" href="#tab2"><h6>Business Details</h6></a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" data-bs-toggle="tab" href="#tab3"><h6>Contact Info</h6></a>
@@ -264,7 +264,7 @@
                             </div>
                             <div class="form-group">
                                 <label class="form-label">Profile Image</label>
-                                <input type="file" name="authority_letter" class="form-control" >
+                                <input type="file" name="" class="form-control" >
                             </div>
                            
 
