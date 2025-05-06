@@ -110,6 +110,16 @@
                         </div>
                           <div id="tab2" class="tab-pane fade">
 
+                            <h4 align="center">
+                                Business Information
+                            </h4>
+                            <br>
+
+                            <div class="d-flex justify-content-between">
+                                <button class="btn btn-secondary prev-tab" type="button">Previous</button>
+                                <button class="btn btn-primary next-tab" type="button">Next</button>
+                            </div>
+
                          </div>
                          <div id="tab3" class="tab-pane fade">
                             <h4 align="center">
