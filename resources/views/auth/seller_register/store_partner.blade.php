@@ -735,7 +735,15 @@
 <script type="text/javascript">
         
     $(document).ready(function(){
-       
+        $('input[name="category_pref_ids[]"]').on('change', function () {
+            let selected = $('input[name="category_pref_ids[]"]:checked');
+
+            if (selected.length >= 3) {
+                $('input[name="category_pref_ids[]"]').not(':checked').prop('disabled', true);
+            } else {
+                $('input[name="category_pref_ids[]"]').prop('disabled', false);
+            }
+        });
         // function recaptchaVerified(){
         //     $("#reg-form").submit();
         // }
