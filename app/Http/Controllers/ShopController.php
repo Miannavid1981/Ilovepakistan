@@ -13,6 +13,8 @@ use Illuminate\Support\Facades\Notification;
 use Cache;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
+use Storage;
+use Image;
 
 class ShopController extends Controller
 {
