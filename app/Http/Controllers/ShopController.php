@@ -85,7 +85,18 @@ class ShopController extends Controller
         $user->whatsapp_number = $request->whatsapp_number;
         $user->city = $request->city;
         $user->gender_prefix = $request->gender_prefix;
-        
+        $user->profession_type = $request->profession_type;
+        $pref_ids = $request->category_pref_ids ?? [];
+        if(count($pref_ids) > 0){
+            foreach ($pref_ids as $categoryId) {
+                \App\Models\SellerCategoryPreference::create([
+                    'user_id' => $user->id,
+                    'category_id' => $categoryId,
+                ]);
+            }
+        }
+       
+
         // Google reCAPTCHA verification
         $recaptchaResponse = $request->input('g-recaptcha-response');
         $recaptchaSecret = env('RECAPTCHA_SECRET_KEY');
