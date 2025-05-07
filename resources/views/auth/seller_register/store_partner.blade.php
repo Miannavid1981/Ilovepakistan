@@ -319,7 +319,7 @@
                             </div>
                             <div class="form-group">
                                 <label class="form-label">Profile Image</label>
-                                <input type="file" name="" class="form-control" >
+                                <input type="file" name="avatar_original" class="form-control" >
                             </div>
                            
 
