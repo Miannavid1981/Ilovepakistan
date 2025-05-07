@@ -239,7 +239,6 @@ class AizUploadController extends Controller
                 }else{
                     $path = $request->file('aiz_file')->store('uploads/all', 'local');
                 }
-                
 
                 if (env('FILESYSTEM_DRIVER') != 'local') {
                     // Return MIME type ala mimetype extension
