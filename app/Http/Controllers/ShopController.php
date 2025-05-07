@@ -87,14 +87,6 @@ class ShopController extends Controller
         $user->gender_prefix = $request->gender_prefix;
         $user->profession_type = $request->profession_type;
         $pref_ids = $request->category_pref_ids ?? [];
-        if(count($pref_ids) > 0){
-            foreach ($pref_ids as $categoryId) {
-                \App\Models\SellerCategoryPreference::create([
-                    'user_id' => $user->id,
-                    'category_id' => $categoryId,
-                ]);
-            }
-        }
        
 
         // Google reCAPTCHA verification
@@ -150,7 +142,15 @@ class ShopController extends Controller
             $shop->address = $request->address;
             $shop->slug = preg_replace('/\s+/', '-', str_replace("/", " ", $request->shop_name));
             $shop->save();
-
+            if(count($pref_ids) > 0){
+                foreach ($pref_ids as $categoryId) {
+                    \App\Models\SellerCategoryPreference::create([
+                        'user_id' => $user->id,
+                        'category_id' => $categoryId,
+                    ]);
+                }
+            }
+           
             // auth()->login($user, false);
             if (BusinessSetting::where('type', 'email_verification')->first()->value == 0) {
                 // $user->email_verified_at = date('Y-m-d H:m:s');
