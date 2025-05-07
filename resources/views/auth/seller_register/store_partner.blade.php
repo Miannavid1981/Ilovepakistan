@@ -131,6 +131,19 @@
                                 Business Information
                             </h4>
                             <br> 
+
+                            <div class="form-group">
+                                <label class="form-label">Profession Type
+
+                                </label>
+                                <select class="form-control" name="profession_type">
+                                
+                              
+                                    <option value="shopkeeper">Shopkeeper</option>
+                                    <option value="individual">Individual</option>
+                                    
+                                </select>
+                            </div>
                             
                             <label class="form-label">Choose Category Preferences (Upto 3)</label>
                             <div class="row">
