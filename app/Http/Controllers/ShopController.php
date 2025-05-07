@@ -88,7 +88,19 @@ class ShopController extends Controller
         $user->profession_type = $request->profession_type;
         $pref_ids = $request->category_pref_ids ?? [];
        
-
+        if ($request->hasFile('avatar_original')) {
+            $file = $request->file('avatar_original');
+            $extension = $file->getClientOriginalExtension();
+            // Create unique filename
+            $filename = Str::random(40) . '.' .$extension;
+            
+            $path = 'uploads/all/'. $filename ;
+            // Move file to public/uploads/all
+            $file->move(public_path('uploads/all'), $filename);
+            $img = Image::make($request->file('avatar_original')->getRealPath())->encode($extension, 75);
+            $img->save(base_path('public/') . $path);
+            $user->avatar_original = $img->id;
+        }
         // Google reCAPTCHA verification
         $recaptchaResponse = $request->input('g-recaptcha-response');
         $recaptchaSecret = env('RECAPTCHA_SECRET_KEY');
