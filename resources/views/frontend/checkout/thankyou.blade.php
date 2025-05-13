@@ -426,6 +426,8 @@ tr.border-bottom td {
     function initialize() {
 
         @php
+
+        dd($shipping_address);
         $latlng = explode(',', (!empty($shipping_address['lat_lang']) ? $shipping_address['lat_lang'] : [] )); 
         @endphp
         // Replace with your latitude and longitude
