@@ -23,7 +23,7 @@ class PurchaseHistoryController extends Controller
      */
     public function index()
     {
-        $combined_orders = CombinedOrder::with('orders')->where('user_id', Auth::user()->id)->where('status','completed')->orderBy('created_at', 'desc')->paginate(10);
+        $combined_orders = CombinedOrder::with('orders')->where('user_id', Auth::user()->id)->whereIn('status', ['delivered', 'completed'])->orderBy('created_at', 'desc')->paginate(10);
         
         return view('frontend.user.purchase_history', compact('combined_orders'));
     }
