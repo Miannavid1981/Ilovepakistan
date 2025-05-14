@@ -96,9 +96,9 @@
                             </g>
                         </svg>
                         <span class="aiz-side-nav-text ml-3">{{ translate('Purchase History') }}</span>
-                        @if ($delivery_viewed > 0 || $payment_status_viewed > 0)
+                        {{-- @if ($delivery_viewed > 0 || $payment_status_viewed > 0)
                             <span class="badge badge-inline badge-success">{{ translate('New') }}</span>
-                        @endif
+                        @endif --}}
                     </a>
                 </li>
 
