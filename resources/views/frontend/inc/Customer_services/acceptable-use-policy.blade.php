@@ -22,7 +22,7 @@
 </ul>
 
 <h2 style="font-weight: bold;">WHO WE ARE</h2>
-<p>We are <strong>Allaaddin E-Commerce (Pvt.) Ltd</strong>, a company registered in __________ at __________, __________.</p>
+<p>We are <strong>Bighouz E-Commerce (Pvt.) Ltd</strong>, a company registered in __________ at __________, __________.</p>
 
 <h2 style="font-weight: bold;">USE OF THE SERVICES</h2>
 <p>When you use the Services you warrant that you will comply with this Policy and with all applicable laws.</p>
@@ -57,7 +57,7 @@
 <p>We exclude our liability for all action we may take in response to any of your breaches of this Policy.</p>
 
 <h2 style="font-weight: bold;">HOW CAN YOU CONTACT US ABOUT THIS POLICY?</h2>
-<p>If you have any further questions or comments, you may contact us by email at <a href="mailto:contact@allaaddin.com">contact@allaaddin.com</a></p>
+<p>If you have any further questions or comments, you may contact us by email at <a href="mailto:contact@Bighouz.com">contact@Bighouz.com</a></p>
 
     </div>
 </div>

@@ -14,14 +14,14 @@
         <h1 style="font-size: 24px; font-weight: bold; text-align: center;">COOKIE POLICY</h1>
         <p style="font-size: 20px; text-align: center; color: #555;">Last updated June 03, 2024</p>
         
-        <p style="font-size: 16px;">This Cookie Policy explains how <strong>Allaaddin E-commerce Private Limited</strong> uses cookies and similar technologies to recognize you when you visit our website at <a href="https://allaaddin.com" style="color: #007bff; text-decoration: none;">https://allaaddin.com</a>. It explains what these technologies are and why we use them, as well as your rights to control our use of them.</p>
+        <p style="font-size: 16px;">This Cookie Policy explains how <strong>Bighouz E-commerce Private Limited</strong> uses cookies and similar technologies to recognize you when you visit our website at <a href="https://Bighouz.com" style="color: #007bff; text-decoration: none;">https://Bighouz.com</a>. It explains what these technologies are and why we use them, as well as your rights to control our use of them.</p>
         
         <p style="font-size: 16px;">In some cases, we may use cookies to collect personal information, or that becomes personal information if we combine it with other information.</p>
         
         <h2 style="font-size: 18px; font-weight: bold;">What are cookies?</h2>
         <p style="font-size: 16px;">Cookies are small data files that are placed on your computer or mobile device when you visit a website. Cookies are widely used by website owners in order to make their websites work, or to work more efficiently, as well as to provide reporting information.</p>
         
-        <p style="font-size: 16px;">Cookies set by the website owner (in this case, <strong>Allaaddin E-commerce Private Limited</strong>) are called "first-party cookies." Cookies set by parties other than the website owner are called "third-party cookies." Third-party cookies enable third-party features or functionality to be provided on or through the website (e.g., advertising, interactive content, and analytics). The parties that set these third-party cookies can recognize your computer both when it visits the website in question and also when it visits certain other websites.</p>
+        <p style="font-size: 16px;">Cookies set by the website owner (in this case, <strong>Bighouz E-commerce Private Limited</strong>) are called "first-party cookies." Cookies set by parties other than the website owner are called "third-party cookies." Third-party cookies enable third-party features or functionality to be provided on or through the website (e.g., advertising, interactive content, and analytics). The parties that set these third-party cookies can recognize your computer both when it visits the website in question and also when it visits certain other websites.</p>
         
         <h2 style="font-size: 18px; font-weight: bold;">Why do we use cookies?</h2>
         <p style="font-size: 16px;">We use first- and third-party cookies for several reasons. Some cookies are required for technical reasons in order for our Website to operate, and we refer to these as "essential" or "strictly necessary" cookies. Other cookies also enable us to track and target the interests of our users to enhance the experience on our Online Properties. Third parties serve cookies through our Website for advertising, analytics, and other purposes. This is described in more detail below.</p>
@@ -45,7 +45,7 @@
             <tr>
                 <td style="border: 1px solid #ddd; padding: 10px;">XSRF-TOKEN</td>
                 <td style="border: 1px solid #ddd; padding: 10px;">This cookie is written to help with site security in preventing Cross-Site Request Forgery attacks.</td>
-                <td style="border: 1px solid #ddd; padding: 10px;">allaaddin.com</td>
+                <td style="border: 1px solid #ddd; padding: 10px;">Bighouz.com</td>
                 <td style="border: 1px solid #ddd; padding: 10px;">Advertiser's website domain View Service Privacy Policy</td>
                 <td style="border: 1px solid #ddd; padding: 10px;">server_cookie</td>
                 <td style="border: 1px solid #ddd; padding: 10px;">2 hours</td>
@@ -102,7 +102,7 @@
             <tr>
                 <td style="border: 1px solid #ddd; padding: 10px;">XSRF-TOKEN</td>
                 <td style="border: 1px solid #ddd; padding: 10px;">This cookie is written to help with site security in preventing Cross-Site Request Forgery attacks.</td>
-                <td style="border: 1px solid #ddd; padding: 10px;">allaaddin.com</td>
+                <td style="border: 1px solid #ddd; padding: 10px;">Bighouz.com</td>
                 <td style="border: 1px solid #ddd; padding: 10px;">Advertiser's website domain View Service Privacy Policy</td>
                 <td style="border: 1px solid #ddd; padding: 10px;">server_cookie</td>
                 <td style="border: 1px solid #ddd; padding: 10px;">2 hours</td>
@@ -168,14 +168,14 @@
                 <th style="border: 1px solid #ddd; padding: 10px; text-align: left; background-color: #f2f2f2;">Expires in</th>
             </tr>
             <tr>
-                <td style="border: 1px solid #ddd; padding: 10px; text-align: left;">allaaddin_session</td>
-                <td style="border: 1px solid #ddd; padding: 10px; text-align: left;">allaaddin.com</td>
+                <td style="border: 1px solid #ddd; padding: 10px; text-align: left;">Bighouz_session</td>
+                <td style="border: 1px solid #ddd; padding: 10px; text-align: left;">Bighouz.com</td>
                 <td style="border: 1px solid #ddd; padding: 10px; text-align: left;">server_cookie</td>
                 <td style="border: 1px solid #ddd; padding: 10px; text-align: left;">2 hours</td>
             </tr>
             <tr>
                 <td style="border: 1px solid #ddd; padding: 10px; text-align: left;">tusSupport</td>
-                <td style="border: 1px solid #ddd; padding: 10px; text-align: left;">allaaddin.com</td>
+                <td style="border: 1px solid #ddd; padding: 10px; text-align: left;">Bighouz.com</td>
                 <td style="border: 1px solid #ddd; padding: 10px; text-align: left;">html_local_storage</td>
                 <td style="border: 1px solid #ddd; padding: 10px; text-align: left;">persistent</td>
             </tr>
@@ -217,9 +217,9 @@
         <p>The date at the top of this Cookie Policy indicates when it was last updated.</p>
         
         <h2 style="color: #222;">Where can I get further information?</h2>
-        <p>If you have any questions about our use of cookies or other technologies, please contact us at: <a href="mailto:contact@allaaddin.com">contact@allaaddin.com</a></p>
+        <p>If you have any questions about our use of cookies or other technologies, please contact us at: <a href="mailto:contact@Bighouz.com">contact@Bighouz.com</a></p>
         
-        <p><strong>Allaaddin E-commerce Private Limited</strong></p>
+        <p><strong>Bighouz E-commerce Private Limited</strong></p>
         <p>Lahore, Punjab<br>Pakistan</p>
     </div>
 </div>

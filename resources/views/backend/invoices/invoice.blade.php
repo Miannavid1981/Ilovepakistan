@@ -15,7 +15,7 @@
 
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Allaaddin Invoice</title>
+    <title>Bighouz Invoice</title>
     <meta http-equiv="Content-Type" content="text/html;" charset="UTF-8">
     <style media="all">
         @font-face {

@@ -11,13 +11,13 @@
     <div class="privacy_policy">
         <h1 style="color: #222;">PRIVACY POLICY</h1>
         <p><strong>Last updated June 03, 2024</strong></p>
-        <p>This privacy notice for <strong>Allaaddin E-commerce Private Limited</strong> (doing business as Allaaddin), describes how and why we might collect, store, use, and/or share your information when you use our services such as when you:</p>
+        <p>This privacy notice for <strong>Bighouz E-commerce Private Limited</strong> (doing business as Bighouz), describes how and why we might collect, store, use, and/or share your information when you use our services such as when you:</p>
         <ul>
-            <li>Visit our website at <a href="https://allaaddin.com/" style="color: #1a73e8;">https://allaaddin.com/</a>, or any website of ours that links to this privacy notice</li>
-            <li>Download and use our mobile application (Allaaddin), our Facebook application (Allaaddin), or any other application of ours that links to this privacy notice</li>
+            <li>Visit our website at <a href="https://Bighouz.com/" style="color: #1a73e8;">https://Bighouz.com/</a>, or any website of ours that links to this privacy notice</li>
+            <li>Download and use our mobile application (Bighouz), our Facebook application (Bighouz), or any other application of ours that links to this privacy notice</li>
             <li>Engage with us in other related ways, including any sales, marketing, or events</li>
         </ul>
-        <p><strong>Questions or concerns?</strong> Reading this privacy notice will help you understand your privacy rights and choices. If you do not agree with our policies and practices, please do not use our Services. If you still have any questions or concerns, please contact us at <a href="mailto:support@allaaddin.com" style="color: #1a73e8;">support@allaaddin.com</a>.</p>  
+        <p><strong>Questions or concerns?</strong> Reading this privacy notice will help you understand your privacy rights and choices. If you do not agree with our policies and practices, please do not use our Services. If you still have any questions or concerns, please contact us at <a href="mailto:support@Bighouz.com" style="color: #1a73e8;">support@Bighouz.com</a>.</p>  
         <h3 style="color: #222;">SUMMARY OF KEY POINTS</h3>
         <p><i><b>This summary provides key points from our privacy notice, but you can find out more details about any of these topics by clicking the link following each key point or by using our table of contents below to find the section you are looking for.</i></b></p>
         
@@ -242,7 +242,7 @@
         <p style="font-size: 16px;">We have implemented appropriate and reasonable technical and organizational security measures designed to protect the security of any personal information we process. However, despite our safeguards and efforts to secure your information, no electronic transmission over the Internet or information storage technology can be guaranteed to be 100% secure, so we cannot promise or guarantee that hackers, cybercriminals, or other unauthorized third parties will not be able to defeat our security and improperly collect, access, steal, or modify your information.</p>
         <p style="font-size: 16px;">Although we will do our best to protect your personal information, transmission of personal information to and from our Services is at your own risk. You should only access the Services within a secure environment.</p>
         <h3 style="color: #000;">10. DO WE COLLECT INFORMATION FROM MINORS?</h3>
-            <p><strong>In Short:</strong> We do not knowingly collect data from or market to children under 18 years of age. We do not knowingly collect, solicit data from, or market to children under 18 years of age, nor do we knowingly sell such personal information. By using the Services, you represent that you are at least 18 or that you are the parent or guardian of such a minor and consent to such minor dependent’s use of the Services. If we learn that personal information from users less than 18 years of age has been collected, we will deactivate the account and take reasonable measures to promptly delete such data from our records. If you become aware of any data we may have collected from children under age 18, please contact us at support@allaaddin.com.</p>
+            <p><strong>In Short:</strong> We do not knowingly collect data from or market to children under 18 years of age. We do not knowingly collect, solicit data from, or market to children under 18 years of age, nor do we knowingly sell such personal information. By using the Services, you represent that you are at least 18 or that you are the parent or guardian of such a minor and consent to such minor dependent’s use of the Services. If we learn that personal information from users less than 18 years of age has been collected, we will deactivate the account and take reasonable measures to promptly delete such data from our records. If you become aware of any data we may have collected from children under age 18, please contact us at support@Bighouz.com.</p>
         
             <h3 style="font-size: 18px; font-weight: bold;">11. WHAT ARE YOUR PRIVACY RIGHTS?</h3>
             <p><strong>In Short:</strong> Depending on your state of residence in the US or in some regions, such as the European Economic Area (EEA), United Kingdom (UK), Switzerland, and Canada, you have rights that allow you greater access to and control over your personal information. You may review, change, or terminate your account at any time, depending on your country, province, or state of residence.</p>
@@ -282,7 +282,7 @@
             <h4 style="font-size: 16px; font-weight: bold;">Cookies and similar technologies:</h4>
             <p>Most Web browsers are set to accept cookies by default. If you prefer, you can usually choose to set your browser to remove cookies and to reject cookies. If you choose to remove cookies or reject cookies, this could affect certain features or services of our Services. You may also opt out of interest-based advertising by advertisers on our Services.</p>
             
-            <p>If you have questions or comments about your privacy rights, you may email us at <a href="mailto:support@allaaddin.com" style="color: blue; text-decoration: none;">support@allaaddin.com</a>.</p>
+            <p>If you have questions or comments about your privacy rights, you may email us at <a href="mailto:support@Bighouz.com" style="color: blue; text-decoration: none;">support@Bighouz.com</a>.</p>
 
         <h3 style="font-size: 18px; font-weight: bold;">12. CONTROLS FOR DO-NOT-TRACK FEATURES</h3>
         <p>Most web browsers and some mobile operating systems and mobile applications include a Do-Not-Track ("DNT") feature or setting you can activate to signal your privacy preference not to have data about your online browsing activities monitored and collected. At this stage, no uniform technology standard for recognizing and implementing DNT signals has been finalized. As such, we do not currently respond to DNT browser signals or any other mechanism that automatically communicates your choice not to be tracked online. If a standard for online tracking is adopted that we must follow in the future, we will inform you about that practice in a revised version of this privacy notice.</p>
@@ -442,7 +442,7 @@
             <li>Right to limit use and disclosure of sensitive personal data (as permitted by applicable law, including California’s privacy law)</li>
             <li>Right to opt out of the collection of sensitive data and personal data collected through the operation of a voice or facial recognition feature (as permitted by applicable law, including Florida’s privacy law)</li>
         </ul>
-        <p style="color: #000;">To exercise these rights, you can contact us by submitting a data subject access request, by emailing us at <a href="mailto:support@allaaddin.com" style="color: blue; text-decoration: none;">support@allaaddin.com</a>, or by referring to the contact details at the bottom of this document.</p>
+        <p style="color: #000;">To exercise these rights, you can contact us by submitting a data subject access request, by emailing us at <a href="mailto:support@Bighouz.com" style="color: blue; text-decoration: none;">support@Bighouz.com</a>, or by referring to the contact details at the bottom of this document.</p>
 
     <p style="color: #000;">We will honor your opt-out preferences if you enact the Global Privacy Control (GPC) opt-out signal on your browser.</p>
 
@@ -456,7 +456,7 @@
 
     <h4 style="color: #000;">Appeals</h4>
 
-    <p style="color: #000;">Under certain US state data protection laws, if we decline to take action regarding your request, you may appeal our decision by emailing us at <a href="mailto:support@allaaddin.com" style="color: blue; text-decoration: none;">support@allaaddin.com</a>. We will inform you in writing of any action taken or not taken in response to the appeal, including a written explanation of the reasons for the decisions. If your appeal is denied, you may submit a complaint to your state attorney general.</p>
+    <p style="color: #000;">Under certain US state data protection laws, if we decline to take action regarding your request, you may appeal our decision by emailing us at <a href="mailto:support@Bighouz.com" style="color: blue; text-decoration: none;">support@Bighouz.com</a>. We will inform you in writing of any action taken or not taken in response to the appeal, including a written explanation of the reasons for the decisions. If your appeal is denied, you may submit a complaint to your state attorney general.</p>
 
     <h4 style="color: #000;">California "Shine The Light" Law</h4>
 
@@ -494,7 +494,7 @@
     General enquiries: <a href="mailto:enquiries@inforegulator.org.za">enquiries@inforegulator.org.za</a><br>
     Complaints (complete POPIA/PAIA form 5): <a href="mailto:PAIAComplaints@inforegulator.org.za">PAIAComplaints@inforegulator.org.za</a> &amp; <a href="mailto:POPIAComplaints@inforegulator.org.za">POPIAComplaints@inforegulator.org.za</a></p>
 
-    <p>To exercise these rights, you can contact us by submitting a data subject access request, by emailing us at <a href="mailto:support@allaaddin.com">support@allaaddin.com</a>, or by referring to the contact details at the bottom of this document.</p>
+    <p>To exercise these rights, you can contact us by submitting a data subject access request, by emailing us at <a href="mailto:support@Bighouz.com">support@Bighouz.com</a>, or by referring to the contact details at the bottom of this document.</p>
 
     <p>We will honor your opt-out preferences if you enact the Global Privacy Control (GPC) opt-out signal on your browser.</p>
 
@@ -508,7 +508,7 @@
 
     <h3>Appeals</h3>
 
-    <p>Under certain US state data protection laws, if we decline to take action regarding your request, you may appeal our decision by emailing us at <a href="mailto:support@allaaddin.com">support@allaaddin.com</a>. We will inform you in writing of any action taken or not taken in response to the appeal, including a written explanation of the reasons for the decisions. If your appeal is denied, you may submit a complaint to your state attorney general.</p>
+    <p>Under certain US state data protection laws, if we decline to take action regarding your request, you may appeal our decision by emailing us at <a href="mailto:support@Bighouz.com">support@Bighouz.com</a>. We will inform you in writing of any action taken or not taken in response to the appeal, including a written explanation of the reasons for the decisions. If your appeal is denied, you may submit a complaint to your state attorney general.</p>
 
     <h3>California "Shine The Light" Law</h3>
 
@@ -554,9 +554,9 @@
 
     <h3>16. HOW CAN YOU CONTACT US ABOUT THIS NOTICE?</h3>
 
-    <p>If you have questions or comments about this notice, you may email us at <a href="mailto:support@allaaddin.com">support@allaaddin.com</a> or contact us by post at:</p>
+    <p>If you have questions or comments about this notice, you may email us at <a href="mailto:support@Bighouz.com">support@Bighouz.com</a> or contact us by post at:</p>
 
-    <p><strong>Allaaddin E-commerce Private Limited</strong><br>
+    <p><strong>Bighouz E-commerce Private Limited</strong><br>
     __________<br>
     Lahore, Punjab<br>
     Pakistan</p>
