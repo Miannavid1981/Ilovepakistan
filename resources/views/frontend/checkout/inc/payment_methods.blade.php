@@ -136,12 +136,12 @@
           
             <button class="btn btn-link text-decoration-none w-100 p-0 "  type="button" data-toggle="collapse" data-target="#cash_on_delivery">
               <label class="payment-method-header d-flex justify-content-between w-100 mb-0 p-2 px-3">
-                  <div class="  text-dark d-flex align-items-center mb-0">
-                    <input type="radio" class=" mb-0 me-2" name="payment_method" value="cash_on_delivery" checked> Cash On Delivery
-                  </div>
-                  <span>
-                      <img src="https://cdn-icons-png.flaticon.com/512/936/936810.png" style="width: 35px; height: auto" alt="Discover">
-                  </span>
+                    <div class="  text-dark d-flex align-items-center mb-0">
+                        <input type="radio" class=" mb-0 me-2" name="payment_method" value="cash_on_delivery" checked> Cash On Delivery
+                    </div>
+                    <span>
+                        <img src="https://cdn-icons-png.flaticon.com/512/936/936810.png" style="width: 35px; height: auto" alt="Discover">
+                    </span>
               </label>
             </button>
           
@@ -165,10 +165,10 @@
                 <input type="radio" class=" mb-0 me-2" name="payment_method" value="credit_card"  > Credit / Debit Card
                 </div>
                 <span>
-                <img src="{{ static_asset('assets/img/visa.png') }}"  alt="Visa">
-                <img src="{{ static_asset('assets/img/mastercard.png') }}"  alt="MasterCard">
-                <img src="{{ static_asset('assets/img/amex.png') }}"  alt="Amex">
-                <img src="{{ static_asset('assets/img/discover.png') }}"  alt="Discover">
+                    <img src="{{ static_asset('assets/img/visa.png') }}"  alt="Visa">
+                    <img src="{{ static_asset('assets/img/mastercard.png') }}"  alt="MasterCard">
+                    <img src="{{ static_asset('assets/img/amex.png') }}"  alt="Amex">
+                    <img src="{{ static_asset('assets/img/discover.png') }}"  alt="Discover">
                 </span>
             </label>
             </button>
@@ -300,7 +300,7 @@
                     <input type="radio" class=" mb-0 me-2" name="payment_method" value="bighouz_wallet"> Bighouz Wallet
                   </div>
                   <span>
-                    <img src="{{ static_asset('assets/img/pngwing.com.png') }}" style="width: 45px; height: auto" alt="Discover">
+                    <img src="{{ uploaded_asset(get_setting('site_icon')) }}" style="width: 45px; height: auto" alt="Discover">
                     </span>
                 </label>
             </button>
@@ -344,11 +344,10 @@
       </div>
   </div>
 <script>
-$("#paymentAccordion .card-header, #pau").click(function(){
-    $(this).closest("input").click()
-    $(this).closest("input").prop("checked", true)
-});
-
+    $("#paymentAccordion .card-header, #pau").click(function(){
+        $(this).closest("input").click()
+        $(this).closest("input").prop("checked", true)
+    });
 </script>
 
 
