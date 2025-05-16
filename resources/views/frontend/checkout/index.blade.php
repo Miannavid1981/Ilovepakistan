@@ -739,16 +739,20 @@
                         $('#place_order_buttons').html(obj.html);
                     }
                     if (delivery_type != 'personal') {
-                        $(`[name="payment_method"]`).each(function(){
-                            $(this).removeAttr("checked");
-                            $(this).parent().parent().parent().parent().parent().removeClass('d-none');
-                            if($(this).val() == "cash_on_delivery") {
+                        $(`[name="payment_method"]`).each(function () {
+                            $(this).prop("checked", false); // properly uncheck the radio
+                            const card = $(this).closest('.card'); // find the closest card container
 
-                                $(this).parent().parent().parent().parent().parent().addClass('d-none');
-                            } 
+                            if ($(this).val() === "cash_on_delivery") {
+                                card.addClass('d-none'); // hide the card if it's cash on delivery
+                            } else {
+                                card.removeClass('d-none'); // otherwise, make sure it's visible
+                            }
                         });
-                        
-                        $(`[name="payment_method"][value="direct_bank_transfer"]`).attr("checked", 'checked')
+
+                        // Set 'direct_bank_transfer' as checked
+                        $(`[name="payment_method"][value="direct_bank_transfer"]`).prop("checked", true);
+
                         
                     }
                 }
