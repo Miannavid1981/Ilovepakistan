@@ -73,7 +73,7 @@ Route::get('/acceptance-policy', function (Request $request) {
     return view('frontend/inc/Customer_services/acceptable-use-policy');
 })->name('accept-poliy-page');
 
-Route::get('/cookie_policy', function (Request $request){
+Route::get('/cookie-policy', function (Request $request){
     return view('frontend/inc/Customer_services/cookie_policy');
 })->name('cookie_policy');
 
