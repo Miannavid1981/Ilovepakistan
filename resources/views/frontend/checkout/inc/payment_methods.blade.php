@@ -300,7 +300,7 @@
                     <input type="radio" class=" mb-0 me-2" name="payment_method" value="bighouz_wallet"> Bighouz Wallet
                   </div>
                   <span>
-                    <img src="{{ uploaded_asset(get_setting('site_icon')) }}" style="width: 45px; height: auto" alt="Discover">
+                    <img src="{{ uploaded_asset(get_setting('site_icon')) }}" style="width: 35px; height: auto" alt="Discover">
                     </span>
                 </label>
             </button>
