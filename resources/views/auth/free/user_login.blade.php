@@ -263,7 +263,7 @@
                                                 <div class="form-group">
                                                     {{-- <label for="password" class="fs-12 fw-700 text-soft-dark">{{  translate('Password') }}</label> --}}
                                                     <div class="position-relative">
-                                                        <input type="password" class="form-control custom-input  rounded-2 {{ $errors->has('password') ? ' is-invalid' : '' }}" placeholder="{{ translate('Password')}}" name="password" id="password" required>
+                                                        <input type="password" class="form-control custom-input  rounded-2 {{ $errors->has('password') ? ' is-invalid' : '' }}" placeholder="{{ translate('Password')}}" name="password" id="password" autocomplete="off" required>
                                                         <i class="password-toggle las la-2x la-eye"></i>
                                                     </div>
                                                 </div>

@@ -515,22 +515,22 @@
                 <div class="row g-3" >
                     <div class="col-6">
                         
-                        <input class="form-control " type="text" placeholder="First Name" name="first_name"  value="{{ $firstname }}" required>
+                        <input class="form-control " type="text" placeholder="First Name" name="first_name"  value="{{ $firstname }}" autocomplete="off" required>
 
                     </div>
                     <div class="col-6">
                         
-                        <input class="form-control " type="text" placeholder="Last Name" name="last_name" value="{{ $lastname }}" required>
+                        <input class="form-control " type="text" placeholder="Last Name" name="last_name" value="{{ $lastname }}" autocomplete="off" required>
                     </div>
                 
                     <div class="col-12">
                         
-                        <input class="form-control " type="text" name="company_name" placeholder="Company Name (Optional)">
+                        <input class="form-control " type="text" name="company_name" placeholder="Company Name (Optional)" autocomplete="off">
 
                     </div>
                     <div class="col-12">
                         
-                        <input class="form-control " type="text" placeholder="Phone" name="phone" value="{{  auth()->user()->phone }}" required>
+                        <input class="form-control " type="phone" placeholder="Phone" name="phone" value="{{  auth()->user()->phone }}" autocomplete="off" required>
                     </div>
                 </div>
                 <h5 class=" mt-4">Shipping Information</h5>
