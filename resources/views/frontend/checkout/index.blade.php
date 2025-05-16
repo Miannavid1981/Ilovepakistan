@@ -739,7 +739,12 @@
                         $('#place_order_buttons').html(obj.html);
                     }
                     if (delivery_type != 'personal') {
-                        $(`[name="payment_method"][value="cash_on_delivery"]`).closest(".card").hide();
+                        $(`[name="payment_method"]`).each(function(){
+                            if($(this).val() == "cash_on_delivery") {
+                                $(this).closest(".card").hide();
+                            }
+                        });
+                        
                     }
                 }
             });
