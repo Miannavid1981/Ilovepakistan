@@ -741,12 +741,11 @@
                     if (delivery_type != 'personal') {
                         $(`[name="payment_method"]`).each(function(){
                             $(this).removeAttr("checked");
+                            $(this).parent().parent().parent().parent().parent().removeClass('d-none');
                             if($(this).val() == "cash_on_delivery") {
 
                                 $(this).parent().parent().parent().parent().parent().addClass('d-none');
-                            } else {
-                                $(this).parent().parent().parent().parent().parent().removeClass('d-none');
-                            }
+                            } 
                         });
                         
                         $(`[name="payment_method"][value="direct_bank_transfer"]`).attr("checked", 'checked')
