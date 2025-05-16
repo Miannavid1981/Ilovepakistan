@@ -740,10 +740,14 @@
                     }
                     if (delivery_type != 'personal') {
                         $(`[name="payment_method"]`).each(function(){
+                            $(this).removeAttr("checked");
                             if($(this).val() == "cash_on_delivery") {
-                                $(this).closest(".card").hide();
+
+                                $(this).parent().parent().parent().parent().parent().hide();
                             }
                         });
+                        
+                        $(`[name="payment_method"][value="direct_bank_transfer"]`).attr("checked", 'checked')
                         
                     }
                 }
