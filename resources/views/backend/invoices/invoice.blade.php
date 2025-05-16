@@ -1,4 +1,5 @@
 @php
+    use Illuminate\Support\Facades\URL;
     $logo = get_setting('header_logo');
     $logo_url = uploaded_asset($logo);
 
@@ -173,17 +174,17 @@
                 <td>
                    <img src="{{ $logo_url }}" alt="Logo" style="width: 100px">
                    <br>
-                   <b>Bighouz Online Store </b>
+                  
+
+
+                   <b> Bighouz E-Business (pvt) Ltd. </b>
                    <br>
                     <span style="text-align: left">
-                        Office # 42-43  M
-                            
-                        Floor Zainab Tower
+                        M-42-43, Zainab Towers. Link Road, Model Town.
                         <br> 
-                    
-                        Link Road, Model Town,
-                    
-                        Lahore, Pakistan
+                        Lahore 54700
+                        <br>
+                        04235942626-145
                     </span>
                 </td>
                 <td style="text-align:end; ">
@@ -332,6 +333,8 @@
         <p>
             This is system generated Invoice not Required any Stamp or Signature
         </p>
+        <hr>
+        <p>{{ url()->full() }}</p>
     </div>
 </body>
 
