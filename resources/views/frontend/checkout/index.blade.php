@@ -743,7 +743,9 @@
                             $(this).removeAttr("checked");
                             if($(this).val() == "cash_on_delivery") {
 
-                                $(this).parent().parent().parent().parent().parent().remove();
+                                $(this).parent().parent().parent().parent().parent().addClass('d-none');
+                            } else {
+                                $(this).parent().parent().parent().parent().parent().removeClass('d-none');
                             }
                         });
                         
