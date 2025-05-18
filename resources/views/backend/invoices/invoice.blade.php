@@ -197,7 +197,7 @@
                     <strong  style="text-align: end">Invoice #:</strong>  {{ $main_order_id }} </span><br>
                     <strong>Print Date:</strong> {{ \Carbon\Carbon::now()->format('F j, Y \a\t h:i A') }}
                 </td>
-                <td style="width: 90px">
+                <td style="width: 90px' vertical-align: middle">
                    <div style="aspec-ratio: 1 / 1">
                     @php
                     $qrCode = base64_encode(QrCode::format('png')->size(100)->generate($order->id));
