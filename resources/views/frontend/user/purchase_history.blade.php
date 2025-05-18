@@ -90,14 +90,14 @@
                                 <td class="text-right pr-0">
                                     <div class="d-flex flex-column flex-sm-row justify-content-end align-items-center">
                                         <!-- Re-order -->
-                                        <a class=" mb-2 mb-sm-0 mr-sm-1"
+                                        {{-- <a class=" mb-2 mb-sm-0 mr-sm-1"
                                             href="{{ route('re_order', encrypt($combined_order->orders->first()->id)) }}" title="{{ translate('Re-order') }}">
                                             <!--<i class="fas fa-sync-alt" style="font-size: 15px;"></i> -->
                                             <!-- Icon for reorder or refresh -->
                                              <img src="https://www.svgrepo.com/show/4361/refresh.svg" alt="reorder Image" style="width: 26px;"/> 
                                         </a>
-                                
-                                        @if ($combined_order->orders->first()->payment_status == 'unpaid' && $combined_order->orders->first()->payment_type != 'cod')
+                                 --}}
+                                        {{-- @if ($combined_order->orders->first()->payment_status == 'unpaid' && $combined_order->orders->first()->payment_type != 'cod')
                                             <!-- Payment Info -->
                                             <a class="mb-2 mb-sm-0 mr-sm-1"
                                                 data-toggle="modal" data-target="#paymentInfoModal"
@@ -107,10 +107,10 @@
                                                 onclick="setOrderDetailsForModal(this)" style="cursor: pointer;">
                                                 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR27erYfDTTwMz5B9TLGi9HbRkkGyXIx7sEJg&s" alt="Payment Image" style="    height: 23px;width: 100%;"/> <!-- Image for payment -->
                                             </a>
-                                        @endif
+                                        @endif --}}
                                 
                                         <!-- Cancel -->
-                                        @if ($combined_order->orders->first()->delivery_status == 'pending' && $combined_order->orders->first()->payment_status == 'unpaid')
+                                        {{-- @if ($combined_order->orders->first()->delivery_status == 'pending' && $combined_order->orders->first()->payment_status == 'unpaid')
                                             <a href="javascript:void(0)"
                                                 class="mb-2 mb-sm-0 mt-sm-0 mr-sm-1 confirm-delete"
                                                 data-href="{{ route('purchase_history.destroy', $combined_order->orders->first()->id) }}"
@@ -124,7 +124,7 @@
                                                 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSgJ7lEUuv6EXaohegbqy5qy3RZA7QoaQeyT6m7riI83ofjNgj9PyWLXspsIAQWeqXqte0&usqp=CAU" alt="Payment Image" style="    height: 26px;"/>
                                             </a>
                                         @endif
-                                
+                                 --}}
                                         <!-- Details -->
                                         <a href="{{ route('purchase_history.details', ['order_id' => encrypt($combined_order->orders->first()->id), 'id' => encrypt($combined_order->id)]) }}"
                                             class="mb-2 mb-sm-0 mt-sm-0 mr-sm-1"

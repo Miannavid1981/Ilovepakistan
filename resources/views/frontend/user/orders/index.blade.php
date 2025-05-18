@@ -97,12 +97,12 @@
                                 <td class="text-right pr-0">
                                     <div class="d-flex flex-column flex-sm-row justify-content-end align-items-center">
                                         <!-- Re-order -->
-                                        <a class=" mb-2 mb-sm-0 mr-sm-1"
+                                        {{-- <a class=" mb-2 mb-sm-0 mr-sm-1"
                                             href="{{ route('re_order', encrypt($combined_order->orders->first()->id)) }}" title="{{ translate('Re-order') }}">
                                             <!--<i class="fas fa-sync-alt" style="font-size: 15px;"></i> -->
                                             <!-- Icon for reorder or refresh -->
                                              <img src="https://www.svgrepo.com/show/4361/refresh.svg" alt="reorder Image" style="width: 26px;"/> 
-                                        </a>
+                                        </a> --}}
                                 
                                         @if ($combined_order->orders->first()->payment_status == 'unpaid' && $combined_order->orders->first()->payment_type != 'cod')
                                             <!-- Payment Info -->
