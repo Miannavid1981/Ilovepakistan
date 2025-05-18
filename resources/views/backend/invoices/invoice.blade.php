@@ -202,7 +202,7 @@
                     @php
                     $removedXML = '<?xml version="1.0" encoding="UTF-8"?>';
                     @endphp
-                    {!! str_replace($removedXML, '', QrCode::size(100)->generate($order->id)) !!}
+                    {!! str_replace($removedXML, '', QrCode::size(100)->generate($main_order_id)) !!}
                    </div>
                 </td>
             </tr>
