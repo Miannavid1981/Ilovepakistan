@@ -278,11 +278,11 @@
         <table style="margin-top: 20px">
             <tr>
                 <th>Item</th>
-                <th style="min-width: 100px">Est. Delivery</th>
+                <th style="min-width: 80px">Est. Delivery</th>
                 <th>Qty</th>
-                <th style="min-width: 100px">Price</th>
-                <th style="min-width: 100px">Tax</th>
-                <th style="min-width: 100px">Total</th>
+                <th style="min-width: 80px">Price</th>
+                <th style="min-width: 80px">Tax</th>
+                <th style="min-width: 80px">Total</th>
             </tr>
             @foreach ($orders as $order)
                 @foreach ($order->orderDetails as $key => $orderDetail)
