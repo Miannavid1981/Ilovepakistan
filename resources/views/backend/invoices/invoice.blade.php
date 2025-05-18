@@ -191,7 +191,7 @@
                 </td>
                 <td style="text-align:end; ">
                     <h3 style="text-align: end">
-                       SALES INVOICE
+                        {{ $main_order_id }}
                     </h3>
                     <br>
                     <strong  style="text-align: end">Invoice #:</strong>  {{ $main_order_id }} </span><br>
