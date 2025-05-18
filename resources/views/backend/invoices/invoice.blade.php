@@ -331,7 +331,7 @@
         </table>
 
         
-        <div class="socialmedia" style="margin-top: 20px">Follow us online <small>[FB] [INSTA]</small></div>
+        {{-- <div class="socialmedia" style="margin-top: 20px">Follow us online <small>[FB] [INSTA]</small></div> --}}
 
 
         <p>
