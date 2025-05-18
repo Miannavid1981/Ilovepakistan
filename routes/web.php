@@ -381,6 +381,9 @@ Route::controller(AddressController::class)->group(function () {
     Route::post('/get-states', 'getStates')->name('get-state');
     Route::post('/get-cities', 'getCities')->name('get-city');
     Route::post('/change-address-type', 'changeAddressType')->name('change-address-type');
+
+    Route::get('/my-addresses', 'customer_addresses')->name('customer_addresses.index');
+    
     
 });
 

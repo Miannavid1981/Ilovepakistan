@@ -116,7 +116,7 @@
                     </a>
                 </li> --}}
                 <li class="aiz-side-nav-item">
-                    <a href="{{ route('digital_purchase_history.index') }}"
+                    <a href="{{ route('customer_addresses.index') }}"
                         class="aiz-side-nav-link {{ areActiveRoutes(['customer_addresses.index']) }}">
                        
                         <svg fill="#b5b5bf" width="800px" height="800px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
