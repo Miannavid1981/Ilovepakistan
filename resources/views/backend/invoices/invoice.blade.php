@@ -200,9 +200,10 @@
                 <td style="width: 90px">
                    <div style="aspec-ratio: 1 / 1">
                     @php
-                    $removedXML = '<?xml version="1.0" encoding="UTF-8"?>';
-                    @endphp
-                    {!! str_replace($removedXML, '', QrCode::size(100)->generate($main_order_id)) !!}
+                    $qrCode = base64_encode(QrCode::format('png')->size(100)->generate($order->id));
+                @endphp
+                <img src="data:image/png;base64,{{ $qrCode }}" style="width: 90px; aspect-ratio: 1 / 1;" />
+                
                    </div>
                 </td>
             </tr>
