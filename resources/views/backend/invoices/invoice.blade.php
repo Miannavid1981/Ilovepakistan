@@ -193,7 +193,7 @@
                     </h3>
                     <br>
                     <strong  style="text-align: end">Invoice #:</strong>  {{ $main_order_id }} </span><br>
-                   
+                    <strong>Print Date:</strong> {{ \Carbon\Carbon::now()->format('F j, Y \a\t h:i A') }}
                 </td>
                 <td style="width: 90px">
                    <div style="aspec-ratio: 1 / 1">
@@ -218,7 +218,7 @@
                    
                     <strong>Delivery type:</strong> <span style="text-transform:capitalize"> {{ str_replace("_", " ", $combined_order->order_type ) }} </span><br>
                     <strong>Order Date:</strong> {{ \Carbon\Carbon::parse($combined_order->created_at)->format('F j, Y \a\t h:i A') }}<br>
-                    <strong>Print Date:</strong> {{ \Carbon\Carbon::now()->format('F j, Y \a\t h:i A') }}
+                    
 
                 </td>
                 <td width="50%">
