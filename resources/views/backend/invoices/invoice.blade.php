@@ -172,7 +172,9 @@
         <table class="page-head" >
             <tr>
                 <td>
+                    <br>
                    <img src="{{ $logo_url }}" alt="Logo" style="width: 100px">
+                   <br>
                    <br>
                   
 
