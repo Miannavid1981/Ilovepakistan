@@ -192,7 +192,7 @@
                        SALES INVOICE
                     </h3>
                     <br>
-                    <strong  style="text-align: end">Registration #:</strong> 12345678</span><br>
+                    <strong  style="text-align: end">Invoice #:</strong>  {{ $main_order_id }} </span><br>
                    
                 </td>
                 <td style="width: 90px">
@@ -215,9 +215,11 @@
         <table>
             <tr>
                 <td width="50%">
-                    <strong>Order #:</strong> {{ $main_order_id }} </span><br>
+                   
                     <strong>Delivery type:</strong> <span style="text-transform:capitalize"> {{ str_replace("_", " ", $combined_order->order_type ) }} </span><br>
-                    <strong>Order Date:</strong> {{ \Carbon\Carbon::parse($combined_order->created_at)->format('F j, Y') }}
+                    <strong>Order Date:</strong> {{ \Carbon\Carbon::parse($combined_order->created_at)->format('F j, Y \a\t h:i A') }}<br>
+                    <strong>Print Date:</strong> {{ \Carbon\Carbon::now()->format('F j, Y \a\t h:i A') }}
+
                 </td>
                 <td width="50%">
                     
@@ -274,11 +276,11 @@
         <table style="margin-top: 20px">
             <tr>
                 <th>Item</th>
-                <th>Est. Delivery</th>
+                <th style="min-width: 300px">Est. Delivery</th>
                 <th>Qty</th>
-                <th>Price</th>
-                <th>Tax</th>
-                <th>Total</th>
+                <th style="min-width: 150px">Price</th>
+                <th style="min-width: 150px">Tax</th>
+                <th style="min-width: 150px">Total</th>
             </tr>
             @foreach ($orders as $order)
                 @foreach ($order->orderDetails as $key => $orderDetail)
