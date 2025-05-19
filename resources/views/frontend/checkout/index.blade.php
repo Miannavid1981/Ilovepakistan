@@ -688,27 +688,30 @@
         var instance = $("[name=phone]").intlTelInput({
             initialCountry: country_code, // Set Pakistan as the default country
             separateDialCode: true,
-            nationalMode: false, // Set to false to get the full number
-            autoPlaceholder: "polite", // shows placeholder based on country format
+            nationalMode: true, // <--- Important! This makes input local only
+            autoPlaceholder: "polite",
             formatOnDisplay: true,
-            utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js" //
+            utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
         });
         var phone_input = document.querySelector("[name=phone]");
-
+        // Get full international number if needed
+        function getFullNumber() {
+            return instance.getNumber(); // returns +923024065093
+        }
                 // Optional: restrict input length based on country's phone number format
         phone_input.addEventListener("input", function () {
-            var number = input.value.replace(/\D/g, ""); // remove non-digits
-            var exampleNumber = iti.getNumberType() !== -99 ? iti.getNumber() : "";
-            var placeholder = input.placeholder.replace(/\D/g, "");
-            
-            // Restrict to max length from placeholder (e.g., "0301 2345678" => "03012345678")
-            if (number.length > placeholder.length) {
-                input.value = number.substring(0, placeholder.length);
+            const placeholderLength = input.placeholder.replace(/\D/g, "").length;
+            let digitsOnly = input.value.replace(/\D/g, "");
+
+            if (digitsOnly.length > placeholderLength) {
+                digitsOnly = digitsOnly.slice(0, placeholderLength);
             }
+
+            input.value = digitsOnly;
         });
         phone_input.addEventListener("keypress", function (e) {
-            var number = input.value.replace(/\D/g, "");
-            var placeholderLength = input.placeholder.replace(/\D/g, "").length;
+            var number = phone_input.value.replace(/\D/g, "");
+            var placeholderLength = phone_input.placeholder.replace(/\D/g, "").length;
 
             if (number.length >= placeholderLength && e.key.match(/\d/)) {
                 e.preventDefault();
