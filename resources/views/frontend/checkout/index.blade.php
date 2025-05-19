@@ -781,7 +781,7 @@
                         $('#shipping_info').show();
                         $('#shipping_info').html(obj.html);
                         switch_address_type_things()
-                        fetch_payment_actions()
+                       
             
                     }
                     switch_address_type_things()
@@ -789,6 +789,7 @@
 
                         $('[name="selected_address_id"]')[0].click();
                     }
+                    fetch_payment_actions()
                 }
             });
         });
