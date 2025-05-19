@@ -202,7 +202,7 @@ class AddressController extends Controller
         $returnHTML = view('frontend.checkout.inc.shipping_form', $data)->render();
 
 
-        $user = User::find(Auth::user()->id);
+        $user = \App\Models\User::find(Auth::user()->id);
 
         return response()->json(array('data' => $data, 'html' => $returnHTML, 'user' => $user));
     }
