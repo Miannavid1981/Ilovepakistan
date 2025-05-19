@@ -291,7 +291,7 @@ class CheckoutController extends Controller
         $user_id = Auth::id();
         $auth_user = \App\Models\User::find($user_id);
         if (is_null($auth_user->phone) || $auth_user->phone === '') {
-            $auth_user->phone = $request->full_phone;
+            $auth_user->phone = $request->phone;
             $auth_user->save(); // prefer save() when modifying fields
         }
 
