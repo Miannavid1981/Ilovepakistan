@@ -689,8 +689,31 @@
             initialCountry: country_code, // Set Pakistan as the default country
             separateDialCode: true,
             nationalMode: false, // Set to false to get the full number
+            autoPlaceholder: "polite", // shows placeholder based on country format
+            formatOnDisplay: true,
+            utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js" //
         });
+        var phone_input = document.querySelector("[name=phone]");
 
+                // Optional: restrict input length based on country's phone number format
+        phone_input.addEventListener("input", function () {
+            var number = input.value.replace(/\D/g, ""); // remove non-digits
+            var exampleNumber = iti.getNumberType() !== -99 ? iti.getNumber() : "";
+            var placeholder = input.placeholder.replace(/\D/g, "");
+            
+            // Restrict to max length from placeholder (e.g., "0301 2345678" => "03012345678")
+            if (number.length > placeholder.length) {
+                input.value = number.substring(0, placeholder.length);
+            }
+        });
+        phone_input.addEventListener("keypress", function (e) {
+            var number = input.value.replace(/\D/g, "");
+            var placeholderLength = input.placeholder.replace(/\D/g, "").length;
+
+            if (number.length >= placeholderLength && e.key.match(/\d/)) {
+                e.preventDefault();
+            }
+        });
         // Enforce digit limit based on selected country
         $("[name=phone]").on("input", function () {
             var countryData = instance.intlTelInput("getSelectedCountryData");
