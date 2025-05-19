@@ -724,7 +724,7 @@
         }
         function fetch_payment_actions() {
             var delivery_type = $('input[name="delivery_type"]:checked').val();
-            alert(delivery_type)
+            // alert(delivery_type)
             $.ajax({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
