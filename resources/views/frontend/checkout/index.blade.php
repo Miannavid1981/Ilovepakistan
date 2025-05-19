@@ -676,6 +676,8 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.12/js/intlTelInput-jquery.min.js" integrity="sha512-QK4ymL3xaaWUlgFpAuxY+6xax7QuxPB3Ii/99nykNP/PlK3NTQa/f/UbQQnWsM4h5yjQoMjWUhCJbYgWamtL6g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<!-- Place this in your HTML before running your JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js"></script>
 
     <script type="text/javascript">
    
@@ -687,49 +689,49 @@
         var country_id = {{ $session_country_obj ? $session_country_obj->id : "" }};
         const input = document.querySelector("[name=phone]");
 
-// Correct plugin instance
-const iti = window.intlTelInput(input, {
-    initialCountry: country_code || "pk",
-    separateDialCode: true,
-    nationalMode: true,
-    autoPlaceholder: "polite",
-    formatOnDisplay: true,
-    utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
-});
+// Wait for utils to load (important for placeholder to work)
+window.intlTelInputGlobals.loadUtils(
+  "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
+  function () {
+    const iti = window.intlTelInput(input, {
+      initialCountry: country_code || "pk",
+      separateDialCode: true,
+      nationalMode: true,
+      autoPlaceholder: "polite", // ← placeholder will now work
+      formatOnDisplay: true,
+    });
 
-// Restrict input to length based on placeholder
-input.addEventListener("input", function () {
-    const placeholderLength = input.placeholder.replace(/\D/g, "").length;
-    let digitsOnly = input.value.replace(/\D/g, "");
-
-    if (digitsOnly.length > placeholderLength) {
+    // Restrict input length based on placeholder
+    input.addEventListener("input", function () {
+      const placeholderLength = input.placeholder.replace(/\D/g, "").length;
+      let digitsOnly = input.value.replace(/\D/g, "");
+      if (digitsOnly.length > placeholderLength) {
         digitsOnly = digitsOnly.slice(0, placeholderLength);
-    }
+      }
+      input.value = digitsOnly;
+    });
 
-    input.value = digitsOnly;
-});
-
-// Prevent typing beyond placeholder length
-input.addEventListener("keypress", function (e) {
-    const number = input.value.replace(/\D/g, "");
-    const placeholderLength = input.placeholder.replace(/\D/g, "").length;
-
-    if (number.length >= placeholderLength && e.key.match(/\d/)) {
+    input.addEventListener("keypress", function (e) {
+      const number = input.value.replace(/\D/g, "");
+      const placeholderLength = input.placeholder.replace(/\D/g, "").length;
+      if (number.length >= placeholderLength && e.key.match(/\d/)) {
         e.preventDefault();
-    }
-});
+      }
+    });
 
-// Store full international number before form submission
-document.querySelector("form").addEventListener("submit", function () {
-    const fullNumber = iti.getNumber(); // +9230xxxxxx
-    document.querySelector("#full_phone").value = fullNumber;
-});
+    // Store full number in hidden input on submit
+    document.querySelector("form").addEventListener("submit", function () {
+      const fullNumber = iti.getNumber(); // e.g., +923001112222
+      document.querySelector("#full_phone").value = fullNumber;
+    });
 
-// Optional: log on blur
-input.addEventListener("blur", function () {
-    console.log("Local:", input.value);
-    console.log("Country code:", iti.getSelectedCountryData().dialCode);
-});
+    // Debug on blur
+    input.addEventListener("blur", function () {
+      console.log("Local value:", input.value);
+      console.log("Country code:", iti.getSelectedCountryData().dialCode);
+    });
+  }
+);
 
         var $countrySelect = $("#country");
         function switch_address_type_things(){
