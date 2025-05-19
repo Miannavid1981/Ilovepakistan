@@ -788,16 +788,26 @@
                         $('#shipping_info').show();
                         $('#shipping_info').html(obj.html);
                         switch_address_type_things()
-                            if($('[name="selected_address_id"]').length > 0) {
+                        if($('[name="selected_address_id"]').length > 0) {
 
-                                $('[name="selected_address_id"]')[0].click();
-                            }
-                            fetch_payment_actions()
+                            $('[name="selected_address_id"]')[0].click();
+                        }
+                        fetch_payment_actions()
 
-                            console.log(delivery_type)
-                            if(delivery_type == 'personal'){
-                                
-                            }
+                        console.log(delivery_type)
+                        if(delivery_type == 'personal'){
+                            const user = obj.user;
+                            const phone = user ? user.phone : null;
+                            const name = user.name.split(' ');
+
+                            const f_name = name[0] ?? '';
+                            const l_name = name[1] ?? ''; 
+
+                            $('[name="phone"]').val(phone);
+                            $('[name="first_name"]').val(f_name)
+                            $('[name="last_name"]').val(l_name)
+
+                        }
             
                     }
                    
