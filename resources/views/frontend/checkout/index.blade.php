@@ -795,6 +795,10 @@
                         fetch_payment_actions()
 
                         console.log(delivery_type)
+
+                        $('[name="phone"]').val('');
+                        $('[name="first_name"]').val('')
+                        $('[name="last_name"]').val('')
                         if(delivery_type == 'personal'){
                             const user = obj.user;
                             const phone = user ? user.phone : null;
@@ -807,7 +811,7 @@
                             $('[name="first_name"]').val(f_name)
                             $('[name="last_name"]').val(l_name)
 
-                        }
+                        } 
             
                     }
                    
