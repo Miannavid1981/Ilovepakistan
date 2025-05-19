@@ -685,53 +685,48 @@
         $('.select2').select2({
             minimumResultsForSearch: 0 // Always enable search
         });
-        var country_code = '{{  $session_country_obj ? $session_country_obj->code : 'PK' }}';
-        var country_id = {{ $session_country_obj ? $session_country_obj->id : "" }};
-        const input = document.querySelector("[name=phone]");
+        var country_code = '{{ $session_country_obj ? $session_country_obj->code : 'PK' }}';
+var country_id = {{ $session_country_obj ? $session_country_obj->id : 'null' }};
+const input = document.querySelector("[name=phone]");
 
-// Wait for utils to load (important for placeholder to work)
-window.intlTelInputGlobals.loadUtils(
-  "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
-  function () {
-    const iti = window.intlTelInput(input, {
-      initialCountry: country_code || "pk",
-      separateDialCode: true,
-      nationalMode: true,
-      autoPlaceholder: "polite", // ← placeholder will now work
-      formatOnDisplay: true,
-    });
+const iti = window.intlTelInput(input, {
+  initialCountry: country_code.toLowerCase() || "pk",
+  separateDialCode: true,
+  nationalMode: true,
+  autoPlaceholder: "polite",
+  formatOnDisplay: true,
+  utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js", // Correct place
+});
 
-    // Restrict input length based on placeholder
-    input.addEventListener("input", function () {
-      const placeholderLength = input.placeholder.replace(/\D/g, "").length;
-      let digitsOnly = input.value.replace(/\D/g, "");
-      if (digitsOnly.length > placeholderLength) {
-        digitsOnly = digitsOnly.slice(0, placeholderLength);
-      }
-      input.value = digitsOnly;
-    });
+// Update placeholder immediately when country changes
+input.addEventListener("countrychange", function () {
+  input.setAttribute("placeholder", iti.getPlaceholder());
+});
 
-    input.addEventListener("keypress", function (e) {
-      const number = input.value.replace(/\D/g, "");
-      const placeholderLength = input.placeholder.replace(/\D/g, "").length;
-      if (number.length >= placeholderLength && e.key.match(/\d/)) {
-        e.preventDefault();
-      }
-    });
-
-    // Store full number in hidden input on submit
-    document.querySelector("form").addEventListener("submit", function () {
-      const fullNumber = iti.getNumber(); // e.g., +923001112222
-      document.querySelector("#full_phone").value = fullNumber;
-    });
-
-    // Debug on blur
-    input.addEventListener("blur", function () {
-      console.log("Local value:", input.value);
-      console.log("Country code:", iti.getSelectedCountryData().dialCode);
-    });
+// Limit input to number length of placeholder
+input.addEventListener("input", function () {
+  const placeholderLength = (input.placeholder || "").replace(/\D/g, "").length;
+  let digitsOnly = input.value.replace(/\D/g, "");
+  if (digitsOnly.length > placeholderLength) {
+    digitsOnly = digitsOnly.slice(0, placeholderLength);
   }
-);
+  input.value = digitsOnly;
+});
+
+// Prevent typing more digits than allowed
+input.addEventListener("keypress", function (e) {
+  const number = input.value.replace(/\D/g, "");
+  const placeholderLength = (input.placeholder || "").replace(/\D/g, "").length;
+  if (number.length >= placeholderLength && /\d/.test(e.key)) {
+    e.preventDefault();
+  }
+});
+
+// On submit, store full international number in hidden field
+document.querySelector("form").addEventListener("submit", function () {
+  const fullPhone = iti.getNumber(); // +923001112222
+  document.querySelector("#full_phone").value = fullPhone;
+});
 
         var $countrySelect = $("#country");
         function switch_address_type_things(){
