@@ -289,6 +289,11 @@ class CheckoutController extends Controller
         $payment_option = $request->payment_method ?? 'cash_on_delivery';
         $payment_data = $request->session()->get('payment_data');
         $user_id = Auth::id();
+        $auth_user = \App\Models\User::find($user_id);
+        if ($auth_user && blank($auth_user->phone)) {
+            $auth_user->phone = $request->full_phone;
+            $auth_user->save(); // prefer save() when modifying fields
+        }
 
         // Retrieve the user's cart items
         $carts = Cart::where('user_id', $user_id)->get();
