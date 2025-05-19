@@ -741,7 +741,7 @@
                     if (delivery_type != 'personal') {
                         $(`[name="payment_method"]`).each(function () {
                             $(this).prop("checked", false); // properly uncheck the radio
-                            const card = $(this).closest('.card'); // find the closest card container
+                            const card = $(this).parent().parent().parent().parent().parent(); // find the closest card container
                             card.removeClass('d-none');
                             if ($(this).val() === "cash_on_delivery") {
                                 card.addClass('d-none'); // hide the card if it's cash on delivery
