@@ -201,7 +201,10 @@ class AddressController extends Controller
         $data['addresses'] = $addresses;
         $returnHTML = view('frontend.checkout.inc.shipping_form', $data)->render();
 
-        return response()->json(array('data' => $data, 'html' => $returnHTML));
+
+        $user = User::find(Auth::user()->id);
+
+        return response()->json(array('data' => $data, 'html' => $returnHTML, 'user' => $user));
     }
 
 }

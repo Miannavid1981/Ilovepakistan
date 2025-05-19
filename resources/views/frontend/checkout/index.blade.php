@@ -788,15 +788,20 @@
                         $('#shipping_info').show();
                         $('#shipping_info').html(obj.html);
                         switch_address_type_things()
-                       
+                            if($('[name="selected_address_id"]').length > 0) {
+
+                                $('[name="selected_address_id"]')[0].click();
+                            }
+                            fetch_payment_actions()
+
+                            console.log(delivery_type)
+                            if(delivery_type == 'personal'){
+                                
+                            }
             
                     }
-                    switch_address_type_things()
-                    if($('[name="selected_address_id"]').length > 0) {
-
-                        $('[name="selected_address_id"]')[0].click();
-                    }
-                    fetch_payment_actions()
+                   
+                  
                 }
             });
         });
