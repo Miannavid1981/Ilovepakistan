@@ -685,56 +685,51 @@
         });
         var country_code = '{{  $session_country_obj ? $session_country_obj->code : 'PK' }}';
         var country_id = {{ $session_country_obj ? $session_country_obj->id : "" }};
-        var instance = $("[name=phone]").intlTelInput({
-            initialCountry: country_code, // Set Pakistan as the default country
-            separateDialCode: true,
-            nationalMode: true, // <--- Important! This makes input local only
-            autoPlaceholder: "polite",
-            formatOnDisplay: true,
-            utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
-        });
-        var phone_input = document.querySelector("[name=phone]");
-        // Get full international number if needed
-        function getFullNumber() {
-            return instance.getNumber(); // returns +923024065093
-        }
-                // Optional: restrict input length based on country's phone number format
-        phone_input.addEventListener("input", function () {
-            const placeholderLength = input.placeholder.replace(/\D/g, "").length;
-            let digitsOnly = input.value.replace(/\D/g, "");
+        const input = document.querySelector("[name=phone]");
 
-            if (digitsOnly.length > placeholderLength) {
-                digitsOnly = digitsOnly.slice(0, placeholderLength);
-            }
+// Correct plugin instance
+const iti = window.intlTelInput(input, {
+    initialCountry: country_code || "pk",
+    separateDialCode: true,
+    nationalMode: true,
+    autoPlaceholder: "polite",
+    formatOnDisplay: true,
+    utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
+});
 
-            input.value = digitsOnly;
-        });
-        phone_input.addEventListener("keypress", function (e) {
-            var number = phone_input.value.replace(/\D/g, "");
-            var placeholderLength = phone_input.placeholder.replace(/\D/g, "").length;
+// Restrict input to length based on placeholder
+input.addEventListener("input", function () {
+    const placeholderLength = input.placeholder.replace(/\D/g, "").length;
+    let digitsOnly = input.value.replace(/\D/g, "");
 
-            if (number.length >= placeholderLength && e.key.match(/\d/)) {
-                e.preventDefault();
-            }
-        });
-        // Enforce digit limit based on selected country
-        $("[name=phone]").on("input", function () {
-            var countryData = instance.intlTelInput("getSelectedCountryData");
-            var maxLength = instance.intlTelInput("getNumberType") === 0 ? countryData.dialCode.length + countryData.format.length : countryData.dialCode.length + 10;
-            
-            if ($(this).val().length > maxLength) {
-                $(this).val($(this).val().slice(0, maxLength));
-            }
-        });
+    if (digitsOnly.length > placeholderLength) {
+        digitsOnly = digitsOnly.slice(0, placeholderLength);
+    }
 
-        // Append country code before form submission
-        $("form").on("submit", function () {
-            $("#full_phone").val(instance.intlTelInput("getNumber")); // Stores full phone number in hidden input
-        });
-        $("[name=phone]").on("blur", function() {
-            console.log($(this).val());
-            console.log(instance.intlTelInput("getSelectedCountryData").dialCode); // Get country code
-        });
+    input.value = digitsOnly;
+});
+
+// Prevent typing beyond placeholder length
+input.addEventListener("keypress", function (e) {
+    const number = input.value.replace(/\D/g, "");
+    const placeholderLength = input.placeholder.replace(/\D/g, "").length;
+
+    if (number.length >= placeholderLength && e.key.match(/\d/)) {
+        e.preventDefault();
+    }
+});
+
+// Store full international number before form submission
+document.querySelector("form").addEventListener("submit", function () {
+    const fullNumber = iti.getNumber(); // +9230xxxxxx
+    document.querySelector("#full_phone").value = fullNumber;
+});
+
+// Optional: log on blur
+input.addEventListener("blur", function () {
+    console.log("Local:", input.value);
+    console.log("Country code:", iti.getSelectedCountryData().dialCode);
+});
 
         var $countrySelect = $("#country");
         function switch_address_type_things(){
