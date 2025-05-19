@@ -739,6 +739,13 @@
                     if (obj != '') {
                         $('#place_order_buttons').html(obj.html);
                     }
+                    $(`[name="payment_method"]`).each(function () {
+                        $(this).prop("checked", false); // properly uncheck the radio
+                        const card = $(this).parent().parent().parent().parent().parent(); // find the closest card container
+                        card.removeClass('d-none');
+                        
+                    });
+                    
                     if (delivery_type != 'personal') {
                         $(`[name="payment_method"]`).each(function () {
                             $(this).prop("checked", false); // properly uncheck the radio
@@ -753,7 +760,7 @@
                         $(`[name="payment_method"][value="direct_bank_transfer"]`).prop("checked", true);
 
                         
-                    }
+                    } 
                 }
             });
         }
