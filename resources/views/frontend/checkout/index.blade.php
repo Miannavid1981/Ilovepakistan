@@ -682,6 +682,7 @@
     <script type="text/javascript">
    
     $(document).ready(function() {
+
         $('.select2').select2({
             minimumResultsForSearch: 0 // Always enable search
         });
@@ -690,11 +691,13 @@
 
 
         const input = document.querySelector("#phone");
-  window.intlTelInput(input, {
-    loadUtils: () => import("https://cdn.jsdelivr.net/npm/intl-tel-input@25.3.1/build/js/utils.js"),
-  });
+        intlTelInput(input, {
+            hiddenInput: (telInputName) => ({
+                phone: "full_phone",
+            
+            }),
+        });
 
-  
         // const input = document.querySelector("[name=phone]");
 
         // const iti = window.intlTelInput(input, {
