@@ -689,19 +689,21 @@
         var country_code = '{{ $session_country_obj ? $session_country_obj->code : 'PK' }}';
         var country_id = {{ $session_country_obj ? $session_country_obj->id : 'null' }};
 
-
         const input = document.querySelector("#phone");
-        const iti = window.intlTelInput(input, {
-  initialCountry: "pk", // or use a dynamic value
+const fullPhoneInput = document.querySelector("#full_phone");
+
+const iti = window.intlTelInput(input, {
+  initialCountry: "pk", // Set your default country
   separateDialCode: true,
-  nationalMode: true, // input only contains the local number
+  nationalMode: true,
   placeholderNumberType: "MOBILE",
   autoPlaceholder: "polite",
   formatOnDisplay: true,
   utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js"
 });
-// Set placeholder using example number (works after utilsScript is loaded)
-input.addEventListener("countrychange", function () {
+
+// Utility to set placeholder based on country
+function setDynamicPlaceholder() {
   const countryData = iti.getSelectedCountryData();
   if (window.intlTelInputUtils && countryData.iso2) {
     const exampleNumber = intlTelInputUtils.getExampleNumber(
@@ -711,12 +713,34 @@ input.addEventListener("countrychange", function () {
     );
     input.setAttribute("placeholder", exampleNumber);
   }
+}
+
+// Utility to get max digits from placeholder
+function getMaxDigitsFromPlaceholder() {
+  return input.placeholder.replace(/\D/g, "").length;
+}
+
+// Set placeholder initially on page load
+window.addEventListener("load", setDynamicPlaceholder);
+
+// Update placeholder on country change
+input.addEventListener("countrychange", setDynamicPlaceholder);
+
+// Restrict digits while typing
+input.addEventListener("input", function () {
+  let digitsOnly = input.value.replace(/\D/g, "");
+  const maxDigits = getMaxDigitsFromPlaceholder();
+  if (digitsOnly.length > maxDigits) {
+    digitsOnly = digitsOnly.slice(0, maxDigits);
+  }
+  input.value = digitsOnly;
 });
 
-// On form submit, save full number in hidden field
+// On form submit, set hidden field to full international number
 document.querySelector("form").addEventListener("submit", function () {
-  fullPhoneInput.value = iti.getNumber(); // +923001112222
+  fullPhoneInput.value = iti.getNumber(); // e.g., +923001112222
 });
+
         // const input = document.querySelector("[name=phone]");
 
         // const iti = window.intlTelInput(input, {
