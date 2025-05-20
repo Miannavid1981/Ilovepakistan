@@ -700,10 +700,22 @@
   formatOnDisplay: true,
   utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js"
 });
-
-// Update placeholder when country changes
+// Set placeholder using example number (works after utilsScript is loaded)
 input.addEventListener("countrychange", function () {
-  input.setAttribute("placeholder", iti.getPlaceholder());
+  const countryData = iti.getSelectedCountryData();
+  if (window.intlTelInputUtils && countryData.iso2) {
+    const exampleNumber = intlTelInputUtils.getExampleNumber(
+      countryData.iso2.toUpperCase(),
+      intlTelInputUtils.numberType.MOBILE,
+      intlTelInputUtils.numberFormat.NATIONAL
+    );
+    input.setAttribute("placeholder", exampleNumber);
+  }
+});
+
+// On form submit, save full number in hidden field
+document.querySelector("form").addEventListener("submit", function () {
+  fullPhoneInput.value = iti.getNumber(); // +923001112222
 });
         // const input = document.querySelector("[name=phone]");
 
