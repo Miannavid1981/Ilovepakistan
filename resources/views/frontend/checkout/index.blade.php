@@ -728,6 +728,22 @@ function getMaxDigitsFromPlaceholder() {
 // input.addEventListener("countrychange", setDynamicPlaceholder);
 
 // Restrict digits while typing
+// Block letters and anything that's not a digit
+input.addEventListener("keypress", function (e) {
+  const char = String.fromCharCode(e.which);
+  if (!/^\d$/.test(char)) {
+    e.preventDefault(); // Stop non-digit input like letters or symbols
+  }
+
+  // Optional: also enforce max length
+  const digitsOnly = input.value.replace(/\D/g, "");
+  const maxDigits = getMaxDigitsFromPlaceholder();
+  if (digitsOnly.length >= maxDigits) {
+    e.preventDefault(); // Stop typing if limit reached
+  }
+});
+
+// Also sanitize pasted input
 input.addEventListener("input", function () {
   let digitsOnly = input.value.replace(/\D/g, "");
   const maxDigits = getMaxDigitsFromPlaceholder();
