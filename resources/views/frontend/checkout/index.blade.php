@@ -530,7 +530,7 @@
                     </div>
                     <div class="col-12">
                         
-                        <input class="form-control " id="phone" type="phone" placeholder="03XXXXXXXXX" name="phone" value="{{  auth()->user()->phone }}" autocomplete="off" required>
+                        <input class="form-control " id="phone" type="number" placeholder="03XXXXXXXXX" name="phone" value="{{  auth()->user()->phone }}" autocomplete="off" required>
                     </div>
                 </div>
                 <h5 class=" mt-4">Shipping Information</h5>
