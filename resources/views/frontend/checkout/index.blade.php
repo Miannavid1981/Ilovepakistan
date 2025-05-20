@@ -691,13 +691,20 @@
 
 
         const input = document.querySelector("#phone");
-        intlTelInput(input, {
-            hiddenInput: (telInputName) => ({
-                phone: "full_phone",
-            
-            }),
-        });
+        const iti = window.intlTelInput(input, {
+  initialCountry: "pk", // or use a dynamic value
+  separateDialCode: true,
+  nationalMode: true, // input only contains the local number
+  placeholderNumberType: "MOBILE",
+  autoPlaceholder: "polite",
+  formatOnDisplay: true,
+  utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js"
+});
 
+// Update placeholder when country changes
+input.addEventListener("countrychange", function () {
+  input.setAttribute("placeholder", iti.getPlaceholder());
+});
         // const input = document.querySelector("[name=phone]");
 
         // const iti = window.intlTelInput(input, {
