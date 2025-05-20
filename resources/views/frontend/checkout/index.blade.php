@@ -530,7 +530,7 @@
                     </div>
                     <div class="col-12">
                         
-                        <input class="form-control " id="phone" type="phone" placeholder="Phone" name="phone" value="{{  auth()->user()->phone }}" autocomplete="off" required>
+                        <input class="form-control " id="phone" type="phone" placeholder="03XXXXXXXXX" name="phone" value="{{  auth()->user()->phone }}" autocomplete="off" required>
                     </div>
                 </div>
                 <h5 class=" mt-4">Shipping Information</h5>
@@ -693,7 +693,8 @@
 const fullPhoneInput = document.querySelector("#full_phone");
 
 const iti = window.intlTelInput(input, {
-  initialCountry: "pk", // Set your default country
+  initialCountry: country_code, // Set your default country
+  onlyCountries: ["pk"],
   separateDialCode: true,
   nationalMode: true,
   placeholderNumberType: "MOBILE",
@@ -720,11 +721,11 @@ function getMaxDigitsFromPlaceholder() {
   return input.placeholder.replace(/\D/g, "").length;
 }
 
-// Set placeholder initially on page load
-window.addEventListener("load", setDynamicPlaceholder);
+// // Set placeholder initially on page load
+// window.addEventListener("load", setDynamicPlaceholder);
 
-// Update placeholder on country change
-input.addEventListener("countrychange", setDynamicPlaceholder);
+// // Update placeholder on country change
+// input.addEventListener("countrychange", setDynamicPlaceholder);
 
 // Restrict digits while typing
 input.addEventListener("input", function () {
