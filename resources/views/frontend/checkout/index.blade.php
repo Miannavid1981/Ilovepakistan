@@ -697,8 +697,8 @@ const iti = window.intlTelInput(input, {
   onlyCountries: ["pk"],
   separateDialCode: true,
   nationalMode: true,
-  placeholderNumberType: "MOBILE",
-  autoPlaceholder: "polite",
+//   placeholderNumberType: "MOBILE",
+//   autoPlaceholder: "polite",
   formatOnDisplay: true,
   utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js"
 });
@@ -721,24 +721,6 @@ function getMaxDigitsFromPlaceholder() {
   return input.placeholder.replace(/\D/g, "").length;
 }
 
-
-$("#phone").on("keypress", function (e) {
-  var charCode = e.which ? e.which : e.keyCode;
-
-  // Block non-digits
-  if (charCode < 48 || charCode > 57) {
-    e.preventDefault();
-    return;
-  }
-
-  // Max digits check
-  var digitsOnly = $(this).val().replace(/\D/g, "");
-  var maxDigits = $("#phone").attr("placeholder").replace(/\D/g, "").length;
-
-  if (digitsOnly.length >= maxDigits) {
-    e.preventDefault();
-  }
-});
 // // Set placeholder initially on page load
 // window.addEventListener("load", setDynamicPlaceholder);
 
