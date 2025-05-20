@@ -721,6 +721,24 @@ function getMaxDigitsFromPlaceholder() {
   return input.placeholder.replace(/\D/g, "").length;
 }
 
+
+$("#phone").on("keypress", function (e) {
+  var charCode = e.which ? e.which : e.keyCode;
+
+  // Block non-digits
+  if (charCode < 48 || charCode > 57) {
+    e.preventDefault();
+    return;
+  }
+
+  // Max digits check
+  var digitsOnly = $(this).val().replace(/\D/g, "");
+  var maxDigits = $("#phone").attr("placeholder").replace(/\D/g, "").length;
+
+  if (digitsOnly.length >= maxDigits) {
+    e.preventDefault();
+  }
+});
 // // Set placeholder initially on page load
 // window.addEventListener("load", setDynamicPlaceholder);
 
@@ -728,30 +746,7 @@ function getMaxDigitsFromPlaceholder() {
 // input.addEventListener("countrychange", setDynamicPlaceholder);
 
 // Restrict digits while typing
-// Block letters and anything that's not a digit
-input.addEventListener("keypress", function (e) {
-  const char = String.fromCharCode(e.which);
-  if (!/^\d$/.test(char)) {
-    e.preventDefault(); // Stop non-digit input like letters or symbols
-  }
 
-  // Optional: also enforce max length
-  const digitsOnly = input.value.replace(/\D/g, "");
-  const maxDigits = getMaxDigitsFromPlaceholder();
-  if (digitsOnly.length >= maxDigits) {
-    e.preventDefault(); // Stop typing if limit reached
-  }
-});
-
-// Also sanitize pasted input
-input.addEventListener("input", function () {
-  let digitsOnly = input.value.replace(/\D/g, "");
-  const maxDigits = getMaxDigitsFromPlaceholder();
-  if (digitsOnly.length > maxDigits) {
-    digitsOnly = digitsOnly.slice(0, maxDigits);
-  }
-  input.value = digitsOnly;
-});
 
 // On form submit, set hidden field to full international number
 document.querySelector("form").addEventListener("submit", function () {
