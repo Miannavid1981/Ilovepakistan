@@ -213,6 +213,8 @@
         </div>
         @php
             $shipping_address = json_decode($combined_order->shipping_address);
+
+            dd($shipping_address);
         @endphp
 
         <table>
