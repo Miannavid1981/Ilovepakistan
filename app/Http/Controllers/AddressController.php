@@ -58,6 +58,8 @@ class AddressController extends Controller
         $other_address_label = $request->address_label ?? '';
         $address_label = $address_type == 'personal' ? $personal_address_label : $other_address_label;
         $address->address_label = $address_label;
+        $address->area = $request->area ?? null;
+        $address->landmark = $request->landmark ?? null;
         $address->save();
 
         if(request()->ajax()){
