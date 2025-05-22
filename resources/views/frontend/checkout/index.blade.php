@@ -530,7 +530,7 @@
                     </div>
                     <div class="col-12">
                         
-                        <input class="form-control " id="phone" type="number" placeholder="03XXXXXXXXX" name="phone" value="{{  auth()->user()->phone }}" autocomplete="off" required>
+                        <input class="form-control " id="phone" type="number" maxlength="11" placeholder="03XXXXXXXXX" name="phone" value="{{  auth()->user()->phone }}" autocomplete="off" required>
                     </div>
                 </div>
                 <h5 class=" mt-4">Shipping Information</h5>
@@ -717,9 +717,9 @@ function setDynamicPlaceholder() {
 }
 
 // Utility to get max digits from placeholder
-function getMaxDigitsFromPlaceholder() {
-  return input.placeholder.replace(/\D/g, "").length;
-}
+// function getMaxDigitsFromPlaceholder() {
+//   return input.placeholder.replace(/\D/g, "").length;
+// }
 
 // // Set placeholder initially on page load
 // window.addEventListener("load", setDynamicPlaceholder);
