@@ -210,7 +210,7 @@ class AddressController extends Controller
     }
     public function customer_addresses(){
 
-        $addresses = \App\Models\Address::where('user_id', Auth::id())->get();
+        $addresses = \App\Models\Address::where('user_id', Auth::id())->orderBy('created_at', 'DESC')->get();
 
         return view('frontend.my_addresses', ['addresses'=>$addresses]);
         
