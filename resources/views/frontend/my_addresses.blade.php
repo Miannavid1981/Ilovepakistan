@@ -102,6 +102,7 @@
 @endsection
 
 @section('script')
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
             $(document).on('click', '#add_address', function() {
             var country_id = $('[name="country_id"]').val();
