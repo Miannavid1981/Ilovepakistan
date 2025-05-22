@@ -264,10 +264,14 @@ tr.border-bottom td {
                     <span class="fs-17 text-capitalize">{{ $shipping_address['phone'] }}</span><br/>
                     
                     <strong class="fs-16">Shipping Information</strong> <br/>
+                    
                     <span class="fs-17 text-capitalize">{{ $shipping_address['address'] }}</span><br/>
+                    <span class="fs-17 text-capitalize">{{ $shipping_address['area'] }}</span>, <span class="fs-17 text-capitalize">{{ $shipping_address['landmark'] }}</span><br/>
                     <span class="fs-17 text-capitalize">{{ $shipping_address['city'] }}</span><br/>
                     <span class="fs-17 text-capitalize">{{ $shipping_address['state'] }}</span><br/>
                     <span class="fs-17 text-capitalize">{{ $shipping_address['country'] }}</span><br/>
+                    <span class="fs-17 text-capitalize">{{ $shipping_address['postal_code'] }}</span><br/>
+                    
                 </p>
 
             
