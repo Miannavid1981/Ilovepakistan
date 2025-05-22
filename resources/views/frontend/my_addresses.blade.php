@@ -29,14 +29,14 @@
                         <tr>
                             <!-- Date -->
                             <td class="text-secondary">
-                                {{ $key }}
+                                {{ $key+1 }}
                             </td>
                             <!-- Amount -->
                             <td >
                                 {{ $address->address_label }}
                             </td>
                             <td >
-                               <span class="badge badge-success"> {{ $address->address_type }}</span>
+                               <span class="badge badge-success w-auto"> {{ $address->address_type }}</span>
                             </td>
                             <td >
                                 {{ $address->address }}
@@ -49,14 +49,14 @@
                             </td>
                             <!-- Delivery Status -->
                             <td class="fw-700">
-                                {{ $city }}
+                                {{ $city->name }}
                             </td>
                             <!-- Payment Status -->
                             <td>
-                                {{ $state }}
+                                {{ $state->name }}
                             </td>
                             <td>
-                                {{ $country }}
+                                {{ $country->name }}
                             </td>
 
                             <!-- Options -->
