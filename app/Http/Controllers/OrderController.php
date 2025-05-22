@@ -162,19 +162,22 @@ class OrderController extends Controller
         }
 
         $address = Address::where('id', $carts[0]['address_id'])->first();
+        $shippingAddress = !empty($request->shipping_address) ? $request->shipping_address : false;
+        if(!$shippingAddress) {
 
-        $shippingAddress = [];
-        if ($address != null) {
-            $shippingAddress['name']        = $request->first_name." ".$request->last_name;
-            $shippingAddress['email']       = Auth::user()->email;
-            $shippingAddress['address']     = $address->address;
-            $shippingAddress['country']     = $address->country->name;
-            $shippingAddress['state']       = $address->state->name;
-            $shippingAddress['city']        = $address->city->name;
-            $shippingAddress['postal_code'] = $address->postal_code;
-            $shippingAddress['phone']       = $request->full_phone;
-            if ($address->latitude || $address->longitude) {
-                $shippingAddress['lat_lang'] = $address->latitude . ',' . $address->longitude;
+            
+            if ($address != null) {
+                $shippingAddress['name']        = $request->first_name." ".$request->last_name;
+                $shippingAddress['email']       = Auth::user()->email;
+                $shippingAddress['address']     = $address->address;
+                $shippingAddress['country']     = $address->country->name;
+                $shippingAddress['state']       = $address->state->name;
+                $shippingAddress['city']        = $address->city->name;
+                $shippingAddress['postal_code'] = $address->postal_code;
+                $shippingAddress['phone']       = $request->full_phone;
+                if ($address->latitude || $address->longitude) {
+                    $shippingAddress['lat_lang'] = $address->latitude . ',' . $address->longitude;
+                }
             }
         }
 
