@@ -182,11 +182,8 @@
                         },
                         success: function(response) {
                             if (response.success) {
-                            
-                                    var obj = response;
-                                    if (obj != '') {
-                                        window.location.reload
-                                    }
+                                window.location.reload()
+                                  
                             
                             } else {
                                 Swal.fire(
