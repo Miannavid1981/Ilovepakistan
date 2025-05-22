@@ -208,5 +208,12 @@ class AddressController extends Controller
 
         return response()->json(array('data' => $data, 'html' => $returnHTML, 'user' => $user));
     }
+    public function customer_addresses(){
 
+        $addresses = \App\Models\Address::where('user_id', Auth::id())->get();
+
+        return view('frontend.my_addresses', ['addresses'=>$addresses]);
+        
+
+    }
 }
