@@ -70,7 +70,7 @@
                             <td class="text-right pr-0">
                                 <div class="d-flex flex-column flex-sm-row justify-content-end align-items-center">
                                     
-                                    <button class="btn btn-danger">
+                                    <button class="btn btn-danger delete-address" data-id="{{ $address->id }}">
                                         <i class="fa fa-trash">
                                         </i>
                                     </button>
@@ -157,8 +157,7 @@
         function delete_address(addressId) {
 
             var delivery_type = $('input[name="delivery_type"]:checked').val();
-            $("#shipping_preloader").show();
-            $('#shipping_info').hide();
+            
             Swal.fire({
                 title: 'Are you sure?',
                 text: "You won't be able to revert this!",
