@@ -38,7 +38,7 @@
                                 {{ $address->address_label }}
                             </td>
                             <td >
-                               <span class="badge badge-success w-auto"> {{ str_replace("_", " ",  $address->address_type) }}</span>
+                               <span class="badge badge-success text-uppercase w-auto"> {{ str_replace("_", " ",  $address->address_type) }}</span>
                             </td>
                             <td >
                                 {{ $address->address }}
