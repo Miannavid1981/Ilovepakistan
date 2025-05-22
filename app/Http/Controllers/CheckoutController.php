@@ -327,8 +327,8 @@ class CheckoutController extends Controller
                 'country' => $country ? $country->name : '',
                 'latitude' => $address->latitude,
                 'longitude' => $address->longitude,
-                'area' => $address->area ?? '',
-                'landmark' => $address->landmark ?? ''
+                'area' => $address->area ?? null,
+                'landmark' => $address->landmark ?? null
             ];
         } else {
             // Create a new address if not selected
