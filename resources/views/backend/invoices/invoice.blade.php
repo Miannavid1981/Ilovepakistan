@@ -269,7 +269,7 @@
                           <strong>Payment Method</strong><br>
                            <!--Your checkout made by VISA Card <br>**** **** **** 2478<br>-->
                            <span style="text-transform:capitalize"> {{ str_replace("_", " ",$combined_order->payment_method ) }} </span><br>
-                           @if($combined_order->payment_method == 'direct_bank_transfer')
+                           @if(!empty($combined_order->payment_method) && $combined_order->payment_method == 'direct_bank_transfer')
                             <strong>Transfer Method:</strong><br>
                             <span style="text-transform:capitalize">  {{ str_replace("_", " ",$combined_order->payment_transfer_method ) }} </span><br>
                            @endif
