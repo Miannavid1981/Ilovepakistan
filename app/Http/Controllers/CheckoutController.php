@@ -361,12 +361,12 @@ class CheckoutController extends Controller
                 'address' => $request->address,
                 'city' => $city ? $city->name : '',
                 'state' => $state ? $state->name : '',
-                'postal_code' => $request->postal_code,
+                'postal_code' => $address->postal_code,
                 'country' => $country ? $country->name : '',
-                'latitude' => $request->latitude,
-                'longitude' => $request->longitude,
-                'area' => $request->area ?? '',
-                'landmark' => $request->landmark ?? ''
+                'latitude' => $address->latitude,
+                'longitude' => $address->longitude,
+                'area' => $address->area ?? null,
+                'landmark' => $address->landmark ?? null
             ];
 
 
