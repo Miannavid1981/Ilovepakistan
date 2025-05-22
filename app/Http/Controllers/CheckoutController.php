@@ -371,7 +371,7 @@ class CheckoutController extends Controller
 
 
         }
-    
+    dd( $shipping_address );
         // Update carts with the address_id
         foreach ($carts as $cart) {
             $cart->address_id = $selected_address_id;
