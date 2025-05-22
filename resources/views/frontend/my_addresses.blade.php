@@ -9,13 +9,15 @@
             <table class="table aiz-table mb-0">
                 <thead class="text-gray fs-12">
                     <tr>
-                        <th class="pl-0">{{ translate('Code')}}</th>
-                        <th >{{ translate('Date')}}</th>
-                        <th> {{ translate('Order Type')}}</th>
-                        <th> {{ translate('Amount')}}</th>
-                        <th >{{ translate('Payment Method')}}</th>
-                        <th >{{ translate('Delivery Status')}}</th>
-                        <th >{{ translate('Payment Status')}}</th>
+                        <th class="pl-0">{{ translate('Sr #')}}</th>
+                        <th >{{ translate('Label')}}</th>
+                        <th> {{ translate('Type')}}</th>
+                        <th> {{ translate('Street / Building')}}</th>
+                        <th >{{ translate('Nearest Landmark')}}</th>
+                        <th >{{ translate('Area')}}</th>
+                        <th >{{ translate('City')}}</th>
+                        <th >{{ translate('State')}}</th>
+                        <th >{{ translate('Country')}}</th>
                         <th class="text-right pr-0">{{ translate('Options')}}</th>
                     </tr>
                 </thead>
@@ -36,19 +38,19 @@
                                 {{ $address->address_label }}
                             </td>
                             <td >
-                               <span class="badge badge-success w-auto"> {{ $address->address_type }}</span>
+                               <span class="badge badge-success w-auto"> {{ str_replace("_", " ",  $address->address_type) }}</span>
                             </td>
                             <td >
                                 {{ $address->address }}
                             </td>
-                            <td class="fw-700">
+                            <td>
                                 {{ $address->landmark }}
                             </td>
-                            <td class="fw-700">
+                            <td>
                                 {{ $address->area }}
                             </td>
                             <!-- Delivery Status -->
-                            <td class="fw-700">
+                            <td>
                                 {{ $city->name }}
                             </td>
                             <!-- Payment Status -->
