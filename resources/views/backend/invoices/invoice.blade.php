@@ -247,7 +247,7 @@
                       
                             
                         <td>
-                          <strong>Shipping Address</strong><br>
+                          <strong>Shipping Info</strong><br>
                           {{ $shipping_address->name }}<br>
                           {{ $shipping_address->address }},<br>
                           Near {{ $shipping_address->landmark }} , {{ $shipping_address->area }}  <br>
