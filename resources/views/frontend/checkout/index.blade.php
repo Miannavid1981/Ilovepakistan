@@ -942,7 +942,9 @@ document.querySelector("form").addEventListener("submit", function () {
                     longitude, 
                     address_type: delivery_type,
                     address_label,
-                    personal_address_label
+                    personal_address_label,
+                    area,
+                    landmark
                 },
                 dataType: 'json', // Ensure response is treated as JSON
                 success: function(response) {
