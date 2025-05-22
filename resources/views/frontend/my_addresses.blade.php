@@ -77,7 +77,7 @@
             </table>
             <!-- Pagination -->
             <div class="aiz-pagination mt-2">
-                {{ $address->links() }}
+                {{-- {{ $addresses->links() }} --}}
             </div>
         </div>
     </div>
