@@ -212,7 +212,7 @@
             Thank you for your order. This invoice reflects the purchased products/services as per your order details, including applicable taxes and fees.
         </div>
         @php
-            $shipping_address = json_decode($orders[0]->shipping_address);
+            $shipping_address = json_decode($order->shipping_address);
         @endphp
 
         <table>
