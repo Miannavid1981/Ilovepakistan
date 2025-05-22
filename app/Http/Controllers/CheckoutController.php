@@ -326,7 +326,9 @@ class CheckoutController extends Controller
                 'postal_code' => $address->postal_code,
                 'country' => $country ? $country->name : '',
                 'latitude' => $address->latitude,
-                'longitude' => $address->longitude
+                'longitude' => $address->longitude,
+                'area' => $request->area ?? '',
+                'landmark' => $request->landmark ?? ''
             ];
         } else {
             // Create a new address if not selected
@@ -344,6 +346,8 @@ class CheckoutController extends Controller
             $address->address_type = $address_type;
             $address->address_label = $address_label;
             $address->address_label = $address_label;
+            $address->area = $request->area ?? null;
+            $address->landmark = $request->landmark ?? null;
             $address->save();
 
             $state = \App\Models\State::where("id", $request->state_id)->first();
@@ -360,7 +364,9 @@ class CheckoutController extends Controller
                 'postal_code' => $request->postal_code,
                 'country' => $country ? $country->name : '',
                 'latitude' => $request->latitude,
-                'longitude' => $request->longitude
+                'longitude' => $request->longitude,
+                'area' => $request->area ?? '',
+                'landmark' => $request->landmark ?? ''
             ];
 
 
