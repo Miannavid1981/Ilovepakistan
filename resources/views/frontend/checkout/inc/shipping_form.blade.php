@@ -23,7 +23,7 @@
                         <div>
                             <h5 class="mb-0 text-capitalize">{{ $address->address_label }}</h5>
                             <p class="mb-0">{{ $address->address }},</p>
-                            <p class="mb-0"> {{$address->area ?? '' }} Near {{ $address->landmark ?? '' }} </p>
+                            <p class="mb-0"> Near {{ $address->landmark ?? '' }}, {{$address->area ?? '' }} </p>
                             <p class="mb-0">{{ optional($address->city)->name.", ".optional($address->state)->name.", ".optional($address->country)->name }}</p>
                             <p class="mb-0">{{ $address->postal_code}} </p>
                         </div>
