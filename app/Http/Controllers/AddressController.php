@@ -52,7 +52,7 @@ class AddressController extends Controller
         $address->longitude     = $request->longitude;
         $address->latitude      = $request->latitude;
         $address->postal_code   = $request->postal_code;
-        $address->phone         = '+'.$request->country_code.$request->phone;
+        $address->phone         = $request->phone ? '+'.$request->country_code.$request->phone : '';
         $address->address_type = $address_type;
         $personal_address_label = $request->personal_address_label ?? '';
         $other_address_label = $request->address_label ?? '';
