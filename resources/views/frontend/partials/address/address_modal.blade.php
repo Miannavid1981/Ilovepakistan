@@ -76,8 +76,11 @@
                             <input type="text" class="form-control  rounded-0" placeholder="{{ translate('Nearest Landmark')}}" name="landmark" id="land_mark" value="" required>
                         </div>
 
-                        <div class="col-12 mt-2">
+                        <div class="col-6 mt-2">
                             <input type="text" class="form-control  rounded-0" placeholder="{{ translate('Street / Building Address')}}" id="address" name="address" value="" required>
+                        </div>
+                        <div class="col-6 mt-2">
+                            <input type="text" class="form-control  rounded-0" placeholder="{{ translate('Postal Code')}}" id="postal_code" name="postal_code" value="" required>
                         </div>
                         <div class="col-12 mt-2">
                             <input type="text" class="form-control  rounded-0" placeholder="{{ translate('Full Address')}}" id="full_address" name="full_address" value="" required>
