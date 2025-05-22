@@ -923,6 +923,7 @@ document.querySelector("form").addEventListener("submit", function () {
             var landmark = $('[name="landmark"]').val();
             var address = $('[name="address"]').val();
             var area = $('[name="area"]').val();
+            var postal_code = $('[name="postal_code"]').val();
            
             var delivery_type = $('input[name="delivery_type"]:checked').val();
             var address_label = $("#address_label").val()
@@ -944,7 +945,8 @@ document.querySelector("form").addEventListener("submit", function () {
                     address_label,
                     personal_address_label,
                     area,
-                    landmark
+                    landmark,
+                    postal_code
                 },
                 dataType: 'json', // Ensure response is treated as JSON
                 success: function(response) {
