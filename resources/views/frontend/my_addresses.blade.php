@@ -65,7 +65,10 @@
                             <td class="text-right pr-0">
                                 <div class="d-flex flex-column flex-sm-row justify-content-end align-items-center">
                                     
-                                    
+                                    <button class="btn btn-danger">
+                                        <i class="fa fa-trash">
+                                        </i>
+                                    </button>
                                   
                                 </div>
                             </td>
