@@ -252,7 +252,7 @@
                           {{ $shipping_address->address }},<br>
                           Near {{ $shipping_address->landmark }} , {{ $shipping_address->area }}  <br>
                           {{ $shipping_address->city }}, {{ $shipping_address->country }}<br>
-                          {{ $shipping_address->email }}<br>
+                          {{-- {{ $shipping_address->email }}<br> --}}
                           {{ $shipping_address->postal_code }}<br>
                           {{ $shipping_address->phone }}
                         </td>
