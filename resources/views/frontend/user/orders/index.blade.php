@@ -104,7 +104,7 @@
                                              <img src="https://www.svgrepo.com/show/4361/refresh.svg" alt="reorder Image" style="width: 26px;"/> 
                                         </a> --}}
                                 
-                                        @if ($combined_order->orders->first()->payment_status == 'unpaid' && $combined_order->orders->first()->payment_type != 'cod')
+                                        {{-- @if ($combined_order->orders->first()->payment_status == 'unpaid' && $combined_order->orders->first()->payment_type != 'cod')
                                             <!-- Payment Info -->
                                             <a class="mb-2 mb-sm-0 mr-sm-1"
                                                 data-toggle="modal" data-target="#paymentInfoModal"
@@ -114,7 +114,7 @@
                                                 onclick="setOrderDetailsForModal(this)" style="cursor: pointer;">
                                                 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR27erYfDTTwMz5B9TLGi9HbRkkGyXIx7sEJg&s" alt="Payment Image" style="    height: 23px;width: 100%;"/> <!-- Image for payment -->
                                             </a>
-                                        @endif
+                                        @endif --}}
                                 
                                         <!-- Cancel -->
                                         @if ($combined_order->orders->first()->delivery_status == 'pending' && $combined_order->orders->first()->payment_status == 'unpaid')
