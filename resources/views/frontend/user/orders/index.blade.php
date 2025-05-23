@@ -134,7 +134,7 @@
                                 
                                         <!-- Details -->
                                         <a href="{{ url('order-received/BH000'.$combined_order->id) }}"
-                                            class="mb-2 mb-sm-0 mt-sm-0 mr-sm-1 bg-dark px-2 py-1 rounded-circle"
+                                            class="mb-2 mb-sm-0 mt-sm-0 mr-sm-1 bg-light px-2 py-1 rounded-circle"
                                             title="{{ translate('Order Details') }}">
                                             <!--<svg xmlns="http://www.w3.org/2000/svg" width="12" height="10"-->
                                             <!--    viewBox="0 0 12 10">-->
@@ -150,7 +150,7 @@
                                             <!--            height="1" transform="translate(1339 431)" fill="#3490f3" />-->
                                             <!--    </g>-->
                                             <!--</svg>-->
-                                            <i class="fa fa-eye text-white"></i>
+                                            <i class="fa fa-eye text-dark"></i>
                                         </a>
                                 
                                       
