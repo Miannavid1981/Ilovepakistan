@@ -117,20 +117,7 @@
                                         @endif --}}
                                 
                                         <!-- Cancel -->
-                                        @if ($combined_order->orders->first()->delivery_status == 'pending' && $combined_order->orders->first()->payment_status == 'unpaid')
-                                            <a href="javascript:void(0)"
-                                                class="mb-2 mb-sm-0 mt-sm-0 mr-sm-1 confirm-delete"
-                                                data-href="{{ route('purchase_history.destroy', $combined_order->orders->first()->id) }}"
-                                                title="{{ translate('Cancel') }}">
-                                                <!--<svg xmlns="http://www.w3.org/2000/svg" width="9.202" height="12"-->
-                                                <!--    viewBox="0 0 9.202 12">-->
-                                                <!--    <path id="Path_28714" data-name="Path 28714"-->
-                                                <!--        d="M15.041,7.608l-.193,5.85a1.927,1.927,0,0,1-1.933,1.864H9.243A1.927,1.927,0,0,1,7.31,13.46L7.117,7.608a.483.483,0,0,1,.966-.032l.193,5.851a.966.966,0,0,0,.966.929h3.672a.966.966,0,0,0,.966-.931l.193-5.849a.483.483,0,1,1,.966.032Zm.639-1.947a.483.483,0,0,1-.483.483H6.961a.483.483,0,1,1,0-.966h1.5a.617.617,0,0,0,.615-.555,1.445,1.445,0,0,1,1.442-1.3h1.126a1.445,1.445,0,0,1,1.442,1.3.617.617,0,0,0,.615.555h1.5a.483.483,0,0,1,.483.483ZM9.913,5.178h2.333a1.6,1.6,0,0,1-.123-.456.483.483,0,0,0-.48-.435H10.516a.483.483,0,0,0-.48.435,1.6,1.6,0,0,1-.124.456ZM10.4,12.5V8.385a.483.483,0,0,0-.966,0V12.5a.483.483,0,1,0,.966,0Zm2.326,0V8.385a.483.483,0,0,0-.966,0V12.5a.483.483,0,1,0",".966,0Z"-->
-                                                <!--        transform="translate(-6.478 -3.322)" fill="#d43533" />-->
-                                                <!--</svg>-->
-                                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSgJ7lEUuv6EXaohegbqy5qy3RZA7QoaQeyT6m7riI83ofjNgj9PyWLXspsIAQWeqXqte0&usqp=CAU" alt="Payment Image" style="    height: 26px;"/>
-                                            </a>
-                                        @endif
+                                      
                                 
                                         <!-- Details -->
                                         <a href="{{ url('order-received/BH000'.$combined_order->id) }}"
@@ -171,6 +158,21 @@
                                             <!--</svg>-->
                                             <img src="https://cdn-icons-png.flaticon.com/512/5611/5611845.png" alt="Payment Image" style="    height: 26px;"/>
                                         </a>
+
+                                        @if ($combined_order->orders->first()->delivery_status == 'pending' && $combined_order->orders->first()->payment_status == 'unpaid')
+                                            <a href="javascript:void(0)"
+                                                class="mb-2 mb-sm-0 mt-sm-0 mr-sm-1 confirm-delete"
+                                                data-href="{{ route('purchase_history.destroy', $combined_order->orders->first()->id) }}"
+                                                title="{{ translate('Cancel') }}">
+                                                <!--<svg xmlns="http://www.w3.org/2000/svg" width="9.202" height="12"-->
+                                                <!--    viewBox="0 0 9.202 12">-->
+                                                <!--    <path id="Path_28714" data-name="Path 28714"-->
+                                                <!--        d="M15.041,7.608l-.193,5.85a1.927,1.927,0,0,1-1.933,1.864H9.243A1.927,1.927,0,0,1,7.31,13.46L7.117,7.608a.483.483,0,0,1,.966-.032l.193,5.851a.966.966,0,0,0,.966.929h3.672a.966.966,0,0,0,.966-.931l.193-5.849a.483.483,0,1,1,.966.032Zm.639-1.947a.483.483,0,0,1-.483.483H6.961a.483.483,0,1,1,0-.966h1.5a.617.617,0,0,0,.615-.555,1.445,1.445,0,0,1,1.442-1.3h1.126a1.445,1.445,0,0,1,1.442,1.3.617.617,0,0,0,.615.555h1.5a.483.483,0,0,1,.483.483ZM9.913,5.178h2.333a1.6,1.6,0,0,1-.123-.456.483.483,0,0,0-.48-.435H10.516a.483.483,0,0,0-.48.435,1.6,1.6,0,0,1-.124.456ZM10.4,12.5V8.385a.483.483,0,0,0-.966,0V12.5a.483.483,0,1,0,.966,0Zm2.326,0V8.385a.483.483,0,0,0-.966,0V12.5a.483.483,0,1,0",".966,0Z"-->
+                                                <!--        transform="translate(-6.478 -3.322)" fill="#d43533" />-->
+                                                <!--</svg>-->
+                                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSgJ7lEUuv6EXaohegbqy5qy3RZA7QoaQeyT6m7riI83ofjNgj9PyWLXspsIAQWeqXqte0&usqp=CAU" alt="Payment Image" style="    height: 26px;"/>
+                                            </a>
+                                        @endif
                                     </div>
                                 </td>
 
