@@ -150,7 +150,7 @@
                                             <!--            height="1" transform="translate(1339 431)" fill="#3490f3" />-->
                                             <!--    </g>-->
                                             <!--</svg>-->
-                                            <img src="https://icon-library.com/images/icon-menu/icon-menu-28.jpg" alt="Payment Image" style="    height: 26px;"/>
+                                            <i class="fa fa-eye text-white"></i>
                                         </a>
                                 
                                       
