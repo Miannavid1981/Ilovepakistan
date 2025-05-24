@@ -99,34 +99,38 @@
         background: #daf6ff;
     }
   </style>
-@php
+    @php
 
-    $cod_method = false;
-    $banktransfer = true;  
-    $mobilewallet_method = false;
-    $card_method = false;
+        $cod_method = false;
+        $banktransfer = true;  
+        $mobilewallet_method = false;
+        $card_method = false;
 
-    if($total <25000){
+        if($total <25000){
 
-        $cod_method = true;
+            $cod_method = true;
 
-    }
+        }
 
-    if($total <50000){
+        if($total <50000){
 
-        $mobilewallet_method = true;
+            $mobilewallet_method = true;
 
-    }
-
-
-    if($total <= 500000){
-        $card_method = true;
-    }
-    
+        }
 
 
+        if($total <= 500000){
+            $card_method = true;
+        }
 
-@endphp
+        if($total > 500000) {
+            $cod_method = false;
+        }
+        
+
+
+
+    @endphp
   <div class="accordion" id="paymentAccordion">
 
 
