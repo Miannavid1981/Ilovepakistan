@@ -593,22 +593,22 @@
                         @if ($cart && $cart->count() > 0)
                             @foreach ($cart as $key => $item  )
 
-                            @php
-                                $qty = $item->quantity;
-                                $product = \App\Models\Product::find($item->product_id);
+                                @php
+                                    $qty = $item->quantity;
+                                    $product = \App\Models\Product::find($item->product_id);
 
-                                $original_skin_code = $item->skin_code ;
-                                $seller = false;
-                                $product_seller_map = false;
-                                if($original_skin_code){
-                                    
-                                    $product_seller_map = \App\Models\ProductSellerMap::where('original_skin', $original_skin_code )->first();
-                                    //dd($product_seller_map->getAttributes());
-                                    $seller = \App\Models\User::where("id", $product_seller_map->seller_id)->first();
+                                    $original_skin_code = $item->skin_code ;
+                                    $seller = false;
+                                    $product_seller_map = false;
+                                    if($original_skin_code){
+                                        
+                                        $product_seller_map = \App\Models\ProductSellerMap::where('original_skin', $original_skin_code )->first();
+                                        //dd($product_seller_map->getAttributes());
+                                        $seller = \App\Models\User::where("id", $product_seller_map->seller_id)->first();
 
-                                }
-                            
-                            @endphp
+                                    }
+                                
+                                @endphp
 
                                 <div class="cart-item">
                                     <div class="position-relative"> 
