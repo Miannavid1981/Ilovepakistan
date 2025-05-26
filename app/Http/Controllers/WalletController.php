@@ -120,14 +120,14 @@ class WalletController extends Controller
     }
     public function approveDeposit($id)
     {
-        $request = CustomerWalletDepositRequest::findOrFail($id);
+        $request = \App\Models\CustomerWalletDepositRequest::findOrFail($id);
 
         if ($request->status !== 'pending') {
             return back()->with('error', 'Request already processed.');
         }
 
         // Add to wallet
-        WalletTransaction::create([
+        \App\Models\WalletTransaction::create([
             'wallet_id' => auth()->user()->wallet->id,
             'user_id' => $request->user_id,
             'amount' => $request->amount,
