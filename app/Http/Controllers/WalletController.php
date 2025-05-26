@@ -100,4 +100,44 @@ class WalletController extends Controller
         }
         return 0;
     }
+    public function submitDepositRequest(Request $request)
+    {
+        $request->validate([
+            'amount' => 'required|numeric|min:1',
+            'payment_receipt' => 'required|file|mimes:jpg,jpeg,png,pdf',
+        ]);
+
+        $path = $request->file('payment_receipt')->store('wallet_deposit_receipts', 'public');
+
+        CustomerWalletDepositRequest::create([
+            'user_id' => auth()->id(),
+            'amount' => $request->amount,
+            'payment_receipt' => $path,
+            'status' => 'pending',
+        ]);
+
+        return back()->with('success', 'Deposit request submitted successfully!');
+    }
+    public function approveDeposit($id)
+    {
+        $request = CustomerWalletDepositRequest::findOrFail($id);
+
+        if ($request->status !== 'pending') {
+            return back()->with('error', 'Request already processed.');
+        }
+
+        // Add to wallet
+        WalletTransaction::create([
+            'wallet_id' => auth()->user()->wallet->id,
+            'user_id' => $request->user_id,
+            'amount' => $request->amount,
+            'type' => 'credit',
+            'source' => 'manual_deposit',
+            'description' => 'Admin approved wallet deposit',
+        ]);
+
+        $request->update(['status' => 'approved']);
+
+        return back()->with('success', 'Deposit approved and wallet updated.');
+    }
 }

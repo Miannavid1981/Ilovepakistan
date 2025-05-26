@@ -387,9 +387,11 @@ Route::controller(AddressController::class)->group(function () {
     
 });
 
+
 Route::group(['middleware' => ['auth']], function () {
 
-
+    Route::post('/wallet-deposit-request', [WalletController::class, 'submitDepositRequest'])->name('wallet.deposit.store');
+    Route::post('/wallet-deposit-approve/{id}', [WalletDepositController::class, 'approve'])->name('wallet.deposit.approve');
 
     // Reviews
     Route::resource('/reviews', ReviewController::class);
