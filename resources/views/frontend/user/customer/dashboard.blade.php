@@ -60,7 +60,7 @@
                                 </div>
                                 <div class="mb-3">
                                 <label>Upload Receipt</label>
-                                <input type="file" name="receipt" class="form-control" accept="image/*,.pdf" required>
+                                <input type="file" name="payment_receipt" class="form-control" accept="image/*,.pdf" required>
                                 </div>
                             </div>
                             <div class="modal-footer">
