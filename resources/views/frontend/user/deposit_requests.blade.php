@@ -29,6 +29,9 @@
                             <td class="text-secondary">
                                 {{ $key+1 }}
                             </td>
+                            <td >
+                                DEPOSIT
+                            </td>
                             <!-- Amount -->
                             <td >
                                 {{ $req->amount }}
