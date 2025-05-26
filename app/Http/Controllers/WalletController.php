@@ -143,10 +143,11 @@ class WalletController extends Controller
     public function customer_deposit_requests(Request $request){
 
         $requests = \App\Models\CustomerWalletDepositRequest::where('user_id', Auth::id())->get();
+        $data = [];
+        $data['requests'] = $requests;
 
         
-        
-        return view('frontend.user.deposit_requests', $requests);
+        return view('frontend.user.deposit_requests', $data);
 
     }
 }
