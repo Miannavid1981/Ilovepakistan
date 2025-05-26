@@ -140,4 +140,13 @@ class WalletController extends Controller
 
         return back()->with('success', 'Deposit approved and wallet updated.');
     }
+    public function customer_deposit_requests(Request $request){
+
+        $requests = \App\Models\CustomerWalletDepositRequest::where('user_id', Auth::id())->get();
+
+        
+        
+        return view('frontend.user.deposit_requests', $requests);
+
+    }
 }

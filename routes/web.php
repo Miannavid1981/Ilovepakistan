@@ -391,7 +391,9 @@ Route::controller(AddressController::class)->group(function () {
 Route::group(['middleware' => ['auth']], function () {
 
     Route::post('/wallet-deposit-request', [WalletController::class, 'submitDepositRequest'])->name('wallet.deposit.store');
-    Route::post('/wallet-deposit-approve/{id}', [WalletDepositController::class, 'approve'])->name('wallet.deposit.approve');
+    Route::post('/wallet-deposit-approve/{id}', [WalletController::class, 'approve'])->name('wallet.deposit.approve');
+
+    Route::get('/deposit-requests/',  [WalletController::class, 'customer_deposit_requests'])->name('customer.deposit-requests');
 
     // Reviews
     Route::resource('/reviews', ReviewController::class);
