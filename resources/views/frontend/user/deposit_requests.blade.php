@@ -34,7 +34,7 @@
                             </td>
                             <!-- Amount -->
                             <td >
-                                {{ $req->amount }}
+                                PKR {{ $req->amount }}
                             </td>
                             <td>
                                 @if(!empty($req->payment_receipt))
