@@ -4,9 +4,9 @@
     <div class="card shadow-none rounded-0 border">
         <div class="card-header border-bottom-0">
             <h5 class="mb-0 fs-20 fw-700 text-dark">{{ translate('Deposit Requests') }}
-<a class="btn btn-primary" href="{{ url('/dashboard') }}">
-    Request Deposit
-</a>
+            <a class="btn btn-primary" href="{{ url('/dashboard') }}">
+                Request Deposit
+            </a>
 
             </h5>
         </div>
