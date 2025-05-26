@@ -375,7 +375,7 @@
                     </a>
                 </li>
                 <li class="aiz-side-nav-item">
-                    <a href="{{ route('support_ticket.index') }}"
+                    <a href="{{ route('customer.deposit-requests') }}"
                         class="aiz-side-nav-link {{ areActiveRoutes(['support_ticket.index', 'support_ticket.show']) }}">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16.001" viewBox="0 0 16 16.001">
                             <g id="Group_24764" data-name="Group 24764" transform="translate(-316 -1066)">
