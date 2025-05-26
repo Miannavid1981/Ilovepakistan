@@ -109,7 +109,7 @@ class WalletController extends Controller
 
         $path = $request->file('payment_receipt')->store('wallet_deposit_receipts', 'public');
 
-        CustomerWalletDepositRequest::create([
+        \App\Models\CustomerWalletDepositRequest::create([
             'user_id' => auth()->id(),
             'amount' => $request->amount,
             'payment_receipt' => $path,
