@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class CustomerWalletDepositRequest extends Model
 {
     use HasFactory;
+    protected $table = 'customer_wallet_deposit_requests';
 
     protected $fillable = [
         'user_id', 'amount', 'status', 'payment_receipt'
