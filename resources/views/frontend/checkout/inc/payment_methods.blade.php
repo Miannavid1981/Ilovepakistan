@@ -173,8 +173,8 @@
   <div class="accordion" id="paymentAccordion">
 
 
-    
-    <div class="card mb-0 shadow-none p-0 {{  $cod_method ? 'd-block' : 'd-none' }}" style="border: 1px solid #c1c1c1;">
+    @if($cod_method)
+    <div class="card mb-0 shadow-none p-0" style="border: 1px solid #c1c1c1;">
         <div class="card-header p-0" id="cash_on_deliveryHeading">
           
             <button class="btn btn-link text-decoration-none w-100 p-0 "  type="button" data-toggle="collapse" data-target="#cash_on_delivery">
@@ -195,7 +195,7 @@
           </div>
         </div>
       </div>
-     
+     @endif
 
       <!-- Credit Card Option -->
     <div class="card mb-0 shadow-none p-0 {{  $card_method ? 'd-block' : 'd-none' }}" style="border: 1px solid #c1c1c1;">
