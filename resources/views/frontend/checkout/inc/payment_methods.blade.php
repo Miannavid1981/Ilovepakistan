@@ -196,9 +196,9 @@
         </div>
       </div>
      @endif
-
+      @if($card_method)
       <!-- Credit Card Option -->
-    <div class="card mb-0 shadow-none p-0 {{  $card_method ? 'd-block' : 'd-none' }}" style="border: 1px solid #c1c1c1;">
+    <div class="card mb-0 shadow-none p-0 " style="border: 1px solid #c1c1c1;">
         <div class="card-header p-0" id="creditCardHeading">
         
             <button class="btn btn-link text-decoration-none w-100 p-0 collapsed" type="button" data-toggle="collapse" data-target="#creditCard" aria-expanded="true">
@@ -223,6 +223,7 @@
         </div>
         </div>
     </div>
+    @endif
     <!-- PayPal Option -->
     <div class="card mb-0 shadow-none p-0" style="border: 1px solid #c1c1c1;">
       <div class="card-header p-0" id="direct_bank_transferHeading">
