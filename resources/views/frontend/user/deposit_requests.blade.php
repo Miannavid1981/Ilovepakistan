@@ -23,7 +23,6 @@
                 </thead>
                 <tbody class="fs-14">
                     @foreach ($requests as $key => $req)
-                       
                         <tr>
                             <!-- Date -->
                             <td class="text-secondary">
@@ -43,14 +42,9 @@
                                     </a>
                                 @endif
                             </td>
-
                             <td >
                                <span class="badge badge-{{ $req->status == 'pending' ? 'warning'  : 'success'}} text-uppercase w-auto"> {{ str_replace("_", " ",  $req->status) }}</span>
                             </td>
-                           
-                         
-                          
-
                         </tr>
                         @php 
                             $key++;

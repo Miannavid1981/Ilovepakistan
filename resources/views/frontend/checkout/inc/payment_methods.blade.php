@@ -101,6 +101,45 @@
   </style>
     @php
 
+
+        $carts = \App\Models\Cart::where('user_id', Auth::user()->id)
+            ->get();
+        if ($carts->isEmpty()) {
+            flash(translate('Your cart is empty'))->warning();
+             redirect()->route('home');
+        }
+        $shipping_info = \App\Models\Address::where('id', $carts[0]['address_id'])->first();
+        $total = 0;
+        $tax = 0;
+        $shipping = 0;
+        $subtotal = 0;
+        if ($carts && count($carts) > 0) {
+            foreach ($carts as $key => $cartItem) {
+                $product = \App\Models\Product::find($cartItem['product_id']);
+                $tax += cart_product_tax($cartItem, $product, false) * $cartItem['quantity'];
+                $subtotal += cart_product_price($cartItem, $product, false, false) * $cartItem['quantity'];
+                if (get_setting('shipping_type') != 'carrier_wise_shipping' || $request['shipping_type_' . $product->user_id] == 'pickup_point') {
+                    if ($request['shipping_type_' . $product->user_id] == 'pickup_point') {
+                        $cartItem['shipping_type'] = 'pickup_point';
+                        $cartItem['pickup_point'] = $request['pickup_point_id_' . $product->user_id];
+                    } else {
+                        $cartItem['shipping_type'] = 'home_delivery';
+                    }
+                    $cartItem['shipping_cost'] = 0;
+                    if ($cartItem['shipping_type'] == 'home_delivery') {
+                        $cartItem['shipping_cost'] = getShippingCost($carts, $key);
+                    }
+                } else {
+                    $cartItem['shipping_type'] = 'carrier';
+                    $cartItem['carrier_id'] = $request['carrier_id_' . $product->user_id];
+                    $cartItem['shipping_cost'] = getShippingCost($carts, $key, $cartItem['carrier_id']);
+                }
+                $shipping += $cartItem['shipping_cost'];
+                $cartItem->save();
+            }
+            $total = $subtotal + $tax + $shipping;
+        }
+
         $cod_method = false;
         $banktransfer = true;  
         $mobilewallet_method = false;
