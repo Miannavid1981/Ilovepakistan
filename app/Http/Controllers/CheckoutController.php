@@ -290,6 +290,11 @@ class CheckoutController extends Controller
         $payment_data = $request->session()->get('payment_data');
         $user_id = Auth::id();
         $auth_user = \App\Models\User::find($user_id);
+
+        if(empty($request->phone)){
+            flash(translate('Phone Number Cant be left blank'))->warning();
+            return redirect()->back();
+        }
         if (is_null($auth_user->phone) || $auth_user->phone === '') {
             $auth_user->phone = $request->phone;
             $auth_user->save(); // prefer save() when modifying fields
