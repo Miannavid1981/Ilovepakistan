@@ -135,7 +135,7 @@
                     $cartItem['shipping_cost'] = getShippingCost($carts, $key, $cartItem['carrier_id']);
                 }
                 $shipping += $cartItem['shipping_cost'];
-                $cartItem->save();
+                
             }
             $total = $subtotal + $tax + $shipping;
         }
