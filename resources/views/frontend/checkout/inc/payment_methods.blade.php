@@ -339,7 +339,7 @@
       </div>
     </div>
  
-    <div class="card mb-0 shadow-none p-0 " style="background: #b9b9b9; border: 1px solid #c1c1c1;">
+    <div class="card mb-0 shadow-none p-0 " style="background: #ccc; border: 1px solid #c1c1c1;">
         <div class="card-header p-0" id="bighouz_walletHeading">
           
             <button class="btn btn-link text-decoration-none w-100 p-0 collapsed" type="button" data-toggle="collapse" data-target="#bighouz_wallet">
