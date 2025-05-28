@@ -165,6 +165,10 @@
         if($total > 500000) {
             $cod_method = false;
         }
+
+        $user_wallet_balance = single_price(Auth::user()->balance);
+
+
         
 
 
@@ -341,7 +345,7 @@
             <button class="btn btn-link text-decoration-none w-100 p-0 collapsed" type="button" data-toggle="collapse" data-target="#bighouz_wallet">
               <label class="payment-method-header d-flex justify-content-between w-100 mb-0 p-2 px-3">
                   <div class="  text-dark d-flex align-items-center mb-0">
-                    <input type="radio" class=" mb-0 me-2" name="payment_method" value="bighouz_wallet"> Bighouz Wallet
+                    <input type="radio" class=" mb-0 me-2" name="payment_method" value="bighouz_wallet" {{ $total >  $user_wallet_balance : 'disabled' : '' }}> Bighouz Wallet
                   </div>
                   <span>
                     <img src="{{ uploaded_asset(get_setting('site_icon')) }}" style="width: 35px; height: auto" alt="Discover">
