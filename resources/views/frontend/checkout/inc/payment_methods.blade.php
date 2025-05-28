@@ -380,18 +380,18 @@
           
         </div>
         <div id="cash_on_counter" class="collapse" aria-labelledby="cash_on_counterHeading" data-parent="#paymentAccordion">
-          <div class="card-body payment-method-details p-4 bg-light fs-15 fw-300">
-            We offer a Cash on Counter payment option for your convenience! Place your order online and pay when you pick it up at our store. No advance payment required—simply visit us, verify your order, and complete the payment at the counter.
-            <br><br>
-            <i class="fa fa-check fs-16 bg-success p-1 text-white rounded-circle me-2 mt-1"></i> Secure & Hassle-Free
-            <br>
-            <i class="fa fa-check fs-16 bg-success p-1 text-white rounded-circle me-2  mt-1"></i> No Online Payment Needed
-            <br>
-            <i class="fa fa-check fs-16 bg-success p-1 text-white rounded-circle me-2  mt-1"></i> Pay Only When You Collect
-            <br>
-            <br>
-            Visit our store and shop with confidence! 
-          </div>
+            <div class="card-body payment-method-details p-4 bg-light fs-15 fw-300">
+                We offer a Cash on Counter payment option for your convenience! Place your order online and pay when you pick it up at our store. No advance payment required—simply visit us, verify your order, and complete the payment at the counter.
+                <br><br>
+                <i class="fa fa-check fs-16 bg-success p-1 text-white rounded-circle me-2 mt-1"></i> Secure & Hassle-Free
+                <br>
+                <i class="fa fa-check fs-16 bg-success p-1 text-white rounded-circle me-2  mt-1"></i> No Online Payment Needed
+                <br>
+                <i class="fa fa-check fs-16 bg-success p-1 text-white rounded-circle me-2  mt-1"></i> Pay Only When You Collect
+                <br>
+                <br>
+                Visit our store and shop with confidence! 
+            </div>
         </div>
       </div>
   </div>
