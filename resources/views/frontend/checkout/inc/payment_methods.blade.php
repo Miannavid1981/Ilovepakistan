@@ -347,7 +347,8 @@
                   <div class="  text-dark d-flex align-items-center mb-0">
                     <input type="radio" class=" mb-0 me-2" name="payment_method" value="bighouz_wallet" {{ $total >  $user_wallet_balance ? 'disabled' : '' }}> Bighouz Wallet
                     @if ($total > $user_wallet_balance) 
-                        <small> Insufficient Funds </small>
+                    <br>
+                        <small class="text-danger"> Insufficient Funds </small>
                     @endif
                   </div>
                   <span>
