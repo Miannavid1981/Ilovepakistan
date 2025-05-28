@@ -355,11 +355,14 @@
             </button>
           
         </div>
-        <div id="bighouz_wallet" class="collapse" aria-labelledby="mobile_walletHeading" data-parent="#paymentAccordion">
-          <div class="card-body payment-method-details p-4 bg-light">
-            You will be redirected to PayPal to complete your purchase securely.
-          </div>
-        </div>
+        {{ $total <= $user_wallet_balance ? 
+            `<div id="bighouz_wallet" class="collapse" aria-labelledby="mobile_walletHeading" data-parent="#paymentAccordion">
+            <div class="card-body payment-method-details p-4 bg-light">
+                You will be redirected to PayPal to complete your purchase securely.
+            </div>
+            </div>`
+            : '' 
+        }}
       </div>
     <div class="card mb-0 shadow-none p-0" style="border: 1px solid #c1c1c1;">
         <div class="card-header p-0" id="cash_on_counterHeading">
