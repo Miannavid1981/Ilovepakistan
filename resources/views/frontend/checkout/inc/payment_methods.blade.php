@@ -354,7 +354,8 @@
                             @endif
                         </div>
                   </div>
-                  <span>
+                  <span class="d-flex ">
+                    <h2>{{ single_price(Auth::user()->balance)}}</h2>
                     <img src="{{ uploaded_asset(get_setting('site_icon')) }}" style="width: 35px; height: auto" alt="Discover">
                     </span>
                 </label>
