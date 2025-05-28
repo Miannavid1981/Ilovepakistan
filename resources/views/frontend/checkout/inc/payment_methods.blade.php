@@ -356,7 +356,7 @@
                   </div>
                   <span class="d-flex gap-2 align-items-center">
                     <a href="{{ url('/dashboard') }}" class="btn btn-primary"> Recharge</a>
-                    <h4>{{ single_price(Auth::user()->balance)}}</h4>
+                    <h4 class="m-0">{{ single_price(Auth::user()->balance)}}</h4>
                     <img src="{{ uploaded_asset(get_setting('site_icon')) }}" class="ms-2" style="width: 35px; height: auto" alt="Discover">
                     </span>
                 </label>
