@@ -166,7 +166,7 @@
             $cod_method = false;
         }
 
-        $user_wallet_balance = single_price(Auth::user()->balance);
+        $user_wallet_balance =Auth::user()->balance;
 
 
         
