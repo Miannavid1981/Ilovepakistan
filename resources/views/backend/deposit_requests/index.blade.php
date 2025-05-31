@@ -4,6 +4,7 @@
 
     <div class="row justify-content-center mt-3">
         <div class="col-md-12">
+            <h3>Deposit Requests</h3>
           
             <div class="card">
                 {{-- <div class="card-header"> <h5 class="mb-md-0 h6">{{ translate('Business Directory') }}</h5>  <a href="{{ route('admin_business_directory.create') }}" class="btn btn-primary">
