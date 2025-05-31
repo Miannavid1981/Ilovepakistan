@@ -298,41 +298,40 @@
                         <p class="mb-0">SOLAR DYNAMICS TECHNOLOGIES PAKISTAN</p>
                         <b>IBAN: </b>
                         <p class="mb-0">PK41 BAHL 0254 0981 0214 4301</p>
-                        
                     </Label>
                 </div> 
 
                 @if($mobilewallet_method )
-                <div class="col-md-4">
-                    <Label class="border-1 rounded-2 p-2 text-center w-100 bank_transfer_method">
-                        <div  class="mx-auto" style="width: 50px; aspect-ratio: 1/1">
-                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQ2z0lPrjtW6QHUQwdNEeXkuMxsJcutkkKSQ&s" class="w-100 h-100 object-fit-contain">
-                        </div>
-                        <input type="radio" name="payment_transfer_method" value="jazzcash" >
-                        <p class=" fs-15 fw-500">JazzCash
-                        </p>
-                        <b>Account Title: </b>
-                        <p class="mb-0"> Muhammad Naveed</p>
-                        <b>Account No.</b>
-                        <p class="mb-0">
-                            0300 0322034 
-                           </p>
-                    </Label>
-                </div> 
-                <div class="col-md-4">
-                    <Label class="border-1 rounded-2 p-2 text-center w-100 bank_transfer_method">
-                        <div  class="mx-auto" style="width: 50px; aspect-ratio: 1/1">
-                            <img src="https://www.thenews.com.pk/assets/uploads/akhbar/2024-01-27/1151682_8435733_Easypaisa_akhbar.jpg" class="w-100 h-100 object-fit-contain">
-                        </div>
-                        <input type="radio" name="payment_transfer_method" value="easypaisa" >
-                        <p class=" fs-15 fw-500">Easypaisa
-                        </p>
-                        <b>IBAN: </b>
-                        <p class="mb-0">PAK12392390239239023</p>
-                        <b>Account No.</b>
-                        <p class="mb-0">2323093232</p>
-                    </Label>
-                </div>
+                    <div class="col-md-4">
+                        <Label class="border-1 rounded-2 p-2 text-center w-100 bank_transfer_method">
+                            <div  class="mx-auto" style="width: 50px; aspect-ratio: 1/1">
+                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQ2z0lPrjtW6QHUQwdNEeXkuMxsJcutkkKSQ&s" class="w-100 h-100 object-fit-contain">
+                            </div>
+                            <input type="radio" name="payment_transfer_method" value="jazzcash" >
+                            <p class="fs-15 fw-500">JazzCash
+                            </p>
+                            <b>Account Title: </b>
+                            <p class="mb-0"> Muhammad Naveed</p>
+                            <b>Account No.</b>
+                            <p class="mb-0">
+                                0300 0322034 
+                            </p>
+                        </Label>
+                    </div> 
+                    <div class="col-md-4">
+                        <Label class="border-1 rounded-2 p-2 text-center w-100 bank_transfer_method">
+                            <div  class="mx-auto" style="width: 50px; aspect-ratio: 1/1">
+                                <img src="https://www.thenews.com.pk/assets/uploads/akhbar/2024-01-27/1151682_8435733_Easypaisa_akhbar.jpg" class="w-100 h-100 object-fit-contain">
+                            </div>
+                            <input type="radio" name="payment_transfer_method" value="easypaisa" >
+                            <p class=" fs-15 fw-500">Easypaisa
+                            </p>
+                            <b>IBAN: </b>
+                            <p class="mb-0">PAK12392390239239023</p>
+                            <b>Account No.</b>
+                            <p class="mb-0">2323093232</p>
+                        </Label>
+                    </div>
                 @endif
             </div>
         </div>
@@ -365,11 +364,10 @@
         </div>
         @if ($total <= $user_wallet_balance) 
             <div id="bighouz_wallet" class="collapse" aria-labelledby="mobile_walletHeading" data-parent="#paymentAccordion">
-            <div class="card-body payment-method-details p-4 bg-light">
-                You will be redirected to PayPal to complete your purchase securely.
+                <div class="card-body payment-method-details p-4 bg-light">
+                    You will be redirected to PayPal to complete your purchase securely.
+                </div>
             </div>
-            </div>
-            : '' 
         @endif
       </div>
     <div class="card mb-0 shadow-none p-0" style="border: 1px solid #c1c1c1;">

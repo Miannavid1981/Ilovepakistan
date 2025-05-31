@@ -442,6 +442,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin', 'prevent-ba
         Route::get('/commission-log', 'commission_history')->name('commission-log.index');
         Route::get('/wallet-history', 'wallet_transaction_history')->name('wallet-history.index');
     });
+    Route::get('/deposit-requests', [AdminController::class, 'deposit_requests'])->name('admin.deposit_requests');
 
     // Earning Report
     Route::group(['prefix' => 'reports'], function () {
