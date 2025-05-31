@@ -45,7 +45,11 @@
                                             <td>PKR {{ $item->amount }}</td>
                                             <td>@if(!empty($item->status))<span class="badge badge-warning w-auto">{{ $item->status }}</span>@endif</td>
                                             <td>{{ $item->payment_method }}</td>
-                                            <td>{{ $item->payment_receipt }}</td>
+                                            <td>@if(!empty($req->payment_receipt))
+                                                <a href="{{ asset('storage/' . $req->payment_receipt) }}" target="_blank" class="btn btn-sm btn-outline-primary">
+                                                    View Receipt
+                                                </a>
+                                            @endif</td>
                                            
                                            
                                             <td>
