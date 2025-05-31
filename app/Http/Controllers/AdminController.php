@@ -327,5 +327,14 @@ class AdminController extends Controller
         flash(translate('Cache cleared successfully'))->success();
         return back();
     }
-    
+
+    public function deposit_requests(Request $request){
+        $deposit_requests = \App\Models\CustomerWalletDepositRequest::all();
+
+        $data = [
+            'deposit_requests' => $deposit_requests
+        ];
+
+        return view('backend.deposit_requests.index', $data);
+    }
 }
