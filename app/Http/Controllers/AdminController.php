@@ -329,7 +329,7 @@ class AdminController extends Controller
     }
 
     public function deposit_requests(Request $request){
-        $deposit_requests = \App\Models\CustomerWalletDepositRequest::all();
+        $deposit_requests = \App\Models\CustomerWalletDepositRequest::paginate(20);
 
         $data = [
             'deposit_requests' => $deposit_requests
