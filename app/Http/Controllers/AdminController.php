@@ -337,4 +337,26 @@ class AdminController extends Controller
 
         return view('backend.deposit_requests.index', $data);
     }
+    public function deposit_requests_approve(Request $request){
+        
+        $deposit_request = \App\Models\CustomerWalletDepositRequest::find($request->id);
+
+        $deposit_request->status = 'approved';
+        $deposit_request->save();
+
+        return redirect()->back();
+
+        
+    }
+    public function deposit_requests_reject(Request $request){
+        
+        $deposit_request = \App\Models\CustomerWalletDepositRequest::find($request->id);
+
+        $deposit_request->status = 'rejected';
+        $deposit_request->save();
+
+        return redirect()->back();
+
+        
+    }
 }

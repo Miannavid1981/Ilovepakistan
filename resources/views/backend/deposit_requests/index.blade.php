@@ -55,15 +55,13 @@
                                            
                                             <td>
                                                 <div class="d-flex ">
-                                                    <a href="{{ route('admin_business_directory.edit', $item->id) }}" class="btn btn-success btn-sm me-2">
+                                                    <a href="{{ route('admin.deposit_request.approve', $item->id) }}" class="btn btn-success btn-sm me-2">
                                                         <i class="la la-check fs-15"></i>
                                                     </a>
-                                                    <form action="{{ route('admin_business_directory.destroy', ['business_directory' => $item->id]) }}" method="POST" style="display:inline;">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this?');"><i class="la la-close fs-15"></i></button>
-                                                    </form>
-                                                    
+                                                    <a href="{{ route('admin.deposit_request.reject', $item->id) }}" class="btn btn-danger btn-sm">
+                                                        <i class="la la-close fs-15"></i>
+                                                    </a>
+                                                        
                                                 </div>
                                             </td>
                                         </tr>
