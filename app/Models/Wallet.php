@@ -22,7 +22,7 @@ class Wallet extends Model {
         $source = $obj['source'] ?? 'system';
         $description = $obj['description'] ?? '';
         $wallet_id = $obj['wallet_id'] ?? 0;
-        $sourceUserId = $obj['sourceUserId'] ?? Auth::id();
+        $sourceUserId = $obj['sourceUserId'] ?? auth()->id();
 
         try {
             $this->increment('amount', $amount);
