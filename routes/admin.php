@@ -57,6 +57,7 @@ use App\Http\Controllers\WarrantyController;
 use App\Http\Controllers\WebsiteController;
 use App\Http\Controllers\ZoneController;
 use App\Http\Controllers\BusinessDirectoryController;
+use App\Http\Controllers\WalletController;
 /*
   |--------------------------------------------------------------------------
   | Admin Routes
