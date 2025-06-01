@@ -127,18 +127,23 @@ class WalletController extends Controller
         }
 
         // Add to wallet
-        \App\Models\WalletTransaction::create([
+        $credit_status = \App\Models\Wallet::credit([
             'wallet_id' => auth()->user()->wallet->id,
             'user_id' => $request->user_id,
             'amount' => $request->amount,
             'type' => 'credit',
             'source' => 'manual_deposit',
-            'description' => 'Admin approved wallet deposit',
+            'description' => `PKR $request->amount successfully deposited.`,
         ]);
+        if($credit_status){
+            $request->update(['status' => 'approved']);
 
-        $request->update(['status' => 'approved']);
-
-        return back()->with('success', 'Deposit approved and wallet updated.');
+            return back()->with('success', 'Deposit approved and wallet updated.');
+        } else {
+            
+            return back()->with('error', 'Deposit failed');
+        }
+        
     }
     public function customer_deposit_requests(Request $request){
 

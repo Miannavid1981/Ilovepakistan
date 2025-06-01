@@ -443,8 +443,8 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin', 'prevent-ba
         Route::get('/wallet-history', 'wallet_transaction_history')->name('wallet-history.index');
     });
     Route::get('/deposit-requests', [AdminController::class, 'deposit_requests'])->name('admin.deposit_requests');
-    Route::get('/deposit-requests/approve/{id}', [AdminController::class, 'deposit_requests_approve'])->name('admin.deposit_request.approve');
-    Route::get('/deposit-requests/reject/{id}', [AdminController::class, 'deposit_requests_reject'])->name('admin.deposit_request.reject');
+    Route::get('/deposit-requests/approve/{id}', [WalletController::class, 'approveDeposit'])->name('admin.deposit_request.approve');
+    Route::get('/deposit-requests/reject/{id}', [WalletController::class, 'deposit_requests_reject'])->name('admin.deposit_request.reject');
 
     // Earning Report
     Route::group(['prefix' => 'reports'], function () {
