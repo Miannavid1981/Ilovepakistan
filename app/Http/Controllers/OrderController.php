@@ -437,7 +437,8 @@ class OrderController extends Controller
                     'amount' => $order_total,
                     'source' => 'order_checkout',
                     'description' => "Payment of PKR $order_total for Order # BH000".$combined_order." has been deducted from wallet ",
-                    'sourceUserId' => 0
+                    'sourceUserId' => 0,
+                    'order_id' => $combined_order->id
                 ]);
             
                 if (!$deduct_status) {
