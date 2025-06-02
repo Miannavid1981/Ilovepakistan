@@ -15,6 +15,6 @@ class TransferPaymentMethodController extends Controller
             return response('<div class="alert alert-danger">Payment method not found.</div>', 404);
         }
 
-        return view('partials.payment_method_detail', compact('method'));
+        return view('frontend.partials.payment_method_detail', compact('method'));
     }
 }
