@@ -15,7 +15,6 @@ class Wallet extends Model {
     }
 
     public static function credit($obj = []) {
-
         $amount = $obj['amount'] ?? 0;
         $user_id = $obj['user_id'] ?? 0;
         $type = $obj['type'] ?? 'credit';
@@ -23,10 +22,17 @@ class Wallet extends Model {
         $description = $obj['description'] ?? '';
         $wallet_id = $obj['wallet_id'] ?? 0;
         $sourceUserId = $obj['sourceUserId'] ?? auth()->id();
-
+    
         try {
-            $this->increment('amount', $amount);
-            $this->transactions()->create([
+            $wallet = self::find($wallet_id);
+    
+            if (!$wallet) {
+                return false;
+            }
+    
+            $wallet->increment('amount', $amount);
+    
+            $wallet->transactions()->create([
                 'user_id' => $user_id,
                 'amount' => $amount,
                 'type' => 'credit',
@@ -34,13 +40,13 @@ class Wallet extends Model {
                 'source_user_id' => $sourceUserId,
                 'description' => $description,
             ]);
+    
             return true;
-        } catch(\Exception $e) {
-           return false;
+        } catch (\Exception $e) {
+            return false;
         }
-
-       
     }
+    
 
     public static function debit($amount, $source, $description, $sourceUserId = null) {
         if ($this->amount >= $amount) {
