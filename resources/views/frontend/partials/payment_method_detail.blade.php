@@ -4,6 +4,6 @@
     <p><strong>Account No:</strong> {{ $method->account_no }}</p>
     <p><strong>IBAN:</strong> {{ $method->iban }}</p>
     @if($method->image)
-        <img src="{{ asset('storage/' . $method->image) }}" alt="{{ $method->title }}" style="max-width: 100px;">
+        <img src="{{ $method->image }}" alt="{{ $method->title }}" style="max-width: 100px;">
     @endif
 </div>
