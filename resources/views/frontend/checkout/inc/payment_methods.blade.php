@@ -338,7 +338,7 @@
       </div>
     </div>
  
-    <div class="card mb-0 shadow-none p-0 " style="background: #ccc; border: 1px solid #c1c1c1;">
+    <div class="card mb-0 shadow-none p-0 " style=" @if ($total > $user_wallet_balance)  background: #ccc; @endif border: 1px solid #c1c1c1;">
         <div class="card-header p-0" id="bighouz_walletHeading">
           
             <button class="btn btn-link text-decoration-none w-100 p-0 collapsed" type="button" data-toggle="collapse" data-target="#bighouz_wallet">
@@ -354,7 +354,7 @@
                         </div>
                   </div>
                   <span class="d-flex gap-2 align-items-center">
-                    <a href="{{ url('/dashboard') }}" class="btn btn-primary"> Recharge</a>
+                    @if ($total > $user_wallet_balance)  <a href="{{ url('/dashboard') }}" class="btn btn-primary"> Recharge</a> @endif
                     <h4 class="m-0">{{ single_price(Auth::user()->balance)}}</h4>
                     <img src="{{ uploaded_asset(get_setting('site_icon')) }}" class="ms-2" style="width: 35px; height: auto" alt="Discover">
                     </span>
