@@ -1,3 +1,3 @@
-@foreach (get_activate_payment_methods() as $payment_method)
-    <option value="{{ $payment_method->name }}">{{ ucfirst(translate($payment_method->name)) }}</option>
+@foreach (\App\Models\TransferPaymentMethod::all() as $payment_method)
+    <option value="{{ $payment_method->slug }}">{{ ucfirst(translate($payment_method->title)) }}</option>
 @endforeach
