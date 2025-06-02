@@ -117,7 +117,7 @@ class WalletController extends Controller
             'payment_method' => $request->payment_method ?? ''
         ]);
 
-        return redirect()->url('/deposit-requests');
+        return redirect('/deposit-requests');
     }
     public function approveDeposit($id)
     {
