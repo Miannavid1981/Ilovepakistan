@@ -60,7 +60,7 @@
                         <th class="pl-0">#</th>
                         <th data-breakpoints="lg">{{ translate('Date') }}</th>
                         <th>{{ translate('Amount') }}</th>
-                        <th data-breakpoints="lg">{{ translate('Payment Method') }}</th>
+                        <th data-breakpoints="lg">{{ translate('Description') }}</th>
                         <th class="text-right pr-0">{{ translate('Status') }}</th>
                     </tr>
                 </thead>
