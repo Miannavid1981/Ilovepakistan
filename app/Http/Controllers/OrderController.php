@@ -431,7 +431,7 @@ class OrderController extends Controller
             $wallet = auth()->user()->wallets()->first(); // or ->latest()->first() if multiple wallets
             $order_total = $combined_order->grand_total; // assuming 'amount' exists in payment_data
             
-            if ($payment_option === 'wallet' && $wallet) {
+            if ($wallet) {
                 $deduct_status = \App\Models\Wallet::debit([
                     'wallet_id' => $wallet->id,
                     'amount' => $order_total,
