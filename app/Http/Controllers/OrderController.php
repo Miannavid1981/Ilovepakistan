@@ -426,24 +426,26 @@ class OrderController extends Controller
 
             $order->save();
         }
-        $wallet = auth()->user()->wallets()->first(); // or ->latest()->first() if multiple wallets
-        $order_total = $combined_order->grand_total; // assuming 'amount' exists in payment_data
-        
-        if ($payment_option === 'wallet' && $wallet) {
-            $deduct_status = \App\Models\Wallet::debit([
-                'wallet_id' => $wallet->id,
-                'amount' => $order_total,
-                'source' => 'order_checkout',
-                'description' => "Order payment of PKR $order_total from wallet",
-                'sourceUserId' => 0
-            ]);
-        
-            if (!$deduct_status) {
-                flash(translate('Wallet deduction failed. Check balance.'))->error();
-                return redirect()->back();
+
+        if($combined_order->payment_method == 'bighouz_wallet'){
+            $wallet = auth()->user()->wallets()->first(); // or ->latest()->first() if multiple wallets
+            $order_total = $combined_order->grand_total; // assuming 'amount' exists in payment_data
+            
+            if ($payment_option === 'wallet' && $wallet) {
+                $deduct_status = \App\Models\Wallet::debit([
+                    'wallet_id' => $wallet->id,
+                    'amount' => $order_total,
+                    'source' => 'order_checkout',
+                    'description' => "Order payment of PKR $order_total from wallet",
+                    'sourceUserId' => 0
+                ]);
+            
+                if (!$deduct_status) {
+                    flash(translate('Wallet deduction failed. Check balance.'))->error();
+                    return redirect()->back();
+                }
             }
         }
-
         $combined_order->save();
 
         $request->session()->put('combined_order_id', $combined_order->id);
