@@ -32,6 +32,7 @@
                     <select class="form-control "
                          name="payment_method"
                         >
+                        <option value="">Select </option>
                         @include('partials.online_payment_options')
                     </select>
                 </div>
