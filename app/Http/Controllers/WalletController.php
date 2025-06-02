@@ -128,7 +128,7 @@ class WalletController extends Controller
 
         // Add to wallet
         $credit_status = \App\Models\Wallet::credit([
-            'wallet_id' => auth()->user()->wallets()->id,
+            'wallet_id' =>auth()->user()->wallets->first()->id,
             'user_id' => $request->user_id,
             'amount' => $request->amount,
             'type' => 'credit',
