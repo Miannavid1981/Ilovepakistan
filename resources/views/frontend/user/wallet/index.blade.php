@@ -31,11 +31,15 @@
                     <label>Payment Method</label>
                     <select class="form-control "
                          name="payment_method"
+                         id="payment_method"
                         >
                         <option value="">Select </option>
-                        @include('partials.online_payment_options')
+                        @foreach(App\Models\TransferPaymentMethod::where('status', 1)->get() as $method)
+                            <option value="{{ $method->slug }}">{{ $method->title }}</option>
+                        @endforeach
                     </select>
                 </div>
+                <div id="payment_method_details"></div>
                 <div class="mb-3">
                 <label>Upload Receipt</label>
                 <input type="file" name="payment_receipt" class="form-control" accept="image/*,.pdf" required>
@@ -176,3 +180,22 @@
         }
     </script>
 @endsection
+@push('scripts')
+<script>
+    document.getElementById('payment_method').addEventListener('change', function () {
+        let slug = this.value;
+        if (slug) {
+            fetch(`/payment-method/details/${slug}`)
+                .then(response => response.text())
+                .then(html => {
+                    document.getElementById('payment_method_details').innerHTML = html;
+                })
+                .catch(error => {
+                    console.error('Error fetching payment method details:', error);
+                });
+        } else {
+            document.getElementById('payment_method_details').innerHTML = '';
+        }
+    });
+</script>
+@endpush

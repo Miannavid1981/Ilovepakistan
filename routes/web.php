@@ -53,6 +53,7 @@ use App\Http\Controllers\WishlistController;
 use App\Http\Controllers\SizeChartController;
 use App\Http\Controllers\CustomCartController;
 use App\Http\Controllers\Seller\SellerMarketController;
+use App\Http\Controllers\TransferPaymentMethodController;
 
 /*
   |--------------------------------------------------------------------------
@@ -88,6 +89,7 @@ Route::get('/privacy_policy', function (Request $request){
     return view('frontend/inc/Customer_services/privacy_policy');
 })->name('privacy_policy');
 
+Route::get('/transfer-payment-method/details/{slug}', [TransferPaymentMethodController::class, 'showDetails']);
 
 
 
