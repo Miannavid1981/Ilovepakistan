@@ -185,7 +185,7 @@
     document.getElementById('payment_method').addEventListener('change', function () {
         let slug = this.value;
         if (slug) {
-            fetch(`/payment-method/details/${slug}`)
+            fetch(`/transfer-payment-method/details/${slug}`)
                 .then(response => response.text())
                 .then(html => {
                     document.getElementById('payment_method_details').innerHTML = html;
