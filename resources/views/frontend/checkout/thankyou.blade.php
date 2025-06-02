@@ -383,7 +383,7 @@ tr.border-bottom td {
                                 <td width="40%">
                                     <div class="d-flex gap-2 align-items-center">
                                         <div class="w-80px h-80px">
-                                            <img src="{{ uploaded_asset($product->featured_image) }}" class="w-100 h-100 rounded-2">
+                                            <img src="{{ uploaded_asset($product->thumbnail) }}" class="w-100 h-100 rounded-2">
                                         </div>
                                         <div>
                                             <small class="fs-15"><b>{{ $category_name }}</b></small><br>
@@ -397,7 +397,7 @@ tr.border-bottom td {
                                 </td>
                                 <td width="20%">  
                                     <button type="button" onclick="window.location.href='{{ route('shop.visit', $seller->shop->slug) }}'" class="bg-white border-0" data-toggle="tooltip" data-html="true" title=" {{ $seller->name }}">
-                                        <div class="w-50px h-50px"><img src="{{ uploaded_asset($seller->avatar) }}" class="h-100 object-fit rounded-2"> </div>
+                                        <div class="w-50px h-50px"><img src="{{ uploaded_asset($seller->avatar_original) }}" class="h-100 object-fit rounded-2"> </div>
                                     </button>
                                 </td>
                                 <td width="20%">  

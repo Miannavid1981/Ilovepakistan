@@ -436,7 +436,7 @@ class OrderController extends Controller
                     'wallet_id' => $wallet->id,
                     'amount' => $order_total,
                     'source' => 'order_checkout',
-                    'description' => "Payment of PKR $order_total for Order # BH000".$combined_order." has been deducted from wallet ",
+                    'description' => "Payment of PKR $order_total for Order # BH000".$combined_order." has been deducted from wallet",
                     'sourceUserId' => 0,
                     'order_id' => $combined_order->id
                 ]);
