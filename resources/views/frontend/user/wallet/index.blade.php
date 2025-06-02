@@ -105,7 +105,7 @@
                     </tr>
                 </thead>
                 <tbody class="fs-14">
-                    @foreach (\App\Models\WalletTransaction::where('user_id', auth()->user()->id)->get() as $key => $wallet)
+                    @foreach (\App\Models\WalletTransaction::where('user_id', auth()->user()->id)->orderBy('created_at', 'DESC')->get() as $key => $wallet)
                         <tr>
                             <td class="pl-0">{{ sprintf('%02d', ($key+1)) }}</td>
                            
@@ -113,7 +113,7 @@
                             <td>{{ ucfirst(str_replace('_', ' ', $wallet->type)) }}</td>
                             <td>{{ ucfirst(str_replace('_', ' ', $wallet->source)) }}</td>
                             <td>{{ $wallet->description }}</td>
-                            <td>{{ date('f Y j', strtotime($wallet->created_at)) }}</td>
+                            <td>{{ date('F j Y ', strtotime($wallet->created_at)) }}</td>
                             {{-- <td>{{ ucfirst(str_replace('_', ' ', $wallet->payment_method ?? '')) }}</td> --}}
                             {{-- <td class="text-right pr-0">
                                 @if ($wallet->offline_payment)
