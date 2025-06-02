@@ -187,7 +187,7 @@
                         <input type="radio" class=" mb-0 me-2" name="payment_method" value="cash_on_delivery" checked> Cash On Delivery
                     </div>
                     <span>
-                        <img src="https://cdn-icons-png.flaticon.com/512/936/936810.png" style="width: 35px; height: auto" alt="Discover">
+                        <img src="https://cdn-icons-png.flaticon.com/512/936/936810.png" style="width: 30px; height: auto" alt="Discover">
                     </span>
               </label>
             </button>
@@ -356,7 +356,7 @@
                   <span class="d-flex gap-2 align-items-center">
                     @if ($total > $user_wallet_balance)  <a href="{{ url('/dashboard') }}" class="btn btn-primary"> Recharge</a> @endif
                     <h4 class="m-0">{{ single_price(Auth::user()->balance)}}</h4>
-                    <img src="{{ uploaded_asset(get_setting('site_icon')) }}" class="ms-2" style="width: 35px; height: auto" alt="Discover">
+                    <img src="{{ uploaded_asset(get_setting('site_icon')) }}" class="ms-2" style="width: 25px; height: auto" alt="Discover">
                     </span>
                 </label>
             </button>
@@ -379,7 +379,7 @@
                     <input type="radio" class=" mb-0 me-2" name="payment_method" value="cash_on_counter"> Cash On Counter
                   </div>
                   <span>
-                      <img src="{{ static_asset('assets/img/11-11408.png') }}" style="width: 40px; height: auto" alt="Discover">
+                      <img src="{{ static_asset('assets/img/11-11408.png') }}" style="width: 30px; height: auto" alt="Discover">
                     </span>
                 </label>
             </button>
