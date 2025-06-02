@@ -91,8 +91,8 @@
     }
     .bank_transfer_method input {
         position: absolute;
-        top: 10px;
-        left: 10px
+        top: -50px;
+        left: -90px;
     }
     .bank_transfer_method:has(input:checked) {
         border: 1px solid #000 !important;
