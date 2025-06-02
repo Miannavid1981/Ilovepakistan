@@ -109,7 +109,7 @@
                         <tr>
                             <td class="pl-0">{{ sprintf('%02d', ($key+1)) }}</td>
                            
-                            <td class="fw-700">{{ single_price($wallet->amount) }}</td>
+                            <td class="fw-700 @if($wallet->type == 'credit') text-success @else text-danger @endif">{{ ($wallet->type == 'credit' ? '+' : '-').single_price($wallet->amount) }}</td>
                             <td>{{ ucfirst(str_replace('_', ' ', $wallet->type)) }}</td>
                             <td>{{ ucfirst(str_replace('_', ' ', $wallet->source)) }}</td>
                             <td>{{ $wallet->description }}</td>
