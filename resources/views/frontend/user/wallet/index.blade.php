@@ -65,13 +65,14 @@
                     </tr>
                 </thead>
                 <tbody class="fs-14">
-                    @foreach ($wallets as $key => $wallet)
+                    @foreach ($wallets->transactions->where('source', 'manual_deposit')->get() as $key => $wallet)
                         <tr>
                             <td class="pl-0">{{ sprintf('%02d', ($key+1)) }}</td>
                             <td>{{ date('d-m-Y', strtotime($wallet->created_at)) }}</td>
                             <td class="fw-700">{{ single_price($wallet->amount) }}</td>
-                            <td>{{ ucfirst(str_replace('_', ' ', $wallet->payment_method)) }}</td>
-                            <td class="text-right pr-0">
+                            <td>{{ ucfirst(str_replace('_', ' ', $wallet->description)) }}</td>
+                            <td>{{ ucfirst(str_replace('_', ' ', $wallet->payment_method ?? '')) }}</td>
+                            {{-- <td class="text-right pr-0">
                                 @if ($wallet->offline_payment)
                                     @if ($wallet->approval)
                                         <span class="badge badge-inline badge-success p-3 fs-12" style="border-radius: 25px; min-width: 80px !important;">{{ translate('Approved') }}</span>
@@ -81,7 +82,7 @@
                                 @else
                                     N/A
                                 @endif
-                            </td>
+                            </td> --}}
                         </tr>
                     @endforeach
 
