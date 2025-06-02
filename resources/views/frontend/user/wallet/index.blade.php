@@ -9,6 +9,36 @@
         </div>
     </div>
 
+
+
+                        
+    <!-- Modal -->
+    <div class="modal fade" id="depositModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+        <form method="POST" action="{{ route('wallet.deposit.store') }}" enctype="multipart/form-data">
+            @csrf
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Submit Deposit Request</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <div class="mb-3">
+                <label>Amount</label>
+                <input type="number" name="amount" class="form-control" required>
+                </div>
+                <div class="mb-3">
+                <label>Upload Receipt</label>
+                <input type="file" name="payment_receipt" class="form-control" accept="image/*,.pdf" required>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-success">Submit</button>
+            </div>
+            </div>
+        </form>
+        </div>
+    </div>
     <div class="row gutters-16 mb-2">
         <!-- Wallet Balance -->
         <div class="col-md-4 mx-auto mb-4">
@@ -23,14 +53,13 @@
 
         <!-- Recharge Wallet -->
         <div class="col-md-4 mx-auto mb-4">
-            <div class="p-4 mb-3 c-pointer text-center bg-light has-transition border h-100 hov-bg-soft-light"
-                onclick="show_wallet_modal()">
+            <button class="p-4 mb-3 c-pointer text-center bg-light has-transition border h-100 hov-bg-soft-light" data-bs-toggle="modal" data-bs-target="#depositModal">
                 <span
                     class="size-60px rounded-circle mx-auto bg-dark d-flex align-items-center justify-content-center mb-3">
                     <i class="las la-plus la-3x text-white"></i>
                 </span>
                 <div class="fs-14 fw-600 text-dark">{{ translate('Recharge Wallet') }}</div>
-            </div>
+            </button>
         </div>
 
         <!-- Offline Recharge Wallet -->

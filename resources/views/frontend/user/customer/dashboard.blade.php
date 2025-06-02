@@ -36,40 +36,7 @@
                         {{ translate('Recharge Wallet') }}
                     </button> --}}
 
-                    <button class="btn btn-primary mt-3 py-3"  data-bs-toggle="modal" data-bs-target="#depositModal">
-                        <i class="la la-plus fs-18 fw-700 mr-2"></i>
-                        {{ translate('Recharge Wallet') }}
-                    </button>
-
-
-                                        
-                    <!-- Modal -->
-                    <div class="modal fade" id="depositModal" tabindex="-1" aria-hidden="true">
-                        <div class="modal-dialog">
-                        <form method="POST" action="{{ route('wallet.deposit.store') }}" enctype="multipart/form-data">
-                            @csrf
-                            <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title">Submit Deposit Request</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                            </div>
-                            <div class="modal-body">
-                                <div class="mb-3">
-                                <label>Amount</label>
-                                <input type="number" name="amount" class="form-control" required>
-                                </div>
-                                <div class="mb-3">
-                                <label>Upload Receipt</label>
-                                <input type="file" name="payment_receipt" class="form-control" accept="image/*,.pdf" required>
-                                </div>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="submit" class="btn btn-success">Submit</button>
-                            </div>
-                            </div>
-                        </form>
-                        </div>
-                    </div>
+                   
                 </div>
             </div>
         </div>
@@ -318,12 +285,7 @@
 
 @section('modal')
     <!-- Wallet Recharge Modal -->
-    @include('frontend.partials.wallet_modal')
-    <script type="text/javascript">
-        function show_wallet_modal() {
-            $('#wallet_modal').modal('show');
-        }
-    </script>
+ 
 
     <!-- Address modal Modal -->
     @include('frontend.partials.address.address_modal')
