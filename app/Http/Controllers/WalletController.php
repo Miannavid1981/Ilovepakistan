@@ -148,7 +148,7 @@ class WalletController extends Controller
     }
     public function customer_deposit_requests(Request $request){
 
-        $requests = \App\Models\CustomerWalletDepositRequest::where('user_id', Auth::id())->get();
+        $requests = \App\Models\CustomerWalletDepositRequest::where('user_id', Auth::id())->orderBy('created_at', 'DESC')->get();
         $data = [];
         $data['requests'] = $requests;
 
