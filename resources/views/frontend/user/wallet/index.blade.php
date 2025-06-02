@@ -178,10 +178,7 @@
                 $('#offline_wallet_recharge_modal').modal('show');
             });
         }
-    </script>
-@endsection
-@push('scripts')
-<script>
+
     document.getElementById('payment_method').addEventListener('change', function () {
         let slug = this.value;
         if (slug) {
@@ -198,4 +195,4 @@
         }
     });
 </script>
-@endpush
+@endsection
