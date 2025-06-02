@@ -29,9 +29,9 @@
                 </div>
                 <div class="mb-3">
                     <label>Payment Method</label>
-                    <select class="form-control selectpicker rounded-0"
-                        data-minimum-results-for-search="Infinity" name="payment_option"
-                        data-live-search="true">
+                    <select class="form-control "
+                         name="payment_method"
+                        >
                         @include('partials.online_payment_options')
                     </select>
                 </div>
