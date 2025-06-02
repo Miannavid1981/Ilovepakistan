@@ -383,7 +383,7 @@ tr.border-bottom td {
                                 <td width="40%">
                                     <div class="d-flex gap-2 align-items-center">
                                         <div class="w-80px h-80px">
-                                            <img src="{{ uploaded_asset($product->thumbnail) }}" class="w-100 h-100 rounded-2">
+                                            <img src="{{ uploaded_asset($product->thumbnail_img) }}" class="w-100 h-100 rounded-2">
                                         </div>
                                         <div>
                                             <small class="fs-15"><b>{{ $category_name }}</b></small><br>
