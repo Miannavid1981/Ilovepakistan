@@ -88,27 +88,33 @@
     <!-- Wallet Recharge History -->
     <div class="card rounded-0 shadow-none border">
         <div class="card-header border-bottom-0">
-            <h5 class="mb-0 fs-20 fw-700 text-dark text-center text-md-left">{{ translate('Wallet recharge history') }}</h5>
+            <h5 class="mb-0 fs-20 fw-700 text-dark text-center text-md-left">{{ translate('Wallet history') }}</h5>
         </div>
         <div class="card-body py-0">
             <table class="table aiz-table mb-4">
                 <thead class="text-gray fs-12">
                     <tr>
                         <th class="pl-0">#</th>
-                        <th data-breakpoints="lg">{{ translate('Date') }}</th>
+                       
                         <th>{{ translate('Amount') }}</th>
+                        <th>{{ translate('Type') }}</th>
+                        <th>{{ translate('Source') }}</th>
                         <th data-breakpoints="lg">{{ translate('Description') }}</th>
-                        <th class="text-right pr-0">{{ translate('Status') }}</th>
+                        <th data-breakpoints="lg">{{ translate('Date') }}</th>
+                        
                     </tr>
                 </thead>
                 <tbody class="fs-14">
-                    @foreach (\App\Models\WalletTransaction::where('user_id', auth()->user()->id)->where('source', 'manual_deposit')->get() as $key => $wallet)
+                    @foreach (\App\Models\WalletTransaction::where('user_id', auth()->user()->id)->get() as $key => $wallet)
                         <tr>
                             <td class="pl-0">{{ sprintf('%02d', ($key+1)) }}</td>
-                            <td>{{ date('d-m-Y', strtotime($wallet->created_at)) }}</td>
+                           
                             <td class="fw-700">{{ single_price($wallet->amount) }}</td>
-                            <td>{{ ucfirst(str_replace('_', ' ', $wallet->description)) }}</td>
-                            <td>{{ ucfirst(str_replace('_', ' ', $wallet->payment_method ?? '')) }}</td>
+                            <td>{{ ucfirst(str_replace('_', ' ', $wallet->type)) }}</td>
+                            <td>{{ ucfirst(str_replace('_', ' ', $wallet->source)) }}</td>
+                            <td>{{ $wallet->description }}</td>
+                            <td>{{ date('f Y j', strtotime($wallet->created_at)) }}</td>
+                            {{-- <td>{{ ucfirst(str_replace('_', ' ', $wallet->payment_method ?? '')) }}</td> --}}
                             {{-- <td class="text-right pr-0">
                                 @if ($wallet->offline_payment)
                                     @if ($wallet->approval)
