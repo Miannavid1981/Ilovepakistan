@@ -28,6 +28,14 @@
                 <input type="number" name="amount" class="form-control" required>
                 </div>
                 <div class="mb-3">
+                    <label>Payment Method</label>
+                    <select class="form-control selectpicker rounded-0"
+                        data-minimum-results-for-search="Infinity" name="payment_option"
+                        data-live-search="true">
+                        @include('partials.online_payment_options')
+                    </select>
+                </div>
+                <div class="mb-3">
                 <label>Upload Receipt</label>
                 <input type="file" name="payment_receipt" class="form-control" accept="image/*,.pdf" required>
                 </div>
@@ -53,7 +61,7 @@
 
         <!-- Recharge Wallet -->
         <div class="col-md-4 mx-auto mb-4">
-            <button class="p-4 mb-3 c-pointer text-center bg-light has-transition border h-100 hov-bg-soft-light" data-bs-toggle="modal" data-bs-target="#depositModal">
+            <button class="p-4 mb-3 c-pointer text-center bg-light has-transition border w-100 h-100 hov-bg-soft-light" data-bs-toggle="modal" data-bs-target="#depositModal">
                 <span
                     class="size-60px rounded-circle mx-auto bg-dark d-flex align-items-center justify-content-center mb-3">
                     <i class="las la-plus la-3x text-white"></i>
