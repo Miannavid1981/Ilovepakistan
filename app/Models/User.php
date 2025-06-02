@@ -163,4 +163,12 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->hasMany(SellerCategoryPreference::class);
     }
+    public function getBalanceAttribute()
+    {
+        // Option 1: if each user has one wallet only
+        return $this->wallets()->first()?->amount ?? 0;
+
+        // Option 2: if user has multiple wallets and you want to sum them
+        // return $this->wallets()->sum('amount');
+    }
 }
