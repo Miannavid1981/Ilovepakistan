@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Wallet extends Model {
     use HasFactory;
 
-    protected $fillable = ['user_id', 'amount', 'payment_method', 'payment_details'];
+    protected $fillable = ['user_id', 'amount', 'payment_method', 'payment_details', 'source', 'description', 'wallet_id'];
 
     public function transactions() {
         return $this->hasMany(WalletTransaction::class);
