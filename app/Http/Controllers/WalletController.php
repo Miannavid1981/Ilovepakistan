@@ -114,6 +114,7 @@ class WalletController extends Controller
             'amount' => $request->amount,
             'payment_receipt' => $path,
             'status' => 'pending',
+            'payment_method' => $request->payment_method ?? ''
         ]);
 
         return back()->with('success', 'Deposit request submitted successfully!');
