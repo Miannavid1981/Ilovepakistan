@@ -65,7 +65,7 @@
                     </tr>
                 </thead>
                 <tbody class="fs-14">
-                    @foreach ($wallets->transactions->where('source', 'manual_deposit')->get() as $key => $wallet)
+                    @foreach ($wallets->transactions()->where('source', 'manual_deposit')->get() as $key => $wallet)
                         <tr>
                             <td class="pl-0">{{ sprintf('%02d', ($key+1)) }}</td>
                             <td>{{ date('d-m-Y', strtotime($wallet->created_at)) }}</td>
