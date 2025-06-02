@@ -117,7 +117,7 @@ class WalletController extends Controller
             'payment_method' => $request->payment_method ?? ''
         ]);
 
-        return back()->with('success', 'Deposit request submitted successfully!');
+        return redirect()->url('/deposit-requests');
     }
     public function approveDeposit($id)
     {
