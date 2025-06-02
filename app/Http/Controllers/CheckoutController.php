@@ -295,10 +295,14 @@ class CheckoutController extends Controller
             flash(translate('Phone Number Cant be left blank'))->warning();
             return redirect()->back();
         }
+        
         if (is_null($auth_user->phone) || $auth_user->phone === '') {
             $auth_user->phone = $request->phone;
             $auth_user->save(); // prefer save() when modifying fields
         }
+
+        
+
 
         // Retrieve the user's cart items
         $carts = Cart::where('user_id', $user_id)->get();

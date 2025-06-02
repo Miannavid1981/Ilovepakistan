@@ -47,20 +47,36 @@ class Wallet extends Model {
         }
     }
     
-
-    public static function debit($amount, $source, $description, $sourceUserId = null) {
-        if ($this->amount >= $amount) {
-            $this->decrement('amount', $amount);
-            $this->transactions()->create([
-                'user_id' => $this->user_id,
+    public static function debit($obj = []) {
+        $amount = $obj['amount'] ?? 0;
+        $wallet_id = $obj['wallet_id'] ?? 0;
+        $source = $obj['source'] ?? 'system';
+        $description = $obj['description'] ?? '';
+        $sourceUserId = $obj['sourceUserId'] ?? auth()->id();
+    
+        try {
+            $wallet = self::find($wallet_id);
+    
+            if (!$wallet || $wallet->amount < $amount) {
+                throw new \Exception("Insufficient balance or wallet not found.");
+            }
+    
+            $wallet->decrement('amount', $amount);
+    
+            $wallet->transactions()->create([
+                'user_id' => $wallet->user_id,
                 'amount' => $amount,
                 'type' => 'debit',
                 'source' => $source,
                 'source_user_id' => $sourceUserId,
                 'description' => $description,
             ]);
-        } else {
-            throw new \Exception("Insufficient balance for user ID: {$this->user_id}");
+    
+            return true;
+        } catch (\Exception $e) {
+            // Optionally log error
+            return false;
         }
     }
+    
 }
