@@ -102,6 +102,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin', 'prevent-ba
     Route::get('/delivery-types', [DeliveryTypesSettingController::class, 'index'])->name('admin.delivery_types.index');
     Route::post('/delivery-types', [DeliveryTypesSettingController::class, 'update'])->name('admin.delivery_types.update');
 
+    Route::get('/system-transactions', [\App\Http\Controllers\Admin\SystemTransactionController::class, 'index'])->name('admin.system_transactions');
 
 
     // category
