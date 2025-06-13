@@ -246,7 +246,7 @@
                                 </label>
                             </td>
                             <td>
-                                <select class="form-control">
+                                <select class="form-control" class="admin_change_seller_type" data-id="{{ $shop->user->id }}">
                                    
                                     <option value="brand_partner" {{ $shop->user->seller_type  == 'brand_partner' ? 'selected' : '' }}>Brand Partner</option>
                                     <option value="seller_partner" {{ $shop->user->seller_type  == 'seller_partner' ? 'selected' : '' }}>Seller Partner</option>
