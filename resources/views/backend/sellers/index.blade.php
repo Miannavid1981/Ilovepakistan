@@ -111,7 +111,7 @@
                         <th data-breakpoints="lg">{{ translate('Status') }}</th> --}}
                         <th data-breakpoints="lg">{{translate('Approval')}}</th>
                         <th data-breakpoints="lg">{{translate('Business Directory')}}</th>
-                        <th data-breakpoints="lg">{{translate('Type')}}</th>
+                        <th data-breakpoints="lg">{{translate('Change Type')}}</th>
                     
                     @else
                         <th data-breakpoints="lg">{{translate('Rating')}}</th>
