@@ -496,8 +496,7 @@
 
 @section('script')
     <script type="text/javascript">
-      $(document).ready(function () {
-            $('.admin_change_seller_type').on('change', function () {
+            $(document).on("change", '.admin_change_seller_type', function () {
                 let userId = $(this).data('id');
                 let sellerType = $(this).val();
 
@@ -518,7 +517,7 @@
                     }
                 });
             });
-        });
+       
 
         $(document).on("change", ".check-all", function() {
             if(this.checked) {
