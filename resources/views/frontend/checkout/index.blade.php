@@ -468,29 +468,44 @@
                 </div>
             
                 <br>
-            
+                
                 <div class="row g-3">
-                    <div class="col-4 m-0">
-                        <div class=" py-2 w-100 delivery_type fs-16 btn-success">
-                            <input type="radio" class="form-check "  name="delivery_type" value="personal" checked>
-                                <i class="fa fa-home"></i>
-                                Personal
-                        </div>
-                    </div>
-                    <div class="col-4 m-0">
-                        <div class=" py-2 w-100 delivery_type fs-16 btn-warning">
-                            <input type="radio" class="form-check " name="delivery_type" value="family_friends" >
-                                <i class="fa fa-users"></i>
-                                Family & Friends
-                        </div>
-                    </div>
-                    <div class="col-4 m-0">
-                        <div class=" py-2 w-100 delivery_type fs-16 btn-info">
-                            <input type="radio" class="form-check " name="delivery_type" value="others" >
-                                <i class="fa fa-box"></i>
-                                Others
-                        </div>
-                    </div>
+                    @php
+                        $delivery_type_settings = \App\Models\DeliveryTypesSetting::first();
+
+                        
+
+                    @endphp
+
+                    @if($delivery_type_settings)
+                        @if($delivery_type_settings->personal)
+                            <div class="col-4 m-0">
+                                <div class=" py-2 w-100 delivery_type fs-16 btn-success">
+                                    <input type="radio" class="form-check "  name="delivery_type" value="personal" checked>
+                                        <i class="fa fa-home"></i>
+                                        Personal
+                                </div>
+                            </div>
+                        @endif
+                        @if($delivery_type_settings->family_friends)
+                            <div class="col-4 m-0">
+                                <div class=" py-2 w-100 delivery_type fs-16 btn-warning">
+                                    <input type="radio" class="form-check " name="delivery_type" value="family_friends" >
+                                        <i class="fa fa-users"></i>
+                                        Family & Friends
+                                </div>
+                            </div>
+                        @endif
+                        @if($delivery_type_settings->others)
+                            <div class="col-4 m-0">
+                                <div class=" py-2 w-100 delivery_type fs-16 btn-info">
+                                    <input type="radio" class="form-check " name="delivery_type" value="others" >
+                                        <i class="fa fa-box"></i>
+                                        Others
+                                </div>
+                            </div>
+                        @endif
+                    @endif
                 </div>
                 
                 {{-- <div class="horizontal_line" style="">
