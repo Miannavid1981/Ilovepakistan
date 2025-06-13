@@ -58,6 +58,7 @@ use App\Http\Controllers\WebsiteController;
 use App\Http\Controllers\ZoneController;
 use App\Http\Controllers\BusinessDirectoryController;
 use App\Http\Controllers\WalletController;
+use App\Http\Controllers\TransferPaymentMethodController;
 /*
   |--------------------------------------------------------------------------
   | Admin Routes
@@ -89,6 +90,10 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin', 'prevent-ba
     Route::put('/business-directory/update/{id}', [BusinessDirectoryController::class, 'update'])->name('admin_business_directory.update');
     Route::get('/business-directory/export', [BusinessDirectoryController::class, 'export'])->name('admin_business_directory.export');
     
+    Route::get('/transfer-payment-methods', [TransferPaymentMethodController::class, 'index'])->name('admin_transfer_payment_methods');
+    Route::post('/transfer-payment-methods/create', [TransferPaymentMethodController::class, 'store'])->name('admin_transfer_payment_methods.create');
+    Route::get('/transfer-payment-methods/edit/{id}', [TransferPaymentMethodController::class, 'edit'])->name('admin_transfer_payment_methods.edit');
+    Route::post('/transfer-payment-methods/update/{id}', [TransferPaymentMethodController::class, 'update'])->name('admin_transfer_payment_methods.update');
     
     // category
     Route::resource('categories', CategoryController::class);

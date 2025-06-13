@@ -111,6 +111,7 @@
                         <th data-breakpoints="lg">{{ translate('Status') }}</th> --}}
                         <th data-breakpoints="lg">{{translate('Approval')}}</th>
                         <th data-breakpoints="lg">{{translate('Business Directory')}}</th>
+                        <th data-breakpoints="lg">{{translate('Type')}}</th>
                     
                     @else
                         <th data-breakpoints="lg">{{translate('Rating')}}</th>
@@ -245,7 +246,7 @@
                                 </label>
                             </td>
                             
-                            <td>
+                            <td style="text-align: left">
                                 <div class="dropdown">
                                     <button type="button" class="btn btn-sm btn-circle btn-soft-primary btn-icon dropdown-toggle no-arrow" data-toggle="dropdown" href="javascript:void(0);" role="button" aria-haspopup="false" aria-expanded="false">
                                         <i class="las la-ellipsis-v"></i>
@@ -320,6 +321,14 @@
                                         @endcan
                                     </div>
                                 </div>
+                            </td>
+                            <td>
+                                <select class="form-control">
+                                   
+                                    <option>Brand Partner</option>
+                                    <option>Seller Partner</option>
+                                    <option>Store Partner</option>
+                                </select>
                             </td>
                         @else
                             <td>
