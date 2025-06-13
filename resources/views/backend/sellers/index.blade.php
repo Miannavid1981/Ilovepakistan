@@ -72,7 +72,7 @@
             </div>
         </div>
 
-        <div class="card-body">
+        <div class="card-body table-responsive">
             <table class="table aiz-table mb-0">
                 <thead>
                 <tr>
@@ -246,7 +246,7 @@
                                 </label>
                             </td>
                             <td>
-                                <select class="form-control admin_change_seller_type" data-id="{{ $shop->user->id }}">
+                                <select class="form-control admin_change_seller_type" data-id="{{ $shop->user->id }}" style="min-width: 150px;">
                                    
                                     <option value="brand_partner" {{ $shop->user->seller_type  == 'brand_partner' ? 'selected' : '' }}>Brand Partner</option>
                                     <option value="seller_partner" {{ $shop->user->seller_type  == 'seller_partner' ? 'selected' : '' }}>Seller Partner</option>
