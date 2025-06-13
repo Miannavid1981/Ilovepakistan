@@ -248,9 +248,9 @@
                             <td>
                                 <select class="form-control">
                                    
-                                    <option>Brand Partner</option>
-                                    <option>Seller Partner</option>
-                                    <option>Store Partner</option>
+                                    <option value="brand_partner" {{ $shop->user->seller_type  == 'brand_partner' ? 'selected' : '' }}>Brand Partner</option>
+                                    <option value="seller_partner" {{ $shop->user->seller_type  == 'seller_partner' ? 'selected' : '' }}>Seller Partner</option>
+                                    <option value="store_partner" {{ $shop->user->seller_type  == 'store_partner' ? 'selected' : '' }}>Store Partner</option>
                                 </select>
                             </td>
                             <td style="text-align: left">
