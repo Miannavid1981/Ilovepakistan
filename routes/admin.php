@@ -59,6 +59,7 @@ use App\Http\Controllers\ZoneController;
 use App\Http\Controllers\BusinessDirectoryController;
 use App\Http\Controllers\WalletController;
 use App\Http\Controllers\TransferPaymentMethodController;
+use App\Http\Controllers\DeliveryTypesSettingController;
 /*
   |--------------------------------------------------------------------------
   | Admin Routes
@@ -98,6 +99,11 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin', 'prevent-ba
     Route::get('/transfer-payment-methods/edit/{id}', [TransferPaymentMethodController::class, 'edit'])->name('admin_transfer_payment_methods.edit');
     Route::post('/transfer-payment-methods/update/{id}', [TransferPaymentMethodController::class, 'update'])->name('admin_transfer_payment_methods.update');
     
+    Route::get('/delivery-types', [DeliveryTypesSettingController::class, 'index'])->name('admin.delivery_types.index');
+    Route::post('/delivery-types', [DeliveryTypesSettingController::class, 'update'])->name('admin.delivery_types.update');
+
+
+
     // category
     Route::resource('categories', CategoryController::class);
     Route::controller(CategoryController::class)->group(function () {
