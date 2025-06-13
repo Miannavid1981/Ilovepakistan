@@ -228,4 +228,18 @@ class CustomerController extends Controller
         
         return back();
     }
+    public function updateSellerType(Request $request)
+    {
+        $request->validate([
+            'user_id' => 'required|exists:users,id',
+            'seller_type' => 'required|in:brand_partner,seller_partner,store_partner',
+        ]);
+
+        $user = User::find($request->user_id);
+        $user->seller_type = $request->seller_type;
+        $user->save();
+
+        return response()->json(['message' => 'Seller type updated']);
+    }
+
 }

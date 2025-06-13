@@ -246,7 +246,7 @@
                                 </label>
                             </td>
                             <td>
-                                <select class="form-control" class="admin_change_seller_type" data-id="{{ $shop->user->id }}">
+                                <select class="form-control admin_change_seller_type" data-id="{{ $shop->user->id }}">
                                    
                                     <option value="brand_partner" {{ $shop->user->seller_type  == 'brand_partner' ? 'selected' : '' }}>Brand Partner</option>
                                     <option value="seller_partner" {{ $shop->user->seller_type  == 'seller_partner' ? 'selected' : '' }}>Seller Partner</option>
@@ -496,6 +496,30 @@
 
 @section('script')
     <script type="text/javascript">
+      $(document).ready(function () {
+            $('.admin_change_seller_type').on('change', function () {
+                let userId = $(this).data('id');
+                let sellerType = $(this).val();
+
+                $.ajax({
+                    url: '/admin/update-seller-type', // Change to your route
+                    type: 'POST',
+                    data: {
+                        user_id: userId,
+                        seller_type: sellerType,
+                        _token: $('meta[name="csrf-token"]').attr('content')
+                    },
+                    success: function (response) {
+                        alert('Seller type updated successfully!');
+                    },
+                    error: function (xhr) {
+                        alert('Failed to update seller type.');
+                        console.log(xhr.responseText);
+                    }
+                });
+            });
+        });
+
         $(document).on("change", ".check-all", function() {
             if(this.checked) {
                 // Iterate each checkbox
@@ -510,6 +534,7 @@
 
         });
 
+      
         function show_seller_payment_modal(id){
             $.post('{{ route('sellers.payment_modal') }}',{_token:'{{ @csrf_token() }}', id:id}, function(data){
                 $('#payment_modal #payment-modal-content').html(data);
