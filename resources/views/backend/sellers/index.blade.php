@@ -245,7 +245,14 @@
                                     <span class="slider round"></span>
                                 </label>
                             </td>
-                            
+                            <td>
+                                <select class="form-control">
+                                   
+                                    <option>Brand Partner</option>
+                                    <option>Seller Partner</option>
+                                    <option>Store Partner</option>
+                                </select>
+                            </td>
                             <td style="text-align: left">
                                 <div class="dropdown">
                                     <button type="button" class="btn btn-sm btn-circle btn-soft-primary btn-icon dropdown-toggle no-arrow" data-toggle="dropdown" href="javascript:void(0);" role="button" aria-haspopup="false" aria-expanded="false">
@@ -322,14 +329,7 @@
                                     </div>
                                 </div>
                             </td>
-                            <td>
-                                <select class="form-control">
-                                   
-                                    <option>Brand Partner</option>
-                                    <option>Seller Partner</option>
-                                    <option>Store Partner</option>
-                                </select>
-                            </td>
+                          
                         @else
                             <td>
                                 {{ $shop->rating }}
