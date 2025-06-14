@@ -184,7 +184,7 @@
 
                 <div class="d-flex align-items-center py-4 border-bottom">
                     <div class="btn btn-dark text-white border-0 rounded-circle d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">
-                        <i class="fa fa-wallet text-white fs-14"></i>
+                        <i class="fa fa-upload text-white fs-14"></i>
                      </div>
                     <div class="ml-3 d-flex flex-column justify-content-between">
                         @php
