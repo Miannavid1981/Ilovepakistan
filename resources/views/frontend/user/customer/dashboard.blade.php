@@ -194,7 +194,7 @@
                      </div>
                     <div class="ml-3 d-flex flex-column justify-content-between">
                         @php
-                            $last_deposit = \App\Models\CustomerWalletDepositRequest::where('user_id', Auth::id())->orderBy('created_at', 'DESC')->first();
+                            $last_deposit = \App\Models\CustomerWalletDepositRequest::where('user_id', Auth::id())->where('status', 'approved')->orderBy('created_at', 'DESC')->first();
                         @endphp
                         <span class="fs-20 fw-700 mb-1">{{ single_price($last_deposit ? $last_deposit->amount : 0) }}</span>
                         <span class="fs-12 fw-400 text-muted">{{ $last_deposit->created_at->format('F j, Y') }}</span>
