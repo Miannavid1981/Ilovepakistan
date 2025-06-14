@@ -157,6 +157,18 @@
                     <i class="fa fa-invoice"></i>
                     <div class="ml-3 d-flex flex-column justify-content-between">
                         @php
+                            $total_deposit = \App\Models\WalletTransaction::where('user_id', Auth::id())->where('source', 'order_checkout')->sum('amount');
+                        @endphp
+                        <span class="fs-20 fw-700 mb-1">{{ single_price($total_deposit ? $total_deposit : 0) }}</span>
+                        <span class="fs-14 fw-400 text-secondary">{{ translate('Total Wallet Spending') }}</span>
+                    </div>
+                </div>
+
+
+                <div class="d-flex align-items-center py-4 border-bottom">
+                    <i class="fa fa-invoice"></i>
+                    <div class="ml-3 d-flex flex-column justify-content-between">
+                        @php
                             $total_deposit = \App\Models\CustomerWalletDepositRequest::where('user_id', Auth::id())->sum('amount');
                         @endphp
                         <span class="fs-20 fw-700 mb-1">{{ single_price($total_deposit ? $total_deposit : 0) }}</span>
