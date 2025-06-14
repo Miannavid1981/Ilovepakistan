@@ -26,8 +26,8 @@
                         $wallet_user = \App\Models\User::find($wallet->user_id);
                     @endphp
                     <tr>
-                        <td>{{ $wallet_user->name }}</td>
-                        <td>{{ $wallet_user->user_type }}</td>
+                        <td>{{ $wallet_user ? $wallet_user->name : '' }}</td>
+                        <td>{{ $wallet_user ? $wallet_user->user_type : ''}}</td>
                         <td class="pl-0">{{ sprintf('%02d', ($key+1)) }}</td>
                         <td class="fw-700 @if($wallet->type == 'credit') text-success @else text-danger @endif">
                             {{ ($wallet->type == 'credit' ? '+' : '-') . single_price($wallet->amount) }}
