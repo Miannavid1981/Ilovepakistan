@@ -144,7 +144,7 @@
         <div class="col-xl-4 col-md-6 mb-4">
             <div class="px-4 bg-white border h-100">
 
-                <div class="d-flex align-items-center py-4 ">
+                <div class="d-flex align-items-center py-4 border-bottom">
                     <i class="fa fa-invoice"></i>
                     <div class="ml-3 d-flex flex-column justify-content-between">
                        
