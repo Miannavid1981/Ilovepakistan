@@ -304,7 +304,7 @@
                                                             @php
                                                                 $product_stock = $orderDetail->product->stocks->where('variant', $orderDetail->variation)->first();
                                                             @endphp
-                                                        {{ $orderDetail->item_skin ?? '' }}
+                                                            {{ $orderDetail->item_skin ?? '' }}
 
                                                         </small>
                                                     
@@ -316,11 +316,15 @@
                                                                 <div class="w-40px h-40px ">
                                                                     <img src="{{ uploaded_asset($brand_sold_seller->avatar_original) }}" class="w-100 h-100 object-cover rounded-3 ">
                                                                 </div>
-                                                                <p class="mb-0 ">{{ $brand_sold_seller->name }}</p>
+                                                                <div>
+                                                                    <p class="mb-0 ">{{ $brand_sold_seller->name }}</p>
+                                                                    <span class="badge badge-dark text-uppercase">{{ str_replace('_', ' ', $brand_sold_seller) }}</span>
+                                                                </div>
+                                                                
                                                             </div>
-                                                            <strong>Type:</strong> Brand Partner<br>
+                                                            <br>
                                                             <strong><i class="fa fa-envelope"></i>&nbsp;</strong> john@example.com<br>
-                                                            <strong>Shop:</strong> Doe Mart
+                                                            
                                                         </div>
                                                     </span>
                                                     
