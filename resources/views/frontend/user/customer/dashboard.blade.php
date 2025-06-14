@@ -156,7 +156,9 @@
                 </div>
 
                 <div class="d-flex align-items-center py-4 border-bottom">
-                    <i class="fa fa-wallet"></i>
+                    <div class="btn btn-dark text-white border-0 rounded-circle d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">
+                        <i class="fa fa-wallet text-white fs-14"></i>
+                     </div>
                     <div class="ml-3 d-flex flex-column justify-content-between">
                         @php
                             $total_deposit = \App\Models\WalletTransaction::where('user_id', Auth::id())->where('source', 'order_checkout')->sum('amount');
@@ -168,7 +170,9 @@
 
 
                 <div class="d-flex align-items-center py-4 border-bottom">
-                    <i class="fa fa-wallet"></i>
+                    <div class="btn btn-dark text-white border-0 rounded-circle d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">
+                        <i class="fa fa-wallet text-white fs-14"></i>
+                     </div>
                     <div class="ml-3 d-flex flex-column justify-content-between">
                         @php
                             $total_deposit = \App\Models\CustomerWalletDepositRequest::where('user_id', Auth::id())->sum('amount');
@@ -179,7 +183,9 @@
                 </div>
 
                 <div class="d-flex align-items-center py-4 border-bottom">
-                    <i class="fa fa-wallet"></i>
+                    <div class="btn btn-dark text-white border-0 rounded-circle d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">
+                        <i class="fa fa-wallet text-white fs-14"></i>
+                     </div>
                     <div class="ml-3 d-flex flex-column justify-content-between">
                         @php
                             $last_deposit = \App\Models\CustomerWalletDepositRequest::where('user_id', Auth::id())->orderBy('created_at', 'DESC')->first();
