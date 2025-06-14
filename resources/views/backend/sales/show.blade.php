@@ -312,7 +312,7 @@
                                                         <div class="popover-content">
                                                            
 
-                                                            <div class="d-flex gap-2 align-items-center ">
+                                                            <div class="d-flex align-items-center " style="gap: 10px">
                                                                 <div class="w-40px h-40px ">
                                                                     <img src="{{ uploaded_asset($brand_sold_seller->avatar_original) }}" class="w-100 h-100 object-cover rounded-3 ">
                                                                 </div>
@@ -323,7 +323,7 @@
                                                                 
                                                             </div>
                                                             <br>
-                                                            <strong><i class="fa fa-envelope"></i>&nbsp;</strong> john@example.com<br>
+                                                            <a class="text-dark fs-14 text-decoration-none" href="tel:{{ $brand_sold_seller->email ?? '' }}"><i class="las la-envelope"></i>&nbsp;</strong> {{ $brand_sold_seller->email ?? '' }}<a>
                                                             
                                                         </div>
                                                     </span>
