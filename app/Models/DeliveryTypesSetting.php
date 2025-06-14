@@ -6,5 +6,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class DeliveryTypesSetting extends Model
 {
-    protected $fillable = ['personal', 'family_and_friends', 'others'];
+    protected $fillable = ['personal', 'family_friends', 'others'];
 }
