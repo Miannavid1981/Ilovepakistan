@@ -310,9 +310,21 @@
                                                     
                                                         <!-- Popover Content -->
                                                         <div class="popover-content">
-                                                            <strong>Name:</strong> John Doe<br>
+                                                           
+
+                                                            @if($orderDetail->source_seller_id != $orderDetail->seller_id) 
+                                                                @php
+                                                                    $import_seller = \App\Models\User::where('id', $orderDetail->seller_id)->first();
+                                                                @endphp
+                                                                <div class="d-flex gap-2 align-items-center ">
+                                                                    <div class="w-40px h-40px ">
+                                                                        <img src="{{ uploaded_asset($import_seller->avatar_original) }}" class="w-100 h-100 object-cover rounded-3 ">
+                                                                    </div>
+                                                                    <p class="mb-0 ">{{ $import_seller->name }}</p>
+                                                                </div>
+                                                            @endif
                                                             <strong>Type:</strong> Brand Partner<br>
-                                                            <strong>Email:</strong> john@example.com<br>
+                                                            <strong><i class="fa fa-envelope"></i>&nbsp;</strong> john@example.com<br>
                                                             <strong>Shop:</strong> Doe Mart
                                                         </div>
                                                     </span>
