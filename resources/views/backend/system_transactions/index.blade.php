@@ -22,10 +22,11 @@
             </thead>
             <tbody class="fs-14">
                 @foreach ($transactions as $key => $wallet)
-                    @php
-                        $wallet_user = \App\Models\User::find($wallet->user_id);
-                    @endphp
+                        @php
+                            $wallet_user = \App\Models\User::find($wallet->user_id);
+                        @endphp
                     <tr>
+                        <td class="pl-0">TRX00{{ sprintf('%02d', ($wallet->id)) }}</td>
                         <td class="pl-0">{{ sprintf('%02d', ($key+1)) }}</td>
                         <td>{{ $wallet_user ? $wallet_user->name : '' }}</td>
                         <td>{{ $wallet_user ? $wallet_user->user_type : ''}}</td>
