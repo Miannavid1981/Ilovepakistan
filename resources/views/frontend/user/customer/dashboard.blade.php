@@ -145,7 +145,7 @@
             <div class="px-4 bg-white border h-100">
 
                 <div class="d-flex align-items-center py-4 border-bottom">
-                    <i class="fa fa-invoice"></i>
+                    <i class="fa fa-wallet"></i>
                     <div class="ml-3 d-flex flex-column justify-content-between">
                        
                         <span class="fs-20 fw-700 mb-1">{{ single_price(Auth::user()->balance) }}</span>
@@ -154,7 +154,7 @@
                 </div>
 
                 <div class="d-flex align-items-center py-4 border-bottom">
-                    <i class="fa fa-invoice"></i>
+                    <i class="fa fa-wallet"></i>
                     <div class="ml-3 d-flex flex-column justify-content-between">
                         @php
                             $total_deposit = \App\Models\WalletTransaction::where('user_id', Auth::id())->where('source', 'order_checkout')->sum('amount');
@@ -166,7 +166,7 @@
 
 
                 <div class="d-flex align-items-center py-4 border-bottom">
-                    <i class="fa fa-invoice"></i>
+                    <i class="fa fa-wallet"></i>
                     <div class="ml-3 d-flex flex-column justify-content-between">
                         @php
                             $total_deposit = \App\Models\CustomerWalletDepositRequest::where('user_id', Auth::id())->sum('amount');
@@ -177,7 +177,7 @@
                 </div>
 
                 <div class="d-flex align-items-center py-4 border-bottom">
-                    <i class="fa fa-invoice"></i>
+                    <i class="fa fa-wallet"></i>
                     <div class="ml-3 d-flex flex-column justify-content-between">
                         @php
                             $last_deposit = \App\Models\CustomerWalletDepositRequest::where('user_id', Auth::id())->orderBy('created_at', 'DESC')->first();
