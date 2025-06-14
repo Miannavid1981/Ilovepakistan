@@ -149,7 +149,7 @@
                         @php
                             $total_deposit = \App\Models\CustomerWalletDepositRequest::where('user_id', Auth::id())->sum('amount');
                         @endphp
-                        <span class="fs-20 fw-700 mb-1">{{ $total_deposit ? sprintf("%02d", $total_deposit) : 0 }}</span>
+                        <span class="fs-20 fw-700 mb-1">{{ single_price($total_deposit ? $total_deposit : 0) }}</span>
                         <span class="fs-14 fw-400 text-secondary">{{ translate('Deposit') }}</span>
                     </div>
                 </div>
@@ -160,7 +160,7 @@
                         @php
                             $last_deposit = \App\Models\CustomerWalletDepositRequest::where('user_id', Auth::id())->orderBy('created_at', 'DESC')->first();
                         @endphp
-                        <span class="fs-20 fw-700 mb-1">{{ $last_deposit ? sprintf("%02d", $last_deposit->amount) : 0 }}</span>
+                        <span class="fs-20 fw-700 mb-1">{{ single_price($last_deposit ? $last_deposit->amount : 0) }}</span>
                         <span class="fs-12 fw-400 text-muted">{{ $last_deposit->created_at->format('F j, Y') }}</span>
                         <span class="fs-14 fw-400 text-secondary">{{ translate('Last Deposit') }}</span>
                     </div>
