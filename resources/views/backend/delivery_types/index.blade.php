@@ -11,7 +11,7 @@
     <form method="POST" action="{{ route('admin.delivery_types.update') }}">
         @csrf
         <div class="form-check">
-            <input class="form-check-input" type="checkbox" name="personal" id="personal" {{ $setting->personal ? 'checked' : '' }}>
+            <input class="form-check-input" type="checkbox" name="personal" id="personal" checked readonly>
             <label class="form-check-label" for="personal">Personal</label>
         </div>
         <div class="form-check">
