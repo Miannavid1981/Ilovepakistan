@@ -7,7 +7,6 @@
         display: inline-block;
         cursor: pointer;
     }
-
     .hover-popover .popover-content {
         visibility: hidden;
         opacity: 0;
@@ -19,17 +18,16 @@
         padding: 10px;
         position: absolute;
         z-index: 999;
-        top: -120%; /* position above */
-        left: 50%;
-        transform: translateX(-50%);
+        bottom: -220%;
+        left: 0;
+        /* transform: translateX(-50%); */
         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
         transition: all 0.2s ease;
     }
-
     .hover-popover:hover .popover-content {
         visibility: visible;
         opacity: 1;
-        top: -130%;
+        bottom: 120%;
     }
 
     .popover-content::before {
@@ -300,13 +298,25 @@
                                                         {{ $orderDetail->variation }}
                                                     </small>
                                                     <br>
-                                                    <small class="fs-13 font-weight-bold">
-                                                        @php
-                                                            $product_stock = $orderDetail->product->stocks->where('variant', $orderDetail->variation)->first();
-                                                        @endphp
-                                                    {{ $orderDetail->item_skin ?? '' }}
+                                                    <!-- Hover Target -->
+                                                    <span class="hover-popover">
+                                                        <small class="fs-13 font-weight-bold">
+                                                            @php
+                                                                $product_stock = $orderDetail->product->stocks->where('variant', $orderDetail->variation)->first();
+                                                            @endphp
+                                                        {{ $orderDetail->item_skin ?? '' }}
 
-                                                    </small>
+                                                        </small>
+                                                    
+                                                        <!-- Popover Content -->
+                                                        <div class="popover-content">
+                                                            <strong>Name:</strong> John Doe<br>
+                                                            <strong>Type:</strong> Brand Partner<br>
+                                                            <strong>Email:</strong> john@example.com<br>
+                                                            <strong>Shop:</strong> Doe Mart
+                                                        </div>
+                                                    </span>
+                                                    
                                                 @elseif ($orderDetail->product != null && $orderDetail->product->auction_product == 1)
                                                     <strong>
                                                         <a href="{{ route('auction-product', $orderDetail->product->slug) }}" target="_blank"
@@ -321,18 +331,7 @@
                                             </div>
                                           
                                             
-                                            <!-- Hover Target -->
-                                            <span class="hover-popover">
-                                                <span class="text-primary fw-bold">View Seller Info</span>
                                             
-                                                <!-- Popover Content -->
-                                                <div class="popover-content">
-                                                    <strong>Name:</strong> John Doe<br>
-                                                    <strong>Type:</strong> Brand Partner<br>
-                                                    <strong>Email:</strong> john@example.com<br>
-                                                    <strong>Shop:</strong> Doe Mart
-                                                </div>
-                                            </span>
                                             
                                         </td>
                                         <td>
