@@ -15,8 +15,8 @@
             <label class="form-check-label" for="personal">Personal</label>
         </div>
         <div class="form-check">
-            <input class="form-check-input" type="checkbox" name="family_and_friends" id="family_and_friends" {{ $setting->family_and_friends ? 'checked' : '' }}>
-            <label class="form-check-label" for="family_and_friends">Family and Friends</label>
+            <input class="form-check-input" type="checkbox" name="family_friends" id="family_friends" {{ $setting->family_and_friends ? 'checked' : '' }}>
+            <label class="form-check-label" for="family_friends">Family and Friends</label>
         </div>
         <div class="form-check">
             <input class="form-check-input" type="checkbox" name="others" id="others" {{ $setting->others ? 'checked' : '' }}>
