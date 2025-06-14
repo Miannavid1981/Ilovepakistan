@@ -106,7 +106,9 @@
         <div class="col-xl-4 col-md-6 mb-4">
             <div class="px-4 bg-white border h-100">
                 <div class="d-flex align-items-center py-4 border-bottom">
-                    <i class="fa fa-invoice"></i>
+                    <div class="btn btn-light border-0 rounded-circle d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">
+                        <i class="fa fa-box fs-15"></i>
+                     </div>
                     <div class="ml-3 d-flex flex-column justify-content-between">
                         @php
                             $orders = \App\Models\CombinedOrder::where('user_id', Auth::id())->count();
@@ -117,7 +119,9 @@
                 </div>
 
                 <div class="d-flex align-items-center py-4 border-bottom">
-                    <i class="fa fa-invoice"></i>
+                    <div class="btn btn-light border-0 rounded-circle d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">
+                        <i class="fa fa-box fs-15"></i>
+                     </div>
                     <div class="ml-3 d-flex flex-column justify-content-between">
                         @php
                             $pending_orders = \App\Models\CombinedOrder::where('user_id', Auth::id())->where('status', 'pending')->count();
@@ -128,7 +132,9 @@
                 </div>
 
                 <div class="d-flex align-items-center py-4 ">
-                    <i class="fa fa-invoice"></i>
+                    <div class="btn btn-light border-0 rounded-circle d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">
+                        <i class="fa fa-box fs-15"></i>
+                     </div>
                     <div class="ml-3 d-flex flex-column justify-content-between">
                         @php
                             $delivered_orders = \App\Models\CombinedOrder::where('user_id', Auth::id())->where('status', 'delivered')->count();
