@@ -318,7 +318,7 @@
                                                                 </div>
                                                                 <div>
                                                                     <p class="mb-0 ">{{ $brand_sold_seller->name }}</p>
-                                                                    <span class="badge badge-dark text-uppercase w-auto">{{ str_replace('_', ' ', $brand_sold_seller) }}</span>
+                                                                    <span class="badge badge-dark text-uppercase w-auto">{{ str_replace('_', ' ', $brand_sold_seller->seller_type) }}</span>
                                                                 </div>
                                                                 
                                                             </div>
