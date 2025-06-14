@@ -29,7 +29,7 @@
                     <tr>
                         
                         <td class="pl-0">{{ sprintf('%02d', ($key+1)) }}</td>
-                        <td class="pl-0 text-secondary">TRX00{{ sprintf('%02d', ($wallet->id)) }}</td>
+                        <td class="pl-0">TRX00{{ sprintf('%02d', ($wallet->id)) }}</td>
                         <td>{{ $wallet_user ? $wallet_user->name : '' }}</td>
                         <td>{{ $wallet_user ? $wallet_user->user_type : ''}}</td>
                        
