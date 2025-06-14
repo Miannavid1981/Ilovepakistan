@@ -19,7 +19,7 @@ class DeliveryTypesSettingController extends Controller
 
         $setting->update([
             'personal' => $request->has('personal'),
-            'family_and_friends' => $request->has('family_and_friends'),
+            'family_friends' => $request->has('family_friends'),
             'others' => $request->has('others'),
         ]);
 
