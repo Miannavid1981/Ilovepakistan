@@ -150,7 +150,7 @@
                             $total_deposit = \App\Models\CustomerWalletDepositRequest::where('user_id', Auth::id())->sum('amount');
                         @endphp
                         <span class="fs-20 fw-700 mb-1">{{ single_price($total_deposit ? $total_deposit : 0) }}</span>
-                        <span class="fs-14 fw-400 text-secondary">{{ translate('Deposit') }}</span>
+                        <span class="fs-14 fw-400 text-secondary">{{ translate('Net Deposit') }}</span>
                     </div>
                 </div>
 
