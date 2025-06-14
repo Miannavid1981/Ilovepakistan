@@ -145,7 +145,9 @@
             <div class="px-4 bg-white border h-100">
 
                 <div class="d-flex align-items-center py-4 border-bottom">
-                    <i class="fa fa-wallet"></i>
+                    <div class="bg-dark text-white p-2 rounded-circle border-0">
+                        <i class="fa fa-wallet text-white fs-14"></i>
+                    </div>
                     <div class="ml-3 d-flex flex-column justify-content-between">
                        
                         <span class="fs-20 fw-700 mb-1">{{ single_price(Auth::user()->balance) }}</span>
