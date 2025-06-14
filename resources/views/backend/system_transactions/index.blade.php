@@ -26,6 +26,7 @@
                         $wallet_user = \App\Models\User::find($wallet->user_id);
                     @endphp
                     <tr>
+                        <td>{{$key}}</td>
                         <td>{{ $wallet_user ? $wallet_user->name : '' }}</td>
                         <td>{{ $wallet_user ? $wallet_user->user_type : ''}}</td>
                         <td class="pl-0">{{ sprintf('%02d', ($key+1)) }}</td>
