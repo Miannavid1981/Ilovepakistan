@@ -323,7 +323,7 @@
                                                                 
                                                             </div>
                                                             <br>
-                                                            <a class="text-dark fs-14 text-decoration-none" href="tel:{{ $brand_sold_seller->email ?? '' }}"><i class="las la-envelope"></i>&nbsp;</strong> {{ $brand_sold_seller->email ?? '' }}<a>
+                                                            <a class="text-dark fs-14 text-decoration-none" href="mailto:{{ $brand_sold_seller->email ?? '' }}"><i class="las la-envelope"></i>&nbsp;</strong> {{ $brand_sold_seller->email ?? '' }}<a>
                                                             
                                                         </div>
                                                     </span>
