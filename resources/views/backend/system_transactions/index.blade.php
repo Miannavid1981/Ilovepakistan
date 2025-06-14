@@ -11,6 +11,7 @@
             <thead class="text-gray fs-12">
                 <tr>
                     <th class="pl-0">#</th>
+                    <th class="pl-0">Trx #</th>
                     <th>{{ translate('User') }}</th>
                     <th>{{ translate('Type') }}</th>
                     <th>{{ translate('Amount') }}</th>
@@ -26,8 +27,9 @@
                             $wallet_user = \App\Models\User::find($wallet->user_id);
                         @endphp
                     <tr>
-                        <td class="pl-0">TRX00{{ sprintf('%02d', ($wallet->id)) }}</td>
+                        
                         <td class="pl-0">{{ sprintf('%02d', ($key+1)) }}</td>
+                        <td class="pl-0">TRX00{{ sprintf('%02d', ($wallet->id)) }}</td>
                         <td>{{ $wallet_user ? $wallet_user->name : '' }}</td>
                         <td>{{ $wallet_user ? $wallet_user->user_type : ''}}</td>
                        
