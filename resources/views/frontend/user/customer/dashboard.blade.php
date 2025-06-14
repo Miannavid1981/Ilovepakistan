@@ -145,7 +145,7 @@
             <div class="px-4 bg-white border h-100">
 
                 <div class="d-flex align-items-center py-4 border-bottom">
-                    <div class="btn btn-secondary border-0 rounded-circle d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">
+                    <div class="btn btn-light border-0 rounded-circle d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">
                        <i class="fa fa-wallet fs-14"></i>
                     </div>
                     <div class="ml-3 d-flex flex-column justify-content-between">
@@ -156,7 +156,7 @@
                 </div>
 
                 <div class="d-flex align-items-center py-4 border-bottom">
-                    <div class="btn btn-secondary border-0 rounded-circle d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">
+                    <div class="btn btn-light border-0 rounded-circle d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">
                         <i class="fa fa-wallet fs-14"></i>
                      </div>
                     <div class="ml-3 d-flex flex-column justify-content-between">
@@ -170,7 +170,7 @@
 
 
                 <div class="d-flex align-items-center py-4 border-bottom">
-                    <div class="btn btn-secondary border-0 rounded-circle d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">
+                    <div class="btn btn-light border-0 rounded-circle d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">
                         <i class="fa fa-file-upload fs-14"></i>
                      </div>
                     <div class="ml-3 d-flex flex-column justify-content-between">
@@ -183,7 +183,7 @@
                 </div>
 
                 <div class="d-flex align-items-center py-4 border-bottom">
-                    <div class="btn btn-secondary border-0 rounded-circle d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">
+                    <div class="btn btn-light border-0 rounded-circle d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">
                         <i class="fa fa-file-upload fs-14"></i>
                      </div>
                     <div class="ml-3 d-flex flex-column justify-content-between">
