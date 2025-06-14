@@ -1,6 +1,48 @@
 @extends('backend.layouts.app')
 
 @section('content')
+<style>
+    .hover-popover {
+        position: relative;
+        display: inline-block;
+        cursor: pointer;
+    }
+
+    .hover-popover .popover-content {
+        visibility: hidden;
+        opacity: 0;
+        width: 250px;
+        background-color: #fff;
+        color: #333;
+        text-align: left;
+        border-radius: 8px;
+        padding: 10px;
+        position: absolute;
+        z-index: 999;
+        top: -120%; /* position above */
+        left: 50%;
+        transform: translateX(-50%);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        transition: all 0.2s ease;
+    }
+
+    .hover-popover:hover .popover-content {
+        visibility: visible;
+        opacity: 1;
+        top: -130%;
+    }
+
+    .popover-content::before {
+        content: '';
+        position: absolute;
+        bottom: -8px;
+        left: 50%;
+        transform: translateX(-50%);
+        border-width: 8px;
+        border-style: solid;
+        border-color: #fff transparent transparent transparent;
+    }
+</style>
 @php
     $order = $combined_order->orders->first();
 @endphp
@@ -244,6 +286,7 @@
                                                 @else
                                                     <strong>{{ translate('N/A') }}</strong>
                                                 @endif
+                                                
                                                 </div>
                                                 <div> 
                                                 @if ($orderDetail->product != null && $orderDetail->product->auction_product == 0)
@@ -276,6 +319,21 @@
                                                 @endif
                                                 </div>
                                             </div>
+                                          
+                                            
+                                            <!-- Hover Target -->
+                                            <span class="hover-popover">
+                                                <span class="text-primary fw-bold">View Seller Info</span>
+                                            
+                                                <!-- Popover Content -->
+                                                <div class="popover-content">
+                                                    <strong>Name:</strong> John Doe<br>
+                                                    <strong>Type:</strong> Brand Partner<br>
+                                                    <strong>Email:</strong> john@example.com<br>
+                                                    <strong>Shop:</strong> Doe Mart
+                                                </div>
+                                            </span>
+                                            
                                         </td>
                                         <td>
                                             
