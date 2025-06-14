@@ -39,7 +39,7 @@
                         <td>{{ ucfirst(str_replace('_', ' ', $wallet->type)) }}</td>
                         <td>{{ ucfirst(str_replace('_', ' ', $wallet->source)) }}</td>
                         <td>{{ $wallet->description }}</td>
-                        <td>{{ $wallet->created_at->format('F j Y') }}</td>
+                        <td>{{ $wallet->created_at->format('F j, Y') }}</td>
                     </tr>
                 @endforeach
             </tbody>

@@ -103,6 +103,83 @@
 
     <div class="row gutters-16 mt-2">
 
+        <div class="col-xl-4 col-md-6 mb-4">
+            <div class="px-4 bg-white border h-100">
+                <div class="d-flex align-items-center py-4 border-bottom">
+                    <i class="fa fa-invoice"></i>
+                    <div class="ml-3 d-flex flex-column justify-content-between">
+                        @php
+                            $orders = \App\Models\CombinedOrder::where('user_id', Auth::id())->count();
+                        @endphp
+                        <span class="fs-20 fw-700 mb-1">{{ $orders ? sprintf("%02d", $orders) : 0 }}</span>
+                        <span class="fs-14 fw-400 text-secondary">{{ translate('Total Orders') }}</span>
+                    </div>
+                </div>
+
+                <div class="d-flex align-items-center py-4 border-bottom">
+                    <i class="fa fa-invoice"></i>
+                    <div class="ml-3 d-flex flex-column justify-content-between">
+                        @php
+                            $pending_orders = \App\Models\CombinedOrder::where('user_id', Auth::id())->where('status', 'pending')->count();
+                        @endphp
+                        <span class="fs-20 fw-700 mb-1">{{ $pending_orders ? sprintf("%02d", $pending_orders) : 0 }}</span>
+                        <span class="fs-14 fw-400 text-secondary">{{ translate('Pending Orders') }}</span>
+                    </div>
+                </div>
+
+                <div class="d-flex align-items-center py-4 ">
+                    <i class="fa fa-invoice"></i>
+                    <div class="ml-3 d-flex flex-column justify-content-between">
+                        @php
+                            $delivered_orders = \App\Models\CombinedOrder::where('user_id', Auth::id())->where('status', 'delivered')->count();
+                        @endphp
+                        <span class="fs-20 fw-700 mb-1">{{ $delivered_orders ? sprintf("%02d", $delivered_orders) : 0 }}</span>
+                        <span class="fs-14 fw-400 text-secondary">{{ translate('Delivered Orders') }}</span>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+        <div class="col-xl-4 col-md-6 mb-4">
+            <div class="px-4 bg-white border h-100">
+                <div class="d-flex align-items-center py-4 border-bottom">
+                    <i class="fa fa-invoice"></i>
+                    <div class="ml-3 d-flex flex-column justify-content-between">
+                        @php
+                            $total_deposit = \App\Models\CustomerWalletDepositRequest::where('user_id', Auth::id())->sum('amount');
+                        @endphp
+                        <span class="fs-20 fw-700 mb-1">{{ $total_deposit ? sprintf("%02d", $total_deposit) : 0 }}</span>
+                        <span class="fs-14 fw-400 text-secondary">{{ translate('Deposit') }}</span>
+                    </div>
+                </div>
+
+                <div class="d-flex align-items-center py-4 border-bottom">
+                    <i class="fa fa-invoice"></i>
+                    <div class="ml-3 d-flex flex-column justify-content-between">
+                        @php
+                            $last_deposit = \App\Models\CustomerWalletDepositRequest::where('user_id', Auth::id())->orderBy('created_at', 'DESC')->first();
+                        @endphp
+                        <span class="fs-20 fw-700 mb-1">{{ $last_deposit ? sprintf("%02d", $last_deposit->amount) : 0 }}</span>
+                        <span class="fs-12 fw-400 text-muted">{{ $last_deposit->created_at->format('F j, Y') }}</span>
+                        <span class="fs-14 fw-400 text-secondary">{{ translate('Last Deposit') }}</span>
+                    </div>
+                </div>
+
+                <div class="d-flex align-items-center py-4 ">
+                    <i class="fa fa-invoice"></i>
+                    <div class="ml-3 d-flex flex-column justify-content-between">
+                        @php
+                            $delivered_orders = \App\Models\CombinedOrder::where('user_id', Auth::id())->where('status', 'delivered')->count();
+                        @endphp
+                        <span class="fs-20 fw-700 mb-1">{{ $delivered_orders ? sprintf("%02d", $delivered_orders) : 0 }}</span>
+                        <span class="fs-14 fw-400 text-secondary">{{ translate('Delivered Orders') }}</span>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
         <!-- count summary -->
         <div class="col-xl-4 col-md-6 mb-4">
             <div class="px-4 bg-white border h-100">
@@ -168,44 +245,7 @@
             </div>
             
         </div>
-        <div class="col-xl-4 col-md-6 mb-4">
-            <div class="px-4 bg-white border h-100">
-                <div class="d-flex align-items-center py-4 border-bottom">
-                    <i class="fa fa-invoice"></i>
-                    <div class="ml-3 d-flex flex-column justify-content-between">
-                        @php
-                            $orders = \App\Models\CombinedOrder::where('user_id', Auth::id())->count();
-                        @endphp
-                        <span class="fs-20 fw-700 mb-1">{{ $orders ? sprintf("%02d", $orders) : 0 }}</span>
-                        <span class="fs-14 fw-400 text-secondary">{{ translate('Total Orders') }}</span>
-                    </div>
-                </div>
-
-                <div class="d-flex align-items-center py-4 border-bottom">
-                    <i class="fa fa-invoice"></i>
-                    <div class="ml-3 d-flex flex-column justify-content-between">
-                        @php
-                            $pending_orders = \App\Models\CombinedOrder::where('user_id', Auth::id())->where('status', 'pending')->count();
-                        @endphp
-                        <span class="fs-20 fw-700 mb-1">{{ $pending_orders ? sprintf("%02d", $pending_orders) : 0 }}</span>
-                        <span class="fs-14 fw-400 text-secondary">{{ translate('Pending Orders') }}</span>
-                    </div>
-                </div>
-
-                <div class="d-flex align-items-center py-4 ">
-                    <i class="fa fa-invoice"></i>
-                    <div class="ml-3 d-flex flex-column justify-content-between">
-                        @php
-                            $delivered_orders = \App\Models\CombinedOrder::where('user_id', Auth::id())->where('status', 'delivered')->count();
-                        @endphp
-                        <span class="fs-20 fw-700 mb-1">{{ $delivered_orders ? sprintf("%02d", $delivered_orders) : 0 }}</span>
-                        <span class="fs-14 fw-400 text-secondary">{{ translate('Delivered Orders') }}</span>
-                    </div>
-                </div>
-
-
-            </div>
-        </div>
+        
 
         <!-- Purchased Package -->
         @if (get_setting('classified_product'))
