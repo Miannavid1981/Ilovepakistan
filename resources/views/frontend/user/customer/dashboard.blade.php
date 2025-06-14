@@ -145,8 +145,8 @@
             <div class="px-4 bg-white border h-100">
 
                 <div class="d-flex align-items-center py-4 border-bottom">
-                    <div class="btn btn-dark text-white btn-circle rounded-circle border-0">
-                        <i class="fa fa-wallet text-white fs-14"></i>
+                    <div class="btn btn-dark text-white border-0 rounded-circle d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">
+                       <i class="fa fa-wallet text-white fs-14"></i>
                     </div>
                     <div class="ml-3 d-flex flex-column justify-content-between">
                        
