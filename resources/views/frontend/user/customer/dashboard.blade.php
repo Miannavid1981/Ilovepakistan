@@ -172,7 +172,7 @@
                         <i class="fa fa-invoice"></i>
                         <div class="ml-3 d-flex flex-column justify-content-between">
                             @php
-                                $pending_orders = \App\Models\CombinedOrder::where('user_id', Auth::id())->count();
+                                $orders = \App\Models\CombinedOrder::where('user_id', Auth::id())->count();
                             @endphp
                             <span class="fs-20 fw-700 mb-1">{{ count($orders) > 0 ? sprintf("%02d", $orders) : 0 }}</span>
                             <span class="fs-14 fw-400 text-secondary">{{ translate('Total Orders') }}</span>
@@ -185,7 +185,7 @@
                             @php
                                 $pending_orders = \App\Models\CombinedOrder::where('user_id', Auth::id())->where('status', 'pending')->count();
                             @endphp
-                            <span class="fs-20 fw-700 mb-1">{{ count($orders) > 0 ? sprintf("%02d", $orders) : 0 }}</span>
+                            <span class="fs-20 fw-700 mb-1">{{ count($pending_orders) > 0 ? sprintf("%02d", $pending_orders) : 0 }}</span>
                             <span class="fs-14 fw-400 text-secondary">{{ translate('Pending Orders') }}</span>
                         </div>
                     </div>
@@ -194,9 +194,9 @@
                         <i class="fa fa-invoice"></i>
                         <div class="ml-3 d-flex flex-column justify-content-between">
                             @php
-                                $pending_orders = \App\Models\CombinedOrder::where('user_id', Auth::id())->where('status', 'delivered')->count();
+                                $delivered_orders = \App\Models\CombinedOrder::where('user_id', Auth::id())->where('status', 'delivered')->count();
                             @endphp
-                            <span class="fs-20 fw-700 mb-1">{{ count($orders) > 0 ? sprintf("%02d", $orders) : 0 }}</span>
+                            <span class="fs-20 fw-700 mb-1">{{ count($delivered_orders) > 0 ? sprintf("%02d", $delivered_orders) : 0 }}</span>
                             <span class="fs-14 fw-400 text-secondary">{{ translate('Delivered Orders') }}</span>
                         </div>
                     </div>
