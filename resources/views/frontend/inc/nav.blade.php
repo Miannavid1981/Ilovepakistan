@@ -23,7 +23,7 @@ header{
                 $logo_url = uploaded_asset(get_setting('header_logo'));
                 $my_account_url =  '/dashboard';
                 if( Auth::user() ) {
-                    $my_account_url = Auth::user()->user_type == "staff" ? '/admin/profile/' : route('profile');
+                    $my_account_url = Auth::user()->user_type == "staff" ? '/admin/profile/' : '/dashboard';
                 }
                 
               
