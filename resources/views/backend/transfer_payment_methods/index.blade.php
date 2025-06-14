@@ -53,7 +53,7 @@
                 <tr>
                     <td>
                         @if($method->image)
-                            <img src="{{ asset('storage/'.$method->image) }}" width="40">
+                        <img src="{{ asset('storage/'.$method->image) }}" width="40">
                         @endif
                     </td>
                     <td>{{ ucfirst($method->type) }}</td>

@@ -354,7 +354,7 @@
                         </div>
                   </div>
                   <span class="d-flex gap-2 align-items-center">
-                    @if ($total > $user_wallet_balance)  <a href="{{ url('/dashboard') }}" class="btn btn-primary px-2 py-1 fs-12"> Recharge</a> @endif
+                    @if ($total > $user_wallet_balance)  <a href="{{ url('/wallet') }}" class="btn btn-primary px-2 py-1 fs-12"> Recharge</a> @endif
                     <h6 class="m-0">{{ single_price(Auth::user()->balance)}}</h6>
                     <img src="{{ uploaded_asset(get_setting('site_icon')) }}" class="ms-2" style="width: 25px; height: auto" alt="Discover">
                     </span>
