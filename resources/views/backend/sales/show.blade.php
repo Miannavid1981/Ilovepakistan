@@ -325,7 +325,7 @@
                                                             </div>
                                                             <br>
                                                             @if ($orderDetail->source_seller_id != $orderDetail->seller_id)
-                                                                <a class="text-dark fs-14 text-decoration-none" href="javascript:void(0);"><i class="las la-envelope"></i>&nbsp;</strong> {{ get_product_full_skin_no($brand_sold_seller, $orderDetail->product) }}<a>
+                                                                <a class="text-dark fs-14 text-decoration-none" href="javascript:void(0);"><i class="las la-hash"></i>&nbsp;</strong> {{ get_product_full_skin_no($brand_sold_seller, $orderDetail->product) }}<a>
                                                                 <br>
                                                             @endif
                                                             <a class="text-dark fs-14 text-decoration-none" href="mailto:{{ $popover_seller->email ?? '' }}"><i class="las la-envelope"></i>&nbsp;</strong> {{ $popover_seller->email ?? '' }}<a>
