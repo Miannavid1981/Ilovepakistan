@@ -266,6 +266,8 @@
                                     $sold_by_seller_id = $orderDetail->source_seller_id != $orderDetail->seller_id ? $orderDetail->seller_id : $orderDetail->source_seller_id;
                                     $brand_sold_seller = \App\Models\User::where('id', $orderDetail->source_seller_id)->first();
                                     $sold_by_seller = \App\Models\User::find($sold_by_seller_id);
+
+                                    $popover_seller =  $orderDetail->source_seller_id != $orderDetail->seller_id ? $sold_by_seller : $brand_sold_seller;
                                 @endphp
                                 
                                     <tr>
@@ -273,18 +275,17 @@
                                         <td style="width: 400px">
                                             <div style="display: grid; grid-template-columns: 1fr 3fr">
                                                 <div>
-                                                @if ($orderDetail->product != null && $orderDetail->product->auction_product == 0)
-                                                    <a href="{{ route('product', $orderDetail->product->slug) }}" target="_blank">
-                                                        <img height="50" src="{{ uploaded_asset($orderDetail->product->thumbnail_img) }}">
-                                                    </a>
-                                                @elseif ($orderDetail->product != null && $orderDetail->product->auction_product == 1)
-                                                    <a href="{{ route('auction-product', $orderDetail->product->slug) }}" target="_blank">
-                                                        <img height="50" src="{{ uploaded_asset($orderDetail->product->thumbnail_img) }}">
-                                                    </a>
-                                                @else
-                                                    <strong>{{ translate('N/A') }}</strong>
-                                                @endif
-                                                
+                                                    @if ($orderDetail->product != null && $orderDetail->product->auction_product == 0)
+                                                        <a href="{{ route('product', $orderDetail->product->slug) }}" target="_blank">
+                                                            <img height="50" src="{{ uploaded_asset($orderDetail->product->thumbnail_img) }}">
+                                                        </a>
+                                                    @elseif ($orderDetail->product != null && $orderDetail->product->auction_product == 1)
+                                                        <a href="{{ route('auction-product', $orderDetail->product->slug) }}" target="_blank">
+                                                            <img height="50" src="{{ uploaded_asset($orderDetail->product->thumbnail_img) }}">
+                                                        </a>
+                                                    @else
+                                                        <strong>{{ translate('N/A') }}</strong>
+                                                    @endif
                                                 </div>
                                                 <div> 
                                                 @if ($orderDetail->product != null && $orderDetail->product->auction_product == 0)
@@ -314,18 +315,22 @@
 
                                                             <div class="d-flex align-items-center " style="gap: 10px">
                                                                 <div class="w-40px h-40px ">
-                                                                    <img src="{{ uploaded_asset($brand_sold_seller->avatar_original) }}" class="w-100 h-100 object-cover rounded-3 ">
+                                                                    <img src="{{ uploaded_asset($popover_seller->avatar_original) }}" class="w-100 h-100 object-cover rounded-3 ">
                                                                 </div>
                                                                 <div>
-                                                                    <p class="mb-0 ">{{ $brand_sold_seller->name }}</p>
-                                                                    <span class="badge badge-dark text-uppercase w-auto">{{ str_replace('_', ' ', $brand_sold_seller->seller_type) }}</span>
+                                                                    <p class="mb-0 ">{{ $popover_seller->name }}</p>
+                                                                    <span class="badge badge-dark text-uppercase w-auto">{{ str_replace('_', ' ', $popover_seller->seller_type) }}</span>
                                                                 </div>
                                                                 
                                                             </div>
                                                             <br>
-                                                            <a class="text-dark fs-14 text-decoration-none" href="mailto:{{ $brand_sold_seller->email ?? '' }}"><i class="las la-envelope"></i>&nbsp;</strong> {{ $brand_sold_seller->email ?? '' }}<a>
+                                                            @if ($orderDetail->source_seller_id != $orderDetail->seller_id)
+                                                                <a class="text-dark fs-14 text-decoration-none" href="javascript:void(0);"><i class="las la-envelope"></i>&nbsp;</strong> {{ get_product_full_skin_no($brand_sold_seller, $orderDetail->product) }}<a>
                                                                 <br>
-                                                                <a class="text-dark fs-14 text-decoration-none" href="tel:{{ $brand_sold_seller->phone ?? '' }}"><i class="las la-phone"></i>&nbsp;</strong> {{ $brand_sold_seller->phone ?? '' }}<a>
+                                                            @endif
+                                                            <a class="text-dark fs-14 text-decoration-none" href="mailto:{{ $popover_seller->email ?? '' }}"><i class="las la-envelope"></i>&nbsp;</strong> {{ $popover_seller->email ?? '' }}<a>
+                                                            <br>
+                                                            <a class="text-dark fs-14 text-decoration-none" href="tel:{{ $popover_seller->phone ?? '' }}"><i class="las la-phone"></i>&nbsp;</strong> {{ $popover_seller->phone ?? '' }}<a>
                                                             
                                                         </div>
                                                     </span>
