@@ -120,7 +120,7 @@
                                 <option value="shopkeeper" {{ auth()->user()->profession_type == 'shopkeeper' ? 'selected' : '' }} >Shop Keeper</option>
                                 <option value="individual" {{ auth()->user()->profession_type == 'individual' ? 'selected' : '' }}>Individual</option>
                             </select>
-                            <input type="text" name="profession_type" value="{{ auth()->user()->profession_type }}" id="profession_type" class="form-control" placeholder="{{ translate('Shop address') }}" required>
+                          
                             @error('profession_type')
                                 <small class="form-text text-danger">{{ $message }}</small>
                             @enderror
