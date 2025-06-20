@@ -85,7 +85,53 @@
 
             </div>
         </div>
+         <!-- Basic Info-->
+         <div class="card">
+            <div class="card-header">
+                <h5 class="mb-0 h6">{{ translate('More Information')}}</h5>
+            </div>
+            <div class="card-body">
+                @if(auth()->user()->seller_type=="store_partner")
+                    <b>Store Information</b>
+                    <div class="form-group row">
+                        <label class="col-md-2 col-form-label" for="name">{{ translate('Store Name') }}</label>
+                        <div class="col-md-10">
+                            <input type="text" name="shop_name" value="{{ auth()->user()->shop->name }}" id="shop_name" class="form-control" placeholder="{{ translate('Shop Name') }}" required>
+                            @error('shop_name')
+                                <small class="form-text text-danger">{{ $message }}</small>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-md-2 col-form-label" for="name">{{ translate('Store Address') }}</label>
+                        <div class="col-md-10">
+                            <input type="text" name="shop_address" value="{{ auth()->user()->shop->address }}" id="shop_address" class="form-control" placeholder="{{ translate('Shop address') }}" required>
+                            @error('shop_address')
+                                <small class="form-text text-danger">{{ $message }}</small>
+                            @enderror
+                        </div>
+                    </div>
+                    <br>
+                    <b>Business Details</b>
+                    <div class="form-group row">
+                        <label class="col-md-2 col-form-label" for="name">{{ translate('Profession Type') }}</label>
+                        <div class="col-md-10">
+                            <select class="form-control aiz-selectpicker" data-live-search="true" data-placeholder="{{ translate('Select Profession Type') }}" name="profession_type" required>
+                                <option value="shopkeeper" {{ auth()->user()->profession_type == 'shopkeeper' ? 'selected' : '' }} >Shop Keeper</option>
+                                <option value="individual" {{ auth()->user()->profession_type == 'individual' ? 'selected' : '' }}>Individual</option>
+                            </select>
+                            <input type="text" name="profession_type" value="{{ auth()->user()->profession_type }}" id="profession_type" class="form-control" placeholder="{{ translate('Shop address') }}" required>
+                            @error('profession_type')
+                                <small class="form-text text-danger">{{ $message }}</small>
+                            @enderror
+                        </div>
+                    </div>
 
+                @elseif(auth()->user()->seller_type=="brand_partner")
+
+                @endif
+            </div>
+        </div>
         <!-- Payment System -->
         <div class="card">
             <div class="card-header">
@@ -163,7 +209,7 @@
         </div>
         <div class="card-body">
             <div class="row gutters-10">
-                $addresses = $user->addresses; 
+                @php $addresses = $user->addresses; @endphp
                 @foreach ($addresses as $key => $address)
                     <div class="col-lg-4">
                         <div class="border p-3 pr-5 rounded mb-3 position-relative">
