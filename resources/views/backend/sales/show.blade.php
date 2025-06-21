@@ -465,9 +465,11 @@
                 @endphp
                 @if(!empty($receipts) && count($receipts) > 0)
                     <h4>Payment Receipts</h4>
+                    <div style="display: flex; flex-wrap: wrap">
                     @foreach($receipts as $receipt)
                         <img src="{{ static_asset('storage/' . $receipt) }}" ><br>
                     @endforeach
+                    </div>
                 @endif
             </div>
             <div class="clearfix float-right">
