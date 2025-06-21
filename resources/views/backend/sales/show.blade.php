@@ -458,6 +458,17 @@
                     </table>
                 </div>
             </div>
+            <div>
+                @php                   
+                    // dd(json_decode($order->payment_receipts));
+                    $receipts = json_decode($combined_order->payment_receipts) ?? null;
+                @endphp
+                @if(!empty($receipts) && count($receipts) > 0)
+                    @foreach($receipts as $receipt)
+                        <img src="{{ url('/storage/' . $receipt) }}" ><br>
+                    @endforeach
+                @endif
+            </div>
             <div class="clearfix float-right">
                 @php
     $all_order_details = collect();
