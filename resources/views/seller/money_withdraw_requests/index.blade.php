@@ -22,7 +22,7 @@
                   $wallet_amount = $wallet ? $wallet->amount : 0; // Handle case when no wallet record exists
               @endphp
               <div class="px-3 pt-3 pb-3">
-                  <div class="h4 fw-700 text-center">{{ single_price($wallet_amount) }}</div>
+                  <div class="h4 fw-700 text-center">{{ single_price(auth()->user()->balance) }}</div>
                   <div class="opacity-50 text-center">{{ translate('Pending Balance') }}</div>
               </div>
             </div>
