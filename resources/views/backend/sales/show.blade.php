@@ -465,7 +465,7 @@
                 @endphp
                 @if(!empty($receipts) && count($receipts) > 0)
                     @foreach($receipts as $receipt)
-                        <img src="{{ asset('storage/' . $receipt) }}" ><br>
+                        <img src="{{ static_asset('storage/' . $receipt) }}" ><br>
                     @endforeach
                 @endif
             </div>
