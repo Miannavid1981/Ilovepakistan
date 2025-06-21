@@ -19,7 +19,7 @@
               @php
               $authUser = auth()->user();
                   $wallet = \App\Models\Wallet::where('user_id', $authUser->id)->first();
-                  $wallet_amount = $wallet ? $wallet->amount : 0; // Handle case when no wallet record exists
+                  $wallet_amount = single_price(auth()->user()->balance); // Handle case when no wallet record exists
               @endphp
               <div class="px-3 pt-3 pb-3">
                   <div class="h4 fw-700 text-center">{{ single_price(auth()->user()->balance) }}</div>
