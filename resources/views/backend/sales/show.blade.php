@@ -498,7 +498,7 @@
                                 <strong class="text-muted">{{ translate('TOTAL') }} :</strong>
                             </td>
                             <td class="text-muted h5">
-                                {{ single_price($order->grand_total) }}
+                                {{ single_price($combined_order->grand_total) }}
                             </td>
                         </tr>
                     </tbody>
