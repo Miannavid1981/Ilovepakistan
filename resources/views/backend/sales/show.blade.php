@@ -464,6 +464,7 @@
                     $receipts = json_decode($combined_order->payment_receipts) ?? null;
                 @endphp
                 @if(!empty($receipts) && count($receipts) > 0)
+                    <h4>Payment Receipts</h4>
                     @foreach($receipts as $receipt)
                         <img src="{{ static_asset('storage/' . $receipt) }}" ><br>
                     @endforeach
