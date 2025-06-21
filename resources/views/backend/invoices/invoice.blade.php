@@ -1,5 +1,5 @@
 @php
-    use Illuminate\Support\Facades\URL;
+    // use Illuminate\Support\Facades\URL;
     $logo = get_setting('header_logo');
     $logo_url = uploaded_asset($logo);
 
