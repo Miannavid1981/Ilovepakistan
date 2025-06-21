@@ -206,14 +206,14 @@
                                 <td class="text-main text-bold">{{ translate('Order Date') }} </td>
                                 <td class="text-right">{{ date('d-m-Y h:i A', $order->date) }}</td>
                             </tr>
-                            <tr>
+                            {{-- <tr>
                                 <td class="text-main text-bold">
                                     {{ translate('Total amount') }}
                                 </td>
                                 <td class="text-right">
                                     {{ single_price($order->grand_total) }}
                                 </td>
-                            </tr>
+                            </tr> --}}
                             <tr>
                                 <td class="text-main text-bold">{{ translate('Payment method') }}</td>
                                 <td class="text-right">
