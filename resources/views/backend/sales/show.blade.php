@@ -458,7 +458,7 @@
                     </table>
                 </div>
             </div>
-            <div>
+            <div class="clearfix float-left">
                 @php                   
                     // dd(json_decode($order->payment_receipts));
                     $receipts = json_decode($combined_order->payment_receipts) ?? null;
