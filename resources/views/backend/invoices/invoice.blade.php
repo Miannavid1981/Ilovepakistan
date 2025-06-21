@@ -1,14 +1,14 @@
 @php
-    // use Illuminate\Support\Facades\URL;
+    use Illuminate\Support\Facades\URL;
     $logo = get_setting('header_logo');
     $logo_url = uploaded_asset($logo);
 
-    $orders = $order->orders;
+    $orders = collect($order->orders); // will become empty collection if null
 
     $main_order_id = 'BH000'.$order->id;
     $combined_order = $order;
 
-    $payment_status = $orders[0]->payment_status;
+$payment_status = $orders->first()->payment_status ?? '';
 @endphp
 
 <!DOCTYPE html>
