@@ -217,7 +217,7 @@
                             <tr>
                                 <td class="text-main text-bold">{{ translate('Payment method') }}</td>
                                 <td class="text-right">
-                                    {{ translate(ucfirst(str_replace('_', ' ', $order->payment_type))) }}</td>
+                                    {{ translate(ucfirst(str_replace('_', ' ', $combined_order->payment_method))) }}</td>
                             </tr>
                             <tr>
                                 <td class="text-main text-bold">{{ translate('Additional Info') }}</td>
