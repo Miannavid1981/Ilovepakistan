@@ -283,7 +283,7 @@
                                         
                                     <td class="text-center">{{ $orderDetail->quantity }}</td>
                                     
-                                    <td class="text-center">{{ single_price($orderDetail->price) }}</td>
+                                    <td class="text-center">{{ single_price($row_sale * $orderDetail->quantity) }}</td>
                                 </tr>
                                 @php
                                 $overall_sale += $row_sale; 
