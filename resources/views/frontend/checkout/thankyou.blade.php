@@ -298,7 +298,7 @@ tr.border-bottom td {
                     @endphp
                     @if(!empty($receipts) && count($receipts) > 0)
                         @foreach($receipts as $receipt)
-                            <a href="{{ url('/storage/' . $receipt) }}" target="_blank">View Receipt</a><br>
+                            <a href="{{ static_asset('/storage/' . $receipt) }}" target="_blank">View Receipt</a><br>
                         @endforeach
                     @else
                         <!-- Modal -->
