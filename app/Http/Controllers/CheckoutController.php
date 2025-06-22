@@ -773,7 +773,7 @@ class CheckoutController extends Controller
     public function uploadReceipts(Request $request)
     {
         $request->validate([
-            'payment_receipts.*' => 'required|mimes:jpg,jpeg,png,pdf|max:2048'
+            'payment_receipts.*' => 'required|mimes:jpg,jpeg,png,pdf|max:5120'
         ]);
 
         $uploadedFiles = [];
