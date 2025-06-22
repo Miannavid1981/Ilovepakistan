@@ -467,7 +467,7 @@
                     <h4>Payment Receipts</h4>
                     <div style="display: flex; flex-wrap: wrap">
                     @foreach($receipts as $receipt)
-                        <img src="{{ static_asset('storage/' . $receipt) }}" style="width: 300px;">
+                        <a href="{{ static_asset('storage/' . $receipt) }}" target="_blank"><img src="{{ static_asset('storage/' . $receipt) }}" style="width: 300px;"></a>
                         
                     @endforeach
                     </div>
