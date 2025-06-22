@@ -352,9 +352,7 @@ tr.border-bottom td {
 
         <div class="row">
             <div class="col-12">
-                <div id="map"></div>
-            </div>
-            <div class="col-12  my-5">
+             
 
                 <h4>Items</h4>
                 <br>
@@ -413,7 +411,10 @@ tr.border-bottom td {
                         @endforeach
                     @endforeach
                 </table>
-                
+               
+            </div>
+            <div class="col-12  my-5">
+                <div id="map"></div>
             </div>
         </div>
       
