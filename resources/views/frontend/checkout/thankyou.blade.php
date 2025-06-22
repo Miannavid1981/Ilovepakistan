@@ -235,7 +235,7 @@ tr.border-bottom td {
                 @if(count($receipts) > 0)
                     @foreach($receipts as $receipt)
                         @php
-                            $fileUrl = url('/storage/' . $receipt);
+                            $fileUrl = static_asset('storage/' . $receipt);
                             $fileExtension = pathinfo($receipt, PATHINFO_EXTENSION);
                         @endphp
                         <div class="uploaded-file d-flex align-items-center mb-2">
