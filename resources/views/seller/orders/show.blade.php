@@ -159,9 +159,9 @@
                                         {{ translate('Platform Fee') }}</th>
                                 <th class="min-col text-uppercase text-center">
                                 @if(auth()->user()->id == $orderDetail->source_seller_id ) 
-                                    {{ translate('Sale') }}</th>
+                                    {{ translate('Sale') }}
                                 @endif
-                                
+                                </th>
                                 <th  class="min-col text-uppercase text-center">
                                     {{ translate('Qty') }}
                                 </th>
@@ -174,7 +174,14 @@
                             </tr>
                         </thead>
                         <tbody>
+                            @php
+                                $overall_sale = 0;
+                            @endphp
                             @foreach ($order->orderDetails as $key => $orderDetail)
+
+                                @php
+                                    $row_sale = 0;
+                                @endphp
                                 <tr>
                                     <td>{{ $key + 1 }}</td>
                                     <td>
@@ -259,10 +266,11 @@
                                         @if(auth()->user()->seller_type == 'brand_partner' )
 
                                             {{  single_price($this_order_detail->source_seller_profit_amount)  }}
-
+                                            @php($row_sale = $this_order_detail->source_seller_profit_amount )
                                         @elseif ( auth()->user()->seller_type == 'seller_partner' )  
                                             @if(empty($this_order_detail->seller_profit_amount) )
                                                 {{  single_price($this_order_detail->source_seller_profit_amount)  }}
+                                                @php($row_sale = $this_order_detail->source_seller_profit_amount )
                                             @else 
                                                 -
                                             @endif
@@ -277,7 +285,11 @@
                                     
                                     <td class="text-center">{{ single_price($orderDetail->price) }}</td>
                                 </tr>
+                                @php
+                                $overall_sale += $row_sale; 
+                                @endphp
                             @endforeach
+
                         </tbody>
                     </table>
                 </div>
@@ -290,7 +302,7 @@
                                 <strong class="text-muted">{{ translate('Sub Total') }} :</strong>
                             </td>
                             <td>
-                                {{ single_price($order->orderDetails->sum('price')) }}
+                                {{ single_price($overall_sale) }}
                             </td>
                         </tr>
                         <tr>
@@ -322,7 +334,7 @@
                                 <strong class="text-muted">{{ translate('TOTAL') }} :</strong>
                             </td>
                             <td class="text-muted h5">
-                                {{ single_price($order->grand_total) }}
+                                {{ single_price($overall_sale) }}
                             </td>
                         </tr>
                     </tbody>
