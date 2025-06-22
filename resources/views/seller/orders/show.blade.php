@@ -156,7 +156,7 @@
                                 <th class="min-col text-uppercase text-center">
                                     {{ translate('Original Unit Price') }}</th>
                                     <th class="min-col text-uppercase text-center">
-                                        {{ translate('Unit Platform Fee') }}</th>
+                                        {{ translate('Platform Fee') }}</th>
                                 <th class="min-col text-uppercase text-center">
                                 @if(auth()->user()->id == $orderDetail->source_seller_id ) 
                                     {{ translate('Sale') }}
