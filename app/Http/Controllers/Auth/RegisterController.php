@@ -204,6 +204,10 @@ class RegisterController extends Controller
 
         return  view('auth.seller_register.store_partner');
     }
+    public function register_seller_partner(Request $request){
+
+        return  view('auth.seller_register.seller_partner'); 
+    }
     public function showOtpForm()
     {
         return view('auth.seller_register.otp_form');
