@@ -66,12 +66,34 @@
                             <br>
                             <div class="form-group">
                                 
-                                <input type="text" class="form-control {{ $errors->has('shop_name') ? ' is-invalid' : '' }}" value="{{ old('shop_name') }}" placeholder="{{  translate('Store Name') }}" name="shop_name">
+                                <input type="text" class="form-control {{ $errors->has('shop_name') ? ' is-invalid' : '' }}" value="{{ old('shop_name') }}" placeholder="{{  translate('Brand Name') }}" name="shop_name">
                                 @if ($errors->has('shop_name'))
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('shop_name') }}</strong>
                                     </span>
                                 @endif
+                            </div>
+                            <div class="form-group">
+                                <label>Brand Logo</label>
+                                <input type="file" name="brand_logo" class="form-control">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label>City</label>
+                                <select name="store_city" class="form-control">
+                                    <option value="">Select City</option>
+                                    <option value="Lahore">Lahore</option>
+                                    <option value="Karachi">Karachi</option>
+                                    <!-- Add other cities -->
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label>Area</label>
+                                <select name="store_area" class="form-control">
+                                    <option value="">Select Area</option>
+                                    <!-- Area options should be dynamically filtered by city -->
+                                </select>
                             </div>
 
                             <div class="form-group">
@@ -97,12 +119,15 @@
                             </h4>
                             <br>
                             <div class="mb-3">
-                                        
-                                <input type="text" name="authorized_person_mobile" class="form-control" placeholder="Designation" >
+                                <input type="text" name="designation" class="form-control" placeholder="Designation">
                             </div>
-                            <div class="mb-3">
                             
-                                <input type="text" name="authorized_person_mobile" class="form-control" placeholder="Authorized Person Mobile" >
+                            <div class="mb-3">
+                                <input type="text" name="authorized_person_mobile" class="form-control" placeholder="Authorized Person Mobile">
+                            </div>
+                            
+                            <div class="mb-3">
+                                <input type="text" name="authorized_person_whatsapp" class="form-control" placeholder="Whatsapp Number">
                             </div>
                             
                             <div class="mb-3">
@@ -220,6 +245,10 @@
 
                             <h4 align="center">{{ translate('Personal Info')}}</h4>
                             <br>
+                            
+                            <div class="form-group">
+                                <input type="text" name="username" class="form-control" placeholder="Username">
+                            </div>
                             <!-- Name -->
                             <div class="form-group">
                                             
@@ -240,7 +269,17 @@
                                     </span>
                                 @endif
                             </div>
-
+                            <div class="form-group">
+                                <label>Gender</label>
+                                <select name="gender" class="form-control">
+                                    <option value="">Select</option>
+                                    <option value="Mr">Mr</option>
+                                    <option value="Mrs">Mrs</option>
+                                    <option value="Miss">Miss</option>
+                                </select>
+                            </div>
+                            
+                            
                             <!-- password -->
                             <div class="form-group mb-0">
                                 
