@@ -197,7 +197,6 @@ class RegisterController extends Controller
     }
     public function register_brand_partner(Request $request){
 
-
         return  view('auth.seller_register.brand_partner');
     }
     public function register_store_partner(Request $request){
