@@ -53,6 +53,10 @@
                              <a class="nav-link" data-bs-toggle="tab" href="#tab3"><h6>Company Info</h6></a>
                          </li>
                          <li class="nav-item">
+                            <a class="nav-link" data-bs-toggle="tab" href="#tab5"><h6>Product Info</h6></a>
+                        </li>
+                        
+                         <li class="nav-item">
                              <a class="nav-link" data-bs-toggle="tab" href="#tab4"><h6>Personal Info</h6></a>
                          </li>
                          
@@ -158,6 +162,11 @@
                                  <label class="form-label">Registered Office Address</label>
                                  <textarea name="registered_office_address" class="form-control" ></textarea>
                              </div>
+                             <div class="mb-3">
+                                <label class="form-label">Home Address</label>
+                                <textarea name="home_address" class="form-control"></textarea>
+                            </div>
+                            
                              <div class="d-flex justify-content-between">
                                  <button class="btn btn-secondary prev-tab" type="button">Previous</button>
                                  <button class="btn btn-primary next-tab" type="button">Next</button>
@@ -242,6 +251,29 @@
                              </div>
                          </div>
                          <div id="tab4" class="tab-pane fade">
+                            <h4 align="center">Product Details</h4>
+                            <br>
+                            <div class="form-group">
+                                <input type="text" name="brand_name" class="form-control" placeholder="Brand Name">
+                            </div>
+                            <div class="form-group">
+                                <label>Brand Logo</label>
+                                <input type="file" name="brand_logo" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <textarea name="brand_description" class="form-control" placeholder="Tell us about your brand/product..."></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label>Upload Product Images (ZIP)</label>
+                                <input type="file" name="product_images_zip" class="form-control" accept=".zip">
+                            </div>
+                            <div class="d-flex justify-content-between">
+                                <button class="btn btn-secondary prev-tab" type="button">Previous</button>
+                                <button class="btn btn-primary next-tab" type="button">Next</button>
+                            </div>
+                        </div>
+                        
+                         <div id="tab5" class="tab-pane fade">
  
                              <h4 align="center">{{ translate('Personal Info')}}</h4>
                              <br>
@@ -249,6 +281,11 @@
                              <div class="form-group">
                                  <input type="text" name="username" class="form-control" placeholder="Username">
                              </div>
+                             <div class="form-group">
+                                <label>Profile Image/Selfie</label>
+                                <input type="file" name="avatar_original" class="form-control">
+                            </div>
+                            
                              <!-- Name -->
                              <div class="form-group">
                                              
