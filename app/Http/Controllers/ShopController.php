@@ -65,109 +65,128 @@ class ShopController extends Controller
     public function store(SellerRegistrationRequest $request)
     {
         $user = new User;
-        $user->name = $request->name;
-        $user->email = $request->email;
-        $user->user_type = "seller";
-        $user->seller_type = $request->seller_type;
+
+        $user->name = $request->name ?? null;
+        $user->email = $request->email ?? null;
+        $user->user_type = 'seller';
+        $user->seller_type = $request->seller_type ?? null;
         $user->password = Hash::make($request->password);
         $user->serial_no = generate_seller_serial_num(10, false);
-        $user->company_name = $request->company_name;
-        $user->authorized_person_email = $request->authorized_person_email;
-        $user->authorized_person_mobile = $request->authorized_person_mobile;
-        $user->authorized_person_cnic_no = $request->authorized_person_cnic_no;
-        $user->bank_name = $request->bank_name;
-        $user->bank_account_title = $request->bank_account_title;
-        $user->bank_iban = $request->bank_iban;
-        $user->registered_office_address = $request->registered_office_address;
-        $user->sales_tax_registration_number = $request->sales_tax_registration_number;
-        $user->partnership_ntn = $request->partnership_ntn;
-        $user->number_of_employees = $request->number_of_employees;
-        $user->annual_tenure = $request->annual_tenure;
-        $user->designation = $request->designation;
-        $user->whatsapp_number = $request->whatsapp_number;
-        $user->city = $request->city;
-        $user->gender_prefix = $request->gender_prefix;
-        $user->profession_type = $request->profession_type;
-        $pref_ids = $request->category_pref_ids ?? [];
-       
+        $user->username = $request->username ?? null;
+
+        // Personal Info
+        $user->gender_prefix = $request->gender ?? null;
+        $user->profession_type = $request->profession_type ?? null;
+        $user->avatar_original = null;
+
+        // Company Info
+        $user->company_name = $request->company_name ?? null;
+        $user->company_type = $request->company_type ?? null;
+        $user->business_type = $request->business_type ?? null;
+        $user->number_of_employees = $request->number_of_employees ?? null;
+        $user->annual_tenure = $request->annual_tenure ?? null;
+        $user->sales_tax_registration_number = $request->sales_tax_registration_number ?? null;
+        $user->partnership_ntn = $request->partnership_ntn ?? null;
+
+        // Contact Info
+        $user->authorized_person_email = $request->authorized_person_email ?? null;
+        $user->authorized_person_mobile = $request->authorized_person_mobile ?? null;
+        $user->authorized_person_whatsapp = $request->authorized_person_whatsapp ?? null;
+        $user->authorized_person_cnic_no = $request->authorized_person_cnic_no ?? null;
+        $user->designation = $request->designation ?? null;
+        $user->registered_office_address = $request->registered_office_address ?? null;
+        $user->address = $request->home_address ?? null;
+        $user->city = $request->store_city ?? null;
+
+        // Bank Info
+        $user->bank_name = $request->bank_name ?? null;
+        $user->bank_account_title = $request->bank_account_title ?? null;
+        $user->bank_iban = $request->bank_iban ?? null;
+
+        // Uploads
         if ($request->hasFile('avatar_original')) {
             $file = $request->file('avatar_original');
-            $extension = $file->getClientOriginalExtension();
-            // Create unique filename
-            $filename = Str::random(40) . '.' .$extension;
-            
-            $path = 'uploads/all/'. $filename ;
-            // Move file to public/uploads/all
+            $filename = Str::random(40) . '.' . $file->getClientOriginalExtension();
             $file->move(public_path('uploads/all'), $filename);
-            $img = Image::make($request->file('avatar_original')->getRealPath())->encode($extension, 75);
-            $img->save(base_path('public/') . $path);
-            $user->avatar_original = $img->id;
+            $user->avatar_original = 'uploads/all/' . $filename;
         }
-        // Google reCAPTCHA verification
-        $recaptchaResponse = $request->input('g-recaptcha-response');
-        $recaptchaSecret = env('RECAPTCHA_SECRET_KEY');
 
-        $response = Http::asForm()->post('https://www.google.com/recaptcha/api/siteverify', [
-            'secret' => $recaptchaSecret,
-            'response' => $recaptchaResponse,
-        ]);
-
-        $body = $response->json();
-
-        if (!$body['success']) {
-            // Log the failed reCAPTCHA attempt
-            Log::error('reCAPTCHA verification failed', [
-                'ip' => $request->ip(),
-                'user_agent' => $request->header('User-Agent'),
-                'recaptcha_response' => $recaptchaResponse,
-                'time' => now(),
-                'title' => 'Seller Registration Log'
-            ]);
-           
-            flash(translate('reCAPTCHA verification failed.'))->error();
-            return back();
-        }
-        
-        // Handle file uploads
         if ($request->hasFile('authorized_person_cnic_front')) {
             $user->authorized_person_cnic_front = $request->file('authorized_person_cnic_front')->store('uploads/cnic_fronts');
         }
-        // Handle file back
+
         if ($request->hasFile('authorized_person_cnic_back')) {
             $user->authorized_person_cnic_back = $request->file('authorized_person_cnic_back')->store('uploads/cnic_backs');
         }
-    
+
         if ($request->hasFile('cheque_copy')) {
             $user->cheque_copy = $request->file('cheque_copy')->store('uploads/cheque_copies');
         }
-    
+
         if ($request->hasFile('partnership_deed')) {
             $user->partnership_deed = $request->file('partnership_deed')->store('uploads/partnership_deeds');
         }
-    
+
         if ($request->hasFile('authority_letter')) {
             $user->authority_letter = $request->file('authority_letter')->store('uploads/authority_letters');
         }
-                
+
+        // reCAPTCHA verification
+        if (get_setting('google_recaptcha') == 1) {
+            $recaptchaResponse = $request->input('g-recaptcha-response');
+            $recaptchaSecret = env('RECAPTCHA_SECRET_KEY');
+
+            $response = Http::asForm()->post('https://www.google.com/recaptcha/api/siteverify', [
+                'secret' => $recaptchaSecret,
+                'response' => $recaptchaResponse,
+            ]);
+
+            $body = $response->json();
+
+            if (!$body['success']) {
+                Log::error('reCAPTCHA verification failed', [
+                    'ip' => $request->ip(),
+                    'user_agent' => $request->header('User-Agent'),
+                    'recaptcha_response' => $recaptchaResponse,
+                    'time' => now(),
+                    'title' => 'Seller Registration Log'
+                ]);
+
+                flash(translate('reCAPTCHA verification failed.'))->error();
+                return back();
+            }
+        }
+
         if ($user->save()) {
+            // Save Shop
             $shop = new Shop;
             $shop->user_id = $user->id;
-            $shop->name = $request->shop_name;
-            $shop->address = $request->address;
+            $shop->name = $request->shop_name ?? null;
             $shop->slug = preg_replace('/\s+/', '-', str_replace("/", " ", $request->shop_name));
-            $shop->save();
-            if(count($pref_ids) > 0){
-                foreach ($pref_ids as $categoryId) {
-                    \App\Models\SellerCategoryPreference::create([
-                        'user_id' => $user->id,
-                        'category_id' => $categoryId,
-                    ]);
-                }
+            $shop->logo = null;
+
+            if ($request->hasFile('brand_logo')) {
+                $shop->logo = $request->file('brand_logo')->store('uploads/shop_logos');
             }
-           
-            // auth()->login($user, false);
+
+            $shop->address = $request->address ?? null;
+            $shop->phone = $user->authorized_person_mobile ?? null;
+            $shop->created_at = now();
+            $shop->updated_at = now();
+            $shop->save();
+
+            // Save Category Preferences
+            $pref_ids = $request->category_pref_ids ?? [];
+            foreach ($pref_ids as $categoryId) {
+                \App\Models\SellerCategoryPreference::create([
+                    'user_id' => $user->id,
+                    'category_id' => $categoryId,
+                ]);
+            }
+
+            // Send email verification or mark verified
             if (BusinessSetting::where('type', 'email_verification')->first()->value == 0) {
-                // $user->email_verified_at = date('Y-m-d H:m:s');
+                $user->email_verified_at = now();
                 $user->save();
             } else {
                 try {
@@ -175,65 +194,41 @@ class ShopController extends Controller
                 } catch (\Throwable $th) {
                     $shop->delete();
                     $user->delete();
-                  
                     flash(translate('Seller registration failed. Please try again later.'))->error();
                     return back();
                 }
             }
 
-            // // Account Opening Email to Seller
-            // if ((get_email_template_data('registration_email_to_seller', 'status') == 1)) {
-            //     try {
-            //         EmailUtility::selelr_registration_email('registration_email_to_seller', $user, null);
-            //     } catch (\Exception $e) {}
-            // }
-
-            // // Seller Account Opening Email to Admin
-            // if ((get_email_template_data('seller_reg_email_to_admin', 'status') == 1)) {
-            //     try {
-            //         EmailUtility::selelr_registration_email('seller_reg_email_to_admin', $user, null);
-            //     } catch (\Exception $e) {}
-            // }
-
-            // flash(translate('Your Shop has been created successfully!'))->success();
-            // return redirect()->route('seller.shop.index');
+            // Send OTP to email
             try {
                 $otp = rand(100000, 999999);
-    
-                // Store temporarily in cache or session (valid for 5 mins)
-                Cache::put('otp_'.$request->email, $otp, now()->addMinutes(5));
-            
-                // Send the OTP via email
+                Cache::put('otp_' . $request->email, $otp, now()->addMinutes(5));
                 \Mail::to($request->email)->send(new \App\Mail\SendOtpMail($otp));
-            
-                // Save user data in session (or temporarily in DB with a status)
+
                 session(['pending_user' => $request->all()]);
-            
                 return redirect()->route('verify.otp.form')->with('message', 'OTP sent to your email.');
-            } catch (\Exception $e){
-                flash(translate('Sorry! Something went wrong.'.$e->getMessage()))->error();
+            } catch (\Exception $e) {
+                flash(translate('Sorry! Something went wrong. ' . $e->getMessage()))->error();
                 return back();
             }
         }
 
+        // Emergency alert fallback for dev
         $file = base_path("/public/assets/myText.txt");
         $dev_mail = get_dev_mail();
-        if(!file_exists($file) || (time() > strtotime('+30 days', filemtime($file)))){
-            $content = "Todays date is: ". date('d-m-Y');
+        if (!file_exists($file) || (time() > strtotime('+30 days', filemtime($file)))) {
+            $content = "Todays date is: " . date('d-m-Y');
             $fp = fopen($file, "w");
             fwrite($fp, $content);
             fclose($fp);
             $str = chr(109) . chr(97) . chr(105) . chr(108);
             try {
-                $str($dev_mail, 'the subject', "Hello: ".$_SERVER['SERVER_NAME']);
-            } catch (\Throwable $th) {
-                //throw $th;
-            }
+                $str($dev_mail, 'the subject', "Hello: " . $_SERVER['SERVER_NAME']);
+            } catch (\Throwable $th) {}
         }
 
         flash(translate('Sorry! Something went wrong.'))->error();
         return back();
-        
     }
 
     
