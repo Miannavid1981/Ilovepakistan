@@ -181,7 +181,7 @@
                             </div>
                         </div>
                         <div id="tab3" class="tab-pane fade">
-                            <h4 align="center">{{ translate('Company Details')}}</h4>
+                            <h4 align="center">{{ translate('Contact Info')}}</h4>
                             <br>
                             <!-- Designation -->
                             <div class="form-group">
