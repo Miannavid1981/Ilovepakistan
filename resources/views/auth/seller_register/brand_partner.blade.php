@@ -115,49 +115,66 @@
                         </div>
                         <div id="tab2" class="tab-pane fade">
                             <h4 align="center">
-                                Contact Information
+                                Business Information
                             </h4>
                             <br>
-                            <div class="mb-3">
-                                <input type="text" name="designation" class="form-control" placeholder="Designation">
-                            </div>
-                            
-                            <div class="mb-3">
-                                <input type="text" name="authorized_person_mobile" class="form-control" placeholder="Authorized Person Mobile">
-                            </div>
-                            
-                            <div class="mb-3">
-                                <input type="text" name="authorized_person_whatsapp" class="form-control" placeholder="Whatsapp Number">
-                            </div>
-                            
-                            <div class="mb-3">
-                                
-                                <input type="text" name="authorized_person_cnic_no" class="form-control" placeholder="Whatsapp Number" >
+                            <!-- Company Name -->
+                            <div class="form-group">
+                                <input type="text" name="company_name" class="form-control" placeholder="Company Name">
                             </div>
 
-                        
-                            
-
-                            <div class="mb-3">
-                                
-                                <input type="text" name="authorized_person_cnic_no" class="form-control" placeholder="Authorized Person CNIC No" >
+                            <!-- Company Type -->
+                            <div class="form-group">
+                                <select name="company_type" class="form-control">
+                                    <option value="">Select Company Type</option>
+                                    <option value="sole_proprietorship">Sole Proprietorship</option>
+                                    <option value="partnership">Partnership</option>
+                                    <option value="private_limited">Private Limited</option>
+                                </select>
                             </div>
 
-                            <div class="mb-3">
-                                <label class="form-label">CNIC Front</label>
-                                <input type="file" name="authorized_person_cnic_front" class="form-control" >
+                            <!-- Legal Documents Upload -->
+                            <div class="form-group">
+                                <label>Upload Legal Documents</label>
+                                <input type="file" name="legal_documents" class="form-control">
                             </div>
 
-                            <div class="mb-3">
-                                <label class="form-label">CNIC Back</label>
-                                <input type="file" name="authorized_person_cnic_back" class="form-control" >
+                            <!-- Business Type -->
+                            <div class="form-group">
+                                <select name="business_type" class="form-control">
+                                    <option value="">Select Business Type</option>
+                                    <option value="manufacturer">Manufacturer</option>
+                                    <option value="importer">Importer</option>
+                                    <option value="exporter">Exporter</option>
+                                    <option value="distributor">Distributor</option>
+                                    <option value="wholesaler">Wholesaler</option>
+                                </select>
                             </div>
-                        
 
-                            <div class="mb-3">
-                                <label class="form-label">Registered Office Address</label>
-                                <textarea name="registered_office_address" class="form-control" ></textarea>
+                            <!-- Sales Tax Number -->
+                            <div class="form-group">
+                                <input type="text" name="sales_tax_number" class="form-control" placeholder="Sales Tax Registration Number">
                             </div>
+
+                            <!-- NTN -->
+                            <div class="form-group">
+                                <input type="text" name="business_ntn" class="form-control" placeholder="Business NTN Number">
+                            </div>
+
+                            <!-- Business Categories (Same code you already have) -->
+                            <label class="form-label">Choose Category Preferences (Upto 3)</label>
+                            <div class="row">
+                                @foreach(\App\Models\Category::where('level', 0)->get() as $category)
+                                    <div class="col-md-3 col-sm-6 mt-2">
+                                        <div class="category_pref_box border rounded-2 p-2 d-flex flex-column align-items-center justify-content-center">
+                                            <img src="{{ uploaded_asset($category->icon) }}" class="rounded-circle bg-white p-1 border" style="width: 35px;">
+                                            <label class="form-label text-center">{{ $category->name }}</label>
+                                            <input type="checkbox" name="category_pref_ids[]" value="{{ $category->id }}">
+                                        </div>
+                                    </div>
+                                @endforeach
+                            </div>
+
                             <div class="d-flex justify-content-between">
                                 <button class="btn btn-secondary prev-tab" type="button">Previous</button>
                                 <button class="btn btn-primary next-tab" type="button">Next</button>
@@ -166,74 +183,21 @@
                         <div id="tab3" class="tab-pane fade">
                             <h4 align="center">{{ translate('Company Details')}}</h4>
                             <br>
-                            <div class="mb-3">
-                                <label class="form-label">Company Type</label>
-                                <select class="form-control" id="company_type">
-                                    <option value=""> - Select - </option>
-                                    <option value="Sole Proprietership "> Sole Proprietership </option>
-                                    <option value="Partnership"> Partnership </option>
-                                    <option value="Private Limited"> Private Limited</option>
-                                </select>
-                            </div>
-                            <div class="mb-3">
-                                <label class="form-label">Upload Legal Documents</label>
-                                <input type="file" name="partnership_deed" class="form-control">
+                            <!-- Designation -->
+                            <div class="form-group">
+                                <input type="text" name="designation" class="form-control" placeholder="Designation">
                             </div>
 
-                            <div class="mb-3">
-                                <label class="form-label">Business Type</label>
-                                <select class="form-control" id="business_type">
-                                    <option value=""> - Select - </option>
-                                    <option value="Manufacturer"> Manufacturer</option>
-                                    <option value="Importer"> Importer </option>
-                                    <option value="Wholeseller"> Wholeseller</option>
-                                    <option value="Distributor"> Distributor</option>
-                                </select>
-                            </div>
-                            <div class="mb-3">
-                                <label class="form-label">Number of Employees</label>
-                                <select class="form-control" id="business_type">
-                                    <option value=""> - Select - </option>
-                                    <option value=""> 1-20</option>
-                                    <option value=""> 20-50 </option>
-                                    <option value=""> 50-100</option>
-                                    <option value=""> 100-500</option>
-                                </select>
-                            </div>
-                            <div class="mb-3">
-                                <label class="form-label">Annual Tenure</label>
-                                <select class="form-control" id="business_type">
-                                    <option value=""> - Select - </option>
-                                    <option value="">PKR 500,000 - 1,000,000</option>
-                                    <option value="">PKR 5,000,000 - 10,000,000</option>
-                                    <option value="">PKR 50,000,000 - 100,000,000</option>
-                                    <option value="">PKR 100,000,000 or above</option>
-                                </select>
+                            <!-- Authorized Person Mobile -->
+                            <div class="form-group">
+                                <input type="text" name="authorized_person_mobile" class="form-control" placeholder="Authorized Person Mobile No">
                             </div>
 
-                            
-
-
-                            <div class="mb-3">
-                                
-                                <input type="text" placeholder="Sales Tax Registration Number" name="sales_tax_registration_number" class="form-control" >
-                            </div>
-                            <div class="mb-3">
-                                
-                                <input type="text" name="partnership_ntn" id="partnership_ntn" placeholder="NTN of Partnership" class="form-control" >
+                            <!-- WhatsApp -->
+                            <div class="form-group">
+                                <input type="text" name="whatsapp_number" class="form-control" placeholder="WhatsApp Number">
                             </div>
 
-                            <div class="mb-3">
-                                <label class="form-label">Copy of Cheque</label>
-                                <input type="file" name="cheque_copy" class="form-control" >
-                            </div>
-
-                            
-                            <div class="mb-3">
-                                <label class="form-label">Authority Letter</label>
-                                <input type="file" name="authority_letter" class="form-control" >
-                            </div>
-                            
 
                             
                             <div class="d-flex justify-content-between">
@@ -245,7 +209,10 @@
 
                             <h4 align="center">{{ translate('Personal Info')}}</h4>
                             <br>
-                            
+                            <!-- Full Name -->
+                            <div class="form-group">
+                                <input type="text" name="name" class="form-control" placeholder="Full Name">
+                            </div>
                             <div class="form-group">
                                 <input type="text" name="username" class="form-control" placeholder="Username">
                             </div>
