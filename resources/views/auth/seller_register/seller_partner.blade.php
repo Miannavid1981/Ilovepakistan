@@ -53,11 +53,11 @@
                              <a class="nav-link" data-bs-toggle="tab" href="#tab3"><h6>Company Info</h6></a>
                          </li>
                          <li class="nav-item">
-                            <a class="nav-link" data-bs-toggle="tab" href="#tab5"><h6>Product Info</h6></a>
+                            <a class="nav-link" data-bs-toggle="tab" href="#tab4"><h6>Product Info</h6></a>
                         </li>
                         
                          <li class="nav-item">
-                             <a class="nav-link" data-bs-toggle="tab" href="#tab4"><h6>Personal Info</h6></a>
+                             <a class="nav-link" data-bs-toggle="tab" href="#tab5"><h6>Personal Info</h6></a>
                          </li>
                          
                      </ul>
