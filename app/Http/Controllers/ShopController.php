@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
 use Storage;
 use Image;
-
+use Illuminate\Support\Str;
 class ShopController extends Controller
 {
 
