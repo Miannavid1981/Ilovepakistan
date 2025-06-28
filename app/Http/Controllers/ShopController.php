@@ -91,7 +91,7 @@ class ShopController extends Controller
         // Contact Info
         $user->authorized_person_email = $request->authorized_person_email ?? null;
         $user->authorized_person_mobile = $request->authorized_person_mobile ?? null;
-        $user->whatsapp_number = $request->whatsapp ?? null;
+        $user->whatsapp_number = $request->whatsapp_number ?? null;
         $user->authorized_person_cnic_no = $request->authorized_person_cnic_no ?? null;
         $user->designation = $request->designation ?? null;
         $user->registered_office_address = $request->registered_office_address ?? null;
