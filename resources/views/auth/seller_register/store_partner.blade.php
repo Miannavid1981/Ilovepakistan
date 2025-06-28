@@ -745,6 +745,39 @@
 <script type="text/javascript">
         
     $(document).ready(function(){
+        let timer;
+
+        $('input[name="username"]').on('keyup', function () {
+            clearTimeout(timer);
+            const username = $(this).val();
+            const $input = $(this);
+            
+            if (username.length < 3) {
+                $input.removeClass('is-valid is-invalid');
+                return;
+            }
+
+            timer = setTimeout(function () {
+                $.ajax({
+                    url: '{{ route("check.username") }}',
+                    method: 'POST',
+                    data: {
+                        _token: '{{ csrf_token() }}',
+                        username: username
+                    },
+                    success: function (response) {
+                        if (response.available) {
+                            $input.removeClass('is-invalid').addClass('is-valid');
+                        } else {
+                            $input.removeClass('is-valid').addClass('is-invalid');
+                        }
+                    },
+                    error: function () {
+                        $input.removeClass('is-valid').addClass('is-invalid');
+                    }
+                });
+            }, 500); // delay for debounce
+        });
         $('input[name="category_pref_ids[]"]').on('change', function () {
             let selected = $('input[name="category_pref_ids[]"]:checked');
 

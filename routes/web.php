@@ -90,6 +90,7 @@ Route::get('/privacy_policy', function (Request $request){
 })->name('privacy_policy');
 
 Route::get('/transfer-payment-method/details/{slug}', [TransferPaymentMethodController::class, 'showDetails']);
+Route::post('/check-username', [ShopController::class, 'checkUsername'])->name('check.username');
 
 
 

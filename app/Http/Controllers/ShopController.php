@@ -35,6 +35,19 @@ class ShopController extends Controller
         return view('seller.shop', compact('shop'));
     }
 
+    public function checkUsername(Request $request)
+    {
+        $request->validate([
+            'username' => 'required|string|min:3',
+        ]);
+
+        $exists = User::where('username', $request->username)->exists();
+
+        return response()->json([
+            'available' => !$exists,
+        ]);
+    }
+
     /**
      * Show the form for creating a new resource.
      *
