@@ -2811,24 +2811,22 @@ if (!function_exists('generate_seller_serial_num')) {
      */
     function generate_seller_serial_num($digits = 10, $formatted = true)
     {
-        // Fetch the latest serial number from the database
-        $latestSerial = DB::table('users')
+        $prefix = get_global_skin_company_prefix(); // e.g., 'BH'
+
+        // Fetch all seller serial numbers and extract numeric parts
+        $maxNumeric = DB::table('users')
             ->where('user_type', 'seller')
-            ->orderBy('serial_no', 'desc')
-            ->value('serial_no');
+            ->whereNotNull('serial_no')
+            ->selectRaw("MAX(CAST(SUBSTRING(serial_no, LENGTH(?) + 1) AS UNSIGNED)) as max_serial", [$prefix])
+            ->value('max_serial');
 
-        // If no serial number exists, start from 786
-        if (!$latestSerial) {
-            $numericPart = 786;
-        } else {
-            // Remove the prefix and get the numeric part
-            $numericPart = intval(substr($latestSerial, strlen(get_global_skin_company_prefix()))); // Strip 'BH' and convert to integer
-            $numericPart++; // Increment the serial number by 1
-        }
+        // If no serial number found, start from 786
+        $numericPart = $maxNumeric ? intval($maxNumeric) + 1 : 786;
 
-        // Return the formatted serial number if required
+        // Return formatted if requested
         return $formatted ? format_seller_serial_num($numericPart, $digits) : $numericPart;
     }
+
 }
 
 if (!function_exists('get_product_full_skin_no')) {
