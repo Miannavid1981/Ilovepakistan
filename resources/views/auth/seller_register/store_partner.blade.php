@@ -330,9 +330,11 @@
                                 <input type="file" name="avatar_original" class="form-control" >
                             </div>
                            
-                            <div class="form-group">
-                                 <input type="text" name="username" class="form-control" placeholder="Username">
-                             </div>
+                            <div class="form-group position-relative">
+                                <input type="text" name="username" id="username-input" class="form-control" placeholder="Username">
+                                <div id="username-feedback" class="mt-1 small fw-bold" style="display: none;"></div>
+                            </div>
+
                             <div class="form-group">
                                 
                                 <input type="email" class="form-control {{ $errors->has('email') ? ' is-invalid' : '' }}" value="{{ old('email') }}" placeholder="{{  translate('Email') }}" name="email" >
@@ -745,14 +747,16 @@
 <script type="text/javascript">
         
     $(document).ready(function(){
-        let timer;
+         let timer;
+        const $input = $('#username-input');
+        const $feedback = $('#username-feedback');
 
-        $('input[name="username"]').on('keyup', function () {
+        $input.on('keyup', function () {
             clearTimeout(timer);
-            const username = $(this).val();
-            const $input = $(this);
-            
+            const username = $input.val();
+
             if (username.length < 3) {
+                $feedback.hide();
                 $input.removeClass('is-valid is-invalid');
                 return;
             }
@@ -768,15 +772,30 @@
                     success: function (response) {
                         if (response.available) {
                             $input.removeClass('is-invalid').addClass('is-valid');
+                            $feedback
+                                .removeClass('text-danger bg-danger-subtle')
+                                .addClass('text-success bg-success-subtle border border-success px-2 py-1 rounded')
+                                .text('✅ Username is available')
+                                .show();
                         } else {
                             $input.removeClass('is-valid').addClass('is-invalid');
+                            $feedback
+                                .removeClass('text-success bg-success-subtle')
+                                .addClass('text-danger bg-danger-subtle border border-danger px-2 py-1 rounded')
+                                .text('❌ Username is already taken')
+                                .show();
                         }
                     },
                     error: function () {
                         $input.removeClass('is-valid').addClass('is-invalid');
+                        $feedback
+                            .removeClass('text-success bg-success-subtle')
+                            .addClass('text-danger bg-danger-subtle border border-danger px-2 py-1 rounded')
+                            .text('⚠️ Server error. Please try again.')
+                            .show();
                     }
                 });
-            }, 500); // delay for debounce
+            }, 400); // debounce
         });
         $('input[name="category_pref_ids[]"]').on('change', function () {
             let selected = $('input[name="category_pref_ids[]"]:checked');
