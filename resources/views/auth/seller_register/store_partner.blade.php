@@ -86,6 +86,15 @@
                             <br>
                             <div class="form-group">
                                 
+                                <input type="text" class="form-control {{ $errors->has('shop_name') ? ' is-invalid' : '' }}" value="{{ old('shop_name') }}" placeholder="{{  translate('Store Name') }}" name="shop_name">
+                                @if ($errors->has('shop_name'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('shop_name') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                            <div class="form-group">
+                                
                                 <select class="form-control" id="city" name="city">
                                     <option value="">Select City </option>
                                     @php
@@ -98,6 +107,13 @@
                                 </select>
                             </div>
                             <div class="form-group">
+                                <label>Area</label>
+                                <select name="store_area" class="form-control">
+                                    <option value="">Select Area</option>
+                                    <!-- Area options should be dynamically filtered by city -->
+                                </select>
+                            </div>
+                            <div class="form-group">
                                 
                                 <input type="text" class="form-control {{ $errors->has('address') ? ' is-invalid' : '' }}" value="{{ old('address') }}" placeholder="{{  translate('Store Address') }}" name="address">
                                 @if ($errors->has('address'))
@@ -106,15 +122,7 @@
                                     </span>
                                 @endif
                             </div>
-                            <div class="form-group">
-                                
-                                <input type="text" class="form-control {{ $errors->has('shop_name') ? ' is-invalid' : '' }}" value="{{ old('shop_name') }}" placeholder="{{  translate('Store Name') }}" name="shop_name">
-                                @if ($errors->has('shop_name'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('shop_name') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
+                            
 
                            
 
