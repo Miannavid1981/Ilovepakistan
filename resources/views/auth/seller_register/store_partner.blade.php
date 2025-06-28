@@ -94,7 +94,7 @@
                                 @endif
                             </div>
                             <div class="form-group">
-                                
+                                <label>Store Address</label>
                                 <select class="form-control" id="city" name="city">
                                     <option value="">Select City </option>
                                     @php
@@ -107,7 +107,7 @@
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label>Area</label>
+                               
                                 <select name="store_area" class="form-control">
                                     <option value="">Select Area</option>
                                     <!-- Area options should be dynamically filtered by city -->
