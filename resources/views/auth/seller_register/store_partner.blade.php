@@ -330,7 +330,9 @@
                                 <input type="file" name="avatar_original" class="form-control" >
                             </div>
                            
-
+                            <div class="form-group">
+                                 <input type="text" name="username" class="form-control" placeholder="Username">
+                             </div>
                             <div class="form-group">
                                 
                                 <input type="email" class="form-control {{ $errors->has('email') ? ' is-invalid' : '' }}" value="{{ old('email') }}" placeholder="{{  translate('Email') }}" name="email" >
