@@ -257,7 +257,8 @@ class ShopController extends Controller
                     'partnership_deed',
                     'authority_letter',
                     'product_images_zip',
-                    'brand_logo'
+                    'brand_logo',
+                    'legal_documents'
                     // Add any other file fields here
                 ]);
 
