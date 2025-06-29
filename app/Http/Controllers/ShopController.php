@@ -119,11 +119,17 @@ class ShopController extends Controller
         $user->bank_iban = $request->bank_iban ?? null;
 
         // Uploads
-        if ($request->hasFile('avatar_original')) {
+         if ($request->hasFile('avatar_original')) {
             $file = $request->file('avatar_original');
+            $extension = $file->getClientOriginalExtension();
+           
+            $path = 'uploads/all/'. $filename ;
+            // Move file to public/uploads/all
             $filename = Str::random(40) . '.' . $file->getClientOriginalExtension();
             $file->move(public_path('uploads/all'), $filename);
-            $user->avatar_original = 'uploads/all/' . $filename;
+            $img = Image::make($request->file('avatar_original')->getRealPath())->encode($extension, 75);
+            $img->save(base_path('public/') . $path);
+            $user->avatar_original = $img->id;
         }
 
         if ($request->hasFile('authorized_person_cnic_front')) {
