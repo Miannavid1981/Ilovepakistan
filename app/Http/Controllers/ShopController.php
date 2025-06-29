@@ -128,13 +128,13 @@ class ShopController extends Controller
             $fullPath = public_path($path);
 
             try {
-                // Create the image BEFORE moving it
-                $img = \Image::make($file->getRealPath())->encode($extension, 75);
+                // Create the image from the uploaded file object directly
+                $img = \Image::make($file)->encode($extension, 75);
 
-                // Save the optimized image
+                // Save image directly to the final location
                 $img->save($fullPath);
 
-                // Save metadata in uploads table
+                // Save metadata to DB
                 $upload = new \App\Models\Upload();
                 $upload->file_original_name = $file->getClientOriginalName();
                 $upload->file_name = $filename;
@@ -144,14 +144,14 @@ class ShopController extends Controller
                 $upload->file_size = $file->getSize();
                 $upload->save();
 
-                // Save the ID in the user's record
+                // Save ID reference
                 $user->avatar_original = $upload->id;
             } catch (\Exception $e) {
-                // Log or handle error
                 \Log::error('Avatar upload failed: ' . $e->getMessage());
                 flash('Avatar upload failed, please try again.')->error();
             }
         }
+
 
 
 
