@@ -209,8 +209,29 @@ class ShopController extends Controller
             $shop->logo = null;
 
             if ($request->hasFile('brand_logo')) {
-                $shop->logo = $request->file('brand_logo')->store('uploads/shop_logos');
+                $file = $request->file('brand_logo');
+                $extension = strtolower($file->getClientOriginalExtension());
+
+                $allowed = ['jpg', 'jpeg', 'png', 'gif', 'webp', 'svg'];
+                if (!in_array($extension, $allowed)) {
+                    flash('Only image files are allowed for brand logo.')->error();
+                    return back();
+                }
+
+                $path = $file->store('uploads/all', 'local');
+
+                $upload = new \App\Models\Upload();
+                $upload->file_original_name = $file->getClientOriginalName();
+                $upload->file_name = $path;
+                $upload->user_id = auth()->id() ?? null;
+                $upload->extension = $extension;
+                $upload->type = 'image';
+                $upload->file_size = $file->getSize();
+                $upload->save();
+
+                $shop->logo = $upload->id;
             }
+
 
             $shop->address = $request->address ?? null;
             $shop->phone = $user->authorized_person_mobile ?? null;
