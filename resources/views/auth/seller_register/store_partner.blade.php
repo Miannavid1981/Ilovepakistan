@@ -108,7 +108,7 @@
                             </div>
                             <div class="form-group">
                                
-                                <select name="store_area" class="form-control">
+                                <select name="area" class="form-control">
                                     <option value="">Select Area</option>
                                     <!-- Area options should be dynamically filtered by city -->
                                 </select>

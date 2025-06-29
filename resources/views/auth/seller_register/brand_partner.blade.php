@@ -82,8 +82,13 @@
                                 <label>Store Address</label>
                                 <select name="store_city" class="form-control">
                                     <option value="">Select City</option>
-                                    <option value="Lahore">Lahore</option>
-                                    <option value="Karachi">Karachi</option>
+                                    @php
+                                        $cities = \App\Models\City::where('state_id', 2728)->get();
+                                    @endphp
+                                    @foreach( $cities as $city)
+                                        <option value="{{ strtolower(str_replace(' ', '-', $city->name )) }}"> {{ $city->name }} </option>
+                                    @endforeach
+                                  
                                     <!-- Add other cities -->
                                 </select>
                             </div>
@@ -388,7 +393,7 @@
                 $('input[name="category_pref_ids[]"]').prop('disabled', false);
             }
         });
-        
+
         // function recaptchaVerified(){
         //     $("#reg-form").submit();
         // }
