@@ -249,7 +249,18 @@ class ShopController extends Controller
                 Cache::put('otp_' . $request->email, $otp, now()->addMinutes(5));
                 \Mail::to($request->email)->send(new \App\Mail\SendOtpMail($otp));
 
-                session(['pending_user' => $request->all()]);
+                $data = $request->except([
+                    'avatar_original',
+                    'authorized_person_cnic_front',
+                    'authorized_person_cnic_back',
+                    'cheque_copy',
+                    'partnership_deed',
+                    'authority_letter',
+                    'product_images_zip',
+                    // Add any other file fields here
+                ]);
+
+                session(['pending_user' => $data]);
                 return redirect()->route('verify.otp.form')->with('message', 'OTP sent to your email.');
             } catch (\Exception $e) {
                 flash(translate('Sorry! Something went wrong. ' . $e->getMessage()))->error();
