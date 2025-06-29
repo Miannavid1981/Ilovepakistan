@@ -215,49 +215,56 @@
                             <h4 align="center">{{ translate('Personal Info')}}</h4>
                             <br>
                             <!-- Full Name -->
-                            <div class="form-group">
-                                <input type="text" name="name" class="form-control" placeholder="Full Name">
+                           <div class="row">
+                                <div class="col-3">
+                                    <div class="form-group">
+                                        <select class="form-control" name="gender_prefix">
+                                        
+                                            <option value="Mr">Mr</option>
+                                            <option value="Mrs">Mrs</option>
+                                            <option value="Miss">Miss</option>
+                                            
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-9">
+                                    <!-- Name -->
+                                    <div class="form-group">
+                                                    
+                                        <input type="text" class="form-control {{ $errors->has('name') ? ' is-invalid' : '' }}" value="{{ old('name') }}" placeholder="{{  translate('Full Name') }}" name="name" >
+                                        @if ($errors->has('name'))
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $errors->first('name') }}</strong>
+                                            </span>
+                                        @endif
+                                    </div>
+                                </div>
                             </div>
+                            <div class="form-group">
+                                <label class="form-label">Profile Image</label>
+                                <input type="file" name="avatar_original" class="form-control" required>
+                            </div>
+                           
                             <div class="form-group position-relative">
                                 <input type="text" name="username" id="username-input" class="form-control" placeholder="Username" required>
                                 <div id="username-feedback" class="mt-1 small fw-bold" style="display: none;"></div>
                             </div>
-                            <!-- Name -->
-                            <div class="form-group">
-                                            
-                                <input type="text" class="form-control {{ $errors->has('name') ? ' is-invalid' : '' }}" value="{{ old('name') }}" placeholder="{{  translate('Full Name') }}" name="name" >
-                                @if ($errors->has('name'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('name') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
 
                             <div class="form-group">
                                 
-                                <input type="email" class="form-control {{ $errors->has('email') ? ' is-invalid' : '' }}" value="{{ old('email') }}" placeholder="{{  translate('Email') }}" name="email" >
+                                <input type="email" class="form-control {{ $errors->has('email') ? ' is-invalid' : '' }}" value="{{ old('email') }}" placeholder="{{  translate('Email') }}" name="email" required>
                                 @if ($errors->has('email'))
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('email') }}</strong>
                                     </span>
                                 @endif
                             </div>
-                            <div class="form-group">
-                                <label>Gender</label>
-                                <select name="gender" class="form-control">
-                                    <option value="">Select</option>
-                                    <option value="Mr">Mr</option>
-                                    <option value="Mrs">Mrs</option>
-                                    <option value="Miss">Miss</option>
-                                </select>
-                            </div>
-                            
-                            
+
                             <!-- password -->
                             <div class="form-group mb-0">
                                 
                                 <div class="position-relative">
-                                    <input type="password" class="form-control {{ $errors->has('password') ? ' is-invalid' : '' }}" placeholder="{{  translate('Password') }}" name="password" >
+                                    <input type="password" class="form-control {{ $errors->has('password') ? ' is-invalid' : '' }}" placeholder="{{  translate('Password') }}" name="password" required>
                                     <i class="password-toggle las la-2x la-eye"></i>
                                 </div>
                                 <div class="text-right mt-1">
@@ -274,7 +281,7 @@
                             <div class="form-group">
                                 
                                 <div class="position-relative">
-                                    <input type="password" class="form-control " placeholder="{{  translate('Confirm Password') }}" name="password_confirmation" >
+                                    <input type="password" class="form-control " placeholder="{{  translate('Confirm Password') }}" name="password_confirmation" required >
                                     <i class="password-toggle las la-2x la-eye"></i>
                                 </div>
                             </div>
