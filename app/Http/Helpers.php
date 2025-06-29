@@ -2811,21 +2811,18 @@ if (!function_exists('generate_seller_serial_num')) {
      */
     function generate_seller_serial_num($digits = 10, $formatted = true)
     {
-        $prefix = get_global_skin_company_prefix(); // e.g., 'BH'
-
-        // Fetch all seller serial numbers and extract numeric parts
+        // Fetch the highest numeric serial_no for sellers
         $maxNumeric = DB::table('users')
             ->where('user_type', 'seller')
             ->whereNotNull('serial_no')
-            ->selectRaw("MAX(CAST(SUBSTRING(serial_no, LENGTH(?) + 1) AS UNSIGNED)) as max_serial", [$prefix])
+            ->selectRaw("MAX(CAST(serial_no AS UNSIGNED)) as max_serial")
             ->value('max_serial');
 
-        // If no serial number found, start from 786
         $numericPart = $maxNumeric ? intval($maxNumeric) + 1 : 786;
 
-        // Return formatted if requested
         return $formatted ? format_seller_serial_num($numericPart, $digits) : $numericPart;
     }
+
 
 }
 
