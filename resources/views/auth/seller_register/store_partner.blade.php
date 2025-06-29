@@ -85,7 +85,7 @@
                             </h4>
                             <br>
                             <div class="form-group">
-                                
+                                <label>Store Name</label>
                                 <input type="text" class="form-control {{ $errors->has('shop_name') ? ' is-invalid' : '' }}" value="{{ old('shop_name') }}" placeholder="{{  translate('Store Name') }}" name="shop_name">
                                 @if ($errors->has('shop_name'))
                                     <span class="invalid-feedback" role="alert">
