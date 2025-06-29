@@ -80,10 +80,10 @@
                             
                             <div class="form-group">
                                 <label>Store Address</label>
-                                <select name="store_city" class="form-control">
+                                <select name="city" class="form-control">
                                     <option value="">Select City</option>
                                     @php
-                                        $cities = \App\Models\City::where('state_id', 2728)->get();
+                                        $cities = \App\Models\City::where('state_id', 2728)->where('status', 1)->get();
                                     @endphp
                                     @foreach( $cities as $city)
                                         <option value="{{ strtolower(str_replace(' ', '-', $city->name )) }}"> {{ $city->name }} </option>
@@ -95,7 +95,7 @@
                             
                             <div class="form-group">
                               
-                                <select name="store_area" class="form-control">
+                                <select name="area" class="form-control">
                                     <option value="">Select Area</option>
                                     <!-- Area options should be dynamically filtered by city -->
                                 </select>

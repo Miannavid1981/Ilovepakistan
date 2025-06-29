@@ -98,7 +98,7 @@
                                 <select class="form-control" id="city" name="city">
                                     <option value="">Select City </option>
                                     @php
-                                        $cities = \App\Models\City::where('state_id', 2728)->get();
+                                        $cities = \App\Models\City::where('state_id', 2728)->where('status', 1)->get();
                                     @endphp
                                     @foreach( $cities as $city)
                                         <option value="{{ strtolower(str_replace(' ', '-', $city->name )) }}"> {{ $city->name }} </option>
