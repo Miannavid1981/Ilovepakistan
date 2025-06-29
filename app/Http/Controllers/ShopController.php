@@ -127,26 +127,32 @@ class ShopController extends Controller
             $path = 'uploads/all/' . $filename;
             $fullPath = public_path($path);
 
-            // Use Image::make() BEFORE moving
-            $img = Image::make($file->getRealPath())->encode($extension, 75);
+            try {
+                // Create the image BEFORE moving it
+                $img = \Image::make($file->getRealPath())->encode($extension, 75);
 
-            // Save optimized image to final destination
-            $img->save($fullPath);
+                // Save the optimized image
+                $img->save($fullPath);
 
-            // Now save using your uploader helper (assuming you use UploadedFile or uploader like in AizUploader)
-            $upload = new \App\Models\Upload();
-            $upload->extension = $extension;
-            $upload->file_name = $filename;
-            $upload->file_original_name = $file->getClientOriginalName();
-            $upload->user_id = auth()->id() ?? null;
-            $upload->file_size = $file->getSize();
-            $upload->type = 'image';
-            $upload->external_link = null;
-            $upload->file_path = $path;
-            $upload->save();
+                // Save metadata in uploads table
+                $upload = new \App\Models\Upload();
+                $upload->file_original_name = $file->getClientOriginalName();
+                $upload->file_name = $filename;
+                $upload->user_id = auth()->id() ?? null;
+                $upload->extension = $extension;
+                $upload->type = 'image';
+                $upload->file_size = $file->getSize();
+                $upload->save();
 
-            $user->avatar_original = $upload->id;
+                // Save the ID in the user's record
+                $user->avatar_original = $upload->id;
+            } catch (\Exception $e) {
+                // Log or handle error
+                \Log::error('Avatar upload failed: ' . $e->getMessage());
+                flash('Avatar upload failed, please try again.')->error();
+            }
         }
+
 
 
         if ($request->hasFile('authorized_person_cnic_front')) {
