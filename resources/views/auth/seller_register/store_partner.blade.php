@@ -430,7 +430,7 @@
         $input.on('keyup', function () {
             clearTimeout(timer);
             const username = $input.val();
-
+            $("#submit_button").hide();
             if (username.length < 3) {
                 $feedback.hide();
                 $input.removeClass('is-valid is-invalid');
