@@ -65,7 +65,7 @@
                             </h4>
                             <br>
                             <div class="form-group">
-                                
+                                <label>Brand Name</label>
                                 <input type="text" class="form-control {{ $errors->has('shop_name') ? ' is-invalid' : '' }}" value="{{ old('shop_name') }}" placeholder="{{  translate('Brand Name') }}" name="shop_name">
                                 @if ($errors->has('shop_name'))
                                     <span class="invalid-feedback" role="alert">
@@ -79,7 +79,7 @@
                             </div>
                             
                             <div class="form-group">
-                                <label>City</label>
+                                <label>Store Address</label>
                                 <select name="store_city" class="form-control">
                                     <option value="">Select City</option>
                                     <option value="Lahore">Lahore</option>
@@ -89,7 +89,7 @@
                             </div>
                             
                             <div class="form-group">
-                                <label>Area</label>
+                              
                                 <select name="store_area" class="form-control">
                                     <option value="">Select Area</option>
                                     <!-- Area options should be dynamically filtered by city -->
