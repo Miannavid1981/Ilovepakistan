@@ -128,36 +128,28 @@ class ShopController extends Controller
         // Uploads
         if ($request->hasFile('avatar_original')) {
             $file = $request->file('avatar_original');
-            $extension = $file->getClientOriginalExtension();
-            $filename = Str::random(40) . '.' . $extension;
+            $extension = strtolower($file->getClientOriginalExtension());
 
-            $path = 'uploads/all/' . $filename;
-            $fullPath = public_path($path);
-
-            try {
-                // Create the image from the uploaded file object directly
-                $img = \Image::make($file)->encode($extension, 75);
-
-                // Save image directly to the final location
-                $img->save($fullPath);
-
-                // Save metadata to DB
-                $upload = new \App\Models\Upload();
-                $upload->file_original_name = $file->getClientOriginalName();
-                $upload->file_name = $filename;
-                $upload->user_id = auth()->id() ?? null;
-                $upload->extension = $extension;
-                $upload->type = 'image';
-                $upload->file_size = $file->getSize();
-                $upload->save();
-
-                // Save ID reference
-                $user->avatar_original = $upload->id;
-            } catch (\Exception $e) {
-                \Log::error('Avatar upload failed: ' . $e->getMessage());
-                flash('Avatar upload failed, please try again.')->error();
+            $allowed = ['jpg', 'jpeg', 'png', 'gif', 'webp', 'svg'];
+            if (!in_array($extension, $allowed)) {
+                flash('Only image files are allowed.')->error();
+                return back();
             }
+
+            $path = $file->store('uploads/all', 'local');
+
+            $upload = new \App\Models\Upload();
+            $upload->file_original_name = $file->getClientOriginalName();
+            $upload->file_name = $path;
+            $upload->user_id = auth()->id() ?? null;
+            $upload->extension = $extension;
+            $upload->type = 'image';
+            $upload->file_size = $file->getSize();
+            $upload->save();
+
+            $user->avatar_original = $upload->id;
         }
+
 
 
 
