@@ -312,7 +312,7 @@
 
                             <!-- Submit Button -->
                             <div class="mb-4 mt-4">
-                                <button type="submit" class="btn btn-primary btn-block fw-600 fs-20">{{  translate('Register Now') }}</button>
+                                <button type="submit" id="submit_button" class="btn btn-primary btn-block fw-600 fs-20">{{  translate('Register Now') }}</button>
                             </div>  
 
                         </div>
