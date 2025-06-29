@@ -119,19 +119,35 @@ class ShopController extends Controller
         $user->bank_iban = $request->bank_iban ?? null;
 
         // Uploads
-         if ($request->hasFile('avatar_original')) {
+        if ($request->hasFile('avatar_original')) {
             $file = $request->file('avatar_original');
             $extension = $file->getClientOriginalExtension();
-            // Create unique filename
-            $filename = Str::random(40) . '.' .$extension;
-            
-            $path = 'uploads/all/'. $filename ;
-            // Move file to public/uploads/all
-            $file->move(public_path('uploads/all'), $filename);
-            $img = Image::make($request->file('avatar_original')->getRealPath())->encode($extension, 75);
-            $img->save(base_path('public/') . $path);
-            $user->avatar_original = $img->id;
+            $filename = Str::random(40) . '.' . $extension;
+
+            $path = 'uploads/all/' . $filename;
+            $fullPath = public_path($path);
+
+            // Use Image::make() BEFORE moving
+            $img = Image::make($file->getRealPath())->encode($extension, 75);
+
+            // Save optimized image to final destination
+            $img->save($fullPath);
+
+            // Now save using your uploader helper (assuming you use UploadedFile or uploader like in AizUploader)
+            $upload = new \App\Models\Upload();
+            $upload->extension = $extension;
+            $upload->file_name = $filename;
+            $upload->file_original_name = $file->getClientOriginalName();
+            $upload->user_id = auth()->id() ?? null;
+            $upload->file_size = $file->getSize();
+            $upload->type = 'image';
+            $upload->external_link = null;
+            $upload->file_path = $path;
+            $upload->save();
+
+            $user->avatar_original = $upload->id;
         }
+
 
         if ($request->hasFile('authorized_person_cnic_front')) {
             $user->authorized_person_cnic_front = $request->file('authorized_person_cnic_front')->store('uploads/cnic_fronts');
