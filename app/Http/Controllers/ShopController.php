@@ -49,6 +49,13 @@ class ShopController extends Controller
             'available' => !$exists,
         ]);
     }
+    public function checkEmail(Request $request)
+    {
+        $email = $request->input('email');
+        $exists = User::where('email', $email)->exists();
+
+        return response()->json(['available' => !$exists]);
+    }
 
     /**
      * Show the form for creating a new resource.

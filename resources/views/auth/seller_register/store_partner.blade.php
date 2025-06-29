@@ -336,14 +336,27 @@
                             </div>
 
                             <div class="form-group">
+                                <input 
+                                    type="email" 
+                                    id="email-input"
+                                    name="email" 
+                                    class="form-control {{ $errors->has('email') ? ' is-invalid' : '' }}" 
+                                    value="{{ old('email') }}" 
+                                    placeholder="{{ translate('Email') }}" 
+                                    required
+                                >
                                 
-                                <input type="email" class="form-control {{ $errors->has('email') ? ' is-invalid' : '' }}" value="{{ old('email') }}" placeholder="{{  translate('Email') }}" name="email" required>
+                                {{-- Laravel validation error --}}
                                 @if ($errors->has('email'))
-                                    <span class="invalid-feedback" role="alert">
+                                    <span class="invalid-feedback d-block" role="alert">
                                         <strong>{{ $errors->first('email') }}</strong>
                                     </span>
                                 @endif
+
+                                {{-- Live validation feedback --}}
+                                <div id="email-feedback" class="mt-1" style="display: none;"></div>
                             </div>
+
 
                             <!-- password -->
                             <div class="form-group mb-0">
@@ -423,7 +436,7 @@
 <script type="text/javascript">
         
     $(document).ready(function(){
-         let timer;
+        let timer;
         const $input = $('#username-input');
         const $feedback = $('#username-feedback');
 
@@ -476,6 +489,67 @@
                 });
             }, 400); // debounce
         });
+        let emailTimer;
+        const $emailInput = $('#email-input');
+        const $emailFeedback = $('#email-feedback');
+
+        $emailInput.on('keyup', function () {
+            clearTimeout(emailTimer);
+            const email = $emailInput.val().trim();
+            $("#submit_button").hide();
+
+            // Basic email format validation
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                $emailInput.removeClass('is-valid').addClass('is-invalid');
+                $emailFeedback
+                    .removeClass('text-success bg-success-subtle')
+                    .addClass('text-danger bg-danger-subtle border border-danger px-2 py-1 rounded')
+                    .text('❌ Invalid email format')
+                    .show();
+                return;
+            }
+
+            emailTimer = setTimeout(function () {
+                $.ajax({
+                    url: '{{ route("check.email") }}',
+                    method: 'POST',
+                    data: {
+                        _token: '{{ csrf_token() }}',
+                        email: email
+                    },
+                    success: function (response) {
+                        if (response.available) {
+                            $emailInput.removeClass('is-invalid').addClass('is-valid');
+                            $emailFeedback
+                                .removeClass('text-danger bg-danger-subtle')
+                                .addClass('text-success bg-success-subtle border border-success px-2 py-1 rounded')
+                                .text('✅ Email is available')
+                                .show();
+                            $("#submit_button").show();
+                        } else {
+                            $emailInput.removeClass('is-valid').addClass('is-invalid');
+                            $emailFeedback
+                                .removeClass('text-success bg-success-subtle')
+                                .addClass('text-danger bg-danger-subtle border border-danger px-2 py-1 rounded')
+                                .text('❌ Email is already registered')
+                                .show();
+                            $("#submit_button").hide();
+                        }
+                    },
+                    error: function () {
+                        $emailInput.removeClass('is-valid').addClass('is-invalid');
+                        $emailFeedback
+                            .removeClass('text-success bg-success-subtle')
+                            .addClass('text-danger bg-danger-subtle border border-danger px-2 py-1 rounded')
+                            .text('⚠️ Server error. Please try again.')
+                            .show();
+                        $("#submit_button").hide();
+                    }
+                });
+            }, 400);
+        });
+
         $('input[name="category_pref_ids[]"]').on('change', function () {
             let selected = $('input[name="category_pref_ids[]"]:checked');
 
