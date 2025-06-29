@@ -385,7 +385,7 @@
 
                             <!-- Submit Button -->
                             <div class="mb-4 mt-4">
-                                <button type="submit" class="btn btn-primary btn-block fw-600 fs-20">{{  translate('Register Now') }}</button>
+                                <button type="submit" id="submit_button" class="btn btn-primary btn-block fw-600 fs-20">{{  translate('Register Now') }}</button>
                             </div>  
 
                         </div>
@@ -453,6 +453,7 @@
                                 .addClass('text-success bg-success-subtle border border-success px-2 py-1 rounded')
                                 .text('✅ Username is available')
                                 .show();
+                            $("#submit_button").show();
                         } else {
                             $input.removeClass('is-valid').addClass('is-invalid');
                             $feedback
@@ -460,6 +461,7 @@
                                 .addClass('text-danger bg-danger-subtle border border-danger px-2 py-1 rounded')
                                 .text('❌ Username is already taken')
                                 .show();
+                            $("#submit_button").hide();
                         }
                     },
                     error: function () {
@@ -469,6 +471,7 @@
                             .addClass('text-danger bg-danger-subtle border border-danger px-2 py-1 rounded')
                             .text('⚠️ Server error. Please try again.')
                             .show();
+                        $("#submit_button").hide();
                     }
                 });
             }, 400); // debounce
