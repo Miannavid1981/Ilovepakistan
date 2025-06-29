@@ -122,7 +122,9 @@ class ShopController extends Controller
          if ($request->hasFile('avatar_original')) {
             $file = $request->file('avatar_original');
             $extension = $file->getClientOriginalExtension();
-           
+            // Create unique filename
+            $filename = Str::random(40) . '.' .$extension;
+            
             $path = 'uploads/all/'. $filename ;
             // Move file to public/uploads/all
             $filename = Str::random(40) . '.' . $file->getClientOriginalExtension();
