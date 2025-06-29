@@ -115,7 +115,7 @@
                             </div>
                             <div class="form-group">
                                 
-                                <input type="text" class="form-control {{ $errors->has('address') ? ' is-invalid' : '' }}" value="{{ old('address') }}" placeholder="{{  translate('Store Address') }}" name="address">
+                                <input type="text" id="address" class="form-control {{ $errors->has('address') ? ' is-invalid' : '' }}" value="{{ old('address') }}" placeholder="{{  translate('Store Address') }}" name="address">
                                 @if ($errors->has('address'))
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('address') }}</strong>
