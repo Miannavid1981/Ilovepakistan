@@ -127,7 +127,7 @@ class ShopController extends Controller
             
             $path = 'uploads/all/'. $filename ;
             // Move file to public/uploads/all
-            
+            $file->move(public_path('uploads/all'), $filename);
             $img = Image::make($request->file('avatar_original')->getRealPath())->encode($extension, 75);
             $img->save(base_path('public/') . $path);
             $user->avatar_original = $img->id;
