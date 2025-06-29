@@ -97,7 +97,7 @@ class ShopController extends Controller
         $user->username = $request->username ?? null;
 
         // Personal Info
-        $user->gender_prefix = $request->gender ?? null;
+        $user->gender_prefix = $request->gender_prefix ?? null;
         $user->profession_type = $request->profession_type ?? null;
         $user->avatar_original = null;
 
