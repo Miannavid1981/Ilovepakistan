@@ -168,8 +168,8 @@ class OrderController extends Controller
             $combinedOrder->save();
         }
         
-        // Delivery Status change email notification to Admin, seller, Customer
-        EmailUtility::order_email($order, $request->status); 
+        // // Delivery Status change email notification to Admin, seller, Customer
+        // EmailUtility::order_email($order, $request->status); 
 
 
         // Delivery Status change SMS notification
