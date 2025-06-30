@@ -34,7 +34,11 @@
                     </div>
                     <div class="col-md-3 ml-auto">
                         <label for="update_delivery_status">{{ translate('Delivery Status') }}</label>
-                        @if ($delivery_status != 'delivered' && $delivery_status != 'cancelled')
+                        @if (
+                            $delivery_status != 'delivered' &&
+                            $delivery_status != 'cancelled' &&
+                            !($payment_type == 'direct_bank_transfer' && $payment_status == 'unpaid')
+                        )
                             <select class="form-control aiz-selectpicker" data-minimum-results-for-search="Infinity"
                                 id="update_delivery_status">
                                 <option value="pending" @if ($delivery_status == 'pending') selected @endif>

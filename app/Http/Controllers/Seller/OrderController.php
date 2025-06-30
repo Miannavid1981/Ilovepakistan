@@ -136,7 +136,7 @@ class OrderController extends Controller
         }
         $combinedOrder = $order->combinedOrder; // This gets the related model
 
-       if ($combinedOrder) {
+        if ($combinedOrder) {
             $statusWeights = [
                 'pending'    => 1,
                 'confirmed'  => 2,
