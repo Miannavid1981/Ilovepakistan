@@ -67,12 +67,12 @@ class Order extends Model
     {
         return $this->hasOne(CommissionHistory::class);
     }
-    protected static function booted()
-    {
-        static::updated(function ($order) {
-            if ($order->isDirty('delivery_status')) {
-                $order->combinedOrder?->updateMainStatus();
-            }
-        });
-    }
+    // protected static function booted()
+    // {
+    //     static::updated(function ($order) {
+    //         if ($order->isDirty('delivery_status')) {
+    //             $order->combinedOrder?->updateMainStatus();
+    //         }
+    //     });
+    // }
 }
