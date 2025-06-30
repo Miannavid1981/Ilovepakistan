@@ -149,6 +149,7 @@ class OrderController extends Controller
 
             // Convert all statuses to weights
             $weights = array_map(function ($status) use ($statusWeights) {
+                $status = strtolower(str_replace(" ", "_", $status));
                 return $statusWeights[$status] ?? 1;
             }, $orders);
 
