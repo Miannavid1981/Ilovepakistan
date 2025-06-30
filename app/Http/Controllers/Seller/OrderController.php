@@ -134,8 +134,13 @@ class OrderController extends Controller
                 product_restock($orderDetail);
             }
         }
-        // ✅ Update CombinedOrder status based on child statuses
-        $order->combinedOrder?->updateMainStatus(); //
+        $combinedOrder =  $order->combinedOrder();
+        if ($combinedOrder) {
+            $allDelivered = $combinedOrder->orders()->where('delivery_status', '!=', 'delivered')->count() === 0;
+
+            $combinedOrder->status = $allDelivered ? 'delivered' : 'pending';
+            $combinedOrder->save();
+        }
         
         // Delivery Status change email notification to Admin, seller, Customer
         EmailUtility::order_email($order, $request->status); 
