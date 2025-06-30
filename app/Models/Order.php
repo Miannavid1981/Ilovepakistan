@@ -9,6 +9,10 @@ class Order extends Model
 {
     use PreventDemoModeChanges;
     protected $fillable = ['status'];
+     public function combinedOrder()
+    {
+        return $this->belongsTo(CombinedOrder::class);
+    }
     public function orderDetails()
     {
         return $this->hasMany(OrderDetail::class);
