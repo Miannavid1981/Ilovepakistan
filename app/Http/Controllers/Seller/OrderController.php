@@ -134,6 +134,8 @@ class OrderController extends Controller
                 product_restock($orderDetail);
             }
         }
+        // ✅ Update CombinedOrder status based on child statuses
+        $order->combinedOrder?->updateMainStatus(); //
         
         // Delivery Status change email notification to Admin, seller, Customer
         EmailUtility::order_email($order, $request->status); 
