@@ -136,10 +136,34 @@ class OrderController extends Controller
         }
         $combinedOrder = $order->combinedOrder; // This gets the related model
 
-        if ($combinedOrder) {
-            $allDelivered = $combinedOrder->orders()->where('delivery_status', '!=', 'delivered')->count() === 0;
+       if ($combinedOrder) {
+            $statusWeights = [
+                'Pending'    => 1,
+                'Confirmed'  => 2,
+                'Picked Up'  => 3,
+                'On The Way' => 4,
+                'Delivered'  => 5,
+            ];
 
-            $combinedOrder->status = $allDelivered ? 'delivered' : 'pending';
+            $orders = $combinedOrder->orders()->pluck('delivery_status')->toArray();
+
+            // Convert all statuses to weights
+            $weights = array_map(function ($status) use ($statusWeights) {
+                return $statusWeights[$status] ?? 1;
+            }, $orders);
+
+            // Get the minimum status weight (i.e. the lowest progressed order)
+            $minWeight = min($weights);
+
+            // Now filter all statuses that are <= this minWeight
+            // and then pick the **highest common status**
+            $highestCommonStage = $minWeight;
+
+            $reverseMap = array_flip($statusWeights);
+            $new_status = $reverseMap[$highestCommonStage] ?? 'pending';
+            $new_status = strtolower(str_replace(" ", "_", $new_status));
+            $combinedOrder->status = $new_status;
+
             $combinedOrder->save();
         }
         
