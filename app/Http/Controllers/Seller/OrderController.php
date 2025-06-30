@@ -134,7 +134,8 @@ class OrderController extends Controller
                 product_restock($orderDetail);
             }
         }
-        $combinedOrder =  $order->combinedOrder();
+        $combinedOrder = $order->combinedOrder; // This gets the related model
+
         if ($combinedOrder) {
             $allDelivered = $combinedOrder->orders()->where('delivery_status', '!=', 'delivered')->count() === 0;
 
