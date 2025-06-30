@@ -164,7 +164,7 @@ class OrderController extends Controller
             $new_status = $reverseMap[$highestCommonStage] ?? 'pending';
            
             $combinedOrder->status = $new_status;
-            dd($new_status);
+            // dd($new_status);
             $combinedOrder->save();
         }
         
