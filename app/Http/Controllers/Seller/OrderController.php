@@ -138,18 +138,18 @@ class OrderController extends Controller
 
        if ($combinedOrder) {
             $statusWeights = [
-                'Pending'    => 1,
-                'Confirmed'  => 2,
-                'Picked Up'  => 3,
-                'On The Way' => 4,
-                'Delivered'  => 5,
+                'pending'    => 1,
+                'confirmed'  => 2,
+                'picked_up'  => 3,
+                'on_the_way' => 4,
+                'delivered'  => 5,
             ];
 
             $orders = $combinedOrder->orders()->pluck('delivery_status')->toArray();
 
             // Convert all statuses to weights
             $weights = array_map(function ($status) use ($statusWeights) {
-                $status = strtolower(str_replace(" ", "_", $status));
+               
                 return $statusWeights[$status] ?? 1;
             }, $orders);
 
@@ -162,7 +162,7 @@ class OrderController extends Controller
 
             $reverseMap = array_flip($statusWeights);
             $new_status = $reverseMap[$highestCommonStage] ?? 'pending';
-            $new_status = strtolower(str_replace(" ", "_", $new_status));
+           
             $combinedOrder->status = $new_status;
 
             $combinedOrder->save();
