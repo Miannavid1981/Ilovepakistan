@@ -37,7 +37,7 @@
                         @if (
                             $delivery_status != 'delivered' &&
                             $delivery_status != 'cancelled' &&
-                            !($payment_type == 'direct_bank_transfer' && $payment_status == 'unpaid')
+                            !($order->combinedOrder->payment_method == 'direct_bank_transfer' && $order->combinedOrder->payment_status == 'unpaid')
                         )
                             <select class="form-control aiz-selectpicker" data-minimum-results-for-search="Infinity"
                                 id="update_delivery_status">
