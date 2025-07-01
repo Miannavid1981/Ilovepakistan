@@ -288,7 +288,7 @@ $payment_status = $orders->first()->payment_status ?? '';
                 <th style="min-width: 80px">Est. Delivery</th>
                 <th>Qty</th>
                 <th style="min-width: 80px">Unit Price</th>
-                <th style="min-width: 80px">Platform Fee</th>
+                
                 <th style="min-width: 80px">Profit</th>
                 <th style="min-width: 80px">Total Sale</th>
                 <th style="min-width: 80px">Tax</th>
@@ -339,11 +339,11 @@ $payment_status = $orders->first()->payment_status ?? '';
                     <td>{{ $orderDetail->product->est_shipping_days }} days</td>
                     <td>{{ $orderDetail->quantity }}</td>
                     <td>{{ get_system_default_currency()->code." ". number_format($unit_price) }}</td>
-                    <td>{{ $platform_fee }}</td>
+                    
                     <td>{{ $profit }}</td>
                     <td>{{ get_system_default_currency()->code." ". number_format($row_sale) }}</td>
                     <td>{{ $tax > 0 ? get_system_default_currency()->code." ". number_format($tax) : '0' }}</td>
-                    <td>{{ get_system_default_currency()->code." ". number_format($total) }}</td>
+                    <td>{{ get_system_default_currency()->code." ". number_format($row_sale) }}</td>
                 </tr>
             @endforeach
         </table>
