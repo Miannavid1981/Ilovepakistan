@@ -282,24 +282,54 @@ $payment_status = $orders->first()->payment_status ?? '';
             </tr>
         </table>
 
-        <table style="margin-top: 20px">
+       <table style="margin-top: 20px">
             <tr>
                 <th>Item</th>
                 <th style="min-width: 80px">Est. Delivery</th>
                 <th>Qty</th>
-                <th style="min-width: 80px">Price</th>
+                <th style="min-width: 80px">Unit Price</th>
+                <th style="min-width: 80px">Platform Fee</th>
+                <th style="min-width: 80px">Profit</th>
+                <th style="min-width: 80px">Total Sale</th>
                 <th style="min-width: 80px">Tax</th>
                 <th style="min-width: 80px">Total</th>
             </tr>
-            
+
+            @php $overall_sale = 0; @endphp
+
             @foreach ($order->orderDetails as $key => $orderDetail)
                 @php
                     $brand = $orderDetail->product->brand;
-                    $brand_name = '';
-                    if ($brand) {
-                        $brand_name = $brand->name;
+                    $brand_name = $brand ? $brand->name : '';
+
+                    $unit_price = $orderDetail->price / $orderDetail->quantity;
+
+                    $platform_fee = '-';
+                    if(auth()->user()->id == $orderDetail->source_seller_id || (auth()->user()->seller_type != 'store_partner' && empty($orderDetail->seller_profit_amount))) {
+                        $platform_fee = get_system_default_currency()->code . ' ' . number_format($orderDetail->admin_profit_amount);
+                        if (!empty($orderDetail->admin_profit_per)) {
+                            $platform_fee .= ' (' . $orderDetail->admin_profit_per . '%)';
+                        }
                     }
+
+                    $profit = '-';
+                    $row_sale = 0;
+
+                    if(auth()->user()->seller_type == 'brand_partner') {
+                        $profit = get_system_default_currency()->code . ' ' . number_format($orderDetail->source_seller_profit_amount);
+                        $row_sale = $orderDetail->source_seller_profit_amount;
+                    } elseif(auth()->user()->seller_type == 'seller_partner') {
+                        if(empty($orderDetail->seller_profit_amount)) {
+                            $profit = get_system_default_currency()->code . ' ' . number_format($orderDetail->source_seller_profit_amount);
+                            $row_sale = $orderDetail->source_seller_profit_amount;
+                        }
+                    }
+
+                    $tax = $orderDetail->tax ?? 0;
+                    $total = $orderDetail->price + $tax;
+                    $overall_sale += $row_sale;
                 @endphp
+
                 <tr>
                     <td>
                         <small><b>{{ $brand_name }}</b></small><br>
@@ -308,13 +338,16 @@ $payment_status = $orders->first()->payment_status ?? '';
                     </td>
                     <td>{{ $orderDetail->product->est_shipping_days }} days</td>
                     <td>{{ $orderDetail->quantity }}</td>
-                    <td>{{ get_system_default_currency()->code." ". number_format($orderDetail->price / $orderDetail->quantity) }}</td>
-                    <td>{{ $orderDetail->tax > 0 ? get_system_default_currency()->code." ". number_format($orderDetail->tax) : 0 }}</td>
-                    <td>{{ get_system_default_currency()->code." ". number_format($orderDetail->price + $orderDetail->tax) }}</td>
+                    <td>{{ get_system_default_currency()->code." ". number_format($unit_price) }}</td>
+                    <td>{{ $platform_fee }}</td>
+                    <td>{{ $profit }}</td>
+                    <td>{{ get_system_default_currency()->code." ". number_format($row_sale) }}</td>
+                    <td>{{ $tax > 0 ? get_system_default_currency()->code." ". number_format($tax) : '0' }}</td>
+                    <td>{{ get_system_default_currency()->code." ". number_format($total) }}</td>
                 </tr>
             @endforeach
-        
         </table>
+
 
         <div class="page-break"></div>
 
