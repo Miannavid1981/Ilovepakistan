@@ -202,7 +202,7 @@ class LoginController extends Controller
         }
 
         //check if provider_id exist
-        $existingUserByProviderId = User::where('provider_id', $user->id)->first();
+        $existingUserByProviderId = User::where('provider_id', $user->id)->where('user_type', 'customer')->first();
 
         if ($existingUserByProviderId) {
             $existingUserByProviderId->access_token = $user->token;
@@ -211,7 +211,7 @@ class LoginController extends Controller
             auth()->login($existingUserByProviderId, true);
         } else {
             //check if email exist
-            $existingUser = User::where('email', '!=', null)->where('email', $user->email)->first();
+            $existingUser = User::where('email', '!=', null)->where('email', $user->email)->where('user_type', 'customer')->first();
 
             if ($existingUser) {
                 //update provider_id
