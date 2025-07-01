@@ -354,7 +354,7 @@ $payment_status = $orders->first()->payment_status ?? '';
         <table style="margin-top: 20px">
             <tr>
                 <td ><strong>Sub-total:</strong></td>
-                <td>{{ single_price($orders->sum(function($order) { return $order->orderDetails->sum('price'); })) }}</td>
+                <td>{{ single_price($overall_sale) }}</td>
             </tr>
             <tr>
                 <td><strong>Shipping Charges:</strong></td>
@@ -366,7 +366,7 @@ $payment_status = $orders->first()->payment_status ?? '';
             </tr>
             <tr>
                 <td><h3 style="margin: 0">Grand total:</h3></td>
-                <td><h3 style="margin: 0">{{ single_price($orders->sum(function($order) { return $order->orderDetails->sum('price') + $order->orderDetails->sum('tax'); })) }}</h3></td>
+                <td><h3 style="margin: 0">{{ single_price($overall_sale) }}</h3></td>
             </tr>
         </table>
 
