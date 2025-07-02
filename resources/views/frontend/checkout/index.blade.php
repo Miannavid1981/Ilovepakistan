@@ -455,6 +455,12 @@
         display: none !important;
     }
 }
+
+@media (min-width: 300px) {
+    .d-sm-none {
+        display: none !important;
+    }
+}
 </style>
 @php
     $auth_user_id = auth()->user()->id;
@@ -469,7 +475,7 @@
     // dd($cart);
 @endphp
 
-<div class="d-lg-none" >
+<div class="d-lg-none px-3 pt-2" >
                     <a href="{{  url('/') }}">
                         <img src="{{ $logo_url }}" style="width: 130px" alt="Bighouz" class="img-fluid">
                         <ul class="d-flex gap-2 list-unstyled fs-15 text-muted">
