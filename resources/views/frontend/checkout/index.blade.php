@@ -443,8 +443,13 @@
         padding: 20px;
     }
 .checkout_columns:nth-child(2) { 
-    background: unset !important;
-    border: unset !important;
+    /* background: unset !important;
+    border: unset !important; */
+
+    padding: 20px !important;
+}
+.form-default {
+    background : unset !important
 }
 }
 </style>
