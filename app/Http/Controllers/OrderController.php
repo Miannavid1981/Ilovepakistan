@@ -329,7 +329,7 @@ class OrderController extends Controller
                                 // If it's an amount, use it directly
                                 $admin_profit_per_amount = $admin_commission_rate;
                             }
-                            $admin_profit_per_amount = $cartItem['quantity'] * $admin_profit_per_amount;
+                            $admin_profit_per_amount =  $admin_profit_per_amount;
                             $brand_profit_amount = $item_price - $admin_profit_per_amount;
                           
                             // if( $source_seller_id != $seller_id   ){
