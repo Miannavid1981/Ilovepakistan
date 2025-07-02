@@ -324,10 +324,10 @@ class OrderController extends Controller
 
                             // Calculate admin profit per amount depending on the commission type (percentage or fixed amount)
                             if ($admin_commission_type === 'percentage') {
-                                $admin_profit_per_amount = get_percentage_amount($admin_commission_rate, $item_price);
+                                $admin_profit_per_amount = $cartItem['quantity'] *  get_percentage_amount($admin_commission_rate, $item_price);
                             } else {
                                 // If it's an amount, use it directly
-                                $admin_profit_per_amount = $admin_commission_rate;
+                                $admin_profit_per_amount =  $cartItem['quantity'] *  $admin_commission_rate;
                             }
                             $admin_profit_per_amount =  $admin_profit_per_amount;
                             $brand_profit_amount = $item_price - $admin_profit_per_amount;
