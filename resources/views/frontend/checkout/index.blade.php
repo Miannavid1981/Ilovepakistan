@@ -468,6 +468,19 @@
 
     // dd($cart);
 @endphp
+
+<div class="d-lg-none" >
+                    <a href="{{  url('/') }}">
+                        <img src="{{ $logo_url }}" style="width: 130px" alt="Bighouz" class="img-fluid">
+                        <ul class="d-flex gap-2 list-unstyled fs-15 text-muted">
+                            <li>Home</li>
+                            <li><i class="fa fa-chevron-right"></i></li>
+                            <li>Checkout</li>
+                        </ul>
+                    </a>
+                    
+                
+                </div>
 <form action="{{ route('payment.checkout') }}" class="form-default m-0" role="form" method="POST" id="checkout-form" style="background: linear-gradient(to right, #fff 70%, #f5f5f5 0%);">
     @csrf
     <input type="hidden" name="owner_id" value="{{ $carts[0]['owner_id'] }}">
@@ -479,7 +492,7 @@
         <!-- Header -->
         <div class="h-100" id="checkout_grid">
             <div class="checkout_columns mb-4">
-                <div class="">
+                <div class="d-sm-none d-md-none" >
                     <a href="{{  url('/') }}">
                         <img src="{{ $logo_url }}" style="width: 130px" alt="Bighouz" class="img-fluid">
                         <ul class="d-flex gap-2 list-unstyled fs-15 text-muted">
