@@ -430,6 +430,23 @@
     background: var(--primary);
     color: #fff
 }
+.checkout_columns:nth-child(2) {
+    background: #f5f5f5; border-left: 1px solid #DEDEDE;
+}
+#checkout_grid {
+    display: grid; grid-template-columns: minmax( min-content, calc(50% + calc( calc( 66rem - 52rem ) / 2 )) ) 1fr;
+}
+@media (max-width: 768px){
+    #checkout_grid {
+        display: flex;
+        flex-direction:column-reverse;
+        padding: 20px;
+    }
+.checkout_columns:nth-child(2) { 
+    background: unset !important;
+    border: unset !important;
+}
+}
 </style>
 @php
     $auth_user_id = auth()->user()->id;
@@ -452,7 +469,7 @@
 
     <div class="container p-0 h-100" id="checkout_container" style=" height: 100vh">
         <!-- Header -->
-        <div class="h-100" style="display: grid; grid-template-columns: minmax( min-content, calc(50% + calc( calc( 66rem - 52rem ) / 2 )) ) 1fr;">
+        <div class="h-100" id="checkout_grid">
             <div class="checkout_columns mb-4">
                 <div class="">
                     <a href="{{  url('/') }}">
@@ -594,7 +611,7 @@
             </div>
 
             <!-- Summary Section -->
-            <div class="checkout_columns" style="background: #f5f5f5; border-left: 1px solid #DEDEDE;">
+            <div class="checkout_columns" style="">
                 <div style="position: sticky; top: 20px;">
                     <br>
                     <div class="d-flex  align-items-center">
