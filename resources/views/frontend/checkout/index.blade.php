@@ -442,15 +442,18 @@
         flex-direction:column-reverse;
         padding: 20px;
     }
-.checkout_columns:nth-child(2) { 
-    /* background: unset !important;
-    border: unset !important; */
+    .checkout_columns:nth-child(2) { 
+        /* background: unset !important;
+        border: unset !important; */
 
-    padding: 20px !important;
-}
-.form-default {
-    background : unset !important
-}
+        padding: 0 20px !important;
+    }
+    .form-default {
+        background : unset !important
+    }
+    .header-top {
+        display: none !important;
+    }
 }
 </style>
 @php
