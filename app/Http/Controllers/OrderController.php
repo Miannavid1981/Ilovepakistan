@@ -372,8 +372,8 @@ class OrderController extends Controller
 
                     // No profit for the seller if they are the same
                     if ($source_seller_id != $seller_id) {
-                        $order_detail->seller_profit_per = $seller_commission_type === 'percentage' ? $seller_profit_per_amount *  $cartItem['quantity']  : null;
-                        $order_detail->seller_profit_amount = $seller_profit;
+                        $order_detail->seller_profit_per = $seller_commission_type === 'percentage' ? $seller_profit_per_amount  : null;
+                        $order_detail->seller_profit_amount = $seller_profit *  $cartItem['quantity'] ;
                     }
                 }
 
