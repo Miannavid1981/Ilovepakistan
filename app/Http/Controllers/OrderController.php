@@ -358,7 +358,7 @@ class OrderController extends Controller
                             // Final admin profit after subtracting seller's profit
                             $admin_profit_final_amount = $admin_profit_per_amount - $seller_profit;
 
-                              echo $admin_profit_per_amount." - ".$seller_profit." = ".$admin_profit_final_amount;
+                            //   echo $admin_profit_per_amount." - ".$seller_profit." = ".$admin_profit_final_amount;
                             
                             // Assign final admin profit to order detail
                             $order_detail->admin_profit_per = $admin_commission_type === 'percentage' ? $admin_commission_rate : null;
@@ -379,7 +379,7 @@ class OrderController extends Controller
                     }
                 }
 
-                dd($product_seller_map, $order_detail);
+                // dd($product_seller_map, $order_detail);
                 
                 $order_detail->save();
 
