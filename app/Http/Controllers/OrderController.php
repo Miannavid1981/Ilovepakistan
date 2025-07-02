@@ -331,7 +331,7 @@ class OrderController extends Controller
                             }
                             
                             $brand_profit_amount = $item_price - $admin_profit_per_amount ;
-                            echo $item_price." - ".$admin_profit_per_amount." = ".$brand_profit_amount;
+                          
                             // if( $source_seller_id != $seller_id   ){
                                 $order_detail->source_seller_profit_per = null ;
                             // }
@@ -357,6 +357,8 @@ class OrderController extends Controller
                             
                             // Final admin profit after subtracting seller's profit
                             $admin_profit_final_amount = $admin_profit_per_amount - $seller_profit;
+
+                              echo $admin_profit_per_amount." - ".$seller_profit." = ".$admin_profit_final_amount;
                             
                             // Assign final admin profit to order detail
                             $order_detail->admin_profit_per = $admin_commission_type === 'percentage' ? $admin_commission_rate : null;
