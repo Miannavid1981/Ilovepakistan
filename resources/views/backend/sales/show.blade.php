@@ -299,6 +299,7 @@
                                                         {{ $orderDetail->variation }}
                                                     </small>
                                                     <br>
+                                                    @if($popover_seller)
                                                     <!-- Hover Target -->
                                                     <span class="hover-popover">
                                                         <small class="fs-13 font-weight-bold">
@@ -334,6 +335,7 @@
                                                             
                                                         </div>
                                                     </span>
+                                                    @endif
                                                     
                                                 @elseif ($orderDetail->product != null && $orderDetail->product->auction_product == 1)
                                                     <strong>
