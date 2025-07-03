@@ -379,7 +379,7 @@
                                                     $import_seller = \App\Models\User::where('id', $orderDetail->seller_id)->first();
                                                 @endphp
 
-                                            
+                                                @if($import_seller)
                                                 <div class="d-flex flex-column align-items-center ">
                                                     <div class="w-40px h-40px ">
                                                         <img src="{{ uploaded_asset($import_seller->avatar_original) }}" class="w-100 h-100 object-cover rounded-3 ">
@@ -390,6 +390,7 @@
                                                 
                                                     
                                                 </div>
+                                                @endif
                                             
                                                 
                                             @else
