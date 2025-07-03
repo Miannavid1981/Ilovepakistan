@@ -357,7 +357,7 @@
                                         <td>
                                             
                                             
-
+                                            @if($brand_sold_seller)
                                             <div class="d-flex flex-column align-items-center ">
                                                 <div class="w-40px h-40px ">
                                                     <img src="{{ uploaded_asset($brand_sold_seller->avatar_original) }}" class="w-100 h-100 object-cover rounded-3 ">
@@ -368,6 +368,7 @@
                                             
                                                 
                                             </div>
+                                            @endif
 
                                         </td>
 
