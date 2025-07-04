@@ -265,7 +265,7 @@
                                 @php
                                     $sold_by_seller_id = $orderDetail->source_seller_id == $orderDetail->seller_id ? $orderDetail->source_seller_id : $orderDetail->seller_id  ;
                                     $brand_sold_seller = \App\Models\User::where('id', $orderDetail->source_seller_id)->first();
-                                    $sold_by_seller = \App\Models\User::find($sold_by_seller_id);
+                                    $sold_by_seller = \App\Models\User::find($sold_by_seller_id)->first();
 
                                     $popover_seller =   $brand_sold_seller;
 
