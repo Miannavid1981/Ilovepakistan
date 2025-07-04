@@ -269,7 +269,7 @@
 
                                     $popover_seller =   $brand_sold_seller;
 
-                                    dd($orderDetail, $brand_sold_seller, $sold_by_seller);
+                                  //  dd($orderDetail, $brand_sold_seller, $sold_by_seller);
                                 @endphp
                                 
                                     <tr>
