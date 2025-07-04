@@ -268,6 +268,8 @@
                                     $sold_by_seller = \App\Models\User::find($sold_by_seller_id);
 
                                     $popover_seller =   $brand_sold_seller;
+
+                                    dd($orderDetail, $brand_sold_seller, $sold_by_seller);
                                 @endphp
                                 
                                     <tr>
@@ -380,16 +382,16 @@
                                                 @endphp
 
                                                 @if($import_seller)
-                                                <div class="d-flex flex-column align-items-center ">
-                                                    <div class="w-40px h-40px ">
-                                                        <img src="{{ uploaded_asset($import_seller->avatar_original) }}" class="w-100 h-100 object-cover rounded-3 ">
+                                                    <div class="d-flex flex-column align-items-center ">
+                                                        <div class="w-40px h-40px ">
+                                                            <img src="{{ uploaded_asset($import_seller->avatar_original) }}" class="w-100 h-100 object-cover rounded-3 ">
+                                                        </div>
+                                                        
+                                                        <p class="mb-0 ">{{ $import_seller->name }}</p>
+                                                        
+                                                    
+                                                        
                                                     </div>
-                                                    
-                                                    <p class="mb-0 ">{{ $import_seller->name }}</p>
-                                                    
-                                                
-                                                    
-                                                </div>
                                                 @endif
                                             
                                                 
