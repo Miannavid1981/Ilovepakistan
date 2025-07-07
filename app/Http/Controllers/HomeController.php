@@ -381,13 +381,13 @@ class HomeController extends Controller
         //     return redirect()->route('home');
         // }
         $shop  = Shop::where('slug', $slug)->first();
-        $user = $shop->user;
+        // $user = $shop->user;
 
         // dd($user);
         if ($shop != null) {
-            if ($shop->user->banned == 1) {
-                abort(404);
-            }
+            // if ($shop->user->banned == 1) {
+            //     abort(404);
+            // }
             // if ($user->seller_status == 1) {
                 return view('frontend.seller_shop', compact('shop'));
             // } else {
