@@ -381,7 +381,7 @@ class HomeController extends Controller
         //     return redirect()->route('home');
         // }
         $shop  = Shop::where('slug', $slug)->first();
-        $user = User::find($shop->user_id)->first();
+        $user = $shop->user;
 
         // dd($user);
         if ($shop != null) {
