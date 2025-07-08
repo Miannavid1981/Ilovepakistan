@@ -199,18 +199,12 @@ class ShopController extends Controller
                 return back();
             }
         }
-
         if ($user->save()) {
 
-            dd($user);
-            
-            // Save Shop
-            $shop = new Shop;
-            $shop->user_id = $user->id;
-            $shop->name = $request->shop_name ?? null;
-            $shop->slug = preg_replace('/\s+/', '-', str_replace("/", " ", $request->shop_name));
-            $shop->logo = null;
+            dd($user); // Debug line, remove this when done
 
+            // Prepare brand logo upload (if any)
+            $logoId = null;
             if ($request->hasFile('brand_logo')) {
                 $file = $request->file('brand_logo');
                 $extension = strtolower($file->getClientOriginalExtension());
@@ -232,8 +226,20 @@ class ShopController extends Controller
                 $upload->file_size = $file->getSize();
                 $upload->save();
 
-                $shop->logo = $upload->id;
+                $logoId = $upload->id;
             }
+
+            // Create Shop using relationship
+            $user->shop()->create([
+                'name' => $request->shop_name ?? null,
+                'slug' => preg_replace('/\s+/', '-', str_replace("/", " ", $request->shop_name)),
+                'logo' => $logoId,
+                'address' => $request->address ?? null,
+                'phone' => $user->authorized_person_mobile ?? null,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ]);
+        }
 
 
             $shop->address = $request->address ?? null;
