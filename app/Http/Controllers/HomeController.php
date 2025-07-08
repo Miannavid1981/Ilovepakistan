@@ -381,9 +381,8 @@ class HomeController extends Controller
         //     return redirect()->route('home');
         // }
         $shop  = Shop::where('slug', $slug)->first();
-        $user = $shop->user;
+        $user = User::find($shop->user_id)->first();
 
-        // dd($shop, $user);
         // dd($user);
         if ($shop != null) {
             if ($shop->user->banned == 1) {
