@@ -383,7 +383,7 @@ class HomeController extends Controller
         $shop  = Shop::where('slug', $slug)->first();
         $user = $shop->user;
 
-        dd($shop, $user);
+        // dd($shop, $user);
         // dd($user);
         if ($shop != null) {
             if ($shop->user->banned == 1) {
