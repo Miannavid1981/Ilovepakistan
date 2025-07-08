@@ -350,7 +350,7 @@ class OrderController extends Controller
                                     } else {
                                         // If it's a fixed amount, use the fixed value
                                         $seller_profit_per_amount = $seller_commission_rate;
-                                        $seller_profit =  (int)  $seller_commission_rate; // Fixed amount, so no percentage calculation needed
+                                        $seller_profit =  (int) $cartItem['quantity'] * $seller_commission_rate; // Fixed amount, so no percentage calculation needed
                                     }
                                 }
                             } 
@@ -375,7 +375,7 @@ class OrderController extends Controller
                     // No profit for the seller if they are the same
                     if ($source_seller_id != $seller_id) {
                         $order_detail->seller_profit_per = $seller_commission_type === 'percentage' ? $seller_profit_per_amount  : null;
-                        $order_detail->seller_profit_amount = $seller_profit * $cartItem['quantity'] ;
+                        $order_detail->seller_profit_amount = $seller_profit ;
                     }
                 }
                 echo "<pre>";
