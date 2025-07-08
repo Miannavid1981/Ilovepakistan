@@ -350,7 +350,7 @@ class OrderController extends Controller
                                     } else {
                                         // If it's a fixed amount, use the fixed value
                                         $seller_profit_per_amount = $seller_commission_rate;
-                                        $seller_profit =  (int) $cartItem['quantity'] * $seller_commission_rate; // Fixed amount, so no percentage calculation needed
+                                        $seller_profit =  (int)  $seller_commission_rate; // Fixed amount, so no percentage calculation needed
                                     }
                                 }
                             } 
