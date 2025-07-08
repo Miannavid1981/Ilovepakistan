@@ -11,6 +11,15 @@ class Shop extends Model
 
 
   protected $with = ['user'];
+  protected $fillable = [
+    'name',
+    'slug',
+    'logo',
+    'address',
+    'phone',
+    'created_at',
+    'updated_at',
+];
 
   public function user()
   {
@@ -23,4 +32,5 @@ class Shop extends Model
   public function followers(){
     return $this->hasMany(FollowSeller::class);
   }
+  
 }
