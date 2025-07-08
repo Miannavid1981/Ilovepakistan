@@ -201,6 +201,9 @@ class ShopController extends Controller
         }
 
         if ($user->save()) {
+
+            dd($user);
+            
             // Save Shop
             $shop = new Shop;
             $shop->user_id = $user->id;
