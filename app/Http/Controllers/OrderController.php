@@ -380,7 +380,8 @@ class OrderController extends Controller
                 }
                 echo "<pre>";
 
-                print_r($product_seller_map->toArray(), $order_detail->toArray());
+                print_r($product_seller_map->toArray());
+                print_r($order_detail->toArray());
                 
                 echo "</pre>";
                 $order_detail->save();
