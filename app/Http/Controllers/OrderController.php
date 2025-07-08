@@ -378,12 +378,12 @@ class OrderController extends Controller
                         $order_detail->seller_profit_amount = $seller_profit ;
                     }
                 }
-                echo "<pre>";
+                // echo "<pre>";
 
-                print_r($product_seller_map->toArray());
-                print_r($order_detail->toArray());
+                // print_r($product_seller_map->toArray());
+                // print_r($order_detail->toArray());
                 
-                echo "</pre>";
+                // echo "</pre>";
                 $order_detail->save();
 
                 $product->num_of_sale += $cartItem['quantity'];
@@ -432,7 +432,7 @@ class OrderController extends Controller
             $order->save();
         }
 
-        die();
+        // die();
 
         if($combined_order->payment_method == 'bighouz_wallet'){
             $wallet = auth()->user()->wallets()->first(); // or ->latest()->first() if multiple wallets
