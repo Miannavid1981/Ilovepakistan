@@ -378,9 +378,11 @@ class OrderController extends Controller
                         $order_detail->seller_profit_amount = $seller_profit * $cartItem['quantity'] ;
                     }
                 }
+                echo "<pre>";
 
-                dd($product_seller_map, $order_detail);
+                print_r($product_seller_map->toArray(), $order_detail->toArray());
                 
+                echo "</pre>";
                 $order_detail->save();
 
                 $product->num_of_sale += $cartItem['quantity'];
