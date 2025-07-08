@@ -183,7 +183,7 @@
 
                     @endphp
                     <br>
-                    @if($seller_profit > 0 )    <span class="profit_pill"> Earn PKR {{ number_format($seller_profit) }}</span> @endif
+                    @if($seller_profit > 0 )    <span class="profit_pill"> Profit PKR {{ number_format($seller_profit) }}</span> @endif
                   
                 </div>
             </label>
