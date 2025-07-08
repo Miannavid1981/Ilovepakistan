@@ -199,11 +199,10 @@ class ShopController extends Controller
                 return back();
             }
         }
-        if ($user->save()) {
 
-            dd($user); // Debug line, remove this when done
+       if ($user->save()) {
 
-            // Prepare brand logo upload (if any)
+            // Handle brand logo upload
             $logoId = null;
             if ($request->hasFile('brand_logo')) {
                 $file = $request->file('brand_logo');
@@ -229,8 +228,8 @@ class ShopController extends Controller
                 $logoId = $upload->id;
             }
 
-            // Create Shop using relationship
-            $user->shop()->create([
+            // Create Shop using Eloquent relationship
+            $shop = $user->shop()->create([
                 'name' => $request->shop_name ?? null,
                 'slug' => preg_replace('/\s+/', '-', str_replace("/", " ", $request->shop_name)),
                 'logo' => $logoId,
@@ -239,14 +238,6 @@ class ShopController extends Controller
                 'created_at' => now(),
                 'updated_at' => now(),
             ]);
-        }
-
-
-            $shop->address = $request->address ?? null;
-            $shop->phone = $user->authorized_person_mobile ?? null;
-            $shop->created_at = now();
-            $shop->updated_at = now();
-            $shop->save();
 
             // Save Category Preferences
             $pref_ids = $request->category_pref_ids ?? [];
@@ -288,7 +279,6 @@ class ShopController extends Controller
                     'product_images_zip',
                     'brand_logo',
                     'legal_documents'
-                    // Add any other file fields here
                 ]);
 
                 session(['pending_user' => $data]);
@@ -298,6 +288,7 @@ class ShopController extends Controller
                 return back();
             }
         }
+
 
         // Emergency alert fallback for dev
         $file = base_path("/public/assets/myText.txt");
