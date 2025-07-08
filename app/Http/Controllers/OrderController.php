@@ -432,6 +432,8 @@ class OrderController extends Controller
             $order->save();
         }
 
+        die();
+
         if($combined_order->payment_method == 'bighouz_wallet'){
             $wallet = auth()->user()->wallets()->first(); // or ->latest()->first() if multiple wallets
             $order_total = $combined_order->grand_total; // assuming 'amount' exists in payment_data
