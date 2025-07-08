@@ -379,7 +379,7 @@ class OrderController extends Controller
                     }
                 }
 
-                // dd($product_seller_map, $order_detail);
+                dd($product_seller_map, $order_detail);
                 
                 $order_detail->save();
 
