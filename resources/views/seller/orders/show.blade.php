@@ -175,12 +175,14 @@
                                 <th  class="min-col text-uppercase text-center">
                                     {{ translate('Qty') }}
                                 </th>
-                                @if(auth()->user()->seller_type == 'store_partner' )
+                                @if(auth()->user()->seller_type != 'store_partner' )
                                     <th class="min-col text-uppercase text-center">
                                     {{ translate('Total Sale') }}</th>
                                 @endif
-                                <th class="min-col text-uppercase text-center">
+                                @if(auth()->user()->seller_type != 'brand_partner' )
+                                    <th class="min-col text-uppercase text-center">
                                     {{ translate('Profit') }}</th>
+                                @endif
                                 <th class="min-col text-uppercase text-right">
                                     {{ translate('Total') }}</th>
                             </tr>
