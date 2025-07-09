@@ -260,7 +260,7 @@
                                     </td> --}}
                                     <td class="text-center">
                                         {{ single_price($orderDetail->price / $orderDetail->quantity) }}</td>
-                                    <td class="text-center">
+                                    {{-- <td class="text-center">
                                         @if(auth()->user()->id == $orderDetail->source_seller_id)
                                             - {{ single_price($orderDetail->admin_profit_amount) }}
                                             <br>
@@ -283,7 +283,7 @@
                                         
 
                                         @endif
-                                    </td>
+                                    </td> --}}
                                     <td class="text-center">
 
                                         @if(auth()->user()->seller_type == 'brand_partner' )
