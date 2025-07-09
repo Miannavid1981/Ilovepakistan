@@ -163,18 +163,22 @@
                               
                                 <th class="min-col text-uppercase text-center">
                                     {{ translate('Original Unit Price') }}</th>
-                                    <th class="min-col text-uppercase text-center">
-                                        {{ translate('Platform Fee') }}</th>
                                 <th class="min-col text-uppercase text-center">
-                                    @if(auth()->user()->id == $orderDetail->source_seller_id ) 
-                                        {{ translate('Sale') }}
-                                    @endif
-                                </th>
+                                        {{ translate('Platform Fee') }}</th>
+                                @if(auth()->user()->id == $orderDetail->source_seller_id ) 
+                                    <th class="min-col text-uppercase text-center">
+                                    
+                                            {{ translate('Sale') }}
+                                    
+                                    </th>
+                                @endif
                                 <th  class="min-col text-uppercase text-center">
                                     {{ translate('Qty') }}
                                 </th>
-                                <th class="min-col text-uppercase text-center">
+                                @if(auth()->user()->seller_type == 'store_partner' )
+                                    <th class="min-col text-uppercase text-center">
                                     {{ translate('Total Sale') }}</th>
+                                @endif
                                 <th class="min-col text-uppercase text-center">
                                     {{ translate('Profit') }}</th>
                                 <th class="min-col text-uppercase text-right">
@@ -301,8 +305,9 @@
                                     </td>
                                         
                                     <td class="text-center">{{ $orderDetail->quantity }}</td>
-                                    
+                                    @if(auth()->user()->seller_type == 'store_partner' )
                                     <td class="text-center">{{ single_price($row_sale ) }}</td>
+                                    @endif
                                     <td>
                                     </td>
                                     <td>
