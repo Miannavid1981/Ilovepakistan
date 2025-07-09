@@ -262,30 +262,29 @@
                                     </td> --}}
                                     <td class="text-center">
                                         {{ single_price($orderDetail->price / $orderDetail->quantity) }}</td>
-                                        <td class="text-center">
-                                            @if(auth()->user()->id == $orderDetail->source_seller_id)
+                                    <td class="text-center">
+                                        @if(auth()->user()->id == $orderDetail->source_seller_id ||  auth()->user()->seller_type == 'store_partner' )
+                                            - {{ single_price($orderDetail->admin_profit_amount) }}
+                                            <br>
+                                            @if (!empty($orderDetail->admin_profit_per)) 
+                                                {{  '('.$orderDetail->admin_profit_per.'% )' }}   
+                                            @endif
+                                        @elseif( auth()->user()->seller_type != 'store_partner'  )
+                                            @if(empty($orderDetail->seller_profit_amount))
                                                 - {{ single_price($orderDetail->admin_profit_amount) }}
                                                 <br>
                                                 @if (!empty($orderDetail->admin_profit_per)) 
+                                                
                                                     {{  '('.$orderDetail->admin_profit_per.'% )' }}   
+                                                
                                                 @endif
-                                            @elseif( auth()->user()->seller_type != 'store_partner'  )
-                                                @if(empty($orderDetail->seller_profit_amount))
-                                                    - {{ single_price($orderDetail->admin_profit_amount) }}
-                                                    <br>
-                                                    @if (!empty($orderDetail->admin_profit_per)) 
-                                                    
-                                                        {{  '('.$orderDetail->admin_profit_per.'% )' }}   
-                                                    
-                                                    @endif
 
-                                                @else 
-                                                    -
-                                                @endif
-                                            
-
+                                            @else 
+                                                -
                                             @endif
-                                        </td> 
+                                        
+                                        @endif
+                                    </td> 
                                      @if(auth()->user()->seller_type != 'store_partner' )
                                         <td class="text-center">
 
