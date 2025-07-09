@@ -147,6 +147,15 @@
             <hr class="new-section-sm bord-no">
             <div class="row">
                 <div class="col-lg-12 table-responsive">
+                    @foreach ($order->orderDetails as $key => $orderDetail)
+                    @php
+
+                    
+                         echo "<pre>";
+                                        print_r($orderDetail->toArray());
+                                    echo '</pre>';
+                    @endphp
+                    @endforeach
                     <table class="table-bordered aiz-table invoice-summary table">
                         <thead>
                             <tr class="bg-trans-dark">
@@ -178,14 +187,15 @@
                         <tbody>
                             @php
                                 $overall_sale = 0;
+
+
+                                
                             @endphp
                             @foreach ($order->orderDetails as $key => $orderDetail)
                                 @php
                                     $row_sale = 0;
 
-                                    echo "<pre>";
-                                        print_r($orderDetail->toArray());
-                                    echo '</pre>';
+                                   
                                 @endphp
                                 <tr>
                                     <td>{{ $key + 1 }}</td>
@@ -258,6 +268,9 @@
                                             @else 
                                                 -
                                             @endif
+                                        @elseif (auth()->user()->seller_type == 'store_partner'  )
+
+
                                         @endif
                                     </td>
                                     <td class="text-center">
