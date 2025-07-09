@@ -162,8 +162,10 @@
                               
                                 <th class="min-col text-uppercase text-center">
                                     {{ translate('Original Unit Price') }}</th>
-                                <th class="min-col text-uppercase text-center">
+                                @if(auth()->user()->seller_type != 'store_partner' )
+                                    <th class="min-col text-uppercase text-center">
                                         {{ translate('Platform Fee') }}</th>
+                                @endif
                                 @if(auth()->user()->id == $orderDetail->source_seller_id ) 
                                     <th class="min-col text-uppercase text-center">
                                     
@@ -261,29 +263,32 @@
                                     </td> --}}
                                     <td class="text-center">
                                         {{ single_price($orderDetail->price / $orderDetail->quantity) }}</td>
-                                    <td class="text-center">
-                                        @if(auth()->user()->id == $orderDetail->source_seller_id ||  auth()->user()->seller_type == 'store_partner' )
-                                            - {{ single_price($orderDetail->admin_profit_amount) }}
-                                            <br>
-                                            @if (!empty($orderDetail->admin_profit_per)) 
-                                                {{  '('.$orderDetail->admin_profit_per.'% )' }}   
-                                            @endif
-                                        @elseif( auth()->user()->seller_type != 'store_partner'  )
-                                            @if(empty($orderDetail->seller_profit_amount))
+
+                                    @if(auth()->user()->seller_type != 'store_partner' )
+                                        <td class="text-center">
+                                            @if(auth()->user()->id == $orderDetail->source_seller_id ||  auth()->user()->seller_type == 'store_partner' )
                                                 - {{ single_price($orderDetail->admin_profit_amount) }}
                                                 <br>
                                                 @if (!empty($orderDetail->admin_profit_per)) 
-                                                
                                                     {{  '('.$orderDetail->admin_profit_per.'% )' }}   
-                                                
                                                 @endif
+                                            @elseif( auth()->user()->seller_type != 'store_partner'  )
+                                                @if(empty($orderDetail->seller_profit_amount))
+                                                    - {{ single_price($orderDetail->admin_profit_amount) }}
+                                                    <br>
+                                                    @if (!empty($orderDetail->admin_profit_per)) 
+                                                    
+                                                        {{  '('.$orderDetail->admin_profit_per.'% )' }}   
+                                                    
+                                                    @endif
 
-                                            @else 
-                                                -
+                                                @else 
+                                                    -
+                                                @endif
+                                            
                                             @endif
-                                        
-                                        @endif
-                                    </td> 
+                                        </td> 
+                                     @endif
                                      @if(auth()->user()->seller_type != 'store_partner' )
                                         <td class="text-center">
 
