@@ -191,6 +191,17 @@
                             @foreach ($order->orderDetails as $key => $orderDetail)
                                 @php
                                     $row_sale = 0;
+                                    $profit = 0;
+
+
+                                    if (auth()->user()->seller_type == 'store_partner' ) {
+                                        if($orderDetail->seller_id != $orderDetail->source_seller_id){
+                                            $profit = $orderDetail->seller_profit_amount * $orderDetail->quantity;
+
+                                        }
+                                       
+                                    }
+
 
                                    
                                 @endphp
@@ -265,8 +276,7 @@
                                             @else 
                                                 -
                                             @endif
-                                        @elseif (auth()->user()->seller_type == 'store_partner'  )
-
+                                        
 
                                         @endif
                                     </td>
@@ -293,6 +303,11 @@
                                     <td class="text-center">{{ $orderDetail->quantity }}</td>
                                     
                                     <td class="text-center">{{ single_price($row_sale ) }}</td>
+                                    <td>
+                                    </td>
+                                    <td>
+                                        {{ $profit ?? 0 }}
+                                    </td>
                                 </tr>
                                 @php
 
