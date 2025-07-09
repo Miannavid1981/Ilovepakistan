@@ -1,7 +1,9 @@
 @extends('seller.layouts.app')
 
 @section('panel_content')
+  
 
+                
     <div class="card">
         <div class="card-header">
             <h1 class="h2 fs-16 mb-0">{{ translate('Order Details') }}</h1>
@@ -16,6 +18,10 @@
                     $delivery_status = $order->delivery_status;
                     $payment_status = $order->payment_status;
                     $this_order_detail = $orderDetail;
+
+                    echo "<pre>";
+                        print_r($orderDetail->toArray());
+                    echo '</pre>';
                 @endphp
                 @if (get_setting('product_manage_by_admin') == 0)
                     <div class="col-md-3 ml-auto">
@@ -147,15 +153,7 @@
             <hr class="new-section-sm bord-no">
             <div class="row">
                 <div class="col-lg-12 table-responsive">
-                    @foreach ($order->orderDetails as $key => $orderDetail)
-                    @php
-
-                    
-                         echo "<pre>";
-                                        print_r($orderDetail->toArray());
-                                    echo '</pre>';
-                    @endphp
-                    @endforeach
+                  
                     <table class="table-bordered aiz-table invoice-summary table">
                         <thead>
                             <tr class="bg-trans-dark">
