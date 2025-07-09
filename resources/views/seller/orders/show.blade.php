@@ -113,11 +113,9 @@
                                 <td class="text-main text-bold">{{ translate('Order Status') }}</td>
                                 <td class="text-right">
                                     @if ($delivery_status == 'delivered')
-                                        <span
-                                            class="badge badge-inline badge-success">{{ translate(ucfirst(str_replace('_', ' ', $delivery_status))) }}</span>
+                                        <span class="badge badge-inline badge-success">{{ translate(ucfirst(str_replace('_', ' ', $delivery_status))) }}</span>
                                     @else
-                                        <span
-                                            class="badge badge-inline badge-info">{{ translate(ucfirst(str_replace('_', ' ', $delivery_status))) }}</span>
+                                        <span class="badge badge-inline badge-info">{{ translate(ucfirst(str_replace('_', ' ', $delivery_status))) }}</span>
                                     @endif
                                 </td>
                             </tr>
@@ -162,9 +160,9 @@
                                     <th class="min-col text-uppercase text-center">
                                         {{ translate('Platform Fee') }}</th>
                                 <th class="min-col text-uppercase text-center">
-                                @if(auth()->user()->id == $orderDetail->source_seller_id ) 
-                                    {{ translate('Sale') }}
-                                @endif
+                                    @if(auth()->user()->id == $orderDetail->source_seller_id ) 
+                                        {{ translate('Sale') }}
+                                    @endif
                                 </th>
                                 <th  class="min-col text-uppercase text-center">
                                     {{ translate('Qty') }}
@@ -182,9 +180,12 @@
                                 $overall_sale = 0;
                             @endphp
                             @foreach ($order->orderDetails as $key => $orderDetail)
-
                                 @php
                                     $row_sale = 0;
+
+                                    echo "<pre>";
+                                        print_r($orderDetail->toArray());
+                                    echo '</pre>';
                                 @endphp
                                 <tr>
                                     <td>{{ $key + 1 }}</td>
@@ -238,39 +239,33 @@
                                     <td class="text-center">
                                         {{ single_price($orderDetail->price / $orderDetail->quantity) }}</td>
                                     <td class="text-center">
-                                    
                                         @if(auth()->user()->id == $orderDetail->source_seller_id)
                                             - {{ single_price($orderDetail->admin_profit_amount) }}
                                             <br>
                                             @if (!empty($orderDetail->admin_profit_per)) 
-                                            
                                                 {{  '('.$orderDetail->admin_profit_per.'% )' }}   
-                                            
                                             @endif
                                         @elseif( auth()->user()->seller_type != 'store_partner'  )
-                                            
-                                                @if(empty($orderDetail->seller_profit_amount))
-                                                    - {{ single_price($orderDetail->admin_profit_amount) }}
-                                                    <br>
-                                                    @if (!empty($orderDetail->admin_profit_per)) 
-                                                    
-                                                        {{  '('.$orderDetail->admin_profit_per.'% )' }}   
-                                                    
-                                                    @endif
-
-                                                @else 
-                                                    -
+                                            @if(empty($orderDetail->seller_profit_amount))
+                                                - {{ single_price($orderDetail->admin_profit_amount) }}
+                                                <br>
+                                                @if (!empty($orderDetail->admin_profit_per)) 
+                                                
+                                                    {{  '('.$orderDetail->admin_profit_per.'% )' }}   
+                                                
                                                 @endif
-                                        
+
+                                            @else 
+                                                -
+                                            @endif
                                         @endif
-                                    
                                     </td>
                                     <td class="text-center">
 
                                         @if(auth()->user()->seller_type == 'brand_partner' )
 
                                             {{  single_price($this_order_detail->source_seller_profit_amount)  }}
-                                           @php $row_sale = $this_order_detail->source_seller_profit_amount; @endphp
+                                            @php $row_sale = $this_order_detail->source_seller_profit_amount; @endphp
                                         @elseif ( auth()->user()->seller_type == 'seller_partner' )  
                                             @if(empty($this_order_detail->seller_profit_amount) )
                                                 {{  single_price($this_order_detail->source_seller_profit_amount)  }}
