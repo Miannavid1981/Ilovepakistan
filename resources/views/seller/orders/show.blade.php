@@ -312,11 +312,11 @@
                                     @endif
                                     @if(auth()->user()->seller_type != 'brand_partner' )
                                     <td>
-                                        {{ $profit ?? 0 }}
+                                        {{ $profit ? single_price($profit)  : 0 }}
                                     </td>
                                     @endif
                                     <td>
-                                        {{ $profit ?? 0 }}
+                                        {{ $profit ? single_price($profit)  : 0 }}
                                     </td>
                                 </tr>
                                 @php
