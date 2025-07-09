@@ -322,7 +322,7 @@
                 @endif --}}
 
                 {{-- Orders --}}
-                {{-- @if( $seller_type != "store_partner" )
+               
                 <li class="aiz-side-nav-item">
                     <a href="{{ route('seller.orders.index') }}"
                         class="aiz-side-nav-link {{ areActiveRoutes(['seller.orders.index', 'seller.orders.show']) }}">
@@ -331,7 +331,7 @@
                     </a>
                 </li>
 
-                @endif --}}
+                
                 {{-- Refund Request --}}
                 @if (addon_is_activated('refund_request'))
                     <li class="aiz-side-nav-item">
