@@ -317,6 +317,9 @@
                                 @php
 
                                 echo $row_sale.'<br>';
+
+                                
+                                $row_sale += $profit;
                                 $overall_sale += $row_sale; 
                                 @endphp
                             @endforeach
