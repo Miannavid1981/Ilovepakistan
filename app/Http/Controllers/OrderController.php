@@ -661,10 +661,8 @@ class OrderController extends Controller
 
     public function update_payment_status(Request $request)
     {
-        $order = CombinedOrder::findOrFail($request->order_id);
-        // $order->payment_status_viewed = '0';
-        $order->save();
-
+        $order = CombinedOrder::find($request->order_id);
+       
         // if (Auth::user()->user_type == 'seller') {
         //     foreach ($order->orderDetails->where('seller_id', Auth::user()->id) as $key => $orderDetail) {
         //         $orderDetail->payment_status = $request->status;
@@ -677,7 +675,7 @@ class OrderController extends Controller
         //     }
         // }
 
-        $status = 'paid';
+        $status = $request->status;
         // foreach ($order->orderDetails as $key => $orderDetail) {
         //     if ($orderDetail->payment_status != 'paid') {
         //         $status = 'unpaid';
