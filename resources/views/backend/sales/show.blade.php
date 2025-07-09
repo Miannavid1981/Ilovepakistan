@@ -583,7 +583,7 @@
 
         function update_payment_status(){
             $('#confirm-payment-status').modal('hide');
-            var order_id = {{ $order->id }};
+           var order_id = {{ $combined_order->id }};
             $.post('{{ route('orders.update_payment_status') }}', {
                 _token: '{{ @csrf_token() }}',
                 order_id: order_id,
