@@ -285,6 +285,8 @@
                                     <td class="text-center">{{ single_price($row_sale ) }}</td>
                                 </tr>
                                 @php
+
+                                echo $row_sale.'<br>';
                                 $overall_sale += $row_sale; 
                                 @endphp
                             @endforeach
