@@ -260,55 +260,58 @@
                                     </td> --}}
                                     <td class="text-center">
                                         {{ single_price($orderDetail->price / $orderDetail->quantity) }}</td>
-                                    {{-- <td class="text-center">
-                                        @if(auth()->user()->id == $orderDetail->source_seller_id)
-                                            - {{ single_price($orderDetail->admin_profit_amount) }}
-                                            <br>
-                                            @if (!empty($orderDetail->admin_profit_per)) 
-                                                {{  '('.$orderDetail->admin_profit_per.'% )' }}   
-                                            @endif
-                                        @elseif( auth()->user()->seller_type != 'store_partner'  )
-                                            @if(empty($orderDetail->seller_profit_amount))
+                                        <td class="text-center">
+                                            @if(auth()->user()->id == $orderDetail->source_seller_id)
                                                 - {{ single_price($orderDetail->admin_profit_amount) }}
                                                 <br>
                                                 @if (!empty($orderDetail->admin_profit_per)) 
-                                                
                                                     {{  '('.$orderDetail->admin_profit_per.'% )' }}   
-                                                
                                                 @endif
+                                            @elseif( auth()->user()->seller_type != 'store_partner'  )
+                                                @if(empty($orderDetail->seller_profit_amount))
+                                                    - {{ single_price($orderDetail->admin_profit_amount) }}
+                                                    <br>
+                                                    @if (!empty($orderDetail->admin_profit_per)) 
+                                                    
+                                                        {{  '('.$orderDetail->admin_profit_per.'% )' }}   
+                                                    
+                                                    @endif
 
-                                            @else 
-                                                -
+                                                @else 
+                                                    -
+                                                @endif
+                                            
+
                                             @endif
-                                        
+                                        </td> 
+                                     @if(auth()->user()->seller_type != 'store_partner' )
+                                        <td class="text-center">
 
-                                        @endif
-                                    </td> --}}
-                                    <td class="text-center">
+                                            @if(auth()->user()->seller_type == 'brand_partner' )
 
-                                        @if(auth()->user()->seller_type == 'brand_partner' )
-
-                                            {{  single_price($orderDetail->source_seller_profit_amount)  }}
-                                            @php $row_sale = $orderDetail->source_seller_profit_amount; @endphp
-                                        @elseif ( auth()->user()->seller_type == 'seller_partner' )  
-                                            @if(empty($orderDetail->seller_profit_amount) )
                                                 {{  single_price($orderDetail->source_seller_profit_amount)  }}
                                                 @php $row_sale = $orderDetail->source_seller_profit_amount; @endphp
-                                            @else 
+                                            @elseif ( auth()->user()->seller_type == 'seller_partner' )  
+                                                @if(empty($orderDetail->seller_profit_amount) )
+                                                    {{  single_price($orderDetail->source_seller_profit_amount)  }}
+                                                    @php $row_sale = $orderDetail->source_seller_profit_amount; @endphp
+                                                @else 
+                                                    -
+                                                @endif
+                                                
+                                            @else
                                                 -
                                             @endif
                                             
-                                        @else
-                                            -
-                                        @endif
-                                        
-                                    </td>
+                                        </td>
+                                    @endif
                                         
                                     <td class="text-center">{{ $orderDetail->quantity }}</td>
                                     @if(auth()->user()->seller_type == 'store_partner' )
                                     <td class="text-center">{{ single_price($row_sale ) }}</td>
                                     @endif
                                     <td>
+                                        {{ $profit ?? 0 }}
                                     </td>
                                     <td>
                                         {{ $profit ?? 0 }}
@@ -316,7 +319,7 @@
                                 </tr>
                                 @php
 
-                                echo $row_sale.'<br>';
+                                
 
                                 
                                 $row_sale += $profit;
