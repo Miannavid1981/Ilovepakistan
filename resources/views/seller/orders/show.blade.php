@@ -309,12 +309,14 @@
                                     @endif
                                         
                                     <td class="text-center">{{ $orderDetail->quantity }}</td>
-                                    @if(auth()->user()->seller_type == 'store_partner' )
+                                    @if(auth()->user()->seller_type != 'store_partner' )
                                     <td class="text-center">{{ single_price($row_sale ) }}</td>
                                     @endif
+                                    @if(auth()->user()->seller_type != 'brand_partner' )
                                     <td>
                                         {{ $profit ?? 0 }}
                                     </td>
+                                    @endif
                                     <td>
                                         {{ $profit ?? 0 }}
                                     </td>
