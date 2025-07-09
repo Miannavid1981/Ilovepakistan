@@ -19,7 +19,6 @@
                     $payment_status = $order->payment_status;
                     $this_order_detail = $orderDetail;
 
-                  var_dump($orderDetail->toArray());
                     
                 @endphp
                 @if (get_setting('product_manage_by_admin') == 0)
