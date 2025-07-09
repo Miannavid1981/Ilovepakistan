@@ -661,46 +661,46 @@ class OrderController extends Controller
 
     public function update_payment_status(Request $request)
     {
-        $order = Order::findOrFail($request->order_id);
-        $order->payment_status_viewed = '0';
+        $order = CombinedOrder::findOrFail($request->order_id);
+        // $order->payment_status_viewed = '0';
         $order->save();
 
-        if (Auth::user()->user_type == 'seller') {
-            foreach ($order->orderDetails->where('seller_id', Auth::user()->id) as $key => $orderDetail) {
-                $orderDetail->payment_status = $request->status;
-                $orderDetail->save();
-            }
-        } else {
-            foreach ($order->orderDetails as $key => $orderDetail) {
-                $orderDetail->payment_status = $request->status;
-                $orderDetail->save();
-            }
-        }
+        // if (Auth::user()->user_type == 'seller') {
+        //     foreach ($order->orderDetails->where('seller_id', Auth::user()->id) as $key => $orderDetail) {
+        //         $orderDetail->payment_status = $request->status;
+        //         $orderDetail->save();
+        //     }
+        // } else {
+        //     foreach ($order->orderDetails as $key => $orderDetail) {
+        //         $orderDetail->payment_status = $request->status;
+        //         $orderDetail->save();
+        //     }
+        // }
 
         $status = 'paid';
-        foreach ($order->orderDetails as $key => $orderDetail) {
-            if ($orderDetail->payment_status != 'paid') {
-                $status = 'unpaid';
-            }
-        }
+        // foreach ($order->orderDetails as $key => $orderDetail) {
+        //     if ($orderDetail->payment_status != 'paid') {
+        //         $status = 'unpaid';
+        //     }
+        // }
         $order->payment_status = $status;
         $order->save();
 
 
-        if (
-            $order->payment_status == 'paid' &&
-            $order->commission_calculated == 0
-        ) {
-            calculateCommissionAffilationClubPoint($order);
-        }
+        // if (
+        //     $order->payment_status == 'paid' &&
+        //     $order->commission_calculated == 0
+        // ) {
+        //     calculateCommissionAffilationClubPoint($order);
+        // }
 
-        // Payment Status change email notification to Admin, seller, Customer
-        if($request->status == 'paid'){
-            EmailUtility::order_email($order, $request->status);  
-        }
+        // // Payment Status change email notification to Admin, seller, Customer
+        // if($request->status == 'paid'){
+        //     EmailUtility::order_email($order, $request->status);  
+        // }
 
-        //Sends Web Notifications to Admin, seller, Customer
-        NotificationUtility::sendNotification($order, $request->status);
+        // //Sends Web Notifications to Admin, seller, Customer
+        // NotificationUtility::sendNotification($order, $request->status);
 
         //Sends Firebase Notifications to Admin, seller, Customer
         if (get_setting('google_firebase') == 1 && $order->user->device_token != null) {

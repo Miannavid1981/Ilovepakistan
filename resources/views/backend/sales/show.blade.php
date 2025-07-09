@@ -553,7 +553,7 @@
 @section('script')
     <script type="text/javascript">
         $('#assign_deliver_boy').on('change', function() {
-            var order_id = {{ $order->id }};
+            var order_id = {{ $combined_order->id }};
             var delivery_boy = $('#assign_deliver_boy').val();
             $.post('{{ route('orders.delivery-boy-assign') }}', {
                 _token: '{{ @csrf_token() }}',
