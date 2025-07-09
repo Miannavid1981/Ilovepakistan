@@ -201,7 +201,7 @@
 
                                     if (auth()->user()->seller_type == 'store_partner' ) {
                                         if($orderDetail->seller_id != $orderDetail->source_seller_id){
-                                            $profit = $orderDetail->seller_profit_amount * $orderDetail->quantity;
+                                            $profit = $orderDetail->seller_profit_amount;
 
                                         }
                                        
