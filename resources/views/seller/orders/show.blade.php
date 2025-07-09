@@ -19,9 +19,8 @@
                     $payment_status = $order->payment_status;
                     $this_order_detail = $orderDetail;
 
-                    echo "<pre>";
-                        print_r($orderDetail->toArray());
-                    echo '</pre>';
+                  var_dump($orderDetail->toArray());
+                    
                 @endphp
                 @if (get_setting('product_manage_by_admin') == 0)
                     <div class="col-md-3 ml-auto">
