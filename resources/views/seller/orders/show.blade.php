@@ -133,7 +133,7 @@
                                     {{ single_price($order->grand_total) }}
                                 </td>
                             </tr> --}}
-                            {{-- <tr>
+                            <tr>
                                 <td class="text-main text-bold">{{ translate('Payment method') }}</td>
                                 <td class="text-right">
                                     {{ translate(ucfirst(str_replace('_', ' ', $order->payment_type))) }}</td>
@@ -142,7 +142,7 @@
                             <tr>
                                 <td class="text-main text-bold">{{ translate('Additional Info') }}</td>
                                 <td class="text-right">{{ $order->additional_info }}</td>
-                            </tr> --}}
+                            </tr>
                         </tbody>
                     </table>
                 </div>
