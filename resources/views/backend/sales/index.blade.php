@@ -217,11 +217,11 @@
                                     <span class="badge badge-inline badge-dark"> {{ translate(ucfirst(str_replace('_', ' ', $order->payment_method))) }}</span>
                                 </td>
                                 <td>
-                                    @if ($order->orders->first()->payment_status == 'paid')
+                                    @if ($order->payment_status == 'paid')
                                         <span class="badge badge-inline badge-success">{{ translate('Paid') }}</span>
-                                    @elseif($order->orders->first()->payment_status == 'pending')
+                                    @elseif($order->payment_status == 'pending')
                                         <span class="badge badge-inline badge-danger" style="background: mediumseagreen;">{{ translate('pending') }}</span>
-                                        @elseif($order->orders->first()->payment_status == 'unpaid')
+                                    @elseif($order->payment_status == 'unpaid')
                                         <span class="badge badge-inline badge-danger">{{ translate('Unpaid') }}</span>
                                     @endif
                                 </td>
