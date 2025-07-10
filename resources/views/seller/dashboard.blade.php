@@ -373,7 +373,7 @@
         </div>
     </div>
     @endif
-    <div class="row ">
+    <div class="row mt-4">
         <div class="col-12">
             <h4>Upcoming Payments</h4>
         </div>
