@@ -397,9 +397,9 @@
 
                                     $combinedOrders = \App\Models\CombinedOrder::with('orders.orderDetails')
                                     ->where('payment_status', 'paid')
-                                    ->whereHas('orders.orderDetails', function ($query) {
-                                        $query->where('seller_id', Auth::id());
-                                    })
+                                    // ->whereHas('orders.orderDetails', function ($query) {
+                                    //     $query->where('seller_id', Auth::id());
+                                    // })
                                     ->get();
                                     dd($combinedOrders);
                                     // foreach ($combinedOrders as $combined_order ) {
