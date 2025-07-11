@@ -43,6 +43,7 @@
                                 @endphp
                                 {{ single_price(auth()->user()->balance ?? 0) }}
                             </h3>
+                            <a href="" class="btn btn-dark mt-2">Withdraw</a>
 
                         </div>
                         <div class="col-auto text-right">
