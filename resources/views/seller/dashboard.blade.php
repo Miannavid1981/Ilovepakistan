@@ -43,7 +43,7 @@
                                 @endphp
                                 {{ single_price($seller_balance) }}
                             </h3>
-                            <a href="" class="btn btn-dark mt-2" @if($seller_balance == 0) disabled @endif >Withdraw</a>
+                            <a href="@if($seller_balance != 0) {{ '/' }}  @else 'javascript::void(0);' @endif" class="btn btn-dark mt-2"  >Withdraw</a>
 
                         </div>
                         <div class="col-auto text-right">
