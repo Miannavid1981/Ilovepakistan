@@ -39,11 +39,11 @@
                             </p>
                             <h3 class="mb-0 text-dark fs-30">
                                 @php
-                                    
+                                    $seller_balance = auth()->user()->balance ?? 0;
                                 @endphp
-                                {{ single_price(auth()->user()->balance ?? 0) }}
+                                {{ single_price($seller_balance) }}
                             </h3>
-                            <a href="" class="btn btn-dark mt-2">Withdraw</a>
+                            <a href="" class="btn btn-dark mt-2" @if($seller_balance == 0) disabled @endif >Withdraw</a>
 
                         </div>
                         <div class="col-auto text-right">
