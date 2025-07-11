@@ -390,6 +390,25 @@
                                 <span class="fs-14 text-light">{{ translate('Upcoming Profits') }}</span>
                             </p>
                             <h3 class="mb-0 text-white fs-30">
+                                @php
+                                    // foreach (\App\Models\CombinedOrder::where('payment_status', 'paid')->where() ) {
+
+                                    // }
+
+                                    $combinedOrders = CombinedOrder::with('orders.orderDetails')
+                                    ->where('payment_status', 'paid')
+                                    ->whereHas('orders.orderDetails', function ($query) {
+                                        $query->where('seller_id', Auth::id());
+                                    })
+                                    ->get();
+                                    dd($combinedOrders);
+                                    // foreach ($combinedOrders as $combined_order ) {
+
+
+
+
+                                    // }
+                                @endphp
                                 {{ \App\Models\Product::where('user_id', $authUser->id)->count() }}
                             </h3>
 
