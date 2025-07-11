@@ -395,6 +395,7 @@
                                 $total_pending_profit = 0;
 
                                 $combinedOrders = \App\Models\CombinedOrder::with('orders.orderDetails')
+                                ->where('payment_status', '!=', 'paid')
                                     ->whereHas('orders.orderDetails', function ($query) {
                                         $query->where('seller_id', Auth::id());
                                     })
@@ -406,7 +407,7 @@
                                     foreach ($combined_order->orders as $order) {
                                         foreach ($order->orderDetails as $detail) {
                                             if ($detail->seller_id == Auth::id() && $detail->seller_id != $detail->source_seller_id) {
-                                                $total_pending_profit += $detail->seller_profit_per_amount;
+                                                $total_pending_profit += $detail->seller_profit_amount;
                                             }
                                         }
                                     }
