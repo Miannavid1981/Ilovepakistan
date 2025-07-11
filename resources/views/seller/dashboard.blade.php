@@ -391,28 +391,27 @@
                             </p>
                             <h3 class="mb-0 text-white fs-30">
                                 @php
-                            
-                                $total_pending_profit = 0;
+                                    $total_pending_profit = 0;
 
-                                $combinedOrders = \App\Models\CombinedOrder::with('orders.orderDetails')
-                                ->where('payment_status', '!=', 'paid')
-                                    ->whereHas('orders.orderDetails', function ($query) {
-                                        $query->where('seller_id', Auth::id());
-                                    })
-                                    ->get();
+                                    $combinedOrders = \App\Models\CombinedOrder::with('orders.orderDetails')
+                                    ->where('payment_status', '!=', 'paid')
+                                        ->whereHas('orders.orderDetails', function ($query) {
+                                            $query->where('seller_id', Auth::id());
+                                        })
+                                        ->get();
 
-                                $combinedOrdersCount = $combinedOrders->count();
+                                    $combinedOrdersCount = $combinedOrders->count();
 
-                                foreach ($combinedOrders as $combined_order) {
-                                    foreach ($combined_order->orders as $order) {
-                                        foreach ($order->orderDetails as $detail) {
-                                            if ($detail->seller_id == Auth::id() && $detail->seller_id != $detail->source_seller_id) {
-                                                $total_pending_profit += $detail->seller_profit_amount;
+                                    foreach ($combinedOrders as $combined_order) {
+                                        foreach ($combined_order->orders as $order) {
+                                            foreach ($order->orderDetails as $detail) {
+                                                if ($detail->seller_id == Auth::id() && $detail->seller_id != $detail->source_seller_id) {
+                                                    $total_pending_profit += $detail->seller_profit_amount;
+                                                }
                                             }
                                         }
                                     }
-                                }
-                            @endphp
+                                @endphp
                             {{ single_price($total_pending_profit ?? 0) }}
                         </h3>
 
@@ -440,7 +439,29 @@
                                 <span class="fs-14 text-light">{{ translate('Upcoming Sale') }}</span>
                             </p>
                             <h3 class="mb-0 text-white fs-30">
-                                {{ \App\Models\Product::where('user_id', $authUser->id)->count() }}
+                                  @php
+                                    $total_pending_sale = 0;
+
+                                    $combinedOrders = \App\Models\CombinedOrder::with('orders.orderDetails')
+                                    ->where('payment_status', 'paid')
+                                        ->whereHas('orders.orderDetails', function ($query) {
+                                            $query->where('seller_id', Auth::id());
+                                        })
+                                        ->get();
+
+                                    $combinedOrdersCount = $combinedOrders->count();
+
+                                    foreach ($combinedOrders as $combined_order) {
+                                        foreach ($combined_order->orders as $order) {
+                                            foreach ($order->orderDetails as $detail) {
+                                                if ($detail->source_seller_id == Auth::id() ) {
+                                                    $total_pending_sale += $detail->source_sseller_profit_amount;
+                                                }
+                                            }
+                                        }
+                                    }
+                                @endphp
+                                {{ single_price($total_pending_sale ?? 0) }}
                             </h3>
 
                         </div>
