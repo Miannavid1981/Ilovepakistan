@@ -455,7 +455,7 @@
                                         foreach ($combined_order->orders as $order) {
                                             foreach ($order->orderDetails as $detail) {
                                                 if ($detail->source_seller_id == Auth::id() ) {
-                                                    $total_pending_sale += $detail->source_sseller_profit_amount;
+                                                    $total_pending_sale += $detail->source_seller_profit_amount;
                                                 }
                                             }
                                         }
