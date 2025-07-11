@@ -443,9 +443,9 @@
                                     $total_pending_sale = 0;
 
                                     $combinedOrders = \App\Models\CombinedOrder::with('orders.orderDetails')
-                                    ->where('payment_status', 'paid')
+                                    ->where('payment_status', '!=' , 'paid')
                                         ->whereHas('orders.orderDetails', function ($query) {
-                                            $query->where('seller_id', Auth::id());
+                                            $query->where('source_seller_id', Auth::id());
                                         })
                                         ->get();
 
