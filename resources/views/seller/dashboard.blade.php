@@ -28,10 +28,37 @@
         <div class="col-12">
             <h4>Earnings & Finances</h4>
         </div>
+        <div class="col-sm-6 col-md-4 col-xxl-4">
+            <div class="card shadow-none mb-4 bg-warning py-4">
+                <div class="card-body">
+                    <div class="row align-items-center">
+                        <div class="col">
+                            <p class="small text-muted mb-0">
+                                <span class="fe fe-arrow-down fe-12"></span>
+                                <span class="fs-14 text-dark">{{ translate('Available Balance') }}</span>
+                            </p>
+                            <h3 class="mb-0 text-dark fs-30">
+                                @php
+                                    
+                                @endphp
+                                {{ single_price(auth()->user()->balance ?? 0) }}
+                            </h3>
 
+                        </div>
+                        <div class="col-auto text-right">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="64.001" height="64" viewBox="0 0 64.001 64">
+                                <path id="Path_66" data-name="Path 66"
+                                    d="M146.431,117.56l-26.514-10.606a8.014,8.014,0,0,0-5.944,0L87.458,117.56a4,4,0,0,0-2.514,3.714v34.217a4,4,0,0,0,2.514,3.714l26.514,10.606a8.013,8.013,0,0,0,5.944,0L146.431,159.2a4,4,0,0,0,2.514-3.714V121.274a4,4,0,0,0-2.514-3.714m-31.714-8.748a5.981,5.981,0,0,1,4.456,0l26.1,10.44a1,1,0,0,1,0,1.858l-12.332,4.932-30.654-12.26Zm1.228,59.633L88.2,157.347a2,2,0,0,1-1.258-1.856V122.6l29,11.6Zm1-36L88.612,121.11a1,1,0,0,1,0-1.858L99.6,114.858l30.654,12.262Zm30,23.048a2,2,0,0,1-1.258,1.856l-27.742,11.1V134.2l13-5.2V146.61a1.035,1.035,0,0,0,2-.466V128.2l14-5.6Z"
+                                    transform="translate(-84.944 -106.382)" fill="#FFFFFF" />
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         @if( $seller_type == "store_partner" )
             <div class="col-sm-6 col-md-4 col-xxl-4">
-                <div class="card shadow-none mb-4 bg-warning py-4">
+                <div class="card shadow-none mb-4 bg-light py-4">
                     <div class="card-body">
                         <div class="row align-items-center">
                             <div class="col">
@@ -62,25 +89,25 @@
                                             }
                                         }
                                     @endphp
-                                {{ single_price($total_pending_profit ?? 0) }}
-                            </h3>
+                                    {{ single_price($total_pending_profit ?? 0) }}
+                                </h3>
 
-                        </div>
-                        <div class="col-auto text-right">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="64.001" height="64" viewBox="0 0 64.001 64">
-                                <path id="Path_66" data-name="Path 66"
-                                    d="M146.431,117.56l-26.514-10.606a8.014,8.014,0,0,0-5.944,0L87.458,117.56a4,4,0,0,0-2.514,3.714v34.217a4,4,0,0,0,2.514,3.714l26.514,10.606a8.013,8.013,0,0,0,5.944,0L146.431,159.2a4,4,0,0,0,2.514-3.714V121.274a4,4,0,0,0-2.514-3.714m-31.714-8.748a5.981,5.981,0,0,1,4.456,0l26.1,10.44a1,1,0,0,1,0,1.858l-12.332,4.932-30.654-12.26Zm1.228,59.633L88.2,157.347a2,2,0,0,1-1.258-1.856V122.6l29,11.6Zm1-36L88.612,121.11a1,1,0,0,1,0-1.858L99.6,114.858l30.654,12.262Zm30,23.048a2,2,0,0,1-1.258,1.856l-27.742,11.1V134.2l13-5.2V146.61a1.035,1.035,0,0,0,2-.466V128.2l14-5.6Z"
-                                    transform="translate(-84.944 -106.382)" fill="#FFFFFF" />
-                            </svg>
+                            </div>
+                            <div class="col-auto text-right">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="64.001" height="64" viewBox="0 0 64.001 64">
+                                    <path id="Path_66" data-name="Path 66"
+                                        d="M146.431,117.56l-26.514-10.606a8.014,8.014,0,0,0-5.944,0L87.458,117.56a4,4,0,0,0-2.514,3.714v34.217a4,4,0,0,0,2.514,3.714l26.514,10.606a8.013,8.013,0,0,0,5.944,0L146.431,159.2a4,4,0,0,0,2.514-3.714V121.274a4,4,0,0,0-2.514-3.714m-31.714-8.748a5.981,5.981,0,0,1,4.456,0l26.1,10.44a1,1,0,0,1,0,1.858l-12.332,4.932-30.654-12.26Zm1.228,59.633L88.2,157.347a2,2,0,0,1-1.258-1.856V122.6l29,11.6Zm1-36L88.612,121.11a1,1,0,0,1,0-1.858L99.6,114.858l30.654,12.262Zm30,23.048a2,2,0,0,1-1.258,1.856l-27.742,11.1V134.2l13-5.2V146.61a1.035,1.035,0,0,0,2-.466V128.2l14-5.6Z"
+                                        transform="translate(-84.944 -106.382)" fill="#FFFFFF" />
+                                </svg>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
         @endif
         @if( $seller_type != "store_partner" )
             <div class="col-sm-6 col-md-4 col-xxl-4">
-                <div class="card shadow-none mb-4 bg-warning py-4">
+                <div class="card shadow-none mb-4 bg-light py-4">
                     <div class="card-body">
                         <div class="row align-items-center">
                             <div class="col">
@@ -130,7 +157,7 @@
 
     </div>
 
-    
+
   @if($seller_type != 'brand_partner')
     <div class="row">
        
