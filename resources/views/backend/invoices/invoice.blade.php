@@ -8,7 +8,7 @@
     $main_order_id = 'BH000'.$order->id;
     $combined_order = $order;
 
-$payment_status = $orders->first()->payment_status ?? '';
+$payment_status = $order->payment_status ?? '';
 @endphp
 
 <!DOCTYPE html>
