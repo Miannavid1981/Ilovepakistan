@@ -454,6 +454,14 @@ class OrderController extends Controller
                 }
             }
         }
+
+        if($combined_order->payment_method == 'cash_on_counter' || $combined_order->payment_method == 'debit_card' || $combined_order->payment_method == 'credit_card' )  {
+        
+            $combined_order->payment_status = 'paid';
+        
+        }
+
+
         $combined_order->save();
 
         $request->session()->put('combined_order_id', $combined_order->id);
