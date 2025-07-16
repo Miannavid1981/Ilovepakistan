@@ -60,6 +60,8 @@
                             </select>
                         @else
                             <input type="text" class="form-control" value="{{ translate(ucfirst(str_replace('_', ' ', $delivery_status))) }}" disabled>
+                            <br>
+                            <span class="text-danger">Action Unavailable until Payment received from customer</span>
                         @endif
                     </div>
                     <div class="col-md-3 ml-auto">
