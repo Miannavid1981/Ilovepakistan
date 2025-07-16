@@ -39,10 +39,10 @@ class CheckoutController extends Controller
         $carts = Cart::where('user_id', $user_id)->get();
         // Perform checks and validations as before...
         $address_id = session()->get('address_id');
-        
+
         // Store payment option and other necessary data in session for later use
         $request->session()->put('payment_type', 'cart_payment');
-        
+
         $request->session()->put('payment_option', $request->payment_option); // Store the selected payment option
         if ($request->hasFile('photo')) {
             \Log::info($request->photo);
@@ -271,37 +271,37 @@ class CheckoutController extends Controller
     //             ]);
     //     }
     // }
-    
+
     public function updateCheckedStatus(Request $request)
     {
         // Find the cart item and update the checked status
         $cartItem = Cart::find($request->cart_id);
         $cartItem->checked = $request->checked;
         $cartItem->save();
-    
+
         return response()->json(['message' => 'Checked status updated successfully.']);
     }
-    
+
     public function finalizeOrderCheckout(Request $request)
     {
-       
+
         // Retrieve session data
         $payment_option = $request->payment_method ?? 'cash_on_delivery';
         $payment_data = $request->session()->get('payment_data');
         $user_id = Auth::id();
         $auth_user = \App\Models\User::find($user_id);
 
-        if(empty($request->phone)){
+        if (empty($request->phone)) {
             flash(translate('Phone Number Cant be left blank'))->warning();
             return redirect()->back();
         }
-        
+
         if (is_null($auth_user->phone) || $auth_user->phone === '') {
             $auth_user->phone = $request->phone;
             $auth_user->save(); // prefer save() when modifying fields
         }
 
-        
+        dd($request);
 
 
         // Retrieve the user's cart items
@@ -310,7 +310,7 @@ class CheckoutController extends Controller
         $address_label = '';
 
         $address_type = $request->delivery_type ?? '';
-        if($address_type == 'personal'){
+        if ($address_type == 'personal') {
             $address_label = $request->personal_address_label ?? '(No Label)';
         } else {
             $address_label = $request->address_label ?? '(No Label)';
@@ -318,15 +318,15 @@ class CheckoutController extends Controller
         $selected_address_id = !empty($request->selected_address_id) ? $request->selected_address_id : null;
         // dd($request);
         $shipping_address = [];
-        
-        if (!empty($selected_address_id)){
+
+        if (!empty($selected_address_id)) {
             $address = Address::find($selected_address_id);
             $state = \App\Models\State::where("id", $address->state_id)->first();
-            $country = \App\Models\Country::where("id",$address->country_id)->first();
+            $country = \App\Models\Country::where("id", $address->country_id)->first();
             $city = \App\Models\City::where('id', $address->city_id)->first();
-            $delivery_contact_name = $request->first_name." ".$request->last_name ?? '-' ;
+            $delivery_contact_name = $request->first_name . " " . $request->last_name ?? '-';
             $shipping_address = [
-                'name' => $delivery_contact_name ,
+                'name' => $delivery_contact_name,
                 'email' => Auth::user()->email,
                 'phone' => $request->phone,
                 'address' => $address->address,
@@ -360,11 +360,11 @@ class CheckoutController extends Controller
             $address->save();
 
             $state = \App\Models\State::where("id", $request->state_id)->first();
-            $country = \App\Models\Country::where("id",$request->country_id)->first();
+            $country = \App\Models\Country::where("id", $request->country_id)->first();
             $city = \App\Models\City::where('id', $request->city_id)->first();
             // dd($request, $city);
             $shipping_address = [
-                'name' => $request->first_name." ".$request->last_name,
+                'name' => $request->first_name . " " . $request->last_name,
                 'email' => Auth::user()->email,
                 'phone' => $request->phone,
                 'address' => $request->address,
@@ -377,10 +377,8 @@ class CheckoutController extends Controller
                 'area' => $address->area ?? null,
                 'landmark' => $address->landmark ?? null
             ];
-
-
         }
-   
+
         // Update carts with the address_id
         foreach ($carts as $cart) {
             $cart->address_id = $selected_address_id;
@@ -414,7 +412,7 @@ class CheckoutController extends Controller
 
         // Redirect to the order confirmation page
         flash(translate('Your order has been placed successfully!'))->success();
-        return redirect()->route('order-received', ['id' => 'BH000'.Session::get('combined_order_id')]);
+        return redirect()->route('order-received', ['id' => 'BH000' . Session::get('combined_order_id')]);
     }
 
 
@@ -540,7 +538,7 @@ class CheckoutController extends Controller
     // }
     public function store_shipping_info(Request $request)
     {
-       
+
         if ($request->address_id == null) {
             flash(translate("Please add shipping address"))->warning();
             return back();
@@ -554,12 +552,12 @@ class CheckoutController extends Controller
             $cartItem->address_id = $request->address_id;
             $cartItem->save();
         }
-        
+
         // Filter checked items for calculation
         $checkedCarts = $carts->filter(function ($cartItem) {
             return $cartItem['checked'] == 1;
         });
-        
+
         // Calculate shipping, taxes, subtotal, and total
         $total = 0;
         $tax = 0;
@@ -583,7 +581,7 @@ class CheckoutController extends Controller
     }
     public function store_delivery_info(Request $request)
     {
-        if(empty(Auth::id())) {
+        if (empty(Auth::id())) {
             return redirect()->route('user.login');
         }
         $carts = Cart::where('user_id', Auth::user()->id)
@@ -763,12 +761,13 @@ class CheckoutController extends Controller
     //     session()->forget(['payment_type', 'payment_option', 'payment_data', 'combined_order_id']);
     //     return view('frontend.order_confirmed', compact('combined_order'));
     // }
-    public function thank_you(Request $request, $id){
+    public function thank_you(Request $request, $id)
+    {
         $id = intval(str_replace('BH', "",  $id));
         // dd($id);
         $order = CombinedOrder::where('id', $id)->first();
         // dd($order);
-        return view('frontend.checkout.thankyou', ['order_id'=> $id, 'order'=> $order]);
+        return view('frontend.checkout.thankyou', ['order_id' => $id, 'order' => $order]);
     }
     public function uploadReceipts(Request $request)
     {
@@ -780,7 +779,7 @@ class CheckoutController extends Controller
 
         if ($request->hasFile('payment_receipts')) {
             foreach ($request->file('payment_receipts') as $file) {
-                $path = $file->store('payment_receipts', 'public'); 
+                $path = $file->store('payment_receipts', 'public');
                 $uploadedFiles[] = $path;
             }
         }
@@ -792,15 +791,14 @@ class CheckoutController extends Controller
 
         return back()->with('success', 'Receipts uploaded successfully!');
     }
-    public function payment_actions(Request $request){
+    public function payment_actions(Request $request)
+    {
         $address_type = $request->address_type ?? '';
-        $addresses = Address::where( 'user_id', auth()->user()->id )->where('address_type', $address_type)->get();
+        $addresses = Address::where('user_id', auth()->user()->id)->where('address_type', $address_type)->get();
         $data = [
             'addresses' => $addresses
         ];
         $returnHTML = view('frontend.checkout.inc.place_order', $data)->render();
         return response()->json(array('html' => $returnHTML));
-
     }
 }
-
