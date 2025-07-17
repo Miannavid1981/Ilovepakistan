@@ -301,7 +301,7 @@ class CheckoutController extends Controller
             $auth_user->save(); // prefer save() when modifying fields
         }
 
-        dd($request);
+        // dd($request);
 
 
         // Retrieve the user's cart items
