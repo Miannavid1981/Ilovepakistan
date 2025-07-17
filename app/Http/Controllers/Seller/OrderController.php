@@ -135,40 +135,51 @@ class OrderController extends Controller
                 // Credit Seller Wallet
                 $seller = \App\Models\User::find($orderDetail->seller_id);
                 if ($seller && $orderDetail->seller_profit_amount > 0) {
-                    // $wallet = $seller->wallet;
-                    // if ($wallet) {
+                    $seller_Wallet = $seller->wallets()->firstOrCreate([], [
+                        'user_id' => $seller->id,
+                        'amount' => 0,
+                    ]);
+                    if ($seller_Wallet) {
                         \App\Models\Wallet::credit([
                             'amount' => ($orderDetail->seller_profit_amount),
                             'user_id' => $seller->id,
-                            'wallet_id' => $wallet->id,
+                            'wallet_id' => $seller_Wallet->id,
                             'source' => 'order#' . $order->id,
                             'description' => 'Seller profit from order detail #' . $orderDetail->id,
                             'sourceUserId' => auth()->id(),
                         ]);
-                    // }
+                    }
                 }
 
                  // Credit Seller Wallet
                 $source_seller = \App\Models\User::find($orderDetail->source_seller_id);
                 if ($source_seller && $orderDetail->source_seller_profit_amount > 0) {
-                    // $wallet = $source_seller->wallet;
-                    // if ($wallet) {
+                   
+                    $source_seller_Wallet = $source_seller->wallets()->firstOrCreate([], [
+                        'user_id' => $source_seller->id,
+                        'amount' => 0,
+                    ]);
+                    if ($source_seller_Wallet) {
                         \App\Models\Wallet::credit([
                             'amount' => $orderDetail->source_seller_profit_amount,
                             'user_id' => $source_seller->id,
-                            'wallet_id' => $wallet->id,
+                            'wallet_id' => $source_seller_Wallet->id,
                             'source' => 'order#' . $order->id,
                             'description' => 'Brand Sale from order detail #' . $orderDetail->id,
                             'sourceUserId' => auth()->id(),
                         ]);
-                    // }
+                    }
                 }
 
                 // Credit Admin Wallet
                 $admin = \App\Models\User::where('user_type', 'admin')->where('email', 'admin@bighouz.com')->first(); // Adjust this condition as needed
                 if ($admin && $orderDetail->admin_profit_amount > 0) {
-                    // $adminWallet = $admin->wallet;
-                    // if ($adminWallet) {
+                    $adminWallet = $admin->wallets()->firstOrCreate([], [
+                        'user_id' => $admin->id,
+                        'amount' => 0,
+                    ]);
+
+                    if ($adminWallet) {
                         \App\Models\Wallet::credit([
                             'amount' => floatval($orderDetail->admin_profit_amount),
                             'user_id' => $admin->id,
@@ -177,7 +188,7 @@ class OrderController extends Controller
                             'description' => 'Admin profit from order detail #' . $orderDetail->id,
                             'sourceUserId' => auth()->id(),
                         ]);
-                    // }
+                    }
                 }
 
                 // Mark as paid to avoid reprocessing
