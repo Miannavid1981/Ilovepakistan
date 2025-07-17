@@ -128,12 +128,72 @@ class OrderController extends Controller
 
         foreach ($order->orderDetails->where('seller_id', $authUser->id) as $key => $orderDetail) {
             $orderDetail->delivery_status = $request->status;
-            $orderDetail->save();
+            // $orderDetail->save();
 
+
+            if ($orderDetail->delivery_status == 'delivered' && $orderDetail->payment_status != 'paid') {
+                // Credit Seller Wallet
+                $seller = \App\Models\User::find($orderDetail->seller_id);
+                if ($seller && $orderDetail->seller_profit_amount > 0) {
+                    $wallet = $seller->wallet;
+                    if ($wallet) {
+                        \App\Models\Wallet::credit([
+                            'amount' => floatval($orderDetail->seller_profit_amount),
+                            'user_id' => $seller->id,
+                            'wallet_id' => $wallet->id,
+                            'source' => 'order#' . $order->id,
+                            'description' => 'Seller profit from order detail #' . $orderDetail->id,
+                            'sourceUserId' => auth()->id(),
+                        ]);
+                    }
+                }
+
+                 // Credit Seller Wallet
+                $source_seller = \App\Models\User::find($orderDetail->source_seller_id);
+                if ($source_seller && $orderDetail->source_seller_profit_amount > 0) {
+                    $wallet = $source_seller->wallet;
+                    if ($wallet) {
+                        \App\Models\Wallet::credit([
+                            'amount' => floatval($orderDetail->source_seller_profit_amount),
+                            'user_id' => $source_seller->id,
+                            'wallet_id' => $wallet->id,
+                            'source' => 'order#' . $order->id,
+                            'description' => 'Brand Sale from order detail #' . $orderDetail->id,
+                            'sourceUserId' => auth()->id(),
+                        ]);
+                    }
+                }
+
+                // Credit Admin Wallet
+                $admin = \App\Models\User::where('user_type', 'admin')->where('email', 'admin@bighouz.com')->first(); // Adjust this condition as needed
+                if ($admin && $orderDetail->admin_profit_amount > 0) {
+                    $adminWallet = $admin->wallet;
+                    if ($adminWallet) {
+                        \App\Models\Wallet::credit([
+                            'amount' => floatval($orderDetail->admin_profit_amount),
+                            'user_id' => $admin->id,
+                            'wallet_id' => $adminWallet->id,
+                            'source' => 'order#' . $order->id,
+                            'description' => 'Admin profit from order detail #' . $orderDetail->id,
+                            'sourceUserId' => auth()->id(),
+                        ]);
+                    }
+                }
+
+                // Mark as paid to avoid reprocessing
+                $orderDetail->payment_status = 'paid';
+                
+            }
+            $orderDetail->save();
             if ($request->status == 'cancelled') {
                 product_restock($orderDetail);
             }
         }
+
+
+        
+
+
         $combinedOrder = $order->combinedOrder; // This gets the related model
 
         if ($combinedOrder) {
