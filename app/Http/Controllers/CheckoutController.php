@@ -581,10 +581,10 @@ class CheckoutController extends Controller
     }
     public function store_delivery_info(Request $request)
     {
-        if (empty(Auth::id())) {
+        if (empty(auth()->user()->id)) {
             return redirect()->route('user.login');
         }
-        $carts = Cart::where('user_id', Auth::user()->id)
+        $carts = Cart::where('user_id', auth()->user()->id)
             ->get();
         if ($carts->isEmpty()) {
             flash(translate('Your cart is empty'))->warning();
