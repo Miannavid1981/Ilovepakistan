@@ -144,7 +144,7 @@ class OrderController extends Controller
                             'amount' => ($orderDetail->seller_profit_amount),
                             'user_id' => $seller->id,
                             'wallet_id' => $seller_Wallet->id,
-                            'source' => 'order#' . $order->id,
+                            'source' => 'system',
                             'description' => 'Seller profit from order detail #' . $orderDetail->id,
                             'sourceUserId' => auth()->id(),
                         ]);
@@ -164,7 +164,7 @@ class OrderController extends Controller
                             'amount' => $orderDetail->source_seller_profit_amount,
                             'user_id' => $source_seller->id,
                             'wallet_id' => $source_seller_Wallet->id,
-                            'source' => 'order#' . $order->id,
+                            'source' => 'system',
                             'description' => 'Brand Sale from order detail #' . $orderDetail->id,
                             'sourceUserId' => auth()->id(),
                         ]);

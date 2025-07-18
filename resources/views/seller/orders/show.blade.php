@@ -39,10 +39,13 @@
                     <div class="col-md-3 ml-auto">
                         <label for="update_delivery_status">{{ translate('Delivery Status') }}</label>
                         @if (
-                            $delivery_status != 'delivered' &&
-                            $delivery_status != 'cancelled' &&
-                            $order->combinedOrder->payment_status == 'unpaid' &&
-                            !($order->combinedOrder->payment_method == 'direct_bank_transfer' && $order->combinedOrder->payment_status == 'unpaid')
+                     
+                            ( ($order->combinedOrder->payment_method != 'cash_on_delivery' && $order->combinedOrder->payment_status != 'unpaid')
+                            || 
+                            $order->combinedOrder->payment_method == 'cash_on_delivery'
+
+                            ) && $delivery_status != 'delivered'
+                            
                         )
                             <select class="form-control aiz-selectpicker" data-minimum-results-for-search="Infinity"
                                 id="update_delivery_status">
