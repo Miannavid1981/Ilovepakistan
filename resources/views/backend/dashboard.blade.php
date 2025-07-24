@@ -13,7 +13,7 @@
     @endif
     @can('admin_dashboard')
         <div class="row gutters-16">
-            <div class="col-sm-6">
+            <div class="col-sm-4">
                 <div class="dashboard-box bg-white h-220px mb-2rem overflow-hidden">
                     <div class="d-flex flex-column justify-content-between h-100">
                         <div class="d-flex justify-content-between">
