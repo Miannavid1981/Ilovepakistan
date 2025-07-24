@@ -121,64 +121,14 @@
                              </div>
                              
                          </div>
+                         
                          <div id="tab2" class="tab-pane fade">
-                             <h4 align="center">
-                                 Contact Information
-                             </h4>
+                             <h4 align="center">{{ translate('Business Details')}}</h4>
                              <br>
-                             <div class="mb-3">
-                                 <input type="text" name="designation" class="form-control" placeholder="Designation">
-                             </div>
-                             
-                             <div class="mb-3">
-                                 <input type="text" name="authorized_person_mobile" class="form-control" placeholder="Authorized Person Mobile">
-                             </div>
-                             
-                             <div class="mb-3">
-                                 <input type="text" name="authorized_person_whatsapp" class="form-control" placeholder="Whatsapp Number">
-                             </div>
-                             
-                             <div class="mb-3">
+                              <div class="mb-3">
                                  
-                                 <input type="text" name="authorized_person_cnic_no" class="form-control" placeholder="Whatsapp Number" >
+                                 <input type="text" name="company_name" class="form-control" placeholder="Company Name" >
                              </div>
- 
-                         
-                             
- 
-                             <div class="mb-3">
-                                 
-                                 <input type="text" name="authorized_person_cnic_no" class="form-control" placeholder="Authorized Person CNIC No" >
-                             </div>
- 
-                             <div class="mb-3">
-                                 <label class="form-label">CNIC Front</label>
-                                 <input type="file" name="authorized_person_cnic_front" class="form-control" >
-                             </div>
- 
-                             <div class="mb-3">
-                                 <label class="form-label">CNIC Back</label>
-                                 <input type="file" name="authorized_person_cnic_back" class="form-control" >
-                             </div>
-                         
- 
-                             <div class="mb-3">
-                                 <label class="form-label">Registered Office Address</label>
-                                 <textarea name="registered_office_address" class="form-control" ></textarea>
-                             </div>
-                             <div class="mb-3">
-                                <label class="form-label">Home Address</label>
-                                <textarea name="home_address" class="form-control"></textarea>
-                            </div>
-                            
-                             <div class="d-flex justify-content-between">
-                                 <button class="btn btn-secondary prev-tab" type="button">Previous</button>
-                                 <button class="btn btn-primary next-tab" type="button">Next</button>
-                             </div>
-                         </div>
-                         <div id="tab3" class="tab-pane fade">
-                             <h4 align="center">{{ translate('Company Details')}}</h4>
-                             <br>
                              <div class="mb-3">
                                  <label class="form-label">Company Type</label>
                                  <select class="form-control" id="company_type">
@@ -199,6 +149,7 @@
                                      <option value=""> - Select - </option>
                                      <option value="Manufacturer"> Manufacturer</option>
                                      <option value="Importer"> Importer </option>
+                                     <option value="Exporter"> Exporter </option>
                                      <option value="Wholeseller"> Wholeseller</option>
                                      <option value="Distributor"> Distributor</option>
                                  </select>
@@ -233,7 +184,7 @@
                              </div>
                              <div class="mb-3">
                                  
-                                 <input type="text" name="partnership_ntn" id="partnership_ntn" placeholder="NTN of Partnership" class="form-control" >
+                                 <input type="text" name="partnership_ntn" id="partnership_ntn" placeholder="Business NTN No." class="form-control" >
                              </div>
  
                              <div class="mb-3">
@@ -267,7 +218,7 @@
                                  <button class="btn btn-primary next-tab" type="button">Next</button>
                              </div>
                          </div>
-                         <div id="tab4" class="tab-pane fade">
+                         <div id="tab3" class="tab-pane fade">
                             <h4 align="center">Product Details</h4>
                             <br>
                             <div class="form-group">
@@ -281,6 +232,13 @@
                                 <textarea name="brand_description" class="form-control" placeholder="Tell us about your brand/product..."></textarea>
                             </div>
                             <div class="form-group">
+                                <input type="url" name="website" class="form-control" placeholder="Enter Your Website URL">
+                            </div>
+                             <div class="form-group">
+                                <textarea name="social_links" class="form-control" placeholder="Enter Brand Social Links"></textarea>
+                            </div>
+                            
+                            <div class="form-group">
                                 <label>Upload Product Images (ZIP)</label>
                                 <input type="file" name="product_images_zip" class="form-control" accept=".zip">
                             </div>
@@ -289,6 +247,55 @@
                                 <button class="btn btn-primary next-tab" type="button">Next</button>
                             </div>
                         </div>
+                         <div id="tab4" class="tab-pane fade">
+                             <h4 align="center">
+                                 Contact Information
+                             </h4>
+                             <br>
+                             <div class="mb-3">
+                                 <input type="text" name="designation" class="form-control" placeholder="Designation">
+                             </div>
+                             
+                             <div class="mb-3">
+                                 <input type="text" name="authorized_person_mobile" class="form-control" placeholder="Authorized Person Mobile">
+                             </div>
+                             
+                             <div class="mb-3">
+                                 <input type="text" name="authorized_person_whatsapp" class="form-control" placeholder="Whatsapp Number">
+                             </div>
+                             
+                            
+                             <div class="mb-3">
+                                 
+                                 <input type="text" name="authorized_person_cnic_no" class="form-control" placeholder="Authorized Person CNIC No" >
+                             </div>
+ 
+                             <div class="mb-3">
+                                 <label class="form-label">CNIC Front</label>
+                                 <input type="file" name="authorized_person_cnic_front" class="form-control" >
+                             </div>
+ 
+                             <div class="mb-3">
+                                 <label class="form-label">CNIC Back</label>
+                                 <input type="file" name="authorized_person_cnic_back" class="form-control" >
+                             </div>
+                         
+ 
+                             <div class="mb-3">
+                                 <label class="form-label">Registered Office Address</label>
+                                 <textarea name="registered_office_address" class="form-control" ></textarea>
+                             </div>
+                             <div class="mb-3">
+                                <label class="form-label">Home Address</label>
+                                <textarea name="home_address" class="form-control"></textarea>
+                            </div>
+                            
+                             <div class="d-flex justify-content-between">
+                                 <button class="btn btn-secondary prev-tab" type="button">Previous</button>
+                                 <button class="btn btn-primary next-tab" type="button">Next</button>
+                             </div>
+                         </div>
+                         
                         
                          <div id="tab5" class="tab-pane fade">
  
