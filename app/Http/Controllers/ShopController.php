@@ -238,6 +238,10 @@ class ShopController extends Controller
                 'created_at' => now(),
                 'updated_at' => now(),
             ]);
+            $shop->slug = preg_replace('/\s+/', '-', $request->shop_name) . '-' . $shop->id;
+            $shop->meta_title       = $request->shop_name;
+            $shop->meta_description = $request->shop_name;
+            $shop->save();
 
             // Save Category Preferences
             $pref_ids = $request->category_pref_ids ?? [];
