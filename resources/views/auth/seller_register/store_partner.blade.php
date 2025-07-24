@@ -106,16 +106,16 @@
                                   
                                 </select>
                             </div>
-                            <div class="form-group">
+                            {{-- <div class="form-group">
                                
                                 <select name="area" class="form-control">
                                     <option value="">Select Area</option>
                                     <!-- Area options should be dynamically filtered by city -->
                                 </select>
-                            </div>
+                            </div> --}}
                             <div class="form-group">
                                 
-                                <input type="text" id="address" class="form-control {{ $errors->has('address') ? ' is-invalid' : '' }}" value="{{ old('address') }}" placeholder="{{  translate('Store Address') }}" name="address">
+                                <input type="text" id="address" class="form-control {{ $errors->has('address') ? ' is-invalid' : '' }}" value="{{ old('address') }}" placeholder="{{  translate('Area') }}" name="address">
                                 @if ($errors->has('address'))
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('address') }}</strong>
@@ -147,7 +147,7 @@
                                 <select class="form-control" name="profession_type">
                                 
                               
-                                    <option value="shopkeeper">Shopkeeper</option>
+                                    <option value="business">Business</option>
                                     <option value="individual">Individual</option>
                                     
                                 </select>
