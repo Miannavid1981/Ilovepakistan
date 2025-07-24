@@ -22,7 +22,7 @@
                                     $admin__user = \App\Models\User::where('email', 'admin@bighouz.com')->first();
 
                                 @endphp
-                                <h1 class="fs-30 fw-600 text-dark mb-1">{{ $admin__user->balance ?? - }}</h1>
+                                <h1 class="fs-30 fw-600 text-dark mb-1">{{ $admin__user->balance ?? '-' }}</h1>
                                 <h3 class="fs-13 fw-600 text-secondary mb-0">{{ translate('Wallet Balance') }}</h3>
                             </div>
                             <div class="mt-2">
