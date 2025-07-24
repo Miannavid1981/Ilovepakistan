@@ -185,7 +185,7 @@
                             </div> --}}
                             <div class="mb-3">
                             
-                                <input type="text" name="authorized_person_mobile" class="form-control" placeholder="Authorized Person Mobile" >
+                                <input type="text" name="authorized_person_mobile" class="form-control" placeholder="Personal Mobile Number" >
                             </div>
                             
                             <div class="mb-3">

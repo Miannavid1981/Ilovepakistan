@@ -70,7 +70,7 @@
                              <br>
                              <div class="form-group">
                                  <label>Store Name</label>
-                                 <input type="text" class="form-control {{ $errors->has('shop_name') ? ' is-invalid' : '' }}" value="{{ old('shop_name') }}" placeholder="{{  translate('Brand Name') }}" name="shop_name">
+                                 <input type="text" class="form-control {{ $errors->has('shop_name') ? ' is-invalid' : '' }}" value="{{ old('shop_name') }}" placeholder="{{  translate('Store Name') }}" name="shop_name">
                                  @if ($errors->has('shop_name'))
                                      <span class="invalid-feedback" role="alert">
                                          <strong>{{ $errors->first('shop_name') }}</strong>
@@ -84,25 +84,29 @@
                              
                              <div class="form-group">
                                  <label>Store Address</label>
-                                 <select name="store_city" class="form-control">
-                                     <option value="">Select City</option>
-                                     <option value="Lahore">Lahore</option>
-                                     <option value="Karachi">Karachi</option>
-                                     <!-- Add other cities -->
-                                 </select>
+                                 <select class="form-control" id="city" name="city">
+                                    <option value="">Select City </option>
+                                    @php
+                                        $cities = \App\Models\City::where('state_id', 2728)->where('status', 1)->get();
+                                    @endphp
+                                    @foreach( $cities as $city)
+                                        <option value="{{ strtolower(str_replace(' ', '-', $city->name )) }}"> {{ $city->name }} </option>
+                                    @endforeach
+                                  
+                                </select>
                              </div>
                              
-                             <div class="form-group">
+                             {{-- <div class="form-group">
                                  <!-- <label>Area</label> -->
                                  <select name="store_area" class="form-control">
                                      <option value="">Select Area</option>
                                      <!-- Area options should be dynamically filtered by city -->
                                  </select>
-                             </div>
+                             </div> --}}
  
                              <div class="form-group">
                                  
-                                 <input type="text" class="form-control {{ $errors->has('address') ? ' is-invalid' : '' }}" value="{{ old('address') }}" placeholder="{{  translate('Store Address') }}" name="address">
+                                 <input type="text" class="form-control {{ $errors->has('address') ? ' is-invalid' : '' }}" value="{{ old('address') }}" placeholder="{{  translate('Area') }}" name="address">
                                  @if ($errors->has('address'))
                                      <span class="invalid-feedback" role="alert">
                                          <strong>{{ $errors->first('address') }}</strong>
