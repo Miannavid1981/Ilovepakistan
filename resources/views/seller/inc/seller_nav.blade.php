@@ -29,7 +29,7 @@
                         </button>
 
                         <!-- QR Code Modal -->
-                        <div class="modal fade" id="qrcode_modal" tabindex="-1" role="dialog" aria-hidden="true">
+                        <div class="modal fade" id="qrcode_modal">
                             <div class="modal-dialog">
                                 <div class="modal-content" id="qrcode-content">
                                     <div class="modal-header">
