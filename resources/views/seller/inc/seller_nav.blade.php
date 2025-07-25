@@ -196,8 +196,16 @@
                         $qrCode = base64_encode(QrCode::format('png')->size(200)->generate(route('shop.visit', auth()->user()->shop->slug)));
                     @endphp
                     <img src="data:image/png;base64,{{ $qrCode }}" style="width: 100%; height: 100%; aspect-ratio: 1 / 1;" />
-                    <div>
-                    <img src="{{ uploaded_asset(get_setting('site_icon')) }}" class="ms-2" style="width: 25px; height: auto" alt="Discover">
+                    <div style="    position: absolute;
+    background: #fde6ff;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #8722d2;">
+                    <img src="{{ uploaded_asset(get_setting('site_icon')) }}" class="ms-2" style="width: 26px; height: auto" alt="Discover">
                     </div>
                 </div>
             </div>
