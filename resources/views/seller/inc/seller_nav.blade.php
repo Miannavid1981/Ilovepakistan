@@ -37,7 +37,13 @@
                                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                                     </div>
                                     <div class="modal-body text-center">
-                                        <img src="https://static.vecteezy.com/system/resources/previews/046/930/670/non_2x/qr-code-icon-simple-qr-code-illustration-barcode-scan-abstract-design-isolated-vector.jpg" class="img-fluid" alt="QR Code">
+                                        <div style="aspec-ratio: 1 / 1">
+                                            @php
+                                                $qrCode = base64_encode(QrCode::format('png')->size(100)->generate(route('shop.visit', auth()->user()->shop->slug)));
+                                            @endphp
+                                            <img src="data:image/png;base64,{{ $qrCode }}" style="width: 90px; aspect-ratio: 1 / 1;" />
+                                        
+                                        </div>
                                     </div>
                                 </div>
                             </div>
