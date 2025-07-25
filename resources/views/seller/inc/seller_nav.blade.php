@@ -17,11 +17,31 @@
                             Visit store&nbsp;&nbsp;
                             <img src="https://images.vexels.com/media/users/3/158194/isolated/preview/11507ef5615c554fe88fc22c86768501-simple-earth-icon.png" class="w-auto h-100">
                         </a>
-                        <button class="btn btn-light p-0 ml-2" style="height: 40px; width: 40px; border-radius: 10px ">
-
-                            <img src="https://static.vecteezy.com/system/resources/previews/046/930/670/non_2x/qr-code-icon-simple-qr-code-illustration-barcode-scan-abstract-design-isolated-vector.jpg" class="w-100 h-100" style="object-fit: cover; border-radius: 50%">
+                        <!-- QR Code Button -->
+                        <button type="button" 
+                                class="btn btn-light p-0 ml-2" 
+                                style="height: 40px; width: 40px; border-radius: 10px;" 
+                                data-toggle="modal" 
+                                data-target="#qrcode_modal">
+                            <img src="https://static.vecteezy.com/system/resources/previews/046/930/670/non_2x/qr-code-icon-simple-qr-code-illustration-barcode-scan-abstract-design-isolated-vector.jpg" 
+                                class="w-100 h-100" 
+                                style="object-fit: cover; border-radius: 50%;">
                         </button>
 
+                        <!-- QR Code Modal -->
+                        <div class="modal fade" id="qrcode_modal" tabindex="-1" role="dialog" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content" id="qrcode-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">QR Code</h5>
+                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    </div>
+                                    <div class="modal-body text-center">
+                                        <img src="https://static.vecteezy.com/system/resources/previews/046/930/670/non_2x/qr-code-icon-simple-qr-code-illustration-barcode-scan-abstract-design-isolated-vector.jpg" class="img-fluid" alt="QR Code">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
