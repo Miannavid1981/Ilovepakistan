@@ -186,11 +186,16 @@
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
             <div class="modal-body text-center">
-                <div style="aspec-ratio: 1 / 1">
+                <div style="    aspect-ratio: 1 / 1;
+                width: 200px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin: 0 auto;">
                     @php
-                        $qrCode = base64_encode(QrCode::format('png')->size(100)->generate(route('shop.visit', auth()->user()->shop->slug)));
+                        $qrCode = base64_encode(QrCode::format('png')->size(200)->generate(route('shop.visit', auth()->user()->shop->slug)));
                     @endphp
-                    <img src="data:image/png;base64,{{ $qrCode }}" style="width: 90px; aspect-ratio: 1 / 1;" />
+                    <img src="data:image/png;base64,{{ $qrCode }}" style="width: 100%; height: 100%; aspect-ratio: 1 / 1;" />
                 
                 </div>
             </div>
