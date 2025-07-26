@@ -192,28 +192,33 @@
                 align-items: center;
                 justify-content: center;
                 margin: 0 auto;">
-                    @php
-                        use SimpleSoftwareIO\QrCode\Facades\QrCode;
-                        use Intervention\Image\Facades\Image;
+                @php
+                    use SimpleSoftwareIO\QrCode\Facades\QrCode;
+                    use Intervention\Image\Facades\Image;
 
-                        // Generate QR code binary
-                        $qrBinary = QrCode::format('png')->size(300)->generate(route('shop.visit', auth()->user()->shop->slug));
+                    $qrBinary = QrCode::format('png')->size(300)->generate(route('shop.visit', auth()->user()->shop->slug));
 
-                        // Create image from QR code binary
-                        $qrImage = Image::make($qrBinary);
+                    $qrImage = Image::make($qrBinary);
 
-                        // Load and resize logo
-                        $logoPath = uploaded_asset(get_setting('site_icon'));
-                        $logo = Image::make($logoPath)->resize(60, 60); // adjust as needed
+                    // Get logo URL or path
+                    $logoUrl = uploaded_asset(get_setting('site_icon'));
 
-                        // Insert logo in the center
-                        $qrImage->insert($logo, 'center');
+                    // Handle remote or local image
+                    if (filter_var($logoUrl, FILTER_VALIDATE_URL)) {
+                        $logoContents = file_get_contents($logoUrl);
+                        $logo = Image::make($logoContents)->resize(60, 60);
+                    } else {
+                        $logo = Image::make(public_path($logoUrl))->resize(60, 60);
+                    }
 
-                        // Encode image as base64
-                        $qrCodeBase64 = base64_encode($qrImage->encode('png'));
-                    @endphp
+                    // Insert logo into center of QR
+                    $qrImage->insert($logo, 'center');
 
-                    <img src="data:image/png;base64,{{ $qrCodeBase64 }}" style="width: 100%; height: 100%; aspect-ratio: 1 / 1;" />
+                    // Encode final image as base64
+                    $qrCodeBase64 = base64_encode($qrImage->encode('png'));
+                @endphp
+
+                <img src="data:image/png;base64,{{ $qrCodeBase64 }}" style="width: 100%; height: 100%; aspect-ratio: 1 / 1;" />
 
                     {{-- <div style="   
                     position: absolute;
