@@ -193,16 +193,28 @@
                 justify-content: center;
                 margin: 0 auto;">
                     @php
-                        $qrCode_obj = QrCode::format('png')->size(200)->generate(route('shop.visit', auth()->user()->shop->slug));
-                        
-                          // Resize logo
-                        $logo = Image::make(uploaded_asset(get_setting('site_icon')) )->resize(60, 60); // adjust size as needed
+                        use SimpleSoftwareIO\QrCode\Facades\QrCode;
+                        use Intervention\Image\Facades\Image;
 
-                        // Insert logo at center
-                        $qrCode_obj->insert($qrCode_obj, 'center');
-                        $qrCode = base64_encode($qrCode_obj);
+                        // Generate QR code binary
+                        $qrBinary = QrCode::format('png')->size(300)->generate(route('shop.visit', auth()->user()->shop->slug));
+
+                        // Create image from QR code binary
+                        $qrImage = Image::make($qrBinary);
+
+                        // Load and resize logo
+                        $logoPath = uploaded_asset(get_setting('site_icon'));
+                        $logo = Image::make($logoPath)->resize(60, 60); // adjust as needed
+
+                        // Insert logo in the center
+                        $qrImage->insert($logo, 'center');
+
+                        // Encode image as base64
+                        $qrCodeBase64 = base64_encode($qrImage->encode('png'));
                     @endphp
-                    <img src="data:image/png;base64,{{ $qrCode }}" style="width: 100%; height: 100%; aspect-ratio: 1 / 1;" />
+
+                    <img src="data:image/png;base64,{{ $qrCodeBase64 }}" style="width: 100%; height: 100%; aspect-ratio: 1 / 1;" />
+
                     {{-- <div style="   
                     position: absolute;
 top: 0;
