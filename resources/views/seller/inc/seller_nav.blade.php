@@ -193,33 +193,42 @@
                 justify-content: center;
                 margin: 0 auto;">
                 @php
-                    $shopUrl = route('shop.visit', auth()->user()->shop->slug);
-                    $logoPath = uploaded_asset(get_setting('site_icon')); // Usually a URL
+                    use SimpleSoftwareIO\QrCode\Facades\QrCode;
+                    use Intervention\Image\Facades\Image;
+                    use Illuminate\Support\Str;
 
-                    // Generate QR Code binary data
-                    $qrBinary = QrCode::format('png')->size(400)->generate($shopUrl);
+                    // Generate QR code binary
+                    $qrBinary = QrCode::format('png')->size(400)->generate(route('shop.visit', auth()->user()->shop->slug));
                     $qrImage = Image::make($qrBinary);
 
+                    // Get logo URL
+                    $logoUrl = uploaded_asset(get_setting('site_icon'));
+
                     try {
-                        // Check if logo is a remote URL
-                        if (filter_var($logoPath, FILTER_VALIDATE_URL)) {
-                            $logoContents = file_get_contents($logoPath);
-                            $logo = Image::make($logoContents)->resize(60, 60);
-                        } else {
-                            $logo = Image::make(public_path($logoPath))->resize(60, 60);
-                        }
+                        // Download logo to temporary local file
+                        $tmpPath = storage_path('app/public/tmp-logo-' . Str::random(8) . '.png');
+                        file_put_contents($tmpPath, file_get_contents($logoUrl));
 
-                        // Insert logo into center
+                        // Open and resize logo from local path
+                        $logo = Image::make($tmpPath)->resize(60, 60);
+
+                        // Insert logo into center of QR
                         $qrImage->insert($logo, 'center');
-                    } catch (\Exception $e) {
-                        // If logo can't be loaded, continue with QR only
-                    }
 
-                    // Encode as base64
-                    $qrBase64 = base64_encode($qrImage->encode('png'));
+                        // Delete temp logo file
+                        @unlink($tmpPath);
+
+                        // Encode QR with logo to base64
+                        $qrBase64 = base64_encode($qrImage->encode('png'));
+                    } catch (\Exception $e) {
+                        \Log::error('QR with logo failed: ' . $e->getMessage());
+
+                        // fallback: QR without logo
+                        $qrBase64 = base64_encode(QrCode::format('png')->size(400)->generate(route('shop.visit', auth()->user()->shop->slug)));
+                    }
                 @endphp
 
-                <img src="data:image/png;base64,{{ $qrBase64 }}" style="width: 100%; aspect-ratio: 1 / 1;" alt="QR Code">
+                <img src="data:image/png;base64,{{ $qrBase64 }}" style="width: 100%; aspect-ratio: 1 / 1;" alt="QR Code with logo">
 
                     {{-- <div style="   
                     position: absolute;
