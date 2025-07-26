@@ -193,12 +193,14 @@
                 justify-content: center;
                 margin: 0 auto;">
                     @php
-                        $qrCode = base64_encode(QrCode::format('png')->size(200)->generate(route('shop.visit', auth()->user()->shop->slug)));
+                        $qrCode_obj = QrCode::format('png')->size(200)->generate(route('shop.visit', auth()->user()->shop->slug));
+                        
                           // Resize logo
                         $logo = Image::make(uploaded_asset(get_setting('site_icon')) )->resize(60, 60); // adjust size as needed
 
                         // Insert logo at center
-                        $qrCode->insert($logo, 'center');
+                        $qrCode_obj->insert($qrCode_obj, 'center');
+                        $qrCode = base64_encode($qrCode_obj);
                     @endphp
                     <img src="data:image/png;base64,{{ $qrCode }}" style="width: 100%; height: 100%; aspect-ratio: 1 / 1;" />
                     {{-- <div style="   
