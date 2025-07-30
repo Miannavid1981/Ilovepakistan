@@ -81,7 +81,7 @@
 
                                     foreach ($combinedOrders as $combined_order) {
 
-                                        if($combined_order->payment_status != 'unpaid' && $combined_order->payment_method == 'cash_on_delivery'  ){
+                                        if($combined_order->delivery_status == 'delivered' && $combined_order->payment_status != 'unpaid' && $combined_order->payment_method == 'cash_on_delivery'  ){
                                             foreach ($combined_order->orders as $order) {
                                                 foreach ($order->orderDetails as $detail) {
                                                     if ($detail->seller_id == Auth::id() && $detail->seller_id != $detail->source_seller_id) {
@@ -132,10 +132,12 @@
                                         $combinedOrdersCount = $combinedOrders->count();
 
                                         foreach ($combinedOrders as $combined_order) {
-                                            foreach ($combined_order->orders as $order) {
-                                                foreach ($order->orderDetails as $detail) {
-                                                    if ($detail->seller_id == Auth::id() && $detail->seller_id != $detail->source_seller_id) {
-                                                        $total_pending_profit += $detail->seller_profit_amount;
+                                            if($combined_order->delivery_status != 'delivered' && $combined_order->payment_method == 'cash_on_delivery'  ){
+                                                foreach ($combined_order->orders as $order) {
+                                                    foreach ($order->orderDetails as $detail) {
+                                                        if ($detail->seller_id == Auth::id() && $detail->seller_id != $detail->source_seller_id) {
+                                                            $total_pending_profit += $detail->seller_profit_amount;
+                                                        }
                                                     }
                                                 }
                                             }
