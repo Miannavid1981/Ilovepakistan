@@ -68,9 +68,31 @@
                             </p>
                             <h3 class="mb-0 text-dark fs-30">
                                 @php
-                                    $seller_balance = auth()->user()->balance ?? 0;
+                                    $total_pending_profit = 0;
+
+                                    $combinedOrders = \App\Models\CombinedOrder::with('orders.orderDetails')
+                                    ->where('payment_status', '!=', 'paid')
+                                        ->whereHas('orders.orderDetails', function ($query) {
+                                            $query->where('seller_id', Auth::id());
+                                        })
+                                        ->get();
+
+                                    $combinedOrdersCount = $combinedOrders->count();
+
+                                    foreach ($combinedOrders as $combined_order) {
+
+                                        if($combined_order->payment_status != 'unpaid' && $combined_order->payment_method == 'cash_on_delivery'  ){
+                                            foreach ($combined_order->orders as $order) {
+                                                foreach ($order->orderDetails as $detail) {
+                                                    if ($detail->seller_id == Auth::id() && $detail->seller_id != $detail->source_seller_id) {
+                                                        $total_pending_profit += $detail->seller_profit_amount;
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
                                 @endphp
-                                {{ single_price($seller_balance) }}
+                                {{ single_price($total_pending_profit ?? 0) }}
                             </h3>
                             <a href="@if($seller_balance != 0) {{ '/' }}  @else 'javascript::void(0);' @endif" class="btn btn-dark mt-2"  >Withdraw</a>
 
