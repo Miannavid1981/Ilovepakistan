@@ -373,8 +373,30 @@
 </div>
 
 
-@include('frontend/megamart/partials/brand_slider');
-    
+    <div class="container">
+        <div class="d-flex justify-content-between">
+            <h4>Explore Categories</h4>
+            <a href="" class="fs-18 text-dark text-decoration-underline">View All</a>
+        </div>   
+        <div class="home_categories_grid">
+            @php
+                // Fetch categories with level = 0 and status = 1 directly in the view
+                $categories = \App\Models\Category::where('level', 0)->get();
+            @endphp
+                @foreach ($categories as $category )
+                    
+                        <a href="{{ route('products.category', $category->slug) }}" class="d-flex flex-column align-items-center justify-content-center home_category">
+                            <img src="{{uploaded_asset($category->icon)}}" class="me-2 p-1 rounded-circle border-1 border" style="width: 65px;height: auto;aspect-ratio: 1 / 1;" >
+                            <p class="mt-2 text-dark fs-15 text-center mb-0">   {{$category->name}}</p>
+                        </a>
+                    
+                @endforeach
+
+            
+        </div>
+    </div>
+
+
     
 
 <!-- Category-start -->
@@ -503,28 +525,7 @@
 </div>
 
 
-<div class="container">
-    <div class="d-flex justify-content-between">
-        <h4>Explore Categories</h4>
-        <a href="" class="fs-18 text-dark text-decoration-underline">View All</a>
-    </div>   
-    <div class="home_categories_grid">
-        @php
-            // Fetch categories with level = 0 and status = 1 directly in the view
-            $categories = \App\Models\Category::where('level', 0)->get();
-        @endphp
-            @foreach ($categories as $category )
-                
-                    <a href="{{ route('products.category', $category->slug) }}" class="d-flex flex-column align-items-center justify-content-center home_category">
-                        <img src="{{uploaded_asset($category->icon)}}" class="me-2 p-1 rounded-circle border-1 border" style="width: 65px;height: auto;aspect-ratio: 1 / 1;" >
-                        <p class="mt-2 text-dark fs-15 text-center mb-0">   {{$category->name}}</p>
-                    </a>
-                
-            @endforeach
 
-        
-    </div>
-</div>
 
 
 
@@ -841,7 +842,8 @@
         </div>
     </section>
     
-
+@include('frontend/megamart/partials/brand_slider');
+    
     @include('frontend/megamart/partials/toggle_tabs');
    
     <!-- Today's deal -->
