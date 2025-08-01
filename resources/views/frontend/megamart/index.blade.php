@@ -1303,7 +1303,7 @@
 
         $('#newest_loader').show();
         if(!endOfResults){
-$('#section_newest').append(`{!! get_product_skeleton() !!}`);
+            $('#section_newest').append(`{!! get_product_skeleton() !!}`);
         }
         
         $.post('{{ route('home.section.newest_products') }}', {

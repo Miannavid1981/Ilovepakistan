@@ -1,3 +1,4 @@
+@if(count($newest_products) != 0 ) 
 <div class="row gx-3">
     @foreach ($newest_products as $key => $new_product)
     <div class="col-6 col-md-4 col-lg product-custom-col position-relative has-transition hov-animate-outline">
@@ -17,3 +18,4 @@
     </div>
     @endforeach
 </div>
+@endif
