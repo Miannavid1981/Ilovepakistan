@@ -108,10 +108,21 @@
             font-weight: normal; /* Optional: Set font weight */
             font-style: normal; /* Optional: Set font style */
         }
-        *:not(i){
+        @font-face {
+            font-family: 'Aeonik-Semibold'; /* The name you want to use for the font */
+            src: url('/public/assets/fonts/aeoniktrial-regular.otf') format('opentype'); /* Path to your .otf file */
+            font-weight: normal; /* Optional: Set font weight */
+            font-style: normal; /* Optional: Set font style */
+        }
+        *:not(i, h1, h2, h3, h4, h5, h6){
             font-family: "Aeonik" !important;
             letter-spacing: 0px !important;
         }
+        h1, h2, h3, h4, h5, h6 {
+            font-family: "Aeonik-Semibold" !important;
+            letter-spacing: 0px !important;
+        }
+
     
         .container {
             max-width: 1650px !important;
