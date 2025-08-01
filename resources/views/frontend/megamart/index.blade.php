@@ -1315,6 +1315,7 @@
                 AIZ.plugins.slickCarousel(); // re-init carousel
             }
         }).always(function () {
+            $('#section_newest .skeleton_grid').remove();
             $('#newest_loader').hide();
             loading = false;
         });
