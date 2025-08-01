@@ -225,7 +225,7 @@ if(!empty($product->product_custom_url)){
             <h3 class="fw-400 fs-16 lh-1-4 mb-0 mt-1">
 
                 
-                <a href="{{ $product_url }}" class="d-block hov-text-primary text-dark" style="font-weight: 600; line-height: 1;" title="{{ $product->getTranslation('name') }}">{{ $product->getTranslation('name') }}</a>
+                <a href="{{ $product_url }}" class="d-block hov-text-primary text-dark" style="font-weight: 600;" title="{{ $product->getTranslation('name') }}">{{ $product->getTranslation('name') }}</a>
 
             </h3>
             <div class="d-flex justify-content-start align-items-center g-2 text-warning fs-16 mt-1">
