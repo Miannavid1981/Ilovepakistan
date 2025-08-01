@@ -397,7 +397,138 @@
     </div>
 
 
+ 
+    @include('frontend/megamart/partials/toggle_tabs');
+   
+    <!-- Today's deal -->
+
+
+    <section style="background: var(--light-primary);" class="mb-5">
+        <div class="container py-5">
+            <div class="row g-4">
+                {{-- Column 1 --}}
+                <div class="col-12 col-sm-6 col-md-3">
+                    <img src="{{ static_asset('assets/img/Fuji_Defect_Reduction_2x_Deals_Fitness._SY232_CB549022351_.jpg') }}" class="img-fluid w-100">
+                </div>
     
+                {{-- Column 2 --}}
+                <div class="col-12 col-sm-6 col-md-3">
+                    <img src="{{ static_asset('assets/img/Fuji_Defect_Reduction_2x_Deals_Fitness._SY232_CB549022351_.jpg') }}" class="img-fluid w-100">
+                </div>
+    
+                {{-- Column 3 --}}
+                <div class="col-12 col-sm-6 col-md-3">
+                    <img src="{{ static_asset('assets/img/Fuji_Defect_Reduction_2x_Deals_Fitness._SY232_CB549022351_.jpg') }}" class="img-fluid w-100">
+                </div>
+    
+                {{-- Column 4 --}}
+                <div class="col-12 col-sm-6 col-md-3">
+                    <img src="{{ static_asset('assets/img/Fuji_Defect_Reduction_2x_Deals_Fitness._SY232_CB549022351_.jpg') }}" class="img-fluid w-100">
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    
+
+
+    @php
+        $todays_deal_section_bg = get_setting('todays_deal_section_bg_color');
+
+    @endphp
+    <div id="todays_deal" @if(get_setting('todays_deal_section_bg') == 1) style="background: {{ $todays_deal_section_bg }};" @endif>
+
+    </div>
+
+
+    <!-- Banner section 2 -->
+    @php $homeBanner2Images = get_setting('home_banner2_images', null, $lang);   @endphp
+    @if ($homeBanner2Images != null)
+        <div class="mb-2 mb-md-3 mt-2 mt-md-3">
+            <div class="container">
+                @php
+                    $banner_2_imags = json_decode($homeBanner2Images);
+                    $data_md = count($banner_2_imags) >= 2 ? 2 : 1;
+                    $home_banner2_links = get_setting('home_banner2_links', null, $lang);
+                @endphp
+                <div class="aiz-carousel gutters-16 overflow-hidden arrow-inactive-none arrow-dark arrow-x-15"
+                    data-items="{{ count($banner_2_imags) }}" data-xxl-items="{{ count($banner_2_imags) }}"
+                    data-xl-items="{{ count($banner_2_imags) }}" data-lg-items="{{ $data_md }}"
+                    data-md-items="{{ $data_md }}" data-sm-items="1" data-xs-items="1" data-arrows="true"
+                    data-dots="false">
+                    @foreach ($banner_2_imags as $key => $value)
+                        <div class="carousel-box overflow-hidden hov-scale-img">
+                            <a href="{{ isset(json_decode($home_banner2_links, true)[$key]) ? json_decode($home_banner2_links, true)[$key] : '' }}"
+                                class="d-block text-reset overflow-hidden">
+                                <img src="{{ static_asset('assets/img/placeholder-rect.jpg') }}"
+                                    data-src="{{ uploaded_asset($value) }}" alt="{{ env('APP_NAME') }} promo"
+                                    class="img-fluid lazyload w-100 has-transition"
+                                    onerror="this.onerror=null;this.src='{{ static_asset('assets/img/placeholder-rect.jpg') }}';">
+                            </a>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+        </div>
+    @endif
+
+    <!-- Best Selling, New Products, Banner section 2 -->
+    @php
+        $homeBanner3Images = get_setting('home_banner3_images', null, $lang);
+        $col_val = 6;
+        if ($homeBanner3Images != null){
+            $col_val = 4;
+        }
+    @endphp
+
+    <div class="container ">
+        
+        <div class="row ">
+            <div class="col-12">
+
+            </div>
+            <div class="col-xl-{{ $col_val }} mb-2 mb-md-3 mt-2 mt-md-3">
+                <!-- Best Selling  -->
+                <div id="section_best_selling" class="d-none">
+
+                </div>
+            </div>
+
+            <div class="col-xl-{{ $col_val }} mb-2 mb-md-3 mt-2 mt-md-3">
+                <!-- New Products -->
+               
+            </div>
+
+            <!-- Banner section 3 -->
+            @if ($homeBanner3Images != null)
+                <div class="col-xl-4 mb-2 mb-md-3 mt-2 mt-md-3 d-none d-xl-block">
+                    @php
+                        $banner_3_imags = json_decode($homeBanner3Images);
+                        $home_banner3_links = get_setting('home_banner3_links', null, $lang);
+                    @endphp
+                    <div class="aiz-carousel overflow-hidden arrow-inactive-none arrow-dark arrow-x-0"
+                        data-items="1" data-arrows="true" data-dots="false" data-autoplay="true">
+                        @foreach ($banner_3_imags as $key => $value)
+                            <div class="carousel-box overflow-hidden hov-scale-img">
+                                <a href="{{ isset(json_decode($home_banner3_links, true)[$key]) ? json_decode($home_banner3_links, true)[$key] : '' }}"
+                                    class="d-block text-reset overflow-hidden" style="height: 685px;">
+                                    <img src="{{ static_asset('assets/img/placeholder-rect.jpg') }}"
+                                        data-src="{{ uploaded_asset($value) }}" alt="{{ env('APP_NAME') }} promo"
+                                        class="img-fit h-100 lazyload has-transition"
+                                        onerror="this.onerror=null;this.src='{{ static_asset('assets/img/placeholder-rect.jpg') }}';">
+                                </a>
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
+            @endif
+        </div>
+                
+    </div>
+        
+
+
+       
 
 <!-- Category-start -->
 
@@ -844,134 +975,6 @@
     
 @include('frontend/megamart/partials/brand_slider');
     
-    @include('frontend/megamart/partials/toggle_tabs');
-   
-    <!-- Today's deal -->
-
-
-    <section style="background: var(--light-primary);" class="mb-5">
-        <div class="container py-5">
-            <div class="row g-4">
-                {{-- Column 1 --}}
-                <div class="col-12 col-sm-6 col-md-3">
-                    <img src="{{ static_asset('assets/img/Fuji_Defect_Reduction_2x_Deals_Fitness._SY232_CB549022351_.jpg') }}" class="img-fluid w-100">
-                </div>
-    
-                {{-- Column 2 --}}
-                <div class="col-12 col-sm-6 col-md-3">
-                    <img src="{{ static_asset('assets/img/Fuji_Defect_Reduction_2x_Deals_Fitness._SY232_CB549022351_.jpg') }}" class="img-fluid w-100">
-                </div>
-    
-                {{-- Column 3 --}}
-                <div class="col-12 col-sm-6 col-md-3">
-                    <img src="{{ static_asset('assets/img/Fuji_Defect_Reduction_2x_Deals_Fitness._SY232_CB549022351_.jpg') }}" class="img-fluid w-100">
-                </div>
-    
-                {{-- Column 4 --}}
-                <div class="col-12 col-sm-6 col-md-3">
-                    <img src="{{ static_asset('assets/img/Fuji_Defect_Reduction_2x_Deals_Fitness._SY232_CB549022351_.jpg') }}" class="img-fluid w-100">
-                </div>
-            </div>
-        </div>
-    </section>
-    
-    
-
-
-    @php
-        $todays_deal_section_bg = get_setting('todays_deal_section_bg_color');
-
-    @endphp
-    <div id="todays_deal" @if(get_setting('todays_deal_section_bg') == 1) style="background: {{ $todays_deal_section_bg }};" @endif>
-
-    </div>
-
-
-    <!-- Banner section 2 -->
-    @php $homeBanner2Images = get_setting('home_banner2_images', null, $lang);   @endphp
-    @if ($homeBanner2Images != null)
-        <div class="mb-2 mb-md-3 mt-2 mt-md-3">
-            <div class="container">
-                @php
-                    $banner_2_imags = json_decode($homeBanner2Images);
-                    $data_md = count($banner_2_imags) >= 2 ? 2 : 1;
-                    $home_banner2_links = get_setting('home_banner2_links', null, $lang);
-                @endphp
-                <div class="aiz-carousel gutters-16 overflow-hidden arrow-inactive-none arrow-dark arrow-x-15"
-                    data-items="{{ count($banner_2_imags) }}" data-xxl-items="{{ count($banner_2_imags) }}"
-                    data-xl-items="{{ count($banner_2_imags) }}" data-lg-items="{{ $data_md }}"
-                    data-md-items="{{ $data_md }}" data-sm-items="1" data-xs-items="1" data-arrows="true"
-                    data-dots="false">
-                    @foreach ($banner_2_imags as $key => $value)
-                        <div class="carousel-box overflow-hidden hov-scale-img">
-                            <a href="{{ isset(json_decode($home_banner2_links, true)[$key]) ? json_decode($home_banner2_links, true)[$key] : '' }}"
-                                class="d-block text-reset overflow-hidden">
-                                <img src="{{ static_asset('assets/img/placeholder-rect.jpg') }}"
-                                    data-src="{{ uploaded_asset($value) }}" alt="{{ env('APP_NAME') }} promo"
-                                    class="img-fluid lazyload w-100 has-transition"
-                                    onerror="this.onerror=null;this.src='{{ static_asset('assets/img/placeholder-rect.jpg') }}';">
-                            </a>
-                        </div>
-                    @endforeach
-                </div>
-            </div>
-        </div>
-    @endif
-
-    <!-- Best Selling, New Products, Banner section 2 -->
-    @php
-        $homeBanner3Images = get_setting('home_banner3_images', null, $lang);
-        $col_val = 6;
-        if ($homeBanner3Images != null){
-            $col_val = 4;
-        }
-    @endphp
-
-    <div class="container ">
-        
-        <div class="row ">
-            <div class="col-12">
-
-            </div>
-            <div class="col-xl-{{ $col_val }} mb-2 mb-md-3 mt-2 mt-md-3">
-                <!-- Best Selling  -->
-                <div id="section_best_selling" class="d-none">
-
-                </div>
-            </div>
-
-            <div class="col-xl-{{ $col_val }} mb-2 mb-md-3 mt-2 mt-md-3">
-                <!-- New Products -->
-               
-            </div>
-
-            <!-- Banner section 3 -->
-            @if ($homeBanner3Images != null)
-                <div class="col-xl-4 mb-2 mb-md-3 mt-2 mt-md-3 d-none d-xl-block">
-                    @php
-                        $banner_3_imags = json_decode($homeBanner3Images);
-                        $home_banner3_links = get_setting('home_banner3_links', null, $lang);
-                    @endphp
-                    <div class="aiz-carousel overflow-hidden arrow-inactive-none arrow-dark arrow-x-0"
-                        data-items="1" data-arrows="true" data-dots="false" data-autoplay="true">
-                        @foreach ($banner_3_imags as $key => $value)
-                            <div class="carousel-box overflow-hidden hov-scale-img">
-                                <a href="{{ isset(json_decode($home_banner3_links, true)[$key]) ? json_decode($home_banner3_links, true)[$key] : '' }}"
-                                    class="d-block text-reset overflow-hidden" style="height: 685px;">
-                                    <img src="{{ static_asset('assets/img/placeholder-rect.jpg') }}"
-                                        data-src="{{ uploaded_asset($value) }}" alt="{{ env('APP_NAME') }} promo"
-                                        class="img-fit h-100 lazyload has-transition"
-                                        onerror="this.onerror=null;this.src='{{ static_asset('assets/img/placeholder-rect.jpg') }}';">
-                                </a>
-                            </div>
-                        @endforeach
-                    </div>
-                </div>
-            @endif
-        </div>
-                
-    </div>
-        
 
 
     <!-- Banner section 4, Top Sellers -->
