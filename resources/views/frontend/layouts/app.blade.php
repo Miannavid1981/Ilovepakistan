@@ -103,13 +103,13 @@
         --secondary: hsla(351, 66%, 61%, 1);
        }
         @font-face {
-            font-family: 'TTNormsPro'; /* The name you want to use for the font */
+            font-family: 'Aeonik'; /* The name you want to use for the font */
             src: url('/public/assets/fonts/aeoniktrial-light.otf') format('opentype'); /* Path to your .otf file */
             font-weight: normal; /* Optional: Set font weight */
             font-style: normal; /* Optional: Set font style */
         }
         *:not(i){
-            font-family: "Outfit", sans-serif !important;
+            font-family: "Aeonik" !important;
             letter-spacing: 0px !important;
         }
     
