@@ -114,7 +114,7 @@
             font-weight: normal; /* Optional: Set font weight */
             font-style: normal; /* Optional: Set font style */
         }
-        *:not(i, h1, h2, h3, h4, h5, h6){
+        p {
             font-family: "Aeonik" !important;
             letter-spacing: 0px !important;
         }
