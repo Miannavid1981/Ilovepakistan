@@ -746,12 +746,12 @@ transition: all .3s ease-in-out
                 AIZ.plugins.slickCarousel();
             });
 
-            $.post('{{ route('home.section.newest_products') }}', {
-                _token: '{{ csrf_token() }}'
-            }, function(data) {
-                $('#section_newest').html(data);
-                AIZ.plugins.slickCarousel();
-            });
+            // $.post('{{ route('home.section.newest_products') }}', {
+            //     _token: '{{ csrf_token() }}'
+            // }, function(data) {
+            //     $('#section_newest').html(data);
+            //     AIZ.plugins.slickCarousel();
+            // });
 
             $.post('{{ route('home.section.auction_products') }}', {
                 _token: '{{ csrf_token() }}'

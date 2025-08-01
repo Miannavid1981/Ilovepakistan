@@ -1285,8 +1285,44 @@
 @section('script')
 <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.js"></script>
 <script>
+    let page = 1;
+    let loading = false;
+    let endOfResults = false;
+
+    $(window).on('scroll', function () {
+        if (loading || endOfResults) return;
+
+        if ($(window).scrollTop() + $(window).height() >= $('#section_newest').height() - 100) {
+            loadMoreNewestProducts();
+        }
+    });
+
+    function loadMoreNewestProducts() {
+        loading = true;
+        page++;
+
+        $('#newest_loader').show();
+
+        $.post('{{ route('home.section.newest_products') }}', {
+            _token: '{{ csrf_token() }}',
+            page: page
+        }, function (data) {
+            if ($.trim(data) === '') {
+                endOfResults = true;
+            } else {
+                $('#section_newest').append(data);
+                AIZ.plugins.slickCarousel(); // re-init carousel
+            }
+        }).always(function () {
+            $('#newest_loader').hide();
+            loading = false;
+        });
+    }
+</script>
+<script>
     $(document).ready(function(){
             
+        
    
         $('.brand-logos-slider').slick({
             slidesToShow: 8,

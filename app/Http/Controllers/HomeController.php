@@ -58,14 +58,20 @@ class HomeController extends Controller
         return view('frontend.' . get_setting('homepage_select') . '.partials.todays_deal', compact('todays_deal_products'));
     }
 
-    public function load_newest_product_section()
+    public function load_newest_product_section(Request $request)
     {
-        $newest_products = Cache::remember('newest_products', 3600, function () {
-            return filter_products(Product::isApprovedPublished()->latest())->limit(12)->get();
-        });
+        $page = $request->input('page', 1);
+        $perPage = 12;
 
-        return view('frontend.' . get_setting('homepage_select') . '.partials.newest_products_section', compact('newest_products'));
+        $query = Product::isApprovedPublished()->latest();
+
+        $products = filter_products($query)->paginate($perPage, ['*'], 'page', $page);
+
+        return view('frontend.' . get_setting('homepage_select') . '.partials.newest_products_ajax', [
+            'newest_products' => $products
+        ]);
     }
+
 
     public function load_featured_section()
     {
