@@ -402,33 +402,33 @@
    
     <!-- Today's deal -->
 
-
+{{-- 
     <section style="background: var(--light-primary);" class="mb-5">
         <div class="container py-5">
             <div class="row g-4">
-                {{-- Column 1 --}}
+                
                 <div class="col-12 col-sm-6 col-md-3">
                     <img src="{{ static_asset('assets/img/Fuji_Defect_Reduction_2x_Deals_Fitness._SY232_CB549022351_.jpg') }}" class="img-fluid w-100">
                 </div>
     
-                {{-- Column 2 --}}
+               
                 <div class="col-12 col-sm-6 col-md-3">
                     <img src="{{ static_asset('assets/img/Fuji_Defect_Reduction_2x_Deals_Fitness._SY232_CB549022351_.jpg') }}" class="img-fluid w-100">
                 </div>
     
-                {{-- Column 3 --}}
+                
                 <div class="col-12 col-sm-6 col-md-3">
                     <img src="{{ static_asset('assets/img/Fuji_Defect_Reduction_2x_Deals_Fitness._SY232_CB549022351_.jpg') }}" class="img-fluid w-100">
                 </div>
     
-                {{-- Column 4 --}}
+               
                 <div class="col-12 col-sm-6 col-md-3">
                     <img src="{{ static_asset('assets/img/Fuji_Defect_Reduction_2x_Deals_Fitness._SY232_CB549022351_.jpg') }}" class="img-fluid w-100">
                 </div>
             </div>
         </div>
     </section>
-    
+     --}}
     
 
 
