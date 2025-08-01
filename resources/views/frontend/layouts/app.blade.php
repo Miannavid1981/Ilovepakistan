@@ -104,7 +104,7 @@
        }
         @font-face {
             font-family: 'TTNormsPro'; /* The name you want to use for the font */
-            src: url('/public/assets/fonts/TT\ Norms\ Pro\ Regular.otf') format('opentype'); /* Path to your .otf file */
+            src: url('/public/assets/fonts/aeoniktrial-light.otf') format('opentype'); /* Path to your .otf file */
             font-weight: normal; /* Optional: Set font weight */
             font-style: normal; /* Optional: Set font style */
         }
