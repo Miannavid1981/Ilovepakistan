@@ -1302,7 +1302,10 @@
         page++;
 
         $('#newest_loader').show();
-        $('#section_newest').append(`{!! get_product_skeleton() !!}`);
+        if(!endOfResults){
+$('#section_newest').append(`{!! get_product_skeleton() !!}`);
+        }
+        
         $.post('{{ route('home.section.newest_products') }}', {
             _token: '{{ csrf_token() }}',
             page: page
