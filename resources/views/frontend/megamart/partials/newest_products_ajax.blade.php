@@ -1,4 +1,5 @@
- @foreach ($newest_products as $key => $new_product)
+<div class="row gx-3">
+    @foreach ($newest_products as $key => $new_product)
     <div class="col-6 col-md-4 col-lg product-custom-col position-relative has-transition hov-animate-outline">
         @php
             $seller_id =  $new_product->user_id ?? null;
@@ -15,3 +16,4 @@
         @endif
     </div>
     @endforeach
+</div>
