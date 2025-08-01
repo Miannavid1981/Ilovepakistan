@@ -1310,6 +1310,7 @@
             if ($.trim(data) === '') {
                 endOfResults = true;
             } else {
+                $('#section_newest').append(`{!! get_product_skeleton() !!}`);
                 $('#section_newest').append(data);
                 AIZ.plugins.slickCarousel(); // re-init carousel
             }
