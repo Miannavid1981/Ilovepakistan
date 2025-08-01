@@ -80,7 +80,6 @@
                                     $combinedOrdersCount = $combinedOrders->count();
 
                                     foreach ($combinedOrders as $combined_order) {
-
                                         if($combined_order->delivery_status == 'delivered' && $combined_order->payment_status != 'unpaid' && $combined_order->payment_method == 'cash_on_delivery'  ){
                                             foreach ($combined_order->orders as $order) {
                                                 foreach ($order->orderDetails as $detail) {
