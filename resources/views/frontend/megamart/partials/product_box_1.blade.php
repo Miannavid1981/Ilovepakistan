@@ -70,7 +70,7 @@ if(!empty($product->product_custom_url)){
                     onerror="this.onerror=null;this.src='{{ static_asset('assets/img/placeholder.jpg') }}';">
 
                 </a>
-                    <div class="absolute-bottom-left absolute-bottom-right d-flex justify-content-between align-items-center p-3 add-cart-btn gap-2">
+                    {{-- <div class="absolute-bottom-left absolute-bottom-right d-flex justify-content-between align-items-center p-3 add-cart-btn gap-2">
                         <button class="view-cart w-100"  href="javascript:void(0)"
                             onclick="showAddToCartModal({{ $product->id }})">
                             <i class="fa-regular fa-eye fs-15 me-2"></i>   
@@ -78,7 +78,7 @@ if(!empty($product->product_custom_url)){
                     </button>
                        
 
-            </div>
+            </div> --}}
 
             </div>
         
