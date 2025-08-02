@@ -1,5 +1,9 @@
 
-<footer class="footer text-dark pt-5 pb-3" style="background-color: #000; line-height: 40px;">
+<style>footer * {
+    font-family: 'Aeonik' !important;
+}
+    </style>
+<footer class="footer text-light pt-5 pb-3" style="background-color: #000; line-height: 40px;">
     <div class="container">
         <div class="row">
             <!-- About Section -->
@@ -29,9 +33,9 @@
                     @endif
                 </a>
                 <ul class="list-unstyled">
-                    <li class="fs-17"><strong>Mail:</strong> hi.avitex@gmail.com</li>
-                    <li class="fs-17"><strong>Phone:</strong> 1-333-345-6868</li>
-                    <li class="fs-17"><strong>Address:</strong> 549 Oak St. Crystal Lake, IL 60014</li>
+                    <li class="fs-17 text-light"><strong>Mail:</strong> hi.avitex@gmail.com</li>
+                    <li class="fs-17 text-light"><strong>Phone:</strong> 1-333-345-6868</li>
+                    <li class="fs-17 text-light"><strong>Address:</strong> 549 Oak St. Crystal Lake, IL 60014</li>
                 </ul>
             </div>
             <!-- Information Section -->
