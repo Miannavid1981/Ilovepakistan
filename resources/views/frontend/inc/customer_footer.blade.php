@@ -1,7 +1,5 @@
 
-<style>footer * {
-    font-family: 'Aeonik' !important;
-}
+<style>
     </style>
 <footer class="footer text-light pt-5 pb-3" style="background-color: #000; line-height: 40px;">
     <div class="container">
