@@ -61,7 +61,7 @@ class HomeController extends Controller
     public function load_newest_product_section(Request $request)
     {
         $page = $request->input('page', 1);
-        $perPage = 12;
+        $perPage = 6;
 
         $query = Product::isApprovedPublished()->latest();
 
