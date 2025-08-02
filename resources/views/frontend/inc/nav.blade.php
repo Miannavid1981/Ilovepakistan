@@ -110,16 +110,16 @@ header{
                                             $first_name = $user_name[0];
 
                                         @endphp
-                                        <span class="d-block fs-15" style="text-wrap: auto"> Hello, {{$first_name}} </span>
-                                        <span class="fw-bold fs-16">My Account</span>
+                                        <span class="d-block fs-15"  style="text-wrap: auto; font-family: 'Aeonik' !important;"> Hello, {{$first_name}} </span>
+                                        <span class="fw-bold fs-16"  style="font-family: 'Aeonik-Semibold' !important;">My Account</span>
                                         
                                     </div>
                                     
                                 </div>
                             @else 
                                 <div class="d-flex flex-column">
-                                    <span class="d-block fs-14"> Customer Area</span>
-                                    <span class="fw-bold fs-15">My Account</span>
+                                    <span class="d-block fs-14" style="font-family: 'Aeonik' !important;"> Customer Area</span>
+                                    <span class="fw-bold fs-15"  style="font-family: 'Aeonik-Semibold' !important;" >My Account</span>
                                 </div>
                             @endauth
                         </button>
