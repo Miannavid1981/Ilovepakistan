@@ -1288,7 +1288,7 @@
     let page = 1;
     let loading = false;
     let endOfResults = false;
-
+    loadMoreNewestProducts();
     $(window).on('scroll', function () {
         if (loading || endOfResults) return;
 
