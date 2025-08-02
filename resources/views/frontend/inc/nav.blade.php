@@ -67,8 +67,8 @@ header{
                                 <i class="fa fa-location-dot fs-20 me-2" style="color: @auth #3072cb @else #000 @endif">
                                 </i>
                                 <div class="d-flex flex-column">
-                                    <span class="d-block fs-15">Deliver to</span>
-                                    <span class="fw-bold fs-17">Pakistan</span>
+                                    <span class="d-block fs-15" style="font-family: 'Aeonik' !important;">Deliver to</span>
+                                    <span class="fw-bold fs-17" style="font-family: 'Aeonik-Semibold' !important;">Pakistan</span>
                                 </div>
                         </div> 
                     @endif
