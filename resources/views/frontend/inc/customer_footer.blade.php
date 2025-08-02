@@ -30,7 +30,7 @@
 
                     @endif
                 </a>
-                <div class="d-flex justify-content-center justify-content-md-start" id="social_links">
+                <div class="d-flex justify-content-center justify-content-md-start mt-5 mb-3" id="social_links">
                     <a href="https://www.facebook.com/bighouz/" target="_blank" class="me-3 text-light"><i class="fab fa-facebook-f fs-3"></i></a>
                     <a href="https://www.instagram.com/big_houz" target="_blank" class="me-3 text-light"><i class="fab fa-instagram fs-3"></i></a>
                     <a href="https://x.com/Big_houz" target="_blank" class="me-3 text-light"><i class="fab fa-twitter fs-3"></i></a>
@@ -38,9 +38,9 @@
                     <a href="https://www.pinterest.com/big_houz/" target="_blank" class="text-light"><i class="fab fa-pinterest fs-3"></i></a>
                 </div>
                 <ul class="list-unstyled">
-                    <li class="text-light fs-6"><i class="fa fa-envelope"></i> <span>info@bighouz. </span></li>
-                    <li class="text-light fs-6"><i class="fa fa-phone"></i> <span>+923333120595</span></li>
-                    <li class="text-light fs-6"><i class="fa fa-location"></i>  <span>M-42-43, Zainab Towers. Link Road Model Town. Lahore 54700</span></li>
+                    <li class="text-light fs-6" style="line-height: 1.2em !important;"><i class="fa fa-envelope"></i> <span>info@bighouz.com </span></li>
+                    <li class="text-light fs-6" style="line-height: 1.2em !important;"><i class="fa fa-phone"></i> <span>+92 333 3120 595</span></li>
+                    <li class="text-light fs-6" style="line-height: 1.2em !important;"><i class="fa fa-map-marker"></i>  <span>M-42-43, Zainab Towers. Link Road Model Town. Lahore 54700</span></li>
 
                     
                 </ul>
