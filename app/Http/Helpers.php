@@ -143,7 +143,7 @@ if (!function_exists('filter_products')) {
                 });
             });
         } else {
-            return $products->where('added_by', 'admin');
+            return $products;
         }
     }
 }
