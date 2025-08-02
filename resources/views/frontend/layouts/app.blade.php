@@ -114,7 +114,7 @@
             font-weight: normal; /* Optional: Set font weight */
             font-style: normal; /* Optional: Set font style */
         }
-        p, li {
+        p, li, td, th{
             font-family: "Aeonik" !important;
             letter-spacing: 0px !important;
         }
