@@ -12,6 +12,9 @@ header{
 header .nav-link:not(.category-drawer-toggle-btn) {
     color: #000 !important;
 }
+.category-drawer-toggle-btn {
+    padding: 10px !important;
+}
 
 </style>
 <header >
