@@ -1302,15 +1302,16 @@
         page++;
 
         $('#newest_loader').show();
-        if(!endOfResults){
-            $('#section_newest').append(`{!! get_product_skeleton() !!}`);
+        if (!endOfResults) {
+            $('#section_newest').append(`@js(get_product_skeleton())`);
         }
+
         
         $.post('{{ route('home.section.newest_products') }}', {
             _token: '{{ csrf_token() }}',
             page: page
         }, function (data) {
-            if (data.loadmore == 0 ) {
+            if (!data.loadmore ) {
                 endOfResults = true;
             } else {
                 $('#section_newest').append(data.html);

@@ -69,10 +69,10 @@ class HomeController extends Controller
         $nextpage_products = filter_products($query)->paginate($perPage, ['*'], 'page', $page+1 );
 
         return [
-            'html' =>  view('frontend.' . get_setting('homepage_select') . '.partials.newest_products_ajax', [
+            'html' => view('frontend.' . get_setting('homepage_select') . '.partials.newest_products_ajax', [
                 'newest_products' => $products
-            ]),
-            'loadmore' => count($nextpage_products)
+            ])->render(),
+            'loadmore' => $nextpage_products->count() > 0 ? 1 : 0
         ];
     }
 
