@@ -31,10 +31,19 @@
                     @endif
                 </a>
                 <ul class="list-unstyled">
-                    <li class="fs-17 text-light"><strong>Mail:</strong> hi.avitex@gmail.com</li>
-                    <li class="fs-17 text-light"><strong>Phone:</strong> 1-333-345-6868</li>
-                    <li class="fs-17 text-light"><strong>Address:</strong> 549 Oak St. Crystal Lake, IL 60014</li>
+                    <li class="fs-17 text-light"><strong>Mail:</strong> info@bighouz.com</li>
+                    <li class="fs-17 text-light"><strong>Phone:</strong> Helpline +923333120595</li>
+                    <li class="fs-17 text-light"><strong>Address:</strong> M-42-43, Zainab Towers. Link Road Model Town. Lahore 54700</li>
+
+                    
                 </ul>
+                <div class="d-flex justify-content-center justify-content-md-start" id="social_links">
+                    <a href="https://www.facebook.com/bighouz/" target="_blank" class="me-3 text-light"><i class="fab fa-facebook-f fs-3"></i></a>
+                    <a href="https://www.instagram.com/big_houz" target="_blank" class="me-3 text-light"><i class="fab fa-instagram fs-3"></i></a>
+                    <a href="https://x.com/Big_houz" target="_blank" class="me-3 text-light"><i class="fab fa-twitter fs-3"></i></a>
+                    <a href="https://www.youtube.com/{!! '@Big_houz' !!}" target="_blank" class="me-3 text-light"><i class="fab fa-youtube fs-3"></i></a>
+                    <a href="https://www.pinterest.com/big_houz/" target="_blank" class="text-light"><i class="fab fa-pinterest fs-3"></i></a>
+                </div>
             </div>
             <!-- Information Section -->
             <div class="col-12 col-lg-2 col-md-6 mb-4 text-center text-md-start">
@@ -99,13 +108,7 @@
                     <input type="email" class="form-control" placeholder="Enter your e-mail">
                     <button class="btn btn-secondary" type="button"><i class="fa-solid fa-arrow-right"></i></button>
                 </div>
-                <div class="d-flex justify-content-center justify-content-md-start">
-                    <a href="#" class="me-3 text-light"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#" class="me-3 text-light"><i class="fab fa-instagram"></i></a>
-                    <a href="#" class="me-3 text-light"><i class="fab fa-twitter"></i></a>
-                    <a href="#" class="me-3 text-light"><i class="fab fa-youtube"></i></a>
-                    <a href="#" class="text-light"><i class="fab fa-pinterest"></i></a>
-                </div>
+               
             </div>
         </div>
     <div class="row mt-5">
