@@ -38,9 +38,9 @@
                     <a href="https://www.pinterest.com/big_houz/" target="_blank" class="text-light"><i class="fab fa-pinterest fs-3"></i></a>
                 </div>
                 <ul class="list-unstyled">
-                    <li class="fs-17 text-light"><strong>Mail:</strong> info@bighouz.com</li>
-                    <li class="fs-17 text-light"><strong>Phone:</strong> Helpline +923333120595</li>
-                    <li class="fs-17 text-light"><strong>Address:</strong> M-42-43, Zainab Towers. Link Road Model Town. Lahore 54700</li>
+                    <li class="text-light"><i class="fab fa-envelope fs-5"></i> <small>info@bighouz. </small></li>
+                    <li class="text-light"><i class="fab fa-phone fs-5"></i> <small>+923333120595</small></li>
+                    <li class="text-light"><i class="fab fa-location fs-5"></i>  <small>M-42-43, Zainab Towers. Link Road Model Town. Lahore 54700</small></li>
 
                     
                 </ul>
