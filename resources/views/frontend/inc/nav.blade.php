@@ -16,7 +16,7 @@ header{
         <!-- Header Top -->
         <div class="row align-items-center header-top">
             <!-- Logo -->
-            <div class="col-lg-1 col-md-3 col-4 text-center">
+            <div class="col-lg-2 col-md-3 col-4 text-center">
                  @php
 
                 $header_logo =  get_setting('header_logo');
