@@ -19,16 +19,14 @@ header{
             <div class="col-lg-2 col-md-3 col-4 text-left">
                  @php
 
-                $header_logo =  get_setting('header_logo');
-                $logo_url = uploaded_asset(get_setting('header_logo'));
-                $my_account_url =  '/dashboard';
-                if( Auth::user() ) {
-                    $my_account_url = Auth::user()->user_type == "staff" ? '/admin/profile/' : '/dashboard';
-                }
-                
-              
-                
-            @endphp
+                    $header_logo =  get_setting('header_logo');
+                    $logo_url = uploaded_asset(get_setting('header_logo'));
+                    $my_account_url =  '/dashboard';
+                    if( Auth::user() ) {
+                        $my_account_url = Auth::user()->user_type == "staff" ? '/admin/profile/' : '/dashboard';
+                    }
+                    
+                @endphp
                 <a href="{{ url('/') }}">
                     @if ($header_logo != null)
 

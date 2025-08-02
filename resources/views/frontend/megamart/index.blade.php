@@ -1303,7 +1303,7 @@
 
         $('#newest_loader').show();
         if (!endOfResults) {
-            $('#section_newest').append(`@js(get_product_skeleton())`);
+            $('#section_newest').append(@js(get_product_skeleton()));
         }
 
         
@@ -1312,11 +1312,11 @@
             page: page
         }, function (data) {
             
-                $('#section_newest').append(data.html);
+            $('#section_newest').append(data.html);
                 AIZ.plugins.slickCarousel(); // re-init carousel
-             if (!data.loadmore ) {
-              endOfResults = true
-             }
+            if (!data.loadmore ) {
+                endOfResults = true
+            }
         }).always(function () {
             $('#section_newest .skeleton_grid').remove();
             $('#newest_loader').hide();
