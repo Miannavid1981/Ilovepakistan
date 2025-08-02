@@ -229,7 +229,7 @@
                     @endif
                 </ul>
             
-                <div class="tab-content">
+                <div class="tab-content" style="overflow: scroll">
                     <!-- Description Tab -->
                     @if(!empty($detailedProduct->description))
                         <div class="tab-pane active" id="description">
