@@ -130,7 +130,6 @@ if (!function_exists('get_active_countries')) {
 if (!function_exists('filter_products')) {
     function filter_products($products)
     {
-
         $products = $products->isApprovedPublished()->where('auction_product', 0);
 
         if (!addon_is_activated('wholesale')) {

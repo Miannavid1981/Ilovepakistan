@@ -66,7 +66,7 @@ class HomeController extends Controller
         $query = Product::isApprovedPublished()->latest();
 
         $products = filter_products($query)->paginate($perPage, ['*'], 'page', $page);
-        $nextpage_products = filter_products($query)->paginate($perPage, ['*'], 'page', $page+2 );
+        $nextpage_products = filter_products($query)->paginate($perPage, ['*'], 'page', $page+1 );
 
         return [
             'html' =>  view('frontend.' . get_setting('homepage_select') . '.partials.newest_products_ajax', [
