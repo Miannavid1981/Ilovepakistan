@@ -330,7 +330,7 @@ transition: all .3s ease-in-out
             margin: 0 5px;
         }
 
-        body .btn:not(.rounded-circle) {
+        .btn:not(.rounded-circle, header .btn) {
             padding: 0.3rem 1.2rem;
             font-size: 1rem;
             font-weight: inherit;
