@@ -617,7 +617,35 @@
                 
                             <!-- QR Code -->
                             <div id="qrCode">
-                                <img src="{{ static_asset('assets/img/istockphoto-828088276-612x612.jpg') }}" height="auto" width="100px">
+                                <div style="    aspect-ratio: 1 / 1;
+                                width: 200px;
+                                display: flex;
+                                align-items: center;
+                                justify-content: center;
+                                margin: 0 auto;">
+                                    @php
+                                        $qrCode = base64_encode(QrCode::format('png')->size(200)->generate(url()->full()));
+                                    @endphp
+                                    <img src="data:image/png;base64,{{ $qrCode }}" style="width: 100%; height: 100%; aspect-ratio: 1 / 1;" />
+                                    <div style="   
+                                    position: absolute;
+                                    top: 0;
+                                    /* background-color: #fde6ff; */
+                                    border-radius: 50%;
+                                    /* width: 50px; */
+                                    /* height: 50px; */
+                                    display: flex;
+                                    align-items: center;
+                                    justify-content: center;
+                                    /* border: 1px solid #8722d2; */
+                                    left: 5revert-layer;
+                                    left: 0;
+                                    right: 0;
+                                    bottom: 0;
+                                    ">
+                                    <img src="{{ uploaded_asset(get_setting('site_icon')) }}" class="ms-2" style="width: 26px; height: auto" alt="Discover">
+                                    </div>
+                                </div>
                             </div>
                 
                             <!-- Social Media Icons -->
