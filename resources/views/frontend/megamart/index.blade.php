@@ -1310,11 +1310,11 @@
             _token: '{{ csrf_token() }}',
             page: page
         }, function (data) {
-            if ($.trim(data) === '') {
-                endOfResults = true;
+            if (!data.loadmore) {
+                endOfResults = tru;
             } else {
                
-                $('#section_newest').append(data);
+                $('#section_newest').append(data.html);
                 AIZ.plugins.slickCarousel(); // re-init carousel
             }
         }).always(function () {

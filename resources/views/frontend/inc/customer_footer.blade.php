@@ -1,5 +1,5 @@
 
-<footer class="footer text-dark pt-5 pb-3" style="background-color: var(--light-primary); line-height: 40px;">
+<footer class="footer text-dark pt-5 pb-3" style="background-color: #000; line-height: 40px;">
     <div class="container">
         <div class="row">
             <!-- About Section -->
@@ -38,33 +38,33 @@
             <div class="col-12 col-lg-2 col-md-6 mb-4 text-center text-md-start">
                 <h5 class="fs-20 fw-bold">Information</h5>
                 <ul class="list-unstyled">
-                    <li><a href="#" class="text-dark fs-17 text-decoration-none">Contact Us</a></li>
-                    <li><a href="#" class="text-dark fs-17 text-decoration-none">Career</a></li>
-                    <li><a href="#" class="text-dark fs-17 text-decoration-none">My Account</a></li>
-                    <li><a href="#" class="text-dark fs-17 text-decoration-none">Order & Returns</a></li>
-                    <li><a href="#" class="text-dark fs-17 text-decoration-none">FAQs</a></li>
+                    <li><a href="#" class="text-light fs-17 text-decoration-none">Contact Us</a></li>
+                    <li><a href="#" class="text-light fs-17 text-decoration-none">Career</a></li>
+                    <li><a href="#" class="text-light fs-17 text-decoration-none">My Account</a></li>
+                    <li><a href="#" class="text-light fs-17 text-decoration-none">Order & Returns</a></li>
+                    <li><a href="#" class="text-light fs-17 text-decoration-none">FAQs</a></li>
                 </ul>
             </div>
             <!-- Quick Shop Section -->
             <div class="col-12 col-lg-2 col-md-6 mb-4 text-center text-md-start">
                 <h5 class="fs-20 fw-bold fw-bold">Quick Shop</h5>
                 <ul class="list-unstyled">
-                    <li><a href="#" class="text-dark fs-17 text-decoration-none">Women</a></li>
-                    <li><a href="#" class="text-dark fs-17 text-decoration-none">Men</a></li>
-                    <li><a href="#" class="text-dark fs-17 text-decoration-none">Clothes</a></li>
-                    <li><a href="#" class="text-dark fs-17 text-decoration-none">Accessories</a></li>
-                    <li><a href="#" class="text-dark fs-17 text-decoration-none">Blog</a></li>
+                    <li><a href="#" class="text-light fs-17 text-decoration-none">Women</a></li>
+                    <li><a href="#" class="text-light fs-17 text-decoration-none">Men</a></li>
+                    <li><a href="#" class="text-light fs-17 text-decoration-none">Clothes</a></li>
+                    <li><a href="#" class="text-light fs-17 text-decoration-none">Accessories</a></li>
+                    <li><a href="#" class="text-light fs-17 text-decoration-none">Blog</a></li>
                 </ul>
             </div>
             <!-- Customer Services Section -->
             <div class="col-12 col-lg-2 col-md-6 mb-4 text-center text-md-start">
                 <h5 class="fs-20 fw-bold">Customer Services</h5>
                 <ul class="list-unstyled">
-                    <li><a href="{{ route('accept-poliy-page') }}" class="text-dark fs-17 text-decoration-none">Acceptable Use Policy</a></li>
-                    <li><a href="{{ route('cookie_policy') }}" class="text-dark fs-17 text-decoration-none">Cookie Policy</a></li>
-                    <li><a href="{{ route('user_license') }}" class="text-dark fs-17 text-decoration-none">User License</a></li>
-                    <li><a href="{{ route('disclaimer') }}" class="text-dark fs-17 text-decoration-none">Disclaimer</a></li>
-                    <li><a href="{{ route('privacy_policy') }}" class="text-dark fs-17 text-decoration-none">Privacy Policy</a></li>
+                    <li><a href="{{ route('accept-poliy-page') }}" class="text-light fs-17 text-decoration-none">Acceptable Use Policy</a></li>
+                    <li><a href="{{ route('cookie_policy') }}" class="text-light fs-17 text-decoration-none">Cookie Policy</a></li>
+                    <li><a href="{{ route('user_license') }}" class="text-light fs-17 text-decoration-none">User License</a></li>
+                    <li><a href="{{ route('disclaimer') }}" class="text-light fs-17 text-decoration-none">Disclaimer</a></li>
+                    <li><a href="{{ route('privacy_policy') }}" class="text-light fs-17 text-decoration-none">Privacy Policy</a></li>
                 </ul>
             </div>
             <!-- Seller Zone Section -->
@@ -72,19 +72,19 @@
                 <h5 class="fs-20 fw-bold">Business Partner Zone</h5>
                 <ul class="list-unstyled">
                     <li class="mb-1">
-                        <p class="fs-17 text-dark text-secondary mb-0">
+                        <p class="fs-17 text-light text-secondary mb-0">
                           
-                            <a href="{{ route('shops.create') }}" class="fs-17 text-dark">  Be our Partner</a>
+                            <a href="{{ route('shops.create') }}" class="fs-17 text-light">  Be our Partner</a>
                         </p>
                     </li>
                    
                     <li class="mb-1">
-                        <a class="fs-17 text-dark animate-underline-dark" href="{{ url('/seller/login') }}">Partner Login</a>
+                        <a class="fs-17 text-light animate-underline-dark" href="{{ url('/seller/login') }}">Partner Login</a>
                     </li>
                    
                     <li class="mb-1">
-                        <p class="fs-17 text-dark text-secondary mb-0">
-                            <a href="{{ route('shops.create') }}" class="fs-17 fw-700 bg-warning text-dark rounded-2 px-3 py-1 ">Apply Now</a>
+                        <p class="fs-17 text-light text-secondary mb-0">
+                            <a href="{{ route('shops.create') }}" class="fs-17 fw-700 bg-warning text-light rounded-2 px-3 py-1 ">Apply Now</a>
                         </p>
                     </li>
                 </ul>
@@ -98,11 +98,11 @@
                     <button class="btn btn-secondary" type="button"><i class="fa-solid fa-arrow-right"></i></button>
                 </div>
                 <div class="d-flex justify-content-center justify-content-md-start">
-                    <a href="#" class="me-3 text-dark"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#" class="me-3 text-dark"><i class="fab fa-instagram"></i></a>
-                    <a href="#" class="me-3 text-dark"><i class="fab fa-twitter"></i></a>
-                    <a href="#" class="me-3 text-dark"><i class="fab fa-youtube"></i></a>
-                    <a href="#" class="text-dark"><i class="fab fa-pinterest"></i></a>
+                    <a href="#" class="me-3 text-light"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="me-3 text-light"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="me-3 text-light"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="me-3 text-light"><i class="fab fa-youtube"></i></a>
+                    <a href="#" class="text-light"><i class="fab fa-pinterest"></i></a>
                 </div>
             </div>
         </div>
