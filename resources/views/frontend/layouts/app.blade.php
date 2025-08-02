@@ -116,11 +116,11 @@
         }
         p, li, td, th{
             font-family: "Aeonik" !important;
-            letter-spacing: 0px !important;
+            letter-spacing: 0.2px !important;
         }
         h1, h2, h3, h4, h5, h6 {
             font-family: "Aeonik-Semibold" !important;
-            letter-spacing: 0.2px !important;
+            letter-spacing: 0.3px !important;
             line-height: 1em !important;
         }
 
