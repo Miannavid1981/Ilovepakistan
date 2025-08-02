@@ -1311,12 +1311,12 @@
             _token: '{{ csrf_token() }}',
             page: page
         }, function (data) {
-            if (!data.loadmore ) {
-                endOfResults = true;
-            } else {
+            
                 $('#section_newest').append(data.html);
                 AIZ.plugins.slickCarousel(); // re-init carousel
-            }
+             if (!data.loadmore ) {
+              endOfResults = true
+             }
         }).always(function () {
             $('#section_newest .skeleton_grid').remove();
             $('#newest_loader').hide();
