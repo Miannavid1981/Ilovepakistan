@@ -140,12 +140,12 @@
     }
 
     .add-to-cart, .buy-now {
-            
         display: flex;
         align-items: center;
         gap: 5px;
         justify-content: center;
-
+        height: 50px;
+        font-size: 15px !important;
     }
     .add-to-cart i , .buy-now i {
         font-size: 25px ;
