@@ -1,7 +1,3 @@
-
-@php
-    dd($newest_products);
-@endphp
 @if(count($newest_products) != 0 ) 
 <div class="row gx-3">
     @foreach ($newest_products as $key => $new_product)
