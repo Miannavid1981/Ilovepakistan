@@ -40,6 +40,7 @@
                 <ul class="list-unstyled">
                     <li class="text-light fs-6 mb-3" style="line-height: 1.2em !important;"><i class="fa fa-envelope"></i> <span>info@bighouz.com </span></li>
                     <li class="text-light fs-6 mb-3" style="line-height: 1.2em !important;"><i class="fa fa-phone"></i> <span>+92 333 3120 595</span></li>
+                    <li class="text-light fs-6 mb-3" style="line-height: 1.2em !important;"><i class="fa fa-phone"></i> <span>04235942626-145</span></li>
                     <li class="text-light fs-6 mb-3" style="line-height: 1.2em !important;"><i class="fa fa-map-marker"></i>  <span>M-42-43, Zainab Towers. Link Road Model Town. Lahore 54700</span></li>
 
                     
