@@ -353,7 +353,7 @@
 
   <div class="row">
     <div class="col-md-7">
-        <h2 class="mb-0"> {{ $detailedProduct->getTranslation('name') }}</h2>
+        <h4 class="mb-0"> {{ $detailedProduct->getTranslation('name') }}</h4>
         @if ($detailedProduct->unit != null)
             <span class="opacity-70 mt-1">( {{ $detailedProduct->getTranslation('unit') }} )</span>
         @endif
