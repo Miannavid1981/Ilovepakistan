@@ -9,6 +9,10 @@ header{
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1) !important; /* Adjust values as needed */
 }
 
+header .nav-link:not(.category-drawer-toggle-btn) {
+    color: #000 !important;
+}
+
 </style>
 <header >
     <div class="container bg-white pt-1">
