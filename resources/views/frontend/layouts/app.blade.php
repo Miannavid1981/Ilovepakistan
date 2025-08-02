@@ -334,7 +334,11 @@ transition: all .3s ease-in-out
             padding: 0.3rem 1.2rem;
             font-size: 1rem;
             font-weight: inherit;
-            border-radius: 10px ;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            padding: 0 !important;
+            justify-content: center;
         }
         .form-control:focus {
             border-width: 2px !important;
