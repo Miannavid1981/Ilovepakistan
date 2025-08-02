@@ -26,7 +26,7 @@
 
                         <img src="{{ static_asset('assets/img/logo.png') }}" alt="{{ env('APP_NAME') }}"
 
-                            class="mw-100 h-67px h-md-40px" height="67px">
+                            class=" h-67px h-md-40px" height="67px" width="80%">
 
                     @endif
                 </a>
