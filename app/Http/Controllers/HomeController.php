@@ -63,7 +63,7 @@ class HomeController extends Controller
         $page = $request->input('page', 1);
         $perPage = 12;
 
-        $query = Product::isApprovedPublished()->latest();
+        $query = Product::latest();
 
         $products = filter_products($query)->paginate($perPage, ['*'], 'page', $page);
         $nextpage_products = filter_products($query)->paginate($perPage, ['*'], 'page', $page+1 );
