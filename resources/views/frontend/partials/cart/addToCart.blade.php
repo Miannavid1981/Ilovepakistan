@@ -1,4 +1,4 @@
-<div class="modal-body p-3 c-scrollbar-light">
+<div class="modal-body  c-scrollbar-light">
     <section class="mb-4 pt-3">
         <div class="container">
             <div class="bg-white py-3">
