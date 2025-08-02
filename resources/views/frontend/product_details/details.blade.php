@@ -537,14 +537,14 @@
                                 </a>
                             @else
                             
-                                <button type="button" class="btn py-2 w-100 btn-primary buy-now fw-600 add-to-cart min-w-150px rounded-0 g-buy-now" 
+                                <button type="button" class="btn  btn-light text-dark border border-dark py-2 w-100  buy-now fw-600 add-to-cart min-w-150px rounded-0 g-buy-now" 
                                 data-id="{{ $detailedProduct->id }}" data-skin_code="{{ $detailedProduct->product_skin ?? get_product_seller_map_skin($detailedProduct) }}"
                                    >
                                     {{ translate('Buy Now') }}
                                 </button>
                                 <button type="button"
                                 data-id="{{ $detailedProduct->id }}" data-skin_code="{{ $detailedProduct->product_skin ?? get_product_seller_map_skin($detailedProduct) }}"
-                                    class="btn py-2 btn-light w-100 mt-2 add-to-cart fw-600  rounded-0 text-dark border border-dark g-add-to-cart"
+                                    class="btn py-2 btn-primary w-100 mt-2 add-to-cart fw-600  rounded-0  g-add-to-cart"
                                 >
                                     <i class="las las la-shopping-cart"></i> {{ translate('Add to cart') }}
                                 </button>
