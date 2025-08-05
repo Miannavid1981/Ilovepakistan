@@ -103,7 +103,7 @@ if(!empty($product->product_custom_url)){
 
                 <div class="absolute-top-right aiz-p-hov-icon" style="margin-top:18px">
 
-                    <a href="javascript:void(0)" class="hov-svg-white" onclick="addToWishList({{ $product->id }})"
+                    {{-- <a href="javascript:void(0)" class="hov-svg-white" onclick="addToWishList({{ $product->id }})"
 
                         data-toggle="tooltip" data-title="{{ translate('Add to wishlist') }}" data-placement="left">
 
@@ -129,9 +129,9 @@ if(!empty($product->product_custom_url)){
 
                         </svg>
 
-                    </a>
+                    </a> --}}
 
-                    <a href="javascript:void(0)" class="hov-svg-white" onclick="addToCompare({{ $product->id }})"
+                    {{-- <a href="javascript:void(0)" class="hov-svg-white" onclick="addToCompare({{ $product->id }})"
 
                         data-toggle="tooltip" data-title="{{ translate('Add to compare') }}" data-placement="left">
 
@@ -145,7 +145,7 @@ if(!empty($product->product_custom_url)){
 
                         </svg>
 
-                    </a>
+                    </a> --}}
 
                 </div>
 
