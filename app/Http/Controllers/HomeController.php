@@ -62,11 +62,15 @@ class HomeController extends Controller
     {
         $page = $request->input('page', 1);
         $perPage = 12;
-        return Product::all();
+       
         $query = Product::latest();
 
-        $products = filter_products($query)->paginate($perPage, ['*'], 'page', $page);
-        $nextpage_products = filter_products($query)->paginate($perPage, ['*'], 'page', $page+1 );
+        $filteredQuery = filter_products(clone $query);
+        $products = $filteredQuery->paginate($perPage, ['*'], 'page', $page);
+
+        $nextFilteredQuery = filter_products(clone $query);
+        $nextpage_products = $nextFilteredQuery->paginate($perPage, ['*'], 'page', $page + 1);
+
 
         return [
             'html' => view('frontend.' . get_setting('homepage_select') . '.partials.newest_products_ajax', [
