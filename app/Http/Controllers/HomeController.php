@@ -72,7 +72,7 @@ class HomeController extends Controller
             'html' => view('frontend.' . get_setting('homepage_select') . '.partials.newest_products_ajax', [
                 'newest_products' => $products
             ])->render(),
-            'loadmore' => $nextpage_products->count() > 0 ? 1 : 0
+            'loadmore' => $nextpage_products->count() > 0 ? true : false
         ];
     }
 
