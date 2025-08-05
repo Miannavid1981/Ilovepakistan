@@ -12,7 +12,7 @@ class Product extends Model
     
     protected $guarded = ['choice_attributes'];
 
-    protected $with = ['product_translations', 'taxes', 'thumbnail'];
+    protected $with = ['thumbnail'];
 
     public function getTranslation($field = '', $lang = false)
     {
