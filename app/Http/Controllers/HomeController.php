@@ -64,10 +64,9 @@ class HomeController extends Controller
         $perPage = 12;
         dd(Product::all()->count());
         // Only fetch approved & published products
-        $query = Product::query();
 
         // Paginate current page
-        $products = $query->paginate($perPage, ['*'], 'page', $page);
+        $products = Product::query()->paginate($perPage, ['*'], 'page', $page);
 
         // Check if next page has products without running the query again
         $loadmore = $products->hasMorePages();
