@@ -62,7 +62,7 @@ class HomeController extends Controller
     {
         $page = $request->input('page', 1);
         $perPage = 12;
-
+        dd(Product::all()->count());
         // Only fetch approved & published products
         $query = Product::query();
 
