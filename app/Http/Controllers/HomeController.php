@@ -62,23 +62,24 @@ class HomeController extends Controller
     {
         $page = $request->input('page', 1);
         $perPage = 12;
-       
-        $query = Product::latest();
 
-        $filteredQuery = filter_products(clone $query);
-        $products = $filteredQuery->paginate($perPage, ['*'], 'page', $page);
+        // Only fetch approved & published products
+        $query = Product::latest()->isApprovedPublished();
 
-        $nextFilteredQuery = filter_products(clone $query);
-        $nextpage_products = $nextFilteredQuery->paginate($perPage, ['*'], 'page', $page + 1);
+        // Paginate current page
+        $products = $query->paginate($perPage, ['*'], 'page', $page);
 
+        // Check if next page has products without running the query again
+        $loadmore = $products->hasMorePages();
 
         return [
             'html' => view('frontend.' . get_setting('homepage_select') . '.partials.newest_products_ajax', [
                 'newest_products' => $products
             ])->render(),
-            'loadmore' => $nextpage_products->count() > 0 ? true : false
+            'loadmore' => $loadmore
         ];
     }
+
 
     public function load_featured_section()
     {
