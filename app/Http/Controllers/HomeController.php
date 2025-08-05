@@ -77,7 +77,7 @@ class HomeController extends Controller
                 'newest_products' => $products
             ])->render(),
             'loadmore' => $loadmore,
-            'products'=> $products
+            'products'=> $products->count()
         ];
     }
 
