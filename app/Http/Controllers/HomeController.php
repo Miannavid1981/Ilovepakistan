@@ -64,7 +64,7 @@ class HomeController extends Controller
         $perPage = 12;
 
         // Only fetch approved & published products
-        $query = Product::latest()->isApprovedPublished();
+        $query = Product::all();
 
         // Paginate current page
         $products = $query->paginate($perPage, ['*'], 'page', $page);
