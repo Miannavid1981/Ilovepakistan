@@ -1285,7 +1285,7 @@
 @section('script')
 <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.js"></script>
 <script>
-    let page = 1;
+    let page = 0;
     let loading = false;
     let endOfResults = false;
     loadMoreNewestProducts();
