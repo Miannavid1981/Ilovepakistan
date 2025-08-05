@@ -131,20 +131,20 @@ if (!function_exists('filter_products')) {
     function filter_products($products)
     {
         $products = $products->isApprovedPublished();
-
-        if (!addon_is_activated('wholesale')) {
-            $products = $products->where('wholesale_product', 0);
-        }
-        $verified_sellers = verified_sellers_id();
-        if (get_setting('vendor_system_activation') == 1) {
-            return $products->where(function ($p) use ($verified_sellers) {
-                $p->where('added_by', 'admin')->orWhere(function ($q) use ($verified_sellers) {
-                    $q->whereIn('user_id', $verified_sellers);
-                });
-            });
-        } else {
-            return $products;
-        }
+        return $products;
+        // if (!addon_is_activated('wholesale')) {
+        //     $products = $products->where('wholesale_product', 0);
+        // }
+        // $verified_sellers = verified_sellers_id();
+        // if (get_setting('vendor_system_activation') == 1) {
+        //     return $products->where(function ($p) use ($verified_sellers) {
+        //         $p->where('added_by', 'admin')->orWhere(function ($q) use ($verified_sellers) {
+        //             $q->whereIn('user_id', $verified_sellers);
+        //         });
+        //     });
+        // } else {
+        //     return $products;
+        // }
     }
 }
 
