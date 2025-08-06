@@ -505,12 +505,39 @@
 
 
 .button-family {
-  background-color: #761ae0;
+   background-color: #fff;
+    border: 1px solid #761ae0;
+    color: #761ae0;
+}
+.button-family  svg{
+    fill: #761ae0;
+}
+.button-family:has(input:checked) {
+    background-color: #761ae0;
+    color: #fff
+}
+.button-family:has(input:checked) svg {
+    fill: #fff
 }
 
+
+
 .button-others {
-  background-color: #3c3c44;
+   background-color: #fff;
+    border: 1px solid #3c3c44;
+    color: #3c3c44;
 }
+.button-others  svg{
+    fill: #3c3c44;
+}
+.button-others:has(input:checked) {
+    background-color: #3c3c44;
+    color: #fff
+}
+.button-others:has(input:checked) svg {
+    fill: #fff
+}
+
 
 /* Hover effects */
 .modern-button:hover {
