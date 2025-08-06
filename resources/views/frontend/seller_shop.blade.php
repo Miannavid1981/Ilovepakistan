@@ -121,11 +121,13 @@
     /* margin-top: -100px; */
 }
 
-
-    .product-five-col {
+@media (min-width: 768px){
+ .product-five-col {
         flex: 0 0 calc(100% / 5);
         max-width: calc(100% / 5);
     }
+}
+   
   </style>
    @if (!isset($type) || $type == 'top-selling' || $type == 'cupons')
         @if ($shop->top_banner_image)
