@@ -474,11 +474,11 @@
     font-size: 18px;
     font-weight: 600;
     color: white;
-    
     cursor: pointer;
     transition: all 0.3s ease;
     height: 100%;
     justify-content: flex-start;
+    font-family: 'Aeonik-Semibold';
 }
 
 .modern-button svg {
