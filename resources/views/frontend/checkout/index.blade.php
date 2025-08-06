@@ -483,7 +483,6 @@
 .modern-button svg {
   width: 24px;
   height: 24px;
-  fill: white;
 }
 
 /* Individual button colors */
@@ -498,6 +497,10 @@
 
 .button-personal:has(input:checked) {
     background-color: #dd5a6e;
+    color: #fff
+}
+.button-personal:has(input:checked) svg {
+    fill: #fff
 }
 
 
