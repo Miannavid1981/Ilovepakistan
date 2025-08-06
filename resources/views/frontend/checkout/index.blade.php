@@ -582,7 +582,7 @@
         <!-- Header -->
         <div class="h-100" id="checkout_grid">
             <div class="checkout_columns mb-4">
-                <div class="d-sm-none d-md-none" >
+                <div class="" >
                     <a href="{{  url('/') }}">
                         <img src="{{ $logo_url }}" style="width: 130px" alt="Bighouz" class="img-fluid">
                         <ul class="d-flex gap-2 list-unstyled fs-15 text-muted">
