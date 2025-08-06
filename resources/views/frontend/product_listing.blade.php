@@ -669,9 +669,20 @@
                         <!-- Products -->
                         <div class="">
                             <div class="row gutters-16 row-cols-xxl-6 row-cols-xl-5 row-cols-lg-5 row-cols-md-4 row-cols-2 ">
-                                @foreach ($products as $key => $product)
+                                @foreach ($products as $key => $new_product)
+
+                                    @php
+                                        $seller_id =  $new_product->user_id ?? null;
+                                        $seller_map = \App\Models\ProductSellerMap::where('product_id', $new_product->id)->where('seller_id',  $seller_id )->where('source_seller_id', $seller_id  )->first();
+                                        $encrypted_skin = $seller_map->encrypted_hash ?? '';
+                                        $product_url = url('/product/' . $new_product->slug . '/' . $encrypted_skin);
+                                        $new_product->product_custom_url = $product_url;
+                                        // dd($new_product);
+                                        
+                                    @endphp
+                                    
                                     <div class="col">
-                                        @include('frontend.'.get_setting('homepage_select').'.partials.product_box_1',['product' => $product])
+                                        @include('frontend.'.get_setting('homepage_select').'.partials.product_box_1',['product' => $new_product])
                                     </div>
                                 @endforeach
                             </div>
