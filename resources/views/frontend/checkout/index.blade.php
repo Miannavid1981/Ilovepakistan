@@ -418,7 +418,7 @@
     color: #fff */
 
     transform: scale(1.1) ;
-    border: 1px solid #000;
+    /* border: 1px solid #000; */
     
 }
 
