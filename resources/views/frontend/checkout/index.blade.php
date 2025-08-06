@@ -463,20 +463,21 @@
 }
 
 
-
 .modern-button {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 16px 24px;
-  border: none;
-  border-radius: 16px;
-  font-size: 18px;
-  font-weight: 600;
-  color: white;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
-  cursor: pointer;
-  transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 14px !important;
+    border: none;
+    border-radius: 8px;
+    font-size: 18px;
+    font-weight: 600;
+    color: white;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    height: 100%;
+    justify-content: flex-start;
 }
 
 .modern-button svg {
@@ -487,8 +488,18 @@
 
 /* Individual button colors */
 .button-personal {
-  background-color: #dd5a6e;
+    background-color: #fff;
+    border: 1px solid #dd5a6e;
+    color: #dd5a6e;
 }
+.button-personal  svg{
+    fill: #dd5a6e;
+}
+
+.button-personal:has(input:checked) {
+    background-color: #dd5a6e;
+}
+
 
 .button-family {
   background-color: #761ae0;
