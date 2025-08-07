@@ -142,12 +142,14 @@
          margin: 10px 0;
      }
 
-     .summary-cart {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-    margin-top: 30px;
-}
+    .summary-cart {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        margin-top: 30px;
+        max-height: 500px;
+        overflow-y: scroll;
+    }
 
      .cart-item {
          display: flex;
