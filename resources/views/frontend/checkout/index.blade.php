@@ -431,7 +431,7 @@
 
     /* transform: scale(1.1) ; */
     /* border: 1px solid #000; */
-    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15) !important;
     
 }
 
@@ -441,7 +441,8 @@
 
 .delivery_type_radio:has(input:checked){
     background: var(--primary);
-    color: #fff
+    color: #fff;
+    
 }
 .checkout_columns:nth-child(2) {
     background: #dd5b6e;
