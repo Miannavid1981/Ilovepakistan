@@ -739,7 +739,7 @@
             <div class="checkout_columns" style="">
                 <div style="    position: sticky;
     top: 20px;
-    height: 95%;
+    height: 90%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
