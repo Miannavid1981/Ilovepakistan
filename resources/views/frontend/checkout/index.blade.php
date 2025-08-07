@@ -473,7 +473,7 @@
     }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 992px) {
     .checkout_branding_logo {
         display: none !important;
     }
