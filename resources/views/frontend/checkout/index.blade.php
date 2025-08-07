@@ -432,7 +432,8 @@
     color: #fff
 }
 .checkout_columns:nth-child(2) {
-    background: #f5f5f5; border-left: 1px solid #DEDEDE;
+    background: #dd5b6e;
+    border-left: 1px solid #DEDEDE;
 }
 #checkout_grid {
     display: grid; grid-template-columns: minmax( min-content, calc(50% + calc( calc( 66rem - 52rem ) / 2 )) ) 1fr;
@@ -571,7 +572,7 @@
                     
                 
                 </div>
-<form action="{{ route('payment.checkout') }}" class="form-default m-0" role="form" method="POST" id="checkout-form" style="background: linear-gradient(to right, #fff 70%, #f5f5f5 0%);">
+<form action="{{ route('payment.checkout') }}" class="form-default m-0" role="form" method="POST" id="checkout-form" style="background: linear-gradient(to right, #fff 70%,  #dd5b6e 0%);">
     @csrf
     <input type="hidden" name="owner_id" value="{{ $carts[0]['owner_id'] }}">
     
