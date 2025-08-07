@@ -613,7 +613,7 @@
             
                 <br>
                 
-                <div class="row g-3 mt-3">
+                <div class="row gap-2 g-3 mt-3">
                     @php
                         $delivery_type_settings = \App\Models\DeliveryTypesSetting::first();
 
@@ -623,7 +623,7 @@
 
                     @if($delivery_type_settings)
                         @if($delivery_type_settings->personal)
-                            <div class="col-4 m-0">
+                            <div class="col-12 col-md-4 m-0">
                                 <div class="w-100 delivery_type fs-16 modern-button button-personal">
                                     <input type="radio" class="form-check "  name="delivery_type" value="personal" checked>
                                         <svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
@@ -632,7 +632,7 @@
                             </div>
                         @endif
                         @if($delivery_type_settings->family_friends)
-                            <div class="col-4 m-0">
+                            <div class="col-12 col-md-4 m-0">
                                 <div class="w-100 delivery_type fs-16 modern-button button-family">
                                     <input type="radio" class="form-check " name="delivery_type" value="family_friends" >
                                        <svg viewBox="0 0 24 24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5s-3 1.34-3 3 1.34 3 3 3zM8 11c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5 5 6.34 5 8s1.34 3 3 3zm8 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zM8 13c-.29 0-.62.02-.97.05C6.39 13.3 5 14.02 5 15.5V19h5v-2.5c0-.77.3-1.47.78-2.05-.89-.28-1.88-.45-2.78-.45z"/></svg>
@@ -641,7 +641,7 @@
                             </div>
                         @endif
                         @if($delivery_type_settings->others)
-                            <div class="col-4 m-0">
+                            <div class="col-12 col-md-4 m-0">
                                 <div class="w-100 delivery_type fs-16  modern-button button-others">
                                     <input type="radio" class="form-check " name="delivery_type" value="others" >
                                         <svg viewBox="0 0 24 24"><path d="M20 6h-4V4a2 2 0 00-4 0v2H8V4a2 2 0 00-4 0v2H2v2h2v12a2 2 0 002 2h12a2 2 0 002-2V8h2V6zm-6 0h-4V4a2 2 0 014 0v2z"/></svg>
