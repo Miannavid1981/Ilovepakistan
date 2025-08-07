@@ -457,9 +457,9 @@
     #checkout_grid {
         display: flex;
         flex-direction:column-reverse;
-        padding: 20px;
+        /* padding: 20px; */
     }
-    .checkout_columns:nth-child(2) { 
+    .checkout_columns { 
         /* background: unset !important;
         border: unset !important; */
 
