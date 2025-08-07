@@ -168,7 +168,8 @@
             filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#781ae2", endColorstr="#dd5a6e", GradientType=1 );
             color: #fff !important;
             border: unset !important;
-            transition: all .3s ease-in-out
+            transition: all .3s ease-in-out;
+            font-family: 'Aeonik-Semibold' ;
 
         }
         .btn-primary:hover {

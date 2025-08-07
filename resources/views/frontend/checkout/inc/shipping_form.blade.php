@@ -1,7 +1,7 @@
 @if(count($addresses) ==0)
 
     <div class="col-12">
-        <div class="bg-soft-primary p-2 fs-16 text-primary rounded-2 d-flex align-items-center gap-2">
+        <div class="bg-soft-primary p-2 fs-16 text-primary rounded-2 d-flex align-items-center gap-2" style="font-family: 'Aeonik-Semibold';">
             <i class="fa fa-warning"></i> Please add a delivery address to continue placing order
         </div>
     </div>
