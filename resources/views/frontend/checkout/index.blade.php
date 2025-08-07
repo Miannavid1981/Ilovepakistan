@@ -474,9 +474,7 @@
 }
 
 @media (min-width: 300px) {
-    .d-sm-none {
-        display: none !important;
-    }
+
 }
 
 
