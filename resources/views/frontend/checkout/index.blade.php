@@ -611,7 +611,7 @@
             
                 <br>
                 
-                <div class="row g-3">
+                <div class="row g-3 mt-3">
                     @php
                         $delivery_type_settings = \App\Models\DeliveryTypesSetting::first();
 
