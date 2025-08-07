@@ -165,18 +165,18 @@
     border-bottom: 1px solid #ffffff38 !important;
 }
      .cart-item img {
-        width: 62px;
+        width: 80px;
         height: 60px;
-        border-radius: 2px;
+        border-radius: 6px;
         aspect-ratio: 1/1;
         object-fit: contain;
         background: transparent;
-        border: 2px solid #dedede;
-        max-width: 62px;
-        max-height: 60px;
+        /* border: 2px solid #dedede; */
+        max-width: 82px;
+        max-height: 80px;
         height: 100%;
         min-height: 60px;
-        padding: 5px;
+        /* padding: 5px; */
     }
      .cart-item-info {
          flex: 1;
