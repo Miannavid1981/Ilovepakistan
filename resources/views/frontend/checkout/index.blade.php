@@ -156,9 +156,14 @@
          gap: 15px;
          padding: 0;
          /* background-color: #f9f9f9; */
-         border-radius: 8px;
+         /* border-radius: 8px; */
          /* border: 1px solid #e4e4e4; */
      }
+     .cart-item:not(:last-of-type) {
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #ffffff1f !important;
+}
      .cart-item img {
         width: 62px;
         height: 60px;
