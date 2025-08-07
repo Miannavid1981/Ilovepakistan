@@ -818,7 +818,7 @@
                         </div>
 
                     </div>
-                    <p align="center" class="text-white"><small>Bighouz Pvt Ltd</small></p>
+                    <p align="center" class="text-white d-sm-none"><small>Bighouz Pvt Ltd</small></p>
                     
                 </div>
             </div>
