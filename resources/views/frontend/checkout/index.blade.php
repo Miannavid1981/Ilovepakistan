@@ -431,7 +431,7 @@
 
     /* transform: scale(1.1) ; */
     /* border: 1px solid #000; */
-    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15) !important;
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2) !important;
     
 }
 
