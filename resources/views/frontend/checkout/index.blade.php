@@ -735,8 +735,14 @@
 
             <!-- Summary Section -->
             <div class="checkout_columns" style="">
-                <div style="position: sticky; top: 20px;">
-                    <div style="display: flex; flex-direction: column; justify-content: space-between;">
+                <div style="    position: sticky;
+    top: 20px;
+    height: 95%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    bottom: 40px;">
+                    <div style="">
 
                         <br>
                         <div class="d-flex  align-items-center">
@@ -808,7 +814,7 @@
                         </div>
 
                     </div>
-                    <p><small>Bighouz Pvt Ltd</small></p>
+                    <p align="center" class="text-white"><small>Bighouz Pvt Ltd</small></p>
                     
                 </div>
             </div>
