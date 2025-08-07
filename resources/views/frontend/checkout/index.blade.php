@@ -162,7 +162,7 @@
      .cart-item:not(:last-of-type) {
     margin-bottom: 10px;
     padding-bottom: 10px;
-    border-bottom: 1px solid #ffffff1f !important;
+    border-bottom: 1px solid #ffffff38 !important;
 }
      .cart-item img {
         width: 62px;

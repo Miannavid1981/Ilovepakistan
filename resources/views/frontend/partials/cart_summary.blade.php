@@ -135,32 +135,32 @@
             <tfoot>
                 <!-- Subtotal -->
                 <tr class="cart-subtotal">
-                    <th class="pl-0 fs-16 pt-0 pb-2 text-white fw-300  border-top-0">{{ translate('Subtotal') }}</th>
+                    <th class="pl-0 fs-16 pt-0 pb-2 text-white fw-300  border-top-0" style="font-family: 'Aeonik-Semibold' !important;">{{ translate('Subtotal') }}</th>
                     <td class="text-right pr-0 fs-16 pt-0 pb-2 fw-300  text-white border-top-0">
                         <small class="fw-300">{{ currency_symbol() }}</small>
-                        <span class="fw-300 ">{{ number_format($subtotal) }}</span>
+                        <span class="fw-300 " style="font-family: 'Aeonik-Semibold' !important;">{{ number_format($subtotal) }}</span>
                     </td>
                 </tr>
                 <!-- Tax -->
                 <tr class="cart-shipping">
-                    <th class="pl-0 fs-16 pt-0 pb-2 text-white fw-300  border-top-0">{{ translate('Tax') }}</th>
+                    <th class="pl-0 fs-16 pt-0 pb-2 text-white fw-300  border-top-0" style="font-family: 'Aeonik-Semibold' !important;">{{ translate('Tax') }}</th>
                     <td class="text-right pr-0 fs-16 pt-0 pb-2 fw-300  text-white border-top-0">
                         <small class="fw-300">{{ currency_symbol() }}</small>
-                        <span class="fw-300 ">{{ $tax }}</span>
+                        <span class="fw-300 " style="font-family: 'Aeonik-Semibold' !important;">{{ $tax }}</span>
                     </td>
                 </tr>
                 <!-- Total Shipping -->
                 <tr class="cart-shipping">
-                    <th class="pl-0 fs-16 pt-0 pb-2 text-white fw-300  border-top-0">{{ translate('Delivery Charges') }}</th>
+                    <th class="pl-0 fs-16 pt-0 pb-2 text-white fw-300  border-top-0" style="font-family: 'Aeonik-Semibold' !important;">{{ translate('Delivery Charges') }}</th>
                     <td class="text-right pr-0 fs-16 pt-0 pb-2 fw-300  text-white border-top-0">
                         <small class="fw-300">{{ currency_symbol() }}</small>
-                        <span class="fw-300 ">{{ number_format($shipping)}}</span>
+                        <span class="fw-300 " style="font-family: 'Aeonik-Semibold' !important;">{{ number_format($shipping)}}</span>
                     </td>
                 </tr>
                 <!-- Redeem point -->
                 @if (Session::has('club_point'))
                     <tr class="cart-shipping">
-                        <th class="pl-0 fs-16 pt-0 pb-2 text-white fw-300  border-top-0">{{ translate('Redeem point') }}</th>
+                        <th class="pl-0 fs-16 pt-0 pb-2 text-white fw-300  border-top-0" style="font-family: 'Aeonik-Semibold' !important;">{{ translate('Redeem point') }}</th>
                         <td class="text-right pr-0 fs-16 pt-0 pb-2 fw-300  text-white border-top-0">
                             <small class="fw-300">{{ currency_symbol() }}</small>
                             <span class="fw-300 ">{{ Session::get('club_point') }}</span>
@@ -170,10 +170,10 @@
                 <!-- Coupon Discount -->
                 @if ($coupon_discount > 0)
                     <tr class="cart-shipping">
-                        <th class="pl-0 fs-16 pt-0 pb-2 text-white fw-300  border-top-0">{{ translate('Coupon Discount') }}</th>
+                        <th class="pl-0 fs-16 pt-0 pb-2 text-white fw-300  border-top-0" style="font-family: 'Aeonik-Semibold' !important;">{{ translate('Coupon Discount') }}</th>
                         <td class="text-right pr-0 fs-16 pt-0 pb-2 fw-300  text-white border-top-0">
                             <small>{{ currency_symbol() }}</small>
-                            <span class="fw-300 ">{{ number_format($coupon_discount) }}</span>
+                            <span class="fw-300 " style="font-family: 'Aeonik-Semibold' !important;">{{ number_format($coupon_discount) }}</span>
                         </td>
                     </tr>
                 @endif
@@ -189,11 +189,11 @@
                 @endphp
                 <!-- Total -->
                 <tr class="cart-total">
-                    <th class="pl-0 fs-22 text-white fw-600"><span class="strong-600">{{ translate('Total') }}</span></th>
+                    <th class="pl-0 fs-22 text-white fw-600" ><span class="strong-600" style="font-family: 'Aeonik-Semibold' !important;">{{ translate('Total') }}</span></th>
                     <td class="text-right pr-0 fs-22 fw-600 text-white">
                         <p>
                             <small class="fw-300">{{ currency_symbol() }}</small>
-                            <span>{{ number_format($total) }}</span>
+                            <span style="font-family: 'Aeonik-Semibold' !important;">{{ number_format($total) }}</span>
                         </p>
                     </td>
                 </tr>
