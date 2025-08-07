@@ -474,7 +474,7 @@
 }
 
 @media (max-width: 992px) {
-    .checkout_branding_logo {
+    .checkout_branding_logo, #private_ltd_txt {
         display: none !important;
     }
 }
@@ -818,7 +818,7 @@
                         </div>
 
                     </div>
-                    <p align="center" class="text-white d-sm-none"><small>Bighouz Pvt Ltd</small></p>
+                    <p align="center" id="private_ltd_txt" class="text-white d-sm-none"><small>Bighouz Pvt Ltd</small></p>
                     
                 </div>
             </div>
