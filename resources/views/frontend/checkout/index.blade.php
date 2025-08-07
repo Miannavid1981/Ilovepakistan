@@ -372,6 +372,12 @@
 .form-control:not(textarea){
     height: 3.1rem !important;
 }
+.form-control:not(#search) {
+    background: #fff !important;
+    box-shadow: unset !important;
+    border: 1px solid #c1c1c1 !important;
+    border-radius: 8px !important;
+}
 .horizontal_line {
     display: flex;
     width: 100%;
