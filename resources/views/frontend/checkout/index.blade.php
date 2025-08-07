@@ -575,14 +575,14 @@
     // dd($cart);
 @endphp
 
-<div class="d-lg-none px-3 pt-2" >
+<div class="d-lg-none p-4" >
                     <a href="{{  url('/') }}">
                         <img src="{{ $logo_url }}" style="width: 130px" alt="Bighouz" class="img-fluid">
-                        <ul class="d-flex gap-2 list-unstyled fs-15 text-muted">
+                        {{-- <ul class="d-flex gap-2 list-unstyled fs-15 text-muted">
                             <li>Home</li>
                             <li><i class="fa fa-chevron-right"></i></li>
                             <li>Checkout</li>
-                        </ul>
+                        </ul> --}}
                     </a>
                     
                 
