@@ -377,6 +377,7 @@
     box-shadow: unset !important;
     border: 1px solid #c1c1c1 !important;
     border-radius: 8px !important;
+    font-family: 'Aeonik';
 }
 .horizontal_line {
     display: flex;
