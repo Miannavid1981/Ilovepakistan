@@ -727,11 +727,11 @@
                 <div style="position: sticky; top: 20px;">
                     <br>
                     <div class="d-flex  align-items-center">
-                        <a class="px-3 py-2 bg-primary mb-0 text-white rounded-2" onclick="window.history.go(-1)" style="cursor: pointer">
+                        <a class="px-3 py-2 bg-white mb-0 text-dark  rounded-2" onclick="window.history.go(-1)" style="cursor: pointer">
                             <i class="fa fa-chevron-left fs-17 mb-0">
                             </i>
                         </a>
-                        <h4 class="mb-0 ms-3">Your Purchase</h4>
+                        <h4 class="mb-0 ms-3 text-white">Your Purchase</h4>
                     </div>
                     <div class="summary-cart">
                         @if ($cart && $cart->count() > 0)
@@ -763,8 +763,8 @@
                                 
                                     
                                     <div class="cart-item-info">
-                                        <small class="mb-0 fs-13 text-dark fw-500">{{  $seller ? $seller->name : "-" }}</small>
-                                        <p class="m-0 fs-17 fw-300 text-dark">{{  $product->name }}</p>
+                                        <small class="mb-0 fs-13 text-white fw-500">{{  $seller ? $seller->name : "-" }}</small>
+                                        <p class="m-0 fs-17 fw-300 text-white">{{  $product->name }}</p>
                                         <small class="mb-0 fs-13 text-muted">SKIN: {{  $product_seller_map ? $product_seller_map->encrypted_hash : "-" }}</small>
                                         
                                         
@@ -773,10 +773,10 @@
                                     @if (discount_in_percentage($product) > 0)
 
                                         <div class="price text-muted" style="text-decoration: line-through">{{ home_base_price($product) }}</div>
-                                        <div class="price">{{ home_discounted_base_price($product) }}</div>
+                                        <div class="price text-white">{{ home_discounted_base_price($product) }}</div>
                                         
                                     @else 
-                                        <div class="price">{{ home_base_price($product) }}</div>
+                                        <div class="price text-white">{{ home_base_price($product) }}</div>
                                     @endif
                                     
                                 </div>
