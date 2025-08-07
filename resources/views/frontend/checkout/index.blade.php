@@ -447,7 +447,7 @@
     
 }
 .checkout_columns:nth-child(2) {
-    background: #dd5b6e;
+    background: #ffcdd5;
     border-left: 1px solid #DEDEDE;
 }
 #checkout_grid {
@@ -587,7 +587,7 @@
                     
                 
                 </div>
-<form action="{{ route('payment.checkout') }}" class="form-default m-0" role="form" method="POST" id="checkout-form" style="background: linear-gradient(to right, #fff 70%,  #dd5b6e 0%);">
+<form action="{{ route('payment.checkout') }}" class="form-default m-0" role="form" method="POST" id="checkout-form" style="background: linear-gradient(to right, #fff 70%,  #ffcdd5 0%);">
     @csrf
     <input type="hidden" name="owner_id" value="{{ $carts[0]['owner_id'] }}">
     
@@ -754,7 +754,7 @@
                                 <i class="fa fa-chevron-left fs-17 mb-0">
                                 </i>
                             </a>
-                            <h4 class="mb-0 ms-3 text-white">Your Purchase</h4>
+                            <h4 class="mb-0 ms-3 text-dark">Your Purchase</h4>
                         </div>
                         <div class="summary-cart">
                             @if ($cart && $cart->count() > 0)
@@ -786,8 +786,8 @@
                                     
                                         
                                         <div class="cart-item-info">
-                                            <small class="mb-0 fs-13 text-white fw-500">{{  $seller ? $seller->name : "-" }}</small>
-                                            <p class="m-0 fs-17 fw-300 text-white">{{  $product->name }}</p>
+                                            <small class="mb-0 fs-13 text-dark fw-500">{{  $seller ? $seller->name : "-" }}</small>
+                                            <p class="m-0 fs-17 fw-300 text-dark">{{  $product->name }}</p>
                                             <small class="mb-0 fs-13 text-muted">SKIN: {{  $product_seller_map ? $product_seller_map->encrypted_hash : "-" }}</small>
                                             
                                             
@@ -796,10 +796,10 @@
                                         @if (discount_in_percentage($product) > 0)
 
                                             <div class="price text-muted" style="text-decoration: line-through">{{ home_base_price($product) }}</div>
-                                            <div class="price text-white">{{ home_discounted_base_price($product) }}</div>
+                                            <div class="price text-dark">{{ home_discounted_base_price($product) }}</div>
                                             
                                         @else 
-                                            <div class="price text-white">{{ home_base_price($product) }}</div>
+                                            <div class="price text-dark">{{ home_base_price($product) }}</div>
                                         @endif
                                         
                                     </div>
@@ -818,7 +818,7 @@
                         </div>
 
                     </div>
-                    <p align="center" id="private_ltd_txt" class="text-white d-sm-none"><small>Bighouz Pvt Ltd</small></p>
+                    <p align="center" id="private_ltd_txt" class="text-dark d-sm-none"><small>Bighouz Pvt Ltd</small></p>
                     
                 </div>
             </div>

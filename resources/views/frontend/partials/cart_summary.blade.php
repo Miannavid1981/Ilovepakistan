@@ -135,24 +135,24 @@
             <tfoot>
                 <!-- Subtotal -->
                 <tr class="cart-subtotal">
-                    <th class="pl-0 fs-16 pt-0 pb-2 text-white fw-300  border-top-0" style="font-family: 'Aeonik-Semibold' !important;">{{ translate('Subtotal') }}</th>
-                    <td class="text-right pr-0 fs-16 pt-0 pb-2 fw-300  text-white border-top-0">
+                    <th class="pl-0 fs-16 pt-0 pb-2 text-dark fw-300  border-top-0" style="font-family: 'Aeonik-Semibold' !important;">{{ translate('Subtotal') }}</th>
+                    <td class="text-right pr-0 fs-16 pt-0 pb-2 fw-300  text-dark border-top-0">
                         <small class="fw-300">{{ currency_symbol() }}</small>
                         <span class="fw-300 " style="font-family: 'Aeonik-Semibold' !important;">{{ number_format($subtotal) }}</span>
                     </td>
                 </tr>
                 <!-- Tax -->
                 <tr class="cart-shipping">
-                    <th class="pl-0 fs-16 pt-0 pb-2 text-white fw-300  border-top-0" style="font-family: 'Aeonik-Semibold' !important;">{{ translate('Tax') }}</th>
-                    <td class="text-right pr-0 fs-16 pt-0 pb-2 fw-300  text-white border-top-0">
+                    <th class="pl-0 fs-16 pt-0 pb-2 text-dark fw-300  border-top-0" style="font-family: 'Aeonik-Semibold' !important;">{{ translate('Tax') }}</th>
+                    <td class="text-right pr-0 fs-16 pt-0 pb-2 fw-300  text-dark border-top-0">
                         <small class="fw-300">{{ currency_symbol() }}</small>
                         <span class="fw-300 " style="font-family: 'Aeonik-Semibold' !important;">{{ $tax }}</span>
                     </td>
                 </tr>
                 <!-- Total Shipping -->
                 <tr class="cart-shipping">
-                    <th class="pl-0 fs-16 pt-0 pb-2 text-white fw-300  border-top-0" style="font-family: 'Aeonik-Semibold' !important;">{{ translate('Delivery Charges') }}</th>
-                    <td class="text-right pr-0 fs-16 pt-0 pb-2 fw-300  text-white border-top-0">
+                    <th class="pl-0 fs-16 pt-0 pb-2 text-dark fw-300  border-top-0" style="font-family: 'Aeonik-Semibold' !important;">{{ translate('Delivery Charges') }}</th>
+                    <td class="text-right pr-0 fs-16 pt-0 pb-2 fw-300  text-dark border-top-0">
                         <small class="fw-300">{{ currency_symbol() }}</small>
                         <span class="fw-300 " style="font-family: 'Aeonik-Semibold' !important;">{{ number_format($shipping)}}</span>
                     </td>
@@ -160,8 +160,8 @@
                 <!-- Redeem point -->
                 @if (Session::has('club_point'))
                     <tr class="cart-shipping">
-                        <th class="pl-0 fs-16 pt-0 pb-2 text-white fw-300  border-top-0" style="font-family: 'Aeonik-Semibold' !important;">{{ translate('Redeem point') }}</th>
-                        <td class="text-right pr-0 fs-16 pt-0 pb-2 fw-300  text-white border-top-0">
+                        <th class="pl-0 fs-16 pt-0 pb-2 text-dark fw-300  border-top-0" style="font-family: 'Aeonik-Semibold' !important;">{{ translate('Redeem point') }}</th>
+                        <td class="text-right pr-0 fs-16 pt-0 pb-2 fw-300  text-dark border-top-0">
                             <small class="fw-300">{{ currency_symbol() }}</small>
                             <span class="fw-300 ">{{ Session::get('club_point') }}</span>
                         </td>
@@ -170,8 +170,8 @@
                 <!-- Coupon Discount -->
                 @if ($coupon_discount > 0)
                     <tr class="cart-shipping">
-                        <th class="pl-0 fs-16 pt-0 pb-2 text-white fw-300  border-top-0" style="font-family: 'Aeonik-Semibold' !important;">{{ translate('Coupon Discount') }}</th>
-                        <td class="text-right pr-0 fs-16 pt-0 pb-2 fw-300  text-white border-top-0">
+                        <th class="pl-0 fs-16 pt-0 pb-2 text-dark fw-300  border-top-0" style="font-family: 'Aeonik-Semibold' !important;">{{ translate('Coupon Discount') }}</th>
+                        <td class="text-right pr-0 fs-16 pt-0 pb-2 fw-300  text-dark border-top-0">
                             <small>{{ currency_symbol() }}</small>
                             <span class="fw-300 " style="font-family: 'Aeonik-Semibold' !important;">{{ number_format($coupon_discount) }}</span>
                         </td>
@@ -189,8 +189,8 @@
                 @endphp
                 <!-- Total -->
                 <tr class="cart-total">
-                    <th class="pl-0 fs-22 text-white fw-600" ><span class="strong-600" style="font-family: 'Aeonik-Semibold' !important;">{{ translate('Total') }}</span></th>
-                    <td class="text-right pr-0 fs-22 fw-600 text-white">
+                    <th class="pl-0 fs-22 text-dark fw-600" ><span class="strong-600" style="font-family: 'Aeonik-Semibold' !important;">{{ translate('Total') }}</span></th>
+                    <td class="text-right pr-0 fs-22 fw-600 text-dark">
                         <p>
                             <small class="fw-300">{{ currency_symbol() }}</small>
                             <span style="font-family: 'Aeonik-Semibold' !important;">{{ number_format($total) }}</span>
