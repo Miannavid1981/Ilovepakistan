@@ -34,22 +34,14 @@
       width: 32px;
       margin-right: 10px;
     }
-
-    input[type="radio"]:not(.delivery_type input) {
-
-        appearance: none;
-
-        width: 20px;
-
-        height: 20px;
-
-        border: 2px solid #999;
-
-        border-radius: 50%;
-
-        position: relative;
-
-    }
+input[type="radio"]:not(.delivery_type input) {
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #999;
+    border-radius: 50%;
+    min-width: 20px;
+}
 
     input[type="radio"]:not(.delivery_type input):checked::after {
 
@@ -191,7 +183,7 @@
           
             <button class="btn btn-link text-decoration-none w-100 p-0 "  type="button" data-toggle="collapse" data-target="#cash_on_delivery">
               <label class="payment-method-header d-flex justify-content-between w-100 mb-0 p-2 px-3">
-                    <div class="  text-dark d-flex align-items-center mb-0" style="font-family: 'Aeonik';">
+                    <div class="  text-dark d-flex align-items-center mb-0 text-left" style="font-family: 'Aeonik';">
                         <input type="radio" class=" mb-0 me-2" name="payment_method" value="cash_on_delivery" checked> Cash On Delivery
                     </div>
                     <span>
@@ -215,7 +207,7 @@
             
                 <button class="btn btn-link text-decoration-none w-100 p-0 collapsed" type="button" data-toggle="collapse" data-target="#creditCard" aria-expanded="true">
                 <label class="payment-method-header d-flex justify-content-between w-100 mb-0 p-2 px-3">
-                    <div class="  text-dark d-flex align-items-center mb-0" style="font-family: 'Aeonik';">
+                    <div class="  text-dark d-flex align-items-center mb-0 text-left" style="font-family: 'Aeonik';">
                     
                     <input type="radio" class=" mb-0 me-2" name="payment_method" value="credit_card"  > Credit / Debit Card
                     </div>
@@ -242,7 +234,7 @@
         
           <button class="btn btn-link text-decoration-none w-100 p-0 collapsed" type="button" data-toggle="collapse" data-target="#direct_bank_transfer">
             <label class="payment-method-header d-flex justify-content-between w-100 mb-0 p-2 px-3">
-                <div class="  text-dark d-flex align-items-center mb-0" style="font-family: 'Aeonik';">
+                <div class="  text-dark d-flex align-items-center mb-0 text-left" style="font-family: 'Aeonik';">
                   <input type="radio" class=" mb-0 me-2" name="payment_method" value="direct_bank_transfer"> Direct Bank / Mobile Transfer
                 </div>
                 <span>
