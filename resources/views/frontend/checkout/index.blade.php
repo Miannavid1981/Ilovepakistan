@@ -149,6 +149,7 @@
         margin-top: 30px;
         max-height: 500px;
         overflow-y: scroll;
+        padding: 10px;
     }
 
      .cart-item {
