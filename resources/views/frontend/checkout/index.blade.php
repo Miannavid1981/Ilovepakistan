@@ -505,7 +505,7 @@
 /* Individual button colors */
 .button-personal {
     background-color: #fff;
-    border: 1px solid #dd5a6e;
+    border: 1px solid #d4929c;
     color: #dd5a6e;
 }
 .button-personal  svg{
@@ -513,11 +513,11 @@
 }
 
 .button-personal:has(input:checked) {
-    background-color: #dd5a6e;
-    color: #fff
+    background-color: #ffcdd5;
+    color: #000;
 }
 .button-personal:has(input:checked) svg {
-    fill: #fff
+    fill: #000
 }
 
 
