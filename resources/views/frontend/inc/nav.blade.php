@@ -214,7 +214,10 @@ header .nav-link:not(.category-drawer-toggle-btn) {
     </div>
 </header>
 
-    <div class="row align-items-center py-2 px-3 header-top d-lg-none">
+    <div class="row align-items-center py-2 px-3 header-top d-lg-none" style="    position: fixed;
+    top: 0;
+    z-index: 9;
+    background: #fff;">
         <div class="col-4 d-flex align-items-center text-left">
             
             <i class="fa-solid fa-bars menu-icon fs-20 me-2 category-drawer-toggle-btn" ></i>
