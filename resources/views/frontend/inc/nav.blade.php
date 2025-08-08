@@ -216,6 +216,8 @@ header .nav-link:not(.category-drawer-toggle-btn) {
 
     <div class="row align-items-center py-2 px-3 header-top d-lg-none" style="    position: fixed;
     top: 0;
+    left: 0;
+    right: 0;
     z-index: 9;
     background: #fff;">
         <div class="col-4 d-flex align-items-center text-left">
