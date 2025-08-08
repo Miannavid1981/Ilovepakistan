@@ -1,8 +1,7 @@
 <style>
     .payment-method-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+        display: grid !important;
+        grid-template-columns: 1fr 1fr;
     }
     @media (max-width:768px){
         .payment-method-header img {
@@ -11,20 +10,24 @@
         }
     }
     .payment-method-header img {
-      width: 24px;
-      margin-left: 8px;
+        width: 24px;
+        margin-left: 8px;
+    }
+    .payment-method-header span {
+        display: flex;
+        justify-content: flex-end;
     }
 
     .payment-method-details {
-      background-color: #f8f9fa;
-      padding: 1rem;
-      /* border-top: 1px solid #dedede; */
+        background-color: #f8f9fa;
+        padding: 1rem;
+        /* border-top: 1px solid #dedede; */
     }
 
     .redirect-info {
-      display: flex;
-      align-items: center;
-      margin-top: 1rem;
+        display: flex;
+        align-items: center;
+        margin-top: 1rem;
     }
 
     .redirect-info img {
