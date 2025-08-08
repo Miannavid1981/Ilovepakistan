@@ -394,12 +394,12 @@ tr.border-bottom td {
                                    x {{ $orderDetail->quantity }}
                                 </td>
                                 <td width="20%">  
-                                    <button type="button" onclick="window.location.href='{{ route('shop.visit', $seller->shop->slug) }}'" class="bg-white border-0" data-toggle="tooltip" data-html="true" title=" {{ $seller->name }}">
-                                        <div class="w-50px h-50px"><img src="{{ uploaded_asset($seller->avatar_original) }}" class="h-100 object-fit rounded-2"> </div>
+                                    <button type="button"  class="bg-white border-0" >
+                                        <div class="w-50px h-50px"><img src="{{ uploaded_asset($brand->logo) }}" class="h-100 object-fit rounded-2"> </div>
                                     </button>
                                 </td>
                                 <td width="20%">  
-                                    <div class="h-30px d-flex align-items-center gap-2 fs-15"><img src="{{ uploaded_asset($brand->logo) }}" class="h-100 object-fit rounded-2"> {{ $brand_name }} </div>
+                                    <div class="h-30px d-flex align-items-center gap-2 fs-15">{{ $brand_name }} </div>
                                 </td>
                                 
                                 
