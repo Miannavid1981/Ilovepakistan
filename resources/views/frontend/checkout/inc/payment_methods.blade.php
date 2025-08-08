@@ -4,7 +4,12 @@
       align-items: center;
       justify-content: space-between;
     }
-
+    @media (max-width:768px){
+        .payment-method-header img {
+            width: 25px !important;
+            margin-left: 5px;
+        }
+    }
     .payment-method-header img {
       width: 24px;
       margin-left: 8px;
