@@ -16,6 +16,7 @@
     .payment-method-header span {
         display: flex;
         justify-content: flex-end;
+        align-items: center;
     }
 
     .payment-method-details {
