@@ -504,7 +504,7 @@
 }
 
 /* Individual button colors */
-.button-personal {
+/* .button-personal {
     background-color: #fff;
     border: 1px solid #d4929c;
     color: #dd5a6e;
@@ -549,11 +549,29 @@
     fill: #3c3c44;
 }
 .button-others:has(input:checked) {
-   background-color: #ffcdd5;
+    background-color: #3c3c44;
     color: #fff
 }
 .button-others:has(input:checked) svg {
     fill: #fff
+} */
+
+
+.modern-button  {
+    background-color: #fff;
+    border: 1px solid #3c3c44;
+    color: #3c3c44;
+}
+.modern-button   svg{
+    fill: #3c3c44;
+}
+
+.modern-button:has(input:checked) {
+    background-color: #ffcdd5;
+    color: #000;
+}
+.modern-button:has(input:checked) svg {
+    fill: #000
 }
 
 
