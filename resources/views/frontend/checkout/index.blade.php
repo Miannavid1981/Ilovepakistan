@@ -569,6 +569,7 @@
 .modern-button:has(input:checked) {
     background-color: #ffcdd5;
     color: #000;
+    border: 1px solid #d4929c;
 }
 .modern-button:has(input:checked) svg {
     fill: #000
