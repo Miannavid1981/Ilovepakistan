@@ -517,7 +517,7 @@
                 <div class="mt-3">
 
                     @php
-                    $show_cart_btn = true;    
+                        $show_cart_btn = true;    
                     @endphp
                     @auth
                         @php
@@ -544,7 +544,7 @@
                                     <i class="las las la-shopping-cart"></i> {{ translate('Add to cart') }}
                                 </button>
                             @endif
-                            <button type="button" class="btn btn-secondary out-of-stock fw-600 d-none" disabled>
+                            <button type="button" class="btn btn-secondary out-of-stock fw-600 d-none"  disabled>
                                 <i class="la la-cart-arrow-down"></i> {{ translate('Out of Stock') }}
                             </button>
                         @elseif ($detailedProduct->digital == 1)

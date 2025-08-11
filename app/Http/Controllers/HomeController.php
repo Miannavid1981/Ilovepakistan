@@ -283,7 +283,7 @@ class HomeController extends Controller
         // Extract the seller code and product SKU
         $sellerCode = $skin_parts[0];  // This is 'BH0000768'
         $productSKU = isset($skin_parts[1]) ? $skin_parts[1] : null;  // This is 'IP16PRO', or null if it doesn't exist
-        $seller_serial_no = get_seller_serial_num_int($sellerCode) ;
+        $seller_serial_no = get_seller_serial_num_int($sellerCode);
 
         $product_child_seller =  User::where('serial_no', $seller_serial_no)->first();
         // Query the product based on SKU
@@ -295,7 +295,7 @@ class HomeController extends Controller
  
         $sellerId = null;
         $sourceSellerId = null;
-        $detailpage_skin = $detailedProduct->product_skin ?? null;
+        $detailpage_skin = $seller_map->original_skin;
 
         if ($isImported) {
             // Fetch the import mapping
