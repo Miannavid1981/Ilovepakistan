@@ -549,7 +549,7 @@
     fill: #3c3c44;
 }
 .button-others:has(input:checked) {
-    background-color: #3c3c44;
+   background-color: #ffcdd5;
     color: #fff
 }
 .button-others:has(input:checked) svg {
