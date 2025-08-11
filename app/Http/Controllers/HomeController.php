@@ -271,9 +271,6 @@ class HomeController extends Controller
 
     public function product(Request $request, $slug = false, $skin = false)
     {
-        // echo "Slug: " . $slug . "<br>";
-        // Decrypt the skin value
-
         if(empty($skin)){
             return redirect()->back();
         }
@@ -292,28 +289,25 @@ class HomeController extends Controller
         // Query the product based on SKU
         $detailedProduct  = Product::with('reviews', 'brand', 'stocks', 'user', 'user.shop')->where('auction_product', 0)->where('slug', $slug)->where('approved', 1)->first();
 
-         // Detect if the product is imported (prefix "I")
-         $isImported = str_starts_with($skin, get_imported_skin_prefix());
-         $cleanSku = $isImported ? substr($productSKU, 1) : $productSKU;
+        // Detect if the product is imported (prefix "I")
+        $isImported = str_starts_with($skin, get_imported_skin_prefix());
+        $cleanSku = $isImported ? substr($productSKU, 1) : $productSKU;
  
-         
-         $sellerId = null;
-         $sourceSellerId = null;
- 
-         if ($isImported) {
-             // Fetch the import mapping
-             $mapping = ProductSellerMap::where('product_id', $detailedProduct->id)
-                 ->first();
-             if ($mapping) {
-                 $sellerId = $mapping->seller_id;
-                 $sourceSellerId = $mapping->source_seller_id;
-             }
-         } else {
-             $sellerId = $detailedProduct->user_id;
-         }
+        $sellerId = null;
+        $sourceSellerId = null;
+        $detailpage_skin = $detailedProduct->product_skin ?? null;
 
-
-        
+        if ($isImported) {
+            // Fetch the import mapping
+            $mapping = ProductSellerMap::where('product_id', $detailedProduct->id)->first();
+            if ($mapping) {
+                $sellerId = $mapping->seller_id;
+                $sourceSellerId = $mapping->source_seller_id;
+                $detailpage_skin = $mapping->original_skin;
+            }
+        } else {
+            $sellerId = $detailedProduct->user_id;
+        }
 
         if ($detailedProduct != null && $detailedProduct->published) {
             if ((get_setting('vendor_system_activation') != 1) && $detailedProduct->added_by == 'seller') {
@@ -384,7 +378,7 @@ class HomeController extends Controller
                 lastViewedProducts($detailedProduct->id, auth()->user()->id);
             }
 
-            return view('frontend.product_details', compact('detailedProduct', 'product_queries', 'total_query', 'reviews', 'review_status', 'product_child_seller', 'isImported'));
+            return view('frontend.product_details', compact('detailedProduct', 'product_queries', 'total_query', 'reviews', 'review_status', 'product_child_seller', 'isImported', 'detailpage_skin'));
         }
         abort(404);
     }

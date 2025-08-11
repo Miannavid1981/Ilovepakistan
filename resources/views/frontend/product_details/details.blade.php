@@ -537,15 +537,10 @@
                                 </a>
                             @else
                             
-                                <button type="button" class="btn  btn-light text-dark border border-dark py-2 w-100  buy-now fw-600 add-to-cart min-w-150px rounded-0 g-buy-now" 
-                                data-id="{{ $detailedProduct->id }}" data-skin_code="{{ $detailedProduct->product_skin ?? get_product_seller_map_skin($detailedProduct) }}"
-                                   >
+                                <button type="button" class="btn  btn-light text-dark border border-dark py-2 w-100  buy-now fw-600 add-to-cart min-w-150px rounded-0 g-buy-now" data-id="{{ $detailedProduct->id }}" data-skin_code="{{ $detailpage_skin }}">
                                     {{ translate('Buy Now') }}
                                 </button>
-                                <button type="button"
-                                data-id="{{ $detailedProduct->id }}" data-skin_code="{{ $detailedProduct->product_skin ?? get_product_seller_map_skin($detailedProduct) }}"
-                                    class="btn py-2 btn-primary w-100 mt-2 add-to-cart fw-600  rounded-0  g-add-to-cart"
-                                >
+                                <button type="button" data-id="{{ $detailedProduct->id }}" data-skin_code="{{ $detailpage_skin }}" class="btn py-2 btn-primary w-100 mt-2 add-to-cart fw-600  rounded-0  g-add-to-cart">
                                     <i class="las las la-shopping-cart"></i> {{ translate('Add to cart') }}
                                 </button>
                             @endif
@@ -553,7 +548,7 @@
                                 <i class="la la-cart-arrow-down"></i> {{ translate('Out of Stock') }}
                             </button>
                         @elseif ($detailedProduct->digital == 1)
-                            <button type="button" class="btn btn-primary buy-now fw-600 add-to-cart min-w-150px rounded-0"
+                            <button type="button"  class="btn btn-primary buy-now fw-600 add-to-cart min-w-150px rounded-0"
                                 @if (Auth::check() || get_Setting('guest_checkout_activation') == 1) onclick="addToCart()" @else onclick="showLoginModal()" @endif>
                                 <i class="la la-shopping-cart"></i> {{ translate('Buy Now') }}
                             </button>
@@ -566,39 +561,33 @@
                         @endif
 
                     @else
-                            @auth
-                                @php
+                        @auth
+
+                            @php
                                 $seller_type = auth()->user()->seller_type;   
                                 $seller_imported_flag = (int) \App\Models\ProductSellerMap::where('product_id', $detailedProduct->id)->where('seller_id', auth()->user()->id)->count();
-                                @endphp
+                            @endphp
 
-                            
-                                <div class="d-flex">
-                                    @if($seller_type != 'brand_partner')
-                                        @if($seller_imported_flag)
+                            <div class="d-flex">
+                                @if($seller_type != 'brand_partner')
+                                    @if($seller_imported_flag)
                                         <button type="button" data-id="{{ $detailedProduct->id }}" style="background: #eee" class="btn text-dark  buy-now fw-600  min-w-150px rounded-0 g-import-to-seller w-100">
                                             <i class="la la-plus"></i> {{ translate('Import') }}
                                         </button>
-                                        
-                                        @else
-                                            
+                                    @else
                                         <button type="button" data-id="{{ $detailedProduct->id }}" style="background: #eee" class="btn text-dark buy-now fw-600  min-w-150px rounded-0  w-100 fs-16" disabled>
                                             <i class="la la-check"></i> Imported
                                         </button>
-                                        @endif
                                     @endif
-                                    @if($seller_type != 'store_partner')
-                                        <a href="" class="btn btn-primary buy-now fw-600 min-w-150px rounded-0  w-100 g-add-to-cart" >
-                                            <i class="la la-plus"></i> New Listing
-                                        </a>
-                                    @endif
-                                </div>
+                                @endif
+                                @if($seller_type != 'store_partner')
+                                    <a href="" class="btn btn-primary buy-now fw-600 min-w-150px rounded-0  w-100 g-add-to-cart" >
+                                        <i class="la la-plus"></i> New Listing
+                                    </a>
+                                @endif
+                            </div>
 
-                            @endauth
-                           
-                            
-                       
-
+                        @endauth  
                     @endif
                 </div>
                 <div class="social-share">
