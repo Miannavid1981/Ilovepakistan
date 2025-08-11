@@ -42,29 +42,23 @@ input[type="radio"]:not(.delivery_type input) {
     border: 2px solid #999;
     border-radius: 50%;
     min-width: 20px;
+    position: relative;
 }
 
-    input[type="radio"]:not(.delivery_type input):checked::after {
-
-        content: '';
-
-        position: absolute;
-
-        width: 12px;
-
-        height: 12px;
-
-        background: black;
-
-        border-radius: 50%;
-
-        top: 50%;
-
-        left: 50%;
-
-        transform: translate(-50%, -50%);
-
-    }
+input[type="radio"]:not(.delivery_type input):checked::after {
+    content: '';
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    background: black;
+    border-radius: 50%;
+    /* top: 50%; */
+    left: 2px;
+    /* transform: translate(-50%, -50%); */
+    right: 0;
+    top: 2px;
+    bottom: 0;
+}
     .card {
         border-radius: 0 !important;
     }
