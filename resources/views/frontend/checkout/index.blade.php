@@ -162,11 +162,11 @@
          /* border-radius: 8px; */
          /* border: 1px solid #e4e4e4; */
      }
-     .cart-item:not(:last-of-type) {
-    margin-bottom: 10px;
-    padding-bottom: 10px;
-    border-bottom: 1px solid #ffffff38 !important;
-}
+    .cart-item:not(:last-of-type) {
+        margin-bottom: 10px;
+        padding-bottom: 10px;
+        border-bottom: 1px solid #3c3c4545 !important;
+    }
      .cart-item img {
         width: 80px;
         height: 60px;
