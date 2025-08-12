@@ -1284,4 +1284,43 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 
+document.addEventListener("DOMContentLoaded", function () {
+    const quantityInput = document.getElementById("g-detail-quantity");
+    const minusBtn = document.querySelector("[data-type='minus']");
+    const plusBtn = document.querySelector("[data-type='plus']");
+    const minValue = parseInt(quantityInput.min) || 1;
+
+    // Function to update the minus button state
+    function updateMinusState() {
+        minusBtn.disabled = parseInt(quantityInput.value) <= minValue;
+    }
+
+    // Minus button click
+    minusBtn.addEventListener("click", function () {
+        let currentValue = parseInt(quantityInput.value) || minValue;
+        if (currentValue > minValue) {
+            quantityInput.value = currentValue - 1;
+            updateMinusState();
+        }
+    });
+
+    // Plus button click
+    plusBtn.addEventListener("click", function () {
+        let currentValue = parseInt(quantityInput.value) || minValue;
+        quantityInput.value = currentValue + 1;
+        updateMinusState();
+    });
+
+    // Manual input change
+    quantityInput.addEventListener("input", function () {
+        if (parseInt(this.value) < minValue || isNaN(this.value)) {
+            this.value = minValue;
+        }
+        updateMinusState();
+    });
+
+    updateMinusState(); // Initialize state
+});
+
+
 </script>
