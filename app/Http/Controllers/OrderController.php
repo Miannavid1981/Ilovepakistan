@@ -160,12 +160,14 @@ class OrderController extends Controller
             flash(translate('Your cart is empty'))->warning();
             return redirect()->route('home');
         }
-
+        if(empty($request->payment_method)){
+            flash(translate('Please choose Payment Method'))->error();
+            return redirect()->back();
+        }
         $address = Address::where('id', $carts[0]['address_id'])->first();
         $shippingAddress = !empty($request->shipping_address) ? $request->shipping_address : false;
         if(!$shippingAddress) {
 
-            
             if ($address != null) {
                 $shippingAddress['name']        = $request->first_name." ".$request->last_name;
                 $shippingAddress['email']       = Auth::user()->email;
@@ -225,7 +227,7 @@ class OrderController extends Controller
             foreach ($seller_product as $cartItem) {
                 $product = Product::find($cartItem['product_id']);
 
-               
+                
 
                 $item_price =discount_in_percentage($product) > 0 ? home_discounted_base_price($product, false)  * $cartItem['quantity'] : home_base_price($product, false) * $cartItem['quantity'] ;
                 $subtotal += $item_price;
