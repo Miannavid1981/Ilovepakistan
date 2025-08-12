@@ -478,7 +478,15 @@ $product_stock = 0;
             <div class="row  my-3">
                 
                 <div class="col-12">
-
+                        @php
+                            $qty = 0;
+                            
+                            foreach ($detailedProduct->stocks as $key => $stock) {
+                                $qty += $stock->qty;
+                                
+                            }
+                            $product_stock = $qty;
+                        @endphp
                     <h6>Quantity</h6>
                     <div class="product-quantity">
                         <div class="row align-items-center aiz-plus-minus mr-3 ml-0" style="width: 130px;">
@@ -498,15 +506,7 @@ $product_stock = 0;
                         </div>
                         
 
-                        @php
-                            $qty = 0;
-                            
-                            foreach ($detailedProduct->stocks as $key => $stock) {
-                                $qty += $stock->qty;
-                                
-                            }
-                            $product_stock = $qty;
-                        @endphp
+                        
                         <p class="avialable-amount opacity-60 mb-0 mt-1">
                             @if ($detailedProduct->stock_visibility_state == 'quantity')
                                 (Only <span id="available-quantity">{{ $qty }}</span> left
