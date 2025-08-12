@@ -1,7 +1,7 @@
 
 @php
 
-
+$product_stock = 0;
 
 @endphp
 <style>
@@ -483,13 +483,14 @@
                     <div class="product-quantity">
                         <div class="row align-items-center aiz-plus-minus mr-3 ml-0" style="width: 130px;">
                             <button class="btn col-auto btn-icon btn-sm btn-light rounded-0" type="button"
-                                data-type="minus" data-field="quantity" disabled="">
+                                data-type="minus" data-field="quantity">
                                 <i class="las la-minus"></i>
                             </button>
                             <input id="g-detail-quantity" type="number" name="quantity"
-                                class="col border-0 text-center flex-grow-1 fs-16 input-number" placeholder=""
+                                class="col border-0 text-center flex-grow-1 fs-16 input-number"
                                 value="1" min="1"
-                                 lang="en">
+                                max="{{ $product_stock }}"
+                                lang="en">
                             <button class="btn col-auto btn-icon btn-sm btn-light rounded-0" type="button"
                                 data-type="plus" data-field="quantity">
                                 <i class="las la-plus"></i>
@@ -499,9 +500,12 @@
 
                         @php
                             $qty = 0;
+                            
                             foreach ($detailedProduct->stocks as $key => $stock) {
                                 $qty += $stock->qty;
+                                
                             }
+                            $product_stock = $qty;
                         @endphp
                         <p class="avialable-amount opacity-60 mb-0 mt-1">
                             @if ($detailedProduct->stock_visibility_state == 'quantity')
@@ -1283,44 +1287,46 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
-
 document.addEventListener("DOMContentLoaded", function () {
     const quantityInput = document.getElementById("g-detail-quantity");
     const minusBtn = document.querySelector("[data-type='minus']");
     const plusBtn = document.querySelector("[data-type='plus']");
-    const minValue = parseInt(quantityInput.min) || 1;
 
-    // Function to update the minus button state
-    function updateMinusState() {
+    const minValue = parseInt(quantityInput.min) || 1;
+    const maxValue = parseInt(quantityInput.max) || Infinity;
+
+    function updateButtonStates() {
         minusBtn.disabled = parseInt(quantityInput.value) <= minValue;
+        plusBtn.disabled = parseInt(quantityInput.value) >= maxValue;
     }
 
-    // Minus button click
     minusBtn.addEventListener("click", function () {
         let currentValue = parseInt(quantityInput.value) || minValue;
         if (currentValue > minValue) {
             quantityInput.value = currentValue - 1;
-            updateMinusState();
+            updateButtonStates();
         }
     });
 
-    // Plus button click
     plusBtn.addEventListener("click", function () {
         let currentValue = parseInt(quantityInput.value) || minValue;
-        quantityInput.value = currentValue + 1;
-        updateMinusState();
+        if (currentValue < maxValue) {
+            quantityInput.value = currentValue + 1;
+            updateButtonStates();
+        }
     });
 
-    // Manual input change
     quantityInput.addEventListener("input", function () {
         if (parseInt(this.value) < minValue || isNaN(this.value)) {
             this.value = minValue;
         }
-        updateMinusState();
+        if (parseInt(this.value) > maxValue) {
+            this.value = maxValue;
+        }
+        updateButtonStates();
     });
 
-    updateMinusState(); // Initialize state
+    updateButtonStates();
 });
-
 
 </script>
