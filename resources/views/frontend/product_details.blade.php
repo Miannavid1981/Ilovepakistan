@@ -193,7 +193,7 @@
 
 .tab-content {
     margin-top: 60px; /* Ensure content is below the tabs */
-    padding: 20px;
+    /* padding: 20px; */
     background-color: #fff;
     /* border: 1px solid #ddd; */
     border-radius: 5px;
