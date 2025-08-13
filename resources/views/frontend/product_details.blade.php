@@ -227,6 +227,9 @@
                     @if(!empty($detailedProduct->reviews))
                         <li class="tab" data-tab="reviews">Reviews</li>
                     @endif
+                    @if(!empty($detailedProduct->video_link))
+                        <li class="tab" data-tab="video">Video</li>
+                    @endif
                 </ul>
             
                 <div class="tab-content" style="    overflow-x: scroll !important;width: 100%;">
@@ -273,6 +276,13 @@
                                     </li>
                                 @endforeach
                             </ul>
+                        </div>
+                    @endif
+
+                     <!-- Specifications Tab -->
+                    @if(!empty($detailedProduct->video_link))
+                        <div class="tab-pane" id="video">
+                            <iframe src="{{ $detailedProduct->video_link }}" style="width: 100%; height: auto; aspect-ratio: 1/1;"></iframe>
                         </div>
                     @endif
 
