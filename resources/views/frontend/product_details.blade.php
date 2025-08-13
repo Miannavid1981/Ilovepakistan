@@ -251,13 +251,86 @@
                     <!-- Reviews Tab -->
                     @if(!empty($detailedProduct->reviews))
                         <div class="tab-pane" id="reviews">
+
+                            <style>
+                                .star-rating {
+                                    direction: rtl;
+                                    display: inline-flex;
+                                }
+                                .star-rating input[type=radio] {
+                                    display: none;
+                                }
+                                .star-rating label {
+                                    font-size: 24px;
+                                    color: #ccc;
+                                    cursor: pointer;
+                                }
+                                .star-rating input[type=radio]:checked ~ label {
+                                    color: #f5c518;
+                                }
+                                .star-rating label:hover,
+                                .star-rating label:hover ~ label {
+                                    color: #f5c518;
+                                }
+                            </style>
+
+                            <h4>Leave a Review</h4>
+                            <form action="{{ route('reviews.store') }}" method="POST" enctype="multipart/form-data">
+                                @csrf
+                                <input type="hidden" name="product_id" value="{{ $detailedProduct->id }}">
+
+                                <!-- Name -->
+                                <div class="form-group">
+                                    <label>Your Name</label>
+                                    <input type="text" name="custom_reviewer_name" class="form-control" value="{{ old('custom_reviewer_name', Auth::user()->name ?? '') }}">
+                                </div>
+
+                                <!-- Reviewer Image -->
+                                <div class="form-group">
+                                    <label>Profile Image</label>
+                                    <input type="file" name="custom_reviewer_image" class="form-control">
+                                </div>
+
+                                <!-- Rating Stars -->
+                                <div class="form-group">
+                                    <label>Rating</label>
+                                    <div class="star-rating">
+                                        @for($i = 5; $i >= 1; $i--)
+                                            <input type="radio" id="star{{ $i }}" name="rating" value="{{ $i }}">
+                                            <label for="star{{ $i }}">★</label>
+                                        @endfor
+                                    </div>
+                                </div>
+
+                                <!-- Comment -->
+                                <div class="form-group">
+                                    <label>Comment</label>
+                                    <textarea name="comment" class="form-control" rows="3"></textarea>
+                                </div>
+
+                                <!-- Photos -->
+                                <div class="form-group">
+                                    <label>Photos</label>
+                                    <input type="file" name="photos[]" class="form-control" multiple>
+                                </div>
+
+                                <!-- Submit -->
+                                <button type="submit" class="btn btn-primary">Submit Review</button>
+                            </form>
+                            
                             <ul>
                                 @foreach($detailedProduct->reviews as $review)
-                                    <li>{{ $review->user }}: {{ $review->comment }}</li>
+                                    <li>
+                                        <strong>{{ $review->custom_reviewer_name ?? $review->user->name ?? 'Anonymous' }}</strong> 
+                                        ({{ $review->rating }}★):
+                                        {{ $review->comment }}
+                                    </li>
                                 @endforeach
                             </ul>
                         </div>
                     @endif
+
+                    
                 </div>
             </div>
             
