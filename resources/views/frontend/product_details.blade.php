@@ -302,7 +302,7 @@
                 }
             </style>
 
-            <h4>Leave a Review</h4>
+            <h2>Leave a Review</h2>
             <form action="{{ route('reviews.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <input type="hidden" name="product_id" value="{{ $detailedProduct->id }}">
