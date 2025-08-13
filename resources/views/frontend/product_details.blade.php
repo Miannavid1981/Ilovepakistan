@@ -285,11 +285,11 @@
                                     <input type="text" name="custom_reviewer_name" class="form-control" value="{{ old('custom_reviewer_name', Auth::user()->name ?? '') }}">
                                 </div>
 
-                                <!-- Reviewer Image -->
+                                {{-- <!-- Reviewer Image -->
                                 <div class="form-group">
                                     <label>Profile Image</label>
                                     <input type="file" name="custom_reviewer_image" class="form-control">
-                                </div>
+                                </div> --}}
 
                                 <!-- Rating Stars -->
                                 <div class="form-group">
