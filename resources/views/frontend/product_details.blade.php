@@ -254,9 +254,17 @@
                             <ul style="list-style-type: none">
                                 @foreach($detailedProduct->reviews as $review)
                                     <li>
-                                        <strong>{{ $review->custom_reviewer_name ?? $review->user->name ?? 'Anonymous' }}</strong> 
-                                        ({{ $review->rating }}★):
-                                        {{ $review->comment }}
+                                        <h4>{{ $review->custom_reviewer_name ?? $review->user->name ?? 'Anonymous' }}</h4> 
+                                        
+                                        <span>
+                                            @for ($i=0; $i<=$review->rating)
+
+                                            <i class="fa fa-star text-warning"></i>
+                                            
+                                        @endfor
+                                        </span>
+                                        <br>
+                                        <p>{{ $review->comment }}</p>
                                     </li>
                                 @endforeach
                             </ul>
