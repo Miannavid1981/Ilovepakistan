@@ -257,11 +257,16 @@
                                         <h4>{{ $review->custom_reviewer_name ?? $review->user->name ?? 'Anonymous' }}</h4> 
                                         
                                         <span>
-                                            @for ($i=0; $i<=$review->rating)
+                                            <?php
+                                                
+                                                for ($i=0; $i<=$review->rating;  $i++ ){
+
+                                            ?>
 
                                             <i class="fa fa-star text-warning"></i>
+                                                    
+                                            <?php } ?>
                                             
-                                        @endfor
                                         </span>
                                         <br>
                                         <p>{{ $review->comment }}</p>
