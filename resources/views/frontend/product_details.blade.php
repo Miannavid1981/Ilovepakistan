@@ -259,7 +259,7 @@
                                         <span>
                                             <?php
                                                 
-                                                for ($i=0; $i<=$review->rating;  $i++ ){
+                                                for ($i=1; $i<=$review->rating;  $i++ ){
 
                                             ?>
 
