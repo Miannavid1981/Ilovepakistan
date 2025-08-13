@@ -318,7 +318,7 @@
                                 <button type="submit" class="btn btn-primary">Submit Review</button>
                             </form>
                             
-                            <ul>
+                            <ul style="list-style-type: none">
                                 @foreach($detailedProduct->reviews as $review)
                                     <li>
                                         <strong>{{ $review->custom_reviewer_name ?? $review->user->name ?? 'Anonymous' }}</strong> 
