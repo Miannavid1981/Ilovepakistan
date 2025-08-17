@@ -333,7 +333,7 @@
     <div class="bighouz-business">
 
         <div class="main_banner_slider" >
-            <div class="left-section d-flex flex-column h-100" style="background-image: url({{ static_asset('assets/img/beauty-skincare-product-square-banner-for-social-media-illustration-vector.webp') }}); background-size: cover; background-position: center; background-color: #d3e7ff ; border-radius: 20px">
+            <div class="left-section d-flex flex-column h-100" style="background-image: url(https://static.vecteezy.com/system/resources/thumbnails/008/520/419/small_2x/go-solar-illustration-for-infographic-solar-panel-sun-clean-electricity-green-renewable-sustainable-energy-self-awareness-innovative-energetic-environment-nature-banner-graphic-template-vector.jpg); background-size: cover; background-position: center; background-color: #d3e7ff ; border-radius: 20px">
             </div>
             <div class="left-section d-flex flex-column h-100" style="background-image: url({{ static_asset('assets/img/samsung-s25-ultra-STORY-BANNER-850x500.webp') }}); background-size: cover; background-position: center; background-color: #d3e7ff ; border-radius: 20px">
             </div>
