@@ -335,7 +335,7 @@
         <div class="main_banner_slider" >
             <div class="left-section d-flex flex-column h-100" style="background-image: url(https://static.vecteezy.com/system/resources/thumbnails/008/520/419/small_2x/go-solar-illustration-for-infographic-solar-panel-sun-clean-electricity-green-renewable-sustainable-energy-self-awareness-innovative-energetic-environment-nature-banner-graphic-template-vector.jpghttps://maxpower.com.pk/wp-content/uploads/2025/05/vfd-mea-banner-1-1-scaled.jpg); background-size: cover; background-position: center; background-color: #d3e7ff ; border-radius: 20px">
             </div>
-            <div class="left-section d-flex flex-column h-100" style="background-image: url({{ static_asset('assets/img/samsung-s25-ultra-STORY-BANNER-850x500.webp') }}); background-size: cover; background-position: center; background-color: #d3e7ff ; border-radius: 20px">
+            <div class="left-section d-flex flex-column h-100" style="background-image: url(https://litech.com.pk/wp-content/uploads/2024/08/tigfox-banner.jpg); background-size: cover; background-position: center; background-color: #d3e7ff ; border-radius: 20px">
             </div>
             <div class="left-section d-flex flex-column h-100" style="background-image: url({{ static_asset('assets/img/headphone-earphones-electronics-gadgets-flyer-design-template-f2a41ff7a4f5e05ae8bb552d8903f906_screen.webp') }}); background-size: cover; background-position: center; background-color: #d3e7ff ; border-radius: 20px">
             </div>
