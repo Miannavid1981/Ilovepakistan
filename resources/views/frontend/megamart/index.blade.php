@@ -406,7 +406,7 @@
     overflow: hidden;
     text-overflow: ellipsis;
     text-align: center;
-    max-width: 70%;">   {{$category->name}}</p>
+    max-width: 70%; font-family: 'Aeonik-Semibold' !important;">   {{$category->name}}</p>
                         </a>
                     
                 @endforeach
