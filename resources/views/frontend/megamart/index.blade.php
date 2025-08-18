@@ -343,6 +343,7 @@
     aspect-ratio: 1 / 1;
     align-self: center;
     max-width: 150px;
+    color: #000;
 }
 
 </style>
@@ -412,7 +413,12 @@
     overflow: hidden;
     text-overflow: ellipsis;
     text-align: center;
-    max-width: 70%; font-family: 'Aeonik-Semibold' !important;">   {{$category->name}}</p>
+    max-width: 70%;
+    /* color: #000; */
+    font-family: 'Public Sans' !important;
+    font-weight: 600;
+    font-size: 13px !important;
+    letter-spacing: -0.5px !important;">   {{$category->name}}</p>
                         </a>
                     
                 @endforeach
