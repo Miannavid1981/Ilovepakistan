@@ -561,8 +561,10 @@ header .dropdown-toggle::after {
   gap: 5px;
 }
 .home_category:hover {
-  transform: scale(1.05);
-  background: #f7f7f7;
+    transform: scale(1.05);
+    /* background: #761be0; */
+    background: -webkit-linear-gradient(45deg, hsla(268, 79%, 49%, 1) 30%, hsla(351, 66%, 61%, 1) 100%);
+    color: #fff !important;
 }
 
 
