@@ -299,33 +299,44 @@
         
     }
     @media (max-width: 768px) {
-    .services-promises {
-        text-align: center; /* Center align text and icons */
-    }
+        .services-promises {
+            text-align: center; /* Center align text and icons */
+        }
 
-    .services-promises .d-flex {
-        flex-direction: column; /* Stack icon and text vertically */
-        align-items: center;
- 
-    }
-
-    .services-promises .me-3 {
-        margin-right: 0 !important; /* Remove right margin for center alignment */
-        margin-bottom: 10px; /* Add spacing below the icon */
-    }
-
-    .services-promises h5 {
-        font-size: 1.1rem; /* Adjust heading size for readability */
-        text-align: center;
-    }
-
-    .services-promises p {
-        font-size: 0.9rem; /* Adjust paragraph size */
-        text-align: center;
-    }
-}
-.home_category {
+        .services-promises .d-flex {
+            flex-direction: column; /* Stack icon and text vertically */
+            align-items: center;
     
+        }
+
+        .services-promises .me-3 {
+            margin-right: 0 !important; /* Remove right margin for center alignment */
+            margin-bottom: 10px; /* Add spacing below the icon */
+        }
+
+        .services-promises h5 {
+            font-size: 1.1rem; /* Adjust heading size for readability */
+            text-align: center;
+        }
+
+        .services-promises p {
+            font-size: 0.9rem; /* Adjust paragraph size */
+            text-align: center;
+        }
+        .home_category {
+            width: 80%;
+            height: auto;
+            aspect-ratio: 1 / 1;
+            align-self: center;
+        }
+    }
+
+.home_category {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1 / 1;
+    align-self: center;
+    max-width: 120px;
 }
 
 </style>
