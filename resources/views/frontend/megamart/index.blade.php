@@ -407,14 +407,18 @@
                     
                         <a href="{{ route('products.category', $category->slug) }}" class="d-flex flex-column align-items-center justify-content-center rounded-circle border-1 border home_category">
                             <img src="{{uploaded_asset($category->icon)}}" class="" style="width: 60px; height: auto; aspect-ratio: 1 / 1;" >
-                            <p class="mt-2  text-center mb-0" style="    display: block;
-    width: 100%;
-    white-space: nowrap;
+                            <p class="mt-2  text-center mb-0" style="  
+                                display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
     overflow: hidden;
     text-overflow: ellipsis;
+    word-break: break-word;
     text-align: center;
-    max-width: 70%;
-    /* color: #000; */
+    max-width: 100px;
+    
+   
+   
     font-family: 'Public Sans' !important;
     font-weight: 600;
     font-size: 13px !important;
