@@ -341,7 +341,7 @@
     height: auto;
     aspect-ratio: 1 / 1;
     align-self: center;
-    max-width: 120px;
+    max-width: 150px;
 }
 
 </style>
