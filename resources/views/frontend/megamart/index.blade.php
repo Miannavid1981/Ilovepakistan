@@ -344,6 +344,7 @@
     align-self: center;
     max-width: 150px;
     color: #000;
+    border: 2px solid #eee !important;
 }
 
 </style>
