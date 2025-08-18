@@ -400,7 +400,13 @@
                     
                         <a href="{{ route('products.category', $category->slug) }}" class="d-flex flex-column align-items-center justify-content-center rounded-circle border-1 border home_category">
                             <img src="{{uploaded_asset($category->icon)}}" class="" style="width: 50px; height: auto; aspect-ratio: 1 / 1;" >
-                            <p class="mt-2 text-dark fs-12 text-center mb-0">   {{$category->name}}</p>
+                            <p class="mt-2 text-dark fs-12 text-center mb-0" style="    display: block;
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: center;
+    max-width: 70%;">   {{$category->name}}</p>
                         </a>
                     
                 @endforeach
