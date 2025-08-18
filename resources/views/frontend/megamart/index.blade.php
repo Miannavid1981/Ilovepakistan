@@ -286,7 +286,7 @@
 
 .home_categories_grid {
     display: flex;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    
     gap: 25px;
     margin-bottom: 50px;
     margin-top: 30px;
@@ -299,7 +299,7 @@
  }
     @media (max-width: 768px){
         .home_categories_grid {
-            grid-template-columns: 1fr 1fr !important;
+             gap: 15px;
         }
         
     }
