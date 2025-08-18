@@ -41,15 +41,15 @@
         z-index: 1;
     }
 </style>
-<div class="container mt-5 text-center">
+<div class="container mt-3 text-center">
     <!-- Tabs -->
-    <div class="custom-tabs-wrapper mx-auto">
+    {{-- <div class="custom-tabs-wrapper mx-auto">
         <div class="bubble"></div>
         <div class="custom-tab active" onclick="showTab('newArrivals', 0)">New Arrivals</div>
         <div class="custom-tab " onclick="showTab('bestSellers', 1)">Best Sellers</div>
         <div class="custom-tab" onclick="showTab('onSale', 2)">Discounts & Sale</div>
       
-    </div>
+    </div> --}}
 
     <!-- Cards -->
     <div class="mt-4">
