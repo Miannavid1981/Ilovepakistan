@@ -290,6 +290,7 @@
     gap: 25px;
     margin-bottom: 50px;
     margin-top: 30px;
+    flex-wrap: wrap;
 }
  @media (max-width: 992px){
     .home_category {
