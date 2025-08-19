@@ -438,7 +438,7 @@
     font-family: 'Aeonik-Semibold' !important;
     font-weight: 600;
     font-size: 13px !important;
-    letter-spacing: 0.8px !important;">   View All </p>
+    letter-spacing: 0.8px !important;"> All Products </p>
                 </a>
                     
 
