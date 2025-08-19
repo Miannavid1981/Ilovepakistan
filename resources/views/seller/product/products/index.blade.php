@@ -132,7 +132,7 @@
                                     $commission = 0;
 
 
-                                    if($target_cat->commission == 1){
+                                    if($target_cat && $target_cat->commission && $target_cat->commission == 1){
                                         $commission = 1;
                                         $admin_commission_type = $target_cat->commission_rate_type;
                                         $seller_commission_type = $target_cat->seller_commission_rate_type;
