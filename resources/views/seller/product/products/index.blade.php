@@ -133,6 +133,7 @@
 
 
                                     if($target_cat && $target_cat->commission && $target_cat->commission == 1){
+                                       
                                         $commission = 1;
                                         $admin_commission_type = $target_cat->commission_rate_type;
                                         $seller_commission_type = $target_cat->seller_commission_rate_type;
@@ -150,7 +151,6 @@
                                             $admin_commission_rate = (float)  $product->admin_commission_rate;
                                             $seller_commission_rate = (float)  $product->seller_commission_rate;
                                         }
-                                        
 
                                     }
                                     
