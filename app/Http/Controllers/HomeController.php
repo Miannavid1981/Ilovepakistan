@@ -66,7 +66,7 @@ class HomeController extends Controller
        
 
         // Paginate current page
-        $products = Product::query()->paginate($perPage, ['*'], 'page', $page);
+        $products = Product::isApprovedPublished()->query()->paginate($perPage, ['*'], 'page', $page);
 
         // Check if next page has products without running the query again
         $loadmore = $products->hasMorePages();
