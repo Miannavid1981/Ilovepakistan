@@ -187,7 +187,7 @@
                                     <img src="{{ uploaded_asset($product->thumbnail_img)}}" alt="Image" class="size-50px img-fit">
                                 </div>
                                 <div class="col">
-                                    <span class="badge badge-primary w-auto">{{ $product->main_category->name }} </span>
+                                    <span class="badge badge-primary w-auto">{{ $product->main_category->name ?? '' }} </span>
                                     <span class="text-muted text-truncate-2">{{ $product->getTranslation('name') }}</span>
                                     <b>SKIN: </b>{{ $encrypted_skin }}
                                 </div>
