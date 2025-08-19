@@ -142,7 +142,7 @@
 
                                     } else {
 
-                                        if($product->commission == 1){
+                                        if($product->commission && $product->commission == 1){
                                             $commission = 1;
                                             $admin_commission_type = $product->admin_commission_type;
                                             $seller_commission_type = $product->seller_commission_type;
