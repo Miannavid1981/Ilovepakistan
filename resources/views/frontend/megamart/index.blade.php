@@ -420,7 +420,7 @@
     font-family: 'Aeonik-Semibold' !important;
     font-weight: 600;
     font-size: 13px !important;
-    letter-spacing: 0px !important;">   {{$category->name}}</p>
+    letter-spacing: 0.5px !important;">   {{$category->name}}</p>
                         </a>
                     
                 @endforeach
