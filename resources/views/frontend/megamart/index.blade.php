@@ -395,9 +395,9 @@
 
 
     <div class="container">
-        <div class="d-flex justify-content-between">
+        <div class="d-flex justify-content-start">
             <h4>Explore Categories</h4>
-            <a href="" class="fs-18 text-dark text-decoration-underline">View All</a>
+            {{-- <a href="" class="fs-18 text-dark text-decoration-underline">View All</a> --}}
         </div>   
         <div class="home_categories_grid">
             @php
