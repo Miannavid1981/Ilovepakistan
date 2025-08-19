@@ -58,38 +58,34 @@ class HomeController extends Controller
         return view('frontend.' . get_setting('homepage_select') . '.partials.todays_deal', compact('todays_deal_products'));
     }
 
-    public function load_newest_product_section(Request $request)
+   public function load_newest_product_section(Request $request)
     {
         $page = $request->input('page', 1);
         $perPage = 12;
-        // dd(Product::all()->count());
-       
 
-        // Paginate current page
-        $products = Product::isApprovedPublished()->query()->paginate($perPage, ['*'], 'page', $page);
-        if($products->count() > 0)
-        {
-            // Check if next page has products without running the query again
-            $loadmore = $products->hasMorePages();
+        // Paginate with scope applied
+        $products = Product::isApprovedPublished()
+            ->paginate($perPage, ['*'], 'page', $page);
 
+        if ($products->count() > 0) {
             return [
                 'html' => view('frontend.' . get_setting('homepage_select') . '.partials.newest_products_ajax', [
                     'newest_products' => $products
                 ])->render(),
-                'loadmore' => $loadmore,
-                'products'=> $products->count()
+                'loadmore' => $products->hasMorePages(),
+                'products' => $products->count(),
             ];
+        }
 
-        } else {
-            return [
-                'html' => view('frontend.' . get_setting('homepage_select') . '.partials.newest_products_ajax', [
-                    'newest_products' => []
-                ])->render(),
-                'loadmore' => false,
-                'products'=> 0
-            ];
-        } 
+        return [
+            'html' => view('frontend.' . get_setting('homepage_select') . '.partials.newest_products_ajax', [
+                'newest_products' => []
+            ])->render(),
+            'loadmore' => false,
+            'products' => 0,
+        ];
     }
+
 
 
     public function load_featured_section()
