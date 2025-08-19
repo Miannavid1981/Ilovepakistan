@@ -67,17 +67,28 @@ class HomeController extends Controller
 
         // Paginate current page
         $products = Product::isApprovedPublished()->query()->paginate($perPage, ['*'], 'page', $page);
+        if($products->count() > 0)
+        {
+            // Check if next page has products without running the query again
+            $loadmore = $products->hasMorePages();
 
-        // Check if next page has products without running the query again
-        $loadmore = $products->hasMorePages();
+            return [
+                'html' => view('frontend.' . get_setting('homepage_select') . '.partials.newest_products_ajax', [
+                    'newest_products' => $products
+                ])->render(),
+                'loadmore' => $loadmore,
+                'products'=> $products->count()
+            ];
 
-        return [
-            'html' => view('frontend.' . get_setting('homepage_select') . '.partials.newest_products_ajax', [
-                'newest_products' => $products
-            ])->render(),
-            'loadmore' => $loadmore,
-            'products'=> $products->count()
-        ];
+        } else {
+            return [
+                'html' => view('frontend.' . get_setting('homepage_select') . '.partials.newest_products_ajax', [
+                    'newest_products' => []
+                ])->render(),
+                'loadmore' => false,
+                'products'=> 0
+            ];
+        } 
     }
 
 
