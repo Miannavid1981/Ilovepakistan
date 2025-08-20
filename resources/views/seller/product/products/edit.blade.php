@@ -918,7 +918,7 @@
         $(document).on("click", ".hummingbird-end-node", function(){
             $("#treeview input").prop('checked', false);
             $(this).prop('checked', true)
-            alert("t");
+            // alert("t");
             $(this).parent().parent().children('input').prop('checked', true);
             
             var parent_div = $(this).parent().parent().parent().parent();
