@@ -285,9 +285,10 @@
 
 
 .home_categories_grid {
-    display: flex;
-    
+    display: grid;
     gap: 25px;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    /* grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr; */
     margin-bottom: 50px;
     margin-top: 30px;
     flex-wrap: wrap;
@@ -300,7 +301,7 @@
     @media (max-width: 768px){
        .home_categories_grid {
             gap: 15px;
-            justify-content: center;
+            /* justify-content: center; */
         }
         
     }
@@ -339,10 +340,10 @@
 
 .home_category {
     width: 100%;
-    height: auto;
+    height: 100%;
     aspect-ratio: 1 / 1;
     align-self: center;
-    max-width: 150px;
+    /* max-width: 150px; */
     color: #000;
     border: 2px solid #eee !important;
 }
