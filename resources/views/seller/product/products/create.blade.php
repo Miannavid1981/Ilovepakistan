@@ -777,14 +777,8 @@
 @endsection
 
 @section('script')
-<!-- Treeview js -->
-<script src="{{ static_asset('assets/js/hummingbird-treeview.js') }}"></script>
-
-<script type="text/javascript">
-    $(document).ready(function() {
-       
-        $("#treeview").hummingbird();
-        $(document).on("click", ".hummingbird-end-node", function(){
+<script>
+      $(document).on("click", ".hummingbird-end-node", function(){
             $("#treeview input").prop('checked', false);
             $(this).prop('checked', true)
             alert("t");
@@ -796,6 +790,15 @@
 
             
         });
+    </script>
+<!-- Treeview js -->
+<script src="{{ static_asset('assets/js/hummingbird-treeview.js') }}"></script>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+       
+        $("#treeview").hummingbird();
+      
 
         $('#treeview input:checkbox').on("click", function (){
             let $this = $(this);
