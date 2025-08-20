@@ -295,7 +295,7 @@
 }
  @media (max-width: 992px){
     .home_category {
-        max-width: 120px;
+        /* max-width: 120px; */
     }
  }
     @media (max-width: 768px){
