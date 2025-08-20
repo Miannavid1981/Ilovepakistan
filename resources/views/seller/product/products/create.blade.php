@@ -782,9 +782,12 @@
 
 <script type="text/javascript">
     $(document).ready(function() {
+       
+        $("#treeview").hummingbird();
         $(document).on("click", ".hummingbird-end-node", function(){
             $("#treeview input").prop('checked', false);
             $(this).prop('checked', true)
+            alert("t");
             $(this).parent().parent().children('input').prop('checked', true);
             
             var parent_div = $(this).parent().parent().parent().parent();
@@ -793,8 +796,6 @@
 
             
         });
-        $("#treeview").hummingbird();
-       
 
         $('#treeview input:checkbox').on("click", function (){
             let $this = $(this);
