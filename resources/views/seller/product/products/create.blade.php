@@ -793,12 +793,17 @@
             }
         });
     });
+
+
+    
     $(document).on("click", ".hummingbird-end-node", function(){
         $("#treeview input").prop('checked', false);
         $(this).prop('checked', true)
         var parent_div = $(this).parent().parent().parent().parent();
         parent_div.children("input").prop('checked', true);
         parent_div.children("label").children("input").prop('checked', true);
+
+        $(this).parent().parent().children('input').prop('checked', true);
     });
     $('input[name="sku"]').on('input', function() {
         $(this).val($(this).val().replace(/\s/g, ''));
