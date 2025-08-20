@@ -403,6 +403,24 @@
             {{-- <a href="" class="fs-18 text-dark text-decoration-underline">View All</a> --}}
         </div>   
         <div class="home_categories_grid">
+            <a href="/shop" class="d-flex flex-column align-items-center justify-content-center rounded-circle border-1 border home_category">
+                            <img src="https://s.alicdn.com/@img/imgextra/i2/O1CN01wmYqD51WrDtOCBmav_!!6000000002841-2-tps-200-200.png" class="" style="width: 60px; height: auto; aspect-ratio: 1 / 1;" >
+                            <p class="mt-2  text-center mb-0" style="  
+                                display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-break: break-word;
+    text-align: center;
+    max-width: 100px;
+    font-family: 'Aeonik-Semibold' !important;
+    font-weight: 600;
+    font-size: 13px !important;
+    letter-spacing: 0.8px !important;"> All Products </p>
+                </a>
+                    
+
             @php
                 // Fetch categories with level = 0 and status = 1 directly in the view
                 $categories = \App\Models\Category::where('level', 0)->get();
@@ -427,24 +445,7 @@
                         </a>
                     
                 @endforeach
-                <a href="/shop" class="d-flex flex-column align-items-center justify-content-center rounded-circle border-1 border home_category">
-                            <img src="https://s.alicdn.com/@img/imgextra/i2/O1CN01wmYqD51WrDtOCBmav_!!6000000002841-2-tps-200-200.png" class="" style="width: 60px; height: auto; aspect-ratio: 1 / 1;" >
-                            <p class="mt-2  text-center mb-0" style="  
-                                display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 2;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    word-break: break-word;
-    text-align: center;
-    max-width: 100px;
-    font-family: 'Aeonik-Semibold' !important;
-    font-weight: 600;
-    font-size: 13px !important;
-    letter-spacing: 0.8px !important;"> All Products </p>
-                </a>
-                    
-
+                
             
         </div>
     </div>
