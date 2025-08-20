@@ -778,19 +778,19 @@
 
 @section('script')
 <script>
-      $(document).on("click", ".hummingbird-end-node", function(){
-            $("#treeview input").prop('checked', false);
-            $(this).prop('checked', true)
-            alert("t");
-            $(this).parent().parent().children('input').prop('checked', true);
-            
-            var parent_div = $(this).parent().parent().parent().parent();
-            parent_div.children("input").prop('checked', true);
-            parent_div.children("label").children("input").prop('checked', true);
+    $(document).on("click", ".hummingbird-end-node", function(){
+        $("#treeview input").prop('checked', false);
+        $(this).prop('checked', true)
+        alert("t");
+        $(this).parent().parent().children('input').prop('checked', true);
+        
+        var parent_div = $(this).parent().parent().parent().parent();
+        parent_div.children("input").prop('checked', true);
+        parent_div.children("label").children("input").prop('checked', true);
 
-            
-        });
-    </script>
+        
+    });
+</script>
 <!-- Treeview js -->
 <script src="{{ static_asset('assets/js/hummingbird-treeview.js') }}"></script>
 
