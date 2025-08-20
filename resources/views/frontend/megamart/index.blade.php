@@ -301,7 +301,7 @@
     @media (max-width: 768px){
        .home_categories_grid {
             gap: 15px;
-            grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(125px, 1fr));
             /* justify-content: center; */
         }
 
