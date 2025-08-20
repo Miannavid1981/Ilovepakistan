@@ -564,6 +564,7 @@ header .dropdown-toggle::after {
     transform: scale(1.05);
     /* background: #761be0; */
    border: 1px solid  hsla(268, 79%, 49%, 1) !important;
+   color: #000;
 }
 
 
