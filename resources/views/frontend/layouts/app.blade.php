@@ -460,13 +460,13 @@ transition: all .3s ease-in-out
                 @if(count($parent_categories) > 0 )
                     @foreach( $parent_categories as $category)
                         <li>
-                            <a class="fs-16 text-dark d-flex justify-content-between align-items-center w-100" href="" style="text-decoration: none !important">
+                            <div class=" d-flex justify-content-between align-items-center w-100" >
                                 <div class="d-flex align-items-center">
                                     <img src="{{uploaded_asset($category->icon)}}" class="me-2 p-1 rounded-circle border-1 border" style="width: 35px;height: auto;aspect-ratio: 1 / 1;" >
-                                    {{$category->name}}
+                                   <a href="" class="fs-16 text-dark " style="text-decoration: none !important"> {{$category->name}} </a>
                                 </div>
                                 <i class="arrow fa fa-solid fa-chevron-right fs-12"></i>
-                            </a>
+                            </div>
                             @if(count($category->childrenCategories) > 0)
                                 <ul class="submenu">
                                     <li class="border-0">
@@ -476,13 +476,13 @@ transition: all .3s ease-in-out
                                     </li>
                                     @foreach($category->childrenCategories as $subcategory)
                                         <li class="border-0">
-                                            <a class="fs-16 text-dark d-flex justify-content-between align-items-center w-100" href="" style="text-decoration: none !important">
+                                            <div class="fs-16 text-dark d-flex justify-content-between align-items-center w-100" href="" style="text-decoration: none !important">
                                                 <div class="d-flex align-items-center">
                                                     <img src="{{uploaded_asset($subcategory->icon)}}" style="width: 37px;height: auto;aspect-ratio: 1 / 1;" class="me-2 rounded-circle">
-                                                    {{$subcategory->name}}
+                                                    <a href="" class="fs-16 text-dark " style="text-decoration: none !important"> {{$subcategory->name}} </a>
                                                 </div>
                                                 <!-- <i class="arrow fa fa-solid fa-chevron-right"></i> -->
-                                            </a>
+                                            </div>
                                         </li>
                                     @endforeach
                                    
