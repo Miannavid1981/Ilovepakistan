@@ -302,7 +302,7 @@ class ProductService
         $collection['has_warranty'] = isset($collection['has_warranty']) ? 1 : 0;
         
         unset($collection['button']);
-        
+        $approved = 0;
        
         
         $data = $collection->merge(compact(
@@ -313,7 +313,8 @@ class ProductService
             'colors',
             'choice_options',
             'attributes',
-            'commission'
+            'commission',
+            'approved'
         ))->toArray();
         
         $product->update($data);
