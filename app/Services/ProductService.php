@@ -149,7 +149,7 @@ class ProductService
         }
 
         $collection['has_warranty'] = isset($collection['has_warranty']) ? 1 : 0;
-
+        $short_description = $collection['short_description'];
         $data = $collection->merge(compact(
             'user_id',
             'approved',
@@ -305,7 +305,7 @@ class ProductService
         unset($collection['button']);
         $approved = 0;
        
-        
+        $short_description = $collection['short_description'];
         $data = $collection->merge(compact(
             'discount_start_date',
             'discount_end_date',
