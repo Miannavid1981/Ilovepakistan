@@ -391,7 +391,6 @@ transition: all .3s ease-in-out
         }
 
         @media(max-width: 768px){
-
             .aiz-main-wrapper {
                 margin-top: 90px;
             }
