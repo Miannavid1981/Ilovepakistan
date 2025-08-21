@@ -758,8 +758,8 @@ header .dropdown-toggle::after {
       display: flex; 
       flex-direction: column;
     }
-    .drawer .drawer_box ul li img {
-      width: 40px;
+    .drawer .drawer_box > ul li img {
+      width: 40px !important; 
     }
     .drawer .fs-16 {
       font-size: 14px !important
@@ -777,7 +777,7 @@ header .dropdown-toggle::after {
       display: none !important;
     }
     .drawer .submenu ul li img {
-      width: 35px;
+      width: 35px !important;
     }
 
 }
