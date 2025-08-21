@@ -389,6 +389,13 @@ transition: all .3s ease-in-out
         .aiz-mobile-bottom-nav {
             display: none !important
         }
+
+        @media(max-width: 768px){
+
+            .aiz-main-wrapper {
+                margin-top: 120px;
+            }
+        }
     </style>
 
 @if (get_setting('google_analytics') == 1)
