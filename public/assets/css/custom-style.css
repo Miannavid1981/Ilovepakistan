@@ -779,6 +779,10 @@ header .dropdown-toggle::after {
     .drawer .submenu  li img {
       width: 30px !important;
     }
+    input.search {
+          background: #eee !important;
+    border: unset !important;
+    }
 
 }
 .translate300px {
