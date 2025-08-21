@@ -363,7 +363,7 @@ $product_stock = 0;
         <br>
         @if ($detailedProduct->auction_product != 1)
             @php
-            $skin = get_product_full_skin_no($detailedProduct->user, $detailedProduct);
+                $skin = get_product_full_skin_no($detailedProduct->user, $detailedProduct);
                 // dd($skin);
                 $total = 0;
                 $total += $detailedProduct->reviews->where('status', 1)->count();
@@ -371,7 +371,7 @@ $product_stock = 0;
             <span class="rating rating-mr-2">
                 {{ renderStarRating($detailedProduct->rating) }}
             </span>
-           <span class="ml-1 opacity-50 fs-15" onclick="change_tab('reviews')" style="cursor: pointer;">
+            <span class="ml-1 opacity-50 fs-15" onclick="change_tab('reviews')" style="cursor: pointer;">
                 ({{ $total }} {{ translate('reviews') }})
             </span>
 

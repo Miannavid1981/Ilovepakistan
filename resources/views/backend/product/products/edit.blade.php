@@ -222,6 +222,14 @@
                                     </div>
                                 </div>
 
+                                <!-- Short Description -->
+                                <div class="form-group">
+                                    <label class="fs-13">{{translate('Short Description')}}</label>
+                                    <div class="">
+                                        <textarea class="aiz-text-editor" name="short_description">{{ $product->getTranslation('short_description', $lang) }}</textarea>
+                                    </div>
+                                </div>
+
                                 <!-- Description -->
                                 <div class="form-group">
                                     <label class="fs-13">{{translate('Description')}}</label>

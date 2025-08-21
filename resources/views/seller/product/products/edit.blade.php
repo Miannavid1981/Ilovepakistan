@@ -348,10 +348,12 @@
                         <div class="col-lg-8">
                             <textarea class="aiz-text-editor" name="short_description">{{$product->short_description }}</textarea>
                         </div>
-                        <label class="col-lg-3 col-from-label">{{translate('Description')}} <i class="las la-language text-danger" title="{{translate('Translatable')}}"></i></label>
+                        <label class="col-lg-3 col-from-label">
+                            {{translate('Description')}} 
+                            <i class="las la-language text-danger" title="{{translate('Translatable')}}"></i>
+                        </label>
                         <div class="col-lg-8">
-                            <textarea class="aiz-text-editor"
-                                name="description">{{$product->getTranslation('description',$lang)}}</textarea>
+                            <textarea class="aiz-text-editor" name="description"> {{$product->getTranslation('description',$lang)}} </textarea>
                         </div>
                     </div>
                 </div>
