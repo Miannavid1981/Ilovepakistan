@@ -758,18 +758,27 @@ header .dropdown-toggle::after {
       display: flex; 
       flex-direction: column;
     }
-    .fs-16 {
+    .drawer .drawer_box ul li img {
+      width: 40px;
+    }
+    .drawer .fs-16 {
       font-size: 14px !important
     }
-    .submenu {
-    position: static !important;
-      width: 100% !important;
-      background-color: #fff;
-      /* display: none; */
-      /* box-shadow: 2px 0 5px rgba(0, 0, 0, 0.3); */
-      transform: translateY(60px);
-      border-radius: 0 10px 10px 0;
-  }
+    .drawer .submenu {
+      position: static !important;
+        width: 100% !important;
+        background-color: #fff;
+        /* display: none; */
+        /* box-shadow: 2px 0 5px rgba(0, 0, 0, 0.3); */
+        transform: translateY(0) !important;
+        border-radius: 0 10px 10px 0;
+    }
+    .drawer .submenu li:has(h6){
+      display: none !important;
+    }
+    .drawer .submenu ul li img {
+      width: 35px;
+    }
 
 }
 .translate300px {
