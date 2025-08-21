@@ -665,6 +665,7 @@
                     <div class="h-300px overflow-auto c-scrollbar-light">
                           @php
                                 $sellerPreferences = \App\Models\SellerCategoryPreference::where('user_id', auth()->user()->id)->pluck('category_id')->toArray();
+                                $old_categories = $sellerPreferences;
                             @endphp
                         <ul class="hummingbird-treeview-converter list-unstyled" data-checkbox-name="category_ids[]" data-radio-name="category_id">
                             @foreach ($categories as $category)
