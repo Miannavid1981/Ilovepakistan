@@ -907,6 +907,20 @@
 @endsection
 
 @section('script')
+<script>
+    $(document).on("click", ".hummingbird-end-node", function(){
+        $("#treeview input").prop('checked', false);
+        $(this).prop('checked', true)
+        // alert("t");
+        $(this).parent().parent().children('input').prop('checked', true);
+        
+        var parent_div = $(this).parent().parent().parent().parent();
+        parent_div.children("input").prop('checked', true);
+        parent_div.children("label").children("input").prop('checked', true);
+
+        
+    });
+</script>
 <!-- Treeview js -->
 <script src="{{ static_asset('assets/js/hummingbird-treeview.js') }}"></script>
 
@@ -915,18 +929,18 @@
         show_hide_shipping_div();
 
         $("#treeview").hummingbird();
-        $(document).on("click", ".hummingbird-end-node", function(){
-            $("#treeview input").prop('checked', false);
-            $(this).prop('checked', true)
-            // alert("t");
-            $(this).parent().parent().children('input').prop('checked', true);
+        // $(document).on("click", ".hummingbird-end-node", function(){
+        //     $("#treeview input").prop('checked', false);
+        //     $(this).prop('checked', true)
+        //     // alert("t");
+        //     $(this).parent().parent().children('input').prop('checked', true);
             
-            var parent_div = $(this).parent().parent().parent().parent();
-            parent_div.children("input").prop('checked', true);
-            parent_div.children("label").children("input").prop('checked', true);
+        //     var parent_div = $(this).parent().parent().parent().parent();
+        //     parent_div.children("input").prop('checked', true);
+        //     parent_div.children("label").children("input").prop('checked', true);
 
             
-        });
+        // });
         var main_id = '{{ $product->category_id != null ? $product->category_id : 0 }}';
         var selected_ids = '{{ implode(",",$old_categories) }}';
         if (selected_ids != '') {
