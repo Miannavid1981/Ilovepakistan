@@ -161,6 +161,7 @@ class ProductService
             'choice_options',
             'attributes',
             'published',
+            'short_description'
         ))->toArray();
 
         return Product::create($data);
@@ -314,7 +315,8 @@ class ProductService
             'choice_options',
             'attributes',
             'commission',
-            'approved'
+            'approved',
+            'short_description'    
         ))->toArray();
         
         $product->update($data);
