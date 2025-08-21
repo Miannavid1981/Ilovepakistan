@@ -744,6 +744,23 @@ header .dropdown-toggle::after {
   margin-left: 10px;
   cursor: pointer;
 }
+
+@media (max-width: 768px){
+
+    .drawer {
+      width: 250px;
+    }
+    .drawer h4 {
+      font-size: 15px;
+    }
+    .drawer ul li {
+      padding: 5px 15px;
+    }
+    .fs-16 {
+      font-size: 14px !important
+    }
+
+}
 .translate300px {
     transform: translateX(300px);
     transition: all .5s ease-in-out;
