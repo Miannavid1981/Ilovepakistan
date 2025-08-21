@@ -783,6 +783,10 @@ header .dropdown-toggle::after {
           background: #eee !important;
     border: unset !important;
     }
+    .cart-badge  {
+      top: -6px;
+      right: 3px;
+    }
 
 }
 .translate300px {
