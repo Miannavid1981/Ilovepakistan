@@ -465,7 +465,9 @@ transition: all .3s ease-in-out
                                     <img src="{{uploaded_asset($category->icon)}}" class="me-2 p-1 rounded-circle border-1 border" style="width: 35px;height: auto;aspect-ratio: 1 / 1;" >
                                    <a href="" class="fs-16 text-dark " style="text-decoration: none !important"> {{$category->name}} </a>
                                 </div>
+                                @if(count($category->childrenCategories) > 0)
                                 <i class="arrow fa fa-solid fa-chevron-right fs-12"></i>
+                                @endif
                             </div>
                             @if(count($category->childrenCategories) > 0)
                                 <ul class="submenu">
@@ -476,7 +478,7 @@ transition: all .3s ease-in-out
                                     </li>
                                     @foreach($category->childrenCategories as $subcategory)
                                         <li class="border-0">
-                                            <div class="fs-16 text-dark d-flex justify-content-between align-items-center w-100" href="" style="text-decoration: none !important">
+                                            <div class="fs-16 text-dark d-flex justify-content-between align-items-center w-100">
                                                 <div class="d-flex align-items-center">
                                                     <img src="{{uploaded_asset($subcategory->icon)}}" style="width: 37px;height: auto;aspect-ratio: 1 / 1;" class="me-2 rounded-circle">
                                                     <a href="" class="fs-16 text-dark " style="text-decoration: none !important"> {{$subcategory->name}} </a>
