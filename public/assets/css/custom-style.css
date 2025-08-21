@@ -758,7 +758,7 @@ header .dropdown-toggle::after {
       display: flex; 
       flex-direction: column;
     }
-    .drawer .drawer_box > ul>li >div> div >img {
+    .drawer .drawer_box > ul>li > div> div >img {
       width: 40px !important; 
     }
     .drawer .fs-16 {
@@ -776,7 +776,7 @@ header .dropdown-toggle::after {
     .drawer .submenu li:has(h6){
       display: none !important;
     }
-    .drawer .submenu ul li img {
+    .drawer .submenu  li img {
       width: 35px !important;
     }
 
