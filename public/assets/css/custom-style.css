@@ -780,8 +780,12 @@ header .dropdown-toggle::after {
       width: 30px !important;
     }
     input.search {
-          background: #eee !important;
-    border: unset !important;
+      background: #eee !important;
+      border: unset !important;
+      font-family: 'Public Sans', sans-serif;
+      font-weight: 200 !important;
+      letter-spacing: -0.5px;
+      font-size: 16px !important;
     }
     .cart-badge  {
       top: -6px;
