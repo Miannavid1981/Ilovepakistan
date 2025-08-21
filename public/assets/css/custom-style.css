@@ -755,10 +755,21 @@ header .dropdown-toggle::after {
     }
     .drawer ul li {
       padding: 5px 15px;
+      display: flex; 
+      flex-direction: column;
     }
     .fs-16 {
       font-size: 14px !important
     }
+    .submenu {
+    position: static !important;
+      width: 100% !important;
+      background-color: #fff;
+      /* display: none; */
+      /* box-shadow: 2px 0 5px rgba(0, 0, 0, 0.3); */
+      transform: translateY(60px);
+      border-radius: 0 10px 10px 0;
+  }
 
 }
 .translate300px {
