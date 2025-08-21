@@ -34,9 +34,9 @@
                                 <img class="w-100  rounded" style="border: 1px solid #dfdfdf;object-fit: contain; aspect-ratio: 1 / 1;" src="{{ uploaded_asset($product->thumbnail_img) }}">
                             </div>
                             <div class="flex-grow-1 overflow--hidden minw-0">
-                                <div class="product-name  fs-18 mb-5px">
+                                <h6 class="product-name   my-2">
                                     {{  $product->getTranslation('name')  }}
-                                </div>
+                                </h6>
                                 <div class="d-flex flex-column">
                                     @if(home_base_price($product) != home_discounted_base_price($product))
                                         <del class="opacity-60 fs-13">{{ home_base_price($product) }}</del>
@@ -64,9 +64,9 @@
                                     <img class="size-40px rounded" style="object-fit: contain" src="{{ uploaded_asset($shop->logo) }}">
                                 </div>
                                 <div class="flex-grow-1 overflow--hidden">
-                                    <div class="product-name text-truncate fs-14 mb-5px">
+                                    <h6 class="product-name text-truncate mb-1">
                                         {{ $shop->name }}
-                                    </div>
+                                    </h6>
                                     <div class="opacity-60">
                                         {{ $shop->address }}
                                     </div>
