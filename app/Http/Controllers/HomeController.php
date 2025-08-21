@@ -313,7 +313,7 @@ class HomeController extends Controller
                 $detailpage_skin = $mapping->original_skin;
             }
         } else {
-            $sellerId = $detailedProduct->user_id;
+            $sellerId = $detailedProduct->user_id ?? '';
         }
 
         if ($detailedProduct != null && $detailedProduct->published) {
