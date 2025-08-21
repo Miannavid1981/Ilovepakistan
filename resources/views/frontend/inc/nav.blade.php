@@ -238,6 +238,8 @@ header .nav-link:not(.category-drawer-toggle-btn) {
                     
                     <button class="btn btn-light bg-white p-0 border-0 toggle-cart-modal">
                         <i class="fa-solid fa-cart-shopping fs-20"></i>
+                        <span class="cart-badge g-cart-items-count">0</span>
+                        
                     </button>
 
                 @endif
