@@ -231,12 +231,12 @@
     border: unset !important;
 }
 
-.form-control:not(#search) {
+.form-control:not(#search,.search) {
     background: #fff !important;
     box-shadow: unset !important;
     border: 1px solid #761adf !important;
 }
-.form-control:not(#search):focus, .form-control:not(#search):hover {
+.form-control:not(#search,.search):focus, .form-control:not(#search,.search):hover {
     background: #771be017 !important;
     border: 1px solid #cf517e !important;
     color: #d45577 !important;
