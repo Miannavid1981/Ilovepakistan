@@ -202,60 +202,60 @@
             transition: all .3s ease-in-out
         }
         .custom-input {
-    border-radius: 25px !important; /* Border radius for rounded corners */
-    border: 1px solid #ececec !important; /* Border color */
-    background-color: #f9f9f9 !important; /* Input background color */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1) !important; /* Border shadow */
-    padding: 20px !important; /* Padding inside the input */
-    font-size: 14px !important; /* Font size */
-    width: 100% !important; /* Full width */
-    transition: all 0.3s ease !important; /* Smooth transition on focus */
-    height: 50px !important; 
-    outline: none !important; 
-}
+            border-radius: 25px !important; /* Border radius for rounded corners */
+            border: 1px solid #ececec !important; /* Border color */
+            background-color: #f9f9f9 !important; /* Input background color */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1) !important; /* Border shadow */
+            padding: 20px !important; /* Padding inside the input */
+            font-size: 14px !important; /* Font size */
+            width: 100% !important; /* Full width */
+            transition: all 0.3s ease !important; /* Smooth transition on focus */
+            height: 50px !important; 
+            outline: none !important; 
+        }
 
-/* Focused state styling */
-.custom-input:focus {
-    border-color: #cacaca !important; /* Change border color on focus */
-    background-color: #fff !important; /* Change background color on focus */
-    box-shadow: 0 0 8px rgba(153, 155, 158, 0.4) !important; /* Change shadow color on focus */
-    outline: none !important; /* Remove default outline */
-}
+        /* Focused state styling */
+        .custom-input:focus {
+            border-color: #cacaca !important; /* Change border color on focus */
+            background-color: #fff !important; /* Change background color on focus */
+            box-shadow: 0 0 8px rgba(153, 155, 158, 0.4) !important; /* Change shadow color on focus */
+            outline: none !important; /* Remove default outline */
+        }
 
-/* Styling for invalid inputs */
-.custom-input.is-invalid {
-    border-color: #e3342f !important; /* Red border for invalid input */
-    background-color: #ffe5e5 !important; /* Light red background for invalid input */
-}
-#search {
-    border: unset !important;
-}
+        /* Styling for invalid inputs */
+        .custom-input.is-invalid {
+            border-color: #e3342f !important; /* Red border for invalid input */
+            background-color: #ffe5e5 !important; /* Light red background for invalid input */
+        }
+        #search {
+            border: unset !important;
+        }
 
-.form-control:not(#search,.search) {
-    background: #fff !important;
-    box-shadow: unset !important;
-    border: 1px solid #761adf !important;
-}
-.form-control:not(#search,.search):focus, .form-control:not(#search,.search):hover {
-    background: #771be017 !important;
-    border: 1px solid #cf517e !important;
-    color: #d45577 !important;
-}
+        .form-control:not(#search,.search) {
+            background: #fff !important;
+            box-shadow: unset !important;
+            border: 1px solid #761adf !important;
+        }
+        .form-control:not(#search,.search):focus, .form-control:not(#search,.search):hover {
+            background: #771be017 !important;
+            border: 1px solid #cf517e !important;
+            color: #d45577 !important;
+        }
 
-.btn-outline-primary:hover {
-    background: hsla(268, 79%, 49%, 1);
+        .btn-outline-primary:hover {
+            background: hsla(268, 79%, 49%, 1);
 
-background: linear-gradient(45deg, hsla(268, 79%, 49%, 1) 30%, hsla(351, 66%, 61%, 1) 100%);
+            background: linear-gradient(45deg, hsla(268, 79%, 49%, 1) 30%, hsla(351, 66%, 61%, 1) 100%);
 
-background: -moz-linear-gradient(45deg, hsla(268, 79%, 49%, 1) 30%, hsla(351, 66%, 61%, 1) 100%);
+            background: -moz-linear-gradient(45deg, hsla(268, 79%, 49%, 1) 30%, hsla(351, 66%, 61%, 1) 100%);
 
-background: -webkit-linear-gradient(45deg, hsla(268, 79%, 49%, 1) 30%, hsla(351, 66%, 61%, 1) 100%);
+            background: -webkit-linear-gradient(45deg, hsla(268, 79%, 49%, 1) 30%, hsla(351, 66%, 61%, 1) 100%);
 
-filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#781ae2", endColorstr="#dd5a6e", GradientType=1 );
-color: #fff !important;
-border: unset !important;
-transition: all .3s ease-in-out
-}
+            filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#781ae2", endColorstr="#dd5a6e", GradientType=1 );
+            color: #fff !important;
+            border: unset !important;
+            transition: all .3s ease-in-out
+        }
     
     </style>
 
@@ -397,37 +397,37 @@ transition: all .3s ease-in-out
         }
     </style>
 
-@if (get_setting('google_analytics') == 1)
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id={{ env('TRACKING_ID') }}"></script>
+    @if (get_setting('google_analytics') == 1)
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id={{ env('TRACKING_ID') }}"></script>
 
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', '{{ env('TRACKING_ID') }}');
-    </script>
-@endif
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', '{{ env('TRACKING_ID') }}');
+        </script>
+    @endif
 
-@if (get_setting('facebook_pixel') == 1)
-    <!-- Facebook Pixel Code -->
-    <script>
-        !function(f,b,e,v,n,t,s)
-        {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-        n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-        if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-        n.queue=[];t=b.createElement(e);t.async=!0;
-        t.src=v;s=b.getElementsByTagName(e)[0];
-        s.parentNode.insertBefore(t,s)}(window, document,'script',
-        'https://connect.facebook.net/en_US/fbevents.js');
-        fbq('init', '{{ env('FACEBOOK_PIXEL_ID') }}');
-        fbq('track', 'PageView');
-    </script>
-    <noscript>
-        <img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id={{ env('FACEBOOK_PIXEL_ID') }}&ev=PageView&noscript=1"/>
-    </noscript>
-    <!-- End Facebook Pixel Code -->
-@endif
+    @if (get_setting('facebook_pixel') == 1)
+        <!-- Facebook Pixel Code -->
+        <script>
+            !function(f,b,e,v,n,t,s)
+            {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+            n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+            if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+            n.queue=[];t=b.createElement(e);t.async=!0;
+            t.src=v;s=b.getElementsByTagName(e)[0];
+            s.parentNode.insertBefore(t,s)}(window, document,'script',
+            'https://connect.facebook.net/en_US/fbevents.js');
+            fbq('init', '{{ env('FACEBOOK_PIXEL_ID') }}');
+            fbq('track', 'PageView');
+        </script>
+        <noscript>
+            <img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id={{ env('FACEBOOK_PIXEL_ID') }}&ev=PageView&noscript=1"/>
+        </noscript>
+        <!-- End Facebook Pixel Code -->
+    @endif
 
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
