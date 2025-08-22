@@ -10,6 +10,9 @@ class Product extends Model
 {
     use PreventDemoModeChanges;
     
+    protected $fillable = ['short_description'];
+    
+
     protected $guarded = ['choice_attributes'];
 
     protected $with = ['thumbnail'];
