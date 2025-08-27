@@ -925,6 +925,17 @@
 
         
     });
+    $(document).ready(function() {
+        $(".hummingbird-end-node").each(function() {
+            if ($(this).is(':checked')) {
+                $(this)
+                    .parent().parent().parent().parent()
+                    .children("label")
+                    .children("input")
+                    .prop('checked', false);
+            }
+        });
+    });
 </script>
 <!-- Treeview js -->
 <script src="{{ static_asset('assets/js/hummingbird-treeview.js') }}"></script>
