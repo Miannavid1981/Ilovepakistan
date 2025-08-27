@@ -807,6 +807,17 @@
                 $('#treeview input:radio[value='+val+']').prop('checked',true);
             }
         });
+        $(document).ready(function() {
+            $(".hummingbird-end-node").each(function() {
+                if ($(this).is(':checked')) {
+                    $(this)
+                        .parent().parent().parent().parent()
+                        .children("label")
+                        .children("input")
+                        .prop('checked', false);
+                }
+            });
+        });
     });
 
 
