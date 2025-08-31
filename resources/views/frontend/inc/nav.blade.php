@@ -564,11 +564,11 @@ header .nav-link:not(.category-drawer-toggle-btn) {
     }
 </style>
  <div class="bottom-nav">
-    <a href="#" class="active">
+    <a href="/" class="active">
       <i class="fa-solid fa-house"></i>
       <span>Home</span>
     </a>
-    <a href="#">
+    <a href="/about-us">
       <i class="fa-solid fa-user"></i>
       <span>About</span>
     </a>
