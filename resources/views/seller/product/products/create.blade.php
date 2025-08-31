@@ -553,14 +553,14 @@
                         </div>
                         <div class="card-body">
                             <div class="h-300px overflow-auto c-scrollbar-light">
-                                <ul class="hummingbird-treeview-converter list-unstyled" data-checkbox-name="category_ids[]" data-radio-name="category_id">
-                                    @php
-                                        $sellerPreferences = \App\Models\SellerCategoryPreference::where('user_id', auth()->user()->id)->pluck('category_id')->toArray();
+                               @php
+                                $sellerPreferences = \App\Models\SellerCategoryPreference::where('user_id', auth()->user()->id)->pluck('category_id')->toArray();
+                                        $old_categories = $sellerPreferences;
                                     @endphp
+                                <ul class="hummingbird-treeview-converter list-unstyled" data-checkbox-name="category_ids[]" data-radio-name="category_id">
                                     @foreach ($categories as $category)
                                         @if(in_array($category->id, $sellerPreferences)) 
                                             <li id="{{ $category->id }}">{{ $category->getTranslation('name') }}</li>
-                                            
                                             @foreach ($category->childrenCategories as $childCategory)
                                                 @include('backend.product.products.child_category', ['child_category' => $childCategory])
                                             @endforeach
