@@ -508,6 +508,11 @@ header .nav-link:not(.category-drawer-toggle-btn) {
 
   </div>
   <style>
+    @media(min-width: 992px){
+         .bottom-nav {
+            display: none !important;
+         }
+    }
     .bottom-nav {
         position: fixed;
         bottom: 10px;
