@@ -568,9 +568,9 @@ header .nav-link:not(.category-drawer-toggle-btn) {
       <i class="fa-solid fa-house"></i>
       <span>Home</span>
     </a>
-    <a href="/about-us">
-      <i class="fa-solid fa-user"></i>
-      <span>About</span>
+    <a href="javascript:void(0)" class="category-drawer-toggle-btn">
+      <i class="fa-solid fa-grid"></i>
+      <span>Categories</span>
     </a>
     <a href="/shop">
       <i class="fa-solid fa-shop"></i>
