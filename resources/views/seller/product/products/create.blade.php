@@ -806,14 +806,14 @@
     $(document).ready(function() {
        
         $("#treeview").hummingbird();
-        setTimeout({
-            $(".hummingbird-end-node").each(function(){
-                if( $(this).is(':checked') ) {
-                    $(this).click();
+        
+        $(".hummingbird-end-node").each(function(){
+            if( $(this).is(':checked') ) {
+                $(this).click();
 
-                }
-            })
-        }, 1000);
+            }
+        })
+    
        
 
         
