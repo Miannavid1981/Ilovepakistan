@@ -540,6 +540,10 @@ header .nav-link:not(.category-drawer-toggle-btn) {
       flex: 1;
       transition: 0.3s;
     }
+    .bottom-nav a span {
+        font-family: 'Aeonik';
+        font-size: 15px;
+    }
 
     .bottom-nav a i {
       font-size: 20px;
@@ -568,17 +572,17 @@ header .nav-link:not(.category-drawer-toggle-btn) {
       <i class="fa-solid fa-user"></i>
       <span>About</span>
     </a>
-    <a href="#">
-      <i class="fa-solid fa-laptop-code"></i>
-      <span>Skills</span>
+    <a href="/shop">
+      <i class="fa-solid fa-"></i>
+      <span>All Products</span>
     </a>
-    <a href="#">
-      <i class="fa-solid fa-briefcase"></i>
-      <span>Portfolio</span>
+    <a href="/seller/login">
+      <i class="fa-solid fa-users"></i>
+      <span>Partner Login</span>
     </a>
-    <a href="#">
-      <i class="fa-solid fa-envelope"></i>
-      <span>Contact</span>
+    <a href="tel: +92 333 3120 595">
+      <i class="fa-solid fa-phone"></i>
+      <span>Call Us</span>
     </a>
   </div>
 
