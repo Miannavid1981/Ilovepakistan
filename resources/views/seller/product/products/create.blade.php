@@ -553,10 +553,10 @@
                         </div>
                         <div class="card-body">
                             <div class="h-300px overflow-auto c-scrollbar-light">
-                               @php
-                                $sellerPreferences = \App\Models\SellerCategoryPreference::where('user_id', auth()->user()->id)->pluck('category_id')->toArray();
-                                        $old_categories = $sellerPreferences;
-                                    @endphp
+                                @php
+                                    $sellerPreferences = \App\Models\SellerCategoryPreference::where('user_id', auth()->user()->id)->pluck('category_id')->toArray();
+                                    $old_categories = $sellerPreferences;
+                                @endphp
                                 <ul class="hummingbird-treeview-converter list-unstyled" data-checkbox-name="category_ids[]" data-radio-name="category_id">
                                     @foreach ($categories as $category)
                                         @if(in_array($category->id, $sellerPreferences)) 
@@ -799,13 +799,13 @@
        
         $("#treeview").hummingbird();
       
-
-        $('#treeview input:checkbox').on("click", function (){
-            let $this = $(this);
-            if ($this.prop('checked') && ($('#treeview input:radio:checked').length == 0)) {
-                let val = $this.val();
-                $('#treeview input:radio[value='+val+']').prop('checked',true);
-            }
+        $(document).on("click", ".hummingbird-end-node", function(){
+            $("#treeview input").prop('checked', false);
+            $(this).prop('checked', true)
+            $(this).parent().parent().children('input').prop('checked', true);
+            var parent_div = $(this).parent().parent().parent().parent();
+            parent_div.children("input").prop('checked', true);
+            parent_div.children("label").children("input").prop('checked', true);
         });
         $(document).ready(function() {
             $(".hummingbird-end-node").each(function() {
