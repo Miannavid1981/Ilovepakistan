@@ -806,6 +806,9 @@
     $(document).ready(function() {
        
         $("#treeview").hummingbird();
+
+        $(".hummingbird-end-node").click()
+
         
     });
 
