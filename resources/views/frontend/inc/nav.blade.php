@@ -507,7 +507,70 @@ header .nav-link:not(.category-drawer-toggle-btn) {
       <img src="https://mir-s3-cdn-cf.behance.net/project_modules/disp/04de2e31234507.564a1d23645bf.gif" width="100">
 
   </div>
+  <style>
+    .bottom-nav {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #fff;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      width: 90%;
+      max-width: 500px;
+      padding: 12px 0;
+      border-radius: 20px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    }
 
+    .bottom-nav a {
+      text-decoration: none;
+      color: #333;
+      font-size: 12px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      flex: 1;
+      transition: 0.3s;
+    }
+
+    .bottom-nav a i {
+      font-size: 20px;
+      margin-bottom: 5px;
+    }
+
+    .bottom-nav a.active {
+      color: #00bfa6;
+      font-weight: bold;
+    }
+
+    .bottom-nav a.active i {
+      color: #00bfa6;
+    }
+</style>
+ <div class="bottom-nav">
+    <a href="#" class="active">
+      <i class="fa-solid fa-house"></i>
+      <span>Home</span>
+    </a>
+    <a href="#">
+      <i class="fa-solid fa-user"></i>
+      <span>About</span>
+    </a>
+    <a href="#">
+      <i class="fa-solid fa-laptop-code"></i>
+      <span>Skills</span>
+    </a>
+    <a href="#">
+      <i class="fa-solid fa-briefcase"></i>
+      <span>Portfolio</span>
+    </a>
+    <a href="#">
+      <i class="fa-solid fa-envelope"></i>
+      <span>Contact</span>
+    </a>
+  </div>
 
 <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 99999">
     <div id="errorToast" class="toast bg-white " role="alert" aria-live="assertive" aria-atomic="true">
