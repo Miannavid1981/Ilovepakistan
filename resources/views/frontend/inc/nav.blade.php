@@ -569,12 +569,12 @@ header .nav-link:not(.category-drawer-toggle-btn) {
       <span>Home</span>
     </a>
     <a href="javascript:void(0)" class="category-drawer-toggle-btn">
-      <i class="fa-solid fa-grid"></i>
+      <i class="fa-solid fa-headphones"></i>
       <span>Categories</span>
     </a>
     <a href="/shop">
       <i class="fa-solid fa-shop"></i>
-      <span>All Products</span>
+      <span> Products</span>
     </a>
     <a href="/seller/login">
       <i class="fa-solid fa-users"></i>
