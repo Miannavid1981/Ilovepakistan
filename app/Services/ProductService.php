@@ -151,6 +151,8 @@ class ProductService
 
         $collection['has_warranty'] = isset($collection['has_warranty']) ? 1 : 0;
         $short_description = $collection['short_description'];
+        $user_id = auth()->user()->id;
+
         $data = $collection->merge(compact(
             'user_id',
             'approved',
