@@ -573,12 +573,12 @@ header .nav-link:not(.category-drawer-toggle-btn) {
       <span>About</span>
     </a>
     <a href="/shop">
-      <i class="fa-solid fa-"></i>
+      <i class="fa-solid fa-shop"></i>
       <span>All Products</span>
     </a>
     <a href="/seller/login">
       <i class="fa-solid fa-users"></i>
-      <span>Partner Login</span>
+      <span>Partner</span>
     </a>
     <a href="tel: +92 333 3120 595">
       <i class="fa-solid fa-phone"></i>
