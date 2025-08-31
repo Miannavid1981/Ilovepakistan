@@ -20,6 +20,7 @@ class ProductService
         $collection = collect($data);
 
         $approved = 1;
+        $user_id = 0;
         if (auth()->user()->user_type == 'seller') {
             $user_id = auth()->user()->id;
             if (get_setting('product_approve_by_admin') == 1) {
