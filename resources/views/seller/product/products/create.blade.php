@@ -807,7 +807,7 @@
        
         $("#treeview").hummingbird();
 
-        $(".hummingbird-end-node").click()
+        $(".hummingbird-end-node:checked").click()
 
         
     });
