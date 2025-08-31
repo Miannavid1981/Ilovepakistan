@@ -2,9 +2,9 @@
 
 @section('panel_content')
 <style>
-    #treeview input[type="radio"]{
+    /* #treeview input[type="radio"]{
         opacity: 0;
-    }
+    } */
     </style>
     <div class="page-content mx-0">
         <div class="aiz-titlebar mt-2 mb-4">
@@ -553,7 +553,7 @@
                         </div>
                         <div class="card-body">
                             <div class="h-300px overflow-auto c-scrollbar-light">
-                                @php
+                                @php#treeview input[type="radio"]
                                         $sellerPreferences = \App\Models\SellerCategoryPreference::where('user_id', auth()->user()->id)->pluck('category_id')->toArray();
                                         $old_categories = $sellerPreferences;
                                     @endphp
