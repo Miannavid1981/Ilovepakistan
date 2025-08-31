@@ -807,7 +807,7 @@
        
         $("#treeview").hummingbird();
         
-        $(".hummingbird-end-node:checked").click()
+       
 
     
        
@@ -816,6 +816,10 @@
     });
 
 
+
+    setTimeout(function(){
+         $(".hummingbird-end-node:checked").click()
+    }, 1000)
     
    
     $('input[name="sku"]').on('input', function() {
