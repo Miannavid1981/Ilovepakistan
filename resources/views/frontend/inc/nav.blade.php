@@ -509,19 +509,20 @@ header .nav-link:not(.category-drawer-toggle-btn) {
   </div>
   <style>
     .bottom-nav {
-      position: fixed;
-      bottom: 20px;
-      left: 50%;
-      transform: translateX(-50%);
-      background: #fff;
-      display: flex;
-      justify-content: space-around;
-      align-items: center;
-      width: 90%;
-      max-width: 500px;
-      padding: 12px 0;
-      border-radius: 20px;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        position: fixed;
+        bottom: 10px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: #fff;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        width: 95%;
+        max-width: 500px;
+        padding: 12px 0;
+        border-radius: 20px;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        z-index: 999;
     }
 
     .bottom-nav a {
@@ -541,12 +542,16 @@ header .nav-link:not(.category-drawer-toggle-btn) {
     }
 
     .bottom-nav a.active {
-      color: #00bfa6;
-      font-weight: bold;
+    font-weight: bold;
+    background: -webkit-linear-gradient(45deg, hsla(268, 79%, 49%, 1) 30%, hsla(351, 66%, 61%, 1) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
     }
 
     .bottom-nav a.active i {
-      color: #00bfa6;
+    background: -webkit-linear-gradient(45deg, hsla(268, 79%, 49%, 1) 30%, hsla(351, 66%, 61%, 1) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
     }
 </style>
  <div class="bottom-nav">
