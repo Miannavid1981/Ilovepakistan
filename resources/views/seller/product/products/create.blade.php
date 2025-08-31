@@ -798,7 +798,18 @@
     $(document).ready(function() {
        
         $("#treeview").hummingbird();
-      
+        var main_id = '{{ $product->category_id != null ? $product->category_id : 0 }}';
+        var selected_ids = '{{ implode(",",$old_categories) }}';
+        if (selected_ids != '') {
+            const myArray = selected_ids.split(",");
+            for (let i = 0; i < myArray.length; i++) {
+                const element = myArray[i];
+                $('#treeview input:checkbox#'+element).prop('checked',true);
+                $('#treeview input:checkbox#'+element).parents( "ul" ).css( "display", "block" );
+                $('#treeview input:checkbox#'+element).parents( "li" ).children('.las').removeClass( "la-plus" ).addClass('la-minus');
+            }
+        }
+        $('#treeview input:radio[value='+main_id+']').prop('checked',true);
         $(document).on("click", ".hummingbird-end-node", function(){
             $("#treeview input").prop('checked', false);
             $(this).prop('checked', true)
