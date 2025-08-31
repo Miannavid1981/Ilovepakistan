@@ -808,7 +808,7 @@
         $("#treeview").hummingbird();
         
         $(".hummingbird-end-node").each(function(){
-            console.log('543');
+            alert('543');
             if( $(this).is(':checked') ) {
                 $(this).click();
 
