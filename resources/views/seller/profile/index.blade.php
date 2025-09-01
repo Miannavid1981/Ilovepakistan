@@ -105,7 +105,7 @@
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label class="col-md-2 col-form-label" for="company_name">{{ translate('Company Type') }}</label>
+                    <label class="col-md-2 col-form-label" for="company_type">{{ translate('Company Type') }}</label>
                     <div class="col-md-10">
                         <select name="company_type" class="form-control">
                             <option value="">Select Company Type</option>
@@ -129,15 +129,17 @@
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label class="col-md-2 col-form-label" for="company_name">{{ translate('Company Type') }}</label>
+                    <label class="col-md-2 col-form-label" for="business_type">{{ translate('Company Type') }}</label>
                     <div class="col-md-10">
-                        <select name="company_type" class="form-control">
+                        <select name="business_type" class="form-control">
                             <option value="">Select Business Type</option>
                             <option value="manufacturer" @if($user->business_type == "manufacturer" ) selected @endif >Manufacturer</option>
                             <option value="importer" @if($user->business_type == "partnership" ) selected @endif >Importer</option>
                             <option value="exporter" @if($user->business_type == "exporter" ) selected @endif >Exporter</option>
+                            <option value="distributor" @if($user->business_type == "distributor" ) selected @endif >Distributor</option>
+                            <option value="wholesaler" @if($user->business_type == "wholesaler" ) selected @endif >Wholesaler</option>
                         </select>
-                        @error('company_type')
+                        @error('business_type')
                             <small class="form-text text-danger">{{ $message }}</small>
                         @enderror
                     </div>
