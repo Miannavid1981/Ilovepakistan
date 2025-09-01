@@ -44,7 +44,7 @@
                     <label class="col-md-2 col-form-label" for="shop_logo">{{ translate('Brand Logo') }}</label>
                     <div class="col-md-10">
                         <input type="file" name="shop_logo" id="shop_logo" class="form-control" placeholder="{{ translate('Your Name') }}" required>
-                        <img src="{{  uploaded_asset($user->shop->logo) }}">
+                        <img src="{{  uploaded_asset($user->shop->logo) }}" width="100px">
                         @error('shop_logo')
                             <small class="form-text text-danger">{{ $message }}</small>
                         @enderror
