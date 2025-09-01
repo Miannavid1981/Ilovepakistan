@@ -164,12 +164,55 @@
                 </div>
             </div>
          </div>
+         <div class="card">
+            <div class="card-header">
+                <h5 class="mb-0 h6">{{ translate('Contact Info')}}</h5>
+            </div>
+            <div class="card-body">
+                <div class="form-group row">
+                    <label class="col-md-2 col-form-label" for="designation">{{ translate('Designation') }}</label>
+                    <div class="col-md-10">
+                        <input type="text" name="designation" value="{{ $user->designation }}" id="designation" class="form-control" required>
+                        @error('designation')
+                            <small class="form-text text-danger">{{ $message }}</small>
+                        @enderror
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-md-2 col-form-label" for="authorized_person_mobile">{{ translate('Authorized Person Mobile No') }}</label>
+                    <div class="col-md-10">
+                        <input type="text" name="authorized_person_mobile" value="{{ $user->authorized_person_mobile }}" id="authorized_person_mobile" class="form-control" required>
+                        @error('authorized_person_mobile')
+                            <small class="form-text text-danger">{{ $message }}</small>
+                        @enderror
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-md-2 col-form-label" for="whatsapp_number">{{ translate('Whatsapp Number') }}</label>
+                    <div class="col-md-10">
+                        <input type="text" name="whatsapp_number" value="{{ $user->whatsapp_number }}" id="whatsapp_number" class="form-control" required>
+                        @error('whatsapp_number')
+                            <small class="form-text text-danger">{{ $message }}</small>
+                        @enderror
+                    </div>
+                </div>
+            </div>
+         </div>
         <!-- Basic Info-->
         <div class="card">
             <div class="card-header">
                 <h5 class="mb-0 h6">{{ translate('Basic Info')}}</h5>
             </div>
             <div class="card-body">
+                <div class="form-group row">
+                    <label class="col-md-2 col-form-label" for="username">{{ translate('Username') }}</label>
+                    <div class="col-md-10">
+                        <input type="text" name="username" value="{{ $user->username }}" id="username" class="form-control" required>
+                        @error('username')
+                            <small class="form-text text-danger">{{ $message }}</small>
+                        @enderror
+                    </div>
+                </div>
                 <div class="form-group row">
                     <label class="col-md-2 col-form-label" for="name">{{ translate('Your Name') }}</label>
                     <div class="col-md-10">
@@ -185,6 +228,15 @@
                     <div class="col-md-10">
                         <input type="text" name="phone" value="{{ $user->phone }}" id="phone" class="form-control" placeholder="{{ translate('Your Phone')}}">
                         @error('phone')
+                            <small class="form-text text-danger">{{ $message }}</small>
+                        @enderror
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-md-2 col-form-label" for="email">{{ translate('Your email') }}</label>
+                    <div class="col-md-10">
+                        <input type="email" name="email" value="{{ $user->email }}" id="email" class="form-control" placeholder="{{ translate('Your email')}}">
+                        @error('email')
                             <small class="form-text text-danger">{{ $message }}</small>
                         @enderror
                     </div>
