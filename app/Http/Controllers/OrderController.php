@@ -724,6 +724,80 @@ class OrderController extends Controller
             NotificationUtility::sendFirebaseNotification($request);
         }
 
+        foreach ($order->orderDetails as $key => $orderDetail) {
+            $orderDetail->delivery_status = $request->status;
+            // $orderDetail->save();
+
+            if($order->payment_status == 'paid'){
+                if ($orderDetail->delivery_status == 'delivered' && $orderDetail->payment_status != 'paid') {
+                    // Credit Seller Wallet
+                    $seller = \App\Models\User::find($orderDetail->seller_id);
+                    if ($seller && $orderDetail->seller_profit_amount > 0) {
+                        $seller_Wallet = $seller->wallets()->firstOrCreate([], [
+                            'user_id' => $seller->id,
+                            'amount' => 0,
+                        ]);
+                        if ($seller_Wallet) {
+                            \App\Models\Wallet::credit([
+                                'amount' => ($orderDetail->seller_profit_amount),
+                                'user_id' => $seller->id,
+                                'wallet_id' => $seller_Wallet->id,
+                                'source' => 'system',
+                                'description' => 'Seller profit from order detail #' . $orderDetail->id,
+                                'sourceUserId' => auth()->id(),
+                            ]);
+                        }
+                    }
+
+                    // Credit Seller Wallet
+                    $source_seller = \App\Models\User::find($orderDetail->source_seller_id);
+                    if ($source_seller && $orderDetail->source_seller_profit_amount > 0) {
+                    
+                        $source_seller_Wallet = $source_seller->wallets()->firstOrCreate([], [
+                            'user_id' => $source_seller->id,
+                            'amount' => 0,
+                        ]);
+                        if ($source_seller_Wallet) {
+                            \App\Models\Wallet::credit([
+                                'amount' => $orderDetail->source_seller_profit_amount,
+                                'user_id' => $source_seller->id,
+                                'wallet_id' => $source_seller_Wallet->id,
+                                'source' => 'system',
+                                'description' => 'Brand Sale from order detail #' . $orderDetail->id,
+                                'sourceUserId' => auth()->id(),
+                            ]);
+                        }
+                    }
+
+                    // Credit Admin Wallet
+                    $admin = \App\Models\User::where('user_type', 'admin')->where('email', 'admin@bighouz.com')->first(); // Adjust this condition as needed
+                    if ($admin && $orderDetail->admin_profit_amount > 0) {
+                        $adminWallet = $admin->wallets()->firstOrCreate([], [
+                            'user_id' => $admin->id,
+                            'amount' => 0,
+                        ]);
+
+                        if ($adminWallet) {
+                            \App\Models\Wallet::credit([
+                                'amount' => floatval($orderDetail->admin_profit_amount),
+                                'user_id' => $admin->id,
+                                'wallet_id' => $adminWallet->id,
+                                'source' => 'order#' . $order->id,
+                                'description' => 'Admin profit from order detail #' . $orderDetail->id,
+                                'sourceUserId' => auth()->id(),
+                            ]);
+                        }
+                    }
+
+                    // Mark as paid to avoid reprocessing
+                    $orderDetail->payment_status = 'paid';
+                    
+                }
+            }
+            
+            $orderDetail->save();
+        }
+
 
         if (addon_is_activated('otp_system') && SmsTemplate::where('identifier', 'payment_status_change')->first()->status == 1) {
             try {
