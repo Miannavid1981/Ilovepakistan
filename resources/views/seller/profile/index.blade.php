@@ -90,6 +90,60 @@
                 </div>
             </div>
         </div>
+         <div class="card">
+            <div class="card-header">
+                <h5 class="mb-0 h6">{{ translate('Business Information')}}</h5>
+            </div>
+            <div class="card-body">
+                <div class="form-group row">
+                    <label class="col-md-2 col-form-label" for="company_name">{{ translate('Company Name') }}</label>
+                    <div class="col-md-10">
+                        <input type="text" name="company_name" value="{{ $user->company_name }}" id="company_name" class="form-control" placeholder="{{ translate('Your Name') }}" required>
+                        @error('company_name')
+                            <small class="form-text text-danger">{{ $message }}</small>
+                        @enderror
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-md-2 col-form-label" for="company_name">{{ translate('Company Type') }}</label>
+                    <div class="col-md-10">
+                        <select name="company_type" class="form-control">
+                            <option value="">Select Company Type</option>
+                            <option value="sole_proprietorship" @if($user->company_type == "sole_proprietorship" ) selected @endif >Sole Proprietorship</option>
+                            <option value="partnership" @if($user->company_type == "partnership" ) selected @endif >Partnership</option>
+                            <option value="private_limited" @if($user->company_type == "private_limited" ) selected @endif >Private Limited</option>
+                        </select>
+                        @error('company_type')
+                            <small class="form-text text-danger">{{ $message }}</small>
+                        @enderror
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-md-2 col-form-label" for="legal_documents">{{ translate('Legal Documents') }}</label>
+                    <div class="col-md-10">
+                        <input type="file" name="legal_documents" id="legal_documents" class="form-control"  required>
+                        <a href="{{  uploaded_asset($user->legal_documents) }}" class="btn btn-dark">Open File</a>
+                        @error('legal_documents')
+                            <small class="form-text text-danger">{{ $message }}</small>
+                        @enderror
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-md-2 col-form-label" for="company_name">{{ translate('Company Type') }}</label>
+                    <div class="col-md-10">
+                        <select name="company_type" class="form-control">
+                            <option value="">Select Business Type</option>
+                            <option value="manufacturer" @if($user->business_type == "manufacturer" ) selected @endif >Manufacturer</option>
+                            <option value="importer" @if($user->business_type == "partnership" ) selected @endif >Importer</option>
+                            <option value="exporter" @if($user->business_type == "exporter" ) selected @endif >Exporter</option>
+                        </select>
+                        @error('company_type')
+                            <small class="form-text text-danger">{{ $message }}</small>
+                        @enderror
+                    </div>
+                </div>
+            </div>
+         </div>
         <!-- Basic Info-->
         <div class="card">
             <div class="card-header">
