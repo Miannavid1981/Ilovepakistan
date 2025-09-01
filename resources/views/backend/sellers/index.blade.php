@@ -164,7 +164,7 @@
                                     }
                                 @endphp
                                 
-                                <span style="font-size: 10px" class="bg-{{ $pill_color }} rounded-2 text-light px-1 py-1 text-capitalize" style="border-radius: 20px"> {{ str_replace("_", " ", $shop->user->seller_type )}}</span>
+                                <span style="font-size: 10px;  white-space: nowrap;" class="bg-{{ $pill_color }} rounded-2 text-light px-1 py-1 text-capitalize" style="border-radius: 20px"> {{ str_replace("_", " ", $shop->user->seller_type )}}</span>
                             @endif
                         </td>
                         <td>
