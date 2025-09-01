@@ -122,7 +122,7 @@
                     <label class="col-md-2 col-form-label" for="legal_documents">{{ translate('Legal Documents') }}</label>
                     <div class="col-md-10">
                         <input type="file" name="legal_documents" id="legal_documents" class="form-control"  required>
-                        <a href="{{  uploaded_asset($user->legal_documents) }}" class="btn btn-dark">Open File</a>
+                        <a href="{{  static_asset($user->legal_documents) }}" class="btn btn-dark">Open File</a>
                         @error('legal_documents')
                             <small class="form-text text-danger">{{ $message }}</small>
                         @enderror
