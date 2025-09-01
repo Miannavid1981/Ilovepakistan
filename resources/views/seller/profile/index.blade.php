@@ -67,7 +67,7 @@
                         @enderror
                     </div>
                 </div>
-                <div class="form-group row">
+                {{-- <div class="form-group row">
                     <label class="col-md-2 col-form-label" for="area">{{ translate('Area') }}</label>
                     <div class="col-md-10">
                         <select name="area" class="form-control">
@@ -78,7 +78,7 @@
                             <small class="form-text text-danger">{{ $message }}</small>
                         @enderror
                     </div>
-                </div>
+                </div> --}}
                 <div class="form-group row">
                     <label class="col-md-2 col-form-label" for="address">{{ translate('Address') }}</label>
                     <div class="col-md-10">
@@ -144,6 +144,11 @@
                         @enderror
                     </div>
                 </div>
+                @if(auth()->user()->seller_type == "seller_partner")
+
+
+
+                @endif
                 <div class="form-group row">
                     <label class="col-md-2 col-form-label" for="sales_tax_number">{{ translate('Sales Tax Number') }}</label>
                     <div class="col-md-10">
