@@ -25,6 +25,23 @@
     <form action="{{ route('seller.profile.update', $user->id) }}" method="POST" enctype="multipart/form-data">
         <input name="_method" type="hidden" value="POST">
         @csrf
+
+        <div class="card">
+            <div class="card-header">
+                <h5 class="mb-0 h6">{{ translate('Store Information')}}</h5>
+            </div>
+            <div class="card-body">
+                <div class="form-group row">
+                    <label class="col-md-2 col-form-label" for="name">{{ translate('Brand Name') }}</label>
+                    <div class="col-md-10">
+                        <input type="text" name="shop_name" value="{{ $user->shop->name }}" id="shop_name" class="form-control" placeholder="{{ translate('Your Name') }}" required>
+                        @error('shop_name')
+                            <small class="form-text text-danger">{{ $message }}</small>
+                        @enderror
+                    </div>
+                </div>
+            </div>
+        </div>
         <!-- Basic Info-->
         <div class="card">
             <div class="card-header">
@@ -85,6 +102,7 @@
 
             </div>
         </div>
+        
          <!-- Basic Info-->
          <div class="card">
             <div class="card-header">
