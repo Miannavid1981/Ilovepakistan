@@ -725,7 +725,7 @@ class OrderController extends Controller
         }
 
         foreach ($order->orderDetails as $key => $orderDetail) {
-            $orderDetail->delivery_status = $request->status;
+           
             // $orderDetail->save();
 
             if($order->payment_status == 'paid'){
