@@ -207,7 +207,7 @@
                 <div class="form-group row">
                     <label class="col-md-2 col-form-label" for="username">{{ translate('Username') }}</label>
                     <div class="col-md-10">
-                        <input type="text" name="username" value="{{ $user->username }}" id="username" class="form-control" required>
+                        <input type="text" name="username" value="{{ $user->username }}" id="username" class="form-control" disabled required>
                         @error('username')
                             <small class="form-text text-danger">{{ $message }}</small>
                         @enderror
@@ -235,7 +235,7 @@
                 <div class="form-group row">
                     <label class="col-md-2 col-form-label" for="email">{{ translate('Your email') }}</label>
                     <div class="col-md-10">
-                        <input type="email" name="email" value="{{ $user->email }}" id="email" class="form-control" placeholder="{{ translate('Your email')}}">
+                        <input type="email" name="email" value="{{ $user->email }}" id="email" class="form-control" placeholder="{{ translate('Your email')}}" disabled>
                         @error('email')
                             <small class="form-text text-danger">{{ $message }}</small>
                         @enderror
