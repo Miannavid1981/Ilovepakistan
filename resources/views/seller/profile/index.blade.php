@@ -32,10 +32,58 @@
             </div>
             <div class="card-body">
                 <div class="form-group row">
-                    <label class="col-md-2 col-form-label" for="name">{{ translate('Brand Name') }}</label>
+                    <label class="col-md-2 col-form-label" for="shop_name">{{ translate('Brand Name') }}</label>
                     <div class="col-md-10">
                         <input type="text" name="shop_name" value="{{ $user->shop->name }}" id="shop_name" class="form-control" placeholder="{{ translate('Your Name') }}" required>
                         @error('shop_name')
+                            <small class="form-text text-danger">{{ $message }}</small>
+                        @enderror
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-md-2 col-form-label" for="shop_logo">{{ translate('Brand Logo') }}</label>
+                    <div class="col-md-10">
+                        <input type="file" name="shop_logo" id="shop_logo" class="form-control" placeholder="{{ translate('Your Name') }}" required>
+                        <img src="{{  uploaded_asset($user->shop->logo) }}">
+                        @error('shop_logo')
+                            <small class="form-text text-danger">{{ $message }}</small>
+                        @enderror
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-md-2 col-form-label" for="city">{{ translate('City') }}</label>
+                    <div class="col-md-10">
+                        <select class="form-control" name="city">
+                           <option value="">Select City</option>
+                            @php
+                                $cities = \App\Models\City::where('state_id', 2728)->where('status', 1)->get();
+                            @endphp
+                            @foreach( $cities as $city)
+                                <option value="{{ strtolower(str_replace(' ', '-', $city->name )) }}"> {{ $city->name }} </option>
+                            @endforeach
+                        </select>
+                        @error('shop_name')
+                            <small class="form-text text-danger">{{ $message }}</small>
+                        @enderror
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-md-2 col-form-label" for="area">{{ translate('Area') }}</label>
+                    <div class="col-md-10">
+                        <select name="area" class="form-control">
+                            <option value="">Select Area</option>
+                            <!-- Area options should be dynamically filtered by city -->
+                        </select>
+                        @error('area')
+                            <small class="form-text text-danger">{{ $message }}</small>
+                        @enderror
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-md-2 col-form-label" for="address">{{ translate('Address') }}</label>
+                    <div class="col-md-10">
+                        <input type="text" name="address" value="{{ $user->shop->address }}" id="address" class="form-control" placeholder="{{ translate('Your Name') }}" required>
+                        @error('address')
                             <small class="form-text text-danger">{{ $message }}</small>
                         @enderror
                     </div>
