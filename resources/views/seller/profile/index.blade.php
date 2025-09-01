@@ -34,7 +34,7 @@
                 <div class="form-group row">
                     <label class="col-md-2 col-form-label" for="shop_name">{{ translate('Brand Name') }}</label>
                     <div class="col-md-10">
-                        <input type="text" name="shop_name" value="{{ $user->shop->name }}" id="shop_name" class="form-control" placeholder="{{ translate('Your Name') }}" required>
+                        <input type="text" name="shop_name" value="{{ $user->shop->name }}" id="shop_name" class="form-control"  required>
                         @error('shop_name')
                             <small class="form-text text-danger">{{ $message }}</small>
                         @enderror
@@ -43,7 +43,7 @@
                 <div class="form-group row">
                     <label class="col-md-2 col-form-label" for="shop_logo">{{ translate('Brand Logo') }}</label>
                     <div class="col-md-10">
-                        <input type="file" name="shop_logo" id="shop_logo" class="form-control" placeholder="{{ translate('Your Name') }}" required>
+                        <input type="file" name="shop_logo" id="shop_logo" class="form-control"  required>
                         <img src="{{  uploaded_asset($user->shop->logo) }}" width="100px">
                         @error('shop_logo')
                             <small class="form-text text-danger">{{ $message }}</small>
@@ -82,7 +82,7 @@
                 <div class="form-group row">
                     <label class="col-md-2 col-form-label" for="address">{{ translate('Address') }}</label>
                     <div class="col-md-10">
-                        <input type="text" name="address" value="{{ $user->shop->address }}" id="address" class="form-control" placeholder="{{ translate('Your Name') }}" required>
+                        <input type="text" name="address" value="{{ $user->shop->address }}" id="address" class="form-control"  required>
                         @error('address')
                             <small class="form-text text-danger">{{ $message }}</small>
                         @enderror
@@ -98,7 +98,7 @@
                 <div class="form-group row">
                     <label class="col-md-2 col-form-label" for="company_name">{{ translate('Company Name') }}</label>
                     <div class="col-md-10">
-                        <input type="text" name="company_name" value="{{ $user->company_name }}" id="company_name" class="form-control" placeholder="{{ translate('Your Name') }}" required>
+                        <input type="text" name="company_name" value="{{ $user->company_name }}" id="company_name" class="form-control"  required>
                         @error('company_name')
                             <small class="form-text text-danger">{{ $message }}</small>
                         @enderror
@@ -147,7 +147,7 @@
                 <div class="form-group row">
                     <label class="col-md-2 col-form-label" for="sales_tax_number">{{ translate('Sales Tax Number') }}</label>
                     <div class="col-md-10">
-                        <input type="text" name="sales_tax_number" value="{{ $user->sales_tax_number }}" id="sales_tax_number" class="form-control" placeholder="{{ translate('Your Name') }}" required>
+                        <input type="text" name="sales_tax_number" value="{{ $user->sales_tax_number }}" id="sales_tax_number" class="form-control" required>
                         @error('sales_tax_number')
                             <small class="form-text text-danger">{{ $message }}</small>
                         @enderror
@@ -156,7 +156,7 @@
                 <div class="form-group row">
                     <label class="col-md-2 col-form-label" for="business_ntn">{{ translate('Business NTN') }}</label>
                     <div class="col-md-10">
-                        <input type="text" name="business_ntn" value="{{ $user->business_ntn }}" id="business_ntn" class="form-control" placeholder="{{ translate('Your Name') }}" required>
+                        <input type="text" name="business_ntn" value="{{ $user->business_ntn }}" id="business_ntn" class="form-control" required>
                         @error('business_ntn')
                             <small class="form-text text-danger">{{ $message }}</small>
                         @enderror
