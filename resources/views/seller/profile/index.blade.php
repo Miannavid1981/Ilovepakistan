@@ -129,7 +129,7 @@
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label class="col-md-2 col-form-label" for="business_type">{{ translate('Company Type') }}</label>
+                    <label class="col-md-2 col-form-label" for="business_type">{{ translate('Business Type') }}</label>
                     <div class="col-md-10">
                         <select name="business_type" class="form-control">
                             <option value="">Select Business Type</option>
@@ -140,6 +140,24 @@
                             <option value="wholesaler" @if($user->business_type == "wholesaler" ) selected @endif >Wholesaler</option>
                         </select>
                         @error('business_type')
+                            <small class="form-text text-danger">{{ $message }}</small>
+                        @enderror
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-md-2 col-form-label" for="sales_tax_number">{{ translate('Sales Tax Number') }}</label>
+                    <div class="col-md-10">
+                        <input type="text" name="sales_tax_number" value="{{ $user->sales_tax_number }}" id="sales_tax_number" class="form-control" placeholder="{{ translate('Your Name') }}" required>
+                        @error('sales_tax_number')
+                            <small class="form-text text-danger">{{ $message }}</small>
+                        @enderror
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-md-2 col-form-label" for="business_ntn">{{ translate('Business NTN') }}</label>
+                    <div class="col-md-10">
+                        <input type="text" name="business_ntn" value="{{ $user->business_ntn }}" id="business_ntn" class="form-control" placeholder="{{ translate('Your Name') }}" required>
+                        @error('business_ntn')
                             <small class="form-text text-danger">{{ $message }}</small>
                         @enderror
                     </div>
