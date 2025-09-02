@@ -170,7 +170,7 @@
     list-style: none;
     padding: 0;
     margin: 0;
-    background-color: #f0f0f0; /* Background for the tabs */
+    /* background-color: #f0f0f0; */
     position: absolute;
     top: 0;
     left: 0;
@@ -181,16 +181,17 @@
 .tab {
     padding: 10px 20px;
     cursor: pointer;
-    background-color: #ddd;
+    background-color: #ececec;
     margin-right: 5px;
     border-radius: 5px 5px 0 0;
 }
-
 .tab.active {
-   background-color: var(--primary);
+    
     color: white;
+    margin-bottom: 0 !important;
+    background: -webkit-linear-gradient(45deg, hsla(268, 79%, 49%, 1) 30%, hsla(351, 66%, 61%, 1) 100%);
+    border: 0 !important;
 }
-
 .tab-content {
     margin-top: 60px; /* Ensure content is below the tabs */
     /* padding: 20px; */
