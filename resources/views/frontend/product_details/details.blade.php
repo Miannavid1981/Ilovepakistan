@@ -636,7 +636,7 @@ $product_stock = 0;
                                     right: 0;
                                     bottom: 0;
                                     ">
-                                    <img src="{{ uploaded_asset(get_setting('site_icon')) }}" class="ms-2" style="width: 26px; height: auto" alt="Discover">
+                                    <img src="{{ uploaded_asset(get_setting('site_icon')) }}" class="ms-2" style="width: 26px; height: auto; background-color: #fff; border-radius: 50%;;" alt="Discover">
                                     </div>
                                 </div>
                             </div>
