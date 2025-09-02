@@ -238,6 +238,9 @@
                      @if(!empty($detailedProduct->shipment_info))
                         <li class="tab" data-tab="shipment_info">Shipment Info</li>
                     @endif
+                    @if(!empty($detailedProduct->product_blog))
+                        <li class="tab" data-tab="product_blog">Blog</li>
+                    @endif
                 </ul>
             
                 <div class="tab-content" style="    overflow-x: scroll !important;width: 100%;">
@@ -294,6 +297,13 @@
                     @if(!empty($detailedProduct->shipment_info))
                         <div class="tab-pane" id="shipment_info">
                             <p>{!! $detailedProduct->shipment_info !!}</p>
+                        </div>
+                    @endif
+
+                     <!-- product_blog Tab -->
+                    @if(!empty($detailedProduct->product_blog))
+                        <div class="tab-pane" id="product_blog">
+                            <p>{!! $detailedProduct->product_blog !!}</p>
                         </div>
                     @endif
 

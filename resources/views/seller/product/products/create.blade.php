@@ -329,6 +329,10 @@
                                 <div class="col-md-8">
                                     <textarea class="aiz-text-editor" name="shipment_info">{{ old('shipment_info') }}</textarea>
                                 </div>
+                                <label class="col-md-3 col-from-label fs-13">{{translate('Blog')}}</label>
+                                <div class="col-md-8">
+                                    <textarea class="aiz-text-editor" name="product_blog">{{ old('product_blog') }}</textarea>
+                                </div>
                             </div>
                         </div>
                     </div>

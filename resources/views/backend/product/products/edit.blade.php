@@ -238,11 +238,18 @@
                                     </div>
                                 </div>
 
-                                <!-- Short Description -->
+                                <!--shipment_info -->
                                 <div class="form-group">
                                     <label class="fs-13">{{translate('Shipment Info')}}</label>
                                     <div class="">
                                         <textarea class="aiz-text-editor" name="shipment_info">{{ $product->getTranslation('shipment_info', $lang) }}</textarea>
+                                    </div>
+                                </div>
+                                <!-- Product Blog-->
+                                <div class="form-group">
+                                    <label class="fs-13">{{translate('Blog')}}</label>
+                                    <div class="">
+                                        <textarea class="aiz-text-editor" name="product_blog">{{ $product->getTranslation('product_blog', $lang) }}</textarea>
                                     </div>
                                 </div>
                             </div>

@@ -360,6 +360,10 @@
                         <div class="col-lg-8">
                             <textarea class="aiz-text-editor" name="shipment_info">{{$product->shipment_info }}</textarea>
                         </div>
+                        <label class="col-lg-3 col-from-label">{{translate('Blog')}} <i class="las la-language text-danger" title="{{translate('Translatable')}}"></i></label>
+                        <div class="col-lg-8">
+                            <textarea class="aiz-text-editor" name="product_blog">{{$product->product_blog }}</textarea>
+                        </div>
                     </div>
                 </div>
             </div>
