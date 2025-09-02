@@ -243,7 +243,7 @@
                     <!-- Specifications Tab -->
                     @if(!empty($detailedProduct->pdf))
                         <div class="tab-pane" id="specifications">
-                            <a href="{{ uploaded_asset($detailedProduct->pdf) }}" download>Download</a>
+                            <a href="{{ uploaded_asset($detailedProduct->pdf) }}" class="btn btn-primary" download>Download</a>
                         </div>
                     @endif
             
