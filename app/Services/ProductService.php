@@ -151,7 +151,7 @@ class ProductService
 
         $collection['has_warranty'] = isset($collection['has_warranty']) ? 1 : 0;
         $short_description = $collection['short_description'];
-
+        $shipment_info = $collection['shipment_info'];
 
         $data = $collection->merge(compact(
             'user_id',
@@ -164,7 +164,8 @@ class ProductService
             'choice_options',
             'attributes',
             'published',
-            'short_description'
+            'short_description',
+            'shipment_info'
         ))->toArray();
 
         return Product::create($data);
@@ -309,6 +310,7 @@ class ProductService
         $approved = 0;
        
         $short_description = $collection['short_description'];
+        $shipment_info = $collection['shipment_info'];
         $data = $collection->merge(compact(
             'discount_start_date',
             'discount_end_date',
@@ -319,7 +321,8 @@ class ProductService
             'attributes',
             'commission',
             'approved',
-            'short_description'    
+            'short_description',
+            'shipment_info'
         ))->toArray();
         
         $product->update($data);
