@@ -60,7 +60,7 @@
 <style>
 .tabs {
     display: flex;
-    gap: 10px;
+    
     list-style: none;
     padding: 0;
     font-size: 16px !important;
@@ -76,7 +76,7 @@
 .tab.active {
     color: #000;
     font-size: 18px;
-    transform: scale(1.1);
+   
     font-weight: bold;
 }
 
@@ -219,7 +219,7 @@
     <section>
         <div class="container">
             <!-- Tabs section below the thumbnail slider -->
-            <div class="tabs-container mb-5">
+            <div class="tabs-container mb-5 pb-5">
                 <ul class="tabs">
                     @if(!empty($detailedProduct->description))
                         <li class="tab active" data-tab="description">Description</li>
