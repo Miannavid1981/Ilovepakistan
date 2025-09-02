@@ -193,7 +193,7 @@
     border: 0 !important;
 }
 .tab-content {
-    margin-top: 60px; /* Ensure content is below the tabs */
+    margin-top: 30px; /* Ensure content is below the tabs */
     /* padding: 20px; */
     background-color: #fff;
     /* border: 1px solid #ddd; */
