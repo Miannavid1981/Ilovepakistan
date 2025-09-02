@@ -220,7 +220,7 @@
                         <li class="tab active" data-tab="description">Description</li>
                     @endif
             
-                    @if(!empty($detailedProduct->specifications))
+                    @if(!empty($detailedProduct->pdf))
                         <li class="tab" data-tab="specifications">Specifications</li>
                     @endif
             
@@ -243,11 +243,7 @@
                     <!-- Specifications Tab -->
                     @if(!empty($detailedProduct->specifications))
                         <div class="tab-pane" id="specifications">
-                            <ul>
-                                @foreach($detailedProduct->specifications as $spec)
-                                    <li>{{ $spec }}</li>
-                                @endforeach
-                            </ul>
+                            <a href="{{ uploaded_asset($detailedProduct->pdf) }}" download>Download</a>
                         </div>
                     @endif
             
