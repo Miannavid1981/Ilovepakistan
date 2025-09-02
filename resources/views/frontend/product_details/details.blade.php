@@ -607,7 +607,7 @@ $product_stock = 0;
                         <div class="popup-content">
                             <span class="close-btn" onclick="closeSharePopup()">&times;</span>
                             <h3>Scan & Share</h3>
-                            <div id="qrcode-box">
+                            <div id="capture">
                                 <!-- QR Code -->
                                 <div id="qrCode">
                                     <div style="    aspect-ratio: 1 / 1;
@@ -668,8 +668,9 @@ $product_stock = 0;
                                 <a href="https://api.whatsapp.com/send?text={{ urlencode($detailedProduct->meta_title.' '.route('product', $detailedProduct->slug)) }}" target="_blank" class="social-icon whatsapp">
                                     <i class="fab fa-whatsapp"></i>
                                 </a>
-                            </div>
 
+                            </div>
+                            <button id="downloadBtn">Download as Image</button>
 
                         </div>
                     </div>
@@ -1274,7 +1275,21 @@ $product_stock = 0;
         </div>
     </div>
 </div>
+<!-- Add html2canvas from CDN -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script>
+    document.getElementById("downloadBtn").addEventListener("click", function() {
+        let div = document.getElementById("capture");
 
+        html2canvas(div).then(function(canvas) {
+            // Convert to image
+            let link = document.createElement("a");
+            link.download = "screenshot.png";
+            link.href = canvas.toDataURL("image/png");
+            link.click();
+        });
+    });
+</script>
 
 <script>
    function openSharePopup() {
