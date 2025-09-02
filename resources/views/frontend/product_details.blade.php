@@ -290,7 +290,7 @@
                      <!-- Specifications Tab -->
                     @if(!empty($detailedProduct->video_link))
                         <div class="tab-pane" id="video">
-                            <iframe src="{{ $detailedProduct->video_link }}" style="width: 100%; height: auto; aspect-ratio: 1/1;"></iframe>
+                            <iframe src="{{ $detailedProduct->video_link }}" style="width: 600px; height: auto; aspect-ratio: 1/1;"></iframe>
                         </div>
                     @endif
                     <!-- shipment_info Tab -->
