@@ -607,39 +607,50 @@ $product_stock = 0;
                         <div class="popup-content">
                             <span class="close-btn" onclick="closeSharePopup()">&times;</span>
                             <h3>Scan & Share</h3>
-                
-                            <!-- QR Code -->
-                            <div id="qrCode">
-                                <div style="    aspect-ratio: 1 / 1;
-                                width: 200px;
-                                display: flex;
-                                align-items: center;
-                                justify-content: center;
-                                margin: 0 auto;position: relative">
-                                    @php
-                                        $qrCode = base64_encode(QrCode::format('png')->size(200)->generate(url()->full()));
-                                    @endphp
-                                    <img src="data:image/png;base64,{{ $qrCode }}" style="width: 100%; height: 100%; aspect-ratio: 1 / 1;" />
-                                    <div style="   
-                                    position: absolute;
-                                    top: 0;
-                                    /* background-color: #fde6ff; */
-                                    border-radius: 50%;
-                                    /* width: 50px; */
-                                    /* height: 50px; */
+                            <div id="qrcode-box">
+                                <!-- QR Code -->
+                                <div id="qrCode">
+                                    <div style="    aspect-ratio: 1 / 1;
+                                    width: 200px;
                                     display: flex;
                                     align-items: center;
                                     justify-content: center;
-                                    /* border: 1px solid #8722d2; */
-                                    left: 5revert-layer;
-                                    left: 0;
-                                    right: 0;
-                                    bottom: 0;
-                                    ">
-                                    <img src="{{ uploaded_asset(get_setting('site_icon')) }}" class="ms-2" style="width: 26px; height: auto; background-color: #fff; border-radius: 50%;;" alt="Discover">
+                                    margin: 0 auto;position: relative">
+                                        @php
+                                            $qrCode = base64_encode(QrCode::format('png')->size(200)->generate(url()->full()));
+                                        @endphp
+                                        <img src="data:image/png;base64,{{ $qrCode }}" style="width: 100%; height: 100%; aspect-ratio: 1 / 1;" />
+                                        <div style="   
+                                        position: absolute;
+                                        top: 0;
+                                        /* background-color: #fde6ff; */
+                                        border-radius: 50%;
+                                        /* width: 50px; */
+                                        /* height: 50px; */
+                                        display: flex;
+                                        align-items: center;
+                                        justify-content: center;
+                                        /* border: 1px solid #8722d2; */
+                                        left: 5revert-layer;
+                                        left: 0;
+                                        right: 0;
+                                        bottom: 0;
+                                        ">
+                                        <img src="{{ uploaded_asset(get_setting('site_icon')) }}" class="ms-2" style="width: 26px; height: auto; background-color: #fff; border-radius: 50%;;" alt="Discover">
+                                        </div>
                                     </div>
+                                    <p>
+                                        @if(!empty($product_child_seller))
+                                            
+                                                {{ $product_child_seller->shop->name }}
+                                        
+                                        @else
+                                            {{ $detailedProduct->user->shop->name }}
+                                        @endif
+                                    </p>
                                 </div>
                             </div>
+                            
                 
                            <div class="social-links">
                                 <a href="https://www.facebook.com/sharer/sharer.php?u={{ urlencode(route('product', $detailedProduct->slug)) }}" target="_blank" class="social-icon facebook">
