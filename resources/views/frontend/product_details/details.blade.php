@@ -641,21 +641,25 @@ $product_stock = 0;
                                 </div>
                             </div>
                 
-                            <!-- Social Media Icons -->
-                            <div class="social-links">
-                                <a href="https://www.facebook.com/sharer/sharer.php?u=YOUR_URL" target="_blank" class="social-icon facebook">
+                           <div class="social-links">
+                                <a href="https://www.facebook.com/sharer/sharer.php?u={{ urlencode(route('product', $detailedProduct->slug)) }}" target="_blank" class="social-icon facebook">
                                     <i class="fab fa-facebook-f"></i>
                                 </a>
-                                <a href="https://twitter.com/intent/tweet?url=YOUR_URL" target="_blank" class="social-icon twitter">
+
+                                <a href="https://twitter.com/intent/tweet?url={{ urlencode(route('product', $detailedProduct->slug)) }}&text={{ urlencode($detailedProduct->meta_title) }}" target="_blank" class="social-icon twitter">
                                     <i class="fab fa-twitter"></i>
                                 </a>
-                                <a href="https://www.linkedin.com/sharing/share-offsite/?url=YOUR_URL" target="_blank" class="social-icon linkedin">
+
+                                <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ urlencode(route('product', $detailedProduct->slug)) }}" target="_blank" class="social-icon linkedin">
                                     <i class="fab fa-linkedin-in"></i>
                                 </a>
-                                <a href="https://api.whatsapp.com/send?text=YOUR_URL" target="_blank" class="social-icon whatsapp">
+
+                                <a href="https://api.whatsapp.com/send?text={{ urlencode($detailedProduct->meta_title.' '.route('product', $detailedProduct->slug)) }}" target="_blank" class="social-icon whatsapp">
                                     <i class="fab fa-whatsapp"></i>
                                 </a>
                             </div>
+
+
                         </div>
                     </div>
                 </div>
