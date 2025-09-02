@@ -186,36 +186,55 @@
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
             <div class="modal-body text-center">
-                <div style="    aspect-ratio: 1 / 1;
-                width: 200px;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                margin: 0 auto;">
-                    @php
-                        $qrCode = base64_encode(QrCode::format('png')->size(200)->generate(route('shop.visit', auth()->user()->shop->slug)));
-                    @endphp
-                    <img src="data:image/png;base64,{{ $qrCode }}" style="width: 100%; height: 100%; aspect-ratio: 1 / 1;" />
-                    <div style="   
-                    position: absolute;
-top: 0;
-/* background-color: #fde6ff; */
-border-radius: 50%;
-/* width: 50px; */
-/* height: 50px; */
-display: flex;
-align-items: center;
-justify-content: center;
-/* border: 1px solid #8722d2; */
-left: 5revert-layer;
-left: 0;
-right: 0;
-bottom: 0;
-                    ">
-                    <img src="{{ uploaded_asset(get_setting('site_icon')) }}" class="ms-2" style="width: 26px; height: auto" alt="Discover">
+                <div id="capture" class="py-4">
+                    <div style="aspect-ratio: 1 / 1;
+                                width: 200px;
+                                display: flex;
+                                align-items: center;
+                                justify-content: center;
+                                margin: 0 auto; position: relative;">
+                        @php
+                            $qrCode = base64_encode(QrCode::format('png')->size(200)->generate(route('shop.visit', auth()->user()->shop->slug)));
+                        @endphp
+                        <img src="data:image/png;base64,{{ $qrCode }}" style="width: 100%; height: 100%; aspect-ratio: 1 / 1;" />
+                        <div style="   
+                            position: absolute;
+                            top: 0;
+                            /* background-color: #fde6ff; */
+                            border-radius: 50%;
+                            /* width: 50px; */
+                            /* height: 50px; */
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            /* border: 1px solid #8722d2; */
+                            left: 5revert-layer;
+                            left: 0;
+                            right: 0;
+                            bottom: 0;
+                        ">
+                            <img src="{{ uploaded_asset(get_setting('site_icon')) }}" class="ms-2" style="width: 26px; height: auto" alt="Discover">
+                        </div>
                     </div>
                 </div>
+                <button id="downloadBtn" class="btn btn-primary mt-3" style="   margin: 0 auto; padding: 10px 20px !important;;">Download as Image</button>
             </div>
         </div>
     </div>
 </div>
+
+<!-- Add html2canvas from CDN -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script>
+    document.getElementById("downloadBtn").addEventListener("click", function() {
+        let div = document.getElementById("capture");
+
+        html2canvas(div).then(function(canvas) {
+            // Convert to image
+            let link = document.createElement("a");
+            link.download = "screenshot.png";
+            link.href = canvas.toDataURL("image/png");
+            link.click();
+        });
+    });
+</script>
