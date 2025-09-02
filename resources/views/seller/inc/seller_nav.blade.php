@@ -216,6 +216,7 @@
                             <img src="{{ uploaded_asset(get_setting('site_icon')) }}" class="ms-2" style="width: 26px; height: auto; background-color: #fff; border-radius: 50%;;" alt="Discover">
                         </div>
                     </div>
+                    <p>{{ auth()->user()->shop->name }}</p>
                 </div>
                 <button id="downloadBtn" class="btn btn-primary mt-3" style="   margin: 0 auto; padding: 10px 20px !important;;">Download as Image</button>
             </div>
