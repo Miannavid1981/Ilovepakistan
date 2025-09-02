@@ -615,7 +615,7 @@ $product_stock = 0;
                                 display: flex;
                                 align-items: center;
                                 justify-content: center;
-                                margin: 0 auto;">
+                                margin: 0 auto;position: relative">
                                     @php
                                         $qrCode = base64_encode(QrCode::format('png')->size(200)->generate(url()->full()));
                                     @endphp
