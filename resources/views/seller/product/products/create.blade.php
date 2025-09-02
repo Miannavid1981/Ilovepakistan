@@ -313,7 +313,7 @@
                     </div>
                     <div class="card">
                         <div class="card-header">
-                            <h5 class="mb-0 h6">{{ translate('Product Description') }}</h5>
+                            <h5 class="mb-0 h6">{{ translate('Product Info') }}</h5>
                         </div>
                         <div class="card-body">
                             <div class="form-group row">
