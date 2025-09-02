@@ -241,7 +241,7 @@
                     @endif
             
                     <!-- Specifications Tab -->
-                    @if(!empty($detailedProduct->specifications))
+                    @if(!empty($detailedProduct->pdf))
                         <div class="tab-pane" id="specifications">
                             <a href="{{ uploaded_asset($detailedProduct->pdf) }}" download>Download</a>
                         </div>
