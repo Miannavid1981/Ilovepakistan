@@ -325,6 +325,10 @@
                                 <div class="col-md-8">
                                     <textarea class="aiz-text-editor" name="description"></textarea>
                                 </div>
+                                <label class="col-md-3 col-from-label fs-13">{{translate('Shipment Info')}}</label>
+                                <div class="col-md-8">
+                                    <textarea class="form-control" name="shipment_info">{{ old('shipment_info') }}</textarea>
+                                </div>
                             </div>
                         </div>
                     </div>
