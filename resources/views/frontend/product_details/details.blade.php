@@ -670,8 +670,7 @@ $product_stock = 0;
                                 </a>
 
                             </div>
-                            <button id="downloadBtn" class="btn btn-primary mt-3" style="    background-color: rgba(118, 26, 223, 0.227);
-    transform: scale(0.984545);">Download as Image</button>
+                            <button id="downloadBtn" class="btn btn-primary mt-3" style="   margin: 0 auto; padding: 10px 20px !important;;">Download as Image</button>
 
                         </div>
                     </div>
