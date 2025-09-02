@@ -176,7 +176,8 @@
     left: 0;
     width: 100%;
     justify-content: flex-start;
-    border-bottom: 1px solid #ccc
+    border-bottom: 1px solid #ccc;
+    gap: 0 !important;
 
 }
 
