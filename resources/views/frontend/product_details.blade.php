@@ -230,6 +230,9 @@
                     @if(!empty($detailedProduct->video_link))
                         <li class="tab" data-tab="video">Video</li>
                     @endif
+                     @if(!empty($detailedProduct->shipment_info))
+                        <li class="tab" data-tab="shipment_info">Shipment Info</li>
+                    @endif
                 </ul>
             
                 <div class="tab-content" style="    overflow-x: scroll !important;width: 100%;">
@@ -280,6 +283,12 @@
                     @if(!empty($detailedProduct->video_link))
                         <div class="tab-pane" id="video">
                             <iframe src="{{ $detailedProduct->video_link }}" style="width: 100%; height: auto; aspect-ratio: 1/1;"></iframe>
+                        </div>
+                    @endif
+                    <!-- shipment_info Tab -->
+                    @if(!empty($detailedProduct->shipment_info))
+                        <div class="tab-pane active" id="shipment_info">
+                            <p>{!! $detailedProduct->shipment_info !!}</p>
                         </div>
                     @endif
 
