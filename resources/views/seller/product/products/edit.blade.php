@@ -355,6 +355,11 @@
                         <div class="col-lg-8">
                             <textarea class="aiz-text-editor" name="description"> {{$product->getTranslation('description',$lang)}} </textarea>
                         </div>
+
+                        <label class="col-lg-3 col-from-label">{{translate('Shipment info')}} <i class="las la-language text-danger" title="{{translate('Translatable')}}"></i></label>
+                        <div class="col-lg-8">
+                            <textarea class="aiz-text-editor" name="shipment_info">{{$product->shipment_info }}</textarea>
+                        </div>
                     </div>
                 </div>
             </div>

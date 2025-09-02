@@ -319,7 +319,7 @@
                             <div class="form-group row">
                                 <label class="col-md-3 col-from-label fs-13">{{translate('Short Description')}}</label>
                                 <div class="col-md-8">
-                                    <textarea class="form-control" name="short_description">{{ old('short_description') }}</textarea>
+                                    <textarea class="aiz-text-editor" name="short_description">{{ old('short_description') }}</textarea>
                                 </div>
                                 <label class="col-md-3 col-from-label">{{ translate('Description') }}</label>
                                 <div class="col-md-8">
@@ -327,7 +327,7 @@
                                 </div>
                                 <label class="col-md-3 col-from-label fs-13">{{translate('Shipment Info')}}</label>
                                 <div class="col-md-8">
-                                    <textarea class="form-control" name="shipment_info">{{ old('shipment_info') }}</textarea>
+                                    <textarea class="aiz-text-editor" name="shipment_info">{{ old('shipment_info') }}</textarea>
                                 </div>
                             </div>
                         </div>
