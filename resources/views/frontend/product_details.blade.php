@@ -292,7 +292,7 @@
                     @endif
                     <!-- shipment_info Tab -->
                     @if(!empty($detailedProduct->shipment_info))
-                        <div class="tab-pane active" id="shipment_info">
+                        <div class="tab-pane" id="shipment_info">
                             <p>{!! $detailedProduct->shipment_info !!}</p>
                         </div>
                     @endif
