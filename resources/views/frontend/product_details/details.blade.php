@@ -607,7 +607,7 @@ $product_stock = 0;
                         <div class="popup-content">
                             <span class="close-btn" onclick="closeSharePopup()">&times;</span>
                             <h3>Scan & Share</h3>
-                            <div id="capture">
+                            <div id="capture" class="py-4">
                                 <!-- QR Code -->
                                 <div id="qrCode">
                                     <div style="    aspect-ratio: 1 / 1;
@@ -670,7 +670,7 @@ $product_stock = 0;
                                 </a>
 
                             </div>
-                            <button id="downloadBtn">Download as Image</button>
+                            <button id="downloadBtn" class="btn btn-primary mt-3">Download as Image</button>
 
                         </div>
                     </div>
