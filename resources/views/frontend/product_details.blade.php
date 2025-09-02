@@ -163,6 +163,7 @@
 .tabs-container {
     position: relative;
     padding-top: 40px; /* Adjust based on how much space you want above the box */
+     border-bottom: 1px solid #ccc;
 }
 
 .tabs {
@@ -176,7 +177,7 @@
     left: 0;
     width: 100%;
     justify-content: flex-start;
-    border-bottom: 1px solid #ccc;
+   
     gap: 0 !important;
 
 }
