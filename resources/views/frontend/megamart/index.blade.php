@@ -1393,12 +1393,16 @@
             pauseOnHover: false,
             responsive: [
                 {
+                    breakpoint: 992,
+                    settings: { slidesToShow: 6 }
+                },
+                {
                     breakpoint: 768,
-                    settings: { slidesToShow: 5 }
+                    settings: { slidesToShow: 4 }
                 },
                 {
                     breakpoint: 520,
-                    settings: { slidesToShow: 3 }
+                    settings: { slidesToShow: 2 }
                 }
             ]
         });
