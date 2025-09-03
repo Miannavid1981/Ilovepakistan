@@ -620,7 +620,7 @@
             <div class="checkout_columns mb-4">
                 <div class="checkout_branding_logo" >
                     <a href="{{  url('/') }}">
-                        <img src="{{ $logo_url }}" style="width: 130px" alt="Bighouz" class="img-fluid">
+                        <img src="{{ $logo_url }}" style="height: 40px" alt="Bighouz" class="img-fluid">
                         <ul class="d-flex gap-2 list-unstyled fs-15 text-muted">
                             <li>Home</li>
                             <li><i class="fa fa-chevron-right"></i></li>
