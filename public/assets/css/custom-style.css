@@ -348,11 +348,11 @@ body.logged-in .fa-location-dot {
 }
 
 .nav-link.category-btn {
-  display: inline-block; 
-  border-radius: 20px;
-  background-color: transparent; 
-  padding: 5px 10px !important;
-  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    display: inline-block;
+    border-radius: 5px;
+    background-color: transparent;
+    padding: 5px 10px !important;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .nav-link.category-btn:hover {
