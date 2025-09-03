@@ -32,7 +32,7 @@
     <h4>Brands</h4>
     <a href="" class="text-dark fs-15 text-decoration-underline">
         View All
-    </a>
+</a>
 </div>
 <section class="container brand-logos-slider slider mt-3">
 

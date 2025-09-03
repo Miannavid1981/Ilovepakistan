@@ -224,7 +224,9 @@
                                                     <br>
                                                     
                                                   </div>
-                                             
+                                                  <h5> OR </h5>
+                                                  <br>
+                                                  <h6>Login with Email</h6>
                                             <!-- Email or Phone -->
                                             @if (addon_is_activated('otp_system'))
                                                 <div class="form-group phone-form-group mb-1">
@@ -235,14 +237,14 @@
                                                 <input type="hidden" name="country_code" value="">
                                                 
                                                  <div class="form-group">
-                                            <label for="email" class="fs-12 fw-700 text-soft-dark">{{  translate('Email') }}</label>
-                                            <input type="email" class="form-control custom-input {{ $errors->has('email') ? ' is-invalid' : '' }} rounded-2" value="{{ old('email') }}" placeholder="{{  translate('johndoe@example.com') }}" name="email" id="email" autocomplete="off">
-                                            @if ($errors->has('email'))
-                                                <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $errors->first('email') }}</strong>
-                                                </span>
-                                            @endif
-                                        </div>
+                                                    <label for="email" class="fs-12 fw-700 text-soft-dark">{{  translate('Email') }}</label>
+                                                    <input type="email" class="form-control custom-input {{ $errors->has('email') ? ' is-invalid' : '' }} rounded-2" value="{{ old('email') }}" placeholder="{{  translate('johndoe@example.com') }}" name="email" id="email" autocomplete="off">
+                                                    @if ($errors->has('email'))
+                                                        <span class="invalid-feedback" role="alert">
+                                                            <strong>{{ $errors->first('email') }}</strong>
+                                                        </span>
+                                                    @endif
+                                                </div>
                                                 
                                                 <div class="form-group text-right">
                                                     <button class="btn btn-link p-0 text-primary" type="button" onclick="toggleEmailPhone(this)"><i>*{{ translate('Use Email Instead') }}</i></button>
