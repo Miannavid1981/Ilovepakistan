@@ -30,7 +30,7 @@
 
 <div class="container d-flex justify-content-between ">
     <h4>Brands</h4>
-    <a href="" class="text-dark fs-18 text-decoration-underline">
+    <a href="" class="text-dark fs-15 text-decoration-underline">
         View All
     </a>
 </div>
