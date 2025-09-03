@@ -255,7 +255,7 @@
                     @if(!empty($detailedProduct->pdf))
                         <div class="tab-pane" id="specifications">
                             <p>Download the Specifications Document with the button below:</p>
-                            <a href="{{ uploaded_asset($detailedProduct->pdf) }}" class="btn btn-primary w-100px" download>Download</a>
+                            <a href="{{ uploaded_asset($detailedProduct->pdf) }}" class="btn btn-primary w-100px" style="margin: 0 auto;" download>Download</a>
                         </div>
                     @endif
             
@@ -290,7 +290,7 @@
                      <!-- Specifications Tab -->
                     @if(!empty($detailedProduct->video_link))
                         <div class="tab-pane" id="video">
-                            <iframe src="{{ $detailedProduct->video_link }}" style="width: 600px; height: auto; aspect-ratio: 1/1;"></iframe>
+                            <iframe src="{{ $detailedProduct->video_link }}" width="560" height="315" style="margin: 0 auto"></iframe>
                         </div>
                     @endif
                     <!-- shipment_info Tab -->
