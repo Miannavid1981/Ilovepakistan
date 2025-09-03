@@ -1382,7 +1382,7 @@
     $(document).ready(function(){
             
         
-        $(".#categories_slider").slick({
+        $("#categories_slider").slick({
             slidesToShow: 8,
             slidesToScroll: 1,
             autoplay: true,
