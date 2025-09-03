@@ -430,7 +430,7 @@ class OrderController extends Controller
             }
 
             $combined_order->grand_total += $order->grand_total;
-
+            
             $order->save();
         }
 
@@ -463,7 +463,7 @@ class OrderController extends Controller
         
         }
 
-
+        $combined_order->order_note = $request->order_note ?? '';
         $combined_order->save();
 
         $request->session()->put('combined_order_id', $combined_order->id);
