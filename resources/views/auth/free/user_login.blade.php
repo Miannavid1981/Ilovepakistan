@@ -172,7 +172,7 @@
     <!-- aiz-main-wrapper -->
     <div class="aiz-main-wrapper d-flex flex-column justify-content-center bg-white">
         <section class="bg-white overflow-hidden" style="min-height:100vh;">
-            <div class="row" style="min-height: 100vh;">
+            <div class="row px-3 mt-4" style="min-height: 100vh;">
                 
                 <!-- Right Side -->
                 <div class="col-xxl-12 col-lg-12">
