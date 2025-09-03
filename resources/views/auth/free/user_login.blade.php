@@ -224,9 +224,9 @@
                                                     <br>
                                                     
                                                   </div>
-                                                  <h5> OR </h5>
+                                                  <h5 align="center"> OR </h5>
                                                   <br>
-                                                  <h6>Login with Email</h6>
+                                                  <p align="center">Login with Email</p>
                                             <!-- Email or Phone -->
                                             @if (addon_is_activated('otp_system'))
                                                 <div class="form-group phone-form-group mb-1">
