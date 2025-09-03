@@ -191,8 +191,14 @@ header .nav-link:not(.category-drawer-toggle-btn) {
                         <li class="nav-item">
                             <a class="nav-link category-btn" href="#">Top Brands</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link category-btn" href="#">Customer Care</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link category-btn" href="#">Investor Opportunities</a>
+                        </li>
                         <li class="nav-item me-auto">
-                            <a class="nav-link category-btn" href="#">Home & Garden</a>
+                            <a class="nav-link category-btn" href="#">Top Categories</a>
                         </li>
                         
                         <!-- Last three items aligned to the right -->
