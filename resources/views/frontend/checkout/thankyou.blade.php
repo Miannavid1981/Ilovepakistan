@@ -151,11 +151,13 @@ strong {
                     <span class="fs-17 ">{{ $order->user->email }}</span><br/>
                     <span class="fs-17 ">{{ $order->user->phone }}</span><br/>
                 </p>
+                @if( !empty($order->order_note) )
                 <p class="mb-1">
                     <strong class="fs-16">Order Note</strong> <br/>
                     <span class="fs-17 ">{{ $order->order_note }}</span> <br/>
                     
                 </p>
+                @endif
 
                
         
