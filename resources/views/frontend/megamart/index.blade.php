@@ -402,7 +402,7 @@
             <h4>Explore Categories</h4>
             {{-- <a href="" class="fs-18 text-dark text-decoration-underline">View All</a> --}}
         </div>   
-        <div class="home_categories_grid">
+        <div class="" id="categories_slider">
             <a href="/shop" class="d-flex flex-column align-items-center justify-content-center rounded-circle border-1 border home_category">
                             <img src="https://s.alicdn.com/@img/imgextra/i2/O1CN01wmYqD51WrDtOCBmav_!!6000000002841-2-tps-200-200.png" class="" style="width: 60px; height: auto; aspect-ratio: 1 / 1;" >
                             <p class="mt-2  text-center mb-0" style="  
@@ -1382,7 +1382,25 @@
     $(document).ready(function(){
             
         
-   
+        $(".#categories_slider").slick({
+            slidesToShow: 8,
+            slidesToScroll: 1,
+            autoplay: true,
+            autoplaySpeed: 1500,
+            arrows: false,
+            dots: false,
+            pauseOnHover: false,
+            responsive: [
+                {
+                    breakpoint: 768,
+                    settings: { slidesToShow: 5 }
+                },
+                {
+                    breakpoint: 520,
+                    settings: { slidesToShow: 3 }
+                }
+            ]
+        });
         $('.brand-logos-slider').slick({
             slidesToShow: 8,
             slidesToScroll: 1,
