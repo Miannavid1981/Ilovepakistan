@@ -417,7 +417,7 @@ header .nav-link:not(.category-drawer-toggle-btn) {
                                     <h5>Shopping Cart</h5>
                                 </div>
                                
-                                <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="flex-grow-1  custom_scrollbar ">
                                 
