@@ -180,7 +180,7 @@
                         <div class="row align-items-center justify-content-center justify-content-lg-center h-100">
                             <div class="col-md-4">
                                 <!-- Site Icon -->
-                                <div class="size-80px w-100 text-lg-center mb-2">
+                                <div class="size-80px w-100 text-center mb-2">
                                     <img src="{{ uploaded_asset(get_setting('site_icon')) }}" alt="{{ translate('Site Icon')}}" class=" h-100 w-auto m-auto">
                                 </div>
                                 <!-- Titles -->
