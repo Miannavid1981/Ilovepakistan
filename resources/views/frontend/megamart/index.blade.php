@@ -348,6 +348,7 @@
     /* max-width: 150px; */
     color: #000;
     border: 2px solid #eee !important;
+    margin: 10px;
 }
 
 </style>
