@@ -102,7 +102,7 @@ header .nav-link:not(.category-drawer-toggle-btn) {
                     <!-- My Account -->
                     <div class="dropdown">
                        
-                        <button class="btn  dropdown-toggle p-0 " type="button" id="dropdownMyAccount" data-bs-toggle="dropdown" aria-expanded="false">
+                        <button class="btn  dropdown-toggle p-0 border-0" type="button" id="dropdownMyAccount" data-bs-toggle="dropdown" aria-expanded="false">
                         @auth
                         
                             <div class="d-flex">
@@ -240,7 +240,7 @@ header .nav-link:not(.category-drawer-toggle-btn) {
             <!-- My Account -->
             <div class="dropdown me-3">
                 
-                <button class="btn  dropdown-toggle p-0 " type="button" id="dropdownMyAccount" data-bs-toggle="dropdown" aria-expanded="false">
+                <button class="btn  dropdown-toggle p-0 border-0" type="button" id="dropdownMyAccount" data-bs-toggle="dropdown" aria-expanded="false">
                 @auth
                 
                     <div class="d-flex">
