@@ -7,7 +7,6 @@ use App\Traits\PreventDemoModeChanges;
 
 class Banner extends Model
 {
-    use PreventDemoModeChanges;
-
+    protected $guarded = [];
     //
 }
