@@ -356,11 +356,12 @@ body.logged-in .fa-location-dot {
 }
 
 .nav-link.category-btn:hover {
-  background-color: #F5F5F5; 
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
-  text-decoration: none;
+    /* background-color: #F5F5F5; */
+    /* box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); */
+    text-decoration: none;
+    border-bottom: 2px solid #9a30b9;
+    border-radius: 0;
 }
-
 
 .nav-item {
   margin: 0;
