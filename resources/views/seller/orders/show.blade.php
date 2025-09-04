@@ -149,6 +149,10 @@
                                 <td class="text-main text-bold">{{ translate('Additional Info') }}</td>
                                 <td class="text-right">{{ $order->additional_info }}</td>
                             </tr>
+                            <tr>
+                                <td class="text-main text-bold">{{ translate('Customer Note') }}</td>
+                                <td class="text-right">{{ $order->order_note }}</td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>
