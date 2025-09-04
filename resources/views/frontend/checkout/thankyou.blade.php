@@ -170,7 +170,7 @@ strong {
                     <span class="fs-17 text-capitalize">{{ str_replace("_", " ", $order->order_type) }}</span>
                 </p>
                 <p class="mb-1">
-                    <strong class="fs-16">Payment method:</strong> <br/>
+                    <strong class="fs-16">Payment Status:</strong> <br/>
                     <span class="fs-17 text-capitalize">{{ str_replace("_", " ", $order->payment_status) }}</span>
                 </p>
                 <p class="mb-1">
