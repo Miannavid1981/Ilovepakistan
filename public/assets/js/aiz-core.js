@@ -2080,72 +2080,73 @@ $.fn.toggleAttr = function (attr, attr1, attr2) {
                     $this.siblings('[data-type="plus"]').removeAttr("disabled");
                 }
             });
-           $(document).on("click", ".aiz-plus-minus button", function(e) {
-            e.preventDefault();
-console.log("clicked");
-                    var fieldName = $(this).attr("data-field");
-                    var type = $(this).attr("data-type");
-                    var input = $("input[name='" + fieldName + "']");
-                    var currentVal = parseInt(input.val());
+            // $(".aiz-plus-minus button")
+            //     .off("click")
+            //     .on("click", function (e) {
+            //         e.preventDefault();
 
-                    if (!isNaN(currentVal)) {
-                        if (type == "minus") {
-                            if (currentVal > input.attr("min")) {
-                                input.val(currentVal - 1).change();
-                            }
-                            if (parseInt(input.val()) == input.attr("min")) {
-                                $(this).attr("disabled", true);
-                            }
-                        } else if (type == "plus") {
-                            if (currentVal < input.attr("max")) {
-                                input.val(currentVal + 1).change();
-                            }
-                            if (parseInt(input.val()) == input.attr("max")) {
-                                $(this).attr("disabled", true);
-                            }
-                        }
-                    } else {
-                        input.val(0);
-                    }
-                });
-            $(".aiz-plus-minus input")
-                .off("change")
-                .on("change", function () {
-                    console.log("change");
-                    var minValue = parseInt($(this).attr("min"));
-                    var maxValue = parseInt($(this).attr("max"));
-                    var valueCurrent = parseInt($(this).val());
+            //         var fieldName = $(this).attr("data-field");
+            //         var type = $(this).attr("data-type");
+            //         var input = $("input[name='" + fieldName + "']");
+            //         var currentVal = parseInt(input.val());
 
-                    name = $(this).attr("name");
-                    if (valueCurrent >= minValue) {
-                        $(this)
-                            .siblings("[data-type='minus']")
-                            .removeAttr("disabled");
-                    } else {
-                        alert(
-                            translate(
-                                "Sorry, the minimum limit has been reached"
-                            )
-                        );
-                        $(this).val(minValue);
-                    }
-                    if (valueCurrent <= maxValue) {
-                        $(this)
-                            .siblings("[data-type='plus']")
-                            .removeAttr("disabled");
-                    } else {
-                        alert(
-                            translate(
-                                "Sorry, the maximum limit has been reached"
-                            )
-                        );
-                        $(this).val(maxValue);
-                    }
+            //         if (!isNaN(currentVal)) {
+            //             if (type == "minus") {
+            //                 if (currentVal > input.attr("min")) {
+            //                     input.val(currentVal - 1).change();
+            //                 }
+            //                 if (parseInt(input.val()) == input.attr("min")) {
+            //                     $(this).attr("disabled", true);
+            //                 }
+            //             } else if (type == "plus") {
+            //                 if (currentVal < input.attr("max")) {
+            //                     input.val(currentVal + 1).change();
+            //                 }
+            //                 if (parseInt(input.val()) == input.attr("max")) {
+            //                     $(this).attr("disabled", true);
+            //                 }
+            //             }
+            //         } else {
+            //             input.val(0);
+            //         }
+            //     });
+            // $(".aiz-plus-minus input")
+            //     .off("change")
+            //     .on("change", function () {
+            //         var minValue = parseInt($(this).attr("min"));
+            //         var maxValue = parseInt($(this).attr("max"));
+            //         var valueCurrent = parseInt($(this).val());
 
-                    if (typeof getVariantPrice === "function") {
-                        getVariantPrice();
-                    }
-                });
+            //         name = $(this).attr("name");
+            //         if (valueCurrent >= minValue) {
+            //             $(this)
+            //                 .siblings("[data-type='minus']")
+            //                 .removeAttr("disabled");
+            //         } else {
+            //             alert(
+            //                 translate(
+            //                     "Sorry, the minimum limit has been reached"
+            //                 )
+            //             );
+            //             $(this).val(minValue);
+            //         }
+            //         if (valueCurrent <= maxValue) {
+            //             $(this)
+            //                 .siblings("[data-type='plus']")
+            //                 .removeAttr("disabled");
+            //         } else {
+            //             alert(
+            //                 translate(
+            //                     "Sorry, the maximum limit has been reached"
+            //                 )
+            //             );
+            //             $(this).val(maxValue);
+            //         }
+
+            //         if (typeof getVariantPrice === "function") {
+            //             getVariantPrice();
+            //         }
+            //     });
         },
         hovCategoryMenu: function () {
             $("#category-menu-icon, #category-sidebar")
