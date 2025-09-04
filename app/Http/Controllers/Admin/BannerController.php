@@ -11,12 +11,12 @@ class BannerController extends Controller
     public function index()
     {
         $banners = Banner::all();
-        return view('admin.banners.index', compact('banners'));
+        return view('backend.banners.index', compact('banners'));
     }
 
     public function create()
     {
-        return view('admin.banners.create');
+        return view('backend.banners.create');
     }
 
     public function store(Request $request)
@@ -29,7 +29,7 @@ class BannerController extends Controller
 
         Banner::create(['image' => $path]);
 
-        return redirect()->route('admin.banners.index')->with('success', 'Banner added!');
+        return redirect()->route('backend.banners.index')->with('success', 'Banner added!');
     }
 
     public function destroy(Banner $banner)
