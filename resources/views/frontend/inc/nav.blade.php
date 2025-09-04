@@ -237,18 +237,68 @@ header .nav-link:not(.category-drawer-toggle-btn) {
         <div class="col-8 d-flex justify-content-end align-items-center">
 
 
-            <i class="fa-solid fa-user fs-20 me-3"></i>
+            <!-- My Account -->
+            <div class="dropdown">
+                
+                <button class="btn  dropdown-toggle p-0 " type="button" id="dropdownMyAccount" data-bs-toggle="dropdown" aria-expanded="false">
+                @auth
+                
+                    <div class="d-flex">
+                            @if ($user->avatar_original != null)
+                                <span class="size-40px rounded-circle overflow-hidden border border-transparent nav-user-img">
+                                    <img src="{{ $user_avatar }}" class="img-fit h-100 w-100" alt="{{ translate('avatar') }}"
+                                        onerror="this.onerror=null;this.src='{{ static_asset('assets/img/avatar-place.png') }}';">
+                                </span>
+                            @endif
+                            <div class="d-flex flex-column">
+                                @php
+                                    $user_name = explode(' ', $user->name);
+                                    $first_name = $user_name[0];
+
+                                @endphp
+                                <span class="d-block fs-15"  style="text-wrap: auto; font-family: 'Aeonik' !important;"> Hello, {{$first_name}} </span>
+                                <span class="fw-bold fs-16"  style="font-family: 'Aeonik-Semibold' !important;">My Account</span>
+                                
+                            </div>
+                            
+                        </div>
+                    @else 
+                        <div class="d-flex flex-column">
+                            <span class="d-block fs-14" style="font-family: 'Aeonik' !important;"> Customer Area</span>
+                            <span class="fw-bold fs-15"  style="font-family: 'Aeonik-Semibold' !important;" >My Account</span>
+                        </div>
+                    @endauth
+                </button>
+                
+                <ul class="dropdown-menu bg-white" aria-labelledby="dropdownMyAccount">
+                    @auth 
+                        <li><a href="{{ $my_account_url }}" class="dropdown-item Text-dark fs-14"   @if(Auth::user()->user_type == "staff" )  target="_blank"  @endif  > My Account</a></li>
+                        <li><a  href="{{ url('/my-orders') }}" class="dropdown-item fs-14" >Orders</a></li>
+                    
+                    @else 
+                        <li><a href="{{ route('user.login') }}" class="dropdown-item fs-16">Login</a></li>
+                        <li><a href="{{ route('user.registration') }}" class="dropdown-item fs-16">Register</a></li>
+                    @endif
+                    @auth 
+                        <li class="divider"></li>
+                        <li>
+                        <a class="dropdown-item fs-14"  href="{{ route('logout') }}">Log Out</a>
+                        </li>
+                    @endauth
+                
+                </ul>
+            </div>
           
 
-                @if(show_global_cart())
+            @if(show_global_cart())
+                
+                <button class="btn btn-light bg-white p-0 border-0 toggle-cart-modal">
+                    <i class="fa-solid fa-cart-shopping fs-20"></i>
+                    <span class="cart-badge g-cart-items-count">0</span>
                     
-                    <button class="btn btn-light bg-white p-0 border-0 toggle-cart-modal">
-                        <i class="fa-solid fa-cart-shopping fs-20"></i>
-                        <span class="cart-badge g-cart-items-count">0</span>
-                        
-                    </button>
+                </button>
 
-                @endif
+            @endif
             
         </div>
         <div class="col-12 mt-2">
