@@ -51,7 +51,7 @@
                         <div class="row align-items-center justify-content-center justify-content-lg-center h-100">
                             <div class="col-xxl-3 p-4 p-lg-5">
                                 <!-- Site Icon -->
-                                <a class=" text-center" href="/">
+                                <a class="  text-center w-100 d-flex justify-content-center" href="/">
                                     <img src="{{ uploaded_asset(get_setting('site_icon')) }}" alt="{{ translate('Site Icon')}}" class="w-100 mb-4" style="max-width: 100px;">
                                 </a>
                                 <!-- Titles -->
