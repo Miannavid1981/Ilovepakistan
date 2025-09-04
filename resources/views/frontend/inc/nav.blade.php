@@ -192,14 +192,19 @@ header .nav-link:not(.category-drawer-toggle-btn) {
                             <a class="nav-link category-btn" href="#">Top Brands</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link category-btn" href="#">Customer Care</a>
+                            <a class="nav-link category-btn" href="#">Top Categories</a>
+                        </li>
+                        
+                        <li class="nav-item">
+                            <a class="nav-link category-btn" href="#">Bighouz Ecosystem</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link category-btn" href="#">Investor Opportunities</a>
                         </li>
                         <li class="nav-item me-auto">
-                            <a class="nav-link category-btn" href="#">Top Categories</a>
+                            <a class="nav-link category-btn" href="#">Customer Care</a>
                         </li>
+                        
                         
                         <!-- Last three items aligned to the right -->
                         <li class="nav-item me-3">
