@@ -43,7 +43,7 @@ class BannerController extends Controller
 
         $banner->delete();
 
-        return redirect()->route('admin.banners.index')->with('success', 'Banner deleted successfully!');
+        return redirect()->route('admin.home_banners.index')->with('success', 'Banner deleted successfully!');
     }
 
 }
