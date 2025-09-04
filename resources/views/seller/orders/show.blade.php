@@ -151,7 +151,7 @@
                             </tr>
                             <tr>
                                 <td class="text-main text-bold">{{ translate('Customer Note') }}</td>
-                                <td class="text-right">{{ $order->order_note }}</td>
+                                <td class="text-right">{{ $order->combinedOrder->order_note }}</td>
                             </tr>
                         </tbody>
                     </table>
