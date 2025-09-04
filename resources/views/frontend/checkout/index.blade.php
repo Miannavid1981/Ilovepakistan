@@ -476,10 +476,11 @@
       .aiz-main-wrapper {
         margin-top: 0px !important;
     }
+    
 }
 
 @media (max-width: 992px) {
-    .checkout_branding_logo, #private_ltd_txt {
+    .checkout_branding_logo, #private_ltd_tx, .bottom-nav {
         display: none !important;
     }
 }
