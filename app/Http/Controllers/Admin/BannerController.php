@@ -32,9 +32,18 @@ class BannerController extends Controller
         return redirect()->route('admin.home_banners.index')->with('success', 'Banner added!');
     }
 
-    public function destroy(Banner $banner)
+    public function destroy($id)
     {
+        $banner = \App\Models\Banner::findOrFail($id);
+
+        // optional: delete image file too
+        if ($banner->image && \Storage::disk('public')->exists($banner->image)) {
+            \Storage::disk('public')->delete($banner->image);
+        }
+
         $banner->delete();
-        return back()->with('success', 'Banner deleted!');
+
+        return redirect()->route('admin.banners.index')->with('success', 'Banner deleted successfully!');
     }
+
 }
