@@ -2080,10 +2080,8 @@ $.fn.toggleAttr = function (attr, attr1, attr2) {
                     $this.siblings('[data-type="plus"]').removeAttr("disabled");
                 }
             });
-            $(".aiz-plus-minus button")
-                .off("click")
-                .on("click", function (e) {
-                    e.preventDefault();
+           $(document).off("click", ".aiz-plus-minus button").on("click", ".aiz-plus-minus button", function(e) {
+            e.preventDefault();
 
                     var fieldName = $(this).attr("data-field");
                     var type = $(this).attr("data-type");
