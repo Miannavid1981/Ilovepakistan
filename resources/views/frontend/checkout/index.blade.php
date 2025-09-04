@@ -355,9 +355,7 @@
         padding: 0 40px !important;
         padding-top: 40px !important;
     }
-    .aiz-main-wrapper {
-        margin-top: 0px !important;
-    }
+  
 }
 
 .form-control {
@@ -474,6 +472,9 @@
     }
     .header-top {
         display: none !important;
+    }
+      .aiz-main-wrapper {
+        margin-top: 0px !important;
     }
 }
 
