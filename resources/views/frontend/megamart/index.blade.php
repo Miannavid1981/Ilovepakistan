@@ -363,7 +363,7 @@
                     style="background-image: url('{{ uploaded_asset( $banner->image) }}');
                             background-size: cover; 
                             background-position: center;
-                            background-color: #d3e7ff;
+                            
                             border-radius: 20px">
                 </div>
             @endforeach
