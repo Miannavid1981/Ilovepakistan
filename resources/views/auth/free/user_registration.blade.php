@@ -44,15 +44,15 @@
    <!-- aiz-main-wrapper -->
    <div class="aiz-main-wrapper d-flex flex-column justify-content-center bg-white">
     <section class="bg-white overflow-hidden" style="min-height:100vh;">
-        <div class="row" style="min-height: 100vh;">
+        <div class="row px-3" style="min-height: 100vh;">
                 <!-- Right Side -->
                 <div class="col-xxl-12 col-lg-5">
                     <div class="right-content">
                         <div class="row align-items-center justify-content-center justify-content-lg-center h-100">
                             <div class="col-xxl-3 p-4 p-lg-5">
                                 <!-- Site Icon -->
-                                <div class=" text-lg-center">
-                                    <img src="{{ uploaded_asset(get_setting('site_icon')) }}" alt="{{ translate('Site Icon')}}" class="">
+                                <div class=" text-center">
+                                    <img src="{{ uploaded_asset(get_setting('site_icon')) }}" alt="{{ translate('Site Icon')}}" class="w-100 mb-4" style="max-width: 100px;">
                                 </div>
                                 <!-- Titles -->
                                 <div class="text-center text-lg-center">
