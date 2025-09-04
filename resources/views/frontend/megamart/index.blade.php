@@ -360,7 +360,7 @@
         <div class="main_banner_slider" >
             @foreach(App\Models\Banner::all() as $banner)
                 <div class="left-section d-flex flex-column h-100"
-                    style="background-image: url('{{ asset('storage/' . $banner->image) }}');
+                    style="background-image: url('{{ uploaded_asset( $banner->image) }}');
                             background-size: cover; 
                             background-position: center;
                             background-color: #d3e7ff;
