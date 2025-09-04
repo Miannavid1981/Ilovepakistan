@@ -2082,7 +2082,7 @@ $.fn.toggleAttr = function (attr, attr1, attr2) {
             });
            $(document).on("click", ".aiz-plus-minus button", function(e) {
             e.preventDefault();
-
+console.log("clicked");
                     var fieldName = $(this).attr("data-field");
                     var type = $(this).attr("data-type");
                     var input = $("input[name='" + fieldName + "']");
@@ -2111,6 +2111,7 @@ $.fn.toggleAttr = function (attr, attr1, attr2) {
             $(".aiz-plus-minus input")
                 .off("change")
                 .on("change", function () {
+                    console.log("change");
                     var minValue = parseInt($(this).attr("min"));
                     var maxValue = parseInt($(this).attr("max"));
                     var valueCurrent = parseInt($(this).val());
