@@ -358,39 +358,40 @@
     <div class="bighouz-business">
 
         <div class="main_banner_slider" >
-            <div class="left-section d-flex flex-column h-100" style="background-image: url(https://static.vecteezy.com/system/resources/thumbnails/008/520/419/small_2x/go-solar-illustration-for-infographic-solar-panel-sun-clean-electricity-green-renewable-sustainable-energy-self-awareness-innovative-energetic-environment-nature-banner-graphic-template-vector.jpg); background-size: cover; background-position: center; background-color: #d3e7ff ; border-radius: 20px">
-            </div>
-            <div class="left-section d-flex flex-column h-100" style="background-image: url(https://litech.com.pk/wp-content/uploads/2024/08/tigfox-banner.jpg); background-size: cover; background-position: center; background-color: #d3e7ff ; border-radius: 20px">
-            </div>
-            {{-- <div class="left-section d-flex flex-column h-100" style="background-image: url({{ static_asset('assets/img/headphone-earphones-electronics-gadgets-flyer-design-template-f2a41ff7a4f5e05ae8bb552d8903f906_screen.webp') }}); background-size: cover; background-position: center; background-color: #d3e7ff ; border-radius: 20px">
-            </div>
-            <div class="left-section d-flex flex-column h-100" style="background-image: url({{ static_asset('assets/img/1_8Fx_5pUpS4wda42aGnuuuQ.webp') }}); background-size: cover; background-position: center; background-color: #d3e7ff ; border-radius: 20px;">
-            </div> --}}
+            @foreach(App\Models\Banner::all() as $banner)
+                <div class="left-section d-flex flex-column h-100"
+                    style="background-image: url('{{ asset('storage/' . $banner->image) }}');
+                            background-size: cover; 
+                            background-position: center;
+                            background-color: #d3e7ff;
+                            border-radius: 20px">
+                </div>
+            @endforeach
         </div>
 
-                <!-- Left Section -->
+        <!-- Left Section -->
             
 
                 
         <!-- Right Section -->
-            <div class="right-section flex-column h-100">
-                <div class="category-grid">
-              
-        
-                    <div class="category-card" style="background-image: url(https://www.xindun-power.com/uploadfile/upload/2021-09/17/20KWSolarSystem_01.jpg); background-size:cover; aspect-ratio: 1 / 1;">
-                    </div>
-                    <div class="category-card" style="background-image: url({{ static_asset('assets/img/screenshot.webp') }}); background-size:cover; aspect-ratio: 1 / 1;">
-                    </div>
-                    <div class="category-card" style="background-image: url({{ static_asset('assets/img/163686796-moisturizing-cosmetic-products-ad-light-green-background-with-cream-jar-on-square-podium-and-palm.webp') }}); background-size:cover; aspect-ratio: 1 / 1;">
-                    </div>
-                    <div class="category-card" style="background-image: url({{ static_asset('assets/img/beauty-skin-care-center-promotion-design-social-media-post-and-banner-minimalist-square-template-to-promote-hair-salon-medical-spa-yoga-cosmetic-sale-natural-skin-treatment-makeup-etc-vector.webp') }}); background-size:cover; aspect-ratio: 1 / 1;">
-                    </div>
-                    <div class="category-card" style="background-image: url({{ static_asset('assets/img/103816751-square-promotional-banner-minimal-design-decorated-banner-put-your-text-in-there-and-start-your.webp') }}); background-size:cover; aspect-ratio: 1 / 1;">
-                    </div>
-                    <div class="category-card" style="background-image: url({{ static_asset('assets/img/15wpIkbEsTYpv.webp') }}); background-size:cover; aspect-ratio: 1 / 1;">
-                    </div>    
+        <div class="right-section flex-column h-100">
+            <div class="category-grid">
+            
+    
+                <div class="category-card" style="background-image: url(https://www.xindun-power.com/uploadfile/upload/2021-09/17/20KWSolarSystem_01.jpg); background-size:cover; aspect-ratio: 1 / 1;">
                 </div>
+                <div class="category-card" style="background-image: url({{ static_asset('assets/img/screenshot.webp') }}); background-size:cover; aspect-ratio: 1 / 1;">
+                </div>
+                <div class="category-card" style="background-image: url({{ static_asset('assets/img/163686796-moisturizing-cosmetic-products-ad-light-green-background-with-cream-jar-on-square-podium-and-palm.webp') }}); background-size:cover; aspect-ratio: 1 / 1;">
+                </div>
+                <div class="category-card" style="background-image: url({{ static_asset('assets/img/beauty-skin-care-center-promotion-design-social-media-post-and-banner-minimalist-square-template-to-promote-hair-salon-medical-spa-yoga-cosmetic-sale-natural-skin-treatment-makeup-etc-vector.webp') }}); background-size:cover; aspect-ratio: 1 / 1;">
+                </div>
+                <div class="category-card" style="background-image: url({{ static_asset('assets/img/103816751-square-promotional-banner-minimal-design-decorated-banner-put-your-text-in-there-and-start-your.webp') }}); background-size:cover; aspect-ratio: 1 / 1;">
+                </div>
+                <div class="category-card" style="background-image: url({{ static_asset('assets/img/15wpIkbEsTYpv.webp') }}); background-size:cover; aspect-ratio: 1 / 1;">
+                </div>    
             </div>
+        </div>
 
     </div>
 

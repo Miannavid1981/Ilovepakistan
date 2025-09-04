@@ -1406,7 +1406,7 @@
                         <ul class="aiz-side-nav-list level-2">
                             
                             <li class="aiz-side-nav-item">
-                                <a href="{{ route('website.manage-banners') }}" class="aiz-side-nav-link">
+                                <a href="{{ route('home_banners') }}" class="aiz-side-nav-link">
                                     <span class="aiz-side-nav-text">{{translate('Homepage Banners')}}</span>
                                 </a>
                             </li>

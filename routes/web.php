@@ -617,3 +617,7 @@ Route::get('invoice/{order_id}', [InvoiceController::class, 'invoice_download'])
 
 Route::get('/seller/verify-otp', [RegisterController::class, 'showOtpForm'])->name('verify.otp.form');
 Route::post('/seller/verify-otp', [RegisterController::class, 'verifyOtp'])->name('verify.otp.submit');
+
+Route::prefix('admin')->name('admin.')->group(function () {
+    Route::resource('home_banners', \App\Http\Controllers\Admin\BannerController::class);
+});
