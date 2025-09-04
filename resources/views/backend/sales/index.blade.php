@@ -127,6 +127,7 @@
                             @if (addon_is_activated('refund_request'))
                                 <th>{{ translate('Refund') }}</th>
                             @endif
+                            <th>{{ translate('Customer Note') }}</th>
                             <th>{{ translate('Date') }}</th>
                             <th class="text-right" width="15%">{{ translate('options') }}</th>
                         </tr>
@@ -225,6 +226,7 @@
                                         <span class="badge badge-inline badge-danger">{{ translate('Unpaid') }}</span>
                                     @endif
                                 </td>
+                                <td>{{$order->order_note  }}</td>
                                 <td> {{ $order->orders->first()->created_at->format('F j, Y \a\t g:iA') }}</td>
                                 <td class="text-right">
                                     @if (addon_is_activated('pos_system') && $order->orders->first()->order_from == 'pos')
