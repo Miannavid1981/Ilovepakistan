@@ -7,7 +7,7 @@
     <ul style="list-style-type: none !important;">
         @foreach($banners as $banner)
             <li>
-                <div class="d-flex">
+                <div class="d-flex align-items-center">
 
                     <img src="{{ uploaded_asset( $banner->image) }}" width="200">
                     <form action="{{ route('admin.home_banners.destroy', $banner->id) }}" method="POST">
