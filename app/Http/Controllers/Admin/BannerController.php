@@ -22,12 +22,12 @@ class BannerController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'image' => 'required|image',
+            'image' => 'required|integer', // this will be the upload_id
         ]);
 
-        $path = $request->file('image')->store('banners', 'public');
-
-        Banner::create(['image' => $path]);
+        Banner::create([
+            'image' => $request->image,
+        ]);
 
         return redirect()->route('admin.home_banners.index')->with('success', 'Banner added!');
     }
