@@ -4,7 +4,7 @@
 
   <h2>Banners</h2>
 <a href="{{ route('admin.home_banners.create') }}" class="btn btn-primary">Add Banner</a>
-    <ul>
+    <ul style="list-style-type: none !important;">
         @foreach($banners as $banner)
             <li>
                 <img src="{{ uploaded_asset( $banner->image) }}" width="200">
