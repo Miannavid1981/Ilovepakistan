@@ -238,7 +238,7 @@ header .nav-link:not(.category-drawer-toggle-btn) {
 
 
             <!-- My Account -->
-            <div class="dropdown">
+            <div class="dropdown me-3">
                 
                 <button class="btn  dropdown-toggle p-0 " type="button" id="dropdownMyAccount" data-bs-toggle="dropdown" aria-expanded="false">
                 @auth
