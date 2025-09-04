@@ -1404,6 +1404,13 @@
                             <span class="aiz-side-nav-arrow"></span>
                         </a>
                         <ul class="aiz-side-nav-list level-2">
+                            
+                            <li class="aiz-side-nav-item">
+                                <a href="{{ route('website.manage-banners') }}" class="aiz-side-nav-link">
+                                    <span class="aiz-side-nav-text">{{translate('Homepage Banners')}}</span>
+                                </a>
+                            </li>
+                            
                             @can('select_homepage')
                                 <li class="aiz-side-nav-item">
                                     <a href="{{ route('website.select-homepage') }}" class="aiz-side-nav-link">
