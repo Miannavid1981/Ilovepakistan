@@ -244,7 +244,7 @@
                                             @endif
                                         </td>
                                         <td>
-                                            {{ $order->order_note ?? '' }}
+                                            {{ $order->combinedOrder->order_note ?? '' }}
                                         </td>
                                         <td class="text-right">
                                             @if (addon_is_activated('pos_system') && $order->order_from == 'pos')
