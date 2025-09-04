@@ -29,7 +29,7 @@ class BannerController extends Controller
 
         Banner::create(['image' => $path]);
 
-        return redirect()->route('backend.banners.index')->with('success', 'Banner added!');
+        return redirect()->route('admin.home_banners.index')->with('success', 'Banner added!');
     }
 
     public function destroy(Banner $banner)
