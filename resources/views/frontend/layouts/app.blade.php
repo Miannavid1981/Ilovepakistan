@@ -491,8 +491,9 @@
     $(document).ready(function() {
       // Toggle drawer
       $('.category-drawer-toggle-btn').on('click', function() {
+        $("html, body").animate({ scrollTop: 0 }, "fast");
         $('#drawer').toggleClass('open');
-         $("html, body").animate({ scrollTop: 0 }, "fast");
+         
         $('.aiz-main-wrapper').toggleClass("translate300px");
        
       });
