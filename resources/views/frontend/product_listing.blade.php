@@ -254,7 +254,13 @@
 
                                 <li class="nav-item">
                                     <a class="nav-link text-white" href="{{ route('products.category', $category->slug) }}">
-                                        <img src="{{uploaded_asset($category->icon)}}" class="me-2 p-1 rounded-circle border-1 border bg-white" style="width: 85px;height: auto;aspect-ratio: 1 / 1;" ><br>
+                                        <img src="{{uploaded_asset($category->icon)}}" class="me-2 p-1 rounded-circle border-1 border bg-white" style="    width: 85px;
+    height: auto;
+    aspect-ratio: 1 / 1;
+    object-fit: contain;
+    padding: 10px !important;
+    background: transparent;
+    margin-bottom: 10px;" ><br>
                                         {{ $category->getTranslation('name') }}
                                     </a>
                                 </li>
@@ -264,7 +270,13 @@
                     @foreach ($categories as $category)
                         <li class="nav-item">
                             <a class="nav-link text-white" href="{{ route('products.category', $category->slug) }}">
-                                <img src="{{uploaded_asset($category->icon)}}" class="me-2 p-1 rounded-circle border-1 border bg-white" style="width: 85px;height: auto;aspect-ratio: 1 / 1;" ><br>
+                                <img src="{{uploaded_asset($category->icon)}}" class="me-2 p-1 rounded-circle border-1 border bg-white" style="    width: 85px;
+    height: auto;
+    aspect-ratio: 1 / 1;
+    object-fit: contain;
+    padding: 10px !important;
+    background: transparent;
+    margin-bottom: 10px;" ><br>
                                 {{ $category->getTranslation('name') }}
                             </a>
                         </li>
