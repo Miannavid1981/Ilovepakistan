@@ -189,7 +189,7 @@ header .nav-link:not(.category-drawer-toggle-btn) {
                             <a class="nav-link category-btn" href="#">Bestsellers</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link category-btn" href="#">Top Brands</a>
+                            <a class="nav-link category-btn" href="/brands">Top Brands</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link category-btn" href="#">Top Categories</a>
