@@ -4,7 +4,7 @@
     <!-- Breadcrumb -->
     <section class="mb-4 pt-4">
         <div class="container">
-            <div class="row">
+            <div class="row mt-4">
                 <div class="col-lg-6 ">
                     <h1 class="fw-700 fs-20 fs-md-24 text-dark">{{ translate('Top Brands') }}</h1>
                 </div>
