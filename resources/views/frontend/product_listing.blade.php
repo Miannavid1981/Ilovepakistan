@@ -214,14 +214,16 @@
 </style>
 
 <section class="text-center d-flex justify-content-center align-items-center position-relative" style="height: 350px; background: url('https://dragoontraders.com/wp-content/uploads/2022/06/isolated-shipping-paper-boxes-blue-background-copy-space-online-shopping-e-commerce-concept_50039-2332.webp') no-repeat center center; background-size: cover;">
-    @if($category && $category->banner)
+   
         <div class="position-absolute top-0 start-0 w-100 h-100">
+             @if($category && $category->banner)
             <!-- Background Image -->
             <div style="background: url('{{ uploaded_asset($category->banner) }}') no-repeat center center; background-size: cover; width: 100%; height: 100%; position: absolute;"></div>
+            @endif
             <!-- Dark Mask Overlay -->
             <div style="background: rgba(0, 0, 0, 0.5); width: 100%; height: 100%; position: absolute; top: 0; left: 0;"></div>
         </div>
-    @endif
+    
     <div class="container text-center position-relative">
         <!-- Shop Page Title -->
         <h2 class="text-white mb-2">{{ isset($category_id) ? $category->getTranslation('name') : 'All Products' }}</h2>
