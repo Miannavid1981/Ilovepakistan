@@ -424,6 +424,7 @@
                                 @php
                                     $products_count = \App\Models\Product::where('brand_id', $brand->id )->count();
                                 @endphp
+                                @if($products_count > 0 )
                                 <li class="mb-2">
                                     <div class="form-check d-flex justify-content-between align-items-center">
                                         <div>
@@ -435,6 +436,7 @@
                                         <span class="brand-count">({{ $products_count ?? 0 }})</span>
                                     </div>
                                 </li>
+                                @endif
                             @endforeach
                         </ul>
                     </div>
