@@ -799,6 +799,10 @@ header .dropdown-toggle::after {
     transition: transform .5s ease-in-out;
     margin: 0 !important;
 }
+.aiz-refresh {
+
+    display: none;
+}
 /* .cart-btn {
     padding: 1px;
     font-size: 12px !important;
