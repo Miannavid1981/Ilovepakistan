@@ -225,13 +225,13 @@ header .nav-link:not(.category-drawer-toggle-btn) {
     </div>
 </header>
 
-    <div class="row     align-items-center py-2 px-3 header-top d-lg-none" style="    position: fixed;
+    <div class="row     align-items-center py-2 px-3 header-top d-lg-none gap-2 justify-content-between" style="    position: fixed;
     top: 0;
     left: 0;
     right: 0;
     z-index: 9;
     background: #fff;">
-        <div class="col-7 d-flex align-items-center text-left">
+        <div class="col-5 d-flex align-items-center text-left">
             
             <i class="fa-solid fa-bars menu-icon fs-20 me-2 category-drawer-toggle-btn" ></i>
             <a href="{{ url('/') }}" style="display: block; text-align: center;">
@@ -239,7 +239,7 @@ header .nav-link:not(.category-drawer-toggle-btn) {
             </a>
             
         </div>
-        <div class="col-5 d-flex justify-content-end align-items-center">
+        <div class="col-6 d-flex justify-content-end align-items-center">
 
 
             <!-- My Account -->
