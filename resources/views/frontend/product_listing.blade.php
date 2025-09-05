@@ -213,7 +213,7 @@
 
 </style>
 
-<section class="text-center d-flex justify-content-center align-items-center position-relative" style="height: 350px; background: url('https://img.freepik.com/premium-photo/black-friday-cyber-monday-sale-concept-black-recyclable-paper-shopping-bag-with-discount-percent-sign-black-background_391310-808.jpg?uid=R186178891&ga=GA1.1.620024412.1726558842&semt=ais_hybrid') no-repeat center center; background-size: cover;">
+<section class="text-center d-flex justify-content-center align-items-center position-relative" style="height: 350px; background: url('https://dragoontraders.com/wp-content/uploads/2022/06/isolated-shipping-paper-boxes-blue-background-copy-space-online-shopping-e-commerce-concept_50039-2332.webp') no-repeat center center; background-size: cover;">
     @if($category && $category->banner)
         <div class="position-absolute top-0 start-0 w-100 h-100">
             <!-- Background Image -->
