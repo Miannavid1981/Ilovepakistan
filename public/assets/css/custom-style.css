@@ -796,7 +796,8 @@ header .dropdown-toggle::after {
 }
 .translate300px {
     transform: translateX(300px);
-    transition: all .5s ease-in-out;
+    transition: transform .5s ease-in-out;
+    margin: 0 !important;
 }
 /* .cart-btn {
     padding: 1px;
