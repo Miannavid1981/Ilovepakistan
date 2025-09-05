@@ -253,8 +253,8 @@
                             @foreach ($category->childrenCategories as $category)
 
                                 <li class="nav-item">
-                                    <a class="nav-link text-white" href="{{ route('products.category', $category->slug) }}">
-                                        <img src="{{uploaded_asset($category->icon)}}" class="me-2 p-1 rounded-circle border-1 border bg-white" style="    width: 105px;
+                                    <a class="nav-link text-white mx-2" href="{{ route('products.category', $category->slug) }}">
+                                        <img src="{{uploaded_asset($category->icon)}}" class="p-1 rounded-circle border-1 border bg-white" style="    width: 105px;
     height: auto;
     aspect-ratio: 1 / 1;
     object-fit: contain;
@@ -269,8 +269,8 @@
                     @endif
                     @foreach ($categories as $category)
                         <li class="nav-item">
-                            <a class="nav-link text-white" href="{{ route('products.category', $category->slug) }}">
-                                <img src="{{uploaded_asset($category->icon)}}" class="me-2 p-1 rounded-circle border-1 border bg-white" style="    width: 105px;
+                            <a class="nav-link text-white mx-2" href="{{ route('products.category', $category->slug) }}">
+                                <img src="{{uploaded_asset($category->icon)}}" class="p-1 rounded-circle border-1 border bg-white" style="    width: 105px;
     height: auto;
     aspect-ratio: 1 / 1;
     object-fit: contain;
