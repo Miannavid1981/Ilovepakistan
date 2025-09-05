@@ -425,17 +425,17 @@
                                     $products_count = \App\Models\Product::where('brand_id', $brand->id )->count();
                                 @endphp
                                 @if($products_count > 0 )
-                                <li class="mb-2">
-                                    <div class="form-check d-flex justify-content-between align-items-center">
-                                        <div>
-                                            <input class="form-check-input" type="checkbox" value="{{ $brand->id }}" id="brand_{{ $brand->id }}">
-                                            <label class="form-check-label" for="brand_{{ $brand->id }}">
-                                                {{ $brand->getTranslation('name') }}
-                                            </label>
+                                    <li class="mb-2">
+                                        <div class="form-check d-flex justify-content-between align-items-center">
+                                            <div>
+                                                <input class="form-check-input" type="checkbox" value="{{ $brand->id }}" id="brand_{{ $brand->id }}">
+                                                <label class="form-check-label" for="brand_{{ $brand->id }}">
+                                                    {{ $brand->getTranslation('name') }}
+                                                </label>
+                                            </div>
+                                            <span class="brand-count">({{ $products_count ?? 0 }})</span>
                                         </div>
-                                        <span class="brand-count">({{ $products_count ?? 0 }})</span>
-                                    </div>
-                                </li>
+                                    </li>
                                 @endif
                             @endforeach
                         </ul>
