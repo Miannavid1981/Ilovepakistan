@@ -225,7 +225,7 @@ header .nav-link:not(.category-drawer-toggle-btn) {
     </div>
 </header>
 
-    <div class="row align-items-center py-2 px-3 header-top d-lg-none" style="    position: fixed;
+    <div class="row     align-items-center py-2 px-3 header-top d-lg-none" style="    position: fixed;
     top: 0;
     left: 0;
     right: 0;
@@ -235,7 +235,7 @@ header .nav-link:not(.category-drawer-toggle-btn) {
             
             <i class="fa-solid fa-bars menu-icon fs-20 me-2 category-drawer-toggle-btn" ></i>
             <a href="{{ url('/') }}" style="display: block; text-align: center;">
-                <img src="{{ $logo_url }}" alt="AliExpress Logo" class="img-fluid" style="max-width: 170px !important; height: auto; min-width: 150px !important;">
+                <img src="{{ $logo_url }}" alt="AliExpress Logo" class="w-100" style="max-width: 170px !important; height: auto; min-width: 150px !important;">
             </a>
             
         </div>
