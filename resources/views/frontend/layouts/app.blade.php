@@ -492,8 +492,9 @@
       // Toggle drawer
       $('.category-drawer-toggle-btn').on('click', function() {
         $('#drawer').toggleClass('open');
+         $("html, body").animate({ scrollTop: 0 }, "fast");
         $('.aiz-main-wrapper').toggleClass("translate300px");
-        $("html, body").animate({ scrollTop: 0 }, "slow");
+       
       });
 
       // Toggle submenu
