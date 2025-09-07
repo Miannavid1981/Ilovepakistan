@@ -196,13 +196,13 @@ header .nav-link:not(.category-drawer-toggle-btn) {
                         </li>
                         
                         <li class="nav-item">
-                            <a class="nav-link category-btn" href="#">Bighouz Ecosystem</a>
+                            <a class="nav-link category-btn" href="/bighouz-ecosystem">Bighouz Ecosystem</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link category-btn" href="#">Investor Opportunities</a>
+                            <a class="nav-link category-btn" href="/investor-opportunities">Investor Opportunities</a>
                         </li>
                         <li class="nav-item me-auto">
-                            <a class="nav-link category-btn" href="#">Customer Care</a>
+                            <a class="nav-link category-btn" href="/customer-care">Customer Care</a>
                         </li>
                         
                         

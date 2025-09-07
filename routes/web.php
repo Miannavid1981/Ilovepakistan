@@ -89,6 +89,18 @@ Route::get('/privacy_policy', function (Request $request){
     return view('frontend/inc/Customer_services/privacy_policy');
 })->name('privacy_policy');
 
+
+Route::get('/bighouz-ecosystem', function (Request $request){
+    return view('frontend/policies/bighouz_ecosystem');
+})->name('bighouz_ecosystem');
+Route::get('/investor-opportunities', function (Request $request){
+    return view('frontend/policies/investor_opportunities');
+})->name('investor_opportunities');
+Route::get('/customer-care', function (Request $request){
+    return view('frontend/policies/customer_care');
+})->name('customer_care');
+
+
 Route::get('/transfer-payment-method/details/{slug}', [TransferPaymentMethodController::class, 'showDetails']);
 Route::post('/check-username', [ShopController::class, 'checkUsername'])->name('check.username');
 Route::post('/check-email', [ShopController::class, 'checkEmail'])->name('check.email');
