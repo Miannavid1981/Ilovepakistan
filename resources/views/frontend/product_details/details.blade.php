@@ -585,7 +585,7 @@ $product_stock = 0;
                                     @endif
                                 @endif
                                 @if($seller_type != 'store_partner')
-                                    <a href="" class="btn btn-primary buy-now fw-600 min-w-150px rounded-0  w-100 g-add-to-cart" >
+                                    <a href="{{ url('/seller/product/create') }}" class="btn btn-primary buy-now fw-600 min-w-150px rounded-0  w-100 g-add-to-cart" >
                                         <i class="la la-plus"></i> New Listing
                                     </a>
                                 @endif
