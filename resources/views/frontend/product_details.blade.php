@@ -230,11 +230,11 @@
                         <li class="tab" data-tab="specifications">Specifications</li>
                     @endif
             
-                    @if(!empty($detailedProduct->reviews))
-                        <li class="tab" data-tab="reviews">Reviews</li>
-                    @endif
                     @if(!empty($detailedProduct->video_link))
                         <li class="tab" data-tab="video">Video</li>
+                    @endif
+                    @if(!empty($detailedProduct->reviews))
+                        <li class="tab" data-tab="reviews">Reviews</li>
                     @endif
                      @if(!empty($detailedProduct->shipment_info))
                         <li class="tab" data-tab="shipment_info">Shipment Info</li>
