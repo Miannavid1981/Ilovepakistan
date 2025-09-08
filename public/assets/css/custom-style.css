@@ -798,7 +798,7 @@ header .dropdown-toggle::after {
 
 }
 .translate300px {
-    transform: translateX(300px);
+    transform: translateX(250px);
     transition: transform .5s ease-in-out;
     margin: 0 !important;
 }
