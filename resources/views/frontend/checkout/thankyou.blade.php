@@ -111,6 +111,7 @@ strong {
     display: flex;
     overflow: scroll;
     gap: 10px;
+    margin: 40px 0;
 }
 .uploaded-file{
     width: 200px;
@@ -254,6 +255,7 @@ strong {
                 @php                   
                     $receipts = json_decode($order->payment_receipts) ?? [];
                 @endphp
+                <br>
                 <strong>Uploaded  Receipts </strong> <br>
                 <div class="uploaded-file-receipts">
                 
