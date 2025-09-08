@@ -577,19 +577,20 @@ header .nav-link:not(.category-drawer-toggle-btn) {
     }
     .bottom-nav {
         position: fixed;
-        bottom: 10px;
-        left: 50%;
-        transform: translateX(-50%);
+        bottom: 0;
+        left: 0;
+        /* transform: translateX(-50%); */
         background: #fff;
         display: flex;
         justify-content: space-around;
         align-items: center;
-        width: 95%;
-        max-width: 500px;
-        padding: 12px 0;
-        border-radius: 20px;
+        /* width: 100%; */
+        /* max-width: 500px; */
+        padding: 2px 0;
+        /* border-radius: 20px; */
         box-shadow: 0 8px 20px rgba(0,0,0,0.1);
         z-index: 999;
+        right: 0;
     }
 
     .bottom-nav a {
