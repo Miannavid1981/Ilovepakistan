@@ -110,6 +110,7 @@ strong {
 .uploaded-file-receipts {
     display: flex;
     overflow: scroll;
+    gap: 10px;
 }
 .uploaded-file{
     width: 300px;
@@ -253,6 +254,7 @@ strong {
                 @php                   
                     $receipts = json_decode($order->payment_receipts) ?? [];
                 @endphp
+                <strong>Uploaded  Receipts </strong> <br>
                 <div class="uploaded-file-receipts">
                 
                     @if(count($receipts) > 0)
