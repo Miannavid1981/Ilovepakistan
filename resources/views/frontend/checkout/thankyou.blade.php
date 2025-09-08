@@ -372,7 +372,7 @@ strong {
                 <h4>Items</h4>
                 <br>
 
-                <table class="w-100">
+                <table class="w-100 table-responsive">
 
                     @foreach ($order->orders as $order)
                         @foreach ($order->orderDetails as $key => $orderDetail)
