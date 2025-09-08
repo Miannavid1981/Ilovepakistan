@@ -107,7 +107,10 @@ tr.border-bottom td {
 strong {
     font-family: 'Aeonik-Semibold';
 }
-
+.uploaded-file-receipts {
+    display: flex;
+    overflow: scroll;
+}
  </style>
 <div class="container text-center ">
 
@@ -246,23 +249,24 @@ strong {
                 @php                   
                     $receipts = json_decode($order->payment_receipts) ?? [];
                 @endphp
-        
-                @if(count($receipts) > 0)
-                    @foreach($receipts as $receipt)
-                        @php
-                            $fileUrl = static_asset('storage/' . $receipt);
-                            $fileExtension = pathinfo($receipt, PATHINFO_EXTENSION);
-                        @endphp
-                        <a class="uploaded-file d-flex align-items-center mb-2"  href="{{ static_asset('storage/' . $receipt) }}" target="_blank">
-                            @if(in_array($fileExtension, ['jpg', 'jpeg', 'png', 'gif', 'webp']))
-                                <img src="{{ $fileUrl }}" alt="Receipt Image" class="img-thumbnail me-2" width="150">
-                            @else
-                                <a href="{{ $fileUrl }}" target="_blank" class="d-block">View Receipt</a>
-                            @endif
-                        </a>
-                    @endforeach
-                @endif
-        
+                <div class="uploaded-file-receipts">
+                
+                    @if(count($receipts) > 0)
+                        @foreach($receipts as $receipt)
+                            @php
+                                $fileUrl = static_asset('storage/' . $receipt);
+                                $fileExtension = pathinfo($receipt, PATHINFO_EXTENSION);
+                            @endphp
+                            <a class="uploaded-file d-flex align-items-center mb-2"  href="{{ static_asset('storage/' . $receipt) }}" target="_blank">
+                                @if(in_array($fileExtension, ['jpg', 'jpeg', 'png', 'gif', 'webp']))
+                                    <img src="{{ $fileUrl }}" alt="Receipt Image" class="img-thumbnail me-2" width="150">
+                                @else
+                                    <a href="{{ $fileUrl }}" target="_blank" class="d-block">View Receipt</a>
+                                @endif
+                            </a>
+                        @endforeach
+                    @endif
+                </div>
 
             </div>
 
