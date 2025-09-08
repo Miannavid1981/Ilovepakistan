@@ -384,7 +384,7 @@ strong {
                 <h4>Items</h4>
                 <br>
 
-                <table class="w-100 table-responsive">
+                <table class="w-100 table-responsive" cellpadding="10">
 
                     @foreach ($order->orders as $order)
                         @foreach ($order->orderDetails as $key => $orderDetail)
