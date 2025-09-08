@@ -135,7 +135,7 @@ header .nav-link:not(.category-drawer-toggle-btn) {
                         <ul class="dropdown-menu bg-white" aria-labelledby="dropdownMyAccount">
                             @auth 
                                 <li><a href="{{ $my_account_url }}" class="dropdown-item Text-dark fs-14"   @if(Auth::user()->user_type == "seller" )  target="_blank"  @endif  > My Account</a></li>
-                                <li><a href="{{ Auth::user()->user_type == "seller" ? url('/seller/orders') : url('/my-orders') }} @endif" @if(Auth::user()->user_type == "seller" )  target="_blank"  @endif  class="dropdown-item fs-14" >Orders</a></li>
+                                <li><a href="{{ Auth::user()->user_type == "seller" ? url('/seller/orders') : url('/my-orders') }}" @if(Auth::user()->user_type == "seller" )  target="_blank"  @endif  class="dropdown-item fs-14" >Orders</a></li>
                     
                             
                             @else 
@@ -279,7 +279,7 @@ header .nav-link:not(.category-drawer-toggle-btn) {
                 <ul class="dropdown-menu bg-white" aria-labelledby="dropdownMyAccount">
                     @auth 
                         <li><a href="{{ $my_account_url }}" class="dropdown-item Text-dark fs-14"   @if(Auth::user()->user_type == "seller" )  target="_blank"  @endif  > My Account</a></li>
-                        <li><a  href="{{ Auth::user()->user_type == "seller" ? url('/seller/orders') : url('/my-orders') }} @endif" @if(Auth::user()->user_type == "seller" )  target="_blank"  @endif  class="dropdown-item fs-14" >Orders</a></li>
+                        <li><a  href="{{ Auth::user()->user_type == "seller" ? url('/seller/orders') : url('/my-orders') }} " @if(Auth::user()->user_type == "seller" )  target="_blank"  @endif  class="dropdown-item fs-14" >Orders</a></li>
                     
                     @else 
                         <li><a href="{{ route('user.login') }}" class="dropdown-item fs-16">Login</a></li>
