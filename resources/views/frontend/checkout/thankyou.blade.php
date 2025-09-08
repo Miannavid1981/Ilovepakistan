@@ -111,6 +111,10 @@ strong {
     display: flex;
     overflow: scroll;
 }
+.uploaded-file{
+    width: 300px;
+    min-width: 300px;
+}
  </style>
 <div class="container text-center ">
 
@@ -259,7 +263,7 @@ strong {
                             @endphp
                             <a class="uploaded-file d-flex align-items-center mb-2"  href="{{ static_asset('storage/' . $receipt) }}" target="_blank">
                                 @if(in_array($fileExtension, ['jpg', 'jpeg', 'png', 'gif', 'webp']))
-                                    <img src="{{ $fileUrl }}" alt="Receipt Image" class="img-thumbnail me-2" width="150">
+                                    <img src="{{ $fileUrl }}" alt="Receipt Image" class="w-100 me-2" width="150">
                                 @else
                                     <a href="{{ $fileUrl }}" target="_blank" class="d-block">View Receipt</a>
                                 @endif
