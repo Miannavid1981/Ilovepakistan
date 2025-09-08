@@ -81,7 +81,7 @@
 
                                             <!-- Submit Button -->
                                             <div class="mb-2 mt-2">
-                                                <button type="submit" class="btn btn-primary btn-block fw-700 fs-16 Login-btn">{{  translate('Login') }}</button>
+                                                <button type="submit" class="btn btn-primary fw-700 fs-16 Login-btn">{{  translate('Login') }}</button>
                                             </div>
                                         </form>
 
