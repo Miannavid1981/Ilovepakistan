@@ -6,9 +6,9 @@
 
  <style>
     /* Bighouz Branding Colors */
-    :root {
-      --primary-gradient-start: #7f00ff;
-      --primary-gradient-end: #e100ff;
+       :root {
+      --primary-gradient-start: #761ae0 ;
+      --primary-gradient-end: #dd5a6e;
       --accent-pink: #d63384;
       --text-main: #000000;
       --text-sub: #333333;
@@ -24,6 +24,7 @@
       font-size: 2rem;
       font-weight: bold;
       letter-spacing: 1px;
+      font-family: "Aeonik" !important;
     }
 
     .policy-section {
@@ -85,7 +86,7 @@
 
   <div class="policy-header">Investor Opportunities in the Bighouz Ecosystem</div>
 
-  
+   <div class="container my-5">
     <section class="policy-section">
       <h2>1. Buyer Support</h2>
       <ul>
@@ -205,7 +206,7 @@
 connects buyers, vendors, logistics, and financial services into one seamless support experience, ensuring trust, loyalty, and 
 repeat business.</p>
     </section>
-
+</div>
 
 
 

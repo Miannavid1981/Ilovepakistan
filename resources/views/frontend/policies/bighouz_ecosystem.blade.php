@@ -7,8 +7,8 @@
  <style>
     /* Bighouz Branding Colors */
     :root {
-      --primary-gradient-start: #7f00ff;
-      --primary-gradient-end: #e100ff;
+      --primary-gradient-start: #761ae0 ;
+      --primary-gradient-end: #dd5a6e;
       --accent-pink: #d63384;
       --text-main: #000000;
       --text-sub: #333333;
@@ -24,6 +24,7 @@
       font-size: 2rem;
       font-weight: bold;
       letter-spacing: 1px;
+      font-family: "Aeonik" !important;
     }
 
     .policy-section {
@@ -85,7 +86,7 @@
 
   <div class="policy-header">Bighouz Ecosystem</div>
 
-  
+  <div class="container my-5">
 
     <section class="policy-section">
       <p>The <strong>Bighouz Ecosystem</strong> is a complete digital commerce and service environment that connects multiple stakeholders—buyers, sellers, brands, service providers, and logistics—into one unified marketplace. It’s not just a store, but a business infrastructure that combines technology, trade, and support systems.</p>
@@ -159,8 +160,6 @@
     </section>
 
   
-
-
-
+</div>
 
 @endsection
