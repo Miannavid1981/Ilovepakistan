@@ -113,8 +113,8 @@ strong {
     gap: 10px;
 }
 .uploaded-file{
-    width: 300px;
-    min-width: 300px;
+    width: 200px;
+    min-width: 200px;
 }
  </style>
 <div class="container text-center ">
