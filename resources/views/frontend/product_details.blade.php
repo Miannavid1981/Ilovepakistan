@@ -81,11 +81,11 @@
 }
 
 /* Ensures tabs stay centered */
-.tabs-container,
-.tabs {
+.tabs-container, .tabs {
     display: flex;
     justify-content: start;
     align-items: center;
+    flex-direction: column;
 }
 @media (max-width: 768px) {
     .tabs-container {
