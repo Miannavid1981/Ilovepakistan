@@ -86,7 +86,7 @@
 
   <div class="policy-header">Bighouz Ecosystem</div>
 
-  <div class="container my-5">
+  <div class="container py-5">
 
     <section class="policy-section">
       <p>The <strong>Bighouz Ecosystem</strong> is a complete digital commerce and service environment that connects multiple stakeholders—buyers, sellers, brands, service providers, and logistics—into one unified marketplace. It’s not just a store, but a business infrastructure that combines technology, trade, and support systems.</p>

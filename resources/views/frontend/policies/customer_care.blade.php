@@ -86,7 +86,7 @@
 
   <div class="policy-header">Investor Opportunities in the Bighouz Ecosystem</div>
 
-   <div class="container my-5">
+   <div class="container py-5">
     <section class="policy-section">
       <h2>1. Buyer Support</h2>
       <ul>
