@@ -13,9 +13,15 @@
                     <div class="d-flex align-items-center">
 
                       
-                        <a class="d-flex gap-2 align-items-center gap-2 bg-primary text-white px-4 py-1 fw-600 fs-15 " style="height: 40px; border-radius: 40px" href="{{ route('shop.visit', auth()->user()->shop->slug) }}" target="_blank" title="{{ translate('Browse Website') }}">
+                        <a class="d-flex gap-2 align-items-center gap-2 bg-primary text-white px-4 py-1 fw-600 fs-15 " style="height: 40px;
+border-radius: 40px;
+font-size: 13px !important;
+padding: 10px !important;
+white-space: nowrap;" href="{{ route('shop.visit', auth()->user()->shop->slug) }}" target="_blank" title="{{ translate('Browse Website') }}">
                             Visit store&nbsp;&nbsp;
-                            <img src="https://images.vexels.com/media/users/3/158194/isolated/preview/11507ef5615c554fe88fc22c86768501-simple-earth-icon.png" class="w-auto h-100">
+                            <img src="https://images.vexels.com/media/users/3/158194/isolated/preview/11507ef5615c554fe88fc22c86768501-simple-earth-icon.png" class="" style="width: 20px !important;
+height: auto !important;
+aspect-ratio: 1/1;">
                         </a>
                         <!-- QR Code Button -->
                         <button type="button" 
@@ -47,8 +53,8 @@
         <div class="d-flex justify-content-around align-items-center align-items-stretch">
 
              <!-- Notifications -->
-             <div class="aiz-topbar-item mr-3">
-                <div class="align-items-stretch d-flex dropdown">
+             <div class="aiz-topbar-item mr-3 d-none">
+                <div class="align-items-stretch d-flex  dropdown">
                     <a class="dropdown-toggle no-arrow" data-toggle="dropdown" href="javascript:void(0);" role="button" aria-haspopup="false" aria-expanded="false">
                         <span class="btn btn-icon p-0 d-flex justify-content-center align-items-center">
                             <span class="d-flex align-items-center position-relative">
