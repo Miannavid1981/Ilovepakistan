@@ -101,7 +101,7 @@
 
     .tab {
         padding: 12px 20px; /* Adjust padding for better mobile experience */
-        width: 100%; /* Make each tab fill the available width */
+        
         text-align: left; /* Align text to the left */
         border-bottom: none; /* Remove the border between tabs */
         border-right: 3px solid transparent; /* Keep a small right border */
@@ -172,14 +172,15 @@
     padding: 0;
     margin: 0;
     /* background-color: #f0f0f0; */
-    position: absolute;
+    /* position: absolute; */
     top: 0;
     left: 0;
     width: 100%;
     justify-content: flex-start;
-   
     gap: 0 !important;
-
+    flex-wrap: wrap;
+    flex-direction: row;
+    gap: 5px !important;
 }
 
 .tab {
