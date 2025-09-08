@@ -14,14 +14,14 @@
                             <div class="col-sm-7 col-md-6 col-lg-5 col-xl-4 p-4 p-lg-5">
                                 <!-- Site Icon -->
                                 <div class="text-center d-flex mb-5">
-                                    <div class=" " style="max-width: 100px;
+                                    <a href="/" style="max-width: 100px;
                                     width: 100%;
                                     height: 100%;
                                     max-height: 100px;
                                     margin: 0 auto;
                                     ">
                                         <img src="{{ uploaded_asset(get_setting('site_icon')) }}" alt="{{ translate('Site Icon')}}" class="w-100 h-100 " style="object-fit: contain;">
-                                    </div>
+                                    </a>
                                 </div>
                                
                                 <!-- Titles -->
