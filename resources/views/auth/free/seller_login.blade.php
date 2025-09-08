@@ -25,7 +25,7 @@
                                 </div>
                                
                                 <!-- Titles -->
-                                <div class="text-lg-center">
+                                <div class="text-center">
                                     <h1 class="fs-20 fs-md-24 fw-700 text-primary" style="text-transform: uppercase;">{{ translate('Welcome Back !')}}</h1>
                                     <h5 class="fs-14 fw-400 text-dark">{{ translate('Login To Your Seller Account')}}</h5>
                                 </div>
