@@ -93,9 +93,8 @@ class ProductController extends Controller
 
         // ✅ First order by approval = 0, then by created_at desc
         $products = $products
+        ->orderBy('approval', 'asc')   // approval=0 comes first
         ->orderBy('created_at', 'desc')
-        ->orderByRaw('approval = 0 DESC') // puts approval=0 first
-        
         ->paginate(15);
 
         return view('backend.product.products.index', compact('products', 'type', 'col_name', 'query', 'sort_search'));
