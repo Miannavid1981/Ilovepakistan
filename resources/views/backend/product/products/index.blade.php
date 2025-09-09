@@ -168,7 +168,7 @@
                         $encrypted_skin = $seller_map->encrypted_hash ?? '';
                         $product_url = url('/product/' . $product->slug . '/' . $encrypted_skin);
                     @endphp
-                    <tr class="@php  if($product->approved == 1) { echo 'bg-soft-warnning '; } else if($qty <= $product->low_stock_quantity) { echo 'bg-soft-danger ' } @endphp">
+                    <tr class="@php  if($product->approved == 1) { echo 'bg-soft-warnning '; } else if($qty <= $product->low_stock_quantity) { echo 'bg-soft-danger '; } @endphp">
                         @if(auth()->user()->can('product_delete'))
                             <td>
                                 <div class="form-group d-inline-block">
