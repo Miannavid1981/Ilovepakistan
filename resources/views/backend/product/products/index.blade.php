@@ -208,14 +208,14 @@
                         @endif
                         <td>
                             @if($product->approved == 0 && !empty($product->admin_commission_rate) )
-                                <div class="bg bg-soft-primary p-2 w-auto mb-2"> 
-                                    <h5 class="text-danger"> Product Updates need Approval </h5> 
-                                    <p>Product updated recently </p>
+                               <div class="px-2 py-1 w-auto  rounded-2  mb-2" style="background: rgb(255, 209, 209);"> 
+                                    <p class="text-danger fs-14 fw-bold text-strong mb-0"> Product Updates need Approval </p> 
+                                    <p class="mb-0">Product updated recently </p>
                                 </div>
-                                <br>
+                                
                             @elseif (empty($product->admin_commission_rate) && $product->approved == 0  )
                                 <span class="badge badge-danger w-auto mb-2"> Pending Approval  </span>
-                                <br>
+                                
                             @endif
                             <div class="row gutters-5 w-200px w-md-300px mw-100">
                                 <div class="col-auto">
