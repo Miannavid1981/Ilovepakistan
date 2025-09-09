@@ -135,6 +135,16 @@
         .list-icons-2 li i {
             color: rgb(139, 36, 139);
         }
+        @media (max-width:768px){
+           .pricing-container {
+                padding 0 20px;
+                flex-direction: column;
+            }
+            .pricing-card {
+                width: 100% !important;
+            }
+
+        }
     </style>
    <!-- aiz-main-wrapper -->
    <div class="aiz-main-wrapper  d-flex flex-column justify-content-center bg-white">
