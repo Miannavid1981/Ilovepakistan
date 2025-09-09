@@ -207,8 +207,16 @@
                                 </td>
                         @endif
                         <td>
-                            <span class="badge badge-danger w-auto mb-2"> Pending Approval</span>
-                            <br>
+                            @if($product->approved == 0 && !empty($product->stocks->first()->sku ) )
+                                <div class="bg bg-soft-primary p-2 w-auto mb-2"> 
+                                    <h5 class="text-danger"> Pending Approval </h5> 
+                                    <p>Product updated recently </p>
+                                </div>
+                                <br>
+                            @elseif (empty($product->stocks->first()->sku) && $product->approved == 0  )
+                                <span class="badge badge-danger w-auto mb-2"> Pending Approval  </span>
+
+                            @endif
                             <div class="row gutters-5 w-200px w-md-300px mw-100">
                                 <div class="col-auto">
                                     <img src="{{ uploaded_asset($product->thumbnail_img)}}" alt="Image" class="size-50px img-fit">
