@@ -15,10 +15,9 @@
                       
                         <a class="btn btn-light p-0 ml-2" 
                                 style="height: 40px; width: 40px; border-radius: 10px;"  href="{{ route('shop.visit', auth()->user()->shop->slug) }}" target="_blank" title="{{ translate('Browse Website') }}">
-                            Visit store&nbsp;&nbsp;
-                            <img src="https://images.vexels.com/media/users/3/158194/isolated/preview/11507ef5615c554fe88fc22c86768501-simple-earth-icon.png" class="" style="width: 20px !important;
-height: auto !important;
-aspect-ratio: 1/1;">
+                           
+                            <img src="https://images.vexels.com/media/users/3/158194/isolated/preview/11507ef5615c554fe88fc22c86768501-simple-earth-icon.png" class="w-100 h-100" 
+                                style="object-fit: cover; border-radius: 50%;">>
                         </a>
                         <!-- QR Code Button -->
                         <button type="button" 
