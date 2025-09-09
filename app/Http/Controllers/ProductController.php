@@ -166,7 +166,7 @@ class ProductController extends Controller
 
           // ✅ First order by approval = 0, then by created_at desc
         $products = $products
-        ->orderBy('approval', 'asc')   // approval=0 comes first
+        ->orderBy('approved', 'asc')   // approval=0 comes first
         ->orderBy('created_at', 'desc')
         ->paginate(15);
 
