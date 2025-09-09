@@ -215,7 +215,7 @@
                                 <br>
                             @elseif (empty($product->admin_commission_rate) && $product->approved == 0  )
                                 <span class="badge badge-danger w-auto mb-2"> Pending Approval  </span>
-
+                                <br>
                             @endif
                             <div class="row gutters-5 w-200px w-md-300px mw-100">
                                 <div class="col-auto">
