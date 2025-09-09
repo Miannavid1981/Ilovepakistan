@@ -136,14 +136,21 @@
             color: rgb(139, 36, 139);
         }
         @media (max-width:768px){
-           .pricing-container {
-                padding 0 20px;
+            .pricing-container {
                 flex-direction: column;
+                padding: 20px;
+                gap: 40px;
             }
             .pricing-card {
                 width: 100% !important;
+                border: 1px solid #eee;
             }
-
+            .popular {
+                border-bottom: 4px solid green;
+                /* transform: scale(1.05); */
+                z-index: 10;
+                position: relative;
+            }
         }
     </style>
    <!-- aiz-main-wrapper -->
