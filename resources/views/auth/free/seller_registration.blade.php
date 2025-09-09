@@ -146,7 +146,7 @@
                 <h3>Store Partner</h3>
                 <p>Easy and simple way to sell globally</p>
                 <p>per successful sale</p>
-                <a class="signup-btn" href="{{ route('register.store_partner') }}">Apply Now</a>
+                <a class="btn btn-primary p-2 mb-3" href="{{ route('register.store_partner') }}">Apply Now</a>
                 <p class="note">No credit card required.<br>You’ll only pay when you start selling.</p>
                 <h4>WHAT YOU GET</h4>
                 <ul class="list-icons">
@@ -166,7 +166,7 @@
                     <h3>Verified Seller</h3>
                     <p>Develop & Boost your subscription business</p>
                     <p>per successful sale</p>
-                    <a class="signup-btn-1" href="{{ route('register.seller_partner') }}">Apply Now</a>
+                    <a class="btn btn-primary p-2 mb-3" href="{{ route('register.seller_partner') }}">Apply Now</a>
                     <p class="note">No credit card required.<br>You’ll only pay when you start selling.</p>
                     <h4>WHAT YOU GET</h4>
                     <ul class="list-icons-1">
@@ -186,7 +186,7 @@
                 <h3>Brand Partner</h3>
                 <p>All-in-one solution to sell DIGITAL GOODS globally</p>
                 <p>for fast-growing businesses</p>
-                <a class="signup-btn-2" href="{{ route('register.brand_partner') }}">Apply Now</a>
+                <a class="btn btn-primary p-2 mb-3" href="{{ route('register.brand_partner') }}">Apply Now</a>
                 <p class="note">No credit card required.<br>You’ll only pay when you start selling.</p>
                 <h4>WHAT YOU GET</h4>
                 <ul class="list-icons-2">
