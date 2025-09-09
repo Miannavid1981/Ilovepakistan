@@ -13,11 +13,8 @@
                     <div class="d-flex align-items-center">
 
                       
-                        <a class="d-flex gap-2 align-items-center gap-2 bg-primary text-white px-4 py-1 fw-600 fs-15 " style="height: 40px;
-border-radius: 40px;
-font-size: 13px !important;
-padding: 10px !important;
-white-space: nowrap;" href="{{ route('shop.visit', auth()->user()->shop->slug) }}" target="_blank" title="{{ translate('Browse Website') }}">
+                        <a class="btn btn-light p-0 ml-2" 
+                                style="height: 40px; width: 40px; border-radius: 10px;"  href="{{ route('shop.visit', auth()->user()->shop->slug) }}" target="_blank" title="{{ translate('Browse Website') }}">
                             Visit store&nbsp;&nbsp;
                             <img src="https://images.vexels.com/media/users/3/158194/isolated/preview/11507ef5615c554fe88fc22c86768501-simple-earth-icon.png" class="" style="width: 20px !important;
 height: auto !important;
