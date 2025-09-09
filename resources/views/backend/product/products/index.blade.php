@@ -208,7 +208,7 @@
                         @endif
                         <td>
                             @if($product->approved == 0 && !empty($product->admin_commission_rate) )
-                                <div class="px-2 py-1 w-auto  rounded-2  mb-3" style="background: rgb(255, 209, 209);"> 
+                                <div class="px-2 py-1 w-auto rounded-2 mb-3" style="background: rgb(255, 209, 209);"> 
                                     <p class="text-danger fs-14 fw-bold text-strong mb-0"> Product Updates need Approval </p> 
                                     <p class="mb-0">Product updated recently </p>
                                 </div>
