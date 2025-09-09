@@ -147,9 +147,13 @@
             }
             .popular {
                 border-bottom: 4px solid green;
-                /* transform: scale(1.05); */
+                transform: unset !important;
                 z-index: 10;
                 position: relative;
+            }
+            .pricingcard-p {
+                padding: 20px;
+                width: 100% !important;
             }
         }
     </style>
