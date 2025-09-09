@@ -207,13 +207,13 @@
                                 </td>
                         @endif
                         <td>
-                            @if($product->approved == 0 && !empty($product->stocks->first()->sku ) )
+                            @if($product->approved == 0 && !empty($product->admin_commission_rate) )
                                 <div class="bg bg-soft-primary p-2 w-auto mb-2"> 
-                                    <h5 class="text-danger"> Pending Approval </h5> 
+                                    <h5 class="text-danger"> Product Updates need Approval </h5> 
                                     <p>Product updated recently </p>
                                 </div>
                                 <br>
-                            @elseif (empty($product->stocks->first()->sku) && $product->approved == 0  )
+                            @elseif (empty($product->admin_commission_rate) && $product->approved == 0  )
                                 <span class="badge badge-danger w-auto mb-2"> Pending Approval  </span>
 
                             @endif
