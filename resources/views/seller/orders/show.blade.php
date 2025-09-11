@@ -348,6 +348,10 @@
                     </table>
                 </div>
             </div>
+
+            @php
+                $g_total = $overall_sale + $order->orderDetails->sum('tax') + $order->orderDetails->sum('shipping_cost') + $order->coupon_discount;
+            @endphp
             <div class="clearfix float-right">
                 <table class="table">
                     <tbody>
@@ -388,7 +392,7 @@
                                 <strong class="text-muted">{{ translate('TOTAL') }} :</strong>
                             </td>
                             <td class="text-muted h5">
-                                {{ single_price($overall_sale) }}
+                                {{ single_price($g_total) }}
                             </td>
                         </tr>
                     </tbody>

@@ -481,15 +481,15 @@
             </div>
             <div class="clearfix float-right">
                 @php
-    $all_order_details = collect();
-    foreach ($combined_order->orders as $order) {
-        $all_order_details = $all_order_details->merge($order->orderDetails);
-    }
+                    $all_order_details = collect();
+                    foreach ($combined_order->orders as $order) {
+                        $all_order_details = $all_order_details->merge($order->orderDetails);
+                    }
 
-    $total_price = $all_order_details->sum('price');
-    $total_tax = $all_order_details->sum('tax');
-    $total_shipping = $all_order_details->sum('shipping_cost');
-@endphp
+                    $total_price = $all_order_details->sum('price');
+                    $total_tax = $all_order_details->sum('tax');
+                    $total_shipping = $all_order_details->sum('shipping_cost');
+                @endphp
                 <table class="table">
                     <tbody>
                         <tr>
@@ -511,7 +511,7 @@
                         <tr>
                             <td><strong class="text-muted">{{ translate('TOTAL') }} :</strong></td>
                             <td class="text-muted h5">
-                                {{ single_price($total_price + $total_tax + $total_shipping - $combined_order->orders->sum('coupon_discount')) }}
+                                {{ single_price( ($total_price - $combined_order->orders->sum('coupon_discount') ) + $total_tax + $total_shipping ) }}
                             </td>
                         </tr>
                     </tbody>
