@@ -350,7 +350,7 @@
             </div>
 
             @php
-                $g_total = $overall_sale + $order->orderDetails->sum('tax') + $order->orderDetails->sum('shipping_cost') + $order->coupon_discount;
+                $g_total = $overall_sale + $order->orderDetails->sum('shipping_cost') + $order->coupon_discount;
             @endphp
             <div class="clearfix float-right">
                 <table class="table">
