@@ -511,7 +511,7 @@
                         <tr>
                             <td><strong class="text-muted">{{ translate('TOTAL') }} :</strong></td>
                             <td class="text-muted h5">
-                                {{ single_price( ($total_price - $combined_order->orders->sum('coupon_discount') ) + $total_tax + $total_shipping ) }}
+                                {{ single_price( ($total_price - $combined_order->orders->sum('coupon_discount') ) + $total_shipping ) }}
                             </td>
                         </tr>
                     </tbody>
