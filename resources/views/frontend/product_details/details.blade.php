@@ -354,9 +354,7 @@ $product_stock = 0;
   <div class="row">
     <div class="col-md-7">
         <h4 class="mb-0"> {{ $detailedProduct->getTranslation('name') }}</h4>
-        @if ($detailedProduct->unit != null)
-            <span class="opacity-70 mt-1">( {{ $detailedProduct->weight." ".$detailedProduct->getTranslation('unit') }} )</span>
-        @endif
+       
         <!-- Discount percentage -->
        
         <br>
@@ -378,6 +376,10 @@ $product_stock = 0;
         @endif
         <br>
         {{ $detailedProduct->stocks()->first()->sku}}
+        <br>
+        @if ($detailedProduct->unit != null)
+            <span class="opacity-70 mt-1">( {{ $detailedProduct->weight." ".$detailedProduct->getTranslation('unit') }} )</span>
+        @endif
         <br>
         <br>
         @if (home_price($detailedProduct) != home_discounted_price($detailedProduct))
