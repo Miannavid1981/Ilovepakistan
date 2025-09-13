@@ -94,6 +94,9 @@
                             <th width="30%">{{ translate('Name')}}</th>
                             {{-- <th data-breakpoints="md">{{ translate('Category')}}</th> --}}
                             <th data-breakpoints="md">{{ translate('Current Qty')}}</th>
+                            <th>{{ translate('Unit Price')}}</th>
+                            <th>{{ translate('Tax')}}</th>
+                            <th>{{ translate('Tax Amount')}}</th>
                             <th>{{ translate('Listing Price')}}</th>
                             <th>{{ translate('Platform Fee')}}</th>
                             <th>{{ translate('Your sale')}}</th>
@@ -235,14 +238,7 @@
                                         echo $qty;
                                     @endphp
                                 </td>
-                                <td>{{ home_base_price($product, true) }}
-
-                                    @php
-                                        echo "<pre>";
-                                            print_r($product->toArray());
-                                            echo "</pre>";
-                                    @endphp
-                                </td>
+                                <td>{{ home_base_price($product, true) }}</td>
                                 <td>@if($admin_profit_per_amount > 0)<p class="text-secondary">-{{ single_price($admin_profit_per_amount) }} <p>@endif</td>
                                 <td>@if($brand_profit_amount > 0)<p class="text-success">{{ single_price($brand_profit_amount) }} </p>@endif</td>
                                 @if(get_setting('product_approve_by_admin') == 1)

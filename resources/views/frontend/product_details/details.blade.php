@@ -476,6 +476,12 @@ $product_stock = 0;
                 </div>
             @endif
             <div class="d-flex align-items-center justify-content-between border-bottom py-2">
+                <h6 class="mb-0">SKU </h6><a href="javascript:void(0);" class="fs-15">{{ $detailedProduct->stocks()->first()->sku}}</a>
+            </div>
+             <div class="d-flex align-items-center justify-content-between border-bottom py-2">
+                <h6 class="mb-0">Weight </h6><a href="javascript:void(0);" class="fs-15">{{ $detailedProduct->weight." ".$detailedProduct->getTranslation('unit') }}</a>
+            </div>
+            <div class="d-flex align-items-center justify-content-between border-bottom py-2">
                 <h6 class="mb-0">Net Price </h6><a href="javascript:void(0);" class="fs-15">{{ single_price($detailedProduct->unit_price) }}</a>
             </div>
             @php
