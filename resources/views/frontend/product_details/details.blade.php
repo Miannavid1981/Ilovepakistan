@@ -467,7 +467,7 @@ $product_stock = 0;
                 $firstTaxAmount = 0;
                 if ($firstTaxModel) {
                     $firstTax = $firstTaxModel->tax;
-                    if($firstTax->tax_type == 'percent') {    
+                    if($firstTaxModel->tax_type == 'percent') {    
                         $firstTaxAmount = ($detailedProduct->unit_price * $firstTax) / 100;
                     } else {
                         $firstTaxAmount = $firstTax;
@@ -478,7 +478,7 @@ $product_stock = 0;
             @endphp 
             @if($firstTaxModel)
                 <div class="d-flex align-items-center justify-content-between border-bottom py-2"> 
-                    <h6 class="mb-0">Tax @if($firstTax->tax_type == 'percent') {{ '('.$detailedProduct->taxes()->first()->tax.'%)' }} @else  @endif</h6><a href="javascript:void(0);" class="fs-15">{{ single_price($firstTaxAmount) }}<i class="fa fa-chevron-right ms-2"></i></a>
+                    <h6 class="mb-0">Tax @if($firstTaxModel->tax_type == 'percent') {{ '('.$detailedProduct->taxes()->first()->tax.'%)' }} @else  @endif</h6><a href="javascript:void(0);" class="fs-15">{{ single_price($firstTaxAmount) }}<i class="fa fa-chevron-right ms-2"></i></a>
                 </div>
             @endif
             <div class="d-flex align-items-center justify-content-between border-bottom py-2">
