@@ -458,8 +458,25 @@ $product_stock = 0;
                     </button>
                 </div>
             @endif
+            
+            @if(!empty($product_child_seller))
+                <div class="d-flex align-items-center justify-content-between border-bottom py-2">
+                    <h6 class="mb-0">Sold by </h6><a href="{{ route('shop.visit', $product_child_seller->shop->slug) }}" class="fs-15">{{ $product_child_seller->shop->name }}<i class="fa fa-chevron-right ms-2"></i></a>
+                </div>
+            @else
+                @if ($detailedProduct->added_by == 'seller' && get_setting('vendor_system_activation') == 1)
+                    <div class="d-flex align-items-center justify-content-between border-bottom py-2">
+                        <h6 class="mb-0">Sold by </h6><a href="{{ route('shop.visit', $detailedProduct->user->shop->slug) }}" class="fs-15">{{ $detailedProduct->user->shop->name }}<i class="fa fa-chevron-right ms-2"></i></a>
+                    </div>
+                @endif
+            @endif
+            @if ($detailedProduct->brand != null)
+                <div class="d-flex align-items-center justify-content-between py-2">
+                    <h6 class="mb-0">Brand </h6><a href="{{ route('products.brand', $detailedProduct->brand->slug) }}" class="fs-15">{{ $detailedProduct->brand->name }}<i class="fa fa-chevron-right ms-2"></i></a>
+                </div>
+            @endif
             <div class="d-flex align-items-center justify-content-between border-bottom py-2">
-                <h6 class="mb-0">Net Price </h6><a href="javascript:void(0);" class="fs-15">{{ $detailedProduct->unit_price }}<i class="fa fa-chevron-right ms-2"></i></a>
+                <h6 class="mb-0">Net Price </h6><a href="javascript:void(0);" class="fs-15">{{ $detailedProduct->unit_price }}</a>
             </div>
             @php
                 $firstTax = null;
@@ -478,29 +495,12 @@ $product_stock = 0;
             @endphp 
             @if($firstTaxModel)
                 <div class="d-flex align-items-center justify-content-between border-bottom py-2"> 
-                    <h6 class="mb-0">Tax @if($firstTaxModel->tax_type == 'percent') {{ '('.$detailedProduct->taxes()->first()->tax.'%)' }} @else  @endif</h6><a href="javascript:void(0);" class="fs-15">{{ single_price($firstTaxAmount) }}<i class="fa fa-chevron-right ms-2"></i></a>
+                    <h6 class="mb-0">Tax @if($firstTaxModel->tax_type == 'percent') {{ '('.$detailedProduct->taxes()->first()->tax.'%)' }} @else  @endif</h6><a href="javascript:void(0);" class="fs-15">{{ single_price($firstTaxAmount) }}</a>
                 </div>
             @endif
             <div class="d-flex align-items-center justify-content-between border-bottom py-2">
-                <h6 class="mb-0">Gross Price </h6><a href="javascript:void(0);" class="fs-15">{{ home_base_price($detailedProduct, true)}}<i class="fa fa-chevron-right ms-2"></i></a>
+                <h6 class="mb-0">Gross Price </h6><a href="javascript:void(0);" class="fs-15">{{ home_base_price($detailedProduct, true)}}</a>
             </div>
-            @if(!empty($product_child_seller))
-                <div class="d-flex align-items-center justify-content-between border-bottom py-2">
-                    <h6 class="mb-0">Sold by </h6><a href="{{ route('shop.visit', $product_child_seller->shop->slug) }}" class="fs-15">{{ $product_child_seller->shop->name }}<i class="fa fa-chevron-right ms-2"></i></a>
-                </div>
-            @else
-                @if ($detailedProduct->added_by == 'seller' && get_setting('vendor_system_activation') == 1)
-                    <div class="d-flex align-items-center justify-content-between border-bottom py-2">
-                        <h6 class="mb-0">Sold by </h6><a href="{{ route('shop.visit', $detailedProduct->user->shop->slug) }}" class="fs-15">{{ $detailedProduct->user->shop->name }}<i class="fa fa-chevron-right ms-2"></i></a>
-                    </div>
-                @endif
-            @endif
-            @if ($detailedProduct->brand != null)
-                <div class="d-flex align-items-center justify-content-between py-2">
-                    <h6 class="mb-0">Brand </h6><a href="{{ route('products.brand', $detailedProduct->brand->slug) }}" class="fs-15">{{ $detailedProduct->brand->name }}<i class="fa fa-chevron-right ms-2"></i></a>
-                </div>
-            @endif
-            
             <div class="row  my-3">
                 
                 <div class="col-12">
