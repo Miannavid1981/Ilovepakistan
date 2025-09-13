@@ -388,7 +388,7 @@ $product_stock = 0;
             
             <div class="pr m-0" style="justify-content: start; gap:10px; align-items:end">
                 <div class="price" style="line-height: 0.8em;">    {{ home_discounted_price($detailedProduct) }}</div>
-                <span class="fs-10 text-gray"> / pc</span>
+                <span class="fs-14"> / pc</span>
                 <h5 class="text-secondary  mb-0" style="text-decoration: line-through">{{ home_price($detailedProduct) }}</h5>
                 <!-- <div class="prise">Starts: 23 47 16</div> -->
                 @if (discount_in_percentage($detailedProduct) > 0)
