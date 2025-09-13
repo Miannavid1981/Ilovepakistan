@@ -401,7 +401,7 @@ $product_stock = 0;
            
         @else
             <div class="pr" style="justify-content: start; gap:10px; align-items:end">
-                <div class="price">{{ home_price($detailedProduct) }}</div>
+                <div class="price" style="line-height: 0.8em;">{{ home_price($detailedProduct) }}</div>
                 <span class="fs-14 text-gray" style="margin-left: -8px"> / pc</span>
                 <!-- <div class="prise">Starts: 23 47 16</div> -->
                 
