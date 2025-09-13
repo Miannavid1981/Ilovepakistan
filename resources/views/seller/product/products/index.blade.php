@@ -235,7 +235,14 @@
                                         echo $qty;
                                     @endphp
                                 </td>
-                                <td>{{ single_price($product->unit_price) }}</td>
+                                <td>{{ single_price($product->unit_price) }}
+
+                                    @php
+                                        echo "<pre>";
+                                            print_r($product->toArray());
+                                            echo "</pre>";
+                                    @endphp
+                                </td>
                                 <td>@if($admin_profit_per_amount > 0)<p class="text-secondary">-{{ single_price($admin_profit_per_amount) }} <p>@endif</td>
                                 <td>@if($brand_profit_amount > 0)<p class="text-success">{{ single_price($brand_profit_amount) }} </p>@endif</td>
                                 @if(get_setting('product_approve_by_admin') == 1)
