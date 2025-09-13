@@ -377,7 +377,7 @@
                 </div>
 
                 <!-- Submit -->
-                <button type="submit" class="btn btn-primary">Submit Review</button>
+                <button type="submit" class="btn btn-primary p-2">Submit Review</button>
             </form>
             
         </div>
