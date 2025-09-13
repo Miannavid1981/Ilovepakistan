@@ -785,6 +785,11 @@
 
    
 function change_tab(tab, scroll) {
+    if (scroll ) {
+        $('html, body').animate({
+            scrollTop: $(`.tabs-container`).offset().top -100
+        }, 500)
+    }
     // Remove active class from all tabs and panes
     $(".tab").removeClass("active");
     $(".tab-pane").removeClass("active");
@@ -792,13 +797,6 @@ function change_tab(tab, scroll) {
     // Add active class to selected tab and corresponding pane
     const $tab = $(`.tab[data-tab="${tab}"]`).addClass("active");
     const $pane = $(`.tab-pane[data-tab="${tab}"]`).addClass("active");
-
-    // Smooth scroll to the active pane
-    if (scroll ) {
-        $('html, body').animate({
-            scrollTop: $(`#${tab}`).offset().top
-        }, 500); // 500ms = half a second
-    }
 }
 
 const $tabsToDropdown = $(".tabs-to-dropdown");
