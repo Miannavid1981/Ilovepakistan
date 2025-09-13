@@ -796,7 +796,7 @@ function change_tab(tab, scroll) {
     // Smooth scroll to the active pane
     if (scroll ) {
         $('html, body').animate({
-            scrollTop: $(`.tab-pane[data-tab="${tab}"]`).offset().top
+            scrollTop: $(`#${tab}`).offset().top
         }, 500); // 500ms = half a second
     }
 }
