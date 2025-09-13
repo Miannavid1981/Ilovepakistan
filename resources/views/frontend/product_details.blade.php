@@ -784,18 +784,23 @@
 });
 
    
-function change_tab(tab){
+function change_tab(tab) {
+    // Remove active class from all tabs and panes
+    $(".tab").removeClass("active");
+    $(".tab-pane").removeClass("active");
 
-    $(".tab").each(function(){
-        $(this).removeClass("active")
-    });  
-    $(".tab-pane").each(function(){
-        $(this).removeClass("active")
-    });  
+    // Add active class to selected tab and corresponding pane
+    const $tab = $(`.tab[data-tab="${tab}"]`).addClass("active");
+    const $pane = $(`.tab-pane[data-tab="${tab}"]`).addClass("active");
 
-
-    $(`[data-tab="${tab}"]`).addClass("active")
+    // Smooth scroll to the active pane
+    if ($pane.length) {
+        $('html, body').animate({
+            scrollTop: $pane.offset().top
+        }, 500); // 500ms = half a second
+    }
 }
+
 const $tabsToDropdown = $(".tabs-to-dropdown");
 
 function generateDropdownMarkup(container) {
