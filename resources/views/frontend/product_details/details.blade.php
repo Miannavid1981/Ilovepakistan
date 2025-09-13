@@ -476,7 +476,7 @@ $product_stock = 0;
                 </div>
             @endif
             <div class="d-flex align-items-center justify-content-between border-bottom py-2">
-                <h6 class="mb-0">Net Price </h6><a href="javascript:void(0);" class="fs-15">{{ $detailedProduct->unit_price }}</a>
+                <h6 class="mb-0">Net Price </h6><a href="javascript:void(0);" class="fs-15">{{ single_price($detailedProduct->unit_price) }}</a>
             </div>
             @php
                 $firstTax = null;
