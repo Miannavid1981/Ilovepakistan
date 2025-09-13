@@ -784,7 +784,7 @@
 });
 
    
-function change_tab(tab) {
+function change_tab(tab, scroll) {
     // Remove active class from all tabs and panes
     $(".tab").removeClass("active");
     $(".tab-pane").removeClass("active");
@@ -794,7 +794,7 @@ function change_tab(tab) {
     const $pane = $(`.tab-pane[data-tab="${tab}"]`).addClass("active");
 
     // Smooth scroll to the active pane
-    if ($pane.length) {
+    if (scroll && $pane.length) {
         $('html, body').animate({
             scrollTop: $pane.offset().top
         }, 500); // 500ms = half a second

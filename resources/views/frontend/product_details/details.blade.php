@@ -371,7 +371,7 @@ $product_stock = 0;
             <span class="rating rating-mr-2">
                 {{ renderStarRating($detailedProduct->rating) }}
             </span>
-            <span class="ml-1 opacity-50 fs-15" onclick="change_tab('reviews')" style="cursor: pointer;">
+            <span class="ml-1 opacity-50 fs-15" onclick="change_tab('reviews', true)" style="cursor: pointer;">
                 ({{ $total }} {{ translate('reviews') }})
             </span>
 
