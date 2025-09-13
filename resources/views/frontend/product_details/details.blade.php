@@ -378,7 +378,7 @@ $product_stock = 0;
         SKU: {{ $detailedProduct->stocks()->first()->sku}}
         <br>
         @if ($detailedProduct->unit != null)
-            <span class="opacity-70 mt-1">Weight:  {{ $detailedProduct->weight." ".$detailedProduct->getTranslation('unit') }} </span>
+            <span class=" mt-1">Weight:  {{ $detailedProduct->weight." ".$detailedProduct->getTranslation('unit') }} </span>
         @endif
         <br>
         <br>
