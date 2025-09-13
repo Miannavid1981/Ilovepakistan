@@ -463,7 +463,7 @@ $product_stock = 0;
             </div>
             @php
                 $firstTax = null;
-                $firstTaxModel = $product->taxes()->first();
+                $firstTaxModel = $detailedProduct->taxes()->first();
                 $firstTaxAmount = 0;
                 if ($firstTaxModel) {
                     $firstTax = $firstTaxModel->tax;
