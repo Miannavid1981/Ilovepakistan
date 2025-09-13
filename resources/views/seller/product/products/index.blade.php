@@ -235,7 +235,7 @@
                                         echo $qty;
                                     @endphp
                                 </td>
-                                <td>{{ single_price($product->unit_price) }}
+                                <td>{{ home_base_price($product, true) }}
 
                                     @php
                                         echo "<pre>";
