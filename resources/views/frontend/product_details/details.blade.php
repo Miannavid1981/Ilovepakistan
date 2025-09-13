@@ -357,7 +357,7 @@ $product_stock = 0;
        
         <!-- Discount percentage -->
        
-        <br>
+       
         <br>
         @if ($detailedProduct->auction_product != 1)
             @php
