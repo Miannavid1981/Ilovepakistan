@@ -402,6 +402,7 @@ $product_stock = 0;
         @else
             <div class="pr">
                 <div class="price">{{ home_price($detailedProduct) }}</div>
+                <span class="fs-14 text-gray" style="margin-left: -8px"> / pc</span>
                 <!-- <div class="prise">Starts: 23 47 16</div> -->
                 
             </div>
