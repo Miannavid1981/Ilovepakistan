@@ -355,7 +355,7 @@ $product_stock = 0;
     <div class="col-md-7">
         <h4 class="mb-0"> {{ $detailedProduct->getTranslation('name') }}</h4>
         @if ($detailedProduct->unit != null)
-            <span class="opacity-70 mt-1">( {{ $detailedProduct->getTranslation('unit') }} )</span>
+            <span class="opacity-70 mt-1">({{ $detailedProduct->weight." ".$detailedProduct->getTranslation('unit') }} )</span>
         @endif
         <!-- Discount percentage -->
        
@@ -376,7 +376,8 @@ $product_stock = 0;
             </span>
 
         @endif
-        
+        <br>
+        {{ $detailedProduct->stocks()->first()->sku}}
         <br>
         <br>
         @if (home_price($detailedProduct) != home_discounted_price($detailedProduct))
@@ -475,12 +476,6 @@ $product_stock = 0;
                     <h6 class="mb-0">Brand </h6><a href="{{ route('products.brand', $detailedProduct->brand->slug) }}" class="fs-15">{{ $detailedProduct->brand->name }}<i class="fa fa-chevron-right ms-2"></i></a>
                 </div>
             @endif
-            <div class="d-flex align-items-center justify-content-between border-bottom py-2">
-                <h6 class="mb-0">SKU </h6><a href="javascript:void(0);" class="fs-15">{{ $detailedProduct->stocks()->first()->sku}}</a>
-            </div>
-             <div class="d-flex align-items-center justify-content-between border-bottom py-2">
-                <h6 class="mb-0">Weight </h6><a href="javascript:void(0);" class="fs-15">{{ $detailedProduct->weight." ".$detailedProduct->getTranslation('unit') }}</a>
-            </div>
             <div class="d-flex align-items-center justify-content-between border-bottom py-2">
                 <h6 class="mb-0">Net Price </h6><a href="javascript:void(0);" class="fs-15">{{ single_price($detailedProduct->unit_price) }}</a>
             </div>
